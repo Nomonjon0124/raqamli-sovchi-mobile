@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flutter Feature Builder"
+  short_description: "Create project-standard Flutter feature skeletons"
+  default_prompt: "Use $flutter-feature-builder to build a new feature following this project architecture."

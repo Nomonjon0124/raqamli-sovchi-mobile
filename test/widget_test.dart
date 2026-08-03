@@ -1,30 +1,72 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:raqamli_sovchi/main.dart';
+import 'package:raqamli_sovchi/core/errors/either.dart';
+import 'package:raqamli_sovchi/core/errors/failure.dart';
+import 'package:raqamli_sovchi/features/auth/application/use_cases/restore_session.dart';
+import 'package:raqamli_sovchi/features/auth/application/use_cases/sign_in.dart';
+import 'package:raqamli_sovchi/features/auth/application/use_cases/sign_out.dart';
+import 'package:raqamli_sovchi/features/auth/domain/entities/session.dart';
+import 'package:raqamli_sovchi/features/auth/domain/repositories/auth_repository.dart';
+import 'package:raqamli_sovchi/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:raqamli_sovchi/features/auth/presentation/pages/login_page.dart';
+import 'package:raqamli_sovchi/l10n/app_localizations.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('login page sends demo sign-in event', (tester) async {
+    final repository = _FakeAuthRepository();
+    final authBloc = AuthBloc(
+      restoreSession: RestoreSessionUseCase(repository),
+      signIn: SignInUseCase(repository),
+      signOut: SignOutUseCase(repository),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      BlocProvider.value(
+        value: authBloc,
+        child: const MaterialApp(
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: LoginPage(),
+        ),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    expect(find.text('Sign in as demo user'), findsOneWidget);
+
+    await tester.tap(find.text('Sign in as demo user'));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(repository.signInCalls, 1);
+    await authBloc.close();
   });
+}
+
+final class _FakeAuthRepository implements AuthRepository {
+  int signInCalls = 0;
+
+  @override
+  Future<Either<Failure, Session?>> restoreSession() async {
+    return const Right<Failure, Session?>(null);
+  }
+
+  @override
+  Future<Either<Failure, Session>> signIn() async {
+    signInCalls++;
+    return const Right<Failure, Session>(
+      Session(userId: 'test-user', displayName: 'Test User'),
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> signOut() async {
+    return const Right<Failure, void>(null);
+  }
 }

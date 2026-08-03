@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Client Builder"
+  short_description: "Build Dio API layers with typed failures"
+  default_prompt: "Use $api-client-builder to connect this API endpoint using the project network architecture."

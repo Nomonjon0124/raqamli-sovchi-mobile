@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architecture Guard"
+  short_description: "Review changes against project architecture rules"
+  default_prompt: "Use $architecture-guard to review this change against the project architecture."

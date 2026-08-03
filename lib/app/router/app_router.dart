@@ -1,0 +1,69 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/auth/presentation/bloc/auth_state.dart';
+import '../../features/auth/presentation/pages/home_page.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/splash_page.dart';
+import 'route_names.dart';
+
+final class AppRouter {
+  AppRouter({required AuthBloc authBloc})
+    : _authBloc = authBloc,
+      _refreshListenable = _AuthRouterRefreshListenable(authBloc.stream);
+
+  final AuthBloc _authBloc;
+  final _AuthRouterRefreshListenable _refreshListenable;
+
+  late final GoRouter router = GoRouter(
+    initialLocation: RouteNames.splash,
+    refreshListenable: _refreshListenable,
+    redirect: (context, state) {
+      final status = _authBloc.state.status;
+      final location = state.matchedLocation;
+      final onSplash = location == RouteNames.splash;
+      final onLogin = location == RouteNames.login;
+
+      if (status == AuthStatus.initial || status == AuthStatus.loading) {
+        return onSplash ? null : RouteNames.splash;
+      }
+
+      if (status == AuthStatus.authenticated) {
+        return onSplash || onLogin ? RouteNames.home : null;
+      }
+
+      return onLogin ? null : RouteNames.login;
+    },
+    routes: [
+      GoRoute(
+        path: RouteNames.splash,
+        builder: (context, state) => const SplashPage(),
+      ),
+      GoRoute(
+        path: RouteNames.login,
+        builder: (context, state) => const LoginPage(),
+      ),
+      GoRoute(
+        path: RouteNames.home,
+        builder: (context, state) => const HomePage(),
+      ),
+    ],
+  );
+}
+
+final class _AuthRouterRefreshListenable extends ChangeNotifier {
+  _AuthRouterRefreshListenable(Stream<AuthState> stream) {
+    _subscription = stream.listen((_) => notifyListeners());
+  }
+
+  late final StreamSubscription<AuthState> _subscription;
+
+  @override
+  void dispose() {
+    unawaited(_subscription.cancel());
+    super.dispose();
+  }
+}
