@@ -1,224 +1,155 @@
-# OAuth2 Google and Email Auth Plan
+# Google Sign-In server auth code plan
 
-Status: proposed plan
+Status: implementation updated
 
-Date: 2026-08-04
+Date: 2026-08-05
 
-## Summary
+## Decision
 
-Use `oauth2_client` only if we implement a generic OAuth2 browser redirect flow in the Flutter app. Between `oauth2_client` and `oauth2`, `oauth2_client` fits this mobile app better because it is Flutter-oriented and already handles browser redirect flow, callback activity setup, secure token storage, and predefined Google OAuth2 client helpers.
+Use `google_sign_in`, not `oauth2_client`, for Google login in the mobile app.
 
-Do not use the backend email endpoint as OAuth2 sign-in. Current backend schema shows `POST /api/v1/accounts/auth/email/` as an authenticated endpoint that accepts and returns only an email value. It has `jwtAuth` security, so it is more likely for adding or updating an email on an existing account, not for initial login.
+Reason: Google blocks custom-scheme OAuth authorization requests on Android in
+modern OAuth policy enforcement. The app should use the native Google Sign-In
+SDK flow and request a server auth code.
 
-Do not implement Google sign-in against `POST /api/v1/accounts/auth/google/` yet as a production flow. Current backend schema exposes no request body and no response body for that endpoint, and it also marks the endpoint with `jwtAuth`. That contract is not enough to know whether the backend expects an authorization code, access token, ID token, Firebase token, or something else.
-
-## Sources Checked
-
-- `https://pub.dev/packages/oauth2_client`
-- `https://pub.dev/packages/oauth2`
-- `https://backend.raqamlisovchi.uz/api/schema/`
-- Swagger UI paths:
-  - `POST /api/v1/accounts/auth/google/`
-  - `POST /api/v1/accounts/auth/email/`
-
-## Package Decision
-
-### Recommended if choosing between the two: `oauth2_client`
-
-Reasons:
-
-- It is a Flutter package, not only a Dart package.
-- It supports Authorization Code flow and provides predefined Google client helpers.
-- It uses browser-based redirect flow through Flutter platform integration.
-- It is closer to what a mobile app needs: open browser, receive callback, extract OAuth result.
-- It can work without us hand-rolling the redirect listener.
-
-Important constraint:
-
-- Do not use `oauth2_client` as the app's main API client.
-- Do not let it own Raqamli Sovchi backend JWT lifecycle.
-- Use it only to get the external Google OAuth result, then exchange that result with the backend.
-- Backend access/refresh tokens must still be stored only through the existing `TokenStore`.
-
-### Not recommended as primary Flutter auth package: `oauth2`
-
-Reasons:
-
-- It is a lower-level Dart OAuth2 package.
-- It can model Authorization Code, credentials, refresh, and HTTP client behavior, but it does not provide a complete Flutter redirect integration.
-- For Flutter apps, redirect handling still needs extra pieces such as `url_launcher` plus an app/deep link listener, or a WebView.
-- This project already has strict auth flow, router, token store, and Dio integration. Adding a low-level OAuth client would require more custom platform code and more test surface.
-
-Use `oauth2` only if we intentionally want to own the full OAuth2 state machine and callback/deep-link handling ourselves. That is not necessary for the current app.
-
-## Backend Contract Findings
-
-### Google endpoint
-
-Schema:
-
-```text
-POST /api/v1/accounts/auth/google/
-operationId: v1_accounts_auth_google_create
-security: jwtAuth
-200: No response body
-```
-
-Current blocker:
-
-- No request schema.
-- No response schema.
-- No examples.
-- Security says `jwtAuth`, which conflicts with it being an unauthenticated sign-in endpoint.
-
-Required backend clarification:
-
-- Is this endpoint for initial login/register or for linking Google to an already authenticated account?
-- Should mobile send `id_token`, `access_token`, `authorization_code`, or another provider credential?
-- Is PKCE required?
-- What exact success response returns backend access and refresh tokens?
-- Does the response use the same token shape as `/api/v1/accounts/auth/token/`?
-- What are validation/error responses for cancelled, invalid token, unverified email, blocked user, and already linked account?
-- Should mobile use Google OAuth client IDs for Android/iOS, or does backend provide a custom OAuth start URL?
-
-Until those are answered, production Google auth should stay disabled or show a clear unavailable state.
-
-### Email endpoint
-
-Schema:
-
-```text
-POST /api/v1/accounts/auth/email/
-security: jwtAuth
-request: EmailAuthRequest { email: string, format: email, minLength: 1 }
-response: EmailAuth { email: string, format: email }
-```
-
-Interpretation:
-
-- This is not OAuth2.
-- This is not a complete email login flow.
-- Because it requires `jwtAuth`, it appears to be an authenticated account email attach/update endpoint.
-
-Required backend clarification:
-
-- Is email supposed to be login, registration, profile update, or account linking?
-- If email login is planned, where are the password, OTP, magic link, verification code, or token exchange endpoints?
-- Should unauthenticated users call this endpoint? If yes, `jwtAuth` in schema is wrong.
-
-## Proposed Google Flow After Backend Contract Is Fixed
-
-Target architecture:
+## Target flow
 
 ```text
 LoginPage
-  -> AuthGoogleSignInRequested
-  -> AuthBloc
-  -> SignInWithGoogleUseCase
-  -> AuthRepository
-  -> GoogleOAuthDataSource
-  -> oauth2_client opens Google OAuth
-  -> receive provider result
-  -> RemoteAuthDataSource POST /api/v1/accounts/auth/google/
-  -> backend returns app access/refresh tokens
-  -> TokenStore.saveTokens
-  -> AuthBloc emits PIN gate
+  -> GoogleSignIn.authenticate()
+  -> account.authorizationClient.authorizeServer(scopes)
+  -> serverAuthCode
+  -> POST /api/v1/accounts/auth/google/
+  -> backend exchanges code with Google
+  -> backend returns Raqamli Sovchi access/refresh tokens
+  -> TokenStore saves backend tokens in secure storage
+  -> existing PIN setup/unlock gate
+  -> Home
 ```
 
-Implementation rules:
+## Backend request
 
-- Domain layer must not import `oauth2_client`.
-- `oauth2_client` belongs in data or core platform integration only.
-- BLoC calls a use case only.
-- Repository returns `Either<Failure, Session>`.
-- Raw provider exceptions map to typed `Failure`.
-- Backend JWT tokens remain the only tokens used by Dio interceptors.
-- Google OAuth token/code must not be logged.
+Endpoint:
 
-## Data Layer Shape
+```text
+POST https://backend.raqamlisovchi.uz/api/v1/accounts/auth/google/
+```
 
-Add a provider abstraction:
+Request body:
 
-```dart
-abstract interface class GoogleOAuthProvider {
-  Future<GoogleOAuthCredential> signIn();
+```json
+{
+  "authorization_code": "<google-server-auth-code>"
 }
 ```
 
-Model the external credential separately:
+The request must use `skipAuth: true` so an expired Raqamli Sovchi JWT is not
+attached to a public auth endpoint.
+
+Do not send:
+
+- Raqamli Sovchi access token as Google `access_token`;
+- custom mobile `redirect_uri`;
+- Google client secret from the app.
+
+## Google Cloud setup
+
+Android requires two OAuth clients:
+
+- Android OAuth client: configured with package name and SHA-1 fingerprint.
+  This identifies the installed Android app.
+- Web application OAuth client: passed to Flutter as
+  `GOOGLE_SERVER_CLIENT_ID` and configured on the backend for code exchange.
+
+The Web application client ID is public enough to be passed to the mobile app.
+The Web application client secret must stay only on the backend.
+
+## Flutter config
+
+The app reads:
 
 ```dart
-final class GoogleOAuthCredential {
-  const GoogleOAuthCredential({
-    this.authorizationCode,
-    this.idToken,
-    this.accessToken,
-  });
+String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID')
+```
 
-  final String? authorizationCode;
-  final String? idToken;
-  final String? accessToken;
+Build example:
+
+```powershell
+flutter run --dart-define=GOOGLE_SERVER_CLIENT_ID=YOUR_WEB_CLIENT_ID.apps.googleusercontent.com
+```
+
+The older `GOOGLE_CLIENT_ID` key remains only as a temporary fallback. New
+commands and CI/CD should use `GOOGLE_SERVER_CLIENT_ID`.
+
+## Package behavior
+
+`google_sign_in` 7.x is initialized with:
+
+```dart
+await GoogleSignIn.instance.initialize(
+  serverClientId: AppConfig.resolvedGoogleServerClientId,
+);
+```
+
+Then the provider:
+
+1. starts user-initiated Google authentication;
+2. asks Google for server authorization with scopes `openid`, `email`,
+   `profile`;
+3. returns `GoogleAuthorizationResult(authorizationCode: serverAuthCode)`;
+4. maps cancel/configuration/unsupported/unknown errors to typed `Failure`.
+
+## Error mapping
+
+| Signal | Failure |
+|---|---|
+| Missing `GOOGLE_SERVER_CLIENT_ID` | `Failure.configuration()` |
+| Missing `serverAuthCode` | `Failure.configuration()` |
+| User cancelled | `Failure.cancelled()` |
+| Google client/provider misconfiguration | `Failure.configuration()` |
+| UI unavailable or unsupported platform | `Failure.unsupported()` |
+| Backend 401 from expired app token | check `skipAuth: true` |
+| Backend validation error | backend failure mapping |
+
+Cancel should not show a red login error. Configuration errors should show a
+clear setup message.
+
+## Response handling
+
+Backend success is expected to include Raqamli Sovchi tokens:
+
+```json
+{
+  "user": {},
+  "tokens": {
+    "access": "<backend-access-token>",
+    "refresh": "<backend-refresh-token>"
+  },
+  "created": true
 }
 ```
 
-The request DTO must wait for backend confirmation. Possible shapes:
+The mobile app stores only backend `access` and `refresh` tokens through
+`TokenStore`. Google auth codes and Google tokens are not stored locally.
 
-```json
-{ "id_token": "<google id token>" }
-```
+## Tests
 
-or:
+Required checks:
 
-```json
-{ "code": "<authorization code>", "redirect_uri": "<redirect uri>" }
-```
+- provider returns configuration failure when server client ID is missing;
+- provider returns `authorization_code` from `serverAuthCode`;
+- missing server auth code maps to configuration failure;
+- backend request body contains only `authorization_code`;
+- backend request uses `skipAuth: true`;
+- nested backend tokens are mapped and saved;
+- Auth BLoC Google event reaches existing PIN gate.
 
-Do not guess which one is correct.
+## Acceptance
 
-## Package Integration Plan
-
-If backend confirms mobile should perform OAuth:
-
-1. Add `oauth2_client` only after confirming Android/iOS callback requirements.
-2. Configure Android callback activity for the app redirect scheme.
-3. Configure iOS URL scheme.
-4. Add non-secret OAuth config to app config:
-   - Google Android client ID
-   - Google iOS client ID
-   - Redirect URI/custom scheme
-   - Scopes
-5. Implement `GoogleOAuthProvider` behind data/core platform boundary.
-6. Update `RemoteAuthDataSource.signInWithGoogle`.
-7. Map backend token response to `AuthSessionModel`.
-8. Store backend tokens via `TokenStore`.
-9. Route successful login into existing PIN setup/unlock flow.
-10. Add tests for provider cancellation, backend validation failure, token save, and BLoC state transitions.
-
-## Email Auth Plan
-
-Do not build email login from current endpoint.
-
-Use current email endpoint only if product wants "add email to current account" after login. That should be implemented as a profile/account setting, not as `AuthGoogleSignInRequested` or initial auth.
-
-If backend later adds email login, required contract:
-
-- Start email auth request.
-- Verify OTP/magic link/password.
-- Return backend access/refresh tokens.
-- Define resend, expiry, rate-limit, and error response rules.
-
-## Acceptance Criteria Before Implementation
-
-- Backend provides concrete Google request and response examples.
-- Backend clarifies whether Google endpoint is unauthenticated login or authenticated account linking.
-- Backend provides token response shape.
-- Backend confirms whether mobile should send authorization code, ID token, or access token.
-- App callback scheme is registered for Android and iOS.
-- No OAuth client secret is shipped in the mobile app.
-- Tests cover provider cancellation, invalid provider credential, backend failure, and successful session-to-PIN gate.
-
-## Final Recommendation
-
-Use `oauth2_client` if we must choose from the two packages, but do not implement Google login until backend fixes or clarifies `POST /api/v1/accounts/auth/google/`.
-
-Do not use `POST /api/v1/accounts/auth/email/` for OAuth2 or login. It is currently an authenticated email attach/update style endpoint, not an auth flow.
+- Google button no longer uses custom redirect OAuth flow.
+- Google button no longer opens `accounts.google.com` with
+  `raqamlisovchi:/oauth2redirect`.
+- Android uses native Google Sign-In.
+- Backend receives `authorization_code`.
+- Existing PIN setup/unlock flow continues to work after Google success.
+- `flutter analyze`, format, targeted tests, and Android debug build pass.

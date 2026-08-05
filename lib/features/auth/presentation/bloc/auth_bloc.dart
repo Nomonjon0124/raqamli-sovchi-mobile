@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -9,6 +10,7 @@ import '../../application/use_cases/check_biometric_availability.dart';
 import '../../application/use_cases/clear_pin.dart';
 import '../../application/use_cases/create_pin.dart';
 import '../../application/use_cases/create_telegram_auth_session.dart';
+import '../../application/use_cases/delete_account.dart';
 import '../../application/use_cases/get_telegram_auth_session_status.dart';
 import '../../application/use_cases/has_pin.dart';
 import '../../application/use_cases/request_phone_otp.dart';
@@ -36,6 +38,7 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required VerifyPinUseCase verifyPin,
     required ClearPinUseCase clearPin,
     required SignOutUseCase signOut,
+    required DeleteAccountUseCase deleteAccount,
     this.telegramPollingInterval = const Duration(seconds: 2),
   }) : _restoreSession = restoreSession,
        _requestPhoneOtp = requestPhoneOtp,
@@ -50,6 +53,7 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
        _verifyPin = verifyPin,
        _clearPin = clearPin,
        _signOut = signOut,
+       _deleteAccount = deleteAccount,
        super(const AuthState()) {
     on<AuthStarted>(_onStarted);
     on<AuthPhoneSubmitted>(_onPhoneSubmitted);
@@ -63,6 +67,7 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthPinCreated>(_onPinCreated);
     on<AuthPinUnlockRequested>(_onPinUnlockRequested);
     on<AuthSignOutRequested>(_onSignOutRequested);
+    on<AuthDeleteAccountRequested>(_onDeleteAccountRequested);
     on<AuthFlowCancelled>(_onFlowCancelled);
   }
 
@@ -79,6 +84,7 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final VerifyPinUseCase _verifyPin;
   final ClearPinUseCase _clearPin;
   final SignOutUseCase _signOut;
+  final DeleteAccountUseCase _deleteAccount;
   final Duration telegramPollingInterval;
   Timer? _telegramPollingTimer;
   String? _telegramSessionId;
@@ -159,13 +165,19 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthGoogleSignInRequested event,
     Emitter<AuthState> emit,
   ) async {
+    _debugGoogleAuthLog('bloc.googleRequested');
     _stopTelegramPolling();
     emit(const AuthState(status: AuthStatus.loading));
     final result = await _signInWithGoogle();
     await result.fold(
-      (failure) async =>
-          emit(AuthState(status: AuthStatus.unauthenticated, failure: failure)),
-      (session) async => _emitPinGate(session, emit),
+      (failure) async {
+        _debugGoogleAuthLog('bloc.googleFailure type=${failure.type}');
+        emit(AuthState(status: AuthStatus.unauthenticated, failure: failure));
+      },
+      (session) async {
+        _debugGoogleAuthLog('bloc.googleSuccess.emitPinGate');
+        await _emitPinGate(session, emit);
+      },
     );
   }
 
@@ -356,6 +368,27 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+  Future<void> _onDeleteAccountRequested(
+    AuthDeleteAccountRequested event,
+    Emitter<AuthState> emit,
+  ) async {
+    _stopTelegramPolling();
+    emit(state.copyWith(status: AuthStatus.loading, clearFailure: true));
+    final result = await _deleteAccount();
+    final clearPinResult = await _clearPin();
+    result.fold(
+      (failure) => emit(
+        state.copyWith(status: AuthStatus.authenticated, failure: failure),
+      ),
+      (_) => clearPinResult.fold(
+        (failure) => emit(
+          AuthState(status: AuthStatus.unauthenticated, failure: failure),
+        ),
+        (_) => emit(const AuthState(status: AuthStatus.unauthenticated)),
+      ),
+    );
+  }
+
   void _onFlowCancelled(AuthFlowCancelled event, Emitter<AuthState> emit) {
     _stopTelegramPolling();
     emit(const AuthState(status: AuthStatus.unauthenticated));
@@ -395,4 +428,9 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   static const _validationFailure = Failure.validation();
+}
+
+void _debugGoogleAuthLog(String message) {
+  if (!kDebugMode) return;
+  debugPrint('[GoogleAuth] $message');
 }
