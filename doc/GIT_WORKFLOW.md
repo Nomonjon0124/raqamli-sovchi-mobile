@@ -3,6 +3,34 @@
 Bu repository uchun default branch `dev`. Kod faqat pull request orqali
 protected branchlarga kiradi.
 
+## Fork Remote Modeli
+
+Lokal loyiha fork orqali ishlaydi:
+
+- `origin`: shaxsiy fork, pushlar shu repoga yuboriladi.
+  `https://github.com/Nomonjon0124/raqamli-sovchi-mobile.git`
+- `upstream`: asosiy repository, faqat yangilik olish uchun ishlatiladi.
+  `https://github.com/raqamli-nazorat/raqamli-sovchi-mobile.git`
+
+Remote sozlash:
+
+```bash
+git remote set-url origin https://github.com/Nomonjon0124/raqamli-sovchi-mobile.git
+git remote add upstream https://github.com/raqamli-nazorat/raqamli-sovchi-mobile.git
+git remote set-url --push upstream DISABLED
+git fetch --all --prune
+```
+
+Agar `upstream` oldindan mavjud bo'lsa:
+
+```bash
+git remote set-url upstream https://github.com/raqamli-nazorat/raqamli-sovchi-mobile.git
+git remote set-url --push upstream DISABLED
+```
+
+`upstream`ga to'g'ridan-to'g'ri push qilinmaydi. Feature branchlar forkdagi
+`origin`ga push qilinadi va PR asosiy repositoryning `dev` branchiga ochiladi.
+
 ## Branchlar
 
 - `dev`: kundalik development va feature PRlar uchun default branch.
@@ -43,18 +71,70 @@ PR merge bo'lishidan oldin:
 
 Agent Git bilan ishlashdan oldin `AGENTS.md` va ushbu faylni o'qiydi.
 
-- Ishni `dev`dan boshlaydi: `git fetch origin`, keyin `origin/dev`dan scoped
-  branch yaratadi.
+- Remote holatini tekshiradi: `git remote -v`. `origin` forkka, `upstream`
+  asosiy repositoryga qarashi kerak.
+- Ishni asosiy repositoryning yangilangan `dev` branchidan boshlaydi:
+  `git fetch upstream --prune`, keyin lokal `dev`ni `upstream/dev` bilan
+  yangilaydi.
+- Scoped branch lokal `dev` yoki bevosita `upstream/dev`dan yaratiladi.
 - Branch nomi ish turini bildiradi: `feature/*`, `fix/*`, yoki `chore/*`.
 - Stage qilishdan oldin `git status --short` va `git diff` bilan faqat kerakli
   fayllar tanlanganini tekshiradi.
 - Commit xabari qisqa, aniq va imperative bo'ladi.
-- Protected branchlarga direct push qilmaydi.
-- PR base default holatda `dev`; release uchun faqat `dev -> prod`, production
-  snapshot uchun faqat `prod -> main`.
+- Branch faqat forkdagi `origin`ga push qilinadi:
+  `git push -u origin <branch>`.
+- Protected branchlarga va `upstream`ga direct push qilmaydi.
+- PR head fork branchi bo'ladi, base esa asosiy repositorydagi `dev`.
+  Release uchun faqat `dev -> prod`, production snapshot uchun faqat
+  `prod -> main`.
 - Branch protection, collaborator, default branch yoki merge settings o'zgarishi
   faqat user aniq so'raganda qilinadi.
 - User so'ramasa, admin/protection sozlamalari o'zgartirilmaydi.
+
+## Oddiy Ishlash Ketma-ketligi
+
+Yangi ish boshlash:
+
+```bash
+git fetch upstream --prune
+git switch dev
+git merge --ff-only upstream/dev
+git push origin dev
+git switch -c feature/<task-name>
+```
+
+Ishni push qilish:
+
+```bash
+git status --short
+git diff --check
+dart format --set-exit-if-changed .
+flutter analyze
+git add <changed-files>
+git commit -m "<type>: <short description>"
+git push -u origin feature/<task-name>
+```
+
+PR ochish:
+
+```bash
+gh pr create \
+  --repo raqamli-nazorat/raqamli-sovchi-mobile \
+  --base dev \
+  --head Nomonjon0124:feature/<task-name>
+```
+
+Issue avtomatik yopilishi kerak bo'lsa PR body ichiga `Closes #<issue-number>`
+qo'shiladi.
+
+Asosiy repositorydan oxirgi yangiliklarni olish:
+
+```bash
+git fetch upstream --prune
+git switch dev
+git merge --ff-only upstream/dev
+git push origin dev
+```
 
 ## Merge Huquqi
 
