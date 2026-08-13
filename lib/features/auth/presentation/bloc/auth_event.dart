@@ -76,6 +76,10 @@ final class AuthPinUnlockRequested extends AuthEvent {
   List<Object?> get props => [pin];
 }
 
+final class AuthOnboardingCompleted extends AuthEvent {
+  const AuthOnboardingCompleted();
+}
+
 final class AuthSignOutRequested extends AuthEvent {
   const AuthSignOutRequested();
 }

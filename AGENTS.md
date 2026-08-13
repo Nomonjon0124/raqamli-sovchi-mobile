@@ -10,6 +10,11 @@ also read:
 
 - `doc/PRIVACY_POLICY.md`
 
+For product routing, candidate roles, `candidate_type` behavior, and role-based
+UI expectations, also read:
+
+- `doc/USER_FLOW_MAP.md`
+
 The architecture spec is the source of truth for this repository. Do not copy
 architecture rules into other files unless the user explicitly asks for a
 summary. If another project document and the architecture spec conflict, follow
@@ -51,6 +56,11 @@ matches their purpose:
 - Use `get_it` for dependency injection with manual registration.
 - Use `dio` for HTTP and map API results to typed `Either<Failure, T>` or
   `Result<T>` values.
+- API response models in the data layer should mirror backend JSON structure
+  with clear class names such as `AuthSessionDataModel`, `AuthUserModel`, and
+  `AuthTokensModel`; avoid generic names like `Data` when a domain-specific
+  name is available. Domain entities should stay app-focused and should not
+  expose raw API wrapper fields unless the domain actually needs them.
 - Do not let raw exceptions such as `DioException` reach UI or BLoC layers.
 - Use immutable Dart classes with `Equatable` for entities, models, events, and
   states.
@@ -67,7 +77,13 @@ matches their purpose:
 - Build and reuse design-system widgets such as `AppTextField`, `AppButton`,
   `AppAvatar`, `AppErrorView`, and `AppEmptyState`.
 - Do not hardcode colors, typography, spacing, or radius inside feature UI.
-- All user-facing text must be localization-ready.
+- All user-facing text must come from generated l10n resources in
+  `lib/l10n/*.arb`; do not add hardcoded UI copy in pages, widgets, dialogs,
+  snackbars, tooltips, semantic labels, empty states, or error states.
+- Keep English (`app_en.arb`), Russian (`app_ru.arb`), and Uzbek
+  (`app_uz.arb`) translations in sync whenever UI text is added or changed.
+- The default app locale is Uzbek (`uz`) until an explicit in-app language
+  setting is implemented.
 - Every screen must handle loading, empty, error, offline, and permission-denied
   states where applicable.
 

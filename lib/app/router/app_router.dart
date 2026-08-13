@@ -5,11 +5,17 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
-import '../../features/auth/presentation/pages/home_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/pages/pin_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
+import '../../features/chat/presentation/pages/messages_page.dart';
+import '../../features/discovery/presentation/pages/candidates_page.dart';
+import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
+import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/saved/presentation/pages/saved_page.dart';
+import '../../features/services/presentation/pages/services_page.dart';
+import 'app_shell.dart';
 import 'route_names.dart';
 
 final class AppRouter {
@@ -31,6 +37,7 @@ final class AppRouter {
       final onOtp = location == RouteNames.otp;
       final onPin =
           location == RouteNames.pinCreate || location == RouteNames.pinUnlock;
+      final onOnboarding = location == RouteNames.onboarding;
 
       if (status == AuthStatus.initial) {
         return onSplash ? null : RouteNames.splash;
@@ -39,7 +46,9 @@ final class AppRouter {
       if (status == AuthStatus.loading) return null;
 
       if (status == AuthStatus.authenticated) {
-        return onSplash || onLogin || onOtp || onPin ? RouteNames.home : null;
+        return onSplash || onLogin || onOtp || onPin || onOnboarding
+            ? RouteNames.home
+            : null;
       }
 
       if (status == AuthStatus.otpPending) {
@@ -56,6 +65,10 @@ final class AppRouter {
 
       if (status == AuthStatus.pinLocked) {
         return location == RouteNames.pinUnlock ? null : RouteNames.pinUnlock;
+      }
+
+      if (status == AuthStatus.onboardingRequired) {
+        return onOnboarding ? null : RouteNames.onboarding;
       }
 
       return onLogin ? null : RouteNames.login;
@@ -82,8 +95,54 @@ final class AppRouter {
         builder: (context, state) => const PinPage(mode: PinPageMode.unlock),
       ),
       GoRoute(
-        path: RouteNames.home,
-        builder: (context, state) => const HomePage(),
+        path: RouteNames.onboarding,
+        builder: (context, state) => const ProfileOnboardingPage(),
+      ),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) =>
+            AppShell(navigationShell: navigationShell),
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RouteNames.home,
+                builder: (context, state) => const CandidatesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RouteNames.messages,
+                builder: (context, state) => const MessagesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RouteNames.services,
+                builder: (context, state) => const ServicesPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RouteNames.saved,
+                builder: (context, state) => const SavedPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: RouteNames.profile,
+                builder: (context, state) => const ProfilePage(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );
