@@ -67,6 +67,10 @@ class $AssetsIconsGen {
   SvgGenImage get icArrowLeft01Round =>
       const SvgGenImage('assets/icons/ic_arrow_left_01_round.svg');
 
+  /// File path: assets/icons/ic_arrow_right.svg
+  SvgGenImage get icArrowRight =>
+      const SvgGenImage('assets/icons/ic_arrow_right.svg');
+
   /// File path: assets/icons/ic_candidates_btv.svg
   SvgGenImage get icCandidatesBtv =>
       const SvgGenImage('assets/icons/ic_candidates_btv.svg');
@@ -123,6 +127,7 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
     icAi,
     icArrowLeft01Round,
+    icArrowRight,
     icCandidatesBtv,
     icGlyph,
     icGoogleIcon,

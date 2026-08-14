@@ -910,6 +910,79 @@ class AppLocalizationsRu extends AppLocalizations {
       'В бесплатном плане можно сохранить до 10 профилей. В Premium ограничений нет.';
 
   @override
+  String get questionnaireOptionalBadge => 'Необязательный шаг';
+
+  @override
+  String questionnaireIntroTitle(int count, int minutes) {
+    return '$count вопросов — $minutes минут';
+  }
+
+  @override
+  String get questionnaireIntroDescription =>
+      'Мы проанализируем ответы и покажем процент совместимости с каждым кандидатом. Анкету можно заполнить позже.';
+
+  @override
+  String questionnaireQuestionCount(int count) {
+    return '$count вопросов';
+  }
+
+  @override
+  String get questionnaireWithoutTitle => 'Что будет без анкеты?';
+
+  @override
+  String get questionnaireWithoutBody =>
+      'Профиль и список кандидатов останутся доступны, но AI не рассчитает совместимость, проценты и анализ по разделам.';
+
+  @override
+  String get questionnaireStart => 'Да, начать анкету';
+
+  @override
+  String get questionnaireLater => 'Заполнить позже';
+
+  @override
+  String get questionnaireEmpty => 'Вопросов пока нет.';
+
+  @override
+  String questionnaireProgress(int current, int total) {
+    return '$current/$total';
+  }
+
+  @override
+  String get questionnaireNext => 'Следующий вопрос';
+
+  @override
+  String get questionnaireSubmit => 'Отправить ответы';
+
+  @override
+  String get questionnaireAnalysisTitle => 'Анализируем ваши ответы';
+
+  @override
+  String get questionnaireAnalysisBody =>
+      'AI формирует профиль ценностей, финансов и характера и подбирает подходящих кандидатов.';
+
+  @override
+  String get questionnaireResultTitle => 'Ваш профиль готов';
+
+  @override
+  String get questionnaireHonestyTitle => 'Индекс искренности · высокий';
+
+  @override
+  String get questionnaireHonestyBody =>
+      'Ответы на проверочные вопросы последовательны. Профиль отмечен как надёжный.';
+
+  @override
+  String get questionnaireSeriousBadge => 'Получен знак «Серьёзные намерения»';
+
+  @override
+  String get questionnaireShowCandidates => 'Посмотреть кандидатов';
+
+  @override
+  String get questionnaireTraitTraditional => 'традиционный';
+
+  @override
+  String get questionnaireTraitBalanced => 'сбалансированный';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

@@ -179,4 +179,19 @@ abstract final class AppTypography {
     height: 19 / 12,
     color: AppColors.mutedText,
   );
+  static const sectionCardTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const analysisTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 18,
+    height: 23 / 18,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
 }

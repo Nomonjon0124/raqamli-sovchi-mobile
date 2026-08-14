@@ -1092,7 +1092,7 @@ final class _ProfileOnboardingStepContentState
       aiPointThree: l10n.aiTestPointThree,
       startLabel: l10n.startAiTest,
       laterLabel: l10n.viewCandidatesLater,
-      onStart: () => bloc.add(const ProfileReadyHomeRequested()),
+      onStart: () => bloc.add(const ProfileReadyQuestionnaireRequested()),
       onLater: () => bloc.add(const ProfileReadyHomeRequested()),
     );
   }

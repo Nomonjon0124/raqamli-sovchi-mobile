@@ -102,6 +102,9 @@ final class ProfileOnboardingBloc
     on<AboutMeSkipPressed>(_onAboutMeSkipPressed);
     on<ProfileOnboardingFinalizationRequested>(_onFinalizationRequested);
     on<ProfileReadyHomeRequested>(_onProfileReadyHomeRequested);
+    on<ProfileReadyQuestionnaireRequested>(
+      _onProfileReadyQuestionnaireRequested,
+    );
     on<ProfileOnboardingCancelled>(_onCancelled);
   }
 
@@ -1696,7 +1699,26 @@ final class ProfileOnboardingBloc
   ) async {
     if (state.status == ProfileOnboardingStatus.submitting) return;
     await _draftRepository.clear();
-    emit(state.copyWith(status: ProfileOnboardingStatus.completed));
+    emit(
+      state.copyWith(
+        status: ProfileOnboardingStatus.completed,
+        openQuestionnaire: false,
+      ),
+    );
+  }
+
+  Future<void> _onProfileReadyQuestionnaireRequested(
+    ProfileReadyQuestionnaireRequested event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    if (state.status == ProfileOnboardingStatus.submitting) return;
+    await _draftRepository.clear();
+    emit(
+      state.copyWith(
+        status: ProfileOnboardingStatus.completed,
+        openQuestionnaire: true,
+      ),
+    );
   }
 
   Future<void> _onCancelled(

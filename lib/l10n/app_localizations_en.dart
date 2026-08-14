@@ -912,6 +912,80 @@ class AppLocalizationsEn extends AppLocalizations {
       'The free plan stores up to 10 profiles. Premium has no limit.';
 
   @override
+  String get questionnaireOptionalBadge => 'Optional step';
+
+  @override
+  String questionnaireIntroTitle(int count, int minutes) {
+    return '$count questions — $minutes minutes';
+  }
+
+  @override
+  String get questionnaireIntroDescription =>
+      'We analyze your answers and show your compatibility percentage with each candidate. You can also complete it later.';
+
+  @override
+  String questionnaireQuestionCount(int count) {
+    return '$count questions';
+  }
+
+  @override
+  String get questionnaireWithoutTitle =>
+      'What happens without the questionnaire?';
+
+  @override
+  String get questionnaireWithoutBody =>
+      'Your profile and candidates remain available, but AI will not calculate compatibility percentages or section analysis.';
+
+  @override
+  String get questionnaireStart => 'Yes, start questionnaire';
+
+  @override
+  String get questionnaireLater => 'Complete later';
+
+  @override
+  String get questionnaireEmpty => 'No questions are available yet.';
+
+  @override
+  String questionnaireProgress(int current, int total) {
+    return '$current/$total';
+  }
+
+  @override
+  String get questionnaireNext => 'Next question';
+
+  @override
+  String get questionnaireSubmit => 'Submit answers';
+
+  @override
+  String get questionnaireAnalysisTitle => 'Analyzing your answers';
+
+  @override
+  String get questionnaireAnalysisBody =>
+      'AI builds your values, finance, and character profile and selects suitable candidates.';
+
+  @override
+  String get questionnaireResultTitle => 'Your profile is ready';
+
+  @override
+  String get questionnaireHonestyTitle => 'Sincerity index · high';
+
+  @override
+  String get questionnaireHonestyBody =>
+      'Your verification answers are consistent. The profile was marked as trustworthy.';
+
+  @override
+  String get questionnaireSeriousBadge => '“Serious intentions” badge awarded';
+
+  @override
+  String get questionnaireShowCandidates => 'View matching candidates';
+
+  @override
+  String get questionnaireTraitTraditional => 'traditional';
+
+  @override
+  String get questionnaireTraitBalanced => 'balanced';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',

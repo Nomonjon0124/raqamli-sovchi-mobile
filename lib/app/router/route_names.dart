@@ -5,6 +5,7 @@ abstract final class RouteNames {
   static const pinCreate = '/pin/create';
   static const pinUnlock = '/pin/unlock';
   static const onboarding = '/onboarding';
+  static const questionnaire = '/questionnaire';
   static const home = '/home';
   static const messages = '/messages';
   static const services = '/services';

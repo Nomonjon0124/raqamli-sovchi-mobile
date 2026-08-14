@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -121,6 +123,9 @@ final class _ProfileOnboardingViewState extends State<_ProfileOnboardingView> {
         }
         if (state.status == ProfileOnboardingStatus.completed) {
           context.read<AuthBloc>().add(const AuthOnboardingCompleted());
+          if (state.openQuestionnaire) {
+            context.go(RouteNames.questionnaire);
+          }
         }
         if (state.status == ProfileOnboardingStatus.cancelled) {
           context.read<AuthBloc>().add(const AuthFlowCancelled());

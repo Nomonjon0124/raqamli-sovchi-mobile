@@ -51,6 +51,12 @@ import '../../features/onboarding/data/services/onboarding_media_service_impl.da
 import '../../features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
+import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
+import '../../features/questionnaire/application/use_cases/submit_questionnaire.dart';
+import '../../features/questionnaire/data/data_sources/questionnaire_data_source.dart';
+import '../../features/questionnaire/data/repositories/questionnaire_repository_impl.dart';
+import '../../features/questionnaire/domain/repositories/questionnaire_repository.dart';
+import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -124,6 +130,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<OnboardingDraftRepository>(
       () => OnboardingDraftRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<QuestionnaireDataSource>(
+      () => RemoteQuestionnaireDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<QuestionnaireRepository>(
+      () => QuestionnaireRepositoryImpl(serviceLocator()),
+    )
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
     ..registerLazySingleton<OnboardingLocationService>(
       DeviceOnboardingLocationService.new,
@@ -184,6 +196,18 @@ Future<void> configureDependencies() async {
     ..registerFactory<SignOutUseCase>(() => SignOutUseCase(serviceLocator()))
     ..registerFactory<DeleteAccountUseCase>(
       () => DeleteAccountUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadQuestionnaireUseCase>(
+      () => LoadQuestionnaireUseCase(serviceLocator()),
+    )
+    ..registerFactory<SubmitQuestionnaireUseCase>(
+      () => SubmitQuestionnaireUseCase(serviceLocator()),
+    )
+    ..registerFactory<QuestionnaireBloc>(
+      () => QuestionnaireBloc(
+        loadQuestionnaire: serviceLocator(),
+        submitQuestionnaire: serviceLocator(),
+      ),
     )
     ..registerFactory<ProfileOnboardingBloc>(
       () => ProfileOnboardingBloc(

@@ -909,6 +909,79 @@ class AppLocalizationsUz extends AppLocalizations {
       'Bepul rejada 10 tagacha profil saqlanadi. Premium bilan cheklov yoʻq.';
 
   @override
+  String get questionnaireOptionalBadge => 'Ixtiyoriy qadam';
+
+  @override
+  String questionnaireIntroTitle(int count, int minutes) {
+    return '$count ta savol — $minutes daqiqa';
+  }
+
+  @override
+  String get questionnaireIntroDescription =>
+      'Javoblaringizni tahlil qilib, har bir nomzod bilan moslik foizingizni ko‘rsatamiz. Xohlamasangiz, keyinroq ham topshirasiz.';
+
+  @override
+  String questionnaireQuestionCount(int count) {
+    return '$count savol';
+  }
+
+  @override
+  String get questionnaireWithoutTitle => 'So‘rovnomasiz nima bo‘ladi?';
+
+  @override
+  String get questionnaireWithoutBody =>
+      'Profilingiz ishlaydi va nomzodlarni ko‘rasiz, lekin AI moslikni hisoblamaydi — foiz va bo‘limlar kesimidagi tahlil yopiq qoladi.';
+
+  @override
+  String get questionnaireStart => 'Ha, so‘rovnomani boshlayman';
+
+  @override
+  String get questionnaireLater => 'Keyinroq to‘ldiraman';
+
+  @override
+  String get questionnaireEmpty => 'Hozircha savollar mavjud emas.';
+
+  @override
+  String questionnaireProgress(int current, int total) {
+    return '$current/$total';
+  }
+
+  @override
+  String get questionnaireNext => 'Keyingi savol';
+
+  @override
+  String get questionnaireSubmit => 'Javoblarni yuborish';
+
+  @override
+  String get questionnaireAnalysisTitle => 'Javoblaringiz tahlil qilinmoqda';
+
+  @override
+  String get questionnaireAnalysisBody =>
+      'AI qadriyatlar, moliya va xarakter profilingizni tuzib, mos nomzodlarni tanlaydi.';
+
+  @override
+  String get questionnaireResultTitle => 'Sizning profilingiz tayyor';
+
+  @override
+  String get questionnaireHonestyTitle => 'Samimiylik indeksi · yuqori';
+
+  @override
+  String get questionnaireHonestyBody =>
+      'Tuzoq savollarga javoblaringiz izchil. Profil ishonchli deb belgilandi.';
+
+  @override
+  String get questionnaireSeriousBadge => '“Niyati jiddiy” belgisi berildi';
+
+  @override
+  String get questionnaireShowCandidates => 'Mos nomzodlarni ko‘rish';
+
+  @override
+  String get questionnaireTraitTraditional => 'an’anaviy';
+
+  @override
+  String get questionnaireTraitBalanced => 'balansli';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

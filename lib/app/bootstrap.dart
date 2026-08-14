@@ -9,7 +9,7 @@ import 'di/service_locator.dart';
 Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  await serviceLocator<ScreenshotGuard>().enableProtection();
+  // await serviceLocator<ScreenshotGuard>().enableProtection();
 
   final authBloc = serviceLocator<AuthBloc>()..add(const AuthStarted());
 

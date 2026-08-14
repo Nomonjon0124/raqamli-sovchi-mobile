@@ -13,6 +13,7 @@ import '../../features/chat/presentation/pages/messages_page.dart';
 import '../../features/discovery/presentation/pages/candidates_page.dart';
 import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
 import 'app_shell.dart';
@@ -38,6 +39,7 @@ final class AppRouter {
       final onPin =
           location == RouteNames.pinCreate || location == RouteNames.pinUnlock;
       final onOnboarding = location == RouteNames.onboarding;
+      final onQuestionnaire = location == RouteNames.questionnaire;
 
       if (status == AuthStatus.initial) {
         return onSplash ? null : RouteNames.splash;
@@ -68,7 +70,7 @@ final class AppRouter {
       }
 
       if (status == AuthStatus.onboardingRequired) {
-        return onOnboarding ? null : RouteNames.onboarding;
+        return onOnboarding || onQuestionnaire ? null : RouteNames.onboarding;
       }
 
       return onLogin ? null : RouteNames.login;
@@ -97,6 +99,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.onboarding,
         builder: (context, state) => const ProfileOnboardingPage(),
+      ),
+      GoRoute(
+        path: RouteNames.questionnaire,
+        builder: (context, state) => const QuestionnairePage(),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>

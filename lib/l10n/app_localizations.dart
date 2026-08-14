@@ -1738,6 +1738,132 @@ abstract class AppLocalizations {
   /// **'Bepul rejada 10 tagacha profil saqlanadi. Premium bilan cheklov yoʻq.'**
   String get savedUpsellMessage;
 
+  /// No description provided for @questionnaireOptionalBadge.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ixtiyoriy qadam'**
+  String get questionnaireOptionalBadge;
+
+  /// No description provided for @questionnaireIntroTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta savol — {minutes} daqiqa'**
+  String questionnaireIntroTitle(int count, int minutes);
+
+  /// No description provided for @questionnaireIntroDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javoblaringizni tahlil qilib, har bir nomzod bilan moslik foizingizni ko‘rsatamiz. Xohlamasangiz, keyinroq ham topshirasiz.'**
+  String get questionnaireIntroDescription;
+
+  /// No description provided for @questionnaireQuestionCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} savol'**
+  String questionnaireQuestionCount(int count);
+
+  /// No description provided for @questionnaireWithoutTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'So‘rovnomasiz nima bo‘ladi?'**
+  String get questionnaireWithoutTitle;
+
+  /// No description provided for @questionnaireWithoutBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingiz ishlaydi va nomzodlarni ko‘rasiz, lekin AI moslikni hisoblamaydi — foiz va bo‘limlar kesimidagi tahlil yopiq qoladi.'**
+  String get questionnaireWithoutBody;
+
+  /// No description provided for @questionnaireStart.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ha, so‘rovnomani boshlayman'**
+  String get questionnaireStart;
+
+  /// No description provided for @questionnaireLater.
+  ///
+  /// In uz, this message translates to:
+  /// **'Keyinroq to‘ldiraman'**
+  String get questionnaireLater;
+
+  /// No description provided for @questionnaireEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha savollar mavjud emas.'**
+  String get questionnaireEmpty;
+
+  /// No description provided for @questionnaireProgress.
+  ///
+  /// In uz, this message translates to:
+  /// **'{current}/{total}'**
+  String questionnaireProgress(int current, int total);
+
+  /// No description provided for @questionnaireNext.
+  ///
+  /// In uz, this message translates to:
+  /// **'Keyingi savol'**
+  String get questionnaireNext;
+
+  /// No description provided for @questionnaireSubmit.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javoblarni yuborish'**
+  String get questionnaireSubmit;
+
+  /// No description provided for @questionnaireAnalysisTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javoblaringiz tahlil qilinmoqda'**
+  String get questionnaireAnalysisTitle;
+
+  /// No description provided for @questionnaireAnalysisBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'AI qadriyatlar, moliya va xarakter profilingizni tuzib, mos nomzodlarni tanlaydi.'**
+  String get questionnaireAnalysisBody;
+
+  /// No description provided for @questionnaireResultTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sizning profilingiz tayyor'**
+  String get questionnaireResultTitle;
+
+  /// No description provided for @questionnaireHonestyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Samimiylik indeksi · yuqori'**
+  String get questionnaireHonestyTitle;
+
+  /// No description provided for @questionnaireHonestyBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tuzoq savollarga javoblaringiz izchil. Profil ishonchli deb belgilandi.'**
+  String get questionnaireHonestyBody;
+
+  /// No description provided for @questionnaireSeriousBadge.
+  ///
+  /// In uz, this message translates to:
+  /// **'“Niyati jiddiy” belgisi berildi'**
+  String get questionnaireSeriousBadge;
+
+  /// No description provided for @questionnaireShowCandidates.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mos nomzodlarni ko‘rish'**
+  String get questionnaireShowCandidates;
+
+  /// No description provided for @questionnaireTraitTraditional.
+  ///
+  /// In uz, this message translates to:
+  /// **'an’anaviy'**
+  String get questionnaireTraitTraditional;
+
+  /// No description provided for @questionnaireTraitBalanced.
+  ///
+  /// In uz, this message translates to:
+  /// **'balansli'**
+  String get questionnaireTraitBalanced;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:
