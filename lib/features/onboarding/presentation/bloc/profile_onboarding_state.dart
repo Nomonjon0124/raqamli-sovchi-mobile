@@ -34,6 +34,7 @@ final class ProfileOnboardingState extends Equatable {
     this.isVoiceRecording = false,
     this.isVoicePlaying = false,
     this.isLocationLoading = false,
+    this.openQuestionnaire = false,
     this.failure,
   });
 
@@ -54,6 +55,7 @@ final class ProfileOnboardingState extends Equatable {
   final bool isVoiceRecording;
   final bool isVoicePlaying;
   final bool isLocationLoading;
+  final bool openQuestionnaire;
   final Failure? failure;
 
   bool get isBusy =>
@@ -78,6 +80,7 @@ final class ProfileOnboardingState extends Equatable {
     bool? isVoiceRecording,
     bool? isVoicePlaying,
     bool? isLocationLoading,
+    bool? openQuestionnaire,
     Failure? failure,
     bool clearFailure = false,
   }) {
@@ -99,6 +102,7 @@ final class ProfileOnboardingState extends Equatable {
       isVoiceRecording: isVoiceRecording ?? this.isVoiceRecording,
       isVoicePlaying: isVoicePlaying ?? this.isVoicePlaying,
       isLocationLoading: isLocationLoading ?? this.isLocationLoading,
+      openQuestionnaire: openQuestionnaire ?? this.openQuestionnaire,
       failure: clearFailure ? null : failure ?? this.failure,
     );
   }
@@ -122,6 +126,7 @@ final class ProfileOnboardingState extends Equatable {
     isVoiceRecording,
     isVoicePlaying,
     isLocationLoading,
+    openQuestionnaire,
     failure,
   ];
 }

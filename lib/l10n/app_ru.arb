@@ -292,5 +292,41 @@
   "savedPremiumCta": "Premium — безлимит",
   "savedUpsellTitle": "Осталось 3 места",
   "savedUpsellMessage": "В бесплатном плане можно сохранить до 10 профилей. В Premium ограничений нет.",
+  "questionnaireOptionalBadge": "Необязательный шаг",
+  "questionnaireIntroTitle": "{count} вопросов — {minutes} минут",
+  "@questionnaireIntroTitle": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "questionnaireIntroDescription": "Мы проанализируем ответы и покажем процент совместимости с каждым кандидатом. Анкету можно заполнить позже.",
+  "questionnaireQuestionCount": "{count} вопросов",
+  "@questionnaireQuestionCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "questionnaireWithoutTitle": "Что будет без анкеты?",
+  "questionnaireWithoutBody": "Профиль и список кандидатов останутся доступны, но AI не рассчитает совместимость, проценты и анализ по разделам.",
+  "questionnaireStart": "Да, начать анкету",
+  "questionnaireLater": "Заполнить позже",
+  "questionnaireEmpty": "Вопросов пока нет.",
+  "questionnaireProgress": "{current}/{total}",
+  "@questionnaireProgress": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "questionnaireNext": "Следующий вопрос",
+  "questionnaireSubmit": "Отправить ответы",
+  "questionnaireAnalysisTitle": "Анализируем ваши ответы",
+  "questionnaireAnalysisBody": "AI формирует профиль ценностей, финансов и характера и подбирает подходящих кандидатов.",
+  "questionnaireResultTitle": "Ваш профиль готов",
+  "questionnaireHonestyTitle": "Индекс искренности · высокий",
+  "questionnaireHonestyBody": "Ответы на проверочные вопросы последовательны. Профиль отмечен как надёжный.",
+  "questionnaireSeriousBadge": "Получен знак «Серьёзные намерения»",
+  "questionnaireShowCandidates": "Посмотреть кандидатов",
+  "questionnaireTraitTraditional": "традиционный",
+  "questionnaireTraitBalanced": "сбалансированный",
   "failureMessage": "{type, select, networkTimeout{Время подключения истекло.} noInternet{Нет подключения к интернету.} unauthorized{Сессия истекла.} cancelled{} forbidden{Доступ запрещен.} notFound{Данные не найдены.} validation{Проверьте введенные данные.} configuration{Вход через Google не настроен для этой сборки.} unsupported{Этот способ входа пока недоступен.} server{Произошла ошибка сервера.} unknown{Что-то пошло не так.} other{Что-то пошло не так.}}"
 }

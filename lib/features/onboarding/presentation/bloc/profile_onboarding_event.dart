@@ -410,6 +410,10 @@ final class ProfileReadyHomeRequested extends ProfileOnboardingEvent {
   const ProfileReadyHomeRequested();
 }
 
+final class ProfileReadyQuestionnaireRequested extends ProfileOnboardingEvent {
+  const ProfileReadyQuestionnaireRequested();
+}
+
 final class ProfileOnboardingCancelled extends ProfileOnboardingEvent {
   const ProfileOnboardingCancelled();
 }

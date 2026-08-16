@@ -7,7 +7,9 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 
 final class SurveyPromptCard extends StatelessWidget {
-  const SurveyPromptCard({super.key});
+  const SurveyPromptCard({required this.onPressed, super.key});
+
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ final class SurveyPromptCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {},
+                onPressed: onPressed,
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.surfaceLight,

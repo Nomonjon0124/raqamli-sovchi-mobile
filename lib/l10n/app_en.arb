@@ -292,5 +292,41 @@
   "savedPremiumCta": "Premium — unlimited",
   "savedUpsellTitle": "3 spots left",
   "savedUpsellMessage": "The free plan stores up to 10 profiles. Premium has no limit.",
+  "questionnaireOptionalBadge": "Optional step",
+  "questionnaireIntroTitle": "{count} questions — {minutes} minutes",
+  "@questionnaireIntroTitle": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "questionnaireIntroDescription": "We analyze your answers and show your compatibility percentage with each candidate. You can also complete it later.",
+  "questionnaireQuestionCount": "{count} questions",
+  "@questionnaireQuestionCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "questionnaireWithoutTitle": "What happens without the questionnaire?",
+  "questionnaireWithoutBody": "Your profile and candidates remain available, but AI will not calculate compatibility percentages or section analysis.",
+  "questionnaireStart": "Yes, start questionnaire",
+  "questionnaireLater": "Complete later",
+  "questionnaireEmpty": "No questions are available yet.",
+  "questionnaireProgress": "{current}/{total}",
+  "@questionnaireProgress": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "questionnaireNext": "Next question",
+  "questionnaireSubmit": "Submit answers",
+  "questionnaireAnalysisTitle": "Analyzing your answers",
+  "questionnaireAnalysisBody": "AI builds your values, finance, and character profile and selects suitable candidates.",
+  "questionnaireResultTitle": "Your profile is ready",
+  "questionnaireHonestyTitle": "Sincerity index · high",
+  "questionnaireHonestyBody": "Your verification answers are consistent. The profile was marked as trustworthy.",
+  "questionnaireSeriousBadge": "“Serious intentions” badge awarded",
+  "questionnaireShowCandidates": "View matching candidates",
+  "questionnaireTraitTraditional": "traditional",
+  "questionnaireTraitBalanced": "balanced",
   "failureMessage": "{type, select, networkTimeout{Connection timed out.} noInternet{No internet connection.} unauthorized{Session expired.} cancelled{} forbidden{Access denied.} notFound{Data was not found.} validation{Please check your input.} configuration{Google sign-in is not configured for this build.} unsupported{This sign-in method is not available yet.} server{A server error occurred.} unknown{Something went wrong.} other{Something went wrong.}}"
 }

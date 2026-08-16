@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../core/ui/widgets/app_candidate_card.dart';
 import '../../../../core/ui/widgets/app_candidate_grid.dart';
@@ -53,7 +55,9 @@ final class CandidatesPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                const SurveyPromptCard(),
+                SurveyPromptCard(
+                  onPressed: () => context.push(RouteNames.questionnaire),
+                ),
                 const SizedBox(height: AppSpacing.lg),
               ],
             ),

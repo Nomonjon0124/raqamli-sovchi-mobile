@@ -304,6 +304,42 @@
   "savedPremiumCta": "Premium — cheksiz",
   "savedUpsellTitle": "Yana 3 ta joy qoldi",
   "savedUpsellMessage": "Bepul rejada 10 tagacha profil saqlanadi. Premium bilan cheklov yoʻq.",
+  "questionnaireOptionalBadge": "Ixtiyoriy qadam",
+  "questionnaireIntroTitle": "{count} ta savol — {minutes} daqiqa",
+  "@questionnaireIntroTitle": {
+    "placeholders": {
+      "count": {"type": "int"},
+      "minutes": {"type": "int"}
+    }
+  },
+  "questionnaireIntroDescription": "Javoblaringizni tahlil qilib, har bir nomzod bilan moslik foizingizni ko‘rsatamiz. Xohlamasangiz, keyinroq ham topshirasiz.",
+  "questionnaireQuestionCount": "{count} savol",
+  "@questionnaireQuestionCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "questionnaireWithoutTitle": "So‘rovnomasiz nima bo‘ladi?",
+  "questionnaireWithoutBody": "Profilingiz ishlaydi va nomzodlarni ko‘rasiz, lekin AI moslikni hisoblamaydi — foiz va bo‘limlar kesimidagi tahlil yopiq qoladi.",
+  "questionnaireStart": "Ha, so‘rovnomani boshlayman",
+  "questionnaireLater": "Keyinroq to‘ldiraman",
+  "questionnaireEmpty": "Hozircha savollar mavjud emas.",
+  "questionnaireProgress": "{current}/{total}",
+  "@questionnaireProgress": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "questionnaireNext": "Keyingi savol",
+  "questionnaireSubmit": "Javoblarni yuborish",
+  "questionnaireAnalysisTitle": "Javoblaringiz tahlil qilinmoqda",
+  "questionnaireAnalysisBody": "AI qadriyatlar, moliya va xarakter profilingizni tuzib, mos nomzodlarni tanlaydi.",
+  "questionnaireResultTitle": "Sizning profilingiz tayyor",
+  "questionnaireHonestyTitle": "Samimiylik indeksi · yuqori",
+  "questionnaireHonestyBody": "Tuzoq savollarga javoblaringiz izchil. Profil ishonchli deb belgilandi.",
+  "questionnaireSeriousBadge": "“Niyati jiddiy” belgisi berildi",
+  "questionnaireShowCandidates": "Mos nomzodlarni ko‘rish",
+  "questionnaireTraitTraditional": "an’anaviy",
+  "questionnaireTraitBalanced": "balansli",
   "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",
