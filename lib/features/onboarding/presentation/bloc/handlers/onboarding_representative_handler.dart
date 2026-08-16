@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter
 part of '../profile_onboarding_bloc.dart';
 
 mixin OnboardingRepresentativeHandler
@@ -8,8 +9,9 @@ mixin OnboardingRepresentativeHandler
 
   Future<void> _save(
     ProfileOnboardingDraft draft,
-    Emitter<ProfileOnboardingState> emit,
-  );
+    Emitter<ProfileOnboardingState> emit, [
+    Failure? failure,
+  ]);
 
   Future<void> _onRepresentativeIntroContinuePressed(
     RepresentativeIntroContinuePressed event,

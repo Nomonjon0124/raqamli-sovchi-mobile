@@ -5,7 +5,12 @@ import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
 final class AboutMeTextArea extends StatelessWidget {
-  const AboutMeTextArea({super.key, required this.controller, required this.hint, required this.onChanged});
+  const AboutMeTextArea({
+    super.key,
+    required this.controller,
+    required this.hint,
+    required this.onChanged,
+  });
 
   final TextEditingController controller;
   final String hint;
@@ -16,7 +21,10 @@ final class AboutMeTextArea extends StatelessWidget {
     return Container(
       height: 132,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: AppColors.mutedSurface, borderRadius: BorderRadius.circular(AppRadius.lg)),
+      decoration: BoxDecoration(
+        color: AppColors.mutedSurface,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+      ),
       child: TextField(
         controller: controller,
         onChanged: onChanged,
@@ -29,7 +37,9 @@ final class AboutMeTextArea extends StatelessWidget {
         style: AppTypography.onboardingChip,
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: AppTypography.onboardingChip.copyWith(color: AppColors.placeholder),
+          hintStyle: AppTypography.onboardingChip.copyWith(
+            color: AppColors.placeholder,
+          ),
           border: InputBorder.none,
           isDense: true,
           counterText: '',

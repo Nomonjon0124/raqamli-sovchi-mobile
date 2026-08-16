@@ -9,8 +9,9 @@ mixin OnboardingMediaHandler
 
   Future<void> _save(
     ProfileOnboardingDraft draft,
-    Emitter<ProfileOnboardingState> emit,
-  );
+    Emitter<ProfileOnboardingState> emit, [
+    Failure? failure,
+  ]);
 
   Future<void> _onProfilePhotoPickRequested(
     ProfilePhotoPickRequested event,
@@ -83,6 +84,9 @@ mixin OnboardingMediaHandler
     );
     await result.fold<Future<void>>(
       (failure) async {
+        debugPrint(
+          '[OnboardingMediaHandler] uploadPhoto failed: type=${failure.type}, message=${failure.message}',
+        );
         final failed = List<OnboardingPhotoDraft>.from(state.draft!.photos);
         final failedIndex = failed.indexWhere(
           (item) => item.localFilePath == localFilePath,
@@ -92,7 +96,7 @@ mixin OnboardingMediaHandler
             uploadStatus: PhotoUploadStatus.failed,
             uploadFailure: failure.type.name,
           );
-          await _save(state.draft!.copyWith(photos: failed), emit);
+          await _save(state.draft!.copyWith(photos: failed), emit, failure);
         }
       },
       (uploaded) async {

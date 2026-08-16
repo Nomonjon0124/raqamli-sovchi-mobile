@@ -4,8 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_spacing.dart';
-import '../../../../core/ui/widgets/app_error_view.dart';
+import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
 import '../../../auth/presentation/bloc/auth_event.dart';
@@ -79,6 +78,15 @@ final class _ProfileOnboardingViewState extends State<_ProfileOnboardingView> {
     final l10n = AppLocalizations.of(context);
     return BlocConsumer<ProfileOnboardingBloc, ProfileOnboardingState>(
       listener: (context, state) {
+        debugPrint(
+          '[ProfileOnboardingPage] listener state status=${state.status}, failure=${state.failure}, message=${state.failure?.message}',
+        );
+        if (state.failure != null) {
+          final message =
+              state.failure!.message ??
+              l10n.failureMessage(state.failure!.type.name);
+          AppToast.show(context, message: message, type: ToastType.error);
+        }
         final draft = state.draft;
         final step = draft?.currentStep;
         if (step != null && draft != null) {
@@ -146,37 +154,19 @@ final class _ProfileOnboardingViewState extends State<_ProfileOnboardingView> {
 
         return Scaffold(
           body: SafeArea(
-            child: Column(
-              children: [
-                if (state.failure != null)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.lg,
-                    ),
-                    child: AppErrorView(
-                      message: l10n.failureMessage(state.failure!.type.name),
-                    ),
-                  ),
-                Expanded(
-                  child: PageView.builder(
-                    controller: _pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: steps.length,
-                    itemBuilder: (context, index) {
-                      final step = steps[index];
-                      return representativeMode
-                          ? RepresentativeOnboardingStepContent(
-                              step: step,
-                              state: state,
-                            )
-                          : ProfileOnboardingStepContent(
-                              step: step,
-                              state: state,
-                            );
-                    },
-                  ),
-                ),
-              ],
+            child: PageView.builder(
+              controller: _pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: steps.length,
+              itemBuilder: (context, index) {
+                final step = steps[index];
+                return representativeMode
+                    ? RepresentativeOnboardingStepContent(
+                        step: step,
+                        state: state,
+                      )
+                    : ProfileOnboardingStepContent(step: step, state: state);
+              },
             ),
           ),
         );

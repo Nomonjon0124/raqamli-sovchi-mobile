@@ -1,3 +1,4 @@
+// ignore_for_file: unused_element_parameter
 part of '../profile_onboarding_bloc.dart';
 
 mixin OnboardingReferenceHandler
@@ -21,8 +22,9 @@ mixin OnboardingReferenceHandler
 
   Future<void> _save(
     ProfileOnboardingDraft draft,
-    Emitter<ProfileOnboardingState> emit,
-  );
+    Emitter<ProfileOnboardingState> emit, [
+    Failure? failure,
+  ]);
 
   bool _isDivorcedStatus(String name);
 

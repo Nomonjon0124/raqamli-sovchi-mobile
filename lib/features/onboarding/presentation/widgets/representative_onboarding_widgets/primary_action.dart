@@ -41,8 +41,8 @@ final class PrimaryAction extends StatelessWidget {
           builder: (context) {
             final foregroundColor =
                 IconTheme.of(context).color ??
-                    DefaultTextStyle.of(context).style.color ??
-                    Colors.white;
+                DefaultTextStyle.of(context).style.color ??
+                Colors.white;
 
             return Row(
               mainAxisSize: MainAxisSize.min,

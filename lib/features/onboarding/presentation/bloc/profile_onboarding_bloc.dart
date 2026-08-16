@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -158,21 +159,23 @@ final class ProfileOnboardingBloc
   @override
   Future<void> _save(
     ProfileOnboardingDraft draft,
-    Emitter<ProfileOnboardingState> emit,
-  ) async {
+    Emitter<ProfileOnboardingState> emit, [
+    Failure? failure,
+  ]) async {
     final result = await _draftRepository.save(draft);
     result.fold(
-      (failure) => emit(
+      (draftFailure) => emit(
         state.copyWith(
           status: ProfileOnboardingStatus.editing,
-          failure: failure,
+          failure: failure ?? draftFailure,
         ),
       ),
       (_) => emit(
         state.copyWith(
           status: ProfileOnboardingStatus.editing,
           draft: draft,
-          clearFailure: true,
+          failure: failure,
+          clearFailure: failure == null,
         ),
       ),
     );

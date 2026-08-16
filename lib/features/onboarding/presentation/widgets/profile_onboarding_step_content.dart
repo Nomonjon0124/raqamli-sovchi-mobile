@@ -38,17 +38,24 @@ import 'onboarding_text_field.dart';
 import 'onboarding_voice_recorder.dart';
 
 final class ProfileOnboardingStepContent extends StatefulWidget {
-  const ProfileOnboardingStepContent({required this.step, required this.state, this.representativeMode = false, super.key});
+  const ProfileOnboardingStepContent({
+    required this.step,
+    required this.state,
+    this.representativeMode = false,
+    super.key,
+  });
 
   final OnboardingStep step;
   final ProfileOnboardingState state;
   final bool representativeMode;
 
   @override
-  State<ProfileOnboardingStepContent> createState() => _ProfileOnboardingStepContentState();
+  State<ProfileOnboardingStepContent> createState() =>
+      _ProfileOnboardingStepContentState();
 }
 
-final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingStepContent> {
+final class _ProfileOnboardingStepContentState
+    extends State<ProfileOnboardingStepContent> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _patronymicController = TextEditingController();
@@ -82,12 +89,18 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
       OnboardingStep.healthStatus => _healthStatus(l10n, draft, bloc),
       OnboardingStep.maritalStatus => _maritalStatus(l10n, draft, bloc),
       OnboardingStep.photos => StepLayout(
-        title: widget.representativeMode ? l10n.representativePhotoTitle : l10n.photoTitle,
-        subtitle: widget.representativeMode ? l10n.representativePhotoHint : l10n.photoHint,
+        title: widget.representativeMode
+            ? l10n.representativePhotoTitle
+            : l10n.photoTitle,
+        subtitle: widget.representativeMode
+            ? l10n.representativePhotoHint
+            : l10n.photoHint,
         step: widget.step,
         bottom: CustomPrimaryButton(
           label: l10n.continueLabel,
-          onPressed: draft.photos.isEmpty || widget.state.isBusy ? null : () => bloc.add(const ProfilePhotosContinuePressed()),
+          onPressed: draft.photos.isEmpty || widget.state.isBusy
+              ? null
+              : () => bloc.add(const ProfilePhotosContinuePressed()),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,22 +112,33 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
               retryLabel: l10n.retry,
               filledLabelBuilder: l10n.photoSlotFilledLabel,
               mainBadgeLabel: l10n.mainPhotoBadge,
-              onAdd: draft.photos.length >= 5 || widget.state.isBusy ? null : () => bloc.add(const ProfilePhotoPickRequested()),
-              onRemove: (localFilePath) => bloc.add(ProfilePhotoRemoveRequested(localFilePath)),
-              onRetry: (localFilePath) => bloc.add(ProfilePhotoUploadRetryRequested(localFilePath)),
+              onAdd: draft.photos.length >= 5 || widget.state.isBusy
+                  ? null
+                  : () => bloc.add(const ProfilePhotoPickRequested()),
+              onRemove: (localFilePath) =>
+                  bloc.add(ProfilePhotoRemoveRequested(localFilePath)),
+              onRetry: (localFilePath) =>
+                  bloc.add(ProfilePhotoUploadRetryRequested(localFilePath)),
             ),
             const SizedBox(height: AppSpacing.lg),
-            Text(l10n.photoPrivacyHint, style: AppTypography.onboardingCardBody),
+            Text(
+              l10n.photoPrivacyHint,
+              style: AppTypography.onboardingCardBody,
+            ),
           ],
         ),
       ),
       OnboardingStep.mainPhoto => StepLayout(
         title: l10n.mainPhotoSelectionHint,
-        subtitle: widget.representativeMode ? l10n.representativeMainPhotoSubtitle : l10n.mainPhotoSubtitle,
+        subtitle: widget.representativeMode
+            ? l10n.representativeMainPhotoSubtitle
+            : l10n.mainPhotoSubtitle,
         step: widget.step,
         bottom: CustomPrimaryButton(
           label: l10n.confirmLabel,
-          onPressed: draft.hasMainPhoto && !widget.state.isBusy ? () => bloc.add(const MainPhotoContinuePressed()) : null,
+          onPressed: draft.hasMainPhoto && !widget.state.isBusy
+              ? () => bloc.add(const MainPhotoContinuePressed())
+              : null,
         ),
         child: OnboardingPhotoGrid(
           photos: draft.photos,
@@ -124,9 +148,13 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           filledLabelBuilder: l10n.photoSlotFilledLabel,
           mainBadgeLabel: l10n.mainPhotoBadge,
           onAdd: null,
-          onRemove: (localFilePath) => bloc.add(ProfilePhotoRemoveRequested(localFilePath)),
-          onRetry: (localFilePath) => bloc.add(ProfilePhotoUploadRetryRequested(localFilePath)),
-          onMainSelected: widget.state.isBusy ? null : (serverId) => bloc.add(ProfilePhotoMainSelected(serverId)),
+          onRemove: (localFilePath) =>
+              bloc.add(ProfilePhotoRemoveRequested(localFilePath)),
+          onRetry: (localFilePath) =>
+              bloc.add(ProfilePhotoUploadRetryRequested(localFilePath)),
+          onMainSelected: widget.state.isBusy
+              ? null
+              : (serverId) => bloc.add(ProfilePhotoMainSelected(serverId)),
           showRemoveButton: false,
           showMainBadge: true,
         ),
@@ -134,19 +162,28 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
       OnboardingStep.faceVerification => _face(l10n, draft, bloc),
       OnboardingStep.aboutMe => _aboutMe(l10n, draft, bloc),
       OnboardingStep.voiceIntro => StepLayout(
-        title: widget.representativeMode ? l10n.representativeVoiceTitle : l10n.voiceTitle,
-        subtitle: widget.representativeMode ? l10n.representativeVoiceSubtitle : l10n.voiceSubtitle,
+        title: widget.representativeMode
+            ? l10n.representativeVoiceTitle
+            : l10n.voiceTitle,
+        subtitle: widget.representativeMode
+            ? l10n.representativeVoiceSubtitle
+            : l10n.voiceSubtitle,
         step: widget.step,
         bottom: Column(
           children: [
             CustomPrimaryButton(
               label: l10n.continueLabel,
-              onPressed: widget.state.isVoiceRecording || widget.state.isBusy ? null : () => bloc.add(const VoiceIntroContinuePressed()),
+              onPressed: widget.state.isVoiceRecording || widget.state.isBusy
+                  ? null
+                  : () => bloc.add(const VoiceIntroContinuePressed()),
             ),
             const SizedBox(height: AppSpacing.md),
             CustomGhostButton(
               label: l10n.skipLabel,
-              onPressed: widget.state.isVoiceRecording || widget.state.isVoicePlaying || widget.state.isBusy
+              onPressed:
+                  widget.state.isVoiceRecording ||
+                      widget.state.isVoicePlaying ||
+                      widget.state.isBusy
                   ? null
                   : () => bloc.add(const VoiceIntroSkipped()),
             ),
@@ -156,35 +193,62 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           isRecording: widget.state.isVoiceRecording,
           isPlaying: widget.state.isVoicePlaying,
           hasRecording: draft.voiceIntroMetadata != null,
-          recordLabel: widget.state.isVoiceRecording ? l10n.stopRecording : l10n.startRecording,
+          recordLabel: widget.state.isVoiceRecording
+              ? l10n.stopRecording
+              : l10n.startRecording,
           playLabel: l10n.playRecording,
           reRecordLabel: l10n.reRecordVoice,
           deleteLabel: l10n.deleteVoice,
           hint: l10n.startRecordingHint,
           recordingHint: l10n.recordedVoiceHint,
-          recordingDuration: _formatDuration(draft.voiceIntroMetadata?.duration),
-          onRecordPressed: () => bloc.add(widget.state.isVoiceRecording ? const VoiceRecordingStopped() : const VoiceRecordingStarted()),
-          onPlayPressed: draft.voiceIntroMetadata == null ? null : () => bloc.add(const VoicePlaybackRequested()),
-          onRewritePressed: widget.state.isVoicePlaying ? null : () => bloc.add(const VoiceRecordingStarted()),
-          onDeletePressed: widget.state.isVoicePlaying ? null : () => bloc.add(const VoiceIntroDeleted()),
+          recordingDuration: _formatDuration(
+            draft.voiceIntroMetadata?.duration,
+          ),
+          onRecordPressed: () => bloc.add(
+            widget.state.isVoiceRecording
+                ? const VoiceRecordingStopped()
+                : const VoiceRecordingStarted(),
+          ),
+          onPlayPressed: draft.voiceIntroMetadata == null
+              ? null
+              : () => bloc.add(const VoicePlaybackRequested()),
+          onRewritePressed: widget.state.isVoicePlaying
+              ? null
+              : () => bloc.add(const VoiceRecordingStarted()),
+          onDeletePressed: widget.state.isVoicePlaying
+              ? null
+              : () => bloc.add(const VoiceIntroDeleted()),
         ),
       ),
       OnboardingStep.locationPermission => StepLayout(
-        title: widget.representativeMode ? l10n.representativeLocationPermissionTitle : l10n.locationPermissionTitle,
-        subtitle: widget.representativeMode ? l10n.representativeLocationPermissionSubtitle : l10n.locationPermissionSubtitle,
+        title: widget.representativeMode
+            ? l10n.representativeLocationPermissionTitle
+            : l10n.locationPermissionTitle,
+        subtitle: widget.representativeMode
+            ? l10n.representativeLocationPermissionSubtitle
+            : l10n.locationPermissionSubtitle,
         step: widget.step,
         bottom: CustomPrimaryButton(
           label: l10n.enableLocation,
-          onPressed: widget.state.isLocationLoading || widget.state.isBusy ? null : () => bloc.add(const LocationPermissionRequested()),
+          onPressed: widget.state.isLocationLoading || widget.state.isBusy
+              ? null
+              : () => bloc.add(const LocationPermissionRequested()),
         ),
         child: Container(
           width: double.infinity,
           height: 180,
-          decoration: BoxDecoration(color: AppColors.mutedSurface, borderRadius: BorderRadius.circular(AppRadius.lg)),
+          decoration: BoxDecoration(
+            color: AppColors.mutedSurface,
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+          ),
           alignment: Alignment.center,
           child: widget.state.isLocationLoading
               ? const CircularProgressIndicator()
-              : const Icon(Icons.location_on_outlined, size: 48, color: AppColors.mutedText),
+              : const Icon(
+                  Icons.location_on_outlined,
+                  size: 48,
+                  color: AppColors.mutedText,
+                ),
         ),
       ),
       OnboardingStep.success => PledgeConfirmationStep(
@@ -194,7 +258,8 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
         pointTwo: l10n.pledgeConfirmationPointTwo,
         pointThree: l10n.pledgeConfirmationPointThree,
         buttonLabel: l10n.pledgeConfirmationButton,
-        onConfirm: () => bloc.add(const ProfileOnboardingFinalizationRequested()),
+        onConfirm: () =>
+            bloc.add(const ProfileOnboardingFinalizationRequested()),
       ),
       OnboardingStep.profileReady => SuccessStep(
         title: l10n.onboardingSuccessTitle,
@@ -219,20 +284,33 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
       OnboardingStep.representativeReady => const SizedBox.shrink(),
     };
     return Padding(
-      padding: widget.step == OnboardingStep.candidateType || widget.step == OnboardingStep.pledge
-          ? const EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.lg + AppSpacing.xs, AppSpacing.xl, AppSpacing.xl)
+      padding:
+          widget.step == OnboardingStep.candidateType ||
+              widget.step == OnboardingStep.pledge
+          ? const EdgeInsets.fromLTRB(
+              AppSpacing.xl,
+              AppSpacing.lg + AppSpacing.xs,
+              AppSpacing.xl,
+              AppSpacing.xl,
+            )
           : const EdgeInsets.all(AppSpacing.xl),
       child: content,
     );
   }
 
-  Widget _candidateType(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _candidateType(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     return FigmaStepLayout(
       title: l10n.candidateTypeTitle,
       subtitle: l10n.candidateTypeSubtitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: draft.candidateType == null ? null : () => bloc.add(const CandidateTypeContinuePressed()),
+        onPressed: draft.candidateType == null
+            ? null
+            : () => bloc.add(const CandidateTypeContinuePressed()),
       ),
       child: Column(
         children: [
@@ -240,38 +318,54 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
             label: l10n.groomCandidateTitle,
             detail: l10n.groomCandidateSubtitle,
             selected: draft.candidateType == CandidateType.groom,
-            onPressed: () => bloc.add(const CandidateTypeSaved(CandidateType.groom)),
+            onPressed: () =>
+                bloc.add(const CandidateTypeSaved(CandidateType.groom)),
           ),
           const SizedBox(height: AppSpacing.md),
           SelectionCard(
             label: l10n.brideCandidateTitle,
             detail: l10n.brideCandidateSubtitle,
             selected: draft.candidateType == CandidateType.bride,
-            onPressed: () => bloc.add(const CandidateTypeSaved(CandidateType.bride)),
+            onPressed: () =>
+                bloc.add(const CandidateTypeSaved(CandidateType.bride)),
           ),
           const SizedBox(height: AppSpacing.md),
           SelectionCard(
             label: l10n.representativeCandidateTitle,
             detail: l10n.representativeCandidateSubtitle,
             selected: draft.candidateType == CandidateType.representative,
-            onPressed: () => bloc.add(const CandidateTypeSaved(CandidateType.representative)),
+            onPressed: () => bloc.add(
+              const CandidateTypeSaved(CandidateType.representative),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _pledge(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _pledge(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     return FigmaStepLayout(
       title: l10n.pledgeTitle,
       bottom: CustomPrimaryButton(
         label: l10n.pledgeStart,
-        onPressed: draft.pledgeAcceptedTerms ? () => bloc.add(const PledgeContinuePressed()) : null,
+        onPressed: draft.pledgeAcceptedTerms
+            ? () => bloc.add(const PledgeContinuePressed())
+            : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PledgeCard(points: [l10n.pledgePointOne, l10n.pledgePointTwo, l10n.pledgePointThree]),
+          PledgeCard(
+            points: [
+              l10n.pledgePointOne,
+              l10n.pledgePointTwo,
+              l10n.pledgePointThree,
+            ],
+          ),
           const SizedBox(height: AppSpacing.md),
           AgreementRow(
             accepted: draft.pledgeAcceptedTerms,
@@ -283,18 +377,28 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
     );
   }
 
-  Widget _birthDate(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _birthDate(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final now = DateTime.now();
     final minimumDate = DateTime(now.year - 60, 1, 1);
     final maximumDate = DateTime(now.year - 18, 12, 31);
-    final selectedDate = _selectedBirthDate ?? draft.birthDate ?? DateTime(now.year - 25, 1, 1);
+    final selectedDate =
+        _selectedBirthDate ?? draft.birthDate ?? DateTime(now.year - 25, 1, 1);
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeBirthDateTitle : l10n.birthDateTitle,
+      title: widget.representativeMode
+          ? l10n.representativeBirthDateTitle
+          : l10n.birthDateTitle,
       subtitle: l10n.birthDateSubtitle,
       dateWheel: true,
       keyboardAware: true,
-      bottom: CustomPrimaryButton(label: l10n.continueLabel, onPressed: () => bloc.add(BirthDateSaved(selectedDate))),
+      bottom: CustomPrimaryButton(
+        label: l10n.continueLabel,
+        onPressed: () => bloc.add(BirthDateSaved(selectedDate)),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -305,13 +409,21 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
             onChanged: (value) => setState(() => _selectedBirthDate = value),
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text(l10n.birthDateHint, textAlign: TextAlign.center, style: AppTypography.onboardingBody),
+          Text(
+            l10n.birthDateHint,
+            textAlign: TextAlign.center,
+            style: AppTypography.onboardingBody,
+          ),
         ],
       ),
     );
   }
 
-  Widget _identity(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _identity(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     if (_firstNameController.text.isEmpty && draft.firstName != null) {
       _firstNameController.text = draft.firstName!;
     }
@@ -323,64 +435,125 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
     }
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeCandidateIdentityTitle : l10n.identityTitle,
-      subtitle: widget.representativeMode ? l10n.representativeCandidateIdentitySubtitle : l10n.identitySubtitle,
+      title: widget.representativeMode
+          ? l10n.representativeCandidateIdentityTitle
+          : l10n.identityTitle,
+      subtitle: widget.representativeMode
+          ? l10n.representativeCandidateIdentitySubtitle
+          : l10n.identitySubtitle,
       keyboardAware: true,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: _firstNameController.text.trim().isEmpty || _lastNameController.text.trim().isEmpty || _patronymicController.text.trim().isEmpty
+        onPressed:
+            _firstNameController.text.trim().isEmpty ||
+                _lastNameController.text.trim().isEmpty ||
+                _patronymicController.text.trim().isEmpty
             ? null
             : () {
                 FocusScope.of(context).unfocus();
                 bloc.add(
-                  IdentitySaved(firstName: _firstNameController.text, lastName: _lastNameController.text, patronymic: _patronymicController.text),
+                  IdentitySaved(
+                    firstName: _firstNameController.text,
+                    lastName: _lastNameController.text,
+                    patronymic: _patronymicController.text,
+                  ),
                 );
               },
       ),
       child: Column(
         children: [
-          OnboardingTextField(label: l10n.firstNameLabel, controller: _firstNameController, onChanged: (_) => setState(() {})),
+          OnboardingTextField(
+            label: l10n.firstNameLabel,
+            controller: _firstNameController,
+            onChanged: (_) => setState(() {}),
+          ),
           const SizedBox(height: AppSpacing.md),
-          OnboardingTextField(label: l10n.lastNameLabel, controller: _lastNameController, onChanged: (_) => setState(() {})),
+          OnboardingTextField(
+            label: l10n.lastNameLabel,
+            controller: _lastNameController,
+            onChanged: (_) => setState(() {}),
+          ),
           const SizedBox(height: AppSpacing.md),
-          OnboardingTextField(label: l10n.patronymicLabel, controller: _patronymicController, onChanged: (_) => setState(() {})),
+          OnboardingTextField(
+            label: l10n.patronymicLabel,
+            controller: _patronymicController,
+            onChanged: (_) => setState(() {}),
+          ),
         ],
       ),
     );
   }
 
-  Widget _education(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _education(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final chips = widget.state.educationLevels
         .where((item) => item.id.isNotEmpty && item.name.isNotEmpty)
         .map(
-          (item) =>
-              EducationChip(label: item.name, selected: draft.educationLevelId == item.id, onPressed: () => bloc.add(EducationLevelSaved(item.id))),
+          (item) => EducationChip(
+            label: item.name,
+            selected: draft.educationLevelId == item.id,
+            onPressed: () => bloc.add(EducationLevelSaved(item.id)),
+          ),
         )
         .toList(growable: false);
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeEducationTitle : l10n.educationTitle,
+      title: widget.representativeMode
+          ? l10n.representativeEducationTitle
+          : l10n.educationTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: draft.educationLevelId?.isNotEmpty == true ? () => bloc.add(const EducationContinuePressed()) : null,
+        onPressed: draft.educationLevelId?.isNotEmpty == true
+            ? () => bloc.add(const EducationContinuePressed())
+            : null,
       ),
       child: switch (widget.state.educationStatus) {
-        ReferenceStatus.loading => const Center(child: CircularProgressIndicator()),
+        ReferenceStatus.loading => const Center(
+          child: CircularProgressIndicator(),
+        ),
         ReferenceStatus.empty => const SizedBox.shrink(),
-        ReferenceStatus.failure => AppButton(label: l10n.retry, onPressed: () => bloc.add(const EducationLevelsRequested())),
-        _ => Wrap(spacing: AppSpacing.inline, runSpacing: AppSpacing.inline, children: chips),
+        ReferenceStatus.failure => AppButton(
+          label: l10n.retry,
+          onPressed: () => bloc.add(const EducationLevelsRequested()),
+        ),
+        _ => Wrap(
+          spacing: AppSpacing.inline,
+          runSpacing: AppSpacing.inline,
+          children: chips,
+        ),
       },
     );
   }
 
-  Widget _height(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _height(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final height =
-        _selectedHeight ?? draft.heightCm ?? _defaultHeight(widget.representativeMode ? draft.representedCandidateType : draft.candidateType);
+        _selectedHeight ??
+        draft.heightCm ??
+        _defaultHeight(
+          widget.representativeMode
+              ? draft.representedCandidateType
+              : draft.candidateType,
+        );
     final weight =
-        _selectedWeight ?? draft.weightKg ?? _defaultWeight(widget.representativeMode ? draft.representedCandidateType : draft.candidateType);
+        _selectedWeight ??
+        draft.weightKg ??
+        _defaultWeight(
+          widget.representativeMode
+              ? draft.representedCandidateType
+              : draft.candidateType,
+        );
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeHeightWeightTitle : l10n.heightWeightTitle,
+      title: widget.representativeMode
+          ? l10n.representativeHeightWeightTitle
+          : l10n.heightWeightTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
         onPressed: () => bloc.add(HeightSaved(height, weightKg: weight)),
@@ -388,8 +561,12 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
       child: OnboardingHeightWeightInput(
         height: height,
         weight: weight,
-        heightLabel: widget.representativeMode ? l10n.representativeHeightInputLabel : l10n.heightInputLabel,
-        weightLabel: widget.representativeMode ? l10n.representativeWeightInputLabel : l10n.weightInputLabel,
+        heightLabel: widget.representativeMode
+            ? l10n.representativeHeightInputLabel
+            : l10n.heightInputLabel,
+        weightLabel: widget.representativeMode
+            ? l10n.representativeWeightInputLabel
+            : l10n.weightInputLabel,
         heightUnit: l10n.heightUnit,
         weightUnit: l10n.weightUnit,
         decreaseHeightLabel: l10n.decreaseHeightLabel,
@@ -416,15 +593,23 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
     };
   }
 
-  Widget _location(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _location(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final regionName = _selectedRegionName(draft);
     final districtName = _selectedDistrictName(draft);
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeLocationTitle : l10n.locationTitle,
+      title: widget.representativeMode
+          ? l10n.representativeLocationTitle
+          : l10n.locationTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: draft.regionId == null || draft.districtId == null ? null : () => bloc.add(const LocationContinuePressed()),
+        onPressed: draft.regionId == null || draft.districtId == null
+            ? null
+            : () => bloc.add(const LocationContinuePressed()),
       ),
       child: Column(
         children: [
@@ -437,9 +622,15 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           const SizedBox(height: AppSpacing.md),
           OnboardingLocationSelectorRow(
             label: l10n.districtLabel,
-            value: districtName ?? (draft.regionId == null ? l10n.selectRegionFirstValue : l10n.unselectedValue),
+            value:
+                districtName ??
+                (draft.regionId == null
+                    ? l10n.selectRegionFirstValue
+                    : l10n.unselectedValue),
             isPlaceholder: districtName == null,
-            onPressed: draft.regionId == null ? null : () => _showDistrictSheet(l10n, bloc),
+            onPressed: draft.regionId == null
+                ? null
+                : () => _showDistrictSheet(l10n, bloc),
           ),
         ],
       ),
@@ -449,16 +640,25 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
   String? _selectedRegionName(ProfileOnboardingDraft draft) {
     final regionId = draft.regionId;
     if (regionId == null) return null;
-    return widget.state.regions.where((item) => item.id == regionId).firstOrNull?.name;
+    return widget.state.regions
+        .where((item) => item.id == regionId)
+        .firstOrNull
+        ?.name;
   }
 
   String? _selectedDistrictName(ProfileOnboardingDraft draft) {
     final districtId = draft.districtId;
     if (districtId == null) return null;
-    return widget.state.districts.where((item) => item.id == districtId).firstOrNull?.name;
+    return widget.state.districts
+        .where((item) => item.id == districtId)
+        .firstOrNull
+        ?.name;
   }
 
-  Future<void> _showRegionSheet(AppLocalizations l10n, ProfileOnboardingBloc bloc) {
+  Future<void> _showRegionSheet(
+    AppLocalizations l10n,
+    ProfileOnboardingBloc bloc,
+  ) {
     if (bloc.state.regionStatus == ReferenceStatus.idle) {
       bloc.add(const RegionsRequested());
     }
@@ -499,8 +699,12 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
     );
   }
 
-  Future<void> _showDistrictSheet(AppLocalizations l10n, ProfileOnboardingBloc bloc) {
-    if (bloc.state.draft?.regionId != null && bloc.state.districtStatus == ReferenceStatus.idle) {
+  Future<void> _showDistrictSheet(
+    AppLocalizations l10n,
+    ProfileOnboardingBloc bloc,
+  ) {
+    if (bloc.state.draft?.regionId != null &&
+        bloc.state.districtStatus == ReferenceStatus.idle) {
       bloc.add(const DistrictsRequested());
     }
     return showModalBottomSheet<void>(
@@ -514,7 +718,10 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           builder: (context, state) {
             return OnboardingReferenceBottomSheet(
               title: l10n.districtSheetTitle,
-              subtitle: l10n.districtSheetSubtitle(_selectedRegionName(state.draft!) ?? l10n.regionLabel, state.districts.length),
+              subtitle: l10n.districtSheetSubtitle(
+                _selectedRegionName(state.draft!) ?? l10n.regionLabel,
+                state.districts.length,
+              ),
               status: state.districtStatus,
               onRetry: () => bloc.add(const DistrictsRequested()),
               confirmEnabled: state.draft?.districtId?.isNotEmpty == true,
@@ -542,24 +749,40 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
     );
   }
 
-  Widget _healthStatus(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _healthStatus(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final options = _orderedHealthStatuses(widget.state.healthStatuses);
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeHealthStatusTitle : l10n.healthStatusTitle,
+      title: widget.representativeMode
+          ? l10n.representativeHealthStatusTitle
+          : l10n.healthStatusTitle,
       subtitle: l10n.healthStatusSubtitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: draft.healthStatusId?.isNotEmpty == true ? () => bloc.add(const HealthStatusContinuePressed()) : null,
+        onPressed: draft.healthStatusId?.isNotEmpty == true
+            ? () => bloc.add(const HealthStatusContinuePressed())
+            : null,
       ),
       child: switch (widget.state.healthStatusStatus) {
-        ReferenceStatus.loading => const Center(child: CircularProgressIndicator()),
-        ReferenceStatus.failure => AppButton(label: l10n.retry, onPressed: () => bloc.add(const HealthStatusesRequested())),
+        ReferenceStatus.loading => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        ReferenceStatus.failure => AppButton(
+          label: l10n.retry,
+          onPressed: () => bloc.add(const HealthStatusesRequested()),
+        ),
         ReferenceStatus.empty => const SizedBox.shrink(),
         _ => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.healthDisabilityHint, style: AppTypography.onboardingBody),
+            Text(
+              l10n.healthDisabilityHint,
+              style: AppTypography.onboardingBody,
+            ),
             const SizedBox(height: AppSpacing.lg),
             ...options.map(
               (item) => Padding(
@@ -579,7 +802,10 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
 
   List<HealthStatus> _orderedHealthStatuses(List<HealthStatus> statuses) {
     final ordered = [...statuses];
-    ordered.sort((left, right) => _healthStatusRank(left.name).compareTo(_healthStatusRank(right.name)));
+    ordered.sort(
+      (left, right) =>
+          _healthStatusRank(left.name).compareTo(_healthStatusRank(right.name)),
+    );
     return ordered;
   }
 
@@ -593,25 +819,42 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
 
   bool _isDisabilityStatus(String name) {
     final normalized = name.toLowerCase();
-    return normalized.contains('nogiron') || normalized.contains('disab') || normalized.contains('инвалид');
+    return normalized.contains('nogiron') ||
+        normalized.contains('disab') ||
+        normalized.contains('инвалид');
   }
 
-  Widget _maritalStatus(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _maritalStatus(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final options = _orderedMaritalStatuses(widget.state.maritalStatuses);
-    final selected = options.where((item) => item.id == draft.maritalStatusId).firstOrNull;
+    final selected = options
+        .where((item) => item.id == draft.maritalStatusId)
+        .firstOrNull;
     final isDivorced = selected != null && _isDivorcedStatus(selected.name);
     return StepLayout(
       step: widget.step,
-      title: widget.representativeMode ? l10n.representativeMaritalStatusTitle : l10n.maritalStatusTitle,
+      title: widget.representativeMode
+          ? l10n.representativeMaritalStatusTitle
+          : l10n.maritalStatusTitle,
       subtitle: isDivorced ? l10n.maritalStatusDivorcedHint : null,
       keyboardAware: true,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: draft.maritalStatusId?.isNotEmpty == true ? () => bloc.add(const MaritalStatusContinuePressed()) : null,
+        onPressed: draft.maritalStatusId?.isNotEmpty == true
+            ? () => bloc.add(const MaritalStatusContinuePressed())
+            : null,
       ),
       child: switch (widget.state.maritalStatusStatus) {
-        ReferenceStatus.loading => const Center(child: CircularProgressIndicator()),
-        ReferenceStatus.failure => AppButton(label: l10n.retry, onPressed: () => bloc.add(const MaritalStatusesRequested())),
+        ReferenceStatus.loading => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        ReferenceStatus.failure => AppButton(
+          label: l10n.retry,
+          onPressed: () => bloc.add(const MaritalStatusesRequested()),
+        ),
         ReferenceStatus.empty => const SizedBox.shrink(),
         _ => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -630,8 +873,12 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
             if (isDivorced) ...[
               const SizedBox(height: AppSpacing.xs),
               Text(
-                widget.representativeMode ? l10n.representativeChildrenCountLabel : l10n.childrenCountLabel,
-                style: AppTypography.onboardingChip.copyWith(color: AppColors.bodyText),
+                widget.representativeMode
+                    ? l10n.representativeChildrenCountLabel
+                    : l10n.childrenCountLabel,
+                style: AppTypography.onboardingChip.copyWith(
+                  color: AppColors.bodyText,
+                ),
               ),
               const SizedBox(height: AppSpacing.sm),
               ChildrenCountControl(
@@ -639,20 +886,31 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
                 enabled: !draft.childrenNotLivingWithMe,
                 decreaseLabel: l10n.decreaseChildrenLabel,
                 increaseLabel: l10n.increaseChildrenLabel,
-                onDecrease: draft.childrenNotLivingWithMe || draft.childrenCount == 0
+                onDecrease:
+                    draft.childrenNotLivingWithMe || draft.childrenCount == 0
                     ? null
-                    : () => bloc.add(ChildrenCountChanged(draft.childrenCount - 1)),
-                onIncrease: draft.childrenNotLivingWithMe || draft.childrenCount >= 99
+                    : () => bloc.add(
+                        ChildrenCountChanged(draft.childrenCount - 1),
+                      ),
+                onIncrease:
+                    draft.childrenNotLivingWithMe || draft.childrenCount >= 99
                     ? null
-                    : () => bloc.add(ChildrenCountChanged(draft.childrenCount + 1)),
+                    : () => bloc.add(
+                        ChildrenCountChanged(draft.childrenCount + 1),
+                      ),
               ),
               const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
               ChildrenNotLivingCard(
-                title: widget.representativeMode ? l10n.representativeChildrenNotLivingTitle : l10n.childrenNotLivingTitle,
+                title: widget.representativeMode
+                    ? l10n.representativeChildrenNotLivingTitle
+                    : l10n.childrenNotLivingTitle,
                 detail: l10n.childrenNotLivingDetail,
                 value: draft.childrenNotLivingWithMe,
-                semanticLabel: widget.representativeMode ? l10n.representativeChildrenNotLivingTitle : l10n.childrenNotLivingTitle,
-                onChanged: (value) => bloc.add(ChildrenNotLivingWithMeChanged(value)),
+                semanticLabel: widget.representativeMode
+                    ? l10n.representativeChildrenNotLivingTitle
+                    : l10n.childrenNotLivingTitle,
+                onChanged: (value) =>
+                    bloc.add(ChildrenNotLivingWithMeChanged(value)),
               ),
             ],
           ],
@@ -663,7 +921,9 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
 
   List<MaritalStatus> _orderedMaritalStatuses(List<MaritalStatus> statuses) {
     final ordered = [...statuses];
-    final divorcedIndex = ordered.indexWhere((item) => _isDivorcedStatus(item.name));
+    final divorcedIndex = ordered.indexWhere(
+      (item) => _isDivorcedStatus(item.name),
+    );
     if (divorcedIndex >= 0 && ordered.length > 1 && divorcedIndex != 1) {
       final divorced = ordered.removeAt(divorcedIndex);
       ordered.insert(1, divorced);
@@ -676,17 +936,27 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
   }
 
   String _maritalStatusDetail(String name, AppLocalizations l10n) {
-    return _isDivorcedStatus(name) ? l10n.maritalStatusDivorcedDetail : l10n.maritalStatusFirstMarriageDetail;
+    return _isDivorcedStatus(name)
+        ? l10n.maritalStatusDivorcedDetail
+        : l10n.maritalStatusFirstMarriageDetail;
   }
 
-  Widget _aboutMe(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _aboutMe(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     if (_aboutMeController.text.isEmpty && draft.aboutMe != null) {
       _aboutMeController.text = draft.aboutMe!;
     }
     final count = _aboutMeController.text.length;
     return StepLayout(
-      title: widget.representativeMode ? l10n.representativeAboutTitle : l10n.aboutMeTitle,
-      subtitle: widget.representativeMode ? l10n.representativeAboutSubtitle : l10n.aboutMeSubtitle,
+      title: widget.representativeMode
+          ? l10n.representativeAboutTitle
+          : l10n.aboutMeTitle,
+      subtitle: widget.representativeMode
+          ? l10n.representativeAboutSubtitle
+          : l10n.aboutMeSubtitle,
       step: widget.step,
       keyboardAware: true,
       bottom: Column(
@@ -718,27 +988,47 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
         children: [
           AboutMeTextArea(
             controller: _aboutMeController,
-            hint: widget.representativeMode ? l10n.representativeAboutHint : l10n.aboutMeHint,
+            hint: widget.representativeMode
+                ? l10n.representativeAboutHint
+                : l10n.aboutMeHint,
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text(l10n.aboutMeCounter(count), style: AppTypography.onboardingCardBody),
+          Text(
+            l10n.aboutMeCounter(count),
+            style: AppTypography.onboardingCardBody,
+          ),
         ],
       ),
     );
   }
 
-  Widget _face(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
-    final verifying = draft.faceVerificationStatus == FaceVerificationStatus.verifying;
+  Widget _face(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    final verifying =
+        draft.faceVerificationStatus == FaceVerificationStatus.verifying;
     return StepLayout(
       step: widget.step,
       title: l10n.faceCaptureTitle,
       subtitle: l10n.faceCaptureSubtitle,
-      bottom: CustomPrimaryButton(label: l10n.takeSelfieLabel, onPressed: verifying ? null : () => bloc.add(const FaceVerificationRequested())),
+      bottom: CustomPrimaryButton(
+        label: l10n.takeSelfieLabel,
+        onPressed: verifying
+            ? null
+            : () => bloc.add(const FaceVerificationRequested()),
+      ),
       child: Column(
         children: [
           OnboardingFaceCamera(
-            key: ValueKey(draft.faceVerificationStatus == FaceVerificationStatus.retryableFailure ? 'face-camera-retry' : 'face-camera-live'),
+            key: ValueKey(
+              draft.faceVerificationStatus ==
+                      FaceVerificationStatus.retryableFailure
+                  ? 'face-camera-retry'
+                  : 'face-camera-live',
+            ),
             hint: l10n.faceHint,
             cameraLabel: l10n.selfieCameraLabel,
             errorLabel: l10n.faceCameraError,
@@ -749,14 +1039,23 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (final rule in [l10n.faceRuleOne, l10n.faceRuleTwo, l10n.faceRuleThree]) ...[
+              for (final rule in [
+                l10n.faceRuleOne,
+                l10n.faceRuleTwo,
+                l10n.faceRuleThree,
+              ]) ...[
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const FaceRuleBullet(),
                     const SizedBox(width: AppSpacing.inline),
                     Expanded(
-                      child: Text(rule, style: AppTypography.onboardingCardBody.copyWith(color: AppColors.bodyText)),
+                      child: Text(
+                        rule,
+                        style: AppTypography.onboardingCardBody.copyWith(
+                          color: AppColors.bodyText,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -766,7 +1065,9 @@ final class _ProfileOnboardingStepContentState extends State<ProfileOnboardingSt
           ),
           const SizedBox(height: AppSpacing.sm),
           if (verifying) const CircularProgressIndicator(),
-          if (draft.faceVerificationStatus == FaceVerificationStatus.retryableFailure) Text(l10n.faceRetryHint, style: AppTypography.onboardingBody),
+          if (draft.faceVerificationStatus ==
+              FaceVerificationStatus.retryableFailure)
+            Text(l10n.faceRetryHint, style: AppTypography.onboardingBody),
         ],
       ),
     );

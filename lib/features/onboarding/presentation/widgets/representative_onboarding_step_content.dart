@@ -23,16 +23,22 @@ import '../bloc/profile_onboarding_state.dart';
 import 'profile_onboarding_step_content.dart';
 
 final class RepresentativeOnboardingStepContent extends StatefulWidget {
-  const RepresentativeOnboardingStepContent({required this.step, required this.state, super.key});
+  const RepresentativeOnboardingStepContent({
+    required this.step,
+    required this.state,
+    super.key,
+  });
 
   final OnboardingStep step;
   final ProfileOnboardingState state;
 
   @override
-  State<RepresentativeOnboardingStepContent> createState() => _RepresentativeOnboardingStepContentState();
+  State<RepresentativeOnboardingStepContent> createState() =>
+      _RepresentativeOnboardingStepContentState();
 }
 
-final class _RepresentativeOnboardingStepContentState extends State<RepresentativeOnboardingStepContent> {
+final class _RepresentativeOnboardingStepContentState
+    extends State<RepresentativeOnboardingStepContent> {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _contactController = TextEditingController();
@@ -54,12 +60,24 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
       OnboardingStep.representativeIntro => _intro(l10n, bloc),
       OnboardingStep.representativeIdentity => _identity(l10n, draft, bloc),
       OnboardingStep.representativeRelation => _relation(l10n, draft, bloc),
-      OnboardingStep.representativeCandidateType => _candidateType(l10n, draft, bloc),
+      OnboardingStep.representativeCandidateType => _candidateType(
+        l10n,
+        draft,
+        bloc,
+      ),
       OnboardingStep.representativeContact => _contact(l10n, draft, bloc),
-      OnboardingStep.representativeConsentSent => _consentSent(l10n, draft, bloc),
+      OnboardingStep.representativeConsentSent => _consentSent(
+        l10n,
+        draft,
+        bloc,
+      ),
       OnboardingStep.representativePledge => _pledge(l10n, draft, bloc),
       OnboardingStep.representativeReady => _ready(l10n, bloc),
-      _ => ProfileOnboardingStepContent(step: widget.step, state: widget.state, representativeMode: widget.step != OnboardingStep.candidateType),
+      _ => ProfileOnboardingStepContent(
+        step: widget.step,
+        state: widget.state,
+        representativeMode: widget.step != OnboardingStep.candidateType,
+      ),
     };
   }
 
@@ -67,26 +85,44 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
     return RepresentativeLayout(
       title: l10n.representativeIntroTitle,
       subtitle: l10n.representativeIntroSubtitle,
-      bottom: PrimaryAction(label: l10n.startLabel, onPressed: () => bloc.add(const RepresentativeIntroContinuePressed())),
+      bottom: PrimaryAction(
+        label: l10n.startLabel,
+        onPressed: () => bloc.add(const RepresentativeIntroContinuePressed()),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InfoPanel(title: l10n.representativeConsentRequiredTitle, body: l10n.representativeConsentRequiredBody, tone: InfoTone.warning),
+          InfoPanel(
+            title: l10n.representativeConsentRequiredTitle,
+            body: l10n.representativeConsentRequiredBody,
+            tone: InfoTone.warning,
+          ),
           const SizedBox(height: AppSpacing.card),
-          Text(l10n.representativeIntroFootnote, style: AppTypography.onboardingCardBody),
+          Text(
+            l10n.representativeIntroFootnote,
+            style: AppTypography.onboardingCardBody,
+          ),
         ],
       ),
     );
   }
 
-  Widget _identity(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
-    if (_firstNameController.text.isEmpty && draft.representativeFirstName != null) {
+  Widget _identity(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    if (_firstNameController.text.isEmpty &&
+        draft.representativeFirstName != null) {
       _firstNameController.text = draft.representativeFirstName!;
     }
-    if (_lastNameController.text.isEmpty && draft.representativeLastName != null) {
+    if (_lastNameController.text.isEmpty &&
+        draft.representativeLastName != null) {
       _lastNameController.text = draft.representativeLastName!;
     }
-    final enabled = _firstNameController.text.trim().isNotEmpty && _lastNameController.text.trim().isNotEmpty;
+    final enabled =
+        _firstNameController.text.trim().isNotEmpty &&
+        _lastNameController.text.trim().isNotEmpty;
     return RepresentativeLayout(
       progress: .06,
       eyebrow: l10n.representativeSelfSection,
@@ -97,13 +133,22 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
         onPressed: enabled && !widget.state.isBusy
             ? () {
                 FocusScope.of(context).unfocus();
-                bloc.add(RepresentativeIdentitySaved(firstName: _firstNameController.text, lastName: _lastNameController.text));
+                bloc.add(
+                  RepresentativeIdentitySaved(
+                    firstName: _firstNameController.text,
+                    lastName: _lastNameController.text,
+                  ),
+                );
               }
             : null,
       ),
       child: Column(
         children: [
-          RepresentativeTextField(label: l10n.firstNameLabel, controller: _firstNameController, onChanged: (_) => setState(() {})),
+          RepresentativeTextField(
+            label: l10n.firstNameLabel,
+            controller: _firstNameController,
+            onChanged: (_) => setState(() {}),
+          ),
           const SizedBox(height: AppSpacing.md),
           RepresentativeTextField(
             label: l10n.lastNameLabel,
@@ -114,26 +159,44 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
           const SizedBox(height: AppSpacing.xl),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(l10n.representativeSelfSubtitle, style: AppTypography.onboardingCardBody),
+            child: Text(
+              l10n.representativeSelfSubtitle,
+              style: AppTypography.onboardingCardBody,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _relation(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
-    final kinships = [...widget.state.kinships]..sort((left, right) => _kinshipRank(left.name).compareTo(_kinshipRank(right.name)));
+  Widget _relation(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    final kinships = [...widget.state.kinships]
+      ..sort(
+        (left, right) =>
+            _kinshipRank(left.name).compareTo(_kinshipRank(right.name)),
+      );
     return RepresentativeLayout(
       progress: .12,
       eyebrow: l10n.representativeSelfSection,
       title: l10n.representativeRelationTitle,
       bottom: PrimaryAction(
         label: l10n.continueLabel,
-        onPressed: draft.kinshipId?.isNotEmpty == true && !widget.state.isBusy ? () => bloc.add(const RepresentativeRelationContinuePressed()) : null,
+        onPressed: draft.kinshipId?.isNotEmpty == true && !widget.state.isBusy
+            ? () => bloc.add(const RepresentativeRelationContinuePressed())
+            : null,
       ),
       child: switch (widget.state.kinshipStatus) {
-        ReferenceStatus.loading => const Center(child: CircularProgressIndicator()),
-        ReferenceStatus.failure => AppButton(label: l10n.retry, onPressed: () => bloc.add(const KinshipsRequested())),
+        ReferenceStatus.loading => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        ReferenceStatus.failure => AppButton(
+          label: l10n.retry,
+          onPressed: () => bloc.add(const KinshipsRequested()),
+        ),
         ReferenceStatus.empty => const SizedBox.shrink(),
         _ => Column(
           children: [
@@ -141,7 +204,8 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
               RepresentativeSelectionCard(
                 label: kinship.name,
                 selected: draft.kinshipId == kinship.id,
-                onPressed: () => bloc.add(RepresentativeRelationSaved(kinship.id)),
+                onPressed: () =>
+                    bloc.add(RepresentativeRelationSaved(kinship.id)),
               ),
               const SizedBox(height: AppSpacing.md),
             ],
@@ -161,7 +225,11 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
     return 5;
   }
 
-  Widget _candidateType(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _candidateType(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     return RepresentativeLayout(
       progress: .18,
       eyebrow: l10n.representativeCandidateSection,
@@ -169,7 +237,9 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
       subtitle: l10n.representativeCandidateTypeSubtitle,
       bottom: PrimaryAction(
         label: l10n.continueLabel,
-        onPressed: draft.representedCandidateType == null ? null : () => bloc.add(const RepresentedCandidateTypeContinuePressed()),
+        onPressed: draft.representedCandidateType == null
+            ? null
+            : () => bloc.add(const RepresentedCandidateTypeContinuePressed()),
       ),
       child: Column(
         children: [
@@ -177,21 +247,29 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
             label: l10n.representativeBrideTitle,
             detail: l10n.representativeBrideSubtitle,
             selected: draft.representedCandidateType == CandidateType.bride,
-            onPressed: () => bloc.add(const RepresentedCandidateTypeSaved(CandidateType.bride)),
+            onPressed: () => bloc.add(
+              const RepresentedCandidateTypeSaved(CandidateType.bride),
+            ),
           ),
           const SizedBox(height: AppSpacing.md),
           RepresentativeSelectionCard(
             label: l10n.representativeGroomTitle,
             detail: l10n.representativeGroomSubtitle,
             selected: draft.representedCandidateType == CandidateType.groom,
-            onPressed: () => bloc.add(const RepresentedCandidateTypeSaved(CandidateType.groom)),
+            onPressed: () => bloc.add(
+              const RepresentedCandidateTypeSaved(CandidateType.groom),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _contact(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _contact(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     if (_contactController.text.isEmpty && draft.candidateContact != null) {
       _contactController.text = draft.candidateContact!;
     }
@@ -205,17 +283,22 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
         children: [
           PrimaryAction(
             label: l10n.representativeSendConsent,
-            onPressed: _contactController.text.trim().isEmpty || widget.state.isBusy
+            onPressed:
+                _contactController.text.trim().isEmpty || widget.state.isBusy
                 ? null
                 : () {
                     FocusScope.of(context).unfocus();
-                    bloc.add(RepresentativeContactSubmitted(_contactController.text));
+                    bloc.add(
+                      RepresentativeContactSubmitted(_contactController.text),
+                    );
                   },
           ),
           const SizedBox(height: AppSpacing.md),
           SecondaryAction(
             label: l10n.representativeCandidateNoApp,
-            onPressed: widget.state.isBusy ? null : () => bloc.add(const RepresentativeCandidateDoesNotUseApp()),
+            onPressed: widget.state.isBusy
+                ? null
+                : () => bloc.add(const RepresentativeCandidateDoesNotUseApp()),
           ),
         ],
       ),
@@ -230,13 +313,21 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: AppSpacing.card),
-          InfoPanel(title: l10n.representativeContactWarningTitle, body: l10n.representativeContactWarningBody, tone: InfoTone.warning),
+          InfoPanel(
+            title: l10n.representativeContactWarningTitle,
+            body: l10n.representativeContactWarningBody,
+            tone: InfoTone.warning,
+          ),
         ],
       ),
     );
   }
 
-  Widget _consentSent(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
+  Widget _consentSent(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
     final candidateName = draft.firstName?.trim() ?? '';
     final representativeName = [
       draft.representativeFirstName,
@@ -248,12 +339,20 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
       subtitle: l10n.representativeConsentSentSubtitle(candidateName),
       bottom: Column(
         children: [
-          PrimaryAction(label: l10n.understoodLabel, onPressed: () => bloc.add(const RepresentativeConsentAcknowledged())),
+          PrimaryAction(
+            label: l10n.understoodLabel,
+            onPressed: () =>
+                bloc.add(const RepresentativeConsentAcknowledged()),
+          ),
           const SizedBox(height: AppSpacing.md),
           TextButton(
-            onPressed: widget.state.isBusy || draft.candidateContact?.isNotEmpty != true
+            onPressed:
+                widget.state.isBusy ||
+                    draft.candidateContact?.isNotEmpty != true
                 ? null
-                : () => bloc.add(RepresentativeContactSubmitted(draft.candidateContact!)),
+                : () => bloc.add(
+                    RepresentativeContactSubmitted(draft.candidateContact!),
+                  ),
             child: Text(l10n.resendRequestLabel),
           ),
         ],
@@ -264,22 +363,50 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
           Container(
             width: 96,
             height: 96,
-            decoration: const BoxDecoration(color: AppColors.subtleSurface, shape: BoxShape.circle),
+            decoration: const BoxDecoration(
+              color: AppColors.subtleSurface,
+              shape: BoxShape.circle,
+            ),
             alignment: Alignment.center,
-            child: Assets.icons.icTelegramIcon.svg(width: 44, height: 44, colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn)),
+            child: Assets.icons.icTelegramIcon.svg(
+              width: 44,
+              height: 44,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
           const SizedBox(height: AppSpacing.card),
-          InfoPanel(title: l10n.representativeSmsSentTitle, body: l10n.representativeSmsSentBody(representativeName)),
+          InfoPanel(
+            title: l10n.representativeSmsSentTitle,
+            body: l10n.representativeSmsSentBody(representativeName),
+          ),
           const SizedBox(height: AppSpacing.card),
-          Text(l10n.representativeConsentRevocation, style: AppTypography.onboardingCardBody),
+          Text(
+            l10n.representativeConsentRevocation,
+            style: AppTypography.onboardingCardBody,
+          ),
         ],
       ),
     );
   }
 
-  Widget _pledge(AppLocalizations l10n, ProfileOnboardingDraft draft, ProfileOnboardingBloc bloc) {
-    final values = [draft.representativeAccuracyAccepted, draft.representativePrivacyAccepted, draft.representativeInterestAccepted];
-    final labels = [l10n.representativePledgePointOne, l10n.representativePledgePointTwo, l10n.representativePledgePointThree];
+  Widget _pledge(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    final values = [
+      draft.representativeAccuracyAccepted,
+      draft.representativePrivacyAccepted,
+      draft.representativeInterestAccepted,
+    ];
+    final labels = [
+      l10n.representativePledgePointOne,
+      l10n.representativePledgePointTwo,
+      l10n.representativePledgePointThree,
+    ];
     return RepresentativeLayout(
       progress: 1,
       eyebrow: l10n.representativeConsentSection,
@@ -287,7 +414,9 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
       subtitle: l10n.representativePledgeSubtitle,
       bottom: PrimaryAction(
         label: l10n.confirmLabel,
-        onPressed: draft.hasAcceptedRepresentativeResponsibility && !widget.state.isBusy
+        onPressed:
+            draft.hasAcceptedRepresentativeResponsibility &&
+                !widget.state.isBusy
             ? () => bloc.add(const RepresentativePledgeContinuePressed())
             : null,
       ),
@@ -297,7 +426,12 @@ final class _RepresentativeOnboardingStepContentState extends State<Representati
             ResponsibilityCard(
               label: labels[index],
               accepted: values[index],
-              onChanged: (accepted) => bloc.add(RepresentativeResponsibilityChanged(index: index, accepted: accepted)),
+              onChanged: (accepted) => bloc.add(
+                RepresentativeResponsibilityChanged(
+                  index: index,
+                  accepted: accepted,
+                ),
+              ),
             ),
             const SizedBox(height: AppSpacing.md),
           ],
