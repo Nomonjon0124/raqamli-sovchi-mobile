@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-import '../core/security/screenshot_guard.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
 import 'app.dart';

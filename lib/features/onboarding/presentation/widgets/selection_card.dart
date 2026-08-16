@@ -6,7 +6,13 @@ import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 
 final class SelectionCard extends StatelessWidget {
-  const SelectionCard({super.key, required this.label, required this.detail, required this.selected, required this.onPressed});
+  const SelectionCard({
+    super.key,
+    required this.label,
+    required this.detail,
+    required this.selected,
+    required this.onPressed,
+  });
 
   final String label;
   final String detail;
@@ -27,7 +33,10 @@ final class SelectionCard extends StatelessWidget {
           padding: const EdgeInsets.all(AppSpacing.card),
           decoration: BoxDecoration(
             color: selected ? AppColors.subtleSurface : Colors.white,
-            border: Border.all(color: selected ? AppColors.primary : AppColors.border, width: 1.5),
+            border: Border.all(
+              color: selected ? AppColors.primary : AppColors.border,
+              width: 1.5,
+            ),
             borderRadius: BorderRadius.circular(AppRadius.xl),
           ),
           child: Column(

@@ -6,10 +6,12 @@ import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import 'custom_ghost_button.dart';
 import 'custom_primary_button.dart';
 
 final class SuccessStep extends StatelessWidget {
-  const SuccessStep({super.key,
+  const SuccessStep({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.aiTitle,
@@ -64,9 +66,7 @@ final class SuccessStep extends StatelessWidget {
                   _AiTestOfferCard(title: aiTitle, description: aiDescription, pointOne: aiPointOne, pointTwo: aiPointTwo, pointThree: aiPointThree),
                   const Spacer(),
                   CustomPrimaryButton(label: startLabel, onPressed: onStart),
-                  const SizedBox(height: AppSpacing.md),
-                  // CustomGhostButton(label: laterLabel, onPressed: onLater),
-                  TextButton(onPressed: onLater, child: Text(laterLabel)),
+                  CustomGhostButton(label: laterLabel, onPressed: onLater),
                 ],
               ),
             ),

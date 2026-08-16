@@ -7,7 +7,12 @@ import '../../../../../app/theme/app_typography.dart';
 enum InfoTone { neutral, warning, success }
 
 final class InfoPanel extends StatelessWidget {
-  const InfoPanel({super.key, required this.title, required this.body, this.tone = InfoTone.neutral});
+  const InfoPanel({
+    super.key,
+    required this.title,
+    required this.body,
+    this.tone = InfoTone.neutral,
+  });
 
   final String title;
   final String body;
@@ -23,13 +28,19 @@ final class InfoPanel extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(AppRadius.lg)),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: AppTypography.onboardingChip.copyWith(color: titleColor, fontWeight: FontWeight.w600),
+            style: AppTypography.onboardingChip.copyWith(
+              color: titleColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 6),
           Text(body, style: AppTypography.onboardingCardBody),

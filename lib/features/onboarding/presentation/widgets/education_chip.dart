@@ -5,7 +5,12 @@ import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
 final class EducationChip extends StatelessWidget {
-  const EducationChip({super.key, required this.label, required this.selected, required this.onPressed});
+  const EducationChip({
+    super.key,
+    required this.label,
+    required this.selected,
+    required this.onPressed,
+  });
 
   final String label;
   final bool selected;
@@ -23,10 +28,18 @@ final class EducationChip extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           decoration: BoxDecoration(
             color: selected ? AppColors.subtleSurface : Colors.white,
-            border: Border.all(color: selected ? AppColors.primary : AppColors.border, width: 1.5),
+            border: Border.all(
+              color: selected ? AppColors.primary : AppColors.border,
+              width: 1.5,
+            ),
             borderRadius: BorderRadius.circular(AppRadius.full),
           ),
-          child: Text(label, style: AppTypography.onboardingChip.copyWith(color: selected ? AppColors.primary : AppColors.bodyText)),
+          child: Text(
+            label,
+            style: AppTypography.onboardingChip.copyWith(
+              color: selected ? AppColors.primary : AppColors.bodyText,
+            ),
+          ),
         ),
       ),
     );

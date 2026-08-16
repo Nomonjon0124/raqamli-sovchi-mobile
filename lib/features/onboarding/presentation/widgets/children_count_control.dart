@@ -6,7 +6,8 @@ import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 
 final class ChildrenCountControl extends StatelessWidget {
-  const ChildrenCountControl({super.key,
+  const ChildrenCountControl({
+    super.key,
     required this.count,
     required this.enabled,
     required this.decreaseLabel,

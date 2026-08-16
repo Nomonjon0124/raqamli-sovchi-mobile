@@ -6,7 +6,12 @@ import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 
 final class OnboardingTextField extends StatelessWidget {
-  const OnboardingTextField({super.key, required this.label, required this.controller, required this.onChanged});
+  const OnboardingTextField({
+    super.key,
+    required this.label,
+    required this.controller,
+    required this.onChanged,
+  });
 
   final String label;
   final TextEditingController controller;
@@ -16,7 +21,10 @@ final class OnboardingTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 13),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: 13,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: AppColors.border),
@@ -33,7 +41,11 @@ final class OnboardingTextField extends StatelessWidget {
             textCapitalization: TextCapitalization.words,
             textInputAction: TextInputAction.next,
             style: AppTypography.onboardingFieldValue,
-            decoration: const InputDecoration(isDense: true, border: InputBorder.none, contentPadding: EdgeInsets.zero),
+            decoration: const InputDecoration(
+              isDense: true,
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+            ),
           ),
         ],
       ),

@@ -35,13 +35,21 @@ final class PledgeCard extends StatelessWidget {
                       child: Container(
                         width: AppSpacing.sm,
                         height: AppSpacing.sm,
-                        decoration: const BoxDecoration(color: AppColors.primary, shape: BoxShape.circle),
+                        decoration: const BoxDecoration(
+                          color: AppColors.primary,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(width: AppSpacing.inline),
-                Expanded(child: Text(points[index], style: AppTypography.onboardingPledgeBody)),
+                Expanded(
+                  child: Text(
+                    points[index],
+                    style: AppTypography.onboardingPledgeBody,
+                  ),
+                ),
               ],
             ),
           ],

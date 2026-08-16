@@ -73,7 +73,10 @@ final class _OnboardingToggle extends StatelessWidget {
       height: 26,
       padding: const EdgeInsets.all(3),
       alignment: value ? Alignment.centerRight : Alignment.centerLeft,
-      decoration: BoxDecoration(color: value ? AppColors.primary : AppColors.border, borderRadius: BorderRadius.circular(AppRadius.full)),
+      decoration: BoxDecoration(
+        color: value ? AppColors.primary : AppColors.border,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
       child: const DecoratedBox(
         decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
         child: SizedBox(width: 20, height: 20),

@@ -40,9 +40,16 @@ final class RepresentativeCandidateConsentView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InfoPanel(title: l10n.candidateConsentApproveTitle, body: l10n.candidateConsentApproveBody, tone: InfoTone.success),
+            InfoPanel(
+              title: l10n.candidateConsentApproveTitle,
+              body: l10n.candidateConsentApproveBody,
+              tone: InfoTone.success,
+            ),
             const SizedBox(height: AppSpacing.card),
-            Text(l10n.candidateConsentRejectHint, style: AppTypography.onboardingCardBody),
+            Text(
+              l10n.candidateConsentRejectHint,
+              style: AppTypography.onboardingCardBody,
+            ),
           ],
         ),
       ),

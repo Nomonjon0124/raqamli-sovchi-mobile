@@ -25,7 +25,9 @@ final class RepresentativeHeader extends StatelessWidget {
           AppRoundIconButton(
             icon: Assets.icons.icArrowLeft01Round,
             semanticLabel: AppLocalizations.of(context).backLabel,
-            onPressed: () => context.read<ProfileOnboardingBloc>().add(const OnboardingStepBackRequested()),
+            onPressed: () => context.read<ProfileOnboardingBloc>().add(
+              const OnboardingStepBackRequested(),
+            ),
           ),
           const SizedBox(width: AppSpacing.lg + 2),
           Expanded(
@@ -48,7 +50,10 @@ final class RepresentativeHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppSpacing.md),
-          Text('${(progress * 100).round()}%', style: AppTypography.onboardingProgress),
+          Text(
+            '${(progress * 100).round()}%',
+            style: AppTypography.onboardingProgress,
+          ),
         ],
       ),
     );

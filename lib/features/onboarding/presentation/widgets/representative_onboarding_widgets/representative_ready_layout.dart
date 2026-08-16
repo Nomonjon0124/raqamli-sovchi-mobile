@@ -7,7 +7,8 @@ import '../../../../../app/theme/app_typography.dart';
 import '../../../../../gen/assets.gen.dart';
 
 final class RepresentativeReadyLayout extends StatelessWidget {
-  const RepresentativeReadyLayout({super.key,
+  const RepresentativeReadyLayout({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.primaryLabel,

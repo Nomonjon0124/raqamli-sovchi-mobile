@@ -14,7 +14,8 @@ import '../bloc/profile_onboarding_bloc.dart';
 import '../bloc/profile_onboarding_event.dart';
 
 final class StepLayout extends StatelessWidget {
-  const StepLayout({super.key,
+  const StepLayout({
+    super.key,
     required this.title,
     required this.child,
     this.subtitle,
@@ -38,13 +39,27 @@ final class StepLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (step != null) ...[
-          _OnboardingWizardHeader(step: step!, onBack: () => context.read<ProfileOnboardingBloc>().add(const OnboardingStepBackRequested())),
+          _OnboardingWizardHeader(
+            step: step!,
+            onBack: () => context.read<ProfileOnboardingBloc>().add(
+              const OnboardingStepBackRequested(),
+            ),
+          ),
           const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         ],
         Text(title, style: AppTypography.onboardingTitle),
-        if (subtitle != null) ...[const SizedBox(height: AppSpacing.sm), Text(subtitle!, style: AppTypography.onboardingBody)],
+        if (subtitle != null) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text(subtitle!, style: AppTypography.onboardingBody),
+        ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
-        if (dateWheel) ...[child, if (bottom != null) const Spacer()] else ...[child, if (bottom != null) const Spacer()],
+        if (dateWheel) ...[
+          child,
+          if (bottom != null) const Spacer(),
+        ] else ...[
+          child,
+          if (bottom != null) const Spacer(),
+        ],
         ..._optionalWidget(bottom),
       ],
     );
@@ -75,48 +90,55 @@ final class _OnboardingWizardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final representativeMode = context.read<ProfileOnboardingBloc>().state.draft?.candidateType == CandidateType.representative;
+    final representativeMode =
+        context.read<ProfileOnboardingBloc>().state.draft?.candidateType ==
+        CandidateType.representative;
     final progress = representativeMode
         ? switch (step) {
-      OnboardingStep.identity => .24,
-      OnboardingStep.birthDate => .29,
-      OnboardingStep.education => .35,
-      OnboardingStep.height => .41,
-      OnboardingStep.location => .47,
-      OnboardingStep.healthStatus => .53,
-      OnboardingStep.maritalStatus => .59,
-      OnboardingStep.photos => .65,
-      OnboardingStep.mainPhoto => .71,
-      OnboardingStep.aboutMe => .76,
-      OnboardingStep.voiceIntro => .82,
-      OnboardingStep.locationPermission => .88,
-      OnboardingStep.representativeContact => .94,
-      OnboardingStep.representativePledge || OnboardingStep.representativeReady => 1.0,
-      _ => 0.0,
-    }
+            OnboardingStep.identity => .24,
+            OnboardingStep.birthDate => .29,
+            OnboardingStep.education => .35,
+            OnboardingStep.height => .41,
+            OnboardingStep.location => .47,
+            OnboardingStep.healthStatus => .53,
+            OnboardingStep.maritalStatus => .59,
+            OnboardingStep.photos => .65,
+            OnboardingStep.mainPhoto => .71,
+            OnboardingStep.aboutMe => .76,
+            OnboardingStep.voiceIntro => .82,
+            OnboardingStep.locationPermission => .88,
+            OnboardingStep.representativeContact => .94,
+            OnboardingStep.representativePledge ||
+            OnboardingStep.representativeReady => 1.0,
+            _ => 0.0,
+          }
         : switch (step) {
-      OnboardingStep.identity => .08,
-      OnboardingStep.birthDate => .15,
-      OnboardingStep.education => .23,
-      OnboardingStep.height => .31,
-      OnboardingStep.location => .38,
-      OnboardingStep.healthStatus => .46,
-      OnboardingStep.maritalStatus => .54,
-      OnboardingStep.photos => .62,
-      OnboardingStep.mainPhoto => .69,
-      OnboardingStep.faceVerification => .77,
-      OnboardingStep.aboutMe => .85,
-      OnboardingStep.voiceIntro => .92,
-      OnboardingStep.locationPermission => .96,
-      OnboardingStep.success || OnboardingStep.profileReady => 1.0,
-      _ => 0.0,
-    };
+            OnboardingStep.identity => .08,
+            OnboardingStep.birthDate => .15,
+            OnboardingStep.education => .23,
+            OnboardingStep.height => .31,
+            OnboardingStep.location => .38,
+            OnboardingStep.healthStatus => .46,
+            OnboardingStep.maritalStatus => .54,
+            OnboardingStep.photos => .62,
+            OnboardingStep.mainPhoto => .69,
+            OnboardingStep.faceVerification => .77,
+            OnboardingStep.aboutMe => .85,
+            OnboardingStep.voiceIntro => .92,
+            OnboardingStep.locationPermission => .96,
+            OnboardingStep.success || OnboardingStep.profileReady => 1.0,
+            _ => 0.0,
+          };
     final percent = (progress * 100).round();
     return SizedBox(
       height: 36,
       child: Row(
         children: [
-          AppRoundIconButton(icon: Assets.icons.icArrowLeft01Round, semanticLabel: AppLocalizations.of(context).backLabel, onPressed: onBack),
+          AppRoundIconButton(
+            icon: Assets.icons.icArrowLeft01Round,
+            semanticLabel: AppLocalizations.of(context).backLabel,
+            onPressed: onBack,
+          ),
           const SizedBox(width: AppSpacing.md + AppSpacing.xs),
           Expanded(
             child: ClipRRect(

@@ -7,7 +7,11 @@ import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
 
 final class CustomPrimaryButton extends StatelessWidget {
-  const CustomPrimaryButton({super.key, required this.label, required this.onPressed});
+  const CustomPrimaryButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+  });
 
   final String label;
   final VoidCallback? onPressed;
@@ -23,20 +27,41 @@ final class CustomPrimaryButton extends StatelessWidget {
           disabledBackgroundColor: AppColors.border,
           foregroundColor: Colors.white,
           disabledForegroundColor: AppColors.mutedText,
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg + AppSpacing.xs, vertical: AppSpacing.lg),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.full)),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg + AppSpacing.xs,
+            vertical: AppSpacing.lg,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.full),
+          ),
           textStyle: AppTypography.onboardingAction,
         ),
         child: Builder(
           builder: (context) {
-            final foregroundColor = IconTheme.of(context).color ?? DefaultTextStyle.of(context).style.color ?? Colors.white;
+            final foregroundColor =
+                IconTheme.of(context).color ??
+                DefaultTextStyle.of(context).style.color ??
+                Colors.white;
 
             return Row(
-              spacing: 8,
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(label),
-                Assets.icons.icArrowRight.svg(colorFilter: ColorFilter.mode(foregroundColor, BlendMode.srcIn), excludeFromSemantics: true),
+                Flexible(
+                  child: Text(
+                    label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Assets.icons.icArrowRight.svg(
+                  colorFilter: ColorFilter.mode(
+                    foregroundColor,
+                    BlendMode.srcIn,
+                  ),
+                  excludeFromSemantics: true,
+                ),
               ],
             );
           },

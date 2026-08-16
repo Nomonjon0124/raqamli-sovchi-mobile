@@ -27,7 +27,10 @@ final class RepresentativeTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 13),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: 13,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(color: AppColors.border),
@@ -45,7 +48,11 @@ final class RepresentativeTextField extends StatelessWidget {
             textInputAction: textInputAction,
             textCapitalization: textCapitalization,
             style: AppTypography.onboardingFieldValue,
-            decoration: const InputDecoration(isDense: true, border: InputBorder.none, contentPadding: EdgeInsets.zero),
+            decoration: const InputDecoration(
+              isDense: true,
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+            ),
           ),
         ],
       ),

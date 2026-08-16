@@ -6,7 +6,8 @@ import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
 
 final class RepresentativeLayout extends StatelessWidget {
-  const RepresentativeLayout({super.key,
+  const RepresentativeLayout({
+    super.key,
     required this.title,
     required this.child,
     required this.bottom,
@@ -29,13 +30,24 @@ final class RepresentativeLayout extends StatelessWidget {
     final content = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (progress != null) ...[RepresentativeHeader(progress: progress!), const SizedBox(height: AppSpacing.lg + AppSpacing.xs)],
+        if (progress != null) ...[
+          RepresentativeHeader(progress: progress!),
+          const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
+        ],
         if (eyebrow != null) ...[
-          Text(eyebrow!, style: AppTypography.onboardingFieldLabel.copyWith(color: AppColors.primary)),
+          Text(
+            eyebrow!,
+            style: AppTypography.onboardingFieldLabel.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
           const SizedBox(height: AppSpacing.xl),
         ],
         Text(title, style: AppTypography.onboardingTitle),
-        if (subtitle != null) ...[const SizedBox(height: AppSpacing.sm), Text(subtitle!, style: AppTypography.onboardingBody)],
+        if (subtitle != null) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text(subtitle!, style: AppTypography.onboardingBody),
+        ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         child,
         const Spacer(),
@@ -46,22 +58,23 @@ final class RepresentativeLayout extends StatelessWidget {
       padding: const EdgeInsets.all(AppSpacing.xl),
       child: keyboardAware
           ? LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(child: content),
-          ),
-        ),
-      )
+              builder: (context, constraints) => SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: IntrinsicHeight(child: content),
+                ),
+              ),
+            )
           : LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(child: content),
-          ),
-        ),
-      ),
+              builder: (context, constraints) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: IntrinsicHeight(child: content),
+                ),
+              ),
+            ),
     );
   }
 }

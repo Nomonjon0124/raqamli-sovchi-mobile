@@ -24,7 +24,7 @@ final class CustomGhostButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppRadius.full)),
           textStyle: AppTypography.onboardingAction,
         ),
-        child: Text(label),
+        child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
       ),
     );
   }

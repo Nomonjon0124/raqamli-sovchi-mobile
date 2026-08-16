@@ -4,7 +4,11 @@ import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_typography.dart';
 
 final class SecondaryAction extends StatelessWidget {
-  const SecondaryAction({super.key, required this.label, required this.onPressed});
+  const SecondaryAction({
+    super.key,
+    required this.label,
+    required this.onPressed,
+  });
 
   final String label;
   final VoidCallback? onPressed;

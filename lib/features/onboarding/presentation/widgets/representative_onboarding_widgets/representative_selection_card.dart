@@ -6,7 +6,13 @@ import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
 
 final class RepresentativeSelectionCard extends StatelessWidget {
-  const RepresentativeSelectionCard({super.key, required this.label, required this.selected, required this.onPressed, this.detail});
+  const RepresentativeSelectionCard({
+    super.key,
+    required this.label,
+    required this.selected,
+    required this.onPressed,
+    this.detail,
+  });
 
   final String label;
   final String? detail;
@@ -23,7 +29,10 @@ final class RepresentativeSelectionCard extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: selected ? AppColors.primary : AppColors.border, width: selected ? 1.5 : 1),
+          border: Border.all(
+            color: selected ? AppColors.primary : AppColors.border,
+            width: selected ? 1.5 : 1,
+          ),
           borderRadius: BorderRadius.circular(AppRadius.md),
         ),
         child: Row(
@@ -33,7 +42,10 @@ final class RepresentativeSelectionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label, style: AppTypography.onboardingReferenceSelected),
-                  if (detail != null) ...[const SizedBox(height: 3), Text(detail!, style: AppTypography.onboardingCardBody)],
+                  if (detail != null) ...[
+                    const SizedBox(height: 3),
+                    Text(detail!, style: AppTypography.onboardingCardBody),
+                  ],
                 ],
               ),
             ),
@@ -43,7 +55,9 @@ final class RepresentativeSelectionCard extends StatelessWidget {
               height: 18,
               decoration: BoxDecoration(
                 color: selected ? AppColors.primary : Colors.transparent,
-                border: Border.all(color: selected ? AppColors.primary : AppColors.mutedText),
+                border: Border.all(
+                  color: selected ? AppColors.primary : AppColors.mutedText,
+                ),
                 shape: BoxShape.circle,
               ),
             ),
