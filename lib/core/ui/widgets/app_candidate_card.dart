@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_radius.dart';
 import '../../../gen/assets.gen.dart';
+import '../../extensions/gap_extension.dart';
 
 final class AppCandidateCardData {
   const AppCandidateCardData({required this.nameAge, required this.city, required this.matchPercent, this.imageUrl, this.image});
@@ -46,14 +47,14 @@ final class AppCandidateCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          8.g,
           Text(
             candidate.nameAge,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(/*fontFamily: 'Manrope',*/ fontSize: 14, height: 19 / 14, fontWeight: FontWeight.w600, color: AppColors.text),
+            style: const TextStyle(fontSize: 14, height: 19 / 14, fontWeight: FontWeight.w600, color: AppColors.text),
           ),
-          const SizedBox(height: 2),
+          2.g,
           Row(
             children: [
               Flexible(
@@ -61,19 +62,13 @@ final class AppCandidateCard extends StatelessWidget {
                   '${candidate.city} ·',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    /*fontFamily: 'Manrope',*/
-                    fontSize: 11,
-                    height: 17 / 11,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.mutedText,
-                  ),
+                  style: const TextStyle(fontSize: 11, height: 17 / 11, fontWeight: FontWeight.w400, color: AppColors.mutedText),
                 ),
               ),
-              const SizedBox(width: 4),
+              4.g,
               Text(
                 candidate.matchPercent,
-                style: const TextStyle(/*fontFamily: 'Manrope',*/ fontSize: 11, height: 15 / 11, fontWeight: FontWeight.w600, color: AppColors.primary),
+                style: const TextStyle(fontSize: 11, height: 15 / 11, fontWeight: FontWeight.w600, color: AppColors.primary),
               ),
             ],
           ),
@@ -120,17 +115,10 @@ final class _PrivatePhotoPill extends StatelessWidget {
               colorFilter: const ColorFilter.mode(AppColors.surfaceLight, BlendMode.srcIn),
               excludeFromSemantics: true,
             ),
-            const SizedBox(width: 5),
+            5.g,
             Text(
               label,
-              style: const TextStyle(
-                /*fontFamily: 'Manrope',*/
-                fontSize: 10,
-                height: 14 / 10,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 0.8,
-                color: AppColors.surfaceLight,
-              ),
+              style: const TextStyle(fontSize: 10, height: 14 / 10, fontWeight: FontWeight.w600, letterSpacing: 0.8, color: AppColors.surfaceLight),
             ),
           ],
         ),
