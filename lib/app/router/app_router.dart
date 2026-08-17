@@ -10,6 +10,8 @@ import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/pages/pin_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/chat/presentation/pages/messages_page.dart';
+import '../../features/discovery/domain/entities/candidate.dart';
+import '../../features/discovery/presentation/pages/candidate_detail_page.dart';
 import '../../features/discovery/presentation/pages/candidates_page.dart';
 import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
@@ -103,6 +105,13 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.questionnaire,
         builder: (context, state) => const QuestionnairePage(),
+      ),
+      GoRoute(
+        path: RouteNames.candidateDetail,
+        builder: (context, state) {
+          final candidate = state.extra as Candidate?;
+          return CandidateDetailPage(candidate: candidate);
+        },
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>

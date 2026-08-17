@@ -11,4 +11,5 @@ abstract final class RouteNames {
   static const services = '/services';
   static const saved = '/saved';
   static const profile = '/profile';
+  static const candidateDetail = '/candidate-detail';
 }

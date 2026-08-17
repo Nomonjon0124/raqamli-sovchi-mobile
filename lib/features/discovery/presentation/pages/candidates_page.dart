@@ -92,9 +92,19 @@ final class _CandidatesPageView extends StatelessWidget {
                   child: AppEmptyState(message: l10n.candidatesPlaceholder),
                 ),
                 DiscoveryLoaded(:final candidates) => SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
-                  sliver: AppCandidateGrid(candidates: _mapEntitiesToUiData(candidates, l10n), privatePhotoLabel: l10n.privatePhotoLabel),
-                ),
+                    padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
+                    sliver: AppCandidateGrid(
+                      candidates: _mapEntitiesToUiData(candidates, l10n),
+                      privatePhotoLabel: l10n.privatePhotoLabel,
+                      onCandidateTap: (index) {
+                        final candidate = candidates[index];
+                        context.push(
+                          RouteNames.candidateDetail,
+                          extra: candidate,
+                        );
+                      },
+                    ),
+                  ),
               };
             },
           ),
