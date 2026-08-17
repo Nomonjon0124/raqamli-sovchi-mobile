@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../core/ui/widgets/app_candidate_card.dart';
 import '../../../../core/ui/widgets/app_candidate_grid.dart';
+import '../../../../core/ui/widgets/app_empty_state.dart';
+import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../core/ui/widgets/app_filter_pill.dart';
 import '../../../../core/ui/widgets/app_round_icon_button.dart';
 import '../../../../core/ui/widgets/app_screen_header.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../domain/entities/candidate.dart';
+import '../bloc/discovery_bloc.dart';
+import '../bloc/discovery_event.dart';
+import '../bloc/discovery_state.dart';
 import '../widgets/survey_prompt_card.dart';
 
 final class CandidatesPage extends StatelessWidget {
@@ -17,8 +25,19 @@ final class CandidatesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => serviceLocator<DiscoveryBloc>()..add(const DiscoveryFetchCandidatesRequested()),
+      child: const _CandidatesPageView(),
+    );
+  }
+}
+
+final class _CandidatesPageView extends StatelessWidget {
+  const _CandidatesPageView();
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final candidates = _mockCandidates(l10n);
 
     return SafeArea(
       child: CustomScrollView(
@@ -41,10 +60,7 @@ final class CandidatesPage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      AppFilterPill(
-                        label: l10n.candidatesFilterMatches,
-                        selected: true,
-                      ),
+                      AppFilterPill(label: l10n.candidatesFilterMatches, selected: true),
                       const SizedBox(width: AppSpacing.sm),
                       AppFilterPill(label: l10n.candidatesFilterRecommended),
                       const SizedBox(width: AppSpacing.sm),
@@ -55,63 +71,44 @@ final class CandidatesPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                SurveyPromptCard(
-                  onPressed: () => context.push(RouteNames.questionnaire),
-                ),
+                SurveyPromptCard(onPressed: () => context.push(RouteNames.questionnaire)),
                 const SizedBox(height: AppSpacing.lg),
               ],
             ),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
-            sliver: AppCandidateGrid(
-              candidates: candidates,
-              privatePhotoLabel: l10n.privatePhotoLabel,
-            ),
+          BlocBuilder<DiscoveryBloc, DiscoveryState>(
+            builder: (context, state) {
+              return switch (state) {
+                DiscoveryInitial() || DiscoveryLoading() => const SliverFillRemaining(child: Center(child: CircularProgressIndicator.adaptive())),
+                DiscoveryError(:final message) => SliverFillRemaining(
+                  child: Center(
+                    child: AppErrorView(
+                      message: message,
+                      onRetry: () => context.read<DiscoveryBloc>().add(const DiscoveryFetchCandidatesRequested()),
+                    ),
+                  ),
+                ),
+                DiscoveryLoaded(:final candidates) when candidates.isEmpty => SliverFillRemaining(
+                  child: AppEmptyState(message: l10n.candidatesPlaceholder),
+                ),
+                DiscoveryLoaded(:final candidates) => SliverPadding(
+                  padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
+                  sliver: AppCandidateGrid(candidates: _mapEntitiesToUiData(candidates, l10n), privatePhotoLabel: l10n.privatePhotoLabel),
+                ),
+              };
+            },
           ),
         ],
       ),
     );
   }
 
-  List<AppCandidateCardData> _mockCandidates(AppLocalizations l10n) {
-    return [
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateMohira,
-        city: l10n.mockCityTashkent,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image1,
-      ),
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateZilola,
-        city: l10n.mockCitySamarkand,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image2,
-      ),
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateNilufar,
-        city: l10n.mockCityFergana,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image3,
-      ),
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateDilnoza,
-        city: l10n.mockCityBukhara,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image4,
-      ),
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateMohira,
-        city: l10n.mockCityTashkent,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image1,
-      ),
-      AppCandidateCardData(
-        nameAge: l10n.mockCandidateZilola,
-        city: l10n.mockCitySamarkand,
-        matchPercent: l10n.matchLockedLabel,
-        image: Assets.images.image2,
-      ),
-    ];
+  List<AppCandidateCardData> _mapEntitiesToUiData(List<Candidate> candidates, AppLocalizations l10n) {
+    return candidates.map((c) {
+      final ageStr = c.age != null ? ', ${c.age}' : '';
+      final nameAge = '${c.firstName}$ageStr';
+      final city = c.regionName ?? c.districtName ?? '';
+      return AppCandidateCardData(nameAge: nameAge, city: city, matchPercent: l10n.matchLockedLabel, image: Assets.images.image1);
+    }).toList();
   }
 }

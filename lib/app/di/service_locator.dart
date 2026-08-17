@@ -40,6 +40,11 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/repositories/google_oauth_provider.dart';
 import '../../features/auth/domain/repositories/pin_repository.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/discovery/application/use_cases/get_candidates.dart';
+import '../../features/discovery/data/data_sources/discovery_data_source.dart';
+import '../../features/discovery/data/repositories/discovery_repository_impl.dart';
+import '../../features/discovery/domain/repositories/discovery_repository.dart';
+import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/onboarding/application/services/onboarding_location_service.dart';
 import '../../features/onboarding/application/services/onboarding_media_service.dart';
 import '../../features/onboarding/data/data_sources/onboarding_data_source.dart';
@@ -135,6 +140,18 @@ Future<void> configureDependencies() async {
     )
     ..registerLazySingleton<QuestionnaireRepository>(
       () => QuestionnaireRepositoryImpl(serviceLocator()),
+    )
+    ..registerLazySingleton<DiscoveryDataSource>(
+      () => RemoteDiscoveryDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<DiscoveryRepository>(
+      () => DiscoveryRepositoryImpl(serviceLocator()),
+    )
+    ..registerFactory<GetCandidatesUseCase>(
+      () => GetCandidatesUseCase(serviceLocator()),
+    )
+    ..registerFactory<DiscoveryBloc>(
+      () => DiscoveryBloc(getCandidates: serviceLocator()),
     )
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
     ..registerLazySingleton<OnboardingLocationService>(

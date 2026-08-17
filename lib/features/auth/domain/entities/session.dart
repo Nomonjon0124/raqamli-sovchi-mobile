@@ -20,12 +20,12 @@ final class Session extends Equatable {
   final Object? profileInfo;
 
   bool get needsCandidateType =>
-      _normalizedStatus == _incompleteProfileStatus &&
+      (_normalizedStatus == _incompleteProfileStatus /*|| _normalizedStatus== _incompleteProfileStatus2*/) &&
       profileInfo == null &&
       (candidateType == null || candidateType!.isEmpty);
 
   bool get needsProfileOnboarding =>
-      _normalizedStatus == _incompleteProfileStatus || profileInfo == null;
+      (_normalizedStatus == _incompleteProfileStatus /*|| _normalizedStatus== _incompleteProfileStatus2*/) || profileInfo == null;
 
   String get _normalizedStatus {
     return (status ?? '')
@@ -69,3 +69,4 @@ final class Session extends Equatable {
 }
 
 const _incompleteProfileStatus = "anketa to'liq emas";
+// const _incompleteProfileStatus2 = "tekshiruvda";
