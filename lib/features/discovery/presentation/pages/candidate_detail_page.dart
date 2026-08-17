@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -19,7 +20,9 @@ final class CandidateDetailPage extends StatefulWidget {
   State<CandidateDetailPage> createState() => _CandidateDetailPageState();
 }
 
-final class _CandidateDetailPageState extends State<CandidateDetailPage> {
+final class _CandidateDetailPageState extends State<CandidateDetailPage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _voiceController;
   bool _isPlayingVoice = false;
   late bool _isSaved;
 
@@ -27,6 +30,28 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
   void initState() {
     super.initState();
     _isSaved = widget.candidate?.isSaved ?? false;
+    _voiceController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+  }
+
+  @override
+  void dispose() {
+    _voiceController.dispose();
+    super.dispose();
+  }
+
+  void _toggleVoicePlayback() {
+    setState(() {
+      _isPlayingVoice = !_isPlayingVoice;
+      if (_isPlayingVoice) {
+        _voiceController.repeat();
+      } else {
+        _voiceController.stop();
+        _voiceController.value = 0;
+      }
+    });
   }
 
   @override
@@ -72,138 +97,177 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 100),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Top Image with Blur and Permission Button
-                  _buildHeaderImage(
-                    context,
-                    imageUrl: imageUrl,
-                    shouldBlur: shouldBlur,
-                  ),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 110),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Top Hero Image with Blur and Permission Button
+                _buildHeroImage(
+                  context,
+                  imageUrl: imageUrl,
+                  shouldBlur: shouldBlur,
+                ),
 
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(18, 16, 18, 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Name + Age + Verified Badge
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                nameAge,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  height: 1.3,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.text,
-                                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 20, 22, 28),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name + Age + Verified Badge Row
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              nameAge,
+                              style: const TextStyle(
+                                fontFamily: 'Manrope',
+                                fontSize: 22,
+                                height: 27 / 22,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.5,
+                                color: AppColors.text,
                               ),
-                            ),
-                            8.g,
-                            _buildVerifiedBadge(),
-                          ],
-                        ),
-                        6.g,
-
-                        // Subtitle (Location, Height, Education)
-                        Text(
-                          subtitle,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.mutedText,
-                          ),
-                        ),
-                        18.g,
-
-                        // Compatibility Card
-                        _buildCompatibilityCard(),
-
-                        // Voice Intro Section (Only if available)
-                        if (hasVoiceIntro) ...[
-                          18.g,
-                          const Text(
-                            'Ovozli tanishtiruv · 12 sek',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.mutedText,
                             ),
                           ),
                           8.g,
-                          _buildVoiceIntroPlayer(),
+                          const _VerifiedBadge(),
                         ],
+                      ),
+                      6.g,
 
-                        // Bio Section (Only if available)
-                        if (hasBio) ...[
-                          18.g,
-                          Text(
-                            bioText,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              height: 1.45,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.bodyText,
-                            ),
+                      // Subtitle
+                      Text(
+                        subtitle,
+                        style: const TextStyle(
+                          fontFamily: 'Manrope',
+                          fontSize: 13,
+                          height: 21 / 13,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.mutedText,
+                        ),
+                      ),
+                      18.g,
+
+                      // Animated Match Card
+                      const _AnimatedMatchCard(
+                        matchPercent: 82,
+                        scores: [
+                          _MatchCategory(
+                            title: 'Din va qadriyatlar',
+                            percent: 88,
                           ),
+                          _MatchCategory(title: 'Moliya', percent: 81),
+                          _MatchCategory(title: 'Qarindoshlar', percent: 79),
+                          _MatchCategory(title: 'Xarakter', percent: 84),
+                          _MatchCategory(title: 'Kelajak', percent: 78),
                         ],
+                      ),
+
+                      // Voice Intro Section (Conditionally rendered)
+                      if (hasVoiceIntro) ...[
+                        18.g,
+                        const Text(
+                          'Ovozli tanishtiruv · 12 sek',
+                          style: TextStyle(
+                            fontFamily: 'Manrope',
+                            fontSize: 12,
+                            height: 16 / 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF525252),
+                          ),
+                        ),
+                        8.g,
+                        _buildVoicePlayer(),
                       ],
+
+                      // Bio Section (Conditionally rendered)
+                      if (hasBio) ...[
+                        18.g,
+                        Text(
+                          bioText,
+                          style: const TextStyle(
+                            fontFamily: 'Manrope',
+                            fontSize: 13,
+                            height: 21 / 13,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.bodyText,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Top Back & Bookmark Buttons
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 18,
+            left: 18,
+            right: 18,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildHeroRoundButton(
+                  icon: Assets.icons.icArrowLeft01Round.svg(
+                    width: 20,
+                    height: 20,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.text,
+                      BlendMode.srcIn,
                     ),
                   ),
-                ],
-              ),
+                  onTap: () => context.pop(),
+                ),
+                _buildHeroRoundButton(
+                  icon: _isSaved
+                      ? Assets.icons.icPreservedBtv.svg(
+                          width: 20,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.primary,
+                            BlendMode.srcIn,
+                          ),
+                        )
+                      : Assets.icons.icPreservedBtv.svg(
+                          width: 20,
+                          height: 20,
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.text,
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                  onTap: () {
+                    setState(() => _isSaved = !_isSaved);
+                  },
+                ),
+              ],
             ),
+          ),
 
-            // Sticky Top Overlay Buttons (Back & Bookmark)
-            Positioned(
-              top: MediaQuery.of(context).padding.top + 8,
-              left: 18,
-              right: 18,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildCircularButton(
-                    icon: Icons.chevron_left,
-                    onTap: () => context.pop(),
-                  ),
-                  _buildCircularButton(
-                    icon: _isSaved ? Icons.bookmark : Icons.bookmark_border,
-                    iconColor: _isSaved ? AppColors.primary : AppColors.text,
-                    onTap: () {
-                      setState(() => _isSaved = !_isSaved);
-                    },
-                  ),
-                ],
-              ),
-            ),
-
-            // Bottom Action Bar
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: _buildBottomActionBar(),
-            ),
-          ],
-        ),
+          // Bottom Action Bar
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: _buildBottomActionBar(context),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildHeaderImage(
+  Widget _buildHeroImage(
     BuildContext context, {
     required String? imageUrl,
     required bool shouldBlur,
   }) {
-    final height = MediaQuery.of(context).size.width * 1.05;
+    const heroHeight = 330.0;
 
     final Widget imageContent = imageUrl != null && imageUrl.isNotEmpty
         ? CachedNetworkImage(
@@ -218,58 +282,60 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
           )
         : Assets.images.image1.image(fit: BoxFit.cover);
 
-    return SizedBox(
-      height: height,
+    return Container(
+      height: heroHeight,
       width: double.infinity,
+      color: AppColors.mutedSurface,
       child: Stack(
         fit: StackFit.expand,
         children: [
           if (shouldBlur)
             ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
+              imageFilter: ImageFilter.blur(sigmaX: 9, sigmaY: 9),
               child: Transform.scale(scale: 1.15, child: imageContent),
             )
           else
             imageContent,
 
-          // Permission Pill Button
+          // Lock CTA Pill
           if (shouldBlur)
             Positioned(
               left: 18,
               right: 18,
               bottom: 18,
-              child: Center(
-                child: Material(
-                  color: const Color(0xFF111111).withValues(alpha: 0.9),
-                  borderRadius: BorderRadius.circular(AppRadius.full),
-                  child: InkWell(
-                    onTap: () {},
-                    borderRadius: BorderRadius.circular(AppRadius.full),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 12,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: AppColors.text,
+                  borderRadius: BorderRadius.circular(AppRadius.md),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Assets.icons.icGlyph.svg(
+                        width: 15,
+                        height: 15,
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
+                        ),
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.lock_outline,
-                            size: 15,
-                            color: Colors.white,
-                          ),
-                          8.g,
-                          const Text(
-                            "Rasmni ko'rish uchun ruxsat so'rash",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                      8.g,
+                      const Text(
+                        'Rasmni koʻrish uchun ruxsat soʻrash',
+                        style: TextStyle(
+                          fontFamily: 'Manrope',
+                          fontSize: 12,
+                          height: 16 / 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
@@ -279,200 +345,73 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
     );
   }
 
-  Widget _buildCircularButton({
-    required IconData icon,
+  Widget _buildHeroRoundButton({
+    required Widget icon,
     required VoidCallback onTap,
-    Color iconColor = AppColors.text,
   }) {
     return Material(
-      color: Colors.white.withValues(alpha: 0.92),
+      color: Colors.white,
       shape: const CircleBorder(),
       elevation: 2,
-      shadowColor: Colors.black.withValues(alpha: 0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       child: InkWell(
         onTap: onTap,
         customBorder: const CircleBorder(),
         child: SizedBox(
-          width: 40,
-          height: 40,
-          child: Center(
-            child: Icon(icon, size: 22, color: iconColor),
-          ),
+          width: 36,
+          height: 36,
+          child: Center(child: icon),
         ),
       ),
     );
   }
 
-  Widget _buildVerifiedBadge() {
+  Widget _buildVoicePlayer() {
     return Container(
-      width: 22,
-      height: 22,
-      decoration: const BoxDecoration(
-        color: AppColors.primary,
-        shape: BoxShape.circle,
-      ),
-      child: const Center(
-        child: Icon(
-          Icons.check,
-          size: 14,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCompatibilityCard() {
-    return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Umumiy moslik',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.text,
-                ),
-              ),
-              Text(
-                '82%',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.primary,
-                ),
-              ),
-            ],
-          ),
-          14.g,
-          _buildProgressRow(title: 'Din va qadriyatlar', percent: 88),
-          12.g,
-          _buildProgressRow(title: 'Moliya', percent: 81),
-          12.g,
-          _buildProgressRow(title: 'Qarindoshlar', percent: 79),
-          12.g,
-          _buildProgressRow(title: 'Xarakter', percent: 84),
-          12.g,
-          _buildProgressRow(title: 'Kelajak', percent: 78),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProgressRow({required String title, required int percent}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: AppColors.text,
-              ),
-            ),
-            Text(
-              '$percent%',
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.mutedText,
-              ),
-            ),
-          ],
-        ),
-        6.g,
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
-            value: percent / 100.0,
-            minHeight: 5,
-            backgroundColor: const Color(0xFFF1F3F5),
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildVoiceIntroPlayer() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.border),
       ),
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
-              setState(() => _isPlayingVoice = !_isPlayingVoice);
-            },
+            onTap: _toggleVoicePlayback,
             child: Container(
-              width: 38,
-              height: 38,
+              width: 34,
+              height: 34,
               decoration: const BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
               ),
               child: Center(
                 child: Icon(
-                  _isPlayingVoice ? Icons.pause : Icons.play_arrow,
-                  size: 22,
+                  _isPlayingVoice ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                  size: 20,
                   color: Colors.white,
                 ),
               ),
             ),
           ),
-          14.g,
+          12.g,
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: List.generate(26, (index) {
-                const heights = [
-                  10.0, 16.0, 22.0, 14.0, 26.0, 18.0, 12.0, 24.0,
-                  28.0, 16.0, 20.0, 14.0, 22.0, 18.0, 12.0, 26.0,
-                  18.0, 14.0, 22.0, 16.0, 24.0, 14.0, 20.0, 12.0,
-                  18.0, 10.0,
-                ];
-                final barHeight = heights[index % heights.length];
-                return Container(
-                  width: 3,
-                  height: barHeight,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                );
-              }),
+            child: _AnimatedAudioWaveform(
+              controller: _voiceController,
+              isPlaying: _isPlayingVoice,
             ),
           ),
-          10.g,
         ],
       ),
     );
   }
 
-  Widget _buildBottomActionBar() {
+  Widget _buildBottomActionBar(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(
-        18,
+        22,
         12,
-        18,
+        22,
         MediaQuery.of(context).padding.bottom + 12,
       ),
       decoration: BoxDecoration(
@@ -494,6 +433,7 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
                 onPressed: () {},
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.primary,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.full),
                   ),
@@ -504,16 +444,21 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
                     const Text(
                       'Sovchi taklifi yuborish',
                       style: TextStyle(
+                        fontFamily: 'Manrope',
                         fontSize: 15,
+                        height: 20 / 15,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
                     ),
                     8.g,
-                    const Icon(
-                      Icons.arrow_forward,
-                      size: 18,
-                      color: Colors.white,
+                    Assets.icons.icArrowRight.svg(
+                      width: 20,
+                      height: 20,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ],
                 ),
@@ -535,7 +480,7 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
               child: const Center(
                 child: Icon(
                   Icons.more_horiz,
-                  size: 24,
+                  size: 20,
                   color: AppColors.text,
                 ),
               ),
@@ -544,5 +489,230 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
         ],
       ),
     );
+  }
+}
+
+final class _VerifiedBadge extends StatelessWidget {
+  const _VerifiedBadge();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20,
+      height: 20,
+      decoration: const BoxDecoration(
+        color: AppColors.primary,
+        shape: BoxShape.circle,
+      ),
+      child: Center(
+        child: Assets.icons.icVerifyCheck.svg(
+          width: 13,
+          height: 13,
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.srcIn,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+final class _MatchCategory {
+  const _MatchCategory({required this.title, required this.percent});
+
+  final String title;
+  final int percent;
+}
+
+final class _AnimatedMatchCard extends StatelessWidget {
+  const _AnimatedMatchCard({
+    required this.matchPercent,
+    required this.scores,
+  });
+
+  final int matchPercent;
+  final List<_MatchCategory> scores;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Umumiy moslik',
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 13,
+                  height: 18 / 13,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.text,
+                ),
+              ),
+              Text(
+                '$matchPercent%',
+                style: const TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 24,
+                  height: 30 / 24,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.5,
+                  color: AppColors.primary,
+                ),
+              ),
+            ],
+          ),
+          14.g,
+          for (var i = 0; i < scores.length; i++) ...[
+            _AnimatedMatchBar(category: scores[i]),
+            if (i < scores.length - 1) 14.g,
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+final class _AnimatedMatchBar extends StatelessWidget {
+  const _AnimatedMatchBar({required this.category});
+
+  final _MatchCategory category;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              category.title,
+              style: const TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: 12,
+                height: 19 / 12,
+                fontWeight: FontWeight.w400,
+                color: AppColors.text,
+              ),
+            ),
+            Text(
+              '${category.percent}%',
+              style: const TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: 12,
+                height: 19 / 12,
+                fontWeight: FontWeight.w400,
+                color: AppColors.mutedText,
+              ),
+            ),
+          ],
+        ),
+        5.g,
+        TweenAnimationBuilder<double>(
+          tween: Tween(begin: 0, end: category.percent / 100.0),
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.easeOutCubic,
+          builder: (context, value, child) => ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.full),
+            child: LinearProgressIndicator(
+              value: value,
+              minHeight: 5,
+              color: AppColors.primary,
+              backgroundColor: AppColors.mutedSurface,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+final class _AnimatedAudioWaveform extends StatelessWidget {
+  const _AnimatedAudioWaveform({
+    required this.controller,
+    required this.isPlaying,
+  });
+
+  static const _figmaBars = <double>[
+    22.0,
+    18.2,
+    8.7,
+    14.1,
+    21.1,
+    21.0,
+    13.8,
+    9.0,
+    18.4,
+    22.0,
+    18.1,
+    8.5,
+    14.3,
+    21.2,
+    20.9,
+    13.6,
+    9.2,
+    18.6,
+    22.0,
+    17.9,
+    8.2,
+    14.5,
+    21.2,
+    20.8,
+  ];
+
+  final AnimationController controller;
+  final bool isPlaying;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 24,
+      child: AnimatedBuilder(
+        animation: controller,
+        builder: (context, _) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: List.generate(_figmaBars.length, (index) {
+              final height = _barHeight(index);
+              final progress = isPlaying
+                  ? (controller.value * (_figmaBars.length + 4)).floor()
+                  : _figmaBars.length;
+              final color = isPlaying && index >= progress
+                  ? const Color(0xFFA3A3A3)
+                  : AppColors.primary;
+
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 100),
+                width: 3,
+                height: height,
+                decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              );
+            }),
+          );
+        },
+      ),
+    );
+  }
+
+  double _barHeight(int index) {
+    if (!isPlaying) return _figmaBars[index].clamp(6.0, 24.0);
+    final wave = math.sin((controller.value * math.pi * 2) + index * 0.55);
+    final scale = 0.8 + (wave + 1) * 0.2;
+    return (_figmaBars[index] * scale).clamp(6.0, 24.0);
   }
 }
