@@ -108,7 +108,22 @@ final class _CandidatesPageView extends StatelessWidget {
       final ageStr = c.age != null ? ', ${c.age}' : '';
       final nameAge = '${c.firstName}$ageStr';
       final city = c.regionName ?? c.districtName ?? '';
-      return AppCandidateCardData(nameAge: nameAge, city: city, matchPercent: l10n.matchLockedLabel, image: Assets.images.image1);
+
+      String? mainImageUrl;
+      if (c.photosInfo != null && c.photosInfo!.isNotEmpty) {
+        final mainPhoto = c.photosInfo!.firstWhere((p) => p.isMain, orElse: () => c.photosInfo!.first);
+        if (mainPhoto.image.isNotEmpty) {
+          mainImageUrl = mainPhoto.image;
+        }
+      }
+
+      return AppCandidateCardData(
+        nameAge: nameAge,
+        city: city,
+        matchPercent: l10n.matchLockedLabel,
+        imageUrl: mainImageUrl,
+        image: Assets.images.image1,
+      );
     }).toList();
   }
 }
