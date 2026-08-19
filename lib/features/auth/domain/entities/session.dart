@@ -19,13 +19,30 @@ final class Session extends Equatable {
   final String? candidateType;
   final Object? profileInfo;
 
+  bool get isIncomplete =>
+      _normalizedStatus == _incompleteProfileStatus ||
+      _normalizedStatus == 'incomplete';
+
+  bool get isUnderReview =>
+      _normalizedStatus == _underReviewStatus ||
+      _normalizedStatus == 'pending' ||
+      _normalizedStatus == 'in_review';
+
+  bool get isApproved =>
+      _normalizedStatus == _approvedStatus ||
+      _normalizedStatus == 'approved' ||
+      _normalizedStatus == 'active';
+
   bool get needsCandidateType =>
-      (_normalizedStatus == _incompleteProfileStatus /*|| _normalizedStatus== _incompleteProfileStatus2*/) &&
+      isIncomplete &&
       profileInfo == null &&
       (candidateType == null || candidateType!.isEmpty);
 
-  bool get needsProfileOnboarding =>
-      (_normalizedStatus == _incompleteProfileStatus /*|| _normalizedStatus== _incompleteProfileStatus2*/) || profileInfo == null;
+  bool get needsProfileOnboarding {
+    if (isUnderReview || isApproved) return false;
+    if (isIncomplete) return true;
+    return status == null && profileInfo == null;
+  }
 
   String get _normalizedStatus {
     return (status ?? '')
@@ -69,4 +86,5 @@ final class Session extends Equatable {
 }
 
 const _incompleteProfileStatus = "anketa to'liq emas";
-// const _incompleteProfileStatus2 = "tekshiruvda";
+const _underReviewStatus = 'tekshiruvda';
+const _approvedStatus = 'tasdiqlangan';
