@@ -1,6 +1,7 @@
 import '../../../../core/errors/either.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/candidate.dart';
+import '../../domain/entities/discovery_filter.dart';
 import '../../domain/repositories/discovery_repository.dart';
 
 final class GetCandidatesUseCase {
@@ -11,7 +12,7 @@ final class GetCandidatesUseCase {
   Future<Either<Failure, List<Candidate>>> call({
     int page = 1,
     int pageSize = 10,
-    String? filter,
+    DiscoveryFilter filter = DiscoveryFilter.matches,
   }) {
     return _repository.getCandidates(
       page: page,

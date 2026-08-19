@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../domain/entities/discovery_filter.dart';
+
 sealed class DiscoveryEvent extends Equatable {
   const DiscoveryEvent();
 
@@ -8,9 +10,11 @@ sealed class DiscoveryEvent extends Equatable {
 }
 
 final class DiscoveryFetchCandidatesRequested extends DiscoveryEvent {
-  const DiscoveryFetchCandidatesRequested({this.filter});
+  const DiscoveryFetchCandidatesRequested({
+    this.filter = DiscoveryFilter.matches,
+  });
 
-  final String? filter;
+  final DiscoveryFilter filter;
 
   @override
   List<Object?> get props => [filter];

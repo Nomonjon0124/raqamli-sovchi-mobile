@@ -10,15 +10,16 @@ import '../../../../core/ui/widgets/app_candidate_card.dart';
 import '../../../../core/ui/widgets/app_candidate_grid.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
-import '../../../../core/ui/widgets/app_filter_pill.dart';
 import '../../../../core/ui/widgets/app_round_icon_button.dart';
 import '../../../../core/ui/widgets/app_screen_header.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate.dart';
+import '../../domain/entities/discovery_filter.dart';
 import '../bloc/discovery_bloc.dart';
 import '../bloc/discovery_event.dart';
 import '../bloc/discovery_state.dart';
+import '../widgets/candidates_filter_bar.dart';
 import '../widgets/survey_prompt_card.dart';
 
 final class CandidatesPage extends StatelessWidget {
@@ -28,7 +29,7 @@ final class CandidatesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => serviceLocator<DiscoveryBloc>()
-        ..add(const DiscoveryFetchCandidatesRequested(filter: 'matches')),
+        ..add(const DiscoveryFetchCandidatesRequested(filter: DiscoveryFilter.matches)),
       child: const _CandidatesPageView(),
     );
   }
@@ -40,12 +41,9 @@ final class _CandidatesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final selectedFilter = context.select((DiscoveryBloc bloc) {
-      final state = bloc.state;
-      return state is DiscoveryLoaded
-          ? (state.selectedFilter ?? 'matches')
-          : 'matches';
-    });
+    final selectedFilter = context.select(
+      (DiscoveryBloc bloc) => bloc.state.selectedFilter,
+    );
 
     return SafeArea(
       child: CustomScrollView(
@@ -64,51 +62,10 @@ final class _CandidatesPageView extends StatelessWidget {
                   ),
                 ),
                 18.g,
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Row(
-                    children: [
-                      AppFilterPill(
-                        label: l10n.candidatesFilterMatches,
-                        selected: selectedFilter == 'matches',
-                        onTap: () => context.read<DiscoveryBloc>().add(
-                          const DiscoveryFetchCandidatesRequested(
-                            filter: 'matches',
-                          ),
-                        ),
-                      ),
-                      8.g,
-                      AppFilterPill(
-                        label: l10n.candidatesFilterRecommended,
-                        selected: selectedFilter == 'recommended',
-                        onTap: () => context.read<DiscoveryBloc>().add(
-                          const DiscoveryFetchCandidatesRequested(
-                            filter: 'recommended',
-                          ),
-                        ),
-                      ),
-                      8.g,
-                      AppFilterPill(
-                        label: l10n.candidatesFilterNearby,
-                        selected: selectedFilter == 'nearby',
-                        onTap: () => context.read<DiscoveryBloc>().add(
-                          const DiscoveryFetchCandidatesRequested(
-                            filter: 'nearby',
-                          ),
-                        ),
-                      ),
-                      8.g,
-                      AppFilterPill(
-                        label: l10n.candidatesFilterRepresentative,
-                        selected: selectedFilter == 'representative',
-                        onTap: () => context.read<DiscoveryBloc>().add(
-                          const DiscoveryFetchCandidatesRequested(
-                            filter: 'representative',
-                          ),
-                        ),
-                      ),
-                    ],
+                CandidatesFilterBar(
+                  selectedFilter: selectedFilter,
+                  onFilterSelected: (filter) => context.read<DiscoveryBloc>().add(
+                    DiscoveryFetchCandidatesRequested(filter: filter),
                   ),
                 ),
                 18.g,
@@ -121,36 +78,35 @@ final class _CandidatesPageView extends StatelessWidget {
           ),
           BlocBuilder<DiscoveryBloc, DiscoveryState>(
             builder: (context, state) {
-              return switch (state) {
-                DiscoveryInitial() || DiscoveryLoading() =>
+              return switch (state.status) {
+                DiscoveryStatus.initial || DiscoveryStatus.loading =>
                   const SliverFillRemaining(
                     child: Center(
                       child: CircularProgressIndicator.adaptive(),
                     ),
                   ),
-                DiscoveryError(:final message) => SliverFillRemaining(
+                DiscoveryStatus.failure => SliverFillRemaining(
                   child: Center(
                     child: AppErrorView(
-                      message: message,
+                      message: state.errorMessage ?? 'Unknown Error',
                       onRetry: () => context.read<DiscoveryBloc>().add(
                         DiscoveryFetchCandidatesRequested(
-                          filter: selectedFilter,
+                          filter: state.selectedFilter,
                         ),
                       ),
                     ),
                   ),
                 ),
-                DiscoveryLoaded(:final candidates) when candidates.isEmpty =>
-                  SliverFillRemaining(
-                    child: AppEmptyState(message: l10n.candidatesPlaceholder),
-                  ),
-                DiscoveryLoaded(:final candidates) => SliverPadding(
+                DiscoveryStatus.empty => SliverFillRemaining(
+                  child: AppEmptyState(message: l10n.candidatesPlaceholder),
+                ),
+                DiscoveryStatus.success => SliverPadding(
                   padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
                   sliver: AppCandidateGrid(
-                    candidates: _mapEntitiesToUiData(candidates, l10n),
+                    candidates: _mapEntitiesToUiData(state.candidates, l10n),
                     privatePhotoLabel: l10n.privatePhotoLabel,
                     onCandidateTap: (index) {
-                      final candidate = candidates[index];
+                      final candidate = state.candidates[index];
                       context.push(
                         RouteNames.candidateDetail,
                         extra: candidate,

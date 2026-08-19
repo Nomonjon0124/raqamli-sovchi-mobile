@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/use_cases/get_candidates.dart';
@@ -8,35 +7,56 @@ import 'discovery_state.dart';
 final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
   DiscoveryBloc({required GetCandidatesUseCase getCandidates})
       : _getCandidates = getCandidates,
-        super(const DiscoveryInitial()) {
+        super(const DiscoveryState()) {
     on<DiscoveryFetchCandidatesRequested>(_onFetchCandidates);
     on<DiscoveryRefreshCandidatesRequested>(_onRefreshCandidates);
   }
 
   final GetCandidatesUseCase _getCandidates;
+  int _requestSerial = 0;
 
   Future<void> _onFetchCandidates(
     DiscoveryFetchCandidatesRequested event,
     Emitter<DiscoveryState> emit,
   ) async {
-    emit(const DiscoveryLoading());
-    final result = await _getCandidates(filter: event.filter);
+    final targetFilter = event.filter;
+    if (targetFilter == state.selectedFilter &&
+        (state.status == DiscoveryStatus.loading ||
+            (state.status == DiscoveryStatus.success &&
+                state.candidates.isNotEmpty))) {
+      return;
+    }
+
+    final requestId = ++_requestSerial;
+    emit(
+      state.copyWith(
+        status: DiscoveryStatus.loading,
+        selectedFilter: targetFilter,
+        clearError: true,
+      ),
+    );
+
+    final result = await _getCandidates(filter: targetFilter);
+    if (requestId != _requestSerial) return;
 
     result.fold(
-      (failure) => emit(DiscoveryError(failure.message ?? 'Unknown Error')),
-      (candidates) {
-        if (candidates.isNotEmpty) {
-          debugPrint('bloc candidates count: ${candidates.length}, first candidate: ${candidates.first.firstName}');
-        } else {
-          debugPrint('bloc candidates result: empty list');
-        }
-        return emit(
-          DiscoveryLoaded(
-            candidates: candidates,
-            selectedFilter: event.filter,
-          ),
-        );
-      },
+      (failure) => emit(
+        state.copyWith(
+          status: DiscoveryStatus.failure,
+          errorMessage: failure.message ?? 'Unknown Error',
+          selectedFilter: targetFilter,
+        ),
+      ),
+      (candidates) => emit(
+        state.copyWith(
+          status: candidates.isEmpty
+              ? DiscoveryStatus.empty
+              : DiscoveryStatus.success,
+          candidates: candidates,
+          selectedFilter: targetFilter,
+          clearError: true,
+        ),
+      ),
     );
   }
 
@@ -44,16 +64,33 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     DiscoveryRefreshCandidatesRequested event,
     Emitter<DiscoveryState> emit,
   ) async {
-    final currentFilter = state is DiscoveryLoaded
-        ? (state as DiscoveryLoaded).selectedFilter
-        : 'matches';
-    final result = await _getCandidates(filter: currentFilter);
+    final targetFilter = state.selectedFilter;
+    final requestId = ++_requestSerial;
+
+    emit(
+      state.copyWith(
+        status: DiscoveryStatus.loading,
+        clearError: true,
+      ),
+    );
+
+    final result = await _getCandidates(filter: targetFilter);
+    if (requestId != _requestSerial) return;
+
     result.fold(
-      (failure) => emit(DiscoveryError(failure.message ?? 'Unknown Error')),
+      (failure) => emit(
+        state.copyWith(
+          status: DiscoveryStatus.failure,
+          errorMessage: failure.message ?? 'Unknown Error',
+        ),
+      ),
       (candidates) => emit(
-        DiscoveryLoaded(
+        state.copyWith(
+          status: candidates.isEmpty
+              ? DiscoveryStatus.empty
+              : DiscoveryStatus.success,
           candidates: candidates,
-          selectedFilter: currentFilter,
+          clearError: true,
         ),
       ),
     );
