@@ -1,18 +1,26 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/use_cases/get_candidates.dart';
+import '../../application/use_cases/get_my_profile.dart';
 import 'discovery_event.dart';
 import 'discovery_state.dart';
 
 final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
-  DiscoveryBloc({required GetCandidatesUseCase getCandidates})
-      : _getCandidates = getCandidates,
+  DiscoveryBloc({
+    required GetCandidatesUseCase getCandidates,
+    required GetMyProfileUseCase getMyProfile,
+  })  : _getCandidates = getCandidates,
+        _getMyProfile = getMyProfile,
         super(const DiscoveryState()) {
     on<DiscoveryFetchCandidatesRequested>(_onFetchCandidates);
     on<DiscoveryRefreshCandidatesRequested>(_onRefreshCandidates);
+    on<DiscoveryProfileLoaded>(_onProfileLoaded);
   }
 
   final GetCandidatesUseCase _getCandidates;
+  final GetMyProfileUseCase _getMyProfile;
   int _requestSerial = 0;
 
   Future<void> _onFetchCandidates(
@@ -28,6 +36,19 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     }
 
     final requestId = ++_requestSerial;
+
+    // Parallel: fetch profile once if not yet loaded.
+    if (state.myProfile == null) {
+      unawaited(
+        _getMyProfile().then(
+          (result) => result.fold(
+            (_) {},
+            (profile) => add(DiscoveryProfileLoaded(profile)),
+          ),
+        ),
+      );
+    }
+
     emit(
       state.copyWith(
         status: DiscoveryStatus.loading,
@@ -94,5 +115,12 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
         ),
       ),
     );
+  }
+
+  void _onProfileLoaded(
+    DiscoveryProfileLoaded event,
+    Emitter<DiscoveryState> emit,
+  ) {
+    emit(state.copyWith(myProfile: event.profile));
   }
 }

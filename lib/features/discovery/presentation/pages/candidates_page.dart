@@ -44,6 +44,9 @@ final class _CandidatesPageView extends StatelessWidget {
     final selectedFilter = context.select(
       (DiscoveryBloc bloc) => bloc.state.selectedFilter,
     );
+    final hasAnsweredTest = context.select(
+      (DiscoveryBloc bloc) => bloc.state.myProfile?.hasAnsweredTest ?? false,
+    );
 
     return SafeArea(
       child: CustomScrollView(
@@ -68,10 +71,12 @@ final class _CandidatesPageView extends StatelessWidget {
                     DiscoveryFetchCandidatesRequested(filter: filter),
                   ),
                 ),
-                18.g,
-                SurveyPromptCard(
-                  onPressed: () => context.push(RouteNames.questionnaire),
-                ),
+                if (!hasAnsweredTest) ...[
+                  18.g,
+                  SurveyPromptCard(
+                    onPressed: () => context.push(RouteNames.questionnaire),
+                  ),
+                ],
                 18.g,
               ],
             ),
