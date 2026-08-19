@@ -10,17 +10,17 @@ import 'discovery_state.dart';
 final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
   DiscoveryBloc({
     required GetCandidatesUseCase getCandidates,
-    required GetMyProfileUseCase getMyProfile,
-  })  : _getCandidates = getCandidates,
-        _getMyProfile = getMyProfile,
-        super(const DiscoveryState()) {
+    GetMyProfileUseCase? getMyProfile,
+  }) : _getCandidates = getCandidates,
+       _getMyProfile = getMyProfile,
+       super(const DiscoveryState()) {
     on<DiscoveryFetchCandidatesRequested>(_onFetchCandidates);
     on<DiscoveryRefreshCandidatesRequested>(_onRefreshCandidates);
     on<DiscoveryProfileLoaded>(_onProfileLoaded);
   }
 
   final GetCandidatesUseCase _getCandidates;
-  final GetMyProfileUseCase _getMyProfile;
+  final GetMyProfileUseCase? _getMyProfile;
   int _requestSerial = 0;
 
   Future<void> _onFetchCandidates(
@@ -38,9 +38,9 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     final requestId = ++_requestSerial;
 
     // Parallel: fetch profile once if not yet loaded.
-    if (state.myProfile == null) {
+    if (state.myProfile == null && _getMyProfile != null) {
       unawaited(
-        _getMyProfile().then(
+        _getMyProfile!().then(
           (result) => result.fold(
             (_) {},
             (profile) => add(DiscoveryProfileLoaded(profile)),
@@ -64,7 +64,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       (failure) => emit(
         state.copyWith(
           status: DiscoveryStatus.failure,
-          errorMessage: failure.message ?? 'Unknown Error',
+          errorMessage: failure.message,
           selectedFilter: targetFilter,
         ),
       ),
@@ -88,12 +88,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     final targetFilter = state.selectedFilter;
     final requestId = ++_requestSerial;
 
-    emit(
-      state.copyWith(
-        status: DiscoveryStatus.loading,
-        clearError: true,
-      ),
-    );
+    emit(state.copyWith(status: DiscoveryStatus.loading, clearError: true));
 
     final result = await _getCandidates(filter: targetFilter);
     if (requestId != _requestSerial) return;
@@ -102,7 +97,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       (failure) => emit(
         state.copyWith(
           status: DiscoveryStatus.failure,
-          errorMessage: failure.message ?? 'Unknown Error',
+          errorMessage: failure.message,
         ),
       ),
       (candidates) => emit(

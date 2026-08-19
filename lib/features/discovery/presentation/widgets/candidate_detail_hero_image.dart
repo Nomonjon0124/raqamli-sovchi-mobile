@@ -7,6 +7,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../gen/assets.gen.dart';
+import '../../../../l10n/app_localizations.dart';
 
 final class CandidateDetailHeroImage extends StatelessWidget {
   const CandidateDetailHeroImage({
@@ -24,18 +25,28 @@ final class CandidateDetailHeroImage extends StatelessWidget {
   Widget build(BuildContext context) {
     const heroHeight = 330.0;
 
+    final fallbackWidget = Semantics(
+      label: AppLocalizations.of(context).candidateDetailNoPhoto,
+      image: true,
+      child: const ColoredBox(
+        color: AppColors.mutedSurface,
+        child: Center(
+          child: Icon(
+            Icons.person_rounded,
+            size: 88,
+            color: AppColors.mutedText,
+          ),
+        ),
+      ),
+    );
     final Widget imageContent = imageUrl != null && imageUrl!.isNotEmpty
         ? CachedNetworkImage(
             imageUrl: imageUrl!,
             fit: BoxFit.cover,
-            placeholder: (context, url) => Assets.images.image1.image(
-              fit: BoxFit.cover,
-            ),
-            errorWidget: (context, url, error) => Assets.images.image1.image(
-              fit: BoxFit.cover,
-            ),
+            placeholder: (context, url) => fallbackWidget,
+            errorWidget: (context, url, error) => fallbackWidget,
           )
-        : Assets.images.image1.image(fit: BoxFit.cover);
+        : fallbackWidget;
 
     return Container(
       height: heroHeight,
@@ -83,8 +94,10 @@ final class CandidateDetailHeroImage extends StatelessWidget {
                           ),
                         ),
                         8.g,
-                        const Text(
-                          'Rasmni koʻrish uchun ruxsat soʻrash',
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          ).candidateDetailRequestPhotoPermission,
                           style: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 12,

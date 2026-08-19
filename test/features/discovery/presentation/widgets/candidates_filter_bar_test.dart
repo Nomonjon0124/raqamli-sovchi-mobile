@@ -23,7 +23,9 @@ void main() {
   }
 
   group('CandidatesFilterBar', () {
-    testWidgets('renders all 4 filters with ListView.separated', (tester) async {
+    testWidgets('renders the supported filters with ListView.separated', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         buildTestWidget(
           selectedFilter: DiscoveryFilter.matches,
@@ -36,10 +38,12 @@ void main() {
       expect(find.text('Moslar'), findsOneWidget);
       expect(find.text('Tavsiyalar'), findsOneWidget);
       expect(find.text('Yaqinlar'), findsOneWidget);
-      expect(find.text('Vakil'), findsOneWidget);
+      expect(find.text('Vakil'), findsNothing);
     });
 
-    testWidgets('tapping unselected filter calls onFilterSelected', (tester) async {
+    testWidgets('tapping unselected filter calls onFilterSelected', (
+      tester,
+    ) async {
       DiscoveryFilter? selected;
 
       await tester.pumpWidget(
@@ -56,7 +60,9 @@ void main() {
       expect(selected, DiscoveryFilter.recommended);
     });
 
-    testWidgets('tapping selected filter does not trigger onFilterSelected', (tester) async {
+    testWidgets('tapping selected filter does not trigger onFilterSelected', (
+      tester,
+    ) async {
       DiscoveryFilter? selected;
 
       await tester.pumpWidget(

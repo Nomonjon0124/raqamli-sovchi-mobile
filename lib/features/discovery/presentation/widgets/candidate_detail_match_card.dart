@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../core/extensions/gap_extension.dart';
+import '../../../../l10n/app_localizations.dart';
 
 final class MatchCategory {
   const MatchCategory({required this.title, required this.percent});
@@ -15,11 +16,13 @@ final class CandidateDetailMatchCard extends StatelessWidget {
   const CandidateDetailMatchCard({
     required this.matchPercent,
     required this.scores,
+    this.title,
     super.key,
   });
 
   final int matchPercent;
   final List<MatchCategory> scores;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +39,24 @@ final class CandidateDetailMatchCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Umumiy moslik',
-                style: TextStyle(
-                  fontFamily: 'Manrope',
-                  fontSize: 13,
-                  height: 18 / 13,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.text,
+              Expanded(
+                child: Text(
+                  title ??
+                      AppLocalizations.of(
+                        context,
+                      ).candidateDetailCompatibilityTitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontFamily: 'Manrope',
+                    fontSize: 13,
+                    height: 18 / 13,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.text,
+                  ),
                 ),
               ),
+              12.g,
               Text(
                 '$matchPercent%',
                 style: const TextStyle(
@@ -83,16 +94,21 @@ final class _AnimatedMatchBar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              category.title,
-              style: const TextStyle(
-                fontFamily: 'Manrope',
-                fontSize: 12,
-                height: 19 / 12,
-                fontWeight: FontWeight.w400,
-                color: AppColors.text,
+            Expanded(
+              child: Text(
+                category.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 12,
+                  height: 19 / 12,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.text,
+                ),
               ),
             ),
+            12.g,
             Text(
               '${category.percent}%',
               style: const TextStyle(

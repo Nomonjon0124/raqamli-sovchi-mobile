@@ -8,11 +8,13 @@ final class CandidateDetailHeader extends StatelessWidget {
   const CandidateDetailHeader({
     required this.nameAge,
     required this.subtitle,
+    this.isVerified = false,
     super.key,
   });
 
   final String nameAge;
   final String subtitle;
+  final bool isVerified;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,8 @@ final class CandidateDetailHeader extends StatelessWidget {
             Expanded(
               child: Text(
                 nameAge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 22,
@@ -36,12 +40,14 @@ final class CandidateDetailHeader extends StatelessWidget {
               ),
             ),
             8.g,
-            const _VerifiedBadge(),
+            if (isVerified) const _VerifiedBadge(),
           ],
         ),
         6.g,
         Text(
           subtitle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             fontFamily: 'Manrope',
             fontSize: 13,
@@ -71,10 +77,7 @@ final class _VerifiedBadge extends StatelessWidget {
         child: Assets.icons.icVerifyCheck.svg(
           width: 13,
           height: 13,
-          colorFilter: const ColorFilter.mode(
-            Colors.white,
-            BlendMode.srcIn,
-          ),
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
       ),
     );

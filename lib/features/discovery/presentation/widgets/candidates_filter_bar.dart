@@ -46,7 +46,6 @@ final class CandidatesFilterBar extends StatelessWidget {
       DiscoveryFilter.matches => l10n.candidatesFilterMatches,
       DiscoveryFilter.recommended => l10n.candidatesFilterRecommended,
       DiscoveryFilter.nearby => l10n.candidatesFilterNearby,
-      DiscoveryFilter.representative => l10n.candidatesFilterRepresentative,
     };
   }
 }

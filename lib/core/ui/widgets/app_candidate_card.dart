@@ -112,11 +112,11 @@ final class AppCandidateCard extends StatelessWidget {
   }
 
   Widget _buildImage(AppCandidateCardData candidate) {
-    final defaultAsset = candidate.image ?? Assets.images.image1;
-    final fallbackWidget = defaultAsset.image(
-      fit: BoxFit.cover,
-      filterQuality: FilterQuality.medium,
-      excludeFromSemantics: true,
+    final fallbackWidget = const ColoredBox(
+      color: AppColors.mutedSurface,
+      child: Center(
+        child: Icon(Icons.person_rounded, size: 64, color: AppColors.mutedText),
+      ),
     );
 
     if (candidate.imageUrl != null && candidate.imageUrl!.isNotEmpty) {

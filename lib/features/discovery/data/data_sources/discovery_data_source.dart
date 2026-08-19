@@ -8,6 +8,14 @@ abstract interface class DiscoveryDataSource {
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
   });
+
+  Future<ResultCandidateModel> fetchCandidate(String id);
+
+  Future<CandidateModel> fetchSavedCandidates();
+
+  Future<void> saveCandidate(String id);
+
+  Future<void> unsaveCandidate(String id);
 }
 
 final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
@@ -21,26 +29,82 @@ final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
   }) async {
-    final endpoint = filter == DiscoveryFilter.matches
-        ? '/api/v1/accounts/profiles/matches/'
-        : '/api/v1/accounts/profiles/';
+    final endpoint = switch (filter) {
+      DiscoveryFilter.matches => '/api/v1/accounts/profiles/matches/',
+      DiscoveryFilter.recommended => '/api/v1/accounts/profiles/',
+      DiscoveryFilter.nearby => '/api/v1/accounts/profiles/nearby/',
+    };
 
     final response = await _client.get<dynamic>(
       endpoint,
-      queryParameters: {
-        'page': page,
-        'page_size': pageSize,
-      },
+      queryParameters: {'page': page, 'page_size': pageSize},
     );
 
     final data = response.data;
-    if (data is Map<String, dynamic>) {
-      final payload = data['data'] is Map<String, dynamic>
-          ? data['data'] as Map<String, dynamic>
-          : data;
-      return CandidateModel.fromJson(payload);
-    }
-
-    return const CandidateModel();
+    return _candidateModelFromResponse(data);
   }
+
+  @override
+  Future<ResultCandidateModel> fetchCandidate(String id) async {
+    final response = await _client.get<dynamic>(
+      '/api/v1/accounts/profiles/$id/',
+    );
+    final payload = _unwrapMap(response.data);
+    return ResultCandidateModel.fromJson(payload);
+  }
+
+  @override
+  Future<CandidateModel> fetchSavedCandidates() async {
+    final response = await _client.get<dynamic>(
+      '/api/v1/accounts/profiles/saved/',
+    );
+    return _candidateModelFromResponse(response.data);
+  }
+
+  @override
+  Future<void> saveCandidate(String id) async {
+    await _client.post<dynamic>('/api/v1/accounts/profiles/$id/save/');
+  }
+
+  @override
+  Future<void> unsaveCandidate(String id) async {
+    await _client.delete<dynamic>('/api/v1/accounts/profiles/$id/unsave/');
+  }
+}
+
+CandidateModel _candidateModelFromResponse(Object? data) {
+  final payload = _unwrapMap(data);
+  if (payload.containsKey('results')) {
+    return CandidateModel.fromJson(payload);
+  }
+
+  final nested = payload['data'];
+  if (nested is List) {
+    return CandidateModel.fromJson({'results': nested});
+  }
+  if (nested is Map) {
+    final nestedMap = _unwrapMap(nested);
+    if (nestedMap.containsKey('results')) {
+      return CandidateModel.fromJson(nestedMap);
+    }
+    return CandidateModel.fromJson({
+      'results': [nestedMap],
+    });
+  }
+  if (payload.isNotEmpty && payload['id'] != null) {
+    return CandidateModel.fromJson({
+      'results': [payload],
+    });
+  }
+  return const CandidateModel();
+}
+
+Map<String, dynamic> _unwrapMap(Object? value) {
+  if (value is! Map) return const <String, dynamic>{};
+  final map = value.map((key, value) => MapEntry(key.toString(), value));
+  final data = map['data'];
+  if (data is Map) {
+    return data.map((key, value) => MapEntry(key.toString(), value));
+  }
+  return map;
 }

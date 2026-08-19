@@ -258,9 +258,43 @@
   "candidatesFilterMatches": "Подходящие",
   "candidatesFilterRecommended": "Рекомендации",
   "candidatesFilterNearby": "Рядом",
-  "candidatesFilterRepresentative": "Представитель",
   "privatePhotoLabel": "Приватное фото",
   "matchLockedLabel": "совпадение закрыто",
+  "genericError": "Что-то пошло не так.",
+  "savedEmptyState": "Сохранённых профилей пока нет.",
+  "candidateDetailRequestPhotoPermission": "Запросить доступ к фотографии",
+  "candidateDetailOptionsSubtitle": "Что вы хотите сделать?",
+  "candidateDetailSaveSubtitle": "Позже найдёте в разделе «Сохранённые»",
+  "candidateDetailSaveToSaved": "Добавить в сохранённые",
+  "candidateDetailShare": "Поделиться профилем",
+  "candidateDetailShareSubtitle": "Отправьте представителю или семье",
+  "candidateDetailPhotoPermissionSubtitle": "Запрос получит кандидат и его представитель",
+  "candidateDetailReport": "Пожаловаться",
+  "candidateDetailReportSubtitle": "Модератор рассмотрит жалобу в течение 24 часов",
+  "candidateDetailBlock": "Заблокировать профиль",
+  "candidateDetailBlockSubtitle": "Он больше не будет вас видеть",
+  "candidateDetailCompatibilityTitle": "Общая совместимость",
+  "candidateDetailVoiceIntro": "Голосовое знакомство · {duration}",
+  "candidateDetailVoiceDuration": "12 сек",
+  "candidateDetailSendProposal": "Отправить предложение сватовства",
+  "candidateDetailSave": "Сохранить",
+  "candidateDetailUnsave": "Удалить из сохранённых",
+  "candidateDetailNoPhoto": "Нет фотографии профиля",
+  "candidateProposalSentTitle": "Предложение отправлено",
+  "candidateProposalSentDescription": "{name} и его представитель рассмотрят ваше предложение. Мы сообщим, когда будет ответ.",
+  "candidateProposalSentTimelineSent": "Предложение отправлено",
+  "candidateProposalSentTimelineReview": "{name} рассмотрит его",
+  "candidateProposalSentTimelineChat": "После ответа откроется чат",
+  "candidateProposalSentQuotaLabel": "Предложения на этой неделе",
+  "candidateProposalSentQuotaValue": "2 / 3",
+  "candidateProposalSentNote": "Не расстраивайтесь, если ответа не будет — это вопрос выбора. Осталось предложений: {remaining}.",
+  "candidateProposalSentReturn": "Вернуться к кандидатам",
+  "candidatePhotoPermissionSentTitle": "Запрос на просмотр фото отправлен",
+  "candidatePhotoPermissionSentDescription": "Запрос на просмотр фото отправлен {name} и его представителю. Мы сообщим, когда будет ответ.",
+  "candidatePhotoPermissionSentReturn": "Вернуться к профилю",
+  "@candidateDetailVoiceIntro": {
+    "placeholders": {"duration": {"type": "String"}}
+  },
   "surveyPromptTitle": "Процент совпадения закрыт",
   "surveyPromptMessage": "Ответьте на 30 вопросов — AI проанализирует ваши ответы и автоматически рассчитает совместимость с каждым кандидатом.",
   "surveyPromptButton": "Начать анкету",
@@ -288,9 +322,26 @@
   "savedFilterAll": "Все",
   "savedFilterInvited": "Приглашение отправлено",
   "savedFilterWaiting": "Ожидается ответ",
-  "savedLimitLabel": "7 / 10 сохранено",
+  "savedLimitLabel": "{savedCount} / {limit} сохранено",
+  "@savedLimitLabel": {
+    "placeholders": {
+      "savedCount": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
   "savedPremiumCta": "Premium — безлимит",
-  "savedUpsellTitle": "Осталось 3 места",
+  "savedUpsellTitle": "Осталось мест: {remaining}",
+  "@savedUpsellTitle": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
   "savedUpsellMessage": "В бесплатном плане можно сохранить до 10 профилей. В Premium ограничений нет.",
   "questionnaireOptionalBadge": "Необязательный шаг",
   "questionnaireIntroTitle": "{count} вопросов — {minutes} минут",

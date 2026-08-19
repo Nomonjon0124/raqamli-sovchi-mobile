@@ -807,13 +807,121 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidatesFilterNearby => 'Nearby';
 
   @override
-  String get candidatesFilterRepresentative => 'Representative';
-
-  @override
   String get privatePhotoLabel => 'Private photo';
 
   @override
   String get matchLockedLabel => 'match locked';
+
+  @override
+  String get genericError => 'Something went wrong.';
+
+  @override
+  String get savedEmptyState => 'No saved profiles yet.';
+
+  @override
+  String get candidateDetailRequestPhotoPermission =>
+      'Request permission to view the photo';
+
+  @override
+  String get candidateDetailOptionsSubtitle => 'What would you like to do?';
+
+  @override
+  String get candidateDetailSaveSubtitle => 'You can find it later in Saved';
+
+  @override
+  String get candidateDetailSaveToSaved => 'Add to Saved';
+
+  @override
+  String get candidateDetailShare => 'Share profile';
+
+  @override
+  String get candidateDetailShareSubtitle =>
+      'Send it to your representative or family';
+
+  @override
+  String get candidateDetailPhotoPermissionSubtitle =>
+      'The request goes to the candidate and representative';
+
+  @override
+  String get candidateDetailReport => 'Report profile';
+
+  @override
+  String get candidateDetailReportSubtitle =>
+      'A moderator will review it within 24 hours';
+
+  @override
+  String get candidateDetailBlock => 'Block profile';
+
+  @override
+  String get candidateDetailBlockSubtitle => 'They will no longer see you';
+
+  @override
+  String get candidateDetailCompatibilityTitle => 'Overall compatibility';
+
+  @override
+  String candidateDetailVoiceIntro(String duration) {
+    return 'Voice introduction · $duration';
+  }
+
+  @override
+  String get candidateDetailVoiceDuration => '12 sec';
+
+  @override
+  String get candidateDetailSendProposal => 'Send matchmaking proposal';
+
+  @override
+  String get candidateDetailSave => 'Save';
+
+  @override
+  String get candidateDetailUnsave => 'Remove from saved';
+
+  @override
+  String get candidateDetailNoPhoto => 'No profile photo';
+
+  @override
+  String get candidateProposalSentTitle => 'Proposal sent';
+
+  @override
+  String candidateProposalSentDescription(Object name) {
+    return '$name and their representative will review your proposal. We will notify you when they reply.';
+  }
+
+  @override
+  String get candidateProposalSentTimelineSent => 'Proposal sent';
+
+  @override
+  String candidateProposalSentTimelineReview(Object name) {
+    return '$name will review it';
+  }
+
+  @override
+  String get candidateProposalSentTimelineChat =>
+      'A chat will open when they reply';
+
+  @override
+  String get candidateProposalSentQuotaLabel => 'Weekly proposals';
+
+  @override
+  String get candidateProposalSentQuotaValue => '2 / 3';
+
+  @override
+  String candidateProposalSentNote(Object remaining) {
+    return 'Do not be discouraged if there is no reply — it is a matter of choice. $remaining more proposal(s) left.';
+  }
+
+  @override
+  String get candidateProposalSentReturn => 'Back to candidates';
+
+  @override
+  String get candidatePhotoPermissionSentTitle => 'Photo access requested';
+
+  @override
+  String candidatePhotoPermissionSentDescription(Object name) {
+    return 'A request to view the photo was sent to $name and their representative. We will notify you when they reply.';
+  }
+
+  @override
+  String get candidatePhotoPermissionSentReturn => 'Back to profile';
 
   @override
   String get surveyPromptTitle => 'Match percentage locked';
@@ -899,13 +1007,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get savedFilterWaiting => 'Waiting for reply';
 
   @override
-  String get savedLimitLabel => '7 / 10 saved';
+  String savedLimitLabel(int savedCount, int limit) {
+    return '$savedCount / $limit saved';
+  }
 
   @override
   String get savedPremiumCta => 'Premium — unlimited';
 
   @override
-  String get savedUpsellTitle => '3 spots left';
+  String savedUpsellTitle(int remaining) {
+    return '$remaining spots left';
+  }
 
   @override
   String get savedUpsellMessage =>

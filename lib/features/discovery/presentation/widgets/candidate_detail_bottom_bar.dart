@@ -4,6 +4,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../gen/assets.gen.dart';
+import '../../../../l10n/app_localizations.dart';
 
 final class CandidateDetailBottomBar extends StatelessWidget {
   const CandidateDetailBottomBar({
@@ -43,6 +44,8 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                 onPressed: onSendProposal,
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.primary,
+                  disabledBackgroundColor: AppColors.primary,
+                  disabledForegroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.full),
@@ -51,14 +54,20 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Sovchi taklifi yuborish',
-                      style: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontSize: 15,
-                        height: 20 / 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
+                    Flexible(
+                      child: Text(
+                        AppLocalizations.of(
+                          context,
+                        ).candidateDetailSendProposal,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Manrope',
+                          fontSize: 15,
+                          height: 20 / 15,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                     8.g,
@@ -87,12 +96,8 @@ final class CandidateDetailBottomBar extends StatelessWidget {
             child: InkWell(
               onTap: onMoreOptions,
               customBorder: const CircleBorder(),
-              child: const Center(
-                child: Icon(
-                  Icons.more_horiz,
-                  size: 20,
-                  color: AppColors.text,
-                ),
+              child: Center(
+                child: Assets.icons.icMoreHorizontal.svg(width: 20, height: 20),
               ),
             ),
           ),

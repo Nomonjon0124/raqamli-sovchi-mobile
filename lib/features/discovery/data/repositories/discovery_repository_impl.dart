@@ -33,4 +33,52 @@ final class DiscoveryRepositoryImpl implements DiscoveryRepository {
       return Left(Failure.unknown(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, Candidate>> getCandidate(String id) async {
+    try {
+      final model = await _dataSource.fetchCandidate(id);
+      return Right(model.toEntity());
+    } on DioException catch (e) {
+      return Left(mapDioException(e));
+    } catch (e) {
+      return Left(Failure.unknown(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Candidate>>> getSavedCandidates() async {
+    try {
+      final model = await _dataSource.fetchSavedCandidates();
+      return Right(model.toEntities());
+    } on DioException catch (e) {
+      return Left(mapDioException(e));
+    } catch (e) {
+      return Left(Failure.unknown(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> saveCandidate(String id) async {
+    try {
+      await _dataSource.saveCandidate(id);
+      return const Right(true);
+    } on DioException catch (e) {
+      return Left(mapDioException(e));
+    } catch (e) {
+      return Left(Failure.unknown(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> unsaveCandidate(String id) async {
+    try {
+      await _dataSource.unsaveCandidate(id);
+      return const Right(true);
+    } on DioException catch (e) {
+      return Left(mapDioException(e));
+    } catch (e) {
+      return Left(Failure.unknown(message: e.toString()));
+    }
+  }
 }

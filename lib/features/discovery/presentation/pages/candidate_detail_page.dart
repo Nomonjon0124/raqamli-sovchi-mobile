@@ -1,140 +1,164 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/di/service_locator.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../core/extensions/gap_extension.dart';
+import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../gen/assets.gen.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate.dart';
+import '../bloc/candidate_detail_bloc.dart';
+import '../bloc/candidate_detail_event.dart';
+import '../bloc/candidate_detail_state.dart';
+import 'candidate_action_result_page.dart';
 import '../widgets/candidate_detail_bottom_bar.dart';
 import '../widgets/candidate_detail_header.dart';
 import '../widgets/candidate_detail_hero_image.dart';
 import '../widgets/candidate_detail_match_card.dart';
+import '../widgets/candidate_detail_options_bottom_sheet.dart';
 import '../widgets/candidate_detail_voice_player.dart';
 
-final class CandidateDetailPage extends StatefulWidget {
-  const CandidateDetailPage({this.candidate, super.key});
+final class CandidateDetailPage extends StatelessWidget {
+  const CandidateDetailPage({required this.candidateId, super.key});
 
-  final Candidate? candidate;
-
-  @override
-  State<CandidateDetailPage> createState() => _CandidateDetailPageState();
-}
-
-final class _CandidateDetailPageState extends State<CandidateDetailPage> {
-  late bool _isSaved;
-
-  @override
-  void initState() {
-    super.initState();
-    _isSaved = widget.candidate?.isSaved ?? false;
-  }
+  final String candidateId;
 
   @override
   Widget build(BuildContext context) {
-    final candidate = widget.candidate;
+    return BlocProvider(
+      create: (_) =>
+          serviceLocator<CandidateDetailBloc>()
+            ..add(CandidateDetailLoadRequested(candidateId)),
+      child: _CandidateDetailView(candidateId: candidateId),
+    );
+  }
+}
 
-    // Name & Age
-    final firstName = candidate?.firstName ?? 'Mohira';
-    final lastName = candidate?.lastName ?? 'Ravshanova';
-    final middleName = candidate?.middleName ?? 'Jaloldin qizi';
-    final fullName = '$firstName $lastName $middleName'.trim();
-    final age = candidate?.age ?? 23;
-    final nameAge = '$fullName, $age';
+final class _CandidateDetailView extends StatelessWidget {
+  const _CandidateDetailView({required this.candidateId});
 
-    // Subtitle
-    final region = candidate?.regionName ?? 'Toshkent';
-    final district = candidate?.districtName ?? 'Yunusobod';
-    final locationText = '$region, $district';
-    final heightText = '165 sm';
-    final educationText = candidate?.educationLevelName ?? 'TATU, IT';
-    final subtitle = '$locationText · $heightText · $educationText';
+  final String candidateId;
 
-    // Visibility conditions
-    final hasVoiceIntro = candidate == null ||
-        (candidate.voiceIntro != null &&
-            candidate.voiceIntro!.trim().isNotEmpty);
-    final hasBio = candidate == null ||
-        (candidate.bio != null && candidate.bio!.trim().isNotEmpty);
-    final bioText = candidate?.bio ?? 'Iymonli, oilaparvar. Hijobda.';
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return BlocBuilder<CandidateDetailBloc, CandidateDetailState>(
+      builder: (context, state) {
+        final candidate = state.candidate;
+        if (candidate == null &&
+            state.status == CandidateDetailStatus.failure) {
+          return Scaffold(
+            body: Center(
+              child: AppErrorView(
+                message: state.errorMessage ?? l10n.genericError,
+                onRetry: () => context.read<CandidateDetailBloc>().add(
+                  CandidateDetailLoadRequested(candidateId),
+                ),
+              ),
+            ),
+          );
+        }
+        if (candidate == null) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()),
+          );
+        }
+        return _LoadedCandidateDetail(candidate: candidate);
+      },
+    );
+  }
+}
 
-    // Main Image & Blur
-    final shouldBlur = candidate?.blurPhotos ?? true;
-    String? imageUrl;
-    if (candidate?.photosInfo != null && candidate!.photosInfo!.isNotEmpty) {
-      final mainPhoto = candidate.photosInfo!.firstWhere(
-        (p) => p.isMain,
-        orElse: () => candidate.photosInfo!.first,
-      );
-      if (mainPhoto.image.isNotEmpty) {
-        imageUrl = mainPhoto.image;
-      }
-    }
+final class _LoadedCandidateDetail extends StatelessWidget {
+  const _LoadedCandidateDetail({required this.candidate});
+
+  final Candidate candidate;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final fullName = [
+      candidate.firstName,
+      candidate.lastName,
+      candidate.middleName,
+    ].where((value) => value != null && value.trim().isNotEmpty).join(' ');
+    final nameAge = candidate.age == null
+        ? fullName
+        : '$fullName, ${candidate.age}';
+    final subtitle = [
+      candidate.regionName,
+      candidate.districtName,
+      if (candidate.height != null) '${candidate.height} ${l10n.heightUnit}',
+      candidate.educationLevelName,
+    ].where((value) => value != null && value.trim().isNotEmpty).join(' · ');
+    final imageUrl = _mainImageUrl(candidate);
+    final scores = candidate.compatibilityScore?.sections
+        .map(
+          (section) => MatchCategory(
+            title: section.sectionName,
+            percent: section.score.round().clamp(0, 100).toInt(),
+          ),
+        )
+        .toList();
 
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: CandidateDetailBottomBar(
+        onSendProposal: () =>
+            _openActionResult(context, candidateName: nameAge),
+        onMoreOptions: () => _openOptions(context, candidateName: nameAge),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 110),
+            padding: const EdgeInsets.only(bottom: 28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Hero Image with Blur & Lock CTA
                 CandidateDetailHeroImage(
                   imageUrl: imageUrl,
-                  shouldBlur: shouldBlur,
-                  onRequestPermission: () {},
+                  shouldBlur: candidate.blurPhotos ?? false,
+                  onRequestPermission: () => _openActionResult(
+                    context,
+                    candidateName: nameAge,
+                    type: CandidateActionResultType.photoPermission,
+                  ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.fromLTRB(22, 20, 22, 28),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Name, Age, Badge, Subtitle
                       CandidateDetailHeader(
                         nameAge: nameAge,
                         subtitle: subtitle,
+                        isVerified: candidate.isVerified ?? false,
                       ),
-                      18.g,
-
-                      // Animated Compatibility Match Card
-                      CandidateDetailMatchCard(
-                        matchPercent: candidate?.compatibilityScore?.overallScore.round() ?? 82,
-                        scores: candidate?.compatibilityScore?.sections.isNotEmpty == true
-                            ? candidate!.compatibilityScore!.sections
-                                .map(
-                                  (s) => MatchCategory(
-                                    title: s.sectionName,
-                                    percent: s.score.round(),
-                                  ),
-                                )
-                                .toList()
-                            : const [
-                                MatchCategory(
-                                  title: 'Din va qadriyatlar',
-                                  percent: 88,
-                                ),
-                                MatchCategory(title: 'Moliya', percent: 81),
-                                MatchCategory(title: 'Qarindoshlar', percent: 79),
-                                MatchCategory(title: 'Xarakter', percent: 84),
-                                MatchCategory(title: 'Kelajak', percent: 78),
-                              ],
-                      ),
-
-                      // Voice Intro Player (Conditionally rendered)
-                      if (hasVoiceIntro) ...[
+                      if (candidate.compatibilityScore != null) ...[
                         18.g,
-                        CandidateDetailVoicePlayer(
-                          voiceUrl: candidate?.voiceIntro,
+                        CandidateDetailMatchCard(
+                          matchPercent: candidate
+                              .compatibilityScore!
+                              .overallScore
+                              .round()
+                              .clamp(0, 100)
+                              .toInt(),
+                          scores: scores ?? const [],
+                          title: l10n.candidateDetailCompatibilityTitle,
                         ),
                       ],
-
-                      // Bio Text (Conditionally rendered)
-                      if (hasBio) ...[
+                      if (candidate.voiceIntro?.trim().isNotEmpty == true) ...[
+                        18.g,
+                        CandidateDetailVoicePlayer(
+                          voiceUrl: candidate.voiceIntro,
+                        ),
+                      ],
+                      if (candidate.bio?.trim().isNotEmpty == true) ...[
                         18.g,
                         Text(
-                          bioText,
+                          candidate.bio!,
                           style: const TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 13,
@@ -150,8 +174,6 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
               ],
             ),
           ),
-
-          // Floating Top Back & Bookmark Buttons
           Positioned(
             top: MediaQuery.of(context).padding.top + 18,
             left: 18,
@@ -168,33 +190,36 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
                       BlendMode.srcIn,
                     ),
                   ),
+                  semanticLabel: l10n.backLabel,
                   onTap: () => context.pop(),
                 ),
-                _buildCircularButton(
-                  icon: Assets.icons.icPreservedBtv.svg(
-                    width: 20,
-                    height: 20,
-                    colorFilter: ColorFilter.mode(
-                      _isSaved ? AppColors.primary : AppColors.text,
-                      BlendMode.srcIn,
+                BlocBuilder<CandidateDetailBloc, CandidateDetailState>(
+                  buildWhen: (previous, current) =>
+                      previous.candidate?.isSaved !=
+                          current.candidate?.isSaved ||
+                      previous.isSaving != current.isSaving,
+                  builder: (context, state) => _buildCircularButton(
+                    icon: Assets.icons.icPreservedBtv.svg(
+                      width: 20,
+                      height: 20,
+                      colorFilter: ColorFilter.mode(
+                        state.candidate?.isSaved == true
+                            ? AppColors.primary
+                            : AppColors.text,
+                        BlendMode.srcIn,
+                      ),
                     ),
+                    semanticLabel: state.candidate?.isSaved == true
+                        ? l10n.candidateDetailUnsave
+                        : l10n.candidateDetailSave,
+                    onTap: state.isSaving
+                        ? null
+                        : () => context.read<CandidateDetailBloc>().add(
+                            const CandidateDetailSaveToggled(),
+                          ),
                   ),
-                  onTap: () {
-                    setState(() => _isSaved = !_isSaved);
-                  },
                 ),
               ],
-            ),
-          ),
-
-          // Bottom Action Bar
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: CandidateDetailBottomBar(
-              onSendProposal: () {},
-              onMoreOptions: () {},
             ),
           ),
         ],
@@ -202,24 +227,77 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
     );
   }
 
+  void _openActionResult(
+    BuildContext context, {
+    required String candidateName,
+    CandidateActionResultType type = CandidateActionResultType.proposal,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) =>
+            CandidateActionResultPage(candidateName: candidateName, type: type),
+      ),
+    );
+  }
+
+  void _openOptions(BuildContext context, {required String candidateName}) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => CandidateDetailOptionsBottomSheet(
+        candidateName: candidateName,
+        onSave: () {
+          Navigator.of(context).pop();
+          context.read<CandidateDetailBloc>().add(
+            const CandidateDetailSaveToggled(),
+          );
+        },
+        onShare: () => Navigator.of(context).pop(),
+        onRequestPhotoPermission: () {
+          Navigator.of(context).pop();
+          _openActionResult(
+            context,
+            candidateName: candidateName,
+            type: CandidateActionResultType.photoPermission,
+          );
+        },
+        onReport: () => Navigator.of(context).pop(),
+        onBlock: () => Navigator.of(context).pop(),
+        onCancel: () => Navigator.of(context).pop(),
+      ),
+    );
+  }
+
   Widget _buildCircularButton({
     required Widget icon,
-    required VoidCallback onTap,
+    required String semanticLabel,
+    required VoidCallback? onTap,
   }) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 2,
-      shadowColor: Colors.black.withValues(alpha: 0.08),
-      child: InkWell(
-        onTap: onTap,
-        customBorder: const CircleBorder(),
-        child: SizedBox(
-          width: 36,
-          height: 36,
-          child: Center(child: icon),
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      child: Material(
+        color: Colors.white,
+        shape: const CircleBorder(),
+        elevation: 2,
+        shadowColor: Colors.black.withValues(alpha: 0.08),
+        child: InkWell(
+          onTap: onTap,
+          customBorder: const CircleBorder(),
+          child: SizedBox(width: 36, height: 36, child: Center(child: icon)),
         ),
       ),
     );
+  }
+
+  String? _mainImageUrl(Candidate candidate) {
+    final photos = candidate.photosInfo;
+    if (photos == null || photos.isEmpty) return null;
+    final photo = photos.firstWhere(
+      (item) => item.isMain,
+      orElse: () => photos.first,
+    );
+    return photo.image.trim().isEmpty ? null : photo.image;
   }
 }

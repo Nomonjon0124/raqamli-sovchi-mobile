@@ -1,8 +1,7 @@
 enum DiscoveryFilter {
   matches('matches'),
   recommended('recommended'),
-  nearby('nearby'),
-  representative('representative');
+  nearby('nearby');
 
   const DiscoveryFilter(this.apiValue);
 

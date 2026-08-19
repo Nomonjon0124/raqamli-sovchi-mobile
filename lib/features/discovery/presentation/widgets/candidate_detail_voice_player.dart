@@ -1,19 +1,17 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../core/extensions/gap_extension.dart';
+import '../../../../l10n/app_localizations.dart';
 
 final class CandidateDetailVoicePlayer extends StatefulWidget {
-  const CandidateDetailVoicePlayer({
-    this.durationLabel = '12 sek',
-    this.voiceUrl,
-    super.key,
-  });
+  const CandidateDetailVoicePlayer({this.voiceUrl, super.key});
 
-  final String durationLabel;
   final String? voiceUrl;
 
   @override
@@ -25,7 +23,11 @@ final class _CandidateDetailVoicePlayerState
     extends State<CandidateDetailVoicePlayer>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+  late final AudioPlayer _player;
+  StreamSubscription<PlayerState>? _playerStateSubscription;
+  StreamSubscription<Duration?>? _durationSubscription;
   bool _isPlaying = false;
+  Duration? _duration;
 
   @override
   void initState() {
@@ -34,33 +36,68 @@ final class _CandidateDetailVoicePlayerState
       vsync: this,
       duration: const Duration(milliseconds: 900),
     );
+    _player = AudioPlayer();
+    _playerStateSubscription = _player.playerStateStream.listen((state) {
+      if (!mounted) return;
+      setState(() => _isPlaying = state.playing);
+      if (state.processingState == ProcessingState.completed) {
+        _controller.stop();
+        _controller.value = 0;
+      }
+    });
+    _durationSubscription = _player.durationStream.listen((duration) {
+      if (mounted) setState(() => _duration = duration);
+    });
+    _loadAudio();
+  }
+
+  Future<void> _loadAudio() async {
+    final url = widget.voiceUrl;
+    if (url == null || url.trim().isEmpty) return;
+    try {
+      await _player.setUrl(url);
+    } catch (_) {
+      // The server may return an unavailable optional voice file.
+    }
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    final playerStateSubscription = _playerStateSubscription;
+    if (playerStateSubscription != null) {
+      unawaited(playerStateSubscription.cancel());
+    }
+    final durationSubscription = _durationSubscription;
+    if (durationSubscription != null) {
+      unawaited(durationSubscription.cancel());
+    }
+    unawaited(_player.dispose());
     super.dispose();
   }
 
-  void _togglePlayback() {
-    setState(() {
-      _isPlaying = !_isPlaying;
-      if (_isPlaying) {
-        _controller.repeat();
-      } else {
-        _controller.stop();
-        _controller.value = 0;
-      }
-    });
+  Future<void> _togglePlayback() async {
+    if (widget.voiceUrl == null || widget.voiceUrl!.trim().isEmpty) return;
+    if (_isPlaying) {
+      await _player.pause();
+      _controller.stop();
+    } else {
+      await _player.play();
+      _controller.repeat();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final duration = _duration == null
+        ? l10n.candidateDetailVoiceDuration
+        : '${_duration!.inSeconds ~/ 60}:${(_duration!.inSeconds % 60).toString().padLeft(2, '0')}';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Ovozli tanishtiruv · ${widget.durationLabel}',
+          l10n.candidateDetailVoiceIntro(duration),
           style: const TextStyle(
             fontFamily: 'Manrope',
             fontSize: 12,
@@ -120,17 +157,17 @@ final class _AnimatedAudioWaveform extends StatelessWidget {
     required this.isPlaying,
   });
 
-  static const _figmaBars = <double>[
-    22.0,
+  static const _bars = <double>[
+    22,
     18.2,
     8.7,
     14.1,
     21.1,
-    21.0,
+    21,
     13.8,
-    9.0,
+    9,
     18.4,
-    22.0,
+    22,
     18.1,
     8.5,
     14.3,
@@ -139,7 +176,7 @@ final class _AnimatedAudioWaveform extends StatelessWidget {
     13.6,
     9.2,
     18.6,
-    22.0,
+    22,
     17.9,
     8.2,
     14.5,
@@ -156,39 +193,24 @@ final class _AnimatedAudioWaveform extends StatelessWidget {
       height: 24,
       child: AnimatedBuilder(
         animation: controller,
-        builder: (context, _) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: List.generate(_figmaBars.length, (index) {
-              final height = _barHeight(index);
-              final progress = isPlaying
-                  ? (controller.value * (_figmaBars.length + 4)).floor()
-                  : _figmaBars.length;
-              final color = isPlaying && index >= progress
-                  ? const Color(0xFFA3A3A3)
-                  : AppColors.primary;
-
-              return AnimatedContainer(
-                duration: const Duration(milliseconds: 100),
-                width: 3,
-                height: height,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              );
-            }),
-          );
-        },
+        builder: (context, _) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: List.generate(_bars.length, (index) {
+            final wave = math.sin(controller.value * math.pi * 2 + index * .55);
+            final scale = isPlaying ? .8 + (wave + 1) * .2 : 1.0;
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 100),
+              width: 3,
+              height: (_bars[index] * scale).clamp(6.0, 24.0),
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            );
+          }),
+        ),
       ),
     );
-  }
-
-  double _barHeight(int index) {
-    if (!isPlaying) return _figmaBars[index].clamp(6.0, 24.0);
-    final wave = math.sin((controller.value * math.pi * 2) + index * 0.55);
-    final scale = 0.8 + (wave + 1) * 0.2;
-    return (_figmaBars[index] * scale).clamp(6.0, 24.0);
   }
 }

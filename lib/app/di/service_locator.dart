@@ -41,7 +41,11 @@ import '../../features/auth/domain/repositories/google_oauth_provider.dart';
 import '../../features/auth/domain/repositories/pin_repository.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/discovery/application/use_cases/get_candidates.dart';
+import '../../features/discovery/application/use_cases/get_candidate.dart';
 import '../../features/discovery/application/use_cases/get_my_profile.dart';
+import '../../features/discovery/application/use_cases/get_saved_candidates.dart';
+import '../../features/discovery/application/use_cases/save_candidate.dart';
+import '../../features/discovery/application/use_cases/unsave_candidate.dart';
 import '../../features/discovery/data/data_sources/discovery_data_source.dart';
 import '../../features/discovery/data/data_sources/profile_data_source.dart';
 import '../../features/discovery/data/repositories/discovery_repository_impl.dart';
@@ -49,6 +53,8 @@ import '../../features/discovery/data/repositories/profile_repository_impl.dart'
 import '../../features/discovery/domain/repositories/discovery_repository.dart';
 import '../../features/discovery/domain/repositories/profile_repository.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
+import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
+import '../../features/saved/presentation/bloc/saved_bloc.dart';
 import '../../features/onboarding/application/services/onboarding_location_service.dart';
 import '../../features/onboarding/application/services/onboarding_media_service.dart';
 import '../../features/onboarding/data/data_sources/onboarding_data_source.dart';
@@ -163,11 +169,33 @@ Future<void> configureDependencies() async {
     ..registerFactory<GetMyProfileUseCase>(
       () => GetMyProfileUseCase(serviceLocator()),
     )
+    ..registerFactory<GetCandidateUseCase>(
+      () => GetCandidateUseCase(serviceLocator()),
+    )
+    ..registerFactory<GetSavedCandidatesUseCase>(
+      () => GetSavedCandidatesUseCase(serviceLocator()),
+    )
+    ..registerFactory<SaveCandidateUseCase>(
+      () => SaveCandidateUseCase(serviceLocator()),
+    )
+    ..registerFactory<UnsaveCandidateUseCase>(
+      () => UnsaveCandidateUseCase(serviceLocator()),
+    )
     ..registerFactory<DiscoveryBloc>(
       () => DiscoveryBloc(
         getCandidates: serviceLocator(),
         getMyProfile: serviceLocator(),
       ),
+    )
+    ..registerFactory<CandidateDetailBloc>(
+      () => CandidateDetailBloc(
+        getCandidate: serviceLocator(),
+        saveCandidate: serviceLocator(),
+        unsaveCandidate: serviceLocator(),
+      ),
+    )
+    ..registerFactory<SavedBloc>(
+      () => SavedBloc(getSavedCandidates: serviceLocator()),
     )
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
     ..registerLazySingleton<OnboardingLocationService>(

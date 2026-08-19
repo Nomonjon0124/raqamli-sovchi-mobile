@@ -1534,12 +1534,6 @@ abstract class AppLocalizations {
   /// **'Yaqinlar'**
   String get candidatesFilterNearby;
 
-  /// No description provided for @candidatesFilterRepresentative.
-  ///
-  /// In uz, this message translates to:
-  /// **'Vakil'**
-  String get candidatesFilterRepresentative;
-
   /// No description provided for @privatePhotoLabel.
   ///
   /// In uz, this message translates to:
@@ -1551,6 +1545,198 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'moslik yopiq'**
   String get matchLockedLabel;
+
+  /// No description provided for @genericError.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nimadir xato ketdi.'**
+  String get genericError;
+
+  /// No description provided for @savedEmptyState.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha saqlangan profil yo‘q.'**
+  String get savedEmptyState;
+
+  /// No description provided for @candidateDetailRequestPhotoPermission.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasmni ko‘rish uchun ruxsat so‘rash'**
+  String get candidateDetailRequestPhotoPermission;
+
+  /// No description provided for @candidateDetailOptionsSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nima qilmoqchisiz?'**
+  String get candidateDetailOptionsSubtitle;
+
+  /// No description provided for @candidateDetailSaveSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Keyin «Saqlangan» bo‘limidan topasiz'**
+  String get candidateDetailSaveSubtitle;
+
+  /// No description provided for @candidateDetailSaveToSaved.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlanganlarga qo‘shish'**
+  String get candidateDetailSaveToSaved;
+
+  /// No description provided for @candidateDetailShare.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilni ulashish'**
+  String get candidateDetailShare;
+
+  /// No description provided for @candidateDetailShareSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakilingizga yoki oilangizga yuboring'**
+  String get candidateDetailShareSubtitle;
+
+  /// No description provided for @candidateDetailPhotoPermissionSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'So‘rov nomzodga va uning vakiliga boradi'**
+  String get candidateDetailPhotoPermissionSubtitle;
+
+  /// No description provided for @candidateDetailReport.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat qilish'**
+  String get candidateDetailReport;
+
+  /// No description provided for @candidateDetailReportSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moderator 24 soat ichida ko‘radi'**
+  String get candidateDetailReportSubtitle;
+
+  /// No description provided for @candidateDetailBlock.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilni bloklash'**
+  String get candidateDetailBlock;
+
+  /// No description provided for @candidateDetailBlockSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'U sizni boshqa ko‘rmaydi'**
+  String get candidateDetailBlockSubtitle;
+
+  /// No description provided for @candidateDetailCompatibilityTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Umumiy moslik'**
+  String get candidateDetailCompatibilityTitle;
+
+  /// No description provided for @candidateDetailVoiceIntro.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ovozli tanishtiruv · {duration}'**
+  String candidateDetailVoiceIntro(String duration);
+
+  /// No description provided for @candidateDetailVoiceDuration.
+  ///
+  /// In uz, this message translates to:
+  /// **'12 sek'**
+  String get candidateDetailVoiceDuration;
+
+  /// No description provided for @candidateDetailSendProposal.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sovchi taklifi yuborish'**
+  String get candidateDetailSendProposal;
+
+  /// No description provided for @candidateDetailSave.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlash'**
+  String get candidateDetailSave;
+
+  /// No description provided for @candidateDetailUnsave.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlanganlardan olib tashlash'**
+  String get candidateDetailUnsave;
+
+  /// No description provided for @candidateDetailNoPhoto.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil rasmi yo‘q'**
+  String get candidateDetailNoPhoto;
+
+  /// No description provided for @candidateProposalSentTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Taklif yuborildi'**
+  String get candidateProposalSentTitle;
+
+  /// No description provided for @candidateProposalSentDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'{name} va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.'**
+  String candidateProposalSentDescription(Object name);
+
+  /// No description provided for @candidateProposalSentTimelineSent.
+  ///
+  /// In uz, this message translates to:
+  /// **'Taklif yuborildi'**
+  String get candidateProposalSentTimelineSent;
+
+  /// No description provided for @candidateProposalSentTimelineReview.
+  ///
+  /// In uz, this message translates to:
+  /// **'{name} ko‘rib chiqadi'**
+  String candidateProposalSentTimelineReview(Object name);
+
+  /// No description provided for @candidateProposalSentTimelineChat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javob kelsa — suhbat ochiladi'**
+  String get candidateProposalSentTimelineChat;
+
+  /// No description provided for @candidateProposalSentQuotaLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu haftalik takliflar'**
+  String get candidateProposalSentQuotaLabel;
+
+  /// No description provided for @candidateProposalSentQuotaValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'2 / 3'**
+  String get candidateProposalSentQuotaValue;
+
+  /// No description provided for @candidateProposalSentNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana {remaining} ta taklif qoldi.'**
+  String candidateProposalSentNote(Object remaining);
+
+  /// No description provided for @candidateProposalSentReturn.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodlarga qaytish'**
+  String get candidateProposalSentReturn;
+
+  /// No description provided for @candidatePhotoPermissionSentTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm ko‘rish uchun ruxsat so‘raldi'**
+  String get candidatePhotoPermissionSentTitle;
+
+  /// No description provided for @candidatePhotoPermissionSentDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'{name} va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.'**
+  String candidatePhotoPermissionSentDescription(Object name);
+
+  /// No description provided for @candidatePhotoPermissionSentReturn.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilga qaytish'**
+  String get candidatePhotoPermissionSentReturn;
 
   /// No description provided for @surveyPromptTitle.
   ///
@@ -1717,8 +1903,8 @@ abstract class AppLocalizations {
   /// No description provided for @savedLimitLabel.
   ///
   /// In uz, this message translates to:
-  /// **'7 / 10 saqlangan'**
-  String get savedLimitLabel;
+  /// **'{savedCount} / {limit} saqlangan'**
+  String savedLimitLabel(int savedCount, int limit);
 
   /// No description provided for @savedPremiumCta.
   ///
@@ -1729,8 +1915,8 @@ abstract class AppLocalizations {
   /// No description provided for @savedUpsellTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Yana 3 ta joy qoldi'**
-  String get savedUpsellTitle;
+  /// **'Yana {remaining} ta joy qoldi'**
+  String savedUpsellTitle(int remaining);
 
   /// No description provided for @savedUpsellMessage.
   ///

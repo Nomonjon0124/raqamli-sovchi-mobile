@@ -29,7 +29,11 @@ final class CandidatesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => serviceLocator<DiscoveryBloc>()
-        ..add(const DiscoveryFetchCandidatesRequested(filter: DiscoveryFilter.matches)),
+        ..add(
+          const DiscoveryFetchCandidatesRequested(
+            filter: DiscoveryFilter.matches,
+          ),
+        ),
       child: const _CandidatesPageView(),
     );
   }
@@ -67,9 +71,9 @@ final class _CandidatesPageView extends StatelessWidget {
                 18.g,
                 CandidatesFilterBar(
                   selectedFilter: selectedFilter,
-                  onFilterSelected: (filter) => context.read<DiscoveryBloc>().add(
-                    DiscoveryFetchCandidatesRequested(filter: filter),
-                  ),
+                  onFilterSelected: (filter) => context
+                      .read<DiscoveryBloc>()
+                      .add(DiscoveryFetchCandidatesRequested(filter: filter)),
                 ),
                 if (!hasAnsweredTest) ...[
                   18.g,
@@ -84,16 +88,14 @@ final class _CandidatesPageView extends StatelessWidget {
           BlocBuilder<DiscoveryBloc, DiscoveryState>(
             builder: (context, state) {
               return switch (state.status) {
-                DiscoveryStatus.initial || DiscoveryStatus.loading =>
-                  const SliverFillRemaining(
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  ),
+                DiscoveryStatus.initial ||
+                DiscoveryStatus.loading => const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator.adaptive()),
+                ),
                 DiscoveryStatus.failure => SliverFillRemaining(
                   child: Center(
                     child: AppErrorView(
-                      message: state.errorMessage ?? 'Unknown Error',
+                      message: state.errorMessage ?? l10n.genericError,
                       onRetry: () => context.read<DiscoveryBloc>().add(
                         DiscoveryFetchCandidatesRequested(
                           filter: state.selectedFilter,
@@ -112,10 +114,7 @@ final class _CandidatesPageView extends StatelessWidget {
                     privatePhotoLabel: l10n.privatePhotoLabel,
                     onCandidateTap: (index) {
                       final candidate = state.candidates[index];
-                      context.push(
-                        RouteNames.candidateDetail,
-                        extra: candidate,
-                      );
+                      context.push(RouteNames.candidateDetailFor(candidate.id));
                     },
                   ),
                 ),
@@ -156,7 +155,6 @@ final class _CandidatesPageView extends StatelessWidget {
         city: city,
         matchPercent: matchPercent,
         imageUrl: mainImageUrl,
-        image: Assets.images.image1,
       );
     }).toList();
   }

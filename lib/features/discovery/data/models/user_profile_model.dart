@@ -12,7 +12,7 @@ final class UserProfileModel extends Equatable {
   factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
       UserProfileModel(
         id: json['id']?.toString(),
-        hasAnsweredTest: json['has_answered_test'] == true,
+        hasAnsweredTest: _asBool(json['has_answered_test']),
         answeredQuestionsCount:
             (json['answered_questions_count'] as num?)?.toInt() ?? 0,
       );
@@ -22,11 +22,17 @@ final class UserProfileModel extends Equatable {
   final int? answeredQuestionsCount;
 
   UserProfile toEntity() => UserProfile(
-        id: id ?? '',
-        hasAnsweredTest: hasAnsweredTest ?? false,
-        answeredQuestionsCount: answeredQuestionsCount ?? 0,
-      );
+    id: id ?? '',
+    hasAnsweredTest: hasAnsweredTest ?? false,
+    answeredQuestionsCount: answeredQuestionsCount ?? 0,
+  );
 
   @override
   List<Object?> get props => [id, hasAnsweredTest, answeredQuestionsCount];
+}
+
+bool? _asBool(Object? value) {
+  if (value is bool) return value;
+  if (value is String) return bool.tryParse(value.toLowerCase());
+  return null;
 }

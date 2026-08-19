@@ -127,9 +127,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_saved.svg
   SvgGenImage get icSaved => const SvgGenImage('assets/icons/ic_saved.svg');
 
+  /// File path: assets/icons/ic_security.svg
+  SvgGenImage get icSecurity =>
+      const SvgGenImage('assets/icons/ic_security.svg');
+
   /// File path: assets/icons/ic_services_btv.svg
   SvgGenImage get icServicesBtv =>
       const SvgGenImage('assets/icons/ic_services_btv.svg');
+
+  /// File path: assets/icons/ic_share.svg
+  SvgGenImage get icShare => const SvgGenImage('assets/icons/ic_share.svg');
 
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
@@ -160,7 +167,9 @@ class $AssetsIconsGen {
     icPreservedBtv,
     icProfileBtv,
     icSaved,
+    icSecurity,
     icServicesBtv,
+    icShare,
     icTelegramIcon,
     icVerifyCheck,
   ];

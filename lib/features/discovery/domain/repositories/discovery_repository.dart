@@ -9,4 +9,12 @@ abstract interface class DiscoveryRepository {
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
   });
+
+  Future<Either<Failure, Candidate>> getCandidate(String id);
+
+  Future<Either<Failure, List<Candidate>>> getSavedCandidates();
+
+  Future<Either<Failure, bool>> saveCandidate(String id);
+
+  Future<Either<Failure, bool>> unsaveCandidate(String id);
 }

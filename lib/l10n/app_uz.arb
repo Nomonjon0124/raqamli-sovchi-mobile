@@ -270,9 +270,43 @@
   "candidatesFilterMatches": "Moslar",
   "candidatesFilterRecommended": "Tavsiyalar",
   "candidatesFilterNearby": "Yaqinlar",
-  "candidatesFilterRepresentative": "Vakil",
   "privatePhotoLabel": "Maxfiy rasm",
   "matchLockedLabel": "moslik yopiq",
+  "genericError": "Nimadir xato ketdi.",
+  "savedEmptyState": "Hozircha saqlangan profil yo‘q.",
+  "candidateDetailRequestPhotoPermission": "Rasmni ko‘rish uchun ruxsat so‘rash",
+  "candidateDetailOptionsSubtitle": "Nima qilmoqchisiz?",
+  "candidateDetailSaveSubtitle": "Keyin «Saqlangan» bo‘limidan topasiz",
+  "candidateDetailSaveToSaved": "Saqlanganlarga qo‘shish",
+  "candidateDetailShare": "Profilni ulashish",
+  "candidateDetailShareSubtitle": "Vakilingizga yoki oilangizga yuboring",
+  "candidateDetailPhotoPermissionSubtitle": "So‘rov nomzodga va uning vakiliga boradi",
+  "candidateDetailReport": "Shikoyat qilish",
+  "candidateDetailReportSubtitle": "Moderator 24 soat ichida ko‘radi",
+  "candidateDetailBlock": "Profilni bloklash",
+  "candidateDetailBlockSubtitle": "U sizni boshqa ko‘rmaydi",
+  "candidateDetailCompatibilityTitle": "Umumiy moslik",
+  "candidateDetailVoiceIntro": "Ovozli tanishtiruv · {duration}",
+  "candidateDetailVoiceDuration": "12 sek",
+  "candidateDetailSendProposal": "Sovchi taklifi yuborish",
+  "candidateDetailSave": "Saqlash",
+  "candidateDetailUnsave": "Saqlanganlardan olib tashlash",
+  "candidateDetailNoPhoto": "Profil rasmi yo‘q",
+  "candidateProposalSentTitle": "Taklif yuborildi",
+  "candidateProposalSentDescription": "{name} va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.",
+  "candidateProposalSentTimelineSent": "Taklif yuborildi",
+  "candidateProposalSentTimelineReview": "{name} ko‘rib chiqadi",
+  "candidateProposalSentTimelineChat": "Javob kelsa — suhbat ochiladi",
+  "candidateProposalSentQuotaLabel": "Bu haftalik takliflar",
+  "candidateProposalSentQuotaValue": "2 / 3",
+  "candidateProposalSentNote": "Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana {remaining} ta taklif qoldi.",
+  "candidateProposalSentReturn": "Nomzodlarga qaytish",
+  "candidatePhotoPermissionSentTitle": "Rasm ko‘rish uchun ruxsat so‘raldi",
+  "candidatePhotoPermissionSentDescription": "{name} va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.",
+  "candidatePhotoPermissionSentReturn": "Profilga qaytish",
+  "@candidateDetailVoiceIntro": {
+    "placeholders": {"duration": {"type": "String"}}
+  },
   "surveyPromptTitle": "Moslik foizi yopiq",
   "surveyPromptMessage": "30 ta savolga javob bering — AI javoblaringizni tahlil qilib, har bir nomzod bilan moslik foizingizni avtomatik hisoblaydi.",
   "surveyPromptButton": "Soʻrovnomani boshlash",
@@ -300,9 +334,26 @@
   "savedFilterAll": "Hammasi",
   "savedFilterInvited": "Taklif yuborilgan",
   "savedFilterWaiting": "Javob kutilmoqda",
-  "savedLimitLabel": "7 / 10 saqlangan",
+  "savedLimitLabel": "{savedCount} / {limit} saqlangan",
+  "@savedLimitLabel": {
+    "placeholders": {
+      "savedCount": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
   "savedPremiumCta": "Premium — cheksiz",
-  "savedUpsellTitle": "Yana 3 ta joy qoldi",
+  "savedUpsellTitle": "Yana {remaining} ta joy qoldi",
+  "@savedUpsellTitle": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
   "savedUpsellMessage": "Bepul rejada 10 tagacha profil saqlanadi. Premium bilan cheklov yoʻq.",
   "questionnaireOptionalBadge": "Ixtiyoriy qadam",
   "questionnaireIntroTitle": "{count} ta savol — {minutes} daqiqa",

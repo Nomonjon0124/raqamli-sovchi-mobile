@@ -33,4 +33,3 @@ final class DiscoveryProfileLoaded extends DiscoveryEvent {
   @override
   List<Object?> get props => [profile];
 }
-
