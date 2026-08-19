@@ -22,12 +22,15 @@ final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
     int pageSize = 10,
     String? filter,
   }) async {
+    final endpoint = filter == 'matches'
+        ? '/api/v1/accounts/profiles/matches/'
+        : '/api/v1/accounts/profiles/';
+
     final response = await _client.get<dynamic>(
-      '/api/v1/accounts/profiles/',
+      endpoint,
       queryParameters: {
         'page': page,
         'page_size': pageSize,
-        if (filter != null && filter.isNotEmpty) 'filter': filter,
       },
     );
 

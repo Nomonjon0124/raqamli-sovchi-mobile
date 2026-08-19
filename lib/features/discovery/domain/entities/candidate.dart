@@ -31,6 +31,7 @@ final class Candidate extends Equatable {
     required this.martialStatusId,
     required this.martialStatusName,
     required this.photosInfo,
+    this.compatibilityScore,
   });
 
   final String id;
@@ -62,6 +63,7 @@ final class Candidate extends Equatable {
   final String? martialStatusId;
   final String? martialStatusName;
   final List<CandidatePhotoInfo>? photosInfo;
+  final CompatibilityScore? compatibilityScore;
 
   @override
   List<Object?> get props => [
@@ -94,11 +96,17 @@ final class Candidate extends Equatable {
     martialStatusId,
     martialStatusName,
     photosInfo,
+    compatibilityScore,
   ];
 }
 
 final class CandidatePhotoInfo extends Equatable {
-  const CandidatePhotoInfo({required this.id, required this.image, required this.isMain, required this.order});
+  const CandidatePhotoInfo({
+    required this.id,
+    required this.image,
+    required this.isMain,
+    required this.order,
+  });
 
   final String id;
   final String image;
@@ -107,4 +115,32 @@ final class CandidatePhotoInfo extends Equatable {
 
   @override
   List<Object?> get props => [id, image, isMain, order];
+}
+
+final class CompatibilityScore extends Equatable {
+  const CompatibilityScore({
+    required this.overallScore,
+    this.sections = const [],
+  });
+
+  final double overallScore;
+  final List<CompatibilitySection> sections;
+
+  @override
+  List<Object?> get props => [overallScore, sections];
+}
+
+final class CompatibilitySection extends Equatable {
+  const CompatibilitySection({
+    required this.sectionId,
+    required this.sectionName,
+    required this.score,
+  });
+
+  final String sectionId;
+  final String sectionName;
+  final double score;
+
+  @override
+  List<Object?> get props => [sectionId, sectionName, score];
 }

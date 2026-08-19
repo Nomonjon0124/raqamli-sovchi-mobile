@@ -44,10 +44,18 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     DiscoveryRefreshCandidatesRequested event,
     Emitter<DiscoveryState> emit,
   ) async {
-    final result = await _getCandidates();
+    final currentFilter = state is DiscoveryLoaded
+        ? (state as DiscoveryLoaded).selectedFilter
+        : 'matches';
+    final result = await _getCandidates(filter: currentFilter);
     result.fold(
       (failure) => emit(DiscoveryError(failure.message ?? 'Unknown Error')),
-      (candidates) => emit(DiscoveryLoaded(candidates: candidates)),
+      (candidates) => emit(
+        DiscoveryLoaded(
+          candidates: candidates,
+          selectedFilter: currentFilter,
+        ),
+      ),
     );
   }
 }

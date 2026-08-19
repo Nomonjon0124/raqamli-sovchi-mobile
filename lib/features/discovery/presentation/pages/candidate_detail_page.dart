@@ -99,18 +99,27 @@ final class _CandidateDetailPageState extends State<CandidateDetailPage> {
                       18.g,
 
                       // Animated Compatibility Match Card
-                      const CandidateDetailMatchCard(
-                        matchPercent: 82,
-                        scores: [
-                          MatchCategory(
-                            title: 'Din va qadriyatlar',
-                            percent: 88,
-                          ),
-                          MatchCategory(title: 'Moliya', percent: 81),
-                          MatchCategory(title: 'Qarindoshlar', percent: 79),
-                          MatchCategory(title: 'Xarakter', percent: 84),
-                          MatchCategory(title: 'Kelajak', percent: 78),
-                        ],
+                      CandidateDetailMatchCard(
+                        matchPercent: candidate?.compatibilityScore?.overallScore.round() ?? 82,
+                        scores: candidate?.compatibilityScore?.sections.isNotEmpty == true
+                            ? candidate!.compatibilityScore!.sections
+                                .map(
+                                  (s) => MatchCategory(
+                                    title: s.sectionName,
+                                    percent: s.score.round(),
+                                  ),
+                                )
+                                .toList()
+                            : const [
+                                MatchCategory(
+                                  title: 'Din va qadriyatlar',
+                                  percent: 88,
+                                ),
+                                MatchCategory(title: 'Moliya', percent: 81),
+                                MatchCategory(title: 'Qarindoshlar', percent: 79),
+                                MatchCategory(title: 'Xarakter', percent: 84),
+                                MatchCategory(title: 'Kelajak', percent: 78),
+                              ],
                       ),
 
                       // Voice Intro Player (Conditionally rendered)

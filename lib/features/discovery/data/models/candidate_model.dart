@@ -92,7 +92,11 @@ final class ResultCandidateModel extends Equatable {
   factory ResultCandidateModel.fromJson(Map<String, dynamic> json) =>
       ResultCandidateModel(
         id: _asString(json['id']),
-        compatibilityScore: _asString(json['compatibility_score']),
+        compatibilityScore: json['compatibility_score'] is Map
+            ? CompatibilityScoreModel.fromJson(
+                _asMap(json['compatibility_score']),
+              )
+            : null,
         isSaved: _asBool(json['is_saved']),
         createdAt: _asDateTime(json['created_at']),
         updatedAt: _asDateTime(json['updated_at'] ?? json['update_at']),
@@ -145,7 +149,7 @@ final class ResultCandidateModel extends Equatable {
       );
 
   final String? id;
-  final String? compatibilityScore;
+  final CompatibilityScoreModel? compatibilityScore;
   final bool? isSaved;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -178,7 +182,7 @@ final class ResultCandidateModel extends Equatable {
 
   ResultCandidateModel copyWith({
     String? id,
-    String? compatibilityScore,
+    CompatibilityScoreModel? compatibilityScore,
     bool? isSaved,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -245,7 +249,7 @@ final class ResultCandidateModel extends Equatable {
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'compatibility_score': compatibilityScore,
+        'compatibility_score': compatibilityScore?.toJson(),
         'is_saved': isSaved,
         'created_at': createdAt?.toIso8601String(),
         'updated_at': updatedAt?.toIso8601String(),
@@ -311,6 +315,7 @@ final class ResultCandidateModel extends Equatable {
       martialStatusId: maritalStatusInfo?.id,
       martialStatusName: maritalStatusInfo?.name,
       photosInfo: photosInfo?.map((p) => p.toEntity()).toList(),
+      compatibilityScore: compatibilityScore?.toEntity(),
     );
   }
 
@@ -350,6 +355,76 @@ final class ResultCandidateModel extends Equatable {
       ];
 }
 
+final class CompatibilityScoreModel extends Equatable {
+  const CompatibilityScoreModel({
+    this.overallScore,
+    this.sections,
+  });
+
+  factory CompatibilityScoreModel.fromJson(Map<String, dynamic> json) =>
+      CompatibilityScoreModel(
+        overallScore: _asDouble(json['overall_score']),
+        sections: json['sections'] is List
+            ? (json['sections'] as List)
+                .map((e) => CompatibilitySectionModel.fromJson(_asMap(e)))
+                .toList()
+            : null,
+      );
+
+  final double? overallScore;
+  final List<CompatibilitySectionModel>? sections;
+
+  Map<String, dynamic> toJson() => {
+        'overall_score': overallScore,
+        'sections': sections?.map((e) => e.toJson()).toList(),
+      };
+
+  CompatibilityScore? toEntity() {
+    if (overallScore == null) return null;
+    return CompatibilityScore(
+      overallScore: overallScore!,
+      sections: sections?.map((s) => s.toEntity()).toList() ?? const [],
+    );
+  }
+
+  @override
+  List<Object?> get props => [overallScore, sections];
+}
+
+final class CompatibilitySectionModel extends Equatable {
+  const CompatibilitySectionModel({
+    this.sectionId,
+    this.sectionName,
+    this.score,
+  });
+
+  factory CompatibilitySectionModel.fromJson(Map<String, dynamic> json) =>
+      CompatibilitySectionModel(
+        sectionId: _asString(json['section_id']),
+        sectionName: _asString(json['section_name']),
+        score: _asDouble(json['score']),
+      );
+
+  final String? sectionId;
+  final String? sectionName;
+  final double? score;
+
+  Map<String, dynamic> toJson() => {
+        'section_id': sectionId,
+        'section_name': sectionName,
+        'score': score,
+      };
+
+  CompatibilitySection toEntity() => CompatibilitySection(
+        sectionId: sectionId ?? '',
+        sectionName: sectionName ?? '',
+        score: score ?? 0.0,
+      );
+
+  @override
+  List<Object?> get props => [sectionId, sectionName, score];
+}
+
 final class Info extends Equatable {
   const Info({this.id, this.name});
 
@@ -361,8 +436,10 @@ final class Info extends Equatable {
   final String? id;
   final String? name;
 
-  Info copyWith({String? id, String? name}) =>
-      Info(id: id ?? this.id, name: name ?? this.name);
+  Info copyWith({String? id, String? name}) => Info(
+        id: id ?? this.id,
+        name: name ?? this.name,
+      );
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -380,6 +457,7 @@ final class PhotosInfo extends Equatable {
     this.isMain,
     this.order,
     this.createdAt,
+    this.updatedAt,
   });
 
   factory PhotosInfo.fromJson(Map<String, dynamic> json) => PhotosInfo(
@@ -388,6 +466,7 @@ final class PhotosInfo extends Equatable {
         isMain: _asBool(json['is_main']),
         order: _asInt(json['order']),
         createdAt: _asDateTime(json['created_at']),
+        updatedAt: _asDateTime(json['updated_at']),
       );
 
   final String? id;
@@ -395,29 +474,7 @@ final class PhotosInfo extends Equatable {
   final bool? isMain;
   final int? order;
   final DateTime? createdAt;
-
-  PhotosInfo copyWith({
-    String? id,
-    String? image,
-    bool? isMain,
-    int? order,
-    DateTime? createdAt,
-  }) =>
-      PhotosInfo(
-        id: id ?? this.id,
-        image: image ?? this.image,
-        isMain: isMain ?? this.isMain,
-        order: order ?? this.order,
-        createdAt: createdAt ?? this.createdAt,
-      );
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'image': image,
-        'is_main': isMain,
-        'order': order,
-        'created_at': createdAt?.toIso8601String(),
-      };
+  final DateTime? updatedAt;
 
   CandidatePhotoInfo toEntity() => CandidatePhotoInfo(
         id: id ?? '',
@@ -426,12 +483,26 @@ final class PhotosInfo extends Equatable {
         order: order ?? 0,
       );
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'image': image,
+        'is_main': isMain,
+        'order': order,
+        'created_at': createdAt?.toIso8601String(),
+        'updated_at': updatedAt?.toIso8601String(),
+      };
+
   @override
-  List<Object?> get props => [id, image, isMain, order, createdAt];
+  List<Object?> get props => [id, image, isMain, order, createdAt, updatedAt];
 }
 
 final class UserInfo extends Equatable {
-  const UserInfo({this.id, this.phoneNumber, this.email, this.profile});
+  const UserInfo({
+    this.id,
+    this.phoneNumber,
+    this.email,
+    this.profile,
+  });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
         id: _asString(json['id']),
@@ -492,9 +563,15 @@ int? _asInt(Object? value) {
   return null;
 }
 
+double? _asDouble(Object? value) {
+  if (value is double) return value;
+  if (value is num) return value.toDouble();
+  if (value is String) return double.tryParse(value);
+  return null;
+}
+
 DateTime? _asDateTime(Object? value) {
   final stringValue = _asString(value);
   if (stringValue == null || stringValue.isEmpty) return null;
   return DateTime.tryParse(stringValue);
 }
-
