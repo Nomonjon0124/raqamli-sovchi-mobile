@@ -879,6 +879,52 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateDetailNoPhoto => 'Нет фотографии профиля';
 
   @override
+  String get candidateRequestPending => 'В процессе...';
+
+  @override
+  String get candidateRequestRetry => 'Отправить запрос повторно';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Повторный запрос: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Начать разговор';
+
+  @override
+  String get candidateRequestForwarded => 'Направлено представителю';
+
+  @override
+  String get photoRequestTitle => 'Запрос на просмотр фото';
+
+  @override
+  String get photoRequestDescription =>
+      'Запрос отправляется кандидату и его представителю. Решение остаётся за ними.';
+
+  @override
+  String get photoRequestMessageHint => 'Сообщение (необязательно)';
+
+  @override
+  String get photoRequestDurationLabel => 'Срок запроса';
+
+  @override
+  String get photoRequestDurationValue => '7 дней';
+
+  @override
+  String get photoRequestRejectLabel => 'При отказе';
+
+  @override
+  String get photoRequestRejectValue => 'повторно через 7 дней';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'Открытое фото видно только вам, скриншоты блокируются.';
+
+  @override
+  String get photoRequestSubmit => 'Отправить запрос';
+
+  @override
   String get candidateProposalSentTitle => 'Предложение отправлено';
 
   @override

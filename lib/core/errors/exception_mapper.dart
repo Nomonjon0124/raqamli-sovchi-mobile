@@ -1,13 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import 'failure.dart';
 
 Failure mapDioException(DioException error) {
   final message = _extractServerErrorMessage(error.response?.data);
-  debugPrint(
-    '[ExceptionMapper] DioException type: ${error.type}, status: ${error.response?.statusCode}, body: ${error.response?.data}, extractedMessage: $message',
-  );
   return switch (error.type) {
     DioExceptionType.connectionTimeout ||
     DioExceptionType.sendTimeout ||

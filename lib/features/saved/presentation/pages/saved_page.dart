@@ -47,16 +47,35 @@ final class _SavedPageView extends StatelessWidget {
               children: [
                 AppScreenHeader(title: l10n.savedTabLabel),
                 const SizedBox(height: AppSpacing.lg),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      AppFilterPill(label: l10n.savedFilterAll, selected: true),
-                      const SizedBox(width: AppSpacing.sm),
-                      AppFilterPill(label: l10n.savedFilterInvited),
-                      const SizedBox(width: AppSpacing.sm),
-                      AppFilterPill(label: l10n.savedFilterWaiting),
-                    ],
+                BlocBuilder<SavedBloc, SavedState>(
+                  buildWhen: (previous, current) =>
+                      previous.filter != current.filter,
+                  builder: (context, state) => SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _filterPill(
+                          context,
+                          label: l10n.savedFilterAll,
+                          filter: SavedRequestFilter.all,
+                          selected: state.filter == SavedRequestFilter.all,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        _filterPill(
+                          context,
+                          label: l10n.savedFilterInvited,
+                          filter: SavedRequestFilter.invited,
+                          selected: state.filter == SavedRequestFilter.invited,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        _filterPill(
+                          context,
+                          label: l10n.savedFilterWaiting,
+                          filter: SavedRequestFilter.waiting,
+                          selected: state.filter == SavedRequestFilter.waiting,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),
@@ -190,6 +209,19 @@ final class _SavedPageView extends StatelessWidget {
   }).toList();
 
   static const _savedLimit = 10;
+
+  static Widget _filterPill(
+    BuildContext context, {
+    required String label,
+    required SavedRequestFilter filter,
+    required bool selected,
+  }) {
+    return AppFilterPill(
+      label: label,
+      selected: selected,
+      onTap: () => context.read<SavedBloc>().add(SavedFilterChanged(filter)),
+    );
+  }
 
   static int _remainingSlots(int savedCount) {
     final remaining = _savedLimit - savedCount;

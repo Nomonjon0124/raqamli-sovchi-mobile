@@ -1666,6 +1666,90 @@ abstract class AppLocalizations {
   /// **'Profil rasmi yo‘q'**
   String get candidateDetailNoPhoto;
 
+  /// No description provided for @candidateRequestPending.
+  ///
+  /// In uz, this message translates to:
+  /// **'Jarayonda...'**
+  String get candidateRequestPending;
+
+  /// No description provided for @candidateRequestRetry.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qayta so‘rov yuborish'**
+  String get candidateRequestRetry;
+
+  /// No description provided for @candidateRequestRetryAt.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qayta so‘rov yuborish: {date}'**
+  String candidateRequestRetryAt(Object date);
+
+  /// No description provided for @candidateRequestChat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatlashish'**
+  String get candidateRequestChat;
+
+  /// No description provided for @candidateRequestForwarded.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakilga yo‘naltirildi'**
+  String get candidateRequestForwarded;
+
+  /// No description provided for @photoRequestTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm ko‘rish so‘rovi'**
+  String get photoRequestTitle;
+
+  /// No description provided for @photoRequestDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'So‘rov nomzodga va uning vakiliga yuboriladi. Qaror faqat ularga tegishli.'**
+  String get photoRequestDescription;
+
+  /// No description provided for @photoRequestMessageHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xabar (ixtiyoriy)'**
+  String get photoRequestMessageHint;
+
+  /// No description provided for @photoRequestDurationLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'So‘rov muddati'**
+  String get photoRequestDurationLabel;
+
+  /// No description provided for @photoRequestDurationValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'7 kun'**
+  String get photoRequestDurationValue;
+
+  /// No description provided for @photoRequestRejectLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rad etilsa'**
+  String get photoRequestRejectLabel;
+
+  /// No description provided for @photoRequestRejectValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'qayta so‘rash 7 kundan keyin'**
+  String get photoRequestRejectValue;
+
+  /// No description provided for @photoRequestPrivacyNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm ochilsa, u faqat sizga ko‘rinadi va skrinshot bloklanadi.'**
+  String get photoRequestPrivacyNote;
+
+  /// No description provided for @photoRequestSubmit.
+  ///
+  /// In uz, this message translates to:
+  /// **'So‘rov yuborish'**
+  String get photoRequestSubmit;
+
   /// No description provided for @candidateProposalSentTitle.
   ///
   /// In uz, this message translates to:

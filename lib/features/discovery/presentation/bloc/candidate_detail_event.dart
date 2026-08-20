@@ -19,3 +19,12 @@ final class CandidateDetailLoadRequested extends CandidateDetailEvent {
 final class CandidateDetailSaveToggled extends CandidateDetailEvent {
   const CandidateDetailSaveToggled();
 }
+
+final class CandidateDetailRequestSubmitted extends CandidateDetailEvent {
+  const CandidateDetailRequestSubmitted({this.note});
+
+  final String? note;
+
+  @override
+  List<Object?> get props => [note];
+}

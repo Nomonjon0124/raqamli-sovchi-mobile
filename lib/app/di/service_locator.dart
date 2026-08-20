@@ -54,6 +54,12 @@ import '../../features/discovery/domain/repositories/discovery_repository.dart';
 import '../../features/discovery/domain/repositories/profile_repository.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
+import '../../features/match/application/use_cases/create_match_request.dart';
+import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
+import '../../features/match/application/use_cases/get_match_requests.dart';
+import '../../features/match/data/data_sources/match_request_data_source.dart';
+import '../../features/match/data/repositories/match_request_repository_impl.dart';
+import '../../features/match/domain/repositories/match_request_repository.dart';
 import '../../features/saved/presentation/bloc/saved_bloc.dart';
 import '../../features/onboarding/application/services/onboarding_location_service.dart';
 import '../../features/onboarding/application/services/onboarding_media_service.dart';
@@ -163,6 +169,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<MatchRequestDataSource>(
+      () => RemoteMatchRequestDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<MatchRequestRepository>(
+      () => MatchRequestRepositoryImpl(serviceLocator()),
+    )
     ..registerFactory<GetCandidatesUseCase>(
       () => GetCandidatesUseCase(serviceLocator()),
     )
@@ -181,6 +193,15 @@ Future<void> configureDependencies() async {
     ..registerFactory<UnsaveCandidateUseCase>(
       () => UnsaveCandidateUseCase(serviceLocator()),
     )
+    ..registerFactory<GetMatchRequestsUseCase>(
+      () => GetMatchRequestsUseCase(serviceLocator()),
+    )
+    ..registerFactory<GetMatchRequestForCandidateUseCase>(
+      () => GetMatchRequestForCandidateUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreateMatchRequestUseCase>(
+      () => CreateMatchRequestUseCase(serviceLocator()),
+    )
     ..registerFactory<DiscoveryBloc>(
       () => DiscoveryBloc(
         getCandidates: serviceLocator(),
@@ -190,12 +211,19 @@ Future<void> configureDependencies() async {
     ..registerFactory<CandidateDetailBloc>(
       () => CandidateDetailBloc(
         getCandidate: serviceLocator(),
+        getMyProfile: serviceLocator(),
+        getMatchRequest: serviceLocator(),
+        createMatchRequest: serviceLocator(),
         saveCandidate: serviceLocator(),
         unsaveCandidate: serviceLocator(),
       ),
     )
     ..registerFactory<SavedBloc>(
-      () => SavedBloc(getSavedCandidates: serviceLocator()),
+      () => SavedBloc(
+        getSavedCandidates: serviceLocator(),
+        getMyProfile: serviceLocator(),
+        getMatchRequests: serviceLocator(),
+      ),
     )
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
     ..registerLazySingleton<OnboardingLocationService>(

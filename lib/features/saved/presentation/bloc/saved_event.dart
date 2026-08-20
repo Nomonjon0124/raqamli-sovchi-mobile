@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'saved_state.dart';
+
 sealed class SavedEvent extends Equatable {
   const SavedEvent();
 
@@ -9,4 +11,13 @@ sealed class SavedEvent extends Equatable {
 
 final class SavedLoadRequested extends SavedEvent {
   const SavedLoadRequested();
+}
+
+final class SavedFilterChanged extends SavedEvent {
+  const SavedFilterChanged(this.filter);
+
+  final SavedRequestFilter filter;
+
+  @override
+  List<Object?> get props => [filter];
 }

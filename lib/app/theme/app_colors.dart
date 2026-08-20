@@ -11,6 +11,7 @@ abstract final class AppColors {
   static const placeholder = Color(0xFF6B6B6B);
   static const border = Color(0xFFE5E5E5);
   static const danger = Color(0xFFFF3B30);
+  static const dangerSurface = Color(0xFFFEF2F2);
   static const dangerText = Color(0xFFDC2626);
   static const mutedSurface = Color(0xFFF5F5F5);
   static const subtleSurface = Color(0xFFFAFAFA);

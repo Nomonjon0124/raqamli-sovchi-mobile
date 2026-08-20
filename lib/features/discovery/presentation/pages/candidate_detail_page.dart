@@ -3,22 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../match/domain/entities/match_request.dart';
 import '../../domain/entities/candidate.dart';
 import '../bloc/candidate_detail_bloc.dart';
 import '../bloc/candidate_detail_event.dart';
 import '../bloc/candidate_detail_state.dart';
-import 'candidate_action_result_page.dart';
 import '../widgets/candidate_detail_bottom_bar.dart';
 import '../widgets/candidate_detail_header.dart';
 import '../widgets/candidate_detail_hero_image.dart';
 import '../widgets/candidate_detail_match_card.dart';
 import '../widgets/candidate_detail_options_bottom_sheet.dart';
 import '../widgets/candidate_detail_voice_player.dart';
+import 'candidate_action_result_page.dart';
+import 'candidate_photo_request_page.dart';
 
 final class CandidateDetailPage extends StatelessWidget {
   const CandidateDetailPage({required this.candidateId, super.key});
@@ -44,37 +47,69 @@ final class _CandidateDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return BlocBuilder<CandidateDetailBloc, CandidateDetailState>(
-      builder: (context, state) {
+    return BlocListener<CandidateDetailBloc, CandidateDetailState>(
+      listenWhen: (previous, current) =>
+          previous.isSendingRequest &&
+          !current.isSendingRequest &&
+          current.matchRequest != null,
+      listener: (context, state) {
         final candidate = state.candidate;
-        if (candidate == null &&
-            state.status == CandidateDetailStatus.failure) {
-          return Scaffold(
-            body: Center(
-              child: AppErrorView(
-                message: state.errorMessage ?? l10n.genericError,
-                onRetry: () => context.read<CandidateDetailBloc>().add(
-                  CandidateDetailLoadRequested(candidateId),
+        if (candidate == null) return;
+        final name = [candidate.firstName, candidate.lastName]
+            .whereType<String>()
+            .where((value) => value.trim().isNotEmpty)
+            .join(' ');
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CandidateActionResultPage(candidateName: name),
+          ),
+        );
+      },
+      child: BlocBuilder<CandidateDetailBloc, CandidateDetailState>(
+        builder: (context, state) {
+          final candidate = state.candidate;
+          if (candidate == null &&
+              state.status == CandidateDetailStatus.failure) {
+            return Scaffold(
+              body: Center(
+                child: AppErrorView(
+                  message: state.errorMessage ?? l10n.genericError,
+                  onRetry: () => context.read<CandidateDetailBloc>().add(
+                    CandidateDetailLoadRequested(candidateId),
+                  ),
                 ),
               ),
-            ),
+            );
+          }
+          if (candidate == null) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator.adaptive()),
+            );
+          }
+          return _LoadedCandidateDetail(
+            candidate: candidate,
+            matchRequest: state.matchRequest,
+            isLoadingMatchRequest: state.isLoadingMatchRequest,
+            isSendingRequest: state.isSendingRequest,
           );
-        }
-        if (candidate == null) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator.adaptive()),
-          );
-        }
-        return _LoadedCandidateDetail(candidate: candidate);
-      },
+        },
+      ),
     );
   }
 }
 
 final class _LoadedCandidateDetail extends StatelessWidget {
-  const _LoadedCandidateDetail({required this.candidate});
+  const _LoadedCandidateDetail({
+    required this.candidate,
+    required this.matchRequest,
+    required this.isLoadingMatchRequest,
+    required this.isSendingRequest,
+  });
 
   final Candidate candidate;
+  final MatchRequest? matchRequest;
+  final bool isLoadingMatchRequest;
+  final bool isSendingRequest;
 
   @override
   Widget build(BuildContext context) {
@@ -102,13 +137,23 @@ final class _LoadedCandidateDetail extends StatelessWidget {
           ),
         )
         .toList();
+    final action = _requestAction(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: CandidateDetailBottomBar(
-        onSendProposal: () =>
-            _openActionResult(context, candidateName: nameAge),
-        onMoreOptions: () => _openOptions(context, candidateName: nameAge),
+        actionLabel: action.label,
+        actionVariant: action.variant,
+        isLoading: isSendingRequest,
+        onSendProposal: isLoadingMatchRequest || isSendingRequest
+            ? null
+            : action.onPressed,
+        onMoreOptions: () => _openOptions(
+          context,
+          candidate: candidate,
+          candidateName: nameAge,
+          candidateSubtitle: subtitle,
+        ),
       ),
       body: Stack(
         children: [
@@ -120,10 +165,11 @@ final class _LoadedCandidateDetail extends StatelessWidget {
                 CandidateDetailHeroImage(
                   imageUrl: imageUrl,
                   shouldBlur: candidate.blurPhotos ?? false,
-                  onRequestPermission: () => _openActionResult(
+                  onRequestPermission: () => _openPhotoRequest(
                     context,
+                    candidate: candidate,
                     candidateName: nameAge,
-                    type: CandidateActionResultType.photoPermission,
+                    candidateSubtitle: subtitle,
                   ),
                 ),
                 Padding(
@@ -227,20 +273,65 @@ final class _LoadedCandidateDetail extends StatelessWidget {
     );
   }
 
-  void _openActionResult(
-    BuildContext context, {
-    required String candidateName,
-    CandidateActionResultType type = CandidateActionResultType.proposal,
-  }) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) =>
-            CandidateActionResultPage(candidateName: candidateName, type: type),
+  _CandidateRequestAction _requestAction(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final request = matchRequest;
+    if (request == null) {
+      return _CandidateRequestAction(
+        label: l10n.candidateDetailSendProposal,
+        onPressed: () => context.read<CandidateDetailBloc>().add(
+          const CandidateDetailRequestSubmitted(),
+        ),
+      );
+    }
+
+    return switch (request.status) {
+      MatchRequestStatus.pending => _CandidateRequestAction(
+        label: l10n.candidateRequestPending,
       ),
-    );
+      MatchRequestStatus.forwardedToRepresentative => _CandidateRequestAction(
+        label: l10n.candidateRequestForwarded,
+      ),
+      MatchRequestStatus.accepted => _CandidateRequestAction(
+        label: l10n.candidateRequestChat,
+        onPressed: () => context.go(RouteNames.messages),
+      ),
+      MatchRequestStatus.rejected =>
+        request.canRetryAt(DateTime.now())
+            ? _CandidateRequestAction(
+                label: l10n.candidateRequestRetry,
+                onPressed: () => context.read<CandidateDetailBloc>().add(
+                  const CandidateDetailRequestSubmitted(),
+                ),
+              )
+            : _CandidateRequestAction(
+                label: l10n.candidateRequestRetryAt(
+                  _formatDate(request.retryAvailableAt),
+                ),
+                variant: CandidateDetailActionVariant.retryLocked,
+              ),
+      null => _CandidateRequestAction(
+        label: l10n.candidateDetailSendProposal,
+        onPressed: () => context.read<CandidateDetailBloc>().add(
+          const CandidateDetailRequestSubmitted(),
+        ),
+      ),
+    };
   }
 
-  void _openOptions(BuildContext context, {required String candidateName}) {
+  String _formatDate(DateTime date) {
+    final local = date.toLocal();
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+    return '$day.$month.${local.year}';
+  }
+
+  void _openOptions(
+    BuildContext context, {
+    required Candidate candidate,
+    required String candidateName,
+    required String candidateSubtitle,
+  }) {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -256,15 +347,34 @@ final class _LoadedCandidateDetail extends StatelessWidget {
         onShare: () => Navigator.of(context).pop(),
         onRequestPhotoPermission: () {
           Navigator.of(context).pop();
-          _openActionResult(
+          _openPhotoRequest(
             context,
+            candidate: candidate,
             candidateName: candidateName,
-            type: CandidateActionResultType.photoPermission,
+            candidateSubtitle: candidateSubtitle,
           );
         },
         onReport: () => Navigator.of(context).pop(),
         onBlock: () => Navigator.of(context).pop(),
         onCancel: () => Navigator.of(context).pop(),
+      ),
+    );
+  }
+
+  void _openPhotoRequest(
+    BuildContext context, {
+    required Candidate candidate,
+    required String candidateName,
+    required String candidateSubtitle,
+  }) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CandidatePhotoRequestPage(
+          candidateName: candidateName,
+          subtitle: candidateSubtitle,
+          imageUrl: _mainImageUrl(candidate),
+          matchPercent: candidate.compatibilityScore?.overallScore.round(),
+        ),
       ),
     );
   }
@@ -300,4 +410,16 @@ final class _LoadedCandidateDetail extends StatelessWidget {
     );
     return photo.image.trim().isEmpty ? null : photo.image;
   }
+}
+
+final class _CandidateRequestAction {
+  const _CandidateRequestAction({
+    required this.label,
+    this.onPressed,
+    this.variant = CandidateDetailActionVariant.primary,
+  });
+
+  final String label;
+  final VoidCallback? onPressed;
+  final CandidateDetailActionVariant variant;
 }

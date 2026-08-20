@@ -879,6 +879,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateDetailNoPhoto => 'No profile photo';
 
   @override
+  String get candidateRequestPending => 'In progress...';
+
+  @override
+  String get candidateRequestRetry => 'Send request again';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Send request again: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Start a conversation';
+
+  @override
+  String get candidateRequestForwarded => 'Sent to representative';
+
+  @override
+  String get photoRequestTitle => 'Photo access request';
+
+  @override
+  String get photoRequestDescription =>
+      'The request is sent to the candidate and their representative. The decision is theirs.';
+
+  @override
+  String get photoRequestMessageHint => 'Message (optional)';
+
+  @override
+  String get photoRequestDurationLabel => 'Request duration';
+
+  @override
+  String get photoRequestDurationValue => '7 days';
+
+  @override
+  String get photoRequestRejectLabel => 'If rejected';
+
+  @override
+  String get photoRequestRejectValue => 'request again after 7 days';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'If opened, the photo is visible only to you and screenshots are blocked.';
+
+  @override
+  String get photoRequestSubmit => 'Send request';
+
+  @override
   String get candidateProposalSentTitle => 'Proposal sent';
 
   @override

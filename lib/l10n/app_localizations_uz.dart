@@ -878,6 +878,52 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateDetailNoPhoto => 'Profil rasmi yo‘q';
 
   @override
+  String get candidateRequestPending => 'Jarayonda...';
+
+  @override
+  String get candidateRequestRetry => 'Qayta so‘rov yuborish';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Qayta so‘rov yuborish: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Suhbatlashish';
+
+  @override
+  String get candidateRequestForwarded => 'Vakilga yo‘naltirildi';
+
+  @override
+  String get photoRequestTitle => 'Rasm ko‘rish so‘rovi';
+
+  @override
+  String get photoRequestDescription =>
+      'So‘rov nomzodga va uning vakiliga yuboriladi. Qaror faqat ularga tegishli.';
+
+  @override
+  String get photoRequestMessageHint => 'Xabar (ixtiyoriy)';
+
+  @override
+  String get photoRequestDurationLabel => 'So‘rov muddati';
+
+  @override
+  String get photoRequestDurationValue => '7 kun';
+
+  @override
+  String get photoRequestRejectLabel => 'Rad etilsa';
+
+  @override
+  String get photoRequestRejectValue => 'qayta so‘rash 7 kundan keyin';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'Rasm ochilsa, u faqat sizga ko‘rinadi va skrinshot bloklanadi.';
+
+  @override
+  String get photoRequestSubmit => 'So‘rov yuborish';
+
+  @override
   String get candidateProposalSentTitle => 'Taklif yuborildi';
 
   @override
