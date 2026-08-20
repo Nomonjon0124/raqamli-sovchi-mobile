@@ -806,13 +806,168 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidatesFilterNearby => 'Рядом';
 
   @override
-  String get candidatesFilterRepresentative => 'Представитель';
-
-  @override
   String get privatePhotoLabel => 'Приватное фото';
 
   @override
   String get matchLockedLabel => 'совпадение закрыто';
+
+  @override
+  String get genericError => 'Что-то пошло не так.';
+
+  @override
+  String get savedEmptyState => 'Сохранённых профилей пока нет.';
+
+  @override
+  String get candidateDetailRequestPhotoPermission =>
+      'Запросить доступ к фотографии';
+
+  @override
+  String get candidateDetailOptionsSubtitle => 'Что вы хотите сделать?';
+
+  @override
+  String get candidateDetailSaveSubtitle =>
+      'Позже найдёте в разделе «Сохранённые»';
+
+  @override
+  String get candidateDetailSaveToSaved => 'Добавить в сохранённые';
+
+  @override
+  String get candidateDetailShare => 'Поделиться профилем';
+
+  @override
+  String get candidateDetailShareSubtitle =>
+      'Отправьте представителю или семье';
+
+  @override
+  String get candidateDetailPhotoPermissionSubtitle =>
+      'Запрос получит кандидат и его представитель';
+
+  @override
+  String get candidateDetailReport => 'Пожаловаться';
+
+  @override
+  String get candidateDetailReportSubtitle =>
+      'Модератор рассмотрит жалобу в течение 24 часов';
+
+  @override
+  String get candidateDetailBlock => 'Заблокировать профиль';
+
+  @override
+  String get candidateDetailBlockSubtitle => 'Он больше не будет вас видеть';
+
+  @override
+  String get candidateDetailCompatibilityTitle => 'Общая совместимость';
+
+  @override
+  String candidateDetailVoiceIntro(String duration) {
+    return 'Голосовое знакомство · $duration';
+  }
+
+  @override
+  String get candidateDetailVoiceDuration => '12 сек';
+
+  @override
+  String get candidateDetailSendProposal => 'Отправить предложение сватовства';
+
+  @override
+  String get candidateDetailSave => 'Сохранить';
+
+  @override
+  String get candidateDetailUnsave => 'Удалить из сохранённых';
+
+  @override
+  String get candidateDetailNoPhoto => 'Нет фотографии профиля';
+
+  @override
+  String get candidateRequestPending => 'В процессе...';
+
+  @override
+  String get candidateRequestRetry => 'Отправить запрос повторно';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Повторный запрос: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Начать разговор';
+
+  @override
+  String get candidateRequestForwarded => 'Направлено представителю';
+
+  @override
+  String get photoRequestTitle => 'Запрос на просмотр фото';
+
+  @override
+  String get photoRequestDescription =>
+      'Запрос отправляется кандидату и его представителю. Решение остаётся за ними.';
+
+  @override
+  String get photoRequestMessageHint => 'Сообщение (необязательно)';
+
+  @override
+  String get photoRequestDurationLabel => 'Срок запроса';
+
+  @override
+  String get photoRequestDurationValue => '7 дней';
+
+  @override
+  String get photoRequestRejectLabel => 'При отказе';
+
+  @override
+  String get photoRequestRejectValue => 'повторно через 7 дней';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'Открытое фото видно только вам, скриншоты блокируются.';
+
+  @override
+  String get photoRequestSubmit => 'Отправить запрос';
+
+  @override
+  String get candidateProposalSentTitle => 'Предложение отправлено';
+
+  @override
+  String candidateProposalSentDescription(Object name) {
+    return '$name и его представитель рассмотрят ваше предложение. Мы сообщим, когда будет ответ.';
+  }
+
+  @override
+  String get candidateProposalSentTimelineSent => 'Предложение отправлено';
+
+  @override
+  String candidateProposalSentTimelineReview(Object name) {
+    return '$name рассмотрит его';
+  }
+
+  @override
+  String get candidateProposalSentTimelineChat => 'После ответа откроется чат';
+
+  @override
+  String get candidateProposalSentQuotaLabel => 'Предложения на этой неделе';
+
+  @override
+  String get candidateProposalSentQuotaValue => '2 / 3';
+
+  @override
+  String candidateProposalSentNote(Object remaining) {
+    return 'Не расстраивайтесь, если ответа не будет — это вопрос выбора. Осталось предложений: $remaining.';
+  }
+
+  @override
+  String get candidateProposalSentReturn => 'Вернуться к кандидатам';
+
+  @override
+  String get candidatePhotoPermissionSentTitle =>
+      'Запрос на просмотр фото отправлен';
+
+  @override
+  String candidatePhotoPermissionSentDescription(Object name) {
+    return 'Запрос на просмотр фото отправлен $name и его представителю. Мы сообщим, когда будет ответ.';
+  }
+
+  @override
+  String get candidatePhotoPermissionSentReturn => 'Вернуться к профилю';
 
   @override
   String get surveyPromptTitle => 'Процент совпадения закрыт';
@@ -897,13 +1052,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get savedFilterWaiting => 'Ожидается ответ';
 
   @override
-  String get savedLimitLabel => '7 / 10 сохранено';
+  String savedLimitLabel(int savedCount, int limit) {
+    return '$savedCount / $limit сохранено';
+  }
 
   @override
   String get savedPremiumCta => 'Premium — безлимит';
 
   @override
-  String get savedUpsellTitle => 'Осталось 3 места';
+  String savedUpsellTitle(int remaining) {
+    return 'Осталось мест: $remaining';
+  }
 
   @override
   String get savedUpsellMessage =>

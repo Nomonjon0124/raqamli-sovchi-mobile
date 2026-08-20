@@ -75,6 +75,9 @@ class $AssetsIconsGen {
   SvgGenImage get icCandidatesBtv =>
       const SvgGenImage('assets/icons/ic_candidates_btv.svg');
 
+  /// File path: assets/icons/ic_close.svg
+  SvgGenImage get icClose => const SvgGenImage('assets/icons/ic_close.svg');
+
   /// File path: assets/icons/ic_glyph.svg
   SvgGenImage get icGlyph => const SvgGenImage('assets/icons/ic_glyph.svg');
 
@@ -96,12 +99,22 @@ class $AssetsIconsGen {
   SvgGenImage get icMessagesBtv =>
       const SvgGenImage('assets/icons/ic_messages_btv.svg');
 
+  /// File path: assets/icons/ic_more_horizontal.svg
+  SvgGenImage get icMoreHorizontal =>
+      const SvgGenImage('assets/icons/ic_more_horizontal.svg');
+
   /// File path: assets/icons/ic_notification.svg
   SvgGenImage get icNotification =>
       const SvgGenImage('assets/icons/ic_notification.svg');
 
+  /// File path: assets/icons/ic_pause.svg
+  SvgGenImage get icPause => const SvgGenImage('assets/icons/ic_pause.svg');
+
   /// File path: assets/icons/ic_persons.svg
   SvgGenImage get icPersons => const SvgGenImage('assets/icons/ic_persons.svg');
+
+  /// File path: assets/icons/ic_play.svg
+  SvgGenImage get icPlay => const SvgGenImage('assets/icons/ic_play.svg');
 
   /// File path: assets/icons/ic_preserved_btv.svg
   SvgGenImage get icPreservedBtv =>
@@ -111,9 +124,19 @@ class $AssetsIconsGen {
   SvgGenImage get icProfileBtv =>
       const SvgGenImage('assets/icons/ic_profile_btv.svg');
 
+  /// File path: assets/icons/ic_saved.svg
+  SvgGenImage get icSaved => const SvgGenImage('assets/icons/ic_saved.svg');
+
+  /// File path: assets/icons/ic_security.svg
+  SvgGenImage get icSecurity =>
+      const SvgGenImage('assets/icons/ic_security.svg');
+
   /// File path: assets/icons/ic_services_btv.svg
   SvgGenImage get icServicesBtv =>
       const SvgGenImage('assets/icons/ic_services_btv.svg');
+
+  /// File path: assets/icons/ic_share.svg
+  SvgGenImage get icShare => const SvgGenImage('assets/icons/ic_share.svg');
 
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
@@ -129,17 +152,24 @@ class $AssetsIconsGen {
     icArrowLeft01Round,
     icArrowRight,
     icCandidatesBtv,
+    icClose,
     icGlyph,
     icGoogleIcon,
     icHugeiconsFingerprintScan,
     icInfo,
     icLogo,
     icMessagesBtv,
+    icMoreHorizontal,
     icNotification,
+    icPause,
     icPersons,
+    icPlay,
     icPreservedBtv,
     icProfileBtv,
+    icSaved,
+    icSecurity,
     icServicesBtv,
+    icShare,
     icTelegramIcon,
     icVerifyCheck,
   ];

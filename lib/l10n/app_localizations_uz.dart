@@ -805,13 +805,169 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidatesFilterNearby => 'Yaqinlar';
 
   @override
-  String get candidatesFilterRepresentative => 'Vakil';
-
-  @override
   String get privatePhotoLabel => 'Maxfiy rasm';
 
   @override
   String get matchLockedLabel => 'moslik yopiq';
+
+  @override
+  String get genericError => 'Nimadir xato ketdi.';
+
+  @override
+  String get savedEmptyState => 'Hozircha saqlangan profil yo‘q.';
+
+  @override
+  String get candidateDetailRequestPhotoPermission =>
+      'Rasmni ko‘rish uchun ruxsat so‘rash';
+
+  @override
+  String get candidateDetailOptionsSubtitle => 'Nima qilmoqchisiz?';
+
+  @override
+  String get candidateDetailSaveSubtitle =>
+      'Keyin «Saqlangan» bo‘limidan topasiz';
+
+  @override
+  String get candidateDetailSaveToSaved => 'Saqlanganlarga qo‘shish';
+
+  @override
+  String get candidateDetailShare => 'Profilni ulashish';
+
+  @override
+  String get candidateDetailShareSubtitle =>
+      'Vakilingizga yoki oilangizga yuboring';
+
+  @override
+  String get candidateDetailPhotoPermissionSubtitle =>
+      'So‘rov nomzodga va uning vakiliga boradi';
+
+  @override
+  String get candidateDetailReport => 'Shikoyat qilish';
+
+  @override
+  String get candidateDetailReportSubtitle =>
+      'Moderator 24 soat ichida ko‘radi';
+
+  @override
+  String get candidateDetailBlock => 'Profilni bloklash';
+
+  @override
+  String get candidateDetailBlockSubtitle => 'U sizni boshqa ko‘rmaydi';
+
+  @override
+  String get candidateDetailCompatibilityTitle => 'Umumiy moslik';
+
+  @override
+  String candidateDetailVoiceIntro(String duration) {
+    return 'Ovozli tanishtiruv · $duration';
+  }
+
+  @override
+  String get candidateDetailVoiceDuration => '12 sek';
+
+  @override
+  String get candidateDetailSendProposal => 'Sovchi taklifi yuborish';
+
+  @override
+  String get candidateDetailSave => 'Saqlash';
+
+  @override
+  String get candidateDetailUnsave => 'Saqlanganlardan olib tashlash';
+
+  @override
+  String get candidateDetailNoPhoto => 'Profil rasmi yo‘q';
+
+  @override
+  String get candidateRequestPending => 'Jarayonda...';
+
+  @override
+  String get candidateRequestRetry => 'Qayta so‘rov yuborish';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Qayta so‘rov yuborish: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Suhbatlashish';
+
+  @override
+  String get candidateRequestForwarded => 'Vakilga yo‘naltirildi';
+
+  @override
+  String get photoRequestTitle => 'Rasm ko‘rish so‘rovi';
+
+  @override
+  String get photoRequestDescription =>
+      'So‘rov nomzodga va uning vakiliga yuboriladi. Qaror faqat ularga tegishli.';
+
+  @override
+  String get photoRequestMessageHint => 'Xabar (ixtiyoriy)';
+
+  @override
+  String get photoRequestDurationLabel => 'So‘rov muddati';
+
+  @override
+  String get photoRequestDurationValue => '7 kun';
+
+  @override
+  String get photoRequestRejectLabel => 'Rad etilsa';
+
+  @override
+  String get photoRequestRejectValue => 'qayta so‘rash 7 kundan keyin';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'Rasm ochilsa, u faqat sizga ko‘rinadi va skrinshot bloklanadi.';
+
+  @override
+  String get photoRequestSubmit => 'So‘rov yuborish';
+
+  @override
+  String get candidateProposalSentTitle => 'Taklif yuborildi';
+
+  @override
+  String candidateProposalSentDescription(Object name) {
+    return '$name va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.';
+  }
+
+  @override
+  String get candidateProposalSentTimelineSent => 'Taklif yuborildi';
+
+  @override
+  String candidateProposalSentTimelineReview(Object name) {
+    return '$name ko‘rib chiqadi';
+  }
+
+  @override
+  String get candidateProposalSentTimelineChat =>
+      'Javob kelsa — suhbat ochiladi';
+
+  @override
+  String get candidateProposalSentQuotaLabel => 'Bu haftalik takliflar';
+
+  @override
+  String get candidateProposalSentQuotaValue => '2 / 3';
+
+  @override
+  String candidateProposalSentNote(Object remaining) {
+    return 'Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana $remaining ta taklif qoldi.';
+  }
+
+  @override
+  String get candidateProposalSentReturn => 'Nomzodlarga qaytish';
+
+  @override
+  String get candidatePhotoPermissionSentTitle =>
+      'Rasm ko‘rish uchun ruxsat so‘raldi';
+
+  @override
+  String candidatePhotoPermissionSentDescription(Object name) {
+    return '$name va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.';
+  }
+
+  @override
+  String get candidatePhotoPermissionSentReturn => 'Profilga qaytish';
 
   @override
   String get surveyPromptTitle => 'Moslik foizi yopiq';
@@ -896,13 +1052,17 @@ class AppLocalizationsUz extends AppLocalizations {
   String get savedFilterWaiting => 'Javob kutilmoqda';
 
   @override
-  String get savedLimitLabel => '7 / 10 saqlangan';
+  String savedLimitLabel(int savedCount, int limit) {
+    return '$savedCount / $limit saqlangan';
+  }
 
   @override
   String get savedPremiumCta => 'Premium — cheksiz';
 
   @override
-  String get savedUpsellTitle => 'Yana 3 ta joy qoldi';
+  String savedUpsellTitle(int remaining) {
+    return 'Yana $remaining ta joy qoldi';
+  }
 
   @override
   String get savedUpsellMessage =>

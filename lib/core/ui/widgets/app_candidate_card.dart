@@ -1,111 +1,135 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_radius.dart';
 import '../../../gen/assets.gen.dart';
+import '../../extensions/gap_extension.dart';
 
 final class AppCandidateCardData {
   const AppCandidateCardData({
     required this.nameAge,
     required this.city,
     required this.matchPercent,
-    required this.image,
+    this.imageUrl,
+    this.image,
   });
 
   final String nameAge;
   final String city;
   final String matchPercent;
-  final AssetGenImage image;
+  final String? imageUrl;
+  final AssetGenImage? image;
 }
 
 final class AppCandidateCard extends StatelessWidget {
   const AppCandidateCard({
     required this.candidate,
     required this.privatePhotoLabel,
+    this.onTap,
     super.key,
   });
 
   final AppCandidateCardData candidate;
   final String privatePhotoLabel;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 165 / 220,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  ImageFiltered(
-                    imageFilter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
-                    child: Transform.scale(
-                      scale: 1.18,
-                      child: candidate.image.image(
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.medium,
-                        excludeFromSemantics: true,
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: RepaintBoundary(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: 165 / 220,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    ImageFiltered(
+                      imageFilter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+                      child: Transform.scale(
+                        scale: 1.18,
+                        child: _buildImage(candidate),
                       ),
                     ),
-                  ),
-                  Center(child: _PrivatePhotoPill(label: privatePhotoLabel)),
-                  const Positioned(top: 8, right: 8, child: _VerifiedBadge()),
-                ],
+                    Center(child: _PrivatePhotoPill(label: privatePhotoLabel)),
+                    const Positioned(top: 8, right: 8, child: _VerifiedBadge()),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            candidate.nameAge,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontFamily: 'Manrope',
-              fontSize: 14,
-              height: 19 / 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.text,
+            8.g,
+            Text(
+              candidate.nameAge,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                height: 19 / 14,
+                fontWeight: FontWeight.w600,
+                color: AppColors.text,
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-          Row(
-            children: [
-              Flexible(
-                child: Text(
-                  '${candidate.city} ·',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+            2.g,
+            Row(
+              children: [
+                Flexible(
+                  child: Text(
+                    '${candidate.city} ·',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      height: 17 / 11,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.mutedText,
+                    ),
+                  ),
+                ),
+                4.g,
+                Text(
+                  candidate.matchPercent,
                   style: const TextStyle(
-                    fontFamily: 'Manrope',
                     fontSize: 11,
-                    height: 17 / 11,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.mutedText,
+                    height: 15 / 11,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary,
                   ),
                 ),
-              ),
-              const SizedBox(width: 4),
-              Text(
-                candidate.matchPercent,
-                style: const TextStyle(
-                  fontFamily: 'Manrope',
-                  fontSize: 11,
-                  height: 15 / 11,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.primary,
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget _buildImage(AppCandidateCardData candidate) {
+    final fallbackWidget = const ColoredBox(
+      color: AppColors.mutedSurface,
+      child: Center(
+        child: Icon(Icons.person_rounded, size: 64, color: AppColors.mutedText),
+      ),
+    );
+
+    if (candidate.imageUrl != null && candidate.imageUrl!.isNotEmpty) {
+      return CachedNetworkImage(
+        imageUrl: candidate.imageUrl!,
+        fit: BoxFit.cover,
+        filterQuality: FilterQuality.medium,
+        placeholder: (context, url) => fallbackWidget,
+        errorWidget: (context, url, error) => fallbackWidget,
+      );
+    }
+
+    return fallbackWidget;
   }
 }
 
@@ -135,11 +159,10 @@ final class _PrivatePhotoPill extends StatelessWidget {
               ),
               excludeFromSemantics: true,
             ),
-            const SizedBox(width: 5),
+            5.g,
             Text(
               label,
               style: const TextStyle(
-                fontFamily: 'Manrope',
                 fontSize: 10,
                 height: 14 / 10,
                 fontWeight: FontWeight.w600,

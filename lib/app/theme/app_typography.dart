@@ -11,6 +11,14 @@ abstract final class AppTypography {
     letterSpacing: -0.7,
     color: AppColors.text,
   );
+  static const photoRequestTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 22,
+    height: 27 / 22,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
+    color: AppColors.text,
+  );
   static const pinTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 24,

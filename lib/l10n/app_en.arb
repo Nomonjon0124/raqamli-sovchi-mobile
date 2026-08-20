@@ -258,9 +258,57 @@
   "candidatesFilterMatches": "Matches",
   "candidatesFilterRecommended": "Recommendations",
   "candidatesFilterNearby": "Nearby",
-  "candidatesFilterRepresentative": "Representative",
   "privatePhotoLabel": "Private photo",
   "matchLockedLabel": "match locked",
+  "genericError": "Something went wrong.",
+  "savedEmptyState": "No saved profiles yet.",
+  "candidateDetailRequestPhotoPermission": "Request permission to view the photo",
+  "candidateDetailOptionsSubtitle": "What would you like to do?",
+  "candidateDetailSaveSubtitle": "You can find it later in Saved",
+  "candidateDetailSaveToSaved": "Add to Saved",
+  "candidateDetailShare": "Share profile",
+  "candidateDetailShareSubtitle": "Send it to your representative or family",
+  "candidateDetailPhotoPermissionSubtitle": "The request goes to the candidate and representative",
+  "candidateDetailReport": "Report profile",
+  "candidateDetailReportSubtitle": "A moderator will review it within 24 hours",
+  "candidateDetailBlock": "Block profile",
+  "candidateDetailBlockSubtitle": "They will no longer see you",
+  "candidateDetailCompatibilityTitle": "Overall compatibility",
+  "candidateDetailVoiceIntro": "Voice introduction · {duration}",
+  "candidateDetailVoiceDuration": "12 sec",
+  "candidateDetailSendProposal": "Send matchmaking proposal",
+  "candidateDetailSave": "Save",
+  "candidateDetailUnsave": "Remove from saved",
+  "candidateDetailNoPhoto": "No profile photo",
+  "candidateRequestPending": "In progress...",
+  "candidateRequestRetry": "Send request again",
+  "candidateRequestRetryAt": "Send request again: {date}",
+  "candidateRequestChat": "Start a conversation",
+  "candidateRequestForwarded": "Sent to representative",
+  "photoRequestTitle": "Photo access request",
+  "photoRequestDescription": "The request is sent to the candidate and their representative. The decision is theirs.",
+  "photoRequestMessageHint": "Message (optional)",
+  "photoRequestDurationLabel": "Request duration",
+  "photoRequestDurationValue": "7 days",
+  "photoRequestRejectLabel": "If rejected",
+  "photoRequestRejectValue": "request again after 7 days",
+  "photoRequestPrivacyNote": "If opened, the photo is visible only to you and screenshots are blocked.",
+  "photoRequestSubmit": "Send request",
+  "candidateProposalSentTitle": "Proposal sent",
+  "candidateProposalSentDescription": "{name} and their representative will review your proposal. We will notify you when they reply.",
+  "candidateProposalSentTimelineSent": "Proposal sent",
+  "candidateProposalSentTimelineReview": "{name} will review it",
+  "candidateProposalSentTimelineChat": "A chat will open when they reply",
+  "candidateProposalSentQuotaLabel": "Weekly proposals",
+  "candidateProposalSentQuotaValue": "2 / 3",
+  "candidateProposalSentNote": "Do not be discouraged if there is no reply — it is a matter of choice. {remaining} more proposal(s) left.",
+  "candidateProposalSentReturn": "Back to candidates",
+  "candidatePhotoPermissionSentTitle": "Photo access requested",
+  "candidatePhotoPermissionSentDescription": "A request to view the photo was sent to {name} and their representative. We will notify you when they reply.",
+  "candidatePhotoPermissionSentReturn": "Back to profile",
+  "@candidateDetailVoiceIntro": {
+    "placeholders": {"duration": {"type": "String"}}
+  },
   "surveyPromptTitle": "Match percentage locked",
   "surveyPromptMessage": "Answer 30 questions — AI will analyze your answers and automatically calculate your compatibility with each candidate.",
   "surveyPromptButton": "Start questionnaire",
@@ -288,9 +336,26 @@
   "savedFilterAll": "All",
   "savedFilterInvited": "Invitation sent",
   "savedFilterWaiting": "Waiting for reply",
-  "savedLimitLabel": "7 / 10 saved",
+  "savedLimitLabel": "{savedCount} / {limit} saved",
+  "@savedLimitLabel": {
+    "placeholders": {
+      "savedCount": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
   "savedPremiumCta": "Premium — unlimited",
-  "savedUpsellTitle": "3 spots left",
+  "savedUpsellTitle": "{remaining} spots left",
+  "@savedUpsellTitle": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
   "savedUpsellMessage": "The free plan stores up to 10 profiles. Premium has no limit.",
   "questionnaireOptionalBadge": "Optional step",
   "questionnaireIntroTitle": "{count} questions — {minutes} minutes",

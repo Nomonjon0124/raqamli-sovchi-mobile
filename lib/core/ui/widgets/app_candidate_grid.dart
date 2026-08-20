@@ -6,11 +6,13 @@ final class AppCandidateGrid extends StatelessWidget {
   const AppCandidateGrid({
     required this.candidates,
     required this.privatePhotoLabel,
+    this.onCandidateTap,
     super.key,
   });
 
   final List<AppCandidateCardData> candidates;
   final String privatePhotoLabel;
+  final ValueChanged<int>? onCandidateTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ final class AppCandidateGrid extends StatelessWidget {
       itemBuilder: (context, index) => AppCandidateCard(
         candidate: candidates[index],
         privatePhotoLabel: privatePhotoLabel,
+        onTap: onCandidateTap != null ? () => onCandidateTap!(index) : null,
       ),
     );
   }
