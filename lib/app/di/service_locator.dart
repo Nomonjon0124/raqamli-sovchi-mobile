@@ -10,6 +10,8 @@ import '../../core/security/biometric_auth_service.dart';
 import '../../core/security/screenshot_guard.dart';
 import '../../core/security/secure_storage.dart';
 import '../../core/security/token_store.dart';
+import '../../core/security/notification_device_store.dart';
+import '../../core/notifications/notification_event_bus.dart';
 import '../../features/auth/application/use_cases/authenticate_biometric.dart';
 import '../../features/auth/application/use_cases/check_biometric_availability.dart';
 import '../../features/auth/application/use_cases/clear_auth_session.dart';
@@ -78,6 +80,12 @@ import '../../features/questionnaire/data/data_sources/questionnaire_data_source
 import '../../features/questionnaire/data/repositories/questionnaire_repository_impl.dart';
 import '../../features/questionnaire/domain/repositories/questionnaire_repository.dart';
 import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart';
+import '../../features/notifications/application/use_cases/notification_use_cases.dart';
+import '../../features/notifications/data/data_sources/notification_data_source.dart';
+import '../../features/notifications/data/repositories/notification_repository_impl.dart';
+import '../../features/notifications/data/services/notification_lifecycle_service.dart';
+import '../../features/notifications/domain/repositories/notification_repository.dart';
+import '../../features/notifications/presentation/bloc/notification_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -91,6 +99,10 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<TokenStore>(
       () => SecureTokenStore(serviceLocator()),
     )
+    ..registerLazySingleton<NotificationDeviceStore>(
+      () => SecureNotificationDeviceStore(serviceLocator()),
+    )
+    ..registerLazySingleton<NotificationEventBus>(NotificationEventBus.new)
     ..registerLazySingleton<AuthSessionManager>(
       () => DefaultAuthSessionManager(serviceLocator(), serviceLocator()),
     )
@@ -175,6 +187,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<MatchRequestRepository>(
       () => MatchRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<NotificationDataSource>(
+      () => RemoteNotificationDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<NotificationRepository>(
+      () => NotificationRepositoryImpl(serviceLocator()),
+    )
     ..registerFactory<GetCandidatesUseCase>(
       () => GetCandidatesUseCase(serviceLocator()),
     )
@@ -201,6 +219,45 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<CreateMatchRequestUseCase>(
       () => CreateMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadNotificationsUseCase>(
+      () => LoadNotificationsUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadUnreadNotificationCountUseCase>(
+      () => LoadUnreadNotificationCountUseCase(serviceLocator()),
+    )
+    ..registerFactory<MarkNotificationReadUseCase>(
+      () => MarkNotificationReadUseCase(serviceLocator()),
+    )
+    ..registerFactory<MarkAllNotificationsReadUseCase>(
+      () => MarkAllNotificationsReadUseCase(serviceLocator()),
+    )
+    ..registerFactory<RegisterNotificationDeviceUseCase>(
+      () => RegisterNotificationDeviceUseCase(serviceLocator()),
+    )
+    ..registerFactory<UnregisterNotificationDeviceUseCase>(
+      () => UnregisterNotificationDeviceUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreateNotificationTicketUseCase>(
+      () => CreateNotificationTicketUseCase(serviceLocator()),
+    )
+    ..registerLazySingleton<NotificationLifecycleService>(
+      () => NotificationLifecycleService(
+        deviceStore: serviceLocator(),
+        registerDevice: serviceLocator(),
+        unregisterDevice: serviceLocator(),
+        createTicket: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
+    )
+    ..registerFactory<NotificationsBloc>(
+      () => NotificationsBloc(
+        loadNotifications: serviceLocator(),
+        loadUnreadCount: serviceLocator(),
+        markRead: serviceLocator(),
+        markAllRead: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
     )
     ..registerFactory<DiscoveryBloc>(
       () => DiscoveryBloc(

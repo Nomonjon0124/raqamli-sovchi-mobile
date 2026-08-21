@@ -7,6 +7,8 @@ import 'package:thunder/thunder.dart';
 
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
+import '../features/auth/presentation/bloc/auth_state.dart';
+import '../features/notifications/data/services/notification_lifecycle_service.dart';
 import '../l10n/app_localizations.dart';
 import 'router/app_router.dart';
 import 'theme/app_theme.dart';
@@ -56,24 +58,34 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: widget.authBloc,
-      child: MaterialApp.router(
-        onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        darkTheme: AppTheme.dark,
-        themeMode: ThemeMode.light,
-        locale: const Locale('uz'),
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: AppLocalizations.supportedLocales,
-        routerConfig: _router,
-        builder: (context, child) => Thunder(
-          dio: [serviceLocator<Dio>()],
-          child: child ?? const SizedBox.shrink(),
+      child: BlocListener<AuthBloc, AuthState>(
+        listener: (_, state) {
+          final lifecycle = serviceLocator<NotificationLifecycleService>();
+          if (state.status == AuthStatus.authenticated) {
+            lifecycle.activate();
+          } else if (state.status == AuthStatus.unauthenticated) {
+            lifecycle.deactivate();
+          }
+        },
+        child: MaterialApp.router(
+          onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          themeMode: ThemeMode.light,
+          locale: const Locale('uz'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: _router,
+          builder: (context, child) => Thunder(
+            dio: [serviceLocator<Dio>()],
+            child: child ?? const SizedBox.shrink(),
+          ),
         ),
       ),
     );

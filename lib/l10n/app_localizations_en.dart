@@ -798,6 +798,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsActionLabel => 'Notifications';
 
   @override
+  String get notificationsEmpty => 'There are no notifications yet';
+
+  @override
+  String get notificationsMarkAllRead => 'Mark all as read';
+
+  @override
   String get candidatesFilterMatches => 'Matches';
 
   @override

@@ -797,6 +797,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notificationsActionLabel => 'Уведомления';
 
   @override
+  String get notificationsEmpty => 'Уведомлений пока нет';
+
+  @override
+  String get notificationsMarkAllRead => 'Отметить все как прочитанные';
+
+  @override
   String get candidatesFilterMatches => 'Подходящие';
 
   @override

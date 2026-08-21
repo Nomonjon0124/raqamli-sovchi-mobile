@@ -1516,6 +1516,18 @@ abstract class AppLocalizations {
   /// **'Bildirishnomalar'**
   String get notificationsActionLabel;
 
+  /// No description provided for @notificationsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha bildirishnomalar yo‘q'**
+  String get notificationsEmpty;
+
+  /// No description provided for @notificationsMarkAllRead.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barchasini o‘qilgan deb belgilash'**
+  String get notificationsMarkAllRead;
+
   /// No description provided for @candidatesFilterMatches.
   ///
   /// In uz, this message translates to:

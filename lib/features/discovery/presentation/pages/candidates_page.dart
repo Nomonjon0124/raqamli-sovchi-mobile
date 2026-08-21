@@ -21,19 +21,31 @@ import '../bloc/discovery_event.dart';
 import '../bloc/discovery_state.dart';
 import '../widgets/candidates_filter_bar.dart';
 import '../widgets/survey_prompt_card.dart';
+import '../../../notifications/presentation/bloc/notification_bloc.dart';
+import '../../../notifications/presentation/bloc/notification_event.dart';
+import '../../../notifications/presentation/bloc/notification_state.dart';
 
 final class CandidatesPage extends StatelessWidget {
   const CandidatesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => serviceLocator<DiscoveryBloc>()
-        ..add(
-          const DiscoveryFetchCandidatesRequested(
-            filter: DiscoveryFilter.matches,
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => serviceLocator<DiscoveryBloc>()
+            ..add(
+              const DiscoveryFetchCandidatesRequested(
+                filter: DiscoveryFilter.matches,
+              ),
+            ),
         ),
+        BlocProvider(
+          create: (_) =>
+              serviceLocator<NotificationsBloc>()
+                ..add(const NotificationsLoadRequested()),
+        ),
+      ],
       child: const _CandidatesPageView(),
     );
   }
@@ -61,12 +73,17 @@ final class _CandidatesPageView extends StatelessWidget {
               children: [
                 AppScreenHeader(
                   title: l10n.candidatesTabLabel,
-                  trailing: AppRoundIconButton(
-                    icon: Assets.icons.icNotification,
-                    semanticLabel: l10n.notificationsActionLabel,
-                    showUnreadDot: true,
-                    onPressed: () {},
-                  ),
+                  trailing:
+                      BlocSelector<NotificationsBloc, NotificationsState, bool>(
+                        selector: (state) => state.unreadCount > 0,
+                        builder: (context, hasUnread) => AppRoundIconButton(
+                          icon: Assets.icons.icNotification,
+                          semanticLabel: l10n.notificationsActionLabel,
+                          showUnreadDot: hasUnread,
+                          onPressed: () =>
+                              context.push(RouteNames.notifications),
+                        ),
+                      ),
                 ),
                 18.g,
                 CandidatesFilterBar(

@@ -267,6 +267,8 @@
   "savedPlaceholder": "Hozircha saqlanganlar sahifasi.",
   "profilePlaceholder": "Hozircha profil sahifasi.",
   "notificationsActionLabel": "Bildirishnomalar",
+  "notificationsEmpty": "Hozircha bildirishnomalar yo‘q",
+  "notificationsMarkAllRead": "Barchasini o‘qilgan deb belgilash",
   "candidatesFilterMatches": "Moslar",
   "candidatesFilterRecommended": "Tavsiyalar",
   "candidatesFilterNearby": "Yaqinlar",

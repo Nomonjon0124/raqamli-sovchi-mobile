@@ -255,6 +255,8 @@
   "savedPlaceholder": "Пока страница сохраненного.",
   "profilePlaceholder": "Пока страница профиля.",
   "notificationsActionLabel": "Уведомления",
+  "notificationsEmpty": "Уведомлений пока нет",
+  "notificationsMarkAllRead": "Отметить все как прочитанные",
   "candidatesFilterMatches": "Подходящие",
   "candidatesFilterRecommended": "Рекомендации",
   "candidatesFilterNearby": "Рядом",

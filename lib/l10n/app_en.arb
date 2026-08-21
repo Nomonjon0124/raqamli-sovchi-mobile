@@ -255,6 +255,8 @@
   "savedPlaceholder": "Saved page for now.",
   "profilePlaceholder": "Profile page for now.",
   "notificationsActionLabel": "Notifications",
+  "notificationsEmpty": "There are no notifications yet",
+  "notificationsMarkAllRead": "Mark all as read",
   "candidatesFilterMatches": "Matches",
   "candidatesFilterRecommended": "Recommendations",
   "candidatesFilterNearby": "Nearby",

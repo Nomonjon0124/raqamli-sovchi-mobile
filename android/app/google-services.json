@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "140212970116",
+    "project_id": "raqamli-sovchi-988e7",
+    "storage_bucket": "raqamli-sovchi-988e7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140212970116:android:70f75f05f1236d13e318d1",
+        "android_client_info": {
+          "package_name": "app.raqamlisovchi.uz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4TzzUDWT6m68oYHUHRNO1KLQ5zB9OG2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

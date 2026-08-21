@@ -796,6 +796,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get notificationsActionLabel => 'Bildirishnomalar';
 
   @override
+  String get notificationsEmpty => 'Hozircha bildirishnomalar yo‘q';
+
+  @override
+  String get notificationsMarkAllRead => 'Barchasini o‘qilgan deb belgilash';
+
+  @override
   String get candidatesFilterMatches => 'Moslar';
 
   @override
