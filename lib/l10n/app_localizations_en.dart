@@ -885,6 +885,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateDetailNoPhoto => 'No profile photo';
 
   @override
+  String get candidateDetailLastActivity => 'Last active: recently';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Compatibility not calculated';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'The candidate has not yet completed the 30-question survey, so a compatibility percentage cannot be shown. The information below comes from the candidate profile.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Basic information';
+
+  @override
+  String get candidateDetailBirthYear => 'Birth year';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age years old';
+  }
+
+  @override
+  String get candidateDetailCity => 'City';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Marital status';
+
+  @override
+  String get candidateDetailChildren => 'Children';
+
+  @override
+  String get candidateDetailNoChildren => 'No';
+
+  @override
+  String get candidateDetailHasChildren => 'Yes';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Education and work';
+
+  @override
+  String get candidateDetailEducation => 'Education';
+
+  @override
+  String get candidateDetailAdditionalInformation => 'Additional information';
+
+  @override
+  String get candidateDetailHealthStatus => 'Health status';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle => 'Profile is incomplete';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'The candidate has not completed some information yet. When a matchmaking proposal is sent, they will be reminded to finish the profile.';
+
+  @override
+  String get candidateDetailAbout => 'About the candidate';
+
+  @override
   String get candidateRequestPending => 'In progress...';
 
   @override

@@ -282,6 +282,34 @@
   "candidateDetailSave": "Сохранить",
   "candidateDetailUnsave": "Удалить из сохранённых",
   "candidateDetailNoPhoto": "Нет фотографии профиля",
+  "candidateDetailLastActivity": "Последняя активность: недавно",
+  "candidateDetailCompatibilityUnavailableTitle": "Совместимость не рассчитана",
+  "candidateDetailCompatibilityUnavailableDescription": "Кандидат ещё не заполнил опрос из 30 вопросов, поэтому процент совместимости не показывается. Информация ниже взята из анкеты кандидата.",
+  "candidateDetailBasicInformation": "Основная информация",
+  "candidateDetailBirthYear": "Год рождения",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} лет",
+  "@candidateDetailBirthYearWithAge": {
+    "placeholders": {
+      "birthYear": {"type": "int"},
+      "age": {"type": "int"}
+    }
+  },
+  "candidateDetailCity": "Город",
+  "candidateDetailMaritalStatus": "Семейное положение",
+  "candidateDetailChildren": "Дети",
+  "candidateDetailNoChildren": "Нет",
+  "candidateDetailHasChildren": "Есть",
+  "candidateDetailChildrenCount": "{count}",
+  "@candidateDetailChildrenCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "candidateDetailEducationAndWork": "Образование и работа",
+  "candidateDetailEducation": "Образование",
+  "candidateDetailAdditionalInformation": "Дополнительная информация",
+  "candidateDetailHealthStatus": "Состояние здоровья",
+  "candidateDetailIncompleteProfileTitle": "Анкета заполнена не полностью",
+  "candidateDetailIncompleteProfileDescription": "Кандидат ещё не заполнил часть информации. После отправки предложения сватовства ему придёт напоминание завершить анкету.",
+  "candidateDetailAbout": "О кандидате",
   "candidateRequestPending": "В процессе...",
   "candidateRequestRetry": "Отправить запрос повторно",
   "candidateRequestRetryAt": "Повторный запрос: {date}",

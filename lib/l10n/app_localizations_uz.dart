@@ -884,6 +884,70 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateDetailNoPhoto => 'Profil rasmi yo‘q';
 
   @override
+  String get candidateDetailLastActivity => 'Oxirgi faollik: yaqinda';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Moslik hisoblanmagan';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'Nomzod 30 savollik so‘rovnomani hali to‘ldirmagan — shu sababli moslik foizi ko‘rsatilmaydi. Quyidagi ma’lumotlar nomzod anketasidan olingan.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Asosiy ma’lumotlar';
+
+  @override
+  String get candidateDetailBirthYear => 'Tug‘ilgan yili';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age yosh';
+  }
+
+  @override
+  String get candidateDetailCity => 'Shahar';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Oilaviy holati';
+
+  @override
+  String get candidateDetailChildren => 'Farzandlari';
+
+  @override
+  String get candidateDetailNoChildren => 'Yo‘q';
+
+  @override
+  String get candidateDetailHasChildren => 'Bor';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count ta';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Ta’lim va ish';
+
+  @override
+  String get candidateDetailEducation => 'Ma’lumoti';
+
+  @override
+  String get candidateDetailAdditionalInformation => 'Qo‘shimcha ma’lumotlar';
+
+  @override
+  String get candidateDetailHealthStatus => 'Sog‘lig‘i';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle => 'Anketa to‘liq emas';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'Nomzod ayrim ma’lumotlarni hali to‘ldirmagan. Sovchi taklifi yuborilganda unga anketani to‘ldirish eslatmasi boradi.';
+
+  @override
+  String get candidateDetailAbout => 'Nomzod haqida';
+
+  @override
   String get candidateRequestPending => 'Jarayonda...';
 
   @override

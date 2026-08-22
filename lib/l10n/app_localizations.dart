@@ -1678,6 +1678,120 @@ abstract class AppLocalizations {
   /// **'Profil rasmi yo‘q'**
   String get candidateDetailNoPhoto;
 
+  /// No description provided for @candidateDetailLastActivity.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oxirgi faollik: yaqinda'**
+  String get candidateDetailLastActivity;
+
+  /// No description provided for @candidateDetailCompatibilityUnavailableTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik hisoblanmagan'**
+  String get candidateDetailCompatibilityUnavailableTitle;
+
+  /// No description provided for @candidateDetailCompatibilityUnavailableDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod 30 savollik so‘rovnomani hali to‘ldirmagan — shu sababli moslik foizi ko‘rsatilmaydi. Quyidagi ma’lumotlar nomzod anketasidan olingan.'**
+  String get candidateDetailCompatibilityUnavailableDescription;
+
+  /// No description provided for @candidateDetailBasicInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy ma’lumotlar'**
+  String get candidateDetailBasicInformation;
+
+  /// No description provided for @candidateDetailBirthYear.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tug‘ilgan yili'**
+  String get candidateDetailBirthYear;
+
+  /// No description provided for @candidateDetailBirthYearWithAge.
+  ///
+  /// In uz, this message translates to:
+  /// **'{birthYear} · {age} yosh'**
+  String candidateDetailBirthYearWithAge(int birthYear, int age);
+
+  /// No description provided for @candidateDetailCity.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shahar'**
+  String get candidateDetailCity;
+
+  /// No description provided for @candidateDetailMaritalStatus.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy holati'**
+  String get candidateDetailMaritalStatus;
+
+  /// No description provided for @candidateDetailChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Farzandlari'**
+  String get candidateDetailChildren;
+
+  /// No description provided for @candidateDetailNoChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yo‘q'**
+  String get candidateDetailNoChildren;
+
+  /// No description provided for @candidateDetailHasChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bor'**
+  String get candidateDetailHasChildren;
+
+  /// No description provided for @candidateDetailChildrenCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta'**
+  String candidateDetailChildrenCount(int count);
+
+  /// No description provided for @candidateDetailEducationAndWork.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ta’lim va ish'**
+  String get candidateDetailEducationAndWork;
+
+  /// No description provided for @candidateDetailEducation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ma’lumoti'**
+  String get candidateDetailEducation;
+
+  /// No description provided for @candidateDetailAdditionalInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qo‘shimcha ma’lumotlar'**
+  String get candidateDetailAdditionalInformation;
+
+  /// No description provided for @candidateDetailHealthStatus.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sog‘lig‘i'**
+  String get candidateDetailHealthStatus;
+
+  /// No description provided for @candidateDetailIncompleteProfileTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Anketa to‘liq emas'**
+  String get candidateDetailIncompleteProfileTitle;
+
+  /// No description provided for @candidateDetailIncompleteProfileDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod ayrim ma’lumotlarni hali to‘ldirmagan. Sovchi taklifi yuborilganda unga anketani to‘ldirish eslatmasi boradi.'**
+  String get candidateDetailIncompleteProfileDescription;
+
+  /// No description provided for @candidateDetailAbout.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod haqida'**
+  String get candidateDetailAbout;
+
   /// No description provided for @candidateRequestPending.
   ///
   /// In uz, this message translates to:

@@ -282,6 +282,34 @@
   "candidateDetailSave": "Save",
   "candidateDetailUnsave": "Remove from saved",
   "candidateDetailNoPhoto": "No profile photo",
+  "candidateDetailLastActivity": "Last active: recently",
+  "candidateDetailCompatibilityUnavailableTitle": "Compatibility not calculated",
+  "candidateDetailCompatibilityUnavailableDescription": "The candidate has not yet completed the 30-question survey, so a compatibility percentage cannot be shown. The information below comes from the candidate profile.",
+  "candidateDetailBasicInformation": "Basic information",
+  "candidateDetailBirthYear": "Birth year",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} years old",
+  "@candidateDetailBirthYearWithAge": {
+    "placeholders": {
+      "birthYear": {"type": "int"},
+      "age": {"type": "int"}
+    }
+  },
+  "candidateDetailCity": "City",
+  "candidateDetailMaritalStatus": "Marital status",
+  "candidateDetailChildren": "Children",
+  "candidateDetailNoChildren": "No",
+  "candidateDetailHasChildren": "Yes",
+  "candidateDetailChildrenCount": "{count}",
+  "@candidateDetailChildrenCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "candidateDetailEducationAndWork": "Education and work",
+  "candidateDetailEducation": "Education",
+  "candidateDetailAdditionalInformation": "Additional information",
+  "candidateDetailHealthStatus": "Health status",
+  "candidateDetailIncompleteProfileTitle": "Profile is incomplete",
+  "candidateDetailIncompleteProfileDescription": "The candidate has not completed some information yet. When a matchmaking proposal is sent, they will be reminded to finish the profile.",
+  "candidateDetailAbout": "About the candidate",
   "candidateRequestPending": "In progress...",
   "candidateRequestRetry": "Send request again",
   "candidateRequestRetryAt": "Send request again: {date}",

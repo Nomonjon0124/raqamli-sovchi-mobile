@@ -885,6 +885,72 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateDetailNoPhoto => 'Нет фотографии профиля';
 
   @override
+  String get candidateDetailLastActivity => 'Последняя активность: недавно';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Совместимость не рассчитана';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'Кандидат ещё не заполнил опрос из 30 вопросов, поэтому процент совместимости не показывается. Информация ниже взята из анкеты кандидата.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Основная информация';
+
+  @override
+  String get candidateDetailBirthYear => 'Год рождения';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age лет';
+  }
+
+  @override
+  String get candidateDetailCity => 'Город';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Семейное положение';
+
+  @override
+  String get candidateDetailChildren => 'Дети';
+
+  @override
+  String get candidateDetailNoChildren => 'Нет';
+
+  @override
+  String get candidateDetailHasChildren => 'Есть';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Образование и работа';
+
+  @override
+  String get candidateDetailEducation => 'Образование';
+
+  @override
+  String get candidateDetailAdditionalInformation =>
+      'Дополнительная информация';
+
+  @override
+  String get candidateDetailHealthStatus => 'Состояние здоровья';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle =>
+      'Анкета заполнена не полностью';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'Кандидат ещё не заполнил часть информации. После отправки предложения сватовства ему придёт напоминание завершить анкету.';
+
+  @override
+  String get candidateDetailAbout => 'О кандидате';
+
+  @override
   String get candidateRequestPending => 'В процессе...';
 
   @override

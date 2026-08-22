@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
+import '../../../../app/theme/app_typography.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../gen/assets.gen.dart';
 
@@ -29,14 +30,7 @@ final class CandidateDetailHeader extends StatelessWidget {
                 nameAge,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontFamily: 'Manrope',
-                  fontSize: 22,
-                  height: 27 / 22,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: -0.5,
-                  color: AppColors.text,
-                ),
+                style: AppTypography.candidateDetailName,
               ),
             ),
             8.g,
@@ -48,13 +42,7 @@ final class CandidateDetailHeader extends StatelessWidget {
           subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontFamily: 'Manrope',
-            fontSize: 13,
-            height: 21 / 13,
-            fontWeight: FontWeight.w400,
-            color: AppColors.mutedText,
-          ),
+          style: AppTypography.candidateDetailBody,
         ),
       ],
     );

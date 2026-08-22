@@ -294,6 +294,34 @@
   "candidateDetailSave": "Saqlash",
   "candidateDetailUnsave": "Saqlanganlardan olib tashlash",
   "candidateDetailNoPhoto": "Profil rasmi yo‘q",
+  "candidateDetailLastActivity": "Oxirgi faollik: yaqinda",
+  "candidateDetailCompatibilityUnavailableTitle": "Moslik hisoblanmagan",
+  "candidateDetailCompatibilityUnavailableDescription": "Nomzod 30 savollik so‘rovnomani hali to‘ldirmagan — shu sababli moslik foizi ko‘rsatilmaydi. Quyidagi ma’lumotlar nomzod anketasidan olingan.",
+  "candidateDetailBasicInformation": "Asosiy ma’lumotlar",
+  "candidateDetailBirthYear": "Tug‘ilgan yili",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} yosh",
+  "@candidateDetailBirthYearWithAge": {
+    "placeholders": {
+      "birthYear": {"type": "int"},
+      "age": {"type": "int"}
+    }
+  },
+  "candidateDetailCity": "Shahar",
+  "candidateDetailMaritalStatus": "Oilaviy holati",
+  "candidateDetailChildren": "Farzandlari",
+  "candidateDetailNoChildren": "Yo‘q",
+  "candidateDetailHasChildren": "Bor",
+  "candidateDetailChildrenCount": "{count} ta",
+  "@candidateDetailChildrenCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "candidateDetailEducationAndWork": "Ta’lim va ish",
+  "candidateDetailEducation": "Ma’lumoti",
+  "candidateDetailAdditionalInformation": "Qo‘shimcha ma’lumotlar",
+  "candidateDetailHealthStatus": "Sog‘lig‘i",
+  "candidateDetailIncompleteProfileTitle": "Anketa to‘liq emas",
+  "candidateDetailIncompleteProfileDescription": "Nomzod ayrim ma’lumotlarni hali to‘ldirmagan. Sovchi taklifi yuborilganda unga anketani to‘ldirish eslatmasi boradi.",
+  "candidateDetailAbout": "Nomzod haqida",
   "candidateRequestPending": "Jarayonda...",
   "candidateRequestRetry": "Qayta so‘rov yuborish",
   "candidateRequestRetryAt": "Qayta so‘rov yuborish: {date}",
