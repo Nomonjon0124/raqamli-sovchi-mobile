@@ -13,11 +13,13 @@ final class GetCandidatesUseCase {
     int page = 1,
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
+    double? radiusKm,
   }) {
     return _repository.getCandidates(
       page: page,
       pageSize: pageSize,
       filter: filter,
+      radiusKm: radiusKm,
     );
   }
 }

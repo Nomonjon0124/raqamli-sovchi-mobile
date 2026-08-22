@@ -8,6 +8,7 @@ abstract interface class DiscoveryRepository {
     int page = 1,
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
+    double? radiusKm,
   });
 
   Future<Either<Failure, Candidate>> getCandidate(String id);

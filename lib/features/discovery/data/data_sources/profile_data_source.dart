@@ -3,6 +3,11 @@ import '../models/user_profile_model.dart';
 
 abstract interface class ProfileDataSource {
   Future<UserProfileModel> fetchMyProfile();
+
+  Future<void> updateLocation({
+    required double latitude,
+    required double longitude,
+  });
 }
 
 final class RemoteProfileDataSource implements ProfileDataSource {
@@ -20,5 +25,19 @@ final class RemoteProfileDataSource implements ProfileDataSource {
         ? raw['data'] as Map<String, dynamic>
         : raw as Map<String, dynamic>;
     return UserProfileModel.fromJson(payload);
+  }
+
+  @override
+  Future<void> updateLocation({
+    required double latitude,
+    required double longitude,
+  }) async {
+    await _client.patch<dynamic>(
+      _myProfilePath,
+      data: {
+        'latitude': latitude.toStringAsFixed(6),
+        'longitude': longitude.toStringAsFixed(6),
+      },
+    );
   }
 }

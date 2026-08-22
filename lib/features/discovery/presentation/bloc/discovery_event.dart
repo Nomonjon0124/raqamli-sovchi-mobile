@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/discovery_filter.dart';
 import '../../domain/entities/user_profile.dart';
+import 'discovery_state.dart';
 
 sealed class DiscoveryEvent extends Equatable {
   const DiscoveryEvent();
@@ -23,6 +24,23 @@ final class DiscoveryFetchCandidatesRequested extends DiscoveryEvent {
 
 final class DiscoveryRefreshCandidatesRequested extends DiscoveryEvent {
   const DiscoveryRefreshCandidatesRequested();
+}
+
+final class DiscoveryViewModeChanged extends DiscoveryEvent {
+  const DiscoveryViewModeChanged(this.viewMode);
+
+  final DiscoveryViewMode viewMode;
+
+  @override
+  List<Object?> get props => [viewMode];
+}
+
+final class DiscoveryNearbyLocationActionRequested extends DiscoveryEvent {
+  const DiscoveryNearbyLocationActionRequested();
+}
+
+final class DiscoveryNearbyPermissionDismissed extends DiscoveryEvent {
+  const DiscoveryNearbyPermissionDismissed();
 }
 
 final class DiscoveryProfileLoaded extends DiscoveryEvent {

@@ -423,5 +423,41 @@
   "questionnaireShowCandidates": "View matching candidates",
   "questionnaireTraitTraditional": "traditional",
   "questionnaireTraitBalanced": "balanced",
+  "candidatesViewGrid": "Grid view",
+  "candidatesViewMap": "Map view",
+  "nearbyPermissionTitle": "Candidates near you",
+  "nearbyPermissionDescription": "Your location is used as an approximate zone, never as an exact point.",
+  "nearbyPermissionOpenSettings": "Open settings",
+  "nearbyPermissionEnableService": "Enable location",
+  "nearbyPermissionAllow": "Allow location access",
+  "nearbyPermissionNotNow": "Not now",
+  "nearbyPermissionFootnote": "If you choose “Not now”, Matches and Recommendations will continue to work as before.",
+  "nearbyPermissionRuleHidden": "Your exact address is never shown to anyone",
+  "nearbyPermissionRuleZone": "Others see you within an approximately 2 km zone",
+  "nearbyPermissionRuleSettings": "You can turn this off in Settings at any time",
+  "nearbyUnknownZone": "Nearby zone",
+  "nearbyCandidateCount": "{count} candidates",
+  "@nearbyCandidateCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyZoneDistance": "{zone} · ~{distance} km",
+  "@nearbyZoneDistance": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "distance": {"type": "String"}
+    }
+  },
+  "nearbyYou": "You",
+  "nearbyAroundCount": "{count} candidates around you",
+  "@nearbyAroundCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyShowAll": "View all",
+  "openStreetMapAttribution": "© OpenStreetMap contributors",
+  "nearbyWithinRadius": "Within {radius} km",
+  "@nearbyWithinRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyRecenter": "Return to my location",
   "failureMessage": "{type, select, networkTimeout{Connection timed out.} noInternet{No internet connection.} unauthorized{Session expired.} cancelled{} forbidden{Access denied.} notFound{Data was not found.} validation{Please check your input.} configuration{Google sign-in is not configured for this build.} unsupported{This sign-in method is not available yet.} server{A server error occurred.} unknown{Something went wrong.} other{Something went wrong.}}"
 }

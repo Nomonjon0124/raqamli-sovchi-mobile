@@ -7,6 +7,7 @@ abstract interface class DiscoveryDataSource {
     int page = 1,
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
+    double? radiusKm,
   });
 
   Future<ResultCandidateModel> fetchCandidate(String id);
@@ -28,6 +29,7 @@ final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
     int page = 1,
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
+    double? radiusKm,
   }) async {
     final endpoint = switch (filter) {
       DiscoveryFilter.matches => '/api/v1/accounts/profiles/matches/',
@@ -35,9 +37,17 @@ final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
       DiscoveryFilter.nearby => '/api/v1/accounts/profiles/nearby/',
     };
 
+    final queryParameters = <String, dynamic>{
+      'page': page,
+      'page_size': pageSize,
+    };
+    if (filter == DiscoveryFilter.nearby && radiusKm != null) {
+      queryParameters['radius'] = radiusKm;
+    }
+
     final response = await _client.get<dynamic>(
       endpoint,
-      queryParameters: {'page': page, 'page_size': pageSize},
+      queryParameters: queryParameters,
     );
 
     final data = response.data;

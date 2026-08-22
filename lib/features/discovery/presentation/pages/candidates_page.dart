@@ -14,16 +14,18 @@ import '../../../../core/ui/widgets/app_round_icon_button.dart';
 import '../../../../core/ui/widgets/app_screen_header.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../notifications/presentation/bloc/notification_bloc.dart';
+import '../../../notifications/presentation/bloc/notification_event.dart';
+import '../../../notifications/presentation/bloc/notification_state.dart';
 import '../../domain/entities/candidate.dart';
 import '../../domain/entities/discovery_filter.dart';
 import '../bloc/discovery_bloc.dart';
 import '../bloc/discovery_event.dart';
 import '../bloc/discovery_state.dart';
 import '../widgets/candidates_filter_bar.dart';
+import '../widgets/nearby_candidates_map.dart';
+import '../widgets/nearby_location_permission_state.dart';
 import '../widgets/survey_prompt_card.dart';
-import '../../../notifications/presentation/bloc/notification_bloc.dart';
-import '../../../notifications/presentation/bloc/notification_event.dart';
-import '../../../notifications/presentation/bloc/notification_state.dart';
 
 final class CandidatesPage extends StatelessWidget {
   const CandidatesPage({super.key});
@@ -60,6 +62,12 @@ final class _CandidatesPageView extends StatelessWidget {
     final selectedFilter = context.select(
       (DiscoveryBloc bloc) => bloc.state.selectedFilter,
     );
+    final discoveryStatus = context.select(
+      (DiscoveryBloc bloc) => bloc.state.status,
+    );
+    final viewMode = context.select(
+      (DiscoveryBloc bloc) => bloc.state.viewMode,
+    );
     final hasAnsweredTest = context.select(
       (DiscoveryBloc bloc) => bloc.state.myProfile?.hasAnsweredTest ?? false,
     );
@@ -88,11 +96,19 @@ final class _CandidatesPageView extends StatelessWidget {
                 18.g,
                 CandidatesFilterBar(
                   selectedFilter: selectedFilter,
+                  viewMode: viewMode,
+                  showViewToggle:
+                      selectedFilter == DiscoveryFilter.nearby &&
+                      discoveryStatus != DiscoveryStatus.permissionRequired,
                   onFilterSelected: (filter) => context
                       .read<DiscoveryBloc>()
                       .add(DiscoveryFetchCandidatesRequested(filter: filter)),
+                  onViewModeChanged: (mode) => context
+                      .read<DiscoveryBloc>()
+                      .add(DiscoveryViewModeChanged(mode)),
                 ),
-                if (!hasAnsweredTest) ...[
+                if (!hasAnsweredTest &&
+                    selectedFilter != DiscoveryFilter.nearby) ...[
                   18.g,
                   SurveyPromptCard(
                     onPressed: () => context.push(RouteNames.questionnaire),
@@ -121,6 +137,33 @@ final class _CandidatesPageView extends StatelessWidget {
                     ),
                   ),
                 ),
+                DiscoveryStatus.permissionRequired => SliverFillRemaining(
+                  child: NearbyLocationPermissionState(
+                    accessStatus: state.locationAccessStatus,
+                    isLoading: state.isLocationOperationInProgress,
+                    onPrimaryPressed: () => context.read<DiscoveryBloc>().add(
+                      const DiscoveryNearbyLocationActionRequested(),
+                    ),
+                    onDismissed: () => context.read<DiscoveryBloc>().add(
+                      const DiscoveryNearbyPermissionDismissed(),
+                    ),
+                  ),
+                ),
+                DiscoveryStatus.empty || DiscoveryStatus.success
+                    when state.selectedFilter == DiscoveryFilter.nearby &&
+                        state.viewMode == DiscoveryViewMode.map &&
+                        state.currentLocation != null =>
+                  SliverFillRemaining(
+                    child: NearbyCandidatesMap(
+                      currentLocation: state.currentLocation!,
+                      clusters: state.nearbyClusters,
+                      items: state.nearbyMapItems,
+                      radiusKm: DiscoveryBloc.nearbyRadiusKm,
+                      onCandidateTap: (candidateId) => context.push(
+                        RouteNames.candidateDetailFor(candidateId),
+                      ),
+                    ),
+                  ),
                 DiscoveryStatus.empty => SliverFillRemaining(
                   child: AppEmptyState(message: l10n.candidatesPlaceholder),
                 ),

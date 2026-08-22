@@ -435,6 +435,42 @@
   "questionnaireShowCandidates": "Mos nomzodlarni ko‘rish",
   "questionnaireTraitTraditional": "an’anaviy",
   "questionnaireTraitBalanced": "balansli",
+  "candidatesViewGrid": "Katak ko‘rinishi",
+  "candidatesViewMap": "Xarita ko‘rinishi",
+  "nearbyPermissionTitle": "Yaqin atrofdagi nomzodlar",
+  "nearbyPermissionDescription": "Joylashuvingiz aniq nuqta sifatida emas, taxminiy zona sifatida ishlatiladi.",
+  "nearbyPermissionOpenSettings": "Sozlamalarni ochish",
+  "nearbyPermissionEnableService": "Joylashuvni yoqish",
+  "nearbyPermissionAllow": "Joylashuvga ruxsat berish",
+  "nearbyPermissionNotNow": "Hozir emas",
+  "nearbyPermissionFootnote": "«Hozir emas» ni tanlasangiz, Moslar va Tavsiyalar avvalgidek ishlaydi.",
+  "nearbyPermissionRuleHidden": "Aniq manzilingiz hech kimga ko‘rsatilmaydi",
+  "nearbyPermissionRuleZone": "Boshqalar sizni ~2 km li zona ichida ko‘radi",
+  "nearbyPermissionRuleSettings": "Istalgan vaqtda Sozlamalardan o‘chirasiz",
+  "nearbyUnknownZone": "Yaqin zona",
+  "nearbyCandidateCount": "{count} ta nomzod",
+  "@nearbyCandidateCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyZoneDistance": "{zone} · ~{distance} km",
+  "@nearbyZoneDistance": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "distance": {"type": "String"}
+    }
+  },
+  "nearbyYou": "Siz",
+  "nearbyAroundCount": "Atrofingizda {count} ta nomzod",
+  "@nearbyAroundCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyShowAll": "Barchasi",
+  "openStreetMapAttribution": "© OpenStreetMap ishtirokchilari",
+  "nearbyWithinRadius": "{radius} km ichida",
+  "@nearbyWithinRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyRecenter": "Joylashuvimga qaytish",
   "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",

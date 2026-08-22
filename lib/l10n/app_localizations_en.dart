@@ -1214,6 +1214,82 @@ class AppLocalizationsEn extends AppLocalizations {
   String get questionnaireTraitBalanced => 'balanced';
 
   @override
+  String get candidatesViewGrid => 'Grid view';
+
+  @override
+  String get candidatesViewMap => 'Map view';
+
+  @override
+  String get nearbyPermissionTitle => 'Candidates near you';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Your location is used as an approximate zone, never as an exact point.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Open settings';
+
+  @override
+  String get nearbyPermissionEnableService => 'Enable location';
+
+  @override
+  String get nearbyPermissionAllow => 'Allow location access';
+
+  @override
+  String get nearbyPermissionNotNow => 'Not now';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      'If you choose “Not now”, Matches and Recommendations will continue to work as before.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Your exact address is never shown to anyone';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Others see you within an approximately 2 km zone';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'You can turn this off in Settings at any time';
+
+  @override
+  String get nearbyUnknownZone => 'Nearby zone';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return '$count candidates';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance km';
+  }
+
+  @override
+  String get nearbyYou => 'You';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return '$count candidates around you';
+  }
+
+  @override
+  String get nearbyShowAll => 'View all';
+
+  @override
+  String get openStreetMapAttribution => '© OpenStreetMap contributors';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return 'Within $radius km';
+  }
+
+  @override
+  String get nearbyRecenter => 'Return to my location';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',

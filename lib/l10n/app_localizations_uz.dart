@@ -1212,6 +1212,82 @@ class AppLocalizationsUz extends AppLocalizations {
   String get questionnaireTraitBalanced => 'balansli';
 
   @override
+  String get candidatesViewGrid => 'Katak ko‘rinishi';
+
+  @override
+  String get candidatesViewMap => 'Xarita ko‘rinishi';
+
+  @override
+  String get nearbyPermissionTitle => 'Yaqin atrofdagi nomzodlar';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Joylashuvingiz aniq nuqta sifatida emas, taxminiy zona sifatida ishlatiladi.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Sozlamalarni ochish';
+
+  @override
+  String get nearbyPermissionEnableService => 'Joylashuvni yoqish';
+
+  @override
+  String get nearbyPermissionAllow => 'Joylashuvga ruxsat berish';
+
+  @override
+  String get nearbyPermissionNotNow => 'Hozir emas';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      '«Hozir emas» ni tanlasangiz, Moslar va Tavsiyalar avvalgidek ishlaydi.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Aniq manzilingiz hech kimga ko‘rsatilmaydi';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Boshqalar sizni ~2 km li zona ichida ko‘radi';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'Istalgan vaqtda Sozlamalardan o‘chirasiz';
+
+  @override
+  String get nearbyUnknownZone => 'Yaqin zona';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return '$count ta nomzod';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance km';
+  }
+
+  @override
+  String get nearbyYou => 'Siz';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return 'Atrofingizda $count ta nomzod';
+  }
+
+  @override
+  String get nearbyShowAll => 'Barchasi';
+
+  @override
+  String get openStreetMapAttribution => '© OpenStreetMap ishtirokchilari';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return '$radius km ichida';
+  }
+
+  @override
+  String get nearbyRecenter => 'Joylashuvimga qaytish';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

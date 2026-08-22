@@ -4,14 +4,14 @@ import 'package:get_it/get_it.dart';
 
 import '../../core/config/app_config.dart';
 import '../../core/network/api_client.dart';
+import '../../core/notifications/notification_event_bus.dart';
 import '../../core/platform/external_url_launcher.dart';
 import '../../core/security/auth_session_manager.dart';
 import '../../core/security/biometric_auth_service.dart';
+import '../../core/security/notification_device_store.dart';
 import '../../core/security/screenshot_guard.dart';
 import '../../core/security/secure_storage.dart';
 import '../../core/security/token_store.dart';
-import '../../core/security/notification_device_store.dart';
-import '../../core/notifications/notification_event_bus.dart';
 import '../../features/auth/application/use_cases/authenticate_biometric.dart';
 import '../../features/auth/application/use_cases/check_biometric_availability.dart';
 import '../../features/auth/application/use_cases/clear_auth_session.dart';
@@ -42,27 +42,40 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/repositories/google_oauth_provider.dart';
 import '../../features/auth/domain/repositories/pin_repository.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
-import '../../features/discovery/application/use_cases/get_candidates.dart';
+import '../../features/discovery/application/use_cases/check_location_access.dart';
+import '../../features/discovery/application/use_cases/cluster_nearby_candidates.dart';
 import '../../features/discovery/application/use_cases/get_candidate.dart';
+import '../../features/discovery/application/use_cases/get_candidates.dart';
 import '../../features/discovery/application/use_cases/get_my_profile.dart';
 import '../../features/discovery/application/use_cases/get_saved_candidates.dart';
+import '../../features/discovery/application/use_cases/open_location_settings.dart';
+import '../../features/discovery/application/use_cases/request_current_location.dart';
 import '../../features/discovery/application/use_cases/save_candidate.dart';
 import '../../features/discovery/application/use_cases/unsave_candidate.dart';
+import '../../features/discovery/application/use_cases/update_profile_location.dart';
 import '../../features/discovery/data/data_sources/discovery_data_source.dart';
+import '../../features/discovery/data/data_sources/location_data_source.dart';
 import '../../features/discovery/data/data_sources/profile_data_source.dart';
 import '../../features/discovery/data/repositories/discovery_repository_impl.dart';
+import '../../features/discovery/data/repositories/location_repository_impl.dart';
 import '../../features/discovery/data/repositories/profile_repository_impl.dart';
 import '../../features/discovery/domain/repositories/discovery_repository.dart';
+import '../../features/discovery/domain/repositories/location_repository.dart';
 import '../../features/discovery/domain/repositories/profile_repository.dart';
-import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
+import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
 import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
 import '../../features/match/application/use_cases/get_match_requests.dart';
 import '../../features/match/data/data_sources/match_request_data_source.dart';
 import '../../features/match/data/repositories/match_request_repository_impl.dart';
 import '../../features/match/domain/repositories/match_request_repository.dart';
-import '../../features/saved/presentation/bloc/saved_bloc.dart';
+import '../../features/notifications/application/use_cases/notification_use_cases.dart';
+import '../../features/notifications/data/data_sources/notification_data_source.dart';
+import '../../features/notifications/data/repositories/notification_repository_impl.dart';
+import '../../features/notifications/data/services/notification_lifecycle_service.dart';
+import '../../features/notifications/domain/repositories/notification_repository.dart';
+import '../../features/notifications/presentation/bloc/notification_bloc.dart';
 import '../../features/onboarding/application/services/onboarding_location_service.dart';
 import '../../features/onboarding/application/services/onboarding_media_service.dart';
 import '../../features/onboarding/data/data_sources/onboarding_data_source.dart';
@@ -80,12 +93,7 @@ import '../../features/questionnaire/data/data_sources/questionnaire_data_source
 import '../../features/questionnaire/data/repositories/questionnaire_repository_impl.dart';
 import '../../features/questionnaire/domain/repositories/questionnaire_repository.dart';
 import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart';
-import '../../features/notifications/application/use_cases/notification_use_cases.dart';
-import '../../features/notifications/data/data_sources/notification_data_source.dart';
-import '../../features/notifications/data/repositories/notification_repository_impl.dart';
-import '../../features/notifications/data/services/notification_lifecycle_service.dart';
-import '../../features/notifications/domain/repositories/notification_repository.dart';
-import '../../features/notifications/presentation/bloc/notification_bloc.dart';
+import '../../features/saved/presentation/bloc/saved_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -175,6 +183,10 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<DiscoveryRepository>(
       () => DiscoveryRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<LocationDataSource>(DeviceLocationDataSource.new)
+    ..registerLazySingleton<LocationRepository>(
+      () => LocationRepositoryImpl(serviceLocator()),
+    )
     ..registerLazySingleton<ProfileDataSource>(
       () => RemoteProfileDataSource(serviceLocator()),
     )
@@ -195,6 +207,21 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<GetCandidatesUseCase>(
       () => GetCandidatesUseCase(serviceLocator()),
+    )
+    ..registerFactory<CheckLocationAccessUseCase>(
+      () => CheckLocationAccessUseCase(serviceLocator()),
+    )
+    ..registerFactory<RequestCurrentLocationUseCase>(
+      () => RequestCurrentLocationUseCase(serviceLocator()),
+    )
+    ..registerFactory<OpenLocationSettingsUseCase>(
+      () => OpenLocationSettingsUseCase(serviceLocator()),
+    )
+    ..registerFactory<UpdateProfileLocationUseCase>(
+      () => UpdateProfileLocationUseCase(serviceLocator()),
+    )
+    ..registerFactory<ClusterNearbyCandidatesUseCase>(
+      ClusterNearbyCandidatesUseCase.new,
     )
     ..registerFactory<GetMyProfileUseCase>(
       () => GetMyProfileUseCase(serviceLocator()),
@@ -263,6 +290,11 @@ Future<void> configureDependencies() async {
       () => DiscoveryBloc(
         getCandidates: serviceLocator(),
         getMyProfile: serviceLocator(),
+        checkLocationAccess: serviceLocator(),
+        requestCurrentLocation: serviceLocator(),
+        openLocationSettings: serviceLocator(),
+        updateProfileLocation: serviceLocator(),
+        clusterNearbyCandidates: serviceLocator(),
       ),
     )
     ..registerFactory<CandidateDetailBloc>(

@@ -1214,6 +1214,82 @@ class AppLocalizationsRu extends AppLocalizations {
   String get questionnaireTraitBalanced => 'сбалансированный';
 
   @override
+  String get candidatesViewGrid => 'В виде сетки';
+
+  @override
+  String get candidatesViewMap => 'На карте';
+
+  @override
+  String get nearbyPermissionTitle => 'Кандидаты поблизости';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Ваше местоположение используется как примерная зона, а не как точная точка.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Открыть настройки';
+
+  @override
+  String get nearbyPermissionEnableService => 'Включить геолокацию';
+
+  @override
+  String get nearbyPermissionAllow => 'Разрешить доступ к геолокации';
+
+  @override
+  String get nearbyPermissionNotNow => 'Не сейчас';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      'Если выбрать «Не сейчас», Совпадения и Рекомендации продолжат работать как прежде.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Ваш точный адрес никому не показывается';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Другие видят вас в примерной зоне радиусом 2 км';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'Это можно отключить в Настройках в любое время';
+
+  @override
+  String get nearbyUnknownZone => 'Ближайшая зона';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return 'Кандидатов: $count';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance км';
+  }
+
+  @override
+  String get nearbyYou => 'Вы';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return 'Кандидатов рядом: $count';
+  }
+
+  @override
+  String get nearbyShowAll => 'Все';
+
+  @override
+  String get openStreetMapAttribution => '© участники OpenStreetMap';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return 'В радиусе $radius км';
+  }
+
+  @override
+  String get nearbyRecenter => 'Вернуться к моему местоположению';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

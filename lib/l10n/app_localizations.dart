@@ -2260,6 +2260,132 @@ abstract class AppLocalizations {
   /// **'balansli'**
   String get questionnaireTraitBalanced;
 
+  /// No description provided for @candidatesViewGrid.
+  ///
+  /// In uz, this message translates to:
+  /// **'Katak ko‘rinishi'**
+  String get candidatesViewGrid;
+
+  /// No description provided for @candidatesViewMap.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xarita ko‘rinishi'**
+  String get candidatesViewMap;
+
+  /// No description provided for @nearbyPermissionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaqin atrofdagi nomzodlar'**
+  String get nearbyPermissionTitle;
+
+  /// No description provided for @nearbyPermissionDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvingiz aniq nuqta sifatida emas, taxminiy zona sifatida ishlatiladi.'**
+  String get nearbyPermissionDescription;
+
+  /// No description provided for @nearbyPermissionOpenSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sozlamalarni ochish'**
+  String get nearbyPermissionOpenSettings;
+
+  /// No description provided for @nearbyPermissionEnableService.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvni yoqish'**
+  String get nearbyPermissionEnableService;
+
+  /// No description provided for @nearbyPermissionAllow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvga ruxsat berish'**
+  String get nearbyPermissionAllow;
+
+  /// No description provided for @nearbyPermissionNotNow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozir emas'**
+  String get nearbyPermissionNotNow;
+
+  /// No description provided for @nearbyPermissionFootnote.
+  ///
+  /// In uz, this message translates to:
+  /// **'«Hozir emas» ni tanlasangiz, Moslar va Tavsiyalar avvalgidek ishlaydi.'**
+  String get nearbyPermissionFootnote;
+
+  /// No description provided for @nearbyPermissionRuleHidden.
+  ///
+  /// In uz, this message translates to:
+  /// **'Aniq manzilingiz hech kimga ko‘rsatilmaydi'**
+  String get nearbyPermissionRuleHidden;
+
+  /// No description provided for @nearbyPermissionRuleZone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqalar sizni ~2 km li zona ichida ko‘radi'**
+  String get nearbyPermissionRuleZone;
+
+  /// No description provided for @nearbyPermissionRuleSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Istalgan vaqtda Sozlamalardan o‘chirasiz'**
+  String get nearbyPermissionRuleSettings;
+
+  /// No description provided for @nearbyUnknownZone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaqin zona'**
+  String get nearbyUnknownZone;
+
+  /// No description provided for @nearbyCandidateCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta nomzod'**
+  String nearbyCandidateCount(int count);
+
+  /// No description provided for @nearbyZoneDistance.
+  ///
+  /// In uz, this message translates to:
+  /// **'{zone} · ~{distance} km'**
+  String nearbyZoneDistance(String zone, String distance);
+
+  /// No description provided for @nearbyYou.
+  ///
+  /// In uz, this message translates to:
+  /// **'Siz'**
+  String get nearbyYou;
+
+  /// No description provided for @nearbyAroundCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'Atrofingizda {count} ta nomzod'**
+  String nearbyAroundCount(int count);
+
+  /// No description provided for @nearbyShowAll.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barchasi'**
+  String get nearbyShowAll;
+
+  /// No description provided for @openStreetMapAttribution.
+  ///
+  /// In uz, this message translates to:
+  /// **'© OpenStreetMap ishtirokchilari'**
+  String get openStreetMapAttribution;
+
+  /// No description provided for @nearbyWithinRadius.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km ichida'**
+  String nearbyWithinRadius(int radius);
+
+  /// No description provided for @nearbyRecenter.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvimga qaytish'**
+  String get nearbyRecenter;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:

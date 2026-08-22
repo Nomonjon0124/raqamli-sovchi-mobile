@@ -423,5 +423,41 @@
   "questionnaireShowCandidates": "Посмотреть кандидатов",
   "questionnaireTraitTraditional": "традиционный",
   "questionnaireTraitBalanced": "сбалансированный",
+  "candidatesViewGrid": "В виде сетки",
+  "candidatesViewMap": "На карте",
+  "nearbyPermissionTitle": "Кандидаты поблизости",
+  "nearbyPermissionDescription": "Ваше местоположение используется как примерная зона, а не как точная точка.",
+  "nearbyPermissionOpenSettings": "Открыть настройки",
+  "nearbyPermissionEnableService": "Включить геолокацию",
+  "nearbyPermissionAllow": "Разрешить доступ к геолокации",
+  "nearbyPermissionNotNow": "Не сейчас",
+  "nearbyPermissionFootnote": "Если выбрать «Не сейчас», Совпадения и Рекомендации продолжат работать как прежде.",
+  "nearbyPermissionRuleHidden": "Ваш точный адрес никому не показывается",
+  "nearbyPermissionRuleZone": "Другие видят вас в примерной зоне радиусом 2 км",
+  "nearbyPermissionRuleSettings": "Это можно отключить в Настройках в любое время",
+  "nearbyUnknownZone": "Ближайшая зона",
+  "nearbyCandidateCount": "Кандидатов: {count}",
+  "@nearbyCandidateCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyZoneDistance": "{zone} · ~{distance} км",
+  "@nearbyZoneDistance": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "distance": {"type": "String"}
+    }
+  },
+  "nearbyYou": "Вы",
+  "nearbyAroundCount": "Кандидатов рядом: {count}",
+  "@nearbyAroundCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyShowAll": "Все",
+  "openStreetMapAttribution": "© участники OpenStreetMap",
+  "nearbyWithinRadius": "В радиусе {radius} км",
+  "@nearbyWithinRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyRecenter": "Вернуться к моему местоположению",
   "failureMessage": "{type, select, networkTimeout{Время подключения истекло.} noInternet{Нет подключения к интернету.} unauthorized{Сессия истекла.} cancelled{} forbidden{Доступ запрещен.} notFound{Данные не найдены.} validation{Проверьте введенные данные.} configuration{Вход через Google не настроен для этой сборки.} unsupported{Этот способ входа пока недоступен.} server{Произошла ошибка сервера.} unknown{Что-то пошло не так.} other{Что-то пошло не так.}}"
 }
