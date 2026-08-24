@@ -217,6 +217,13 @@ abstract final class AppTypography {
     fontWeight: FontWeight.w600,
     color: AppColors.text,
   );
+  static const nearbyLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
   static const candidateDetailCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,

@@ -18,6 +18,8 @@ enum DiscoveryStatus {
 
 enum DiscoveryViewMode { grid, map }
 
+enum NearbyVisibilityAudience { all, highCompatibility, representedOnly }
+
 final class DiscoveryState extends Equatable {
   const DiscoveryState({
     this.status = DiscoveryStatus.initial,
@@ -31,6 +33,10 @@ final class DiscoveryState extends Equatable {
     this.nearbyClusters = const [],
     this.nearbyMapItems = const [],
     this.isLocationOperationInProgress = false,
+    this.nearbyRadiusKm = 5,
+    this.isNearbyProfileVisible = true,
+    this.nearbyVisibilityAudience = NearbyVisibilityAudience.highCompatibility,
+    this.areNearbyNotificationsEnabled = true,
   });
 
   final DiscoveryStatus status;
@@ -44,6 +50,10 @@ final class DiscoveryState extends Equatable {
   final List<NearbyCandidateCluster> nearbyClusters;
   final List<NearbyCandidateMapItem> nearbyMapItems;
   final bool isLocationOperationInProgress;
+  final double nearbyRadiusKm;
+  final bool isNearbyProfileVisible;
+  final NearbyVisibilityAudience nearbyVisibilityAudience;
+  final bool areNearbyNotificationsEnabled;
 
   DiscoveryState copyWith({
     DiscoveryStatus? status,
@@ -58,6 +68,10 @@ final class DiscoveryState extends Equatable {
     List<NearbyCandidateCluster>? nearbyClusters,
     List<NearbyCandidateMapItem>? nearbyMapItems,
     bool? isLocationOperationInProgress,
+    double? nearbyRadiusKm,
+    bool? isNearbyProfileVisible,
+    NearbyVisibilityAudience? nearbyVisibilityAudience,
+    bool? areNearbyNotificationsEnabled,
   }) {
     return DiscoveryState(
       status: status ?? this.status,
@@ -72,6 +86,13 @@ final class DiscoveryState extends Equatable {
       nearbyMapItems: nearbyMapItems ?? this.nearbyMapItems,
       isLocationOperationInProgress:
           isLocationOperationInProgress ?? this.isLocationOperationInProgress,
+      nearbyRadiusKm: nearbyRadiusKm ?? this.nearbyRadiusKm,
+      isNearbyProfileVisible:
+          isNearbyProfileVisible ?? this.isNearbyProfileVisible,
+      nearbyVisibilityAudience:
+          nearbyVisibilityAudience ?? this.nearbyVisibilityAudience,
+      areNearbyNotificationsEnabled:
+          areNearbyNotificationsEnabled ?? this.areNearbyNotificationsEnabled,
     );
   }
 
@@ -88,5 +109,9 @@ final class DiscoveryState extends Equatable {
     nearbyClusters,
     nearbyMapItems,
     isLocationOperationInProgress,
+    nearbyRadiusKm,
+    isNearbyProfileVisible,
+    nearbyVisibilityAudience,
+    areNearbyNotificationsEnabled,
   ];
 }

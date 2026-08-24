@@ -459,5 +459,35 @@
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Вернуться к моему местоположению",
+  "nearbySettingsTitle": "Радиус и видимость",
+  "nearbySearchRadiusLabel": "Радиус поиска",
+  "nearbyRadiusOption": "{radius} км",
+  "@nearbyRadiusOption": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEntireRegion": "Вся область",
+  "nearbyEntireRegionUnavailable": "Поиск по всей области пока недоступен",
+  "nearbyRadiusHint": "Чем больше радиус, тем ниже может быть процент совместимости.",
+  "nearbyVisibilityTitle": "Показывать меня в списке рядом",
+  "nearbyVisibilitySubtitle": "Если отключить, вы тоже никого не увидите",
+  "nearbyAudienceTitle": "Кто может видеть меня рядом",
+  "nearbyAudienceAll": "Все кандидаты",
+  "nearbyAudienceHighMatch": "Только совместимость выше 70%",
+  "nearbyAudienceRecommended": "рекомендуется",
+  "nearbyAudienceRepresented": "Только кандидаты с представителем",
+  "nearbyPrivacyZoneNote": "Центр зоны случайно смещается раз в день, поэтому вычислить ваш дом невозможно.",
+  "nearbySettingsSave": "Сохранить",
+  "nearbyEmptyTitle": "В радиусе {radius} км пока нет кандидатов",
+  "@nearbyEmptyTitle": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEmptyDescription": "Увеличьте радиус или немного смягчите критерии.",
+  "nearbyExpandRadius": "Увеличить радиус до {radius} км",
+  "@nearbyExpandRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyChangeCriteria": "Изменить критерии",
+  "nearbyNotifyTitle": "Сообщать о появлении нового кандидата",
+  "nearbyNotifySubtitle": "Не чаще одного раза в день",
   "failureMessage": "{type, select, networkTimeout{Время подключения истекло.} noInternet{Нет подключения к интернету.} unauthorized{Сессия истекла.} cancelled{} forbidden{Доступ запрещен.} notFound{Данные не найдены.} validation{Проверьте введенные данные.} configuration{Вход через Google не настроен для этой сборки.} unsupported{Этот способ входа пока недоступен.} server{Произошла ошибка сервера.} unknown{Что-то пошло не так.} other{Что-то пошло не так.}}"
 }

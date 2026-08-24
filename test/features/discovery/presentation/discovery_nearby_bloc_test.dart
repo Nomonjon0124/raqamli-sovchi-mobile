@@ -95,6 +95,68 @@ void main() {
       expect(mapState.nearbyMapItems.single.candidate.id, 'candidate-1');
     },
   );
+
+  test(
+    'changing radius reuses location and only refetches candidates',
+    () async {
+      final locationRepository = _LocationRepository(
+        accessStatus: LocationAccessStatus.granted,
+      );
+      final discoveryRepository = _DiscoveryRepository(
+        candidates: [createCandidate(id: 'candidate-1')],
+      );
+      final profileRepository = _ProfileRepository();
+      final bloc = _buildBloc(
+        locationRepository: locationRepository,
+        discoveryRepository: discoveryRepository,
+        profileRepository: profileRepository,
+      );
+      addTearDown(bloc.close);
+
+      final initialReady = bloc.stream.firstWhere(
+        (state) => state.status == DiscoveryStatus.success,
+      );
+      bloc.add(
+        const DiscoveryFetchCandidatesRequested(filter: DiscoveryFilter.nearby),
+      );
+      await initialReady;
+
+      final radiusReloaded = bloc.stream
+          .where((state) => state.nearbyRadiusKm == 25)
+          .skipWhile((state) => state.status != DiscoveryStatus.loading)
+          .firstWhere((state) => state.status == DiscoveryStatus.success);
+      bloc.add(
+        const DiscoveryNearbySettingsSaved(
+          radiusKm: 25,
+          isProfileVisible: true,
+          audience: NearbyVisibilityAudience.highCompatibility,
+        ),
+      );
+      final result = await radiusReloaded;
+
+      expect(result.nearbyRadiusKm, 25);
+      expect(profileRepository.updatedLocations, hasLength(1));
+      expect(discoveryRepository.requests, hasLength(2));
+      expect(discoveryRepository.requests.last.radiusKm, 25);
+
+      final visibilityUpdated = bloc.stream.firstWhere(
+        (state) =>
+            !state.isNearbyProfileVisible &&
+            state.nearbyVisibilityAudience == NearbyVisibilityAudience.all,
+      );
+      bloc.add(
+        const DiscoveryNearbySettingsSaved(
+          radiusKm: 25,
+          isProfileVisible: false,
+          audience: NearbyVisibilityAudience.all,
+        ),
+      );
+      await visibilityUpdated;
+
+      expect(profileRepository.updatedLocations, hasLength(1));
+      expect(discoveryRepository.requests, hasLength(2));
+    },
+  );
 }
 
 DiscoveryBloc _buildBloc({

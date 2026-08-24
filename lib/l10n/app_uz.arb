@@ -471,6 +471,36 @@
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Joylashuvimga qaytish",
+  "nearbySettingsTitle": "Radius va ko‘rinish",
+  "nearbySearchRadiusLabel": "Qidiruv radiusi",
+  "nearbyRadiusOption": "{radius} km",
+  "@nearbyRadiusOption": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEntireRegion": "Butun viloyat",
+  "nearbyEntireRegionUnavailable": "Butun viloyat bo‘yicha qidiruv hozircha mavjud emas",
+  "nearbyRadiusHint": "Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.",
+  "nearbyVisibilityTitle": "Meni Yaqinlar ro‘yxatida ko‘rsatish",
+  "nearbyVisibilitySubtitle": "O‘chirsangiz, siz ham hech kimni ko‘rmaysiz",
+  "nearbyAudienceTitle": "Kim meni Yaqinlarda ko‘ra oladi",
+  "nearbyAudienceAll": "Hamma nomzodlar",
+  "nearbyAudienceHighMatch": "Faqat moslik 70% dan yuqori",
+  "nearbyAudienceRecommended": "tavsiya etiladi",
+  "nearbyAudienceRepresented": "Faqat vakili bor nomzodlar",
+  "nearbyPrivacyZoneNote": "Zona markazi kuniga bir marta tasodifiy siljiydi — shuning uchun sizning uyingizni hisoblab bo‘lmaydi.",
+  "nearbySettingsSave": "Saqlash",
+  "nearbyEmptyTitle": "{radius} km ichida hozircha nomzod yo‘q",
+  "@nearbyEmptyTitle": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEmptyDescription": "Radiusni kengaytiring yoki mezonlarni biroz yumshating.",
+  "nearbyExpandRadius": "Radiusni {radius} km ga kengaytirish",
+  "@nearbyExpandRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyChangeCriteria": "Mezonlarni o‘zgartirish",
+  "nearbyNotifyTitle": "Yangi nomzod paydo bo‘lsa xabar bering",
+  "nearbyNotifySubtitle": "Kuniga bir marta, ko‘pi bilan",
   "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",

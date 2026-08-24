@@ -1290,6 +1290,80 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbyRecenter => 'Вернуться к моему местоположению';
 
   @override
+  String get nearbySettingsTitle => 'Радиус и видимость';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Радиус поиска';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius км';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Вся область';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Поиск по всей области пока недоступен';
+
+  @override
+  String get nearbyRadiusHint =>
+      'Чем больше радиус, тем ниже может быть процент совместимости.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Показывать меня в списке рядом';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'Если отключить, вы тоже никого не увидите';
+
+  @override
+  String get nearbyAudienceTitle => 'Кто может видеть меня рядом';
+
+  @override
+  String get nearbyAudienceAll => 'Все кандидаты';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Только совместимость выше 70%';
+
+  @override
+  String get nearbyAudienceRecommended => 'рекомендуется';
+
+  @override
+  String get nearbyAudienceRepresented => 'Только кандидаты с представителем';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'Центр зоны случайно смещается раз в день, поэтому вычислить ваш дом невозможно.';
+
+  @override
+  String get nearbySettingsSave => 'Сохранить';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return 'В радиусе $radius км пока нет кандидатов';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Увеличьте радиус или немного смягчите критерии.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Увеличить радиус до $radius км';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Изменить критерии';
+
+  @override
+  String get nearbyNotifyTitle => 'Сообщать о появлении нового кандидата';
+
+  @override
+  String get nearbyNotifySubtitle => 'Не чаще одного раза в день';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

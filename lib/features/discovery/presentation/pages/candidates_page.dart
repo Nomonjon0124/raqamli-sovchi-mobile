@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
+import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../core/ui/widgets/app_candidate_card.dart';
@@ -23,8 +24,10 @@ import '../bloc/discovery_bloc.dart';
 import '../bloc/discovery_event.dart';
 import '../bloc/discovery_state.dart';
 import '../widgets/candidates_filter_bar.dart';
+import '../widgets/nearby_candidates_empty_state.dart';
 import '../widgets/nearby_candidates_map.dart';
 import '../widgets/nearby_location_permission_state.dart';
+import '../widgets/nearby_radius_settings_sheet.dart';
 import '../widgets/survey_prompt_card.dart';
 
 final class CandidatesPage extends StatelessWidget {
@@ -149,7 +152,7 @@ final class _CandidatesPageView extends StatelessWidget {
                     ),
                   ),
                 ),
-                DiscoveryStatus.empty || DiscoveryStatus.success
+                DiscoveryStatus.success
                     when state.selectedFilter == DiscoveryFilter.nearby &&
                         state.viewMode == DiscoveryViewMode.map &&
                         state.currentLocation != null =>
@@ -158,10 +161,32 @@ final class _CandidatesPageView extends StatelessWidget {
                       currentLocation: state.currentLocation!,
                       clusters: state.nearbyClusters,
                       items: state.nearbyMapItems,
-                      radiusKm: DiscoveryBloc.nearbyRadiusKm,
+                      radiusKm: state.nearbyRadiusKm,
+                      onRadiusPressed: () =>
+                          _showNearbySettings(context, state),
                       onCandidateTap: (candidateId) => context.push(
                         RouteNames.candidateDetailFor(candidateId),
                       ),
+                    ),
+                  ),
+                DiscoveryStatus.empty
+                    when state.selectedFilter == DiscoveryFilter.nearby =>
+                  SliverFillRemaining(
+                    child: NearbyCandidatesEmptyState(
+                      radiusKm: state.nearbyRadiusKm,
+                      notificationsEnabled: state.areNearbyNotificationsEnabled,
+                      onExpandRadius: () => context.read<DiscoveryBloc>().add(
+                        DiscoveryNearbySettingsSaved(
+                          radiusKm: 25,
+                          isProfileVisible: state.isNearbyProfileVisible,
+                          audience: state.nearbyVisibilityAudience,
+                        ),
+                      ),
+                      onChangeCriteria: () =>
+                          _showNearbySettings(context, state),
+                      onNotificationsChanged: (value) => context
+                          .read<DiscoveryBloc>()
+                          .add(DiscoveryNearbyNotificationsChanged(value)),
                     ),
                   ),
                 DiscoveryStatus.empty => SliverFillRemaining(
@@ -182,6 +207,38 @@ final class _CandidatesPageView extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  Future<void> _showNearbySettings(
+    BuildContext context,
+    DiscoveryState state,
+  ) async {
+    final result = await showModalBottomSheet<NearbyRadiusSettingsResult>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: AppColors.text.withValues(alpha: 0.4),
+      useSafeArea: true,
+      builder: (sheetContext) => ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(sheetContext).height * 0.82,
+        ),
+        child: NearbyRadiusSettingsSheet(
+          initialRadiusKm: state.nearbyRadiusKm,
+          initialProfileVisibility: state.isNearbyProfileVisible,
+          initialAudience: state.nearbyVisibilityAudience,
+        ),
+      ),
+    );
+    if (!context.mounted || result == null) return;
+
+    context.read<DiscoveryBloc>().add(
+      DiscoveryNearbySettingsSaved(
+        radiusKm: result.radiusKm,
+        isProfileVisible: result.isProfileVisible,
+        audience: result.audience,
       ),
     );
   }

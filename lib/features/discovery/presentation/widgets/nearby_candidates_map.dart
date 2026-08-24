@@ -24,6 +24,7 @@ final class NearbyCandidatesMap extends StatefulWidget {
     required this.clusters,
     required this.items,
     required this.radiusKm,
+    required this.onRadiusPressed,
     required this.onCandidateTap,
     super.key,
   });
@@ -32,6 +33,7 @@ final class NearbyCandidatesMap extends StatefulWidget {
   final List<NearbyCandidateCluster> clusters;
   final List<NearbyCandidateMapItem> items;
   final double radiusKm;
+  final VoidCallback onRadiusPressed;
   final ValueChanged<String> onCandidateTap;
 
   @override
@@ -120,6 +122,7 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
                 ),
               ),
               label: l10n.nearbyWithinRadius(widget.radiusKm.round()),
+              onPressed: widget.onRadiusPressed,
             ),
           ),
           Positioned(
@@ -220,42 +223,44 @@ final class _OpenStreetMapAttribution extends StatelessWidget {
 }
 
 final class _MapChip extends StatelessWidget {
-  const _MapChip({required this.icon, required this.label});
+  const _MapChip({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
 
   final Widget icon;
   final String label;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        borderRadius: BorderRadius.circular(AppRadius.full),
-        boxShadow: const [
-          BoxShadow(
-            color: AppColors.chipShadow,
-            offset: Offset(0, 2),
-            blurRadius: 8,
+    return Material(
+      color: AppColors.surfaceLight,
+      borderRadius: BorderRadius.circular(AppRadius.full),
+      elevation: 3,
+      shadowColor: AppColors.chipShadow,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.md,
+            AppSpacing.dense,
+            AppSpacing.input,
+            AppSpacing.dense,
           ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.md,
-          AppSpacing.dense,
-          AppSpacing.input,
-          AppSpacing.dense,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            icon,
-            const SizedBox(width: AppSpacing.compact),
-            Text(
-              label,
-              style: AppTypography.caption.copyWith(color: AppColors.text),
-            ),
-          ],
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              icon,
+              const SizedBox(width: AppSpacing.compact),
+              Text(
+                label,
+                style: AppTypography.caption.copyWith(color: AppColors.text),
+              ),
+            ],
+          ),
         ),
       ),
     );

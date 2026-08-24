@@ -37,10 +37,11 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     on<DiscoveryViewModeChanged>(_onViewModeChanged);
     on<DiscoveryNearbyLocationActionRequested>(_onLocationActionRequested);
     on<DiscoveryNearbyPermissionDismissed>(_onPermissionDismissed);
+    on<DiscoveryNearbySettingsSaved>(_onNearbySettingsSaved);
+    on<DiscoveryNearbyNotificationsChanged>(_onNearbyNotificationsChanged);
     on<DiscoveryProfileLoaded>(_onProfileLoaded);
   }
 
-  static const nearbyRadiusKm = 5.0;
   static const _mapPageSize = 100;
 
   final GetCandidatesUseCase _getCandidates;
@@ -259,6 +260,47 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     );
   }
 
+  Future<void> _onNearbySettingsSaved(
+    DiscoveryNearbySettingsSaved event,
+    Emitter<DiscoveryState> emit,
+  ) async {
+    final shouldReloadCandidates = event.radiusKm != state.nearbyRadiusKm;
+    emit(
+      state.copyWith(
+        nearbyRadiusKm: event.radiusKm,
+        isNearbyProfileVisible: event.isProfileVisible,
+        nearbyVisibilityAudience: event.audience,
+      ),
+    );
+    if (!shouldReloadCandidates) return;
+
+    final coordinates = state.currentLocation;
+    if (coordinates == null) {
+      await _prepareNearby(
+        emit,
+        viewMode: state.viewMode,
+        showPermissionCardWhileLocating: false,
+      );
+      return;
+    }
+
+    final requestId = ++_requestSerial;
+    emit(state.copyWith(status: DiscoveryStatus.loading, clearError: true));
+    await _loadNearbyCandidates(
+      emit,
+      requestId: requestId,
+      coordinates: coordinates,
+      viewMode: state.viewMode,
+    );
+  }
+
+  void _onNearbyNotificationsChanged(
+    DiscoveryNearbyNotificationsChanged event,
+    Emitter<DiscoveryState> emit,
+  ) {
+    emit(state.copyWith(areNearbyNotificationsEnabled: event.isEnabled));
+  }
+
   Future<void> _prepareNearby(
     Emitter<DiscoveryState> emit, {
     required DiscoveryViewMode viewMode,
@@ -324,10 +366,24 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       return;
     }
 
+    await _loadNearbyCandidates(
+      emit,
+      requestId: requestId,
+      coordinates: coordinates!,
+      viewMode: viewMode,
+    );
+  }
+
+  Future<void> _loadNearbyCandidates(
+    Emitter<DiscoveryState> emit, {
+    required int requestId,
+    required GeoCoordinates coordinates,
+    required DiscoveryViewMode viewMode,
+  }) async {
     final candidatesResult = await _getCandidates(
       filter: DiscoveryFilter.nearby,
       pageSize: viewMode == DiscoveryViewMode.map ? _mapPageSize : 10,
-      radiusKm: nearbyRadiusKm,
+      radiusKm: state.nearbyRadiusKm,
     );
     if (requestId != _requestSerial) return;
 
@@ -344,7 +400,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       (candidates) {
         final clustering = _clusterNearbyCandidates(
           candidates: candidates,
-          viewerLocation: coordinates!,
+          viewerLocation: coordinates,
         );
         emit(
           state.copyWith(
@@ -353,7 +409,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
                 : DiscoveryStatus.success,
             candidates: candidates,
             selectedFilter: DiscoveryFilter.nearby,
-            viewMode: viewMode,
+            viewMode: candidates.isEmpty ? DiscoveryViewMode.grid : viewMode,
             currentLocation: coordinates,
             nearbyClusters: clustering.clusters,
             nearbyMapItems: clustering.items,

@@ -1288,6 +1288,80 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbyRecenter => 'Joylashuvimga qaytish';
 
   @override
+  String get nearbySettingsTitle => 'Radius va ko‘rinish';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Qidiruv radiusi';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius km';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Butun viloyat';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Butun viloyat bo‘yicha qidiruv hozircha mavjud emas';
+
+  @override
+  String get nearbyRadiusHint =>
+      'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Meni Yaqinlar ro‘yxatida ko‘rsatish';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz';
+
+  @override
+  String get nearbyAudienceTitle => 'Kim meni Yaqinlarda ko‘ra oladi';
+
+  @override
+  String get nearbyAudienceAll => 'Hamma nomzodlar';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Faqat moslik 70% dan yuqori';
+
+  @override
+  String get nearbyAudienceRecommended => 'tavsiya etiladi';
+
+  @override
+  String get nearbyAudienceRepresented => 'Faqat vakili bor nomzodlar';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'Zona markazi kuniga bir marta tasodifiy siljiydi — shuning uchun sizning uyingizni hisoblab bo‘lmaydi.';
+
+  @override
+  String get nearbySettingsSave => 'Saqlash';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return '$radius km ichida hozircha nomzod yo‘q';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Radiusni kengaytiring yoki mezonlarni biroz yumshating.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Radiusni $radius km ga kengaytirish';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Mezonlarni o‘zgartirish';
+
+  @override
+  String get nearbyNotifyTitle => 'Yangi nomzod paydo bo‘lsa xabar bering';
+
+  @override
+  String get nearbyNotifySubtitle => 'Kuniga bir marta, ko‘pi bilan';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

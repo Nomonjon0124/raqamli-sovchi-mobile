@@ -459,5 +459,35 @@
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Return to my location",
+  "nearbySettingsTitle": "Radius and visibility",
+  "nearbySearchRadiusLabel": "Search radius",
+  "nearbyRadiusOption": "{radius} km",
+  "@nearbyRadiusOption": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEntireRegion": "Entire region",
+  "nearbyEntireRegionUnavailable": "Region-wide search is not available yet",
+  "nearbyRadiusHint": "The larger the radius, the lower the compatibility percentage may be.",
+  "nearbyVisibilityTitle": "Show me in the Nearby list",
+  "nearbyVisibilitySubtitle": "If you turn this off, you will not see anyone either",
+  "nearbyAudienceTitle": "Who can see me in Nearby",
+  "nearbyAudienceAll": "All candidates",
+  "nearbyAudienceHighMatch": "Only compatibility above 70%",
+  "nearbyAudienceRecommended": "recommended",
+  "nearbyAudienceRepresented": "Only candidates with a representative",
+  "nearbyPrivacyZoneNote": "The zone center shifts randomly once a day, so your home cannot be calculated.",
+  "nearbySettingsSave": "Save",
+  "nearbyEmptyTitle": "No candidates within {radius} km yet",
+  "@nearbyEmptyTitle": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEmptyDescription": "Increase the radius or relax the criteria a little.",
+  "nearbyExpandRadius": "Increase radius to {radius} km",
+  "@nearbyExpandRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyChangeCriteria": "Change criteria",
+  "nearbyNotifyTitle": "Notify me when a new candidate appears",
+  "nearbyNotifySubtitle": "At most once a day",
   "failureMessage": "{type, select, networkTimeout{Connection timed out.} noInternet{No internet connection.} unauthorized{Session expired.} cancelled{} forbidden{Access denied.} notFound{Data was not found.} validation{Please check your input.} configuration{Google sign-in is not configured for this build.} unsupported{This sign-in method is not available yet.} server{A server error occurred.} unknown{Something went wrong.} other{Something went wrong.}}"
 }

@@ -2386,6 +2386,132 @@ abstract class AppLocalizations {
   /// **'Joylashuvimga qaytish'**
   String get nearbyRecenter;
 
+  /// No description provided for @nearbySettingsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radius va ko‘rinish'**
+  String get nearbySettingsTitle;
+
+  /// No description provided for @nearbySearchRadiusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qidiruv radiusi'**
+  String get nearbySearchRadiusLabel;
+
+  /// No description provided for @nearbyRadiusOption.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km'**
+  String nearbyRadiusOption(int radius);
+
+  /// No description provided for @nearbyEntireRegion.
+  ///
+  /// In uz, this message translates to:
+  /// **'Butun viloyat'**
+  String get nearbyEntireRegion;
+
+  /// No description provided for @nearbyEntireRegionUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Butun viloyat bo‘yicha qidiruv hozircha mavjud emas'**
+  String get nearbyEntireRegionUnavailable;
+
+  /// No description provided for @nearbyRadiusHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.'**
+  String get nearbyRadiusHint;
+
+  /// No description provided for @nearbyVisibilityTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Meni Yaqinlar ro‘yxatida ko‘rsatish'**
+  String get nearbyVisibilityTitle;
+
+  /// No description provided for @nearbyVisibilitySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz'**
+  String get nearbyVisibilitySubtitle;
+
+  /// No description provided for @nearbyAudienceTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kim meni Yaqinlarda ko‘ra oladi'**
+  String get nearbyAudienceTitle;
+
+  /// No description provided for @nearbyAudienceAll.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hamma nomzodlar'**
+  String get nearbyAudienceAll;
+
+  /// No description provided for @nearbyAudienceHighMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat moslik 70% dan yuqori'**
+  String get nearbyAudienceHighMatch;
+
+  /// No description provided for @nearbyAudienceRecommended.
+  ///
+  /// In uz, this message translates to:
+  /// **'tavsiya etiladi'**
+  String get nearbyAudienceRecommended;
+
+  /// No description provided for @nearbyAudienceRepresented.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat vakili bor nomzodlar'**
+  String get nearbyAudienceRepresented;
+
+  /// No description provided for @nearbyPrivacyZoneNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Zona markazi kuniga bir marta tasodifiy siljiydi — shuning uchun sizning uyingizni hisoblab bo‘lmaydi.'**
+  String get nearbyPrivacyZoneNote;
+
+  /// No description provided for @nearbySettingsSave.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlash'**
+  String get nearbySettingsSave;
+
+  /// No description provided for @nearbyEmptyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km ichida hozircha nomzod yo‘q'**
+  String nearbyEmptyTitle(int radius);
+
+  /// No description provided for @nearbyEmptyDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radiusni kengaytiring yoki mezonlarni biroz yumshating.'**
+  String get nearbyEmptyDescription;
+
+  /// No description provided for @nearbyExpandRadius.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radiusni {radius} km ga kengaytirish'**
+  String nearbyExpandRadius(int radius);
+
+  /// No description provided for @nearbyChangeCriteria.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mezonlarni o‘zgartirish'**
+  String get nearbyChangeCriteria;
+
+  /// No description provided for @nearbyNotifyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi nomzod paydo bo‘lsa xabar bering'**
+  String get nearbyNotifyTitle;
+
+  /// No description provided for @nearbyNotifySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kuniga bir marta, ko‘pi bilan'**
+  String get nearbyNotifySubtitle;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:

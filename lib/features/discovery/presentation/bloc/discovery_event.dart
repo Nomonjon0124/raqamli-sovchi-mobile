@@ -43,6 +43,30 @@ final class DiscoveryNearbyPermissionDismissed extends DiscoveryEvent {
   const DiscoveryNearbyPermissionDismissed();
 }
 
+final class DiscoveryNearbySettingsSaved extends DiscoveryEvent {
+  const DiscoveryNearbySettingsSaved({
+    required this.radiusKm,
+    required this.isProfileVisible,
+    required this.audience,
+  });
+
+  final double radiusKm;
+  final bool isProfileVisible;
+  final NearbyVisibilityAudience audience;
+
+  @override
+  List<Object?> get props => [radiusKm, isProfileVisible, audience];
+}
+
+final class DiscoveryNearbyNotificationsChanged extends DiscoveryEvent {
+  const DiscoveryNearbyNotificationsChanged(this.isEnabled);
+
+  final bool isEnabled;
+
+  @override
+  List<Object?> get props => [isEnabled];
+}
+
 final class DiscoveryProfileLoaded extends DiscoveryEvent {
   const DiscoveryProfileLoaded(this.profile);
 

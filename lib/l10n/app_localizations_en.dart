@@ -1290,6 +1290,81 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbyRecenter => 'Return to my location';
 
   @override
+  String get nearbySettingsTitle => 'Radius and visibility';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Search radius';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius km';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Entire region';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Region-wide search is not available yet';
+
+  @override
+  String get nearbyRadiusHint =>
+      'The larger the radius, the lower the compatibility percentage may be.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Show me in the Nearby list';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'If you turn this off, you will not see anyone either';
+
+  @override
+  String get nearbyAudienceTitle => 'Who can see me in Nearby';
+
+  @override
+  String get nearbyAudienceAll => 'All candidates';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Only compatibility above 70%';
+
+  @override
+  String get nearbyAudienceRecommended => 'recommended';
+
+  @override
+  String get nearbyAudienceRepresented =>
+      'Only candidates with a representative';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'The zone center shifts randomly once a day, so your home cannot be calculated.';
+
+  @override
+  String get nearbySettingsSave => 'Save';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return 'No candidates within $radius km yet';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Increase the radius or relax the criteria a little.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Increase radius to $radius km';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Change criteria';
+
+  @override
+  String get nearbyNotifyTitle => 'Notify me when a new candidate appears';
+
+  @override
+  String get nearbyNotifySubtitle => 'At most once a day';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',
