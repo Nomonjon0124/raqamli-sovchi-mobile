@@ -1516,6 +1516,18 @@ abstract class AppLocalizations {
   /// **'Bildirishnomalar'**
   String get notificationsActionLabel;
 
+  /// No description provided for @notificationsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha bildirishnomalar yo‘q'**
+  String get notificationsEmpty;
+
+  /// No description provided for @notificationsMarkAllRead.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barchasini o‘qilgan deb belgilash'**
+  String get notificationsMarkAllRead;
+
   /// No description provided for @candidatesFilterMatches.
   ///
   /// In uz, this message translates to:
@@ -1665,6 +1677,120 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Profil rasmi yo‘q'**
   String get candidateDetailNoPhoto;
+
+  /// No description provided for @candidateDetailLastActivity.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oxirgi faollik: yaqinda'**
+  String get candidateDetailLastActivity;
+
+  /// No description provided for @candidateDetailCompatibilityUnavailableTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik hisoblanmagan'**
+  String get candidateDetailCompatibilityUnavailableTitle;
+
+  /// No description provided for @candidateDetailCompatibilityUnavailableDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod 30 savollik so‘rovnomani hali to‘ldirmagan — shu sababli moslik foizi ko‘rsatilmaydi. Quyidagi ma’lumotlar nomzod anketasidan olingan.'**
+  String get candidateDetailCompatibilityUnavailableDescription;
+
+  /// No description provided for @candidateDetailBasicInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy ma’lumotlar'**
+  String get candidateDetailBasicInformation;
+
+  /// No description provided for @candidateDetailBirthYear.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tug‘ilgan yili'**
+  String get candidateDetailBirthYear;
+
+  /// No description provided for @candidateDetailBirthYearWithAge.
+  ///
+  /// In uz, this message translates to:
+  /// **'{birthYear} · {age} yosh'**
+  String candidateDetailBirthYearWithAge(int birthYear, int age);
+
+  /// No description provided for @candidateDetailCity.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shahar'**
+  String get candidateDetailCity;
+
+  /// No description provided for @candidateDetailMaritalStatus.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy holati'**
+  String get candidateDetailMaritalStatus;
+
+  /// No description provided for @candidateDetailChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Farzandlari'**
+  String get candidateDetailChildren;
+
+  /// No description provided for @candidateDetailNoChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yo‘q'**
+  String get candidateDetailNoChildren;
+
+  /// No description provided for @candidateDetailHasChildren.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bor'**
+  String get candidateDetailHasChildren;
+
+  /// No description provided for @candidateDetailChildrenCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta'**
+  String candidateDetailChildrenCount(int count);
+
+  /// No description provided for @candidateDetailEducationAndWork.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ta’lim va ish'**
+  String get candidateDetailEducationAndWork;
+
+  /// No description provided for @candidateDetailEducation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ma’lumoti'**
+  String get candidateDetailEducation;
+
+  /// No description provided for @candidateDetailAdditionalInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qo‘shimcha ma’lumotlar'**
+  String get candidateDetailAdditionalInformation;
+
+  /// No description provided for @candidateDetailHealthStatus.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sog‘lig‘i'**
+  String get candidateDetailHealthStatus;
+
+  /// No description provided for @candidateDetailIncompleteProfileTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Anketa to‘liq emas'**
+  String get candidateDetailIncompleteProfileTitle;
+
+  /// No description provided for @candidateDetailIncompleteProfileDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod ayrim ma’lumotlarni hali to‘ldirmagan. Sovchi taklifi yuborilganda unga anketani to‘ldirish eslatmasi boradi.'**
+  String get candidateDetailIncompleteProfileDescription;
+
+  /// No description provided for @candidateDetailAbout.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod haqida'**
+  String get candidateDetailAbout;
 
   /// No description provided for @candidateRequestPending.
   ///
@@ -2133,6 +2259,258 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'balansli'**
   String get questionnaireTraitBalanced;
+
+  /// No description provided for @candidatesViewGrid.
+  ///
+  /// In uz, this message translates to:
+  /// **'Katak ko‘rinishi'**
+  String get candidatesViewGrid;
+
+  /// No description provided for @candidatesViewMap.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xarita ko‘rinishi'**
+  String get candidatesViewMap;
+
+  /// No description provided for @nearbyPermissionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaqin atrofdagi nomzodlar'**
+  String get nearbyPermissionTitle;
+
+  /// No description provided for @nearbyPermissionDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvingiz aniq nuqta sifatida emas, taxminiy zona sifatida ishlatiladi.'**
+  String get nearbyPermissionDescription;
+
+  /// No description provided for @nearbyPermissionOpenSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sozlamalarni ochish'**
+  String get nearbyPermissionOpenSettings;
+
+  /// No description provided for @nearbyPermissionEnableService.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvni yoqish'**
+  String get nearbyPermissionEnableService;
+
+  /// No description provided for @nearbyPermissionAllow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvga ruxsat berish'**
+  String get nearbyPermissionAllow;
+
+  /// No description provided for @nearbyPermissionNotNow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozir emas'**
+  String get nearbyPermissionNotNow;
+
+  /// No description provided for @nearbyPermissionFootnote.
+  ///
+  /// In uz, this message translates to:
+  /// **'«Hozir emas» ni tanlasangiz, Moslar va Tavsiyalar avvalgidek ishlaydi.'**
+  String get nearbyPermissionFootnote;
+
+  /// No description provided for @nearbyPermissionRuleHidden.
+  ///
+  /// In uz, this message translates to:
+  /// **'Aniq manzilingiz hech kimga ko‘rsatilmaydi'**
+  String get nearbyPermissionRuleHidden;
+
+  /// No description provided for @nearbyPermissionRuleZone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqalar sizni ~2 km li zona ichida ko‘radi'**
+  String get nearbyPermissionRuleZone;
+
+  /// No description provided for @nearbyPermissionRuleSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Istalgan vaqtda Sozlamalardan o‘chirasiz'**
+  String get nearbyPermissionRuleSettings;
+
+  /// No description provided for @nearbyUnknownZone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaqin zona'**
+  String get nearbyUnknownZone;
+
+  /// No description provided for @nearbyCandidateCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta nomzod'**
+  String nearbyCandidateCount(int count);
+
+  /// No description provided for @nearbyZoneDistance.
+  ///
+  /// In uz, this message translates to:
+  /// **'{zone} · ~{distance} km'**
+  String nearbyZoneDistance(String zone, String distance);
+
+  /// No description provided for @nearbyYou.
+  ///
+  /// In uz, this message translates to:
+  /// **'Siz'**
+  String get nearbyYou;
+
+  /// No description provided for @nearbyAroundCount.
+  ///
+  /// In uz, this message translates to:
+  /// **'Atrofingizda {count} ta nomzod'**
+  String nearbyAroundCount(int count);
+
+  /// No description provided for @nearbyShowAll.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barchasi'**
+  String get nearbyShowAll;
+
+  /// No description provided for @openStreetMapAttribution.
+  ///
+  /// In uz, this message translates to:
+  /// **'© OpenStreetMap ishtirokchilari'**
+  String get openStreetMapAttribution;
+
+  /// No description provided for @nearbyWithinRadius.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km ichida'**
+  String nearbyWithinRadius(int radius);
+
+  /// No description provided for @nearbyRecenter.
+  ///
+  /// In uz, this message translates to:
+  /// **'Joylashuvimga qaytish'**
+  String get nearbyRecenter;
+
+  /// No description provided for @nearbySettingsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radius va ko‘rinish'**
+  String get nearbySettingsTitle;
+
+  /// No description provided for @nearbySearchRadiusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qidiruv radiusi'**
+  String get nearbySearchRadiusLabel;
+
+  /// No description provided for @nearbyRadiusOption.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km'**
+  String nearbyRadiusOption(int radius);
+
+  /// No description provided for @nearbyEntireRegion.
+  ///
+  /// In uz, this message translates to:
+  /// **'Butun viloyat'**
+  String get nearbyEntireRegion;
+
+  /// No description provided for @nearbyEntireRegionUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Butun viloyat bo‘yicha qidiruv hozircha mavjud emas'**
+  String get nearbyEntireRegionUnavailable;
+
+  /// No description provided for @nearbyRadiusHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.'**
+  String get nearbyRadiusHint;
+
+  /// No description provided for @nearbyVisibilityTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Meni Yaqinlar ro‘yxatida ko‘rsatish'**
+  String get nearbyVisibilityTitle;
+
+  /// No description provided for @nearbyVisibilitySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz'**
+  String get nearbyVisibilitySubtitle;
+
+  /// No description provided for @nearbyAudienceTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kim meni Yaqinlarda ko‘ra oladi'**
+  String get nearbyAudienceTitle;
+
+  /// No description provided for @nearbyAudienceAll.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hamma nomzodlar'**
+  String get nearbyAudienceAll;
+
+  /// No description provided for @nearbyAudienceHighMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat moslik 70% dan yuqori'**
+  String get nearbyAudienceHighMatch;
+
+  /// No description provided for @nearbyAudienceRecommended.
+  ///
+  /// In uz, this message translates to:
+  /// **'tavsiya etiladi'**
+  String get nearbyAudienceRecommended;
+
+  /// No description provided for @nearbyAudienceRepresented.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat vakili bor nomzodlar'**
+  String get nearbyAudienceRepresented;
+
+  /// No description provided for @nearbyPrivacyZoneNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Zona markazi kuniga bir marta tasodifiy siljiydi — shuning uchun sizning uyingizni hisoblab bo‘lmaydi.'**
+  String get nearbyPrivacyZoneNote;
+
+  /// No description provided for @nearbySettingsSave.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlash'**
+  String get nearbySettingsSave;
+
+  /// No description provided for @nearbyEmptyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{radius} km ichida hozircha nomzod yo‘q'**
+  String nearbyEmptyTitle(int radius);
+
+  /// No description provided for @nearbyEmptyDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radiusni kengaytiring yoki mezonlarni biroz yumshating.'**
+  String get nearbyEmptyDescription;
+
+  /// No description provided for @nearbyExpandRadius.
+  ///
+  /// In uz, this message translates to:
+  /// **'Radiusni {radius} km ga kengaytirish'**
+  String nearbyExpandRadius(int radius);
+
+  /// No description provided for @nearbyChangeCriteria.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mezonlarni o‘zgartirish'**
+  String get nearbyChangeCriteria;
+
+  /// No description provided for @nearbyNotifyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi nomzod paydo bo‘lsa xabar bering'**
+  String get nearbyNotifyTitle;
+
+  /// No description provided for @nearbyNotifySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kuniga bir marta, ko‘pi bilan'**
+  String get nearbyNotifySubtitle;
 
   /// User-facing error message selected by FailureType.name.
   ///

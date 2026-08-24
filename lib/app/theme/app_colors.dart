@@ -21,4 +21,9 @@ abstract final class AppColors {
   static const successSurface = Color(0xFFECFDF5);
   static const successText = Color(0xFF047857);
   static const representativeSecondaryAction = Color(0xFFF0EBFF);
+  static const mapLabelText = Color(0xFF525252);
+  static const primaryTranslucent = Color(0x1F0474F3);
+  static const softShadow = Color(0x1A000000);
+  static const chipShadow = Color(0x1F000000);
+  static const elevatedShadow = Color(0x24000000);
 }

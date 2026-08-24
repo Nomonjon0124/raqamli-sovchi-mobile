@@ -1,7 +1,11 @@
 abstract final class AppSpacing {
+  static const hairline = 1.0;
+  static const xxs = 2.0;
+  static const controlInset = 3.0;
   static const xs = 4.0;
   static const compact = 6.0;
   static const sm = 8.0;
+  static const dense = 9.0;
   static const md = 12.0;
   static const input = 14.0;
   static const inline = 10.0;

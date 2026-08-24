@@ -18,12 +18,14 @@ final class DiscoveryRepositoryImpl implements DiscoveryRepository {
     int page = 1,
     int pageSize = 10,
     DiscoveryFilter filter = DiscoveryFilter.matches,
+    double? radiusKm,
   }) async {
     try {
       final model = await _dataSource.fetchCandidates(
         page: page,
         pageSize: pageSize,
         filter: filter,
+        radiusKm: radiusKm,
       );
       final entities = model.toEntities();
       return Right(entities);

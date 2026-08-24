@@ -202,4 +202,54 @@ abstract final class AppTypography {
     letterSpacing: -0.3,
     color: AppColors.text,
   );
+  static const candidateDetailName = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 22,
+    height: 27 / 22,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
+    color: AppColors.text,
+  );
+  static const candidateDetailSectionTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const nearbyLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const candidateDetailCardTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const candidateDetailBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mutedText,
+  );
+  static const candidateDetailInfoLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 21 / 13,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mutedText,
+  );
+  static const candidateDetailInfoValue = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.text,
+  );
 }

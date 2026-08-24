@@ -798,6 +798,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsActionLabel => 'Notifications';
 
   @override
+  String get notificationsEmpty => 'There are no notifications yet';
+
+  @override
+  String get notificationsMarkAllRead => 'Mark all as read';
+
+  @override
   String get candidatesFilterMatches => 'Matches';
 
   @override
@@ -877,6 +883,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get candidateDetailNoPhoto => 'No profile photo';
+
+  @override
+  String get candidateDetailLastActivity => 'Last active: recently';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Compatibility not calculated';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'The candidate has not yet completed the 30-question survey, so a compatibility percentage cannot be shown. The information below comes from the candidate profile.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Basic information';
+
+  @override
+  String get candidateDetailBirthYear => 'Birth year';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age years old';
+  }
+
+  @override
+  String get candidateDetailCity => 'City';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Marital status';
+
+  @override
+  String get candidateDetailChildren => 'Children';
+
+  @override
+  String get candidateDetailNoChildren => 'No';
+
+  @override
+  String get candidateDetailHasChildren => 'Yes';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Education and work';
+
+  @override
+  String get candidateDetailEducation => 'Education';
+
+  @override
+  String get candidateDetailAdditionalInformation => 'Additional information';
+
+  @override
+  String get candidateDetailHealthStatus => 'Health status';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle => 'Profile is incomplete';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'The candidate has not completed some information yet. When a matchmaking proposal is sent, they will be reminded to finish the profile.';
+
+  @override
+  String get candidateDetailAbout => 'About the candidate';
 
   @override
   String get candidateRequestPending => 'In progress...';
@@ -1142,6 +1212,157 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get questionnaireTraitBalanced => 'balanced';
+
+  @override
+  String get candidatesViewGrid => 'Grid view';
+
+  @override
+  String get candidatesViewMap => 'Map view';
+
+  @override
+  String get nearbyPermissionTitle => 'Candidates near you';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Your location is used as an approximate zone, never as an exact point.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Open settings';
+
+  @override
+  String get nearbyPermissionEnableService => 'Enable location';
+
+  @override
+  String get nearbyPermissionAllow => 'Allow location access';
+
+  @override
+  String get nearbyPermissionNotNow => 'Not now';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      'If you choose “Not now”, Matches and Recommendations will continue to work as before.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Your exact address is never shown to anyone';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Others see you within an approximately 2 km zone';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'You can turn this off in Settings at any time';
+
+  @override
+  String get nearbyUnknownZone => 'Nearby zone';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return '$count candidates';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance km';
+  }
+
+  @override
+  String get nearbyYou => 'You';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return '$count candidates around you';
+  }
+
+  @override
+  String get nearbyShowAll => 'View all';
+
+  @override
+  String get openStreetMapAttribution => '© OpenStreetMap contributors';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return 'Within $radius km';
+  }
+
+  @override
+  String get nearbyRecenter => 'Return to my location';
+
+  @override
+  String get nearbySettingsTitle => 'Radius and visibility';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Search radius';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius km';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Entire region';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Region-wide search is not available yet';
+
+  @override
+  String get nearbyRadiusHint =>
+      'The larger the radius, the lower the compatibility percentage may be.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Show me in the Nearby list';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'If you turn this off, you will not see anyone either';
+
+  @override
+  String get nearbyAudienceTitle => 'Who can see me in Nearby';
+
+  @override
+  String get nearbyAudienceAll => 'All candidates';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Only compatibility above 70%';
+
+  @override
+  String get nearbyAudienceRecommended => 'recommended';
+
+  @override
+  String get nearbyAudienceRepresented =>
+      'Only candidates with a representative';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'The zone center shifts randomly once a day, so your home cannot be calculated.';
+
+  @override
+  String get nearbySettingsSave => 'Save';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return 'No candidates within $radius km yet';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Increase the radius or relax the criteria a little.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Increase radius to $radius km';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Change criteria';
+
+  @override
+  String get nearbyNotifyTitle => 'Notify me when a new candidate appears';
+
+  @override
+  String get nearbyNotifySubtitle => 'At most once a day';
 
   @override
   String failureMessage(String type) {

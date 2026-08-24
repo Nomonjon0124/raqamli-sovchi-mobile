@@ -4,16 +4,24 @@ import '../../../../core/extensions/gap_extension.dart';
 import '../../../../core/ui/widgets/app_filter_pill.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/discovery_filter.dart';
+import '../bloc/discovery_state.dart';
+import 'candidates_view_toggle.dart';
 
 final class CandidatesFilterBar extends StatelessWidget {
   const CandidatesFilterBar({
     required this.selectedFilter,
     required this.onFilterSelected,
+    required this.viewMode,
+    required this.onViewModeChanged,
+    this.showViewToggle = false,
     super.key,
   });
 
   final DiscoveryFilter selectedFilter;
   final ValueChanged<DiscoveryFilter> onFilterSelected;
+  final DiscoveryViewMode viewMode;
+  final ValueChanged<DiscoveryViewMode> onViewModeChanged;
+  final bool showViewToggle;
 
   static const _filters = DiscoveryFilter.values;
 
@@ -22,21 +30,37 @@ final class CandidatesFilterBar extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return SizedBox(
-      height: 38,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemCount: _filters.length,
-        separatorBuilder: (context, index) => 8.g,
-        itemBuilder: (context, index) {
-          final filter = _filters[index];
-          final isSelected = filter == selectedFilter;
-          return AppFilterPill(
-            label: _getFilterLabel(filter, l10n),
-            selected: isSelected,
-            onTap: isSelected ? null : () => onFilterSelected(filter),
-          );
-        },
+      height: 44,
+      child: Row(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                children: [
+                  for (var index = 0; index < _filters.length; index++) ...[
+                    if (index > 0) 8.g,
+                    AppFilterPill(
+                      label: _getFilterLabel(_filters[index], l10n),
+                      selected: _filters[index] == selectedFilter,
+                      onTap: _filters[index] == selectedFilter
+                          ? null
+                          : () => onFilterSelected(_filters[index]),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ),
+          if (showViewToggle) ...[
+            8.g,
+            CandidatesViewToggle(
+              viewMode: viewMode,
+              onChanged: onViewModeChanged,
+            ),
+          ],
+        ],
       ),
     );
   }

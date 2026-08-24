@@ -796,6 +796,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get notificationsActionLabel => 'Bildirishnomalar';
 
   @override
+  String get notificationsEmpty => 'Hozircha bildirishnomalar yo‘q';
+
+  @override
+  String get notificationsMarkAllRead => 'Barchasini o‘qilgan deb belgilash';
+
+  @override
   String get candidatesFilterMatches => 'Moslar';
 
   @override
@@ -876,6 +882,70 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get candidateDetailNoPhoto => 'Profil rasmi yo‘q';
+
+  @override
+  String get candidateDetailLastActivity => 'Oxirgi faollik: yaqinda';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Moslik hisoblanmagan';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'Nomzod 30 savollik so‘rovnomani hali to‘ldirmagan — shu sababli moslik foizi ko‘rsatilmaydi. Quyidagi ma’lumotlar nomzod anketasidan olingan.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Asosiy ma’lumotlar';
+
+  @override
+  String get candidateDetailBirthYear => 'Tug‘ilgan yili';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age yosh';
+  }
+
+  @override
+  String get candidateDetailCity => 'Shahar';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Oilaviy holati';
+
+  @override
+  String get candidateDetailChildren => 'Farzandlari';
+
+  @override
+  String get candidateDetailNoChildren => 'Yo‘q';
+
+  @override
+  String get candidateDetailHasChildren => 'Bor';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count ta';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Ta’lim va ish';
+
+  @override
+  String get candidateDetailEducation => 'Ma’lumoti';
+
+  @override
+  String get candidateDetailAdditionalInformation => 'Qo‘shimcha ma’lumotlar';
+
+  @override
+  String get candidateDetailHealthStatus => 'Sog‘lig‘i';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle => 'Anketa to‘liq emas';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'Nomzod ayrim ma’lumotlarni hali to‘ldirmagan. Sovchi taklifi yuborilganda unga anketani to‘ldirish eslatmasi boradi.';
+
+  @override
+  String get candidateDetailAbout => 'Nomzod haqida';
 
   @override
   String get candidateRequestPending => 'Jarayonda...';
@@ -1140,6 +1210,156 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get questionnaireTraitBalanced => 'balansli';
+
+  @override
+  String get candidatesViewGrid => 'Katak ko‘rinishi';
+
+  @override
+  String get candidatesViewMap => 'Xarita ko‘rinishi';
+
+  @override
+  String get nearbyPermissionTitle => 'Yaqin atrofdagi nomzodlar';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Joylashuvingiz aniq nuqta sifatida emas, taxminiy zona sifatida ishlatiladi.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Sozlamalarni ochish';
+
+  @override
+  String get nearbyPermissionEnableService => 'Joylashuvni yoqish';
+
+  @override
+  String get nearbyPermissionAllow => 'Joylashuvga ruxsat berish';
+
+  @override
+  String get nearbyPermissionNotNow => 'Hozir emas';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      '«Hozir emas» ni tanlasangiz, Moslar va Tavsiyalar avvalgidek ishlaydi.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Aniq manzilingiz hech kimga ko‘rsatilmaydi';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Boshqalar sizni ~2 km li zona ichida ko‘radi';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'Istalgan vaqtda Sozlamalardan o‘chirasiz';
+
+  @override
+  String get nearbyUnknownZone => 'Yaqin zona';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return '$count ta nomzod';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance km';
+  }
+
+  @override
+  String get nearbyYou => 'Siz';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return 'Atrofingizda $count ta nomzod';
+  }
+
+  @override
+  String get nearbyShowAll => 'Barchasi';
+
+  @override
+  String get openStreetMapAttribution => '© OpenStreetMap ishtirokchilari';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return '$radius km ichida';
+  }
+
+  @override
+  String get nearbyRecenter => 'Joylashuvimga qaytish';
+
+  @override
+  String get nearbySettingsTitle => 'Radius va ko‘rinish';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Qidiruv radiusi';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius km';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Butun viloyat';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Butun viloyat bo‘yicha qidiruv hozircha mavjud emas';
+
+  @override
+  String get nearbyRadiusHint =>
+      'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Meni Yaqinlar ro‘yxatida ko‘rsatish';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz';
+
+  @override
+  String get nearbyAudienceTitle => 'Kim meni Yaqinlarda ko‘ra oladi';
+
+  @override
+  String get nearbyAudienceAll => 'Hamma nomzodlar';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Faqat moslik 70% dan yuqori';
+
+  @override
+  String get nearbyAudienceRecommended => 'tavsiya etiladi';
+
+  @override
+  String get nearbyAudienceRepresented => 'Faqat vakili bor nomzodlar';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'Zona markazi kuniga bir marta tasodifiy siljiydi — shuning uchun sizning uyingizni hisoblab bo‘lmaydi.';
+
+  @override
+  String get nearbySettingsSave => 'Saqlash';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return '$radius km ichida hozircha nomzod yo‘q';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Radiusni kengaytiring yoki mezonlarni biroz yumshating.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Radiusni $radius km ga kengaytirish';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Mezonlarni o‘zgartirish';
+
+  @override
+  String get nearbyNotifyTitle => 'Yangi nomzod paydo bo‘lsa xabar bering';
+
+  @override
+  String get nearbyNotifySubtitle => 'Kuniga bir marta, ko‘pi bilan';
 
   @override
   String failureMessage(String type) {

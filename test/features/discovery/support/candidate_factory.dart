@@ -1,0 +1,41 @@
+import 'package:raqamli_sovchi/features/discovery/domain/entities/candidate.dart';
+
+Candidate createCandidate({
+  required String id,
+  String? latitude = '41.300000',
+  String? longitude = '69.200000',
+  String? districtName = 'Yunusobod',
+}) {
+  return Candidate(
+    id: id,
+    firstName: 'Nomzod',
+    lastName: 'A',
+    middleName: null,
+    age: 27,
+    isSaved: false,
+    birthYear: 1999,
+    height: 170,
+    weight: 65,
+    hasChildren: false,
+    childrenCount: 0,
+    bio: null,
+    voiceIntro: null,
+    latitude: latitude,
+    longitude: longitude,
+    blurPhotos: true,
+    phoneNumber: null,
+    email: null,
+    isVerified: true,
+    regionId: 'region-1',
+    regionName: 'Toshkent',
+    districtId: 'district-1',
+    districtName: districtName,
+    educationLevelID: null,
+    educationLevelName: null,
+    healthStatusId: null,
+    healthStatusName: null,
+    martialStatusId: null,
+    martialStatusName: null,
+    photosInfo: const [],
+  );
+}

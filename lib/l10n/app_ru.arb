@@ -255,6 +255,8 @@
   "savedPlaceholder": "Пока страница сохраненного.",
   "profilePlaceholder": "Пока страница профиля.",
   "notificationsActionLabel": "Уведомления",
+  "notificationsEmpty": "Уведомлений пока нет",
+  "notificationsMarkAllRead": "Отметить все как прочитанные",
   "candidatesFilterMatches": "Подходящие",
   "candidatesFilterRecommended": "Рекомендации",
   "candidatesFilterNearby": "Рядом",
@@ -280,6 +282,34 @@
   "candidateDetailSave": "Сохранить",
   "candidateDetailUnsave": "Удалить из сохранённых",
   "candidateDetailNoPhoto": "Нет фотографии профиля",
+  "candidateDetailLastActivity": "Последняя активность: недавно",
+  "candidateDetailCompatibilityUnavailableTitle": "Совместимость не рассчитана",
+  "candidateDetailCompatibilityUnavailableDescription": "Кандидат ещё не заполнил опрос из 30 вопросов, поэтому процент совместимости не показывается. Информация ниже взята из анкеты кандидата.",
+  "candidateDetailBasicInformation": "Основная информация",
+  "candidateDetailBirthYear": "Год рождения",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} лет",
+  "@candidateDetailBirthYearWithAge": {
+    "placeholders": {
+      "birthYear": {"type": "int"},
+      "age": {"type": "int"}
+    }
+  },
+  "candidateDetailCity": "Город",
+  "candidateDetailMaritalStatus": "Семейное положение",
+  "candidateDetailChildren": "Дети",
+  "candidateDetailNoChildren": "Нет",
+  "candidateDetailHasChildren": "Есть",
+  "candidateDetailChildrenCount": "{count}",
+  "@candidateDetailChildrenCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "candidateDetailEducationAndWork": "Образование и работа",
+  "candidateDetailEducation": "Образование",
+  "candidateDetailAdditionalInformation": "Дополнительная информация",
+  "candidateDetailHealthStatus": "Состояние здоровья",
+  "candidateDetailIncompleteProfileTitle": "Анкета заполнена не полностью",
+  "candidateDetailIncompleteProfileDescription": "Кандидат ещё не заполнил часть информации. После отправки предложения сватовства ему придёт напоминание завершить анкету.",
+  "candidateDetailAbout": "О кандидате",
   "candidateRequestPending": "В процессе...",
   "candidateRequestRetry": "Отправить запрос повторно",
   "candidateRequestRetryAt": "Повторный запрос: {date}",
@@ -393,5 +423,71 @@
   "questionnaireShowCandidates": "Посмотреть кандидатов",
   "questionnaireTraitTraditional": "традиционный",
   "questionnaireTraitBalanced": "сбалансированный",
+  "candidatesViewGrid": "В виде сетки",
+  "candidatesViewMap": "На карте",
+  "nearbyPermissionTitle": "Кандидаты поблизости",
+  "nearbyPermissionDescription": "Ваше местоположение используется как примерная зона, а не как точная точка.",
+  "nearbyPermissionOpenSettings": "Открыть настройки",
+  "nearbyPermissionEnableService": "Включить геолокацию",
+  "nearbyPermissionAllow": "Разрешить доступ к геолокации",
+  "nearbyPermissionNotNow": "Не сейчас",
+  "nearbyPermissionFootnote": "Если выбрать «Не сейчас», Совпадения и Рекомендации продолжат работать как прежде.",
+  "nearbyPermissionRuleHidden": "Ваш точный адрес никому не показывается",
+  "nearbyPermissionRuleZone": "Другие видят вас в примерной зоне радиусом 2 км",
+  "nearbyPermissionRuleSettings": "Это можно отключить в Настройках в любое время",
+  "nearbyUnknownZone": "Ближайшая зона",
+  "nearbyCandidateCount": "Кандидатов: {count}",
+  "@nearbyCandidateCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyZoneDistance": "{zone} · ~{distance} км",
+  "@nearbyZoneDistance": {
+    "placeholders": {
+      "zone": {"type": "String"},
+      "distance": {"type": "String"}
+    }
+  },
+  "nearbyYou": "Вы",
+  "nearbyAroundCount": "Кандидатов рядом: {count}",
+  "@nearbyAroundCount": {
+    "placeholders": {"count": {"type": "int"}}
+  },
+  "nearbyShowAll": "Все",
+  "openStreetMapAttribution": "© участники OpenStreetMap",
+  "nearbyWithinRadius": "В радиусе {radius} км",
+  "@nearbyWithinRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyRecenter": "Вернуться к моему местоположению",
+  "nearbySettingsTitle": "Радиус и видимость",
+  "nearbySearchRadiusLabel": "Радиус поиска",
+  "nearbyRadiusOption": "{radius} км",
+  "@nearbyRadiusOption": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEntireRegion": "Вся область",
+  "nearbyEntireRegionUnavailable": "Поиск по всей области пока недоступен",
+  "nearbyRadiusHint": "Чем больше радиус, тем ниже может быть процент совместимости.",
+  "nearbyVisibilityTitle": "Показывать меня в списке рядом",
+  "nearbyVisibilitySubtitle": "Если отключить, вы тоже никого не увидите",
+  "nearbyAudienceTitle": "Кто может видеть меня рядом",
+  "nearbyAudienceAll": "Все кандидаты",
+  "nearbyAudienceHighMatch": "Только совместимость выше 70%",
+  "nearbyAudienceRecommended": "рекомендуется",
+  "nearbyAudienceRepresented": "Только кандидаты с представителем",
+  "nearbyPrivacyZoneNote": "Центр зоны случайно смещается раз в день, поэтому вычислить ваш дом невозможно.",
+  "nearbySettingsSave": "Сохранить",
+  "nearbyEmptyTitle": "В радиусе {radius} км пока нет кандидатов",
+  "@nearbyEmptyTitle": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyEmptyDescription": "Увеличьте радиус или немного смягчите критерии.",
+  "nearbyExpandRadius": "Увеличить радиус до {radius} км",
+  "@nearbyExpandRadius": {
+    "placeholders": {"radius": {"type": "int"}}
+  },
+  "nearbyChangeCriteria": "Изменить критерии",
+  "nearbyNotifyTitle": "Сообщать о появлении нового кандидата",
+  "nearbyNotifySubtitle": "Не чаще одного раза в день",
   "failureMessage": "{type, select, networkTimeout{Время подключения истекло.} noInternet{Нет подключения к интернету.} unauthorized{Сессия истекла.} cancelled{} forbidden{Доступ запрещен.} notFound{Данные не найдены.} validation{Проверьте введенные данные.} configuration{Вход через Google не настроен для этой сборки.} unsupported{Этот способ входа пока недоступен.} server{Произошла ошибка сервера.} unknown{Что-то пошло не так.} other{Что-то пошло не так.}}"
 }
