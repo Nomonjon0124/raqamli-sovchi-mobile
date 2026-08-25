@@ -1362,6 +1362,156 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbyNotifySubtitle => 'Kuniga bir marta, ko‘pi bilan';
 
   @override
+  String get profileEdit => 'Profilni tahrirlash';
+
+  @override
+  String get profileSettings => 'Profil sozlamalari';
+
+  @override
+  String profileIdentifier(String code) {
+    return 'Foydalanuvchi raqami: $code';
+  }
+
+  @override
+  String get profilePreview => 'Boshqalar ko‘rinishi';
+
+  @override
+  String get profileCopyIdentifier => 'Foydalanuvchi raqamini nusxalash';
+
+  @override
+  String get profileCompleteTitle => 'Profilingizni to‘ldiring';
+
+  @override
+  String get profileCompleteSubtitle => 'Aniqroq juftlik topish uchun';
+
+  @override
+  String get profileMyPhotos => 'SURATLARIM';
+
+  @override
+  String get profileMainPhoto => 'ASOSIY';
+
+  @override
+  String get profileAddPhoto => 'Surat qo‘shish';
+
+  @override
+  String profilePhotoSemantics(int index) {
+    return 'Profil surati $index';
+  }
+
+  @override
+  String get profileAboutSection => 'O‘ZINGIZ HAQINGIZDA';
+
+  @override
+  String get profileNotFilled => 'Hali to‘ldirilmagan';
+
+  @override
+  String get profileAdd => 'Qo‘shish';
+
+  @override
+  String get profileEditShort => 'Tahrirlash';
+
+  @override
+  String get profilePhotoVerification => 'Rasm tekshiruvi';
+
+  @override
+  String get profilePhotoVerificationSubtitle =>
+      'Asosiy suratingiz kamera orqali selfi bilan solishtiriladi';
+
+  @override
+  String get profileServices => 'Xizmatlar';
+
+  @override
+  String get profileServicesSubtitle =>
+      'Psixolog, oilaviy uchrashuv, tekshiruv va Premium';
+
+  @override
+  String get profileIdentifierCopied => 'Foydalanuvchi raqami nusxalandi';
+
+  @override
+  String get profileActionComingSoon =>
+      'Bu bo‘lim keyingi profil bosqichida ulanadi';
+
+  @override
+  String get settingsTitle => 'Sozlamalar';
+
+  @override
+  String get settingsBack => 'Orqaga';
+
+  @override
+  String get settingsAccountSection => 'Hisob';
+
+  @override
+  String get settingsEditProfile => 'Profilni tahrirlash';
+
+  @override
+  String get settingsPhotoPrivacy => 'Rasm maxfiyligi';
+
+  @override
+  String get settingsPhotoPrivacyAll => 'Hammaga ochiq';
+
+  @override
+  String get settingsBlockedUsers => 'Bloklangan foydalanuvchilar';
+
+  @override
+  String get settingsRecoveryQuestion => 'Hisobni tiklash savoli';
+
+  @override
+  String get settingsPrivacyChatSection => 'Maxfiylik va suhbat';
+
+  @override
+  String get settingsPrivacyVeil => 'Maxfiylik va parda tartibi';
+
+  @override
+  String get settingsChatLimits => 'Suhbat limitlari';
+
+  @override
+  String get settingsChatLimitValue => '72 soat';
+
+  @override
+  String get settingsParentLink => 'Ota-ona ulash';
+
+  @override
+  String get settingsNotificationAppearanceSection =>
+      'Bildirishnoma va ko‘rinish';
+
+  @override
+  String get settingsNotifications => 'Bildirishnomalar';
+
+  @override
+  String get settingsNotificationsSubtitle =>
+      'Yangi like, moslik va xabarlar haqida xabar beriladi';
+
+  @override
+  String get settingsNotificationTypes => 'Bildirishnoma turlari';
+
+  @override
+  String get settingsDocumentsSection => 'Hujjatlar';
+
+  @override
+  String get settingsPrivacyPolicy => 'Maxfiylik siyosati';
+
+  @override
+  String get settingsTerms => 'Foydalanish shartlari';
+
+  @override
+  String get settingsHelpInfoSection => 'Yordam va ma’lumot';
+
+  @override
+  String get settingsServices => 'Xizmatlar';
+
+  @override
+  String get settingsHelpCenter => 'Yordam markazi';
+
+  @override
+  String get settingsShareApp => 'Ilovani ulashish';
+
+  @override
+  String get settingsLogout => 'Hisobdan chiqish';
+
+  @override
+  String get settingsActionComingSoon => 'Bu sozlama keyingi bosqichda ulanadi';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

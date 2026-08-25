@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../profile/domain/entities/user_profile.dart';
 import '../../domain/entities/candidate.dart';
 import '../../domain/entities/discovery_filter.dart';
 import '../../domain/entities/geo_coordinates.dart';
 import '../../domain/entities/location_access_status.dart';
 import '../../domain/entities/nearby_candidate_cluster.dart';
-import '../../domain/entities/user_profile.dart';
 
 enum DiscoveryStatus {
   initial,

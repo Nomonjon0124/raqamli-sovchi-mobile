@@ -2,11 +2,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/errors/either.dart';
 import '../../../../core/errors/failure.dart';
-import '../../../discovery/application/use_cases/get_my_profile.dart';
 import '../../../discovery/application/use_cases/get_saved_candidates.dart';
 import '../../../discovery/domain/entities/candidate.dart';
 import '../../../match/application/use_cases/get_match_requests.dart';
 import '../../../match/domain/entities/match_request.dart';
+import '../../../profile/application/use_cases/get_my_profile.dart';
 import 'saved_event.dart';
 import 'saved_state.dart';
 

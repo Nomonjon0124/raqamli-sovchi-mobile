@@ -8,6 +8,7 @@ abstract final class AppSpacing {
   static const dense = 9.0;
   static const md = 12.0;
   static const input = 14.0;
+  static const settingsRowVertical = 15.0;
   static const inline = 10.0;
   static const lg = 16.0;
   static const card = 18.0;

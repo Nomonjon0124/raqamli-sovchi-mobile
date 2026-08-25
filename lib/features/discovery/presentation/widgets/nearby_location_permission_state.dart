@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/location_access_status.dart';
 
@@ -58,8 +58,7 @@ final class NearbyLocationPermissionState extends StatelessWidget {
                       color: AppColors.primaryTranslucent,
                       shape: BoxShape.circle,
                     ),
-                    child: SvgPicture.asset(
-                      'assets/icons/ic_location.svg',
+                    child: Assets.icons.icLocation.svg(
                       colorFilter: const ColorFilter.mode(
                         AppColors.primary,
                         BlendMode.srcIn,
@@ -139,19 +138,19 @@ final class _PrivacyRules extends StatelessWidget {
         child: Column(
           children: [
             _PrivacyRule(
-              assetPath: 'assets/icons/ic_square_lock.svg',
+              icon: Assets.icons.icSquareLock,
               label: l10n.nearbyPermissionRuleHidden,
               backgroundColor: AppColors.successSurface,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
-              assetPath: 'assets/icons/ic_radar.svg',
+              icon: Assets.icons.icRadar,
               label: l10n.nearbyPermissionRuleZone,
               backgroundColor: AppColors.successSurface,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
-              assetPath: 'assets/icons/ic_setting.svg',
+              icon: Assets.icons.icSetting,
               label: l10n.nearbyPermissionRuleSettings,
               backgroundColor: AppColors.subtleSurface,
             ),
@@ -164,12 +163,12 @@ final class _PrivacyRules extends StatelessWidget {
 
 final class _PrivacyRule extends StatelessWidget {
   const _PrivacyRule({
-    required this.assetPath,
+    required this.icon,
     required this.label,
     required this.backgroundColor,
   });
 
-  final String assetPath;
+  final SvgGenImage icon;
   final String label;
   final Color backgroundColor;
 
@@ -185,7 +184,7 @@ final class _PrivacyRule extends StatelessWidget {
             color: backgroundColor,
             shape: BoxShape.circle,
           ),
-          child: SvgPicture.asset(assetPath),
+          child: icon.svg(),
         ),
         const SizedBox(width: AppSpacing.inline),
         Expanded(child: Text(label, style: AppTypography.onboardingPledgeBody)),
@@ -239,11 +238,7 @@ final class _PermissionButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (primary) ...[
-                    SvgPicture.asset(
-                      'assets/icons/ic_location.svg',
-                      width: 16,
-                      height: 16,
-                    ),
+                    Assets.icons.icLocation.svg(width: 16, height: 16),
                     const SizedBox(width: AppSpacing.sm),
                   ],
                   Flexible(

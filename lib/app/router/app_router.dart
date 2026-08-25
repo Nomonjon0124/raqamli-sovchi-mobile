@@ -12,12 +12,13 @@ import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/chat/presentation/pages/messages_page.dart';
 import '../../features/discovery/presentation/pages/candidate_detail_page.dart';
 import '../../features/discovery/presentation/pages/candidates_page.dart';
-import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
+import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
+import '../../features/settings/presentation/pages/settings_page.dart';
 import 'app_shell.dart';
 import 'route_names.dart';
 
@@ -109,6 +110,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.notifications,
         builder: (context, state) => const NotificationsPage(),
+      ),
+      GoRoute(
+        path: RouteNames.settings,
+        builder: (context, state) => const SettingsPage(),
       ),
       GoRoute(
         path: RouteNames.candidateDetail,

@@ -1364,6 +1364,156 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbyNotifySubtitle => 'Не чаще одного раза в день';
 
   @override
+  String get profileEdit => 'Редактировать профиль';
+
+  @override
+  String get profileSettings => 'Настройки профиля';
+
+  @override
+  String profileIdentifier(String code) {
+    return 'Номер пользователя: $code';
+  }
+
+  @override
+  String get profilePreview => 'Как видят другие';
+
+  @override
+  String get profileCopyIdentifier => 'Скопировать номер пользователя';
+
+  @override
+  String get profileCompleteTitle => 'Заполните профиль';
+
+  @override
+  String get profileCompleteSubtitle => 'Чтобы точнее подобрать пару';
+
+  @override
+  String get profileMyPhotos => 'МОИ ФОТОГРАФИИ';
+
+  @override
+  String get profileMainPhoto => 'ГЛАВНОЕ';
+
+  @override
+  String get profileAddPhoto => 'Добавить фотографию';
+
+  @override
+  String profilePhotoSemantics(int index) {
+    return 'Фотография профиля $index';
+  }
+
+  @override
+  String get profileAboutSection => 'О СЕБЕ';
+
+  @override
+  String get profileNotFilled => 'Пока не заполнено';
+
+  @override
+  String get profileAdd => 'Добавить';
+
+  @override
+  String get profileEditShort => 'Изменить';
+
+  @override
+  String get profilePhotoVerification => 'Проверка фотографии';
+
+  @override
+  String get profilePhotoVerificationSubtitle =>
+      'Основная фотография сравнивается с селфи с камеры';
+
+  @override
+  String get profileServices => 'Услуги';
+
+  @override
+  String get profileServicesSubtitle =>
+      'Психолог, семейная встреча, проверка и Premium';
+
+  @override
+  String get profileIdentifierCopied => 'Номер пользователя скопирован';
+
+  @override
+  String get profileActionComingSoon =>
+      'Этот раздел будет подключён на следующем этапе профиля';
+
+  @override
+  String get settingsTitle => 'Настройки';
+
+  @override
+  String get settingsBack => 'Назад';
+
+  @override
+  String get settingsAccountSection => 'Аккаунт';
+
+  @override
+  String get settingsEditProfile => 'Редактировать профиль';
+
+  @override
+  String get settingsPhotoPrivacy => 'Конфиденциальность фотографий';
+
+  @override
+  String get settingsPhotoPrivacyAll => 'Видно всем';
+
+  @override
+  String get settingsBlockedUsers => 'Заблокированные пользователи';
+
+  @override
+  String get settingsRecoveryQuestion => 'Вопрос восстановления аккаунта';
+
+  @override
+  String get settingsPrivacyChatSection => 'Конфиденциальность и чат';
+
+  @override
+  String get settingsPrivacyVeil => 'Конфиденциальность и режим парды';
+
+  @override
+  String get settingsChatLimits => 'Лимиты чата';
+
+  @override
+  String get settingsChatLimitValue => '72 часа';
+
+  @override
+  String get settingsParentLink => 'Подключить родителя';
+
+  @override
+  String get settingsNotificationAppearanceSection => 'Уведомления и вид';
+
+  @override
+  String get settingsNotifications => 'Уведомления';
+
+  @override
+  String get settingsNotificationsSubtitle =>
+      'Сообщать о новых лайках, совпадениях и сообщениях';
+
+  @override
+  String get settingsNotificationTypes => 'Типы уведомлений';
+
+  @override
+  String get settingsDocumentsSection => 'Документы';
+
+  @override
+  String get settingsPrivacyPolicy => 'Политика конфиденциальности';
+
+  @override
+  String get settingsTerms => 'Условия использования';
+
+  @override
+  String get settingsHelpInfoSection => 'Помощь и информация';
+
+  @override
+  String get settingsServices => 'Услуги';
+
+  @override
+  String get settingsHelpCenter => 'Центр помощи';
+
+  @override
+  String get settingsShareApp => 'Поделиться приложением';
+
+  @override
+  String get settingsLogout => 'Выйти из аккаунта';
+
+  @override
+  String get settingsActionComingSoon =>
+      'Эта настройка будет подключена на следующем этапе';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

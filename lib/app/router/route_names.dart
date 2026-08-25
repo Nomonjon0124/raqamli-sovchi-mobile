@@ -12,6 +12,7 @@ abstract final class RouteNames {
   static const saved = '/saved';
   static const profile = '/profile';
   static const notifications = '/notifications';
+  static const settings = '/settings';
   static const candidateDetail = '/candidate-detail/:id';
 
   static String candidateDetailFor(String id) =>

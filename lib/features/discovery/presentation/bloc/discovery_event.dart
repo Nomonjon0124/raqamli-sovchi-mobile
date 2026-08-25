@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../profile/domain/entities/user_profile.dart';
 import '../../domain/entities/discovery_filter.dart';
-import '../../domain/entities/user_profile.dart';
 import 'discovery_state.dart';
 
 sealed class DiscoveryEvent extends Equatable {

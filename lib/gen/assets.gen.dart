@@ -71,12 +71,37 @@ class $AssetsIconsGen {
   SvgGenImage get icArrowRight =>
       const SvgGenImage('assets/icons/ic_arrow_right.svg');
 
+  /// File path: assets/icons/ic_candidate_grid.svg
+  SvgGenImage get icCandidateGrid =>
+      const SvgGenImage('assets/icons/ic_candidate_grid.svg');
+
+  /// File path: assets/icons/ic_candidate_map.svg
+  SvgGenImage get icCandidateMap =>
+      const SvgGenImage('assets/icons/ic_candidate_map.svg');
+
   /// File path: assets/icons/ic_candidates_btv.svg
   SvgGenImage get icCandidatesBtv =>
       const SvgGenImage('assets/icons/ic_candidates_btv.svg');
 
   /// File path: assets/icons/ic_close.svg
   SvgGenImage get icClose => const SvgGenImage('assets/icons/ic_close.svg');
+
+  /// File path: assets/icons/ic_copy.svg
+  SvgGenImage get icCopy => const SvgGenImage('assets/icons/ic_copy.svg');
+
+  /// File path: assets/icons/ic_current_location_dot.svg
+  SvgGenImage get icCurrentLocationDot =>
+      const SvgGenImage('assets/icons/ic_current_location_dot.svg');
+
+  /// File path: assets/icons/ic_current_location_halo.svg
+  SvgGenImage get icCurrentLocationHalo =>
+      const SvgGenImage('assets/icons/ic_current_location_halo.svg');
+
+  /// File path: assets/icons/ic_edit.svg
+  SvgGenImage get icEdit => const SvgGenImage('assets/icons/ic_edit.svg');
+
+  /// File path: assets/icons/ic_fire.svg
+  SvgGenImage get icFire => const SvgGenImage('assets/icons/ic_fire.svg');
 
   /// File path: assets/icons/ic_glyph.svg
   SvgGenImage get icGlyph => const SvgGenImage('assets/icons/ic_glyph.svg');
@@ -92,8 +117,24 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_info.svg
   SvgGenImage get icInfo => const SvgGenImage('assets/icons/ic_info.svg');
 
+  /// File path: assets/icons/ic_location.svg
+  SvgGenImage get icLocation =>
+      const SvgGenImage('assets/icons/ic_location.svg');
+
   /// File path: assets/icons/ic_logo.svg
   SvgGenImage get icLogo => const SvgGenImage('assets/icons/ic_logo.svg');
+
+  /// File path: assets/icons/ic_map_target_center.svg
+  SvgGenImage get icMapTargetCenter =>
+      const SvgGenImage('assets/icons/ic_map_target_center.svg');
+
+  /// File path: assets/icons/ic_map_target_corner.svg
+  SvgGenImage get icMapTargetCorner =>
+      const SvgGenImage('assets/icons/ic_map_target_corner.svg');
+
+  /// File path: assets/icons/ic_map_target_ring.svg
+  SvgGenImage get icMapTargetRing =>
+      const SvgGenImage('assets/icons/ic_map_target_ring.svg');
 
   /// File path: assets/icons/ic_messages_btv.svg
   SvgGenImage get icMessagesBtv =>
@@ -102,6 +143,30 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_more_horizontal.svg
   SvgGenImage get icMoreHorizontal =>
       const SvgGenImage('assets/icons/ic_more_horizontal.svg');
+
+  /// File path: assets/icons/ic_nearby_empty_radar.svg
+  SvgGenImage get icNearbyEmptyRadar =>
+      const SvgGenImage('assets/icons/ic_nearby_empty_radar.svg');
+
+  /// File path: assets/icons/ic_nearby_filter_lines.svg
+  SvgGenImage get icNearbyFilterLines =>
+      const SvgGenImage('assets/icons/ic_nearby_filter_lines.svg');
+
+  /// File path: assets/icons/ic_nearby_privacy_lock.svg
+  SvgGenImage get icNearbyPrivacyLock =>
+      const SvgGenImage('assets/icons/ic_nearby_privacy_lock.svg');
+
+  /// File path: assets/icons/ic_nearby_radio_off.svg
+  SvgGenImage get icNearbyRadioOff =>
+      const SvgGenImage('assets/icons/ic_nearby_radio_off.svg');
+
+  /// File path: assets/icons/ic_nearby_radio_on.svg
+  SvgGenImage get icNearbyRadioOn =>
+      const SvgGenImage('assets/icons/ic_nearby_radio_on.svg');
+
+  /// File path: assets/icons/ic_nearby_switch_on.svg
+  SvgGenImage get icNearbySwitchOn =>
+      const SvgGenImage('assets/icons/ic_nearby_switch_on.svg');
 
   /// File path: assets/icons/ic_notification.svg
   SvgGenImage get icNotification =>
@@ -124,6 +189,9 @@ class $AssetsIconsGen {
   SvgGenImage get icProfileBtv =>
       const SvgGenImage('assets/icons/ic_profile_btv.svg');
 
+  /// File path: assets/icons/ic_radar.svg
+  SvgGenImage get icRadar => const SvgGenImage('assets/icons/ic_radar.svg');
+
   /// File path: assets/icons/ic_saved.svg
   SvgGenImage get icSaved => const SvgGenImage('assets/icons/ic_saved.svg');
 
@@ -135,8 +203,19 @@ class $AssetsIconsGen {
   SvgGenImage get icServicesBtv =>
       const SvgGenImage('assets/icons/ic_services_btv.svg');
 
+  /// File path: assets/icons/ic_setting.svg
+  SvgGenImage get icSetting => const SvgGenImage('assets/icons/ic_setting.svg');
+
+  /// File path: assets/icons/ic_settings.svg
+  SvgGenImage get icSettings =>
+      const SvgGenImage('assets/icons/ic_settings.svg');
+
   /// File path: assets/icons/ic_share.svg
   SvgGenImage get icShare => const SvgGenImage('assets/icons/ic_share.svg');
+
+  /// File path: assets/icons/ic_square_lock.svg
+  SvgGenImage get icSquareLock =>
+      const SvgGenImage('assets/icons/ic_square_lock.svg');
 
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
@@ -146,32 +225,158 @@ class $AssetsIconsGen {
   SvgGenImage get icVerifyCheck =>
       const SvgGenImage('assets/icons/ic_verify_check.svg');
 
+  /// File path: assets/icons/profile_add.svg
+  SvgGenImage get profileAdd =>
+      const SvgGenImage('assets/icons/profile_add.svg');
+
+  /// File path: assets/icons/profile_camera.svg
+  SvgGenImage get profileCamera =>
+      const SvgGenImage('assets/icons/profile_camera.svg');
+
+  /// File path: assets/icons/profile_chevron.svg
+  SvgGenImage get profileChevron =>
+      const SvgGenImage('assets/icons/profile_chevron.svg');
+
+  /// File path: assets/icons/profile_preview.svg
+  SvgGenImage get profilePreview =>
+      const SvgGenImage('assets/icons/profile_preview.svg');
+
+  /// File path: assets/icons/profile_verified.svg
+  SvgGenImage get profileVerified =>
+      const SvgGenImage('assets/icons/profile_verified.svg');
+
+  /// File path: assets/icons/settings_back.svg
+  SvgGenImage get settingsBack =>
+      const SvgGenImage('assets/icons/settings_back.svg');
+
+  /// File path: assets/icons/settings_bell.svg
+  SvgGenImage get settingsBell =>
+      const SvgGenImage('assets/icons/settings_bell.svg');
+
+  /// File path: assets/icons/settings_chevron.svg
+  SvgGenImage get settingsChevron =>
+      const SvgGenImage('assets/icons/settings_chevron.svg');
+
+  /// File path: assets/icons/settings_document.svg
+  SvgGenImage get settingsDocument =>
+      const SvgGenImage('assets/icons/settings_document.svg');
+
+  /// File path: assets/icons/settings_edit.svg
+  SvgGenImage get settingsEdit =>
+      const SvgGenImage('assets/icons/settings_edit.svg');
+
+  /// File path: assets/icons/settings_eye.svg
+  SvgGenImage get settingsEye =>
+      const SvgGenImage('assets/icons/settings_eye.svg');
+
+  /// File path: assets/icons/settings_image.svg
+  SvgGenImage get settingsImage =>
+      const SvgGenImage('assets/icons/settings_image.svg');
+
+  /// File path: assets/icons/settings_info.svg
+  SvgGenImage get settingsInfo =>
+      const SvgGenImage('assets/icons/settings_info.svg');
+
+  /// File path: assets/icons/settings_lock.svg
+  SvgGenImage get settingsLock =>
+      const SvgGenImage('assets/icons/settings_lock.svg');
+
+  /// File path: assets/icons/settings_logout.svg
+  SvgGenImage get settingsLogout =>
+      const SvgGenImage('assets/icons/settings_logout.svg');
+
+  /// File path: assets/icons/settings_parent.svg
+  SvgGenImage get settingsParent =>
+      const SvgGenImage('assets/icons/settings_parent.svg');
+
+  /// File path: assets/icons/settings_services.svg
+  SvgGenImage get settingsServices =>
+      const SvgGenImage('assets/icons/settings_services.svg');
+
+  /// File path: assets/icons/settings_share.svg
+  SvgGenImage get settingsShare =>
+      const SvgGenImage('assets/icons/settings_share.svg');
+
+  /// File path: assets/icons/settings_shield.svg
+  SvgGenImage get settingsShield =>
+      const SvgGenImage('assets/icons/settings_shield.svg');
+
+  /// File path: assets/icons/settings_support.svg
+  SvgGenImage get settingsSupport =>
+      const SvgGenImage('assets/icons/settings_support.svg');
+
+  /// File path: assets/icons/settings_toggle_knob.svg
+  SvgGenImage get settingsToggleKnob =>
+      const SvgGenImage('assets/icons/settings_toggle_knob.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     icAi,
     icArrowLeft01Round,
     icArrowRight,
+    icCandidateGrid,
+    icCandidateMap,
     icCandidatesBtv,
     icClose,
+    icCopy,
+    icCurrentLocationDot,
+    icCurrentLocationHalo,
+    icEdit,
+    icFire,
     icGlyph,
     icGoogleIcon,
     icHugeiconsFingerprintScan,
     icInfo,
+    icLocation,
     icLogo,
+    icMapTargetCenter,
+    icMapTargetCorner,
+    icMapTargetRing,
     icMessagesBtv,
     icMoreHorizontal,
+    icNearbyEmptyRadar,
+    icNearbyFilterLines,
+    icNearbyPrivacyLock,
+    icNearbyRadioOff,
+    icNearbyRadioOn,
+    icNearbySwitchOn,
     icNotification,
     icPause,
     icPersons,
     icPlay,
     icPreservedBtv,
     icProfileBtv,
+    icRadar,
     icSaved,
     icSecurity,
     icServicesBtv,
+    icSetting,
+    icSettings,
     icShare,
+    icSquareLock,
     icTelegramIcon,
     icVerifyCheck,
+    profileAdd,
+    profileCamera,
+    profileChevron,
+    profilePreview,
+    profileVerified,
+    settingsBack,
+    settingsBell,
+    settingsChevron,
+    settingsDocument,
+    settingsEdit,
+    settingsEye,
+    settingsImage,
+    settingsInfo,
+    settingsLock,
+    settingsLogout,
+    settingsParent,
+    settingsServices,
+    settingsShare,
+    settingsShield,
+    settingsSupport,
+    settingsToggleKnob,
   ];
 }
 

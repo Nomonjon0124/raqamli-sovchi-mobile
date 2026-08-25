@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 
 final class CurrentLocationMarker extends StatelessWidget {
@@ -19,18 +19,10 @@ final class CurrentLocationMarker extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          SvgPicture.asset(
-            'assets/icons/ic_current_location_halo.svg',
-            width: 64,
-            height: 64,
-          ),
+          Assets.icons.icCurrentLocationHalo.svg(width: 64, height: 64),
           Positioned(
             top: 23,
-            child: SvgPicture.asset(
-              'assets/icons/ic_current_location_dot.svg',
-              width: 18,
-              height: 18,
-            ),
+            child: Assets.icons.icCurrentLocationDot.svg(width: 18, height: 18),
           ),
           Positioned(
             top: 52,

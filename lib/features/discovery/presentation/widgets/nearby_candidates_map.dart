@@ -3,7 +3,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,6 +10,7 @@ import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/geo_coordinates.dart';
 import '../../domain/entities/nearby_candidate_cluster.dart';
@@ -112,8 +112,7 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
             top: AppSpacing.lg,
             left: AppSpacing.lg,
             child: _MapChip(
-              icon: SvgPicture.asset(
-                'assets/icons/ic_radar.svg',
+              icon: Assets.icons.icRadar.svg(
                 width: 15,
                 height: 15,
                 colorFilter: const ColorFilter.mode(
@@ -307,29 +306,17 @@ final class _TargetIcon extends StatelessWidget {
           Positioned(
             left: 0.5,
             top: 0.5,
-            child: SvgPicture.asset(
-              'assets/icons/ic_map_target_ring.svg',
-              width: 17,
-              height: 17,
-            ),
+            child: Assets.icons.icMapTargetRing.svg(width: 17, height: 17),
           ),
           Positioned(
             left: 4.25,
             top: 4.25,
-            child: SvgPicture.asset(
-              'assets/icons/ic_map_target_center.svg',
-              width: 9.5,
-              height: 9.5,
-            ),
+            child: Assets.icons.icMapTargetCenter.svg(width: 9.5, height: 9.5),
           ),
           Positioned(
             left: 8.5,
             top: 0.5,
-            child: SvgPicture.asset(
-              'assets/icons/ic_map_target_corner.svg',
-              width: 9.5,
-              height: 9.5,
-            ),
+            child: Assets.icons.icMapTargetCorner.svg(width: 9.5, height: 9.5),
           ),
         ],
       ),

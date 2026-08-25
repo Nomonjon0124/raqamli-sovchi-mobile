@@ -21,9 +21,9 @@ final class RemoteProfileDataSource implements ProfileDataSource {
   Future<UserProfileModel> fetchMyProfile() async {
     final response = await _client.get<dynamic>(_myProfilePath);
     final raw = response.data;
-    final payload = (raw is Map && raw['data'] is Map)
-        ? raw['data'] as Map<String, dynamic>
-        : raw as Map<String, dynamic>;
+    final payload = raw is Map && raw['data'] is Map
+        ? _asStringMap(raw['data'] as Map)
+        : _asStringMap(raw as Map);
     return UserProfileModel.fromJson(payload);
   }
 
@@ -41,3 +41,6 @@ final class RemoteProfileDataSource implements ProfileDataSource {
     );
   }
 }
+
+Map<String, dynamic> _asStringMap(Map<dynamic, dynamic> value) =>
+    value.map((key, value) => MapEntry(key.toString(), value));

@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../match/application/use_cases/create_match_request.dart';
 import '../../../match/application/use_cases/get_match_request_for_candidate.dart';
+import '../../../profile/application/use_cases/get_my_profile.dart';
 import '../../application/use_cases/get_candidate.dart';
-import '../../application/use_cases/get_my_profile.dart';
 import '../../application/use_cases/save_candidate.dart';
 import '../../application/use_cases/unsave_candidate.dart';
 import '../../domain/entities/candidate.dart';

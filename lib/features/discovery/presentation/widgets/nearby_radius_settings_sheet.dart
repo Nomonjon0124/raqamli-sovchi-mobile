@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/discovery_state.dart';
 
@@ -310,7 +310,7 @@ final class _NearbySwitch extends StatelessWidget {
           width: 42,
           height: 24,
           child: value
-              ? SvgPicture.asset('assets/icons/ic_nearby_switch_on.svg')
+              ? Assets.icons.icNearbySwitchOn.svg()
               : DecoratedBox(
                   decoration: BoxDecoration(
                     color: AppColors.border,
@@ -364,13 +364,10 @@ final class _AudienceOption extends StatelessWidget {
           ),
           child: Row(
             children: [
-              SvgPicture.asset(
-                selected
-                    ? 'assets/icons/ic_nearby_radio_on.svg'
-                    : 'assets/icons/ic_nearby_radio_off.svg',
-                width: 18,
-                height: 18,
-              ),
+              (selected
+                      ? Assets.icons.icNearbyRadioOn
+                      : Assets.icons.icNearbyRadioOff)
+                  .svg(width: 18, height: 18),
               const SizedBox(width: AppSpacing.inline),
               Expanded(
                 child: Column(
@@ -415,11 +412,7 @@ final class _PrivacyNote extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset(
-            'assets/icons/ic_nearby_privacy_lock.svg',
-            width: 13,
-            height: 16,
-          ),
+          Assets.icons.icNearbyPrivacyLock.svg(width: 13, height: 16),
           const SizedBox(width: AppSpacing.inline),
           Expanded(
             child: Text(

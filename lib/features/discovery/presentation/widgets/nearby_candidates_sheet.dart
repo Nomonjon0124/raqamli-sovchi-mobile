@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate.dart';
 import '../../domain/entities/nearby_candidate_cluster.dart';
@@ -155,8 +155,7 @@ final class _NearbyCandidateRow extends StatelessWidget {
                   color: AppColors.mutedSurface,
                   shape: BoxShape.circle,
                 ),
-                child: SvgPicture.asset(
-                  'assets/icons/ic_square_lock.svg',
+                child: Assets.icons.icSquareLock.svg(
                   width: 16,
                   height: 16,
                   colorFilter: const ColorFilter.mode(

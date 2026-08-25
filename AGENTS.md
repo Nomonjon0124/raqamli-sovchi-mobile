@@ -76,6 +76,12 @@ matches their purpose:
 - Put shared widgets under `core/ui/widgets/`.
 - Build and reuse design-system widgets such as `AppTextField`, `AppButton`,
   `AppAvatar`, `AppErrorView`, and `AppEmptyState`.
+- All SVG icons in UI code must be rendered through FlutterGen typed assets:
+  use `Assets.icons.<name>.svg(...)` from `lib/gen/assets.gen.dart`. Do not
+  import `flutter_svg` directly in feature presentation code, use
+  `SvgPicture.asset`, or pass string asset paths such as
+  `assets/icons/example.svg`. After adding or renaming an SVG asset, regenerate
+  `lib/gen/assets.gen.dart` with the project's FlutterGen build step.
 - Do not hardcode colors, typography, spacing, or radius inside feature UI.
 - All user-facing text must come from generated l10n resources in
   `lib/l10n/*.arb`; do not add hardcoded UI copy in pages, widgets, dialogs,
