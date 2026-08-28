@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/pladge_card.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/pledge_confirmation_step.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/selection_card.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/step_layout.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/success_step.dart';
 
-import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
-import '../../../../core/platform/external_url_launcher.dart';
 import '../../../../core/ui/widgets/app_button.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate_type.dart';
@@ -246,11 +246,7 @@ final class _ProfileOnboardingStepContentState
         buttonLabel: l10n.pledgeConfirmationButton,
         onConfirm: () =>
             bloc.add(const ProfileOnboardingFinalizationRequested()),
-        onPrivacyPressed: () => serviceLocator<ExternalUrlLauncher>().open(
-          Uri.parse(
-            'https://raqamli-nazorat.github.io/raqamli-sovchi-privacy-policy/',
-          ),
-        ),
+        onPrivacyPressed: () => context.push(RouteNames.privacyPolicy),
       ),
       OnboardingStep.profileReady => SuccessStep(
         title: l10n.onboardingSuccessTitle,

@@ -1519,6 +1519,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'This setting will be connected in the next stage';
 
   @override
+  String get privacyPolicyLoadingLabel => 'Loading privacy policy';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Could not load the privacy policy. Check your internet connection and try again.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',

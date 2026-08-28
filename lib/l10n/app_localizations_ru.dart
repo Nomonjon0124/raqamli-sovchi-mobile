@@ -1517,6 +1517,14 @@ class AppLocalizationsRu extends AppLocalizations {
       'Эта настройка будет подключена на следующем этапе';
 
   @override
+  String get privacyPolicyLoadingLabel =>
+      'Политика конфиденциальности загружается';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Не удалось загрузить политику конфиденциальности. Проверьте подключение к интернету и повторите попытку.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

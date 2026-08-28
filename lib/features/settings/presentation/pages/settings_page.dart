@@ -139,7 +139,7 @@ final class _SettingsView extends StatelessWidget {
                   SettingsRow(
                     icon: Assets.icons.settingsInfo,
                     title: l10n.settingsPrivacyPolicy,
-                    onTap: () => _showComingSoon(context),
+                    onTap: () => context.push(RouteNames.privacyPolicy),
                   ),
                   SettingsRow(
                     icon: Assets.icons.settingsDocument,

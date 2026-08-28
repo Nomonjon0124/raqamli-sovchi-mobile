@@ -555,6 +555,8 @@
   "settingsShareApp": "Ilovani ulashish",
   "settingsLogout": "Hisobdan chiqish",
   "settingsActionComingSoon": "Bu sozlama keyingi bosqichda ulanadi",
+  "privacyPolicyLoadingLabel": "Maxfiylik siyosati yuklanmoqda",
+  "privacyPolicyLoadError": "Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.",
   "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",

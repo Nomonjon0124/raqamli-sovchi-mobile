@@ -2800,6 +2800,18 @@ abstract class AppLocalizations {
   /// **'Bu sozlama keyingi bosqichda ulanadi'**
   String get settingsActionComingSoon;
 
+  /// No description provided for @privacyPolicyLoadingLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik siyosati yuklanmoqda'**
+  String get privacyPolicyLoadingLabel;
+
+  /// No description provided for @privacyPolicyLoadError.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
+  String get privacyPolicyLoadError;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:

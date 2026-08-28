@@ -18,6 +18,7 @@ import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
+import '../../features/settings/presentation/pages/privacy_policy_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import 'app_shell.dart';
 import 'route_names.dart';
@@ -43,6 +44,7 @@ final class AppRouter {
           location == RouteNames.pinCreate || location == RouteNames.pinUnlock;
       final onOnboarding = location == RouteNames.onboarding;
       final onQuestionnaire = location == RouteNames.questionnaire;
+      final onPrivacyPolicy = location == RouteNames.privacyPolicy;
 
       if (status == AuthStatus.initial) {
         return onSplash ? null : RouteNames.splash;
@@ -73,7 +75,9 @@ final class AppRouter {
       }
 
       if (status == AuthStatus.onboardingRequired) {
-        return onOnboarding || onQuestionnaire ? null : RouteNames.onboarding;
+        return onOnboarding || onQuestionnaire || onPrivacyPolicy
+            ? null
+            : RouteNames.onboarding;
       }
 
       return onLogin ? null : RouteNames.login;
@@ -114,6 +118,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.settings,
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: RouteNames.privacyPolicy,
+        builder: (context, state) => const PrivacyPolicyPage(),
       ),
       GoRoute(
         path: RouteNames.candidateDetail,

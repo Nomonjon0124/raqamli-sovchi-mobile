@@ -13,6 +13,7 @@ abstract final class RouteNames {
   static const profile = '/profile';
   static const notifications = '/notifications';
   static const settings = '/settings';
+  static const privacyPolicy = '/privacy-policy';
   static const candidateDetail = '/candidate-detail/:id';
 
   static String candidateDetailFor(String id) =>

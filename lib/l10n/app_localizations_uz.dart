@@ -1515,6 +1515,13 @@ class AppLocalizationsUz extends AppLocalizations {
   String get settingsActionComingSoon => 'Bu sozlama keyingi bosqichda ulanadi';
 
   @override
+  String get privacyPolicyLoadingLabel => 'Maxfiylik siyosati yuklanmoqda';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

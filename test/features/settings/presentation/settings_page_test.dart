@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:raqamli_sovchi/app/di/service_locator.dart';
+import 'package:raqamli_sovchi/app/router/route_names.dart';
 import 'package:raqamli_sovchi/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/pages/settings_page.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/widgets/settings_account_actions.dart';
@@ -102,6 +104,48 @@ void main() {
     await tester.tap(find.text('Oʻchirish'));
     await tester.pumpAndSettle();
     expect(deleteRequested, isTrue);
+  });
+
+  testWidgets('opens privacy policy through the configured route', (
+    tester,
+  ) async {
+    await _loadManrope();
+    await configureDependencies();
+    final authBloc = serviceLocator<AuthBloc>();
+    final router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (_, _) => const SettingsPage()),
+        GoRoute(
+          path: RouteNames.privacyPolicy,
+          builder: (_, _) => const Scaffold(body: Text('Privacy route opened')),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      BlocProvider<AuthBloc>.value(
+        value: authBloc,
+        child: MaterialApp.router(
+          locale: const Locale('uz'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: router,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Maxfiylik siyosati'), 250);
+    await tester.tap(find.text('Maxfiylik siyosati'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    expect(find.text('Privacy route opened'), findsOneWidget);
   });
 
   testWidgets('keeps SettingsRow title on the left and value on the right', (
