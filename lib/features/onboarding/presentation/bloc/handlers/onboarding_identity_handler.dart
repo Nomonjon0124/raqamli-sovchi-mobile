@@ -136,8 +136,7 @@ mixin OnboardingIdentityHandler
     final draft = state.draft;
     if (draft == null ||
         event.firstName.trim().isEmpty ||
-        event.lastName.trim().isEmpty ||
-        event.patronymic.trim().isEmpty) {
+        event.lastName.trim().isEmpty) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
     }
@@ -160,8 +159,9 @@ mixin OnboardingIdentityHandler
     if (draft == null ||
         event.heightCm < 100 ||
         event.heightCm > 300 ||
-        (event.weightKg != null &&
-            (event.weightKg! < 20 || event.weightKg! > 250))) {
+        event.weightKg == null ||
+        event.weightKg! < 20 ||
+        event.weightKg! > 250) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
     }

@@ -83,6 +83,34 @@ void main() {
     expect(_focusedEditableTextCount(tester), 0);
   });
 
+  testWidgets('identity continue does not require a patronymic', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.identity,
+      size: const Size(390, 844),
+    );
+
+    final fields = find.byType(TextField);
+    await tester.enterText(fields.at(0), 'Ali');
+    await tester.enterText(fields.at(1), 'Valiyev');
+    await tester.pump();
+
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Davom etish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+  });
+
   testWidgets('birth date step fits in a keyboard-height viewport', (
     tester,
   ) async {
@@ -101,8 +129,8 @@ void main() {
   });
 
   for (final scenario in [
-    (type: CandidateType.groom, height: '175', weight: '75'),
-    (type: CandidateType.bride, height: '165', weight: '63'),
+    (type: CandidateType.groom, height: '0', weight: '0'),
+    (type: CandidateType.bride, height: '0', weight: '0'),
   ]) {
     testWidgets('height step defaults ${scenario.type.name} measurements', (
       tester,
@@ -660,8 +688,8 @@ void main() {
     );
 
     final fields = tester.widgetList<TextField>(find.byType(TextField));
-    expect(fields.elementAt(0).controller?.text, '165');
-    expect(fields.elementAt(1).controller?.text, '63');
+    expect(fields.elementAt(0).controller?.text, '0');
+    expect(fields.elementAt(1).controller?.text, '0');
     expect(find.text('Nomzodning bo‘yi va vazni'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

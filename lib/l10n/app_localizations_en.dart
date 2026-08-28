@@ -244,7 +244,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lastNameLabel => 'Last name';
 
   @override
-  String get patronymicLabel => 'Father\'s name';
+  String get patronymicLabel => 'Father\'s name (optional)';
 
   @override
   String get educationTitle => 'What is your education?';

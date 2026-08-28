@@ -523,7 +523,7 @@ abstract class AppLocalizations {
   /// No description provided for @patronymicLabel.
   ///
   /// In uz, this message translates to:
-  /// **'Otasining ismi'**
+  /// **'Otasining ismi (ixtiyoriy)'**
   String get patronymicLabel;
 
   /// No description provided for @educationTitle.

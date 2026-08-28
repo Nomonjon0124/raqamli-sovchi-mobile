@@ -52,9 +52,18 @@ final class _PledgeConfirmationStepState extends State<PledgeConfirmationStep> {
       ),
       title: widget.title,
       subtitle: widget.subtitle,
-      bottom: CustomPrimaryButton(
-        label: widget.buttonLabel,
-        onPressed: _accepted.every((value) => value) ? widget.onConfirm : null,
+      bottom: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomPrimaryButton(
+            label: widget.buttonLabel,
+            onPressed: _accepted.every((value) => value)
+                ? widget.onConfirm
+                : null,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          _PrivacyPolicyLink(onPressed: widget.onPrivacyPressed),
+        ],
       ),
       child: Column(
         children: [
@@ -70,8 +79,6 @@ final class _PledgeConfirmationStepState extends State<PledgeConfirmationStep> {
             ),
             const SizedBox(height: AppSpacing.sm),
           ],
-          const SizedBox(height: AppSpacing.sm),
-          _PrivacyPolicyLink(onPressed: widget.onPrivacyPressed),
         ],
       ),
     );

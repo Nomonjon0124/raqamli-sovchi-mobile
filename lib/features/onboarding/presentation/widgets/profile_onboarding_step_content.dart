@@ -437,8 +437,7 @@ final class _ProfileOnboardingStepContentState
         label: l10n.continueLabel,
         onPressed:
             _firstNameController.text.trim().isEmpty ||
-                _lastNameController.text.trim().isEmpty ||
-                _patronymicController.text.trim().isEmpty
+                _lastNameController.text.trim().isEmpty
             ? null
             : () {
                 FocusScope.of(context).unfocus();
@@ -547,7 +546,9 @@ final class _ProfileOnboardingStepContentState
           : l10n.heightWeightTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: () => bloc.add(HeightSaved(height, weightKg: weight)),
+        onPressed: height <= 0 || weight <= 0
+            ? null
+            : () => bloc.add(HeightSaved(height, weightKg: weight)),
       ),
       child: OnboardingHeightWeightInput(
         height: height,
@@ -571,17 +572,11 @@ final class _ProfileOnboardingStepContentState
   }
 
   int _defaultHeight(CandidateType? candidateType) {
-    return switch (candidateType) {
-      CandidateType.bride => 165,
-      CandidateType.groom || CandidateType.representative || null => 175,
-    };
+    return 0;
   }
 
   int _defaultWeight(CandidateType? candidateType) {
-    return switch (candidateType) {
-      CandidateType.bride => 63,
-      CandidateType.groom || CandidateType.representative || null => 75,
-    };
+    return 0;
   }
 
   Widget _location(

@@ -256,7 +256,6 @@ final class ProfileOnboardingDraft extends Equatable {
       birthDate != null &&
       (firstName?.trim().isNotEmpty ?? false) &&
       (lastName?.trim().isNotEmpty ?? false) &&
-      (patronymic?.trim().isNotEmpty ?? false) &&
       (educationLevelId?.isNotEmpty ?? false) &&
       heightCm != null &&
       (regionId?.isNotEmpty ?? false) &&

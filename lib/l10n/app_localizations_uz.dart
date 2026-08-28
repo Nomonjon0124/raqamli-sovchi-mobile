@@ -243,7 +243,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get lastNameLabel => 'Familiyangiz';
 
   @override
-  String get patronymicLabel => 'Otasining ismi';
+  String get patronymicLabel => 'Otasining ismi (ixtiyoriy)';
 
   @override
   String get educationTitle => 'Ma’lumotingiz qanday?';

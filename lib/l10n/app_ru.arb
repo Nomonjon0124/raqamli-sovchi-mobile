@@ -49,7 +49,7 @@
   "identitySubtitle": "Напишите так, как указано в паспорте. Это имя увидят кандидаты.",
   "firstNameLabel": "Имя",
   "lastNameLabel": "Фамилия",
-  "patronymicLabel": "Отчество",
+  "patronymicLabel": "Отчество (необязательно)",
   "educationTitle": "Какое у вас образование?",
   "heightTitle": "Ваш рост",
   "heightWeightTitle": "Ваш рост и вес",

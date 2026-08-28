@@ -78,7 +78,7 @@
   "identitySubtitle": "Write it as it appears in your passport. Candidates will see this name.",
   "firstNameLabel": "First name",
   "lastNameLabel": "Last name",
-  "patronymicLabel": "Father''s name",
+  "patronymicLabel": "Father''s name (optional)",
   "educationTitle": "What is your education?",
   "heightTitle": "Your height",
   "heightWeightTitle": "Your height and weight",

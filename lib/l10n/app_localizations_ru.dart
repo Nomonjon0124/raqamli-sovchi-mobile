@@ -245,7 +245,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get lastNameLabel => 'Фамилия';
 
   @override
-  String get patronymicLabel => 'Отчество';
+  String get patronymicLabel => 'Отчество (необязательно)';
 
   @override
   String get educationTitle => 'Какое у вас образование?';

@@ -43,9 +43,9 @@ final class OnboardingHeightWeightInput extends StatefulWidget {
 
 final class _OnboardingHeightWeightInputState
     extends State<OnboardingHeightWeightInput> {
-  static const _minHeight = 100;
+  static const _minHeight = 0;
   static const _maxHeight = 250;
-  static const _minWeight = 20;
+  static const _minWeight = 0;
   static const _maxWeight = 250;
 
   late final TextEditingController _heightController;
