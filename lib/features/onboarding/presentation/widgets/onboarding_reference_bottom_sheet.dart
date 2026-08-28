@@ -13,24 +13,25 @@ import '../bloc/profile_onboarding_state.dart';
 final class OnboardingReferenceBottomSheet extends StatefulWidget {
   const OnboardingReferenceBottomSheet({
     required this.title,
-    required this.subtitle,
     required this.status,
     required this.onRetry,
     required this.onConfirm,
     required this.confirmEnabled,
-    required this.child,
+    required this.listBuilder,
+    this.subtitle,
     this.searchPlaceholder,
     this.onSearch,
     super.key,
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final ReferenceStatus status;
   final VoidCallback onRetry;
   final VoidCallback onConfirm;
   final bool confirmEnabled;
-  final Widget child;
+  final Widget Function(BuildContext context, ScrollController scrollController)
+  listBuilder;
   final String? searchPlaceholder;
   final ValueChanged<String>? onSearch;
 
@@ -59,103 +60,117 @@ final class _OnboardingReferenceBottomSheetState
   @override
   Widget build(BuildContext context) {
     final searchPlaceholder = widget.searchPlaceholder;
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.sizeOf(context).height * .84,
-      ),
-      padding: const EdgeInsets.fromLTRB(
-        AppSpacing.xl,
-        AppSpacing.sm + AppSpacing.xs,
-        AppSpacing.xl,
-        AppSpacing.xl,
-      ),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(AppSpacing.xl),
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Align(
-            child: Container(
-              width: 36,
-              height: 4,
-              decoration: BoxDecoration(
-                color: AppColors.mutedSurface,
-                borderRadius: BorderRadius.circular(AppRadius.full),
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+      child: DraggableScrollableSheet(
+        initialChildSize: .72,
+        minChildSize: .45,
+        maxChildSize: 1,
+        expand: false,
+        builder: (context, scrollController) {
+          return Container(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.xl,
+              AppSpacing.sm + AppSpacing.xs,
+              AppSpacing.xl,
+              AppSpacing.xl,
+            ),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(AppSpacing.xl),
               ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          Text(widget.title, style: AppTypography.onboardingSheetTitle),
-          const SizedBox(height: AppSpacing.xs),
-          Text(widget.subtitle, style: AppTypography.onboardingSheetCaption),
-          if (searchPlaceholder != null) ...[
-            const SizedBox(height: AppSpacing.md),
-            TextField(
-              onChanged: _onSearchChanged,
-              style: AppTypography.onboardingSearch,
-              decoration: InputDecoration(
-                hintText: searchPlaceholder,
-                hintStyle: AppTypography.onboardingSearch,
-                filled: true,
-                fillColor: AppColors.mutedSurface,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  borderSide: BorderSide.none,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  child: Container(
+                    width: 36,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: AppColors.mutedSurface,
+                      borderRadius: BorderRadius.circular(AppRadius.full),
+                    ),
+                  ),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  borderSide: BorderSide.none,
+                const SizedBox(height: AppSpacing.lg),
+                Text(widget.title, style: AppTypography.onboardingSheetTitle),
+                if (widget.subtitle != null) ...[
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    widget.subtitle!,
+                    style: AppTypography.onboardingSheetCaption,
+                  ),
+                ],
+                if (searchPlaceholder != null) ...[
+                  const SizedBox(height: AppSpacing.md),
+                  TextField(
+                    onChanged: _onSearchChanged,
+                    style: AppTypography.onboardingSearch,
+                    decoration: InputDecoration(
+                      hintText: searchPlaceholder,
+                      hintStyle: AppTypography.onboardingSearch,
+                      filled: true,
+                      fillColor: AppColors.mutedSurface,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.lg),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.lg),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppRadius.lg),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md + AppSpacing.xs,
+                        vertical: AppSpacing.md,
+                      ),
+                    ),
+                  ),
+                ],
+                const SizedBox(height: AppSpacing.md),
+                Flexible(
+                  child: switch (widget.status) {
+                    ReferenceStatus.loading => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    ReferenceStatus.failure => Center(
+                      child: AppButton(
+                        label: AppLocalizations.of(context).retry,
+                        onPressed: widget.onRetry,
+                      ),
+                    ),
+                    ReferenceStatus.empty => const SizedBox.shrink(),
+                    _ => widget.listBuilder(context, scrollController),
+                  },
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
-                  borderSide: BorderSide.none,
+                const SizedBox(height: AppSpacing.md),
+                FilledButton(
+                  onPressed: widget.confirmEnabled ? widget.onConfirm : null,
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(52),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                    ),
+                    backgroundColor: AppColors.primary,
+                    disabledBackgroundColor: AppColors.border,
+                    foregroundColor: Colors.white,
+                    disabledForegroundColor: AppColors.mutedText,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppRadius.full),
+                    ),
+                    textStyle: AppTypography.onboardingAction,
+                  ),
+                  child: Text(AppLocalizations.of(context).selectLabel),
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: AppSpacing.md + AppSpacing.xs,
-                  vertical: AppSpacing.md,
-                ),
-              ),
+              ],
             ),
-          ],
-          const SizedBox(height: AppSpacing.md),
-          Flexible(
-            child: switch (widget.status) {
-              ReferenceStatus.loading => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              ReferenceStatus.failure => Center(
-                child: AppButton(
-                  label: AppLocalizations.of(context).retry,
-                  onPressed: widget.onRetry,
-                ),
-              ),
-              ReferenceStatus.empty => const SizedBox.shrink(),
-              _ => widget.child,
-            },
-          ),
-          const SizedBox(height: AppSpacing.md),
-          FilledButton(
-            onPressed: widget.confirmEnabled ? widget.onConfirm : null,
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(52),
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-              backgroundColor: AppColors.primary,
-              disabledBackgroundColor: AppColors.border,
-              foregroundColor: Colors.white,
-              disabledForegroundColor: AppColors.mutedText,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppRadius.full),
-              ),
-              textStyle: AppTypography.onboardingAction,
-            ),
-            child: Text(AppLocalizations.of(context).selectLabel),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

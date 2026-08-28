@@ -165,9 +165,7 @@ final class _ProfileOnboardingStepContentState
         title: widget.representativeMode
             ? l10n.representativeVoiceTitle
             : l10n.voiceTitle,
-        subtitle: widget.representativeMode
-            ? l10n.representativeVoiceSubtitle
-            : l10n.voiceSubtitle,
+        // The reference layout shows guidance next to the recorder, not here.
         step: widget.step,
         bottom: Column(
           children: [
@@ -199,7 +197,8 @@ final class _ProfileOnboardingStepContentState
           playLabel: l10n.playRecording,
           reRecordLabel: l10n.reRecordVoice,
           deleteLabel: l10n.deleteVoice,
-          hint: l10n.startRecordingHint,
+          actionHint: l10n.startRecordingHint,
+          hint: l10n.voiceShortHint,
           recordingHint: l10n.recordedVoiceHint,
           recordingDuration: _formatDuration(
             draft.voiceIntroMetadata?.duration,
@@ -678,8 +677,8 @@ final class _ProfileOnboardingStepContentState
               onRetry: () => bloc.add(const RegionsRequested()),
               confirmEnabled: state.draft?.regionId?.isNotEmpty == true,
               onConfirm: () => Navigator.of(context).pop(),
-              child: ListView.builder(
-                shrinkWrap: true,
+              listBuilder: (context, scrollController) => ListView.builder(
+                controller: scrollController,
                 itemCount: state.regions.length,
                 itemBuilder: (context, index) {
                   final item = state.regions[index];
@@ -718,18 +717,19 @@ final class _ProfileOnboardingStepContentState
           builder: (context, state) {
             return OnboardingReferenceBottomSheet(
               title: l10n.districtSheetTitle,
-              subtitle: l10n.districtSheetSubtitle(
-                _selectedRegionName(state.draft!) ?? l10n.regionLabel,
-                state.districts.length,
-              ),
+              // District count is hidden in the current onboarding layout.
+              // subtitle: l10n.districtSheetSubtitle(
+              //   _selectedRegionName(state.draft!) ?? l10n.regionLabel,
+              //   state.districts.length,
+              // ),
               status: state.districtStatus,
               onRetry: () => bloc.add(const DistrictsRequested()),
               confirmEnabled: state.draft?.districtId?.isNotEmpty == true,
               onConfirm: () => Navigator.of(context).pop(),
               searchPlaceholder: l10n.locationSearchPlaceholder,
               onSearch: (value) => bloc.add(DistrictsRequested(search: value)),
-              child: ListView.builder(
-                shrinkWrap: true,
+              listBuilder: (context, scrollController) => ListView.builder(
+                controller: scrollController,
                 itemCount: state.districts.length,
                 itemBuilder: (context, index) {
                   final item = state.districts[index];

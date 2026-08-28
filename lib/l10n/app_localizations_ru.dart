@@ -13,7 +13,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get faceCaptureSubtitle =>
-      'Мы сравним селфи с главным фото. Селфи никто не увидит, после проверки оно удаляется.';
+      'Мы сравним его с вашим основным фото. Никто его не увидит, и после проверки оно будет удалено.';
 
   @override
   String get selfieCameraLabel => 'камера селфи';

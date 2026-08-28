@@ -441,51 +441,91 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets(
-    'voice step shows recording controls before and after recording',
-    (tester) async {
-      final bloc = _createBloc();
-      addTearDown(bloc.close);
+  testWidgets('voice step shows recording controls before and after recording', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
 
-      await _pumpStep(
-        tester,
-        bloc: bloc,
-        step: OnboardingStep.voiceIntro,
-        size: const Size(390, 844),
-      );
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+    );
 
-      expect(find.byIcon(Icons.mic_none_rounded), findsOneWidget);
-      expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
-      expect(find.text('Qayta yozish'), findsNothing);
-      expect(tester.takeException(), isNull);
+    expect(find.byIcon(Icons.mic_none_rounded), findsOneWidget);
+    expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
+    expect(
+      find.text(
+        '10–15 soniya yetarli. Ovoz odam haqida suratdan ko‘ra ko‘proq narsani aytadi.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        'Ixtiyoriy. 10–15 soniya yetarli — ovoz odam haqida ko‘proq narsani aytadi.',
+      ),
+      findsNothing,
+    );
+    expect(find.text('Qayta yozish'), findsNothing);
+    expect(tester.takeException(), isNull);
 
-      await _pumpStep(
-        tester,
-        bloc: bloc,
-        step: OnboardingStep.voiceIntro,
-        size: const Size(390, 844),
-        state: ProfileOnboardingState(
-          status: ProfileOnboardingStatus.editing,
-          draft: ProfileOnboardingDraft(
-            ownerUserId: 'user-1',
-            updatedAt: DateTime.utc(2026),
-            voiceIntroMetadata: const VoiceIntroMetadata(
-              localFilePath: '/private/voice.m4a',
-              duration: Duration(seconds: 12),
-              sizeBytes: 100,
-              uploaded: true,
-            ),
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          updatedAt: DateTime.utc(2026),
+          voiceIntroMetadata: const VoiceIntroMetadata(
+            localFilePath: '/private/voice.m4a',
+            duration: Duration(seconds: 12),
+            sizeBytes: 100,
+            uploaded: true,
           ),
         ),
-      );
+      ),
+    );
 
-      expect(find.byIcon(Icons.play_arrow), findsOneWidget);
-      expect(find.text('0:12'), findsOneWidget);
-      expect(find.text('Qayta yozish'), findsOneWidget);
-      expect(find.text('O‘chirish'), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    },
-  );
+    expect(find.byIcon(Icons.play_arrow), findsOneWidget);
+    expect(find.text('0:12'), findsOneWidget);
+    expect(find.text('Qayta yozish'), findsOneWidget);
+    expect(find.text('O‘chirish'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('representative voice step uses the shared recorder layout', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+      representative: true,
+    );
+
+    expect(find.text('Nomzodning ovozli izohi'), findsOneWidget);
+    expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
+    expect(
+      find.text(
+        '10–15 soniya yetarli. Ovoz odam haqida suratdan ko‘ra ko‘proq narsani aytadi.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Ixtiyoriy. Nomzod keyin o‘zi qayta yozishi mumkin.'),
+      findsNothing,
+    );
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets('location permission step requires enabling location', (
     tester,

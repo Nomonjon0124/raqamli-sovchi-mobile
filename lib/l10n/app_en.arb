@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "faceCaptureTitle": "Take one selfie",
-  "faceCaptureSubtitle": "We compare it with your main photo. The selfie is not shown to anyone and is deleted after verification.",
+  "faceCaptureSubtitle": "We compare it with your main photo. No one will see it, and it will be deleted after verification.",
   "selfieCameraLabel": "selfie camera",
   "faceRuleOne": "Place your face inside the circle.",
   "faceRuleTwo": "Make sure your face is visible.",

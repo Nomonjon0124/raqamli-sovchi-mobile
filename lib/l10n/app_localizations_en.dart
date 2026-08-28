@@ -13,7 +13,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get faceCaptureSubtitle =>
-      'We compare it with your main photo. The selfie is not shown to anyone and is deleted after verification.';
+      'We compare it with your main photo. No one will see it, and it will be deleted after verification.';
 
   @override
   String get selfieCameraLabel => 'selfie camera';

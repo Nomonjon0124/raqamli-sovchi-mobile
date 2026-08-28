@@ -13,7 +13,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get faceCaptureSubtitle =>
-      'Asosiy suratingiz bilan solishtiramiz. Selfi hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.';
+      'Asosiy suratingiz bilan solishtiramiz. Hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.';
 
   @override
   String get selfieCameraLabel => 'selfi kamera';

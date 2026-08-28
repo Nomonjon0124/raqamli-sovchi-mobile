@@ -1,7 +1,7 @@
 {
   "@@locale": "uz",
   "faceCaptureTitle": "Bir marta selfi olamiz",
-  "faceCaptureSubtitle": "Asosiy suratingiz bilan solishtiramiz. Selfi hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.",
+  "faceCaptureSubtitle": "Asosiy suratingiz bilan solishtiramiz. Hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.",
   "selfieCameraLabel": "selfi kamera",
   "faceRuleOne": "Yuzingizni doira ichiga joylashtiring.",
   "faceRuleTwo": "Yuzingiz yaxshi ko‘rinsin — shu yetarli.",

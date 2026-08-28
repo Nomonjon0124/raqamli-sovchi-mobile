@@ -109,7 +109,7 @@ abstract class AppLocalizations {
   /// No description provided for @faceCaptureSubtitle.
   ///
   /// In uz, this message translates to:
-  /// **'Asosiy suratingiz bilan solishtiramiz. Selfi hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.'**
+  /// **'Asosiy suratingiz bilan solishtiramiz. Hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.'**
   String get faceCaptureSubtitle;
 
   /// No description provided for @selfieCameraLabel.

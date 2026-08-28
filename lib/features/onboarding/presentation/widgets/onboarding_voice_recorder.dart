@@ -16,6 +16,7 @@ final class OnboardingVoiceRecorder extends StatefulWidget {
     required this.playLabel,
     required this.reRecordLabel,
     required this.deleteLabel,
+    required this.actionHint,
     required this.hint,
     required this.recordingHint,
     required this.recordingDuration,
@@ -33,6 +34,7 @@ final class OnboardingVoiceRecorder extends StatefulWidget {
   final String playLabel;
   final String reRecordLabel;
   final String deleteLabel;
+  final String actionHint;
   final String hint;
   final String recordingHint;
   final String recordingDuration;
@@ -126,11 +128,9 @@ final class _OnboardingVoiceRecorderState extends State<OnboardingVoiceRecorder>
         ),
         const SizedBox(height: AppSpacing.md),
         Text(
-          widget.recordLabel,
+          widget.actionHint,
           textAlign: TextAlign.center,
-          style: AppTypography.onboardingAction.copyWith(
-            color: AppColors.bodyText,
-          ),
+          style: AppTypography.onboardingBody,
         ),
         const SizedBox(height: AppSpacing.lg),
         _AnimatedWaveform(
