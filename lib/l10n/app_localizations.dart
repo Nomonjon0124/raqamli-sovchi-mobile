@@ -244,6 +244,12 @@ abstract class AppLocalizations {
   /// **'Qasamni tasdiqlash'**
   String get pledgeConfirmationButton;
 
+  /// No description provided for @privacyPolicyAgreementSuffix.
+  ///
+  /// In uz, this message translates to:
+  /// **' bilan tanishing'**
+  String get privacyPolicyAgreementSuffix;
+
   /// No description provided for @aiTestBadge.
   ///
   /// In uz, this message translates to:

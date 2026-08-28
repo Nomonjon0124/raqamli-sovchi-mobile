@@ -92,6 +92,9 @@ class AppLocalizationsUz extends AppLocalizations {
   String get pledgeConfirmationButton => 'Qasamni tasdiqlash';
 
   @override
+  String get privacyPolicyAgreementSuffix => ' bilan tanishing';
+
+  @override
   String get aiTestBadge => 'AI MOSLIK TESTI';
 
   @override

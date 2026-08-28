@@ -13,6 +13,7 @@ import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboardin
 import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboarding_repository.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/bloc/profile_onboarding_state.dart';
+import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/onboarding_location_map.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/profile_onboarding_step_content.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_step_content.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
@@ -543,7 +544,7 @@ void main() {
     expect(find.text('Joylashuvingiz'), findsOneWidget);
     expect(find.text('Joylashuvni yoqish'), findsOneWidget);
     expect(find.text('O‘tkazib yuborish'), findsNothing);
-    expect(find.byIcon(Icons.location_on_outlined), findsOneWidget);
+    expect(find.byType(OnboardingLocationMap), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -566,6 +567,27 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Qasamni tasdiqlash'), findsOneWidget);
+    final pledgeButton = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Qasamni tasdiqlash'),
+    );
+    expect(pledgeButton.onPressed, isNull);
+
+    for (final statement in [
+      'Ma’lumotlarim to‘g‘ri va o‘zimga tegishli.',
+      'Niyatim jiddiy — oila qurish uchun keldim.',
+      'Suhbatdoshga hurmat bilan munosabatda bo‘laman.',
+    ]) {
+      await tester.tap(find.text(statement));
+    }
+    await tester.pump();
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Qasamni tasdiqlash'),
+          )
+          .onPressed,
+      isNotNull,
+    );
     expect(tester.takeException(), isNull);
   });
 

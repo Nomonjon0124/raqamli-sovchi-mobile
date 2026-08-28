@@ -50,27 +50,29 @@ final class SuccessStep extends StatelessWidget {
                 children: [
                   const SizedBox(height: 28),
                   Center(
-                    child: Container(
-                      width: 64,
-                      height: 64,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primary,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Assets.icons.icVerifyCheck.svg(
-                        width: 32,
-                        height: 32,
-                        excludeFromSemantics: true,
-                      ),
+                    child: Assets.icons.icSmileWink.svg(
+                      width: 86,
+                      height: 86,
+                      excludeFromSemantics: true,
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text(title, style: AppTypography.onboardingTitle.copyWith()),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: AppTypography.onboardingTitle.copyWith(),
+                    ),
+                  ),
                   const SizedBox(height: AppSpacing.sm),
-                  Text(
-                    subtitle,
-                    style: AppTypography.onboardingBody.copyWith(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      subtitle,
+                      textAlign: TextAlign.center,
+                      style: AppTypography.onboardingBody.copyWith(),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   _AiTestOfferCard(
@@ -114,7 +116,7 @@ final class _AiTestOfferCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.subtleSurface,
         border: Border.all(color: AppColors.primary, width: 1.5),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),

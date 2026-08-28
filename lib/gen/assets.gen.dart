@@ -213,6 +213,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_share.svg
   SvgGenImage get icShare => const SvgGenImage('assets/icons/ic_share.svg');
 
+  /// File path: assets/icons/ic_smile_wink.svg
+  SvgGenImage get icSmileWink =>
+      const SvgGenImage('assets/icons/ic_smile_wink.svg');
+
   /// File path: assets/icons/ic_square_lock.svg
   SvgGenImage get icSquareLock =>
       const SvgGenImage('assets/icons/ic_square_lock.svg');
@@ -220,6 +224,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
       const SvgGenImage('assets/icons/ic_telegram_icon.svg');
+
+  /// File path: assets/icons/ic_verified_device.svg
+  SvgGenImage get icVerifiedDevice =>
+      const SvgGenImage('assets/icons/ic_verified_device.svg');
 
   /// File path: assets/icons/ic_verify_check.svg
   SvgGenImage get icVerifyCheck =>
@@ -353,8 +361,10 @@ class $AssetsIconsGen {
     icSetting,
     icSettings,
     icShare,
+    icSmileWink,
     icSquareLock,
     icTelegramIcon,
+    icVerifiedDevice,
     icVerifyCheck,
     profileAdd,
     profileCamera,
@@ -402,6 +412,10 @@ class $AssetsImagesGen {
   AssetGenImage get launcherIcon =>
       const AssetGenImage('assets/images/launcher_icon.png');
 
+  /// File path: assets/images/map_image.png
+  AssetGenImage get mapImage =>
+      const AssetGenImage('assets/images/map_image.png');
+
   /// List of all assets
   List<dynamic> get values => [
     aGitkeep,
@@ -410,10 +424,12 @@ class $AssetsImagesGen {
     image3,
     image4,
     launcherIcon,
+    mapImage,
   ];
 }
 
 abstract final class Assets {
+
   static const $AssetsAuthGen auth = $AssetsAuthGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

@@ -19,6 +19,7 @@ final class StepLayout extends StatelessWidget {
     required this.title,
     required this.child,
     this.subtitle,
+    this.leading,
     this.step,
     this.bottom,
     this.dateWheel = false,
@@ -27,6 +28,9 @@ final class StepLayout extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+
+  /// Optional visual shown between the wizard header and the title.
+  final Widget? leading;
   final Widget child;
   final OnboardingStep? step;
   final Widget? bottom;
@@ -46,6 +50,10 @@ final class StepLayout extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
+        ],
+        if (leading != null) ...[
+          leading!,
+          const SizedBox(height: AppSpacing.lg),
         ],
         Text(title, style: AppTypography.onboardingTitle),
         if (subtitle != null) ...[

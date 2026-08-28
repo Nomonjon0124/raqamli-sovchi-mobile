@@ -92,6 +92,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pledgeConfirmationButton => 'Подтвердить обещание';
 
   @override
+  String get privacyPolicyAgreementSuffix => ' для ознакомления';
+
+  @override
   String get aiTestBadge => 'AI-ТЕСТ СОВМЕСТИМОСТИ';
 
   @override

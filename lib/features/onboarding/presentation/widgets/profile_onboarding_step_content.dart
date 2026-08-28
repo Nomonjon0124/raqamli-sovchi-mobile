@@ -6,10 +6,11 @@ import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/selectio
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/step_layout.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/success_step.dart';
 
+import '../../../../app/di/service_locator.dart';
 import '../../../../app/theme/app_colors.dart';
-import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../core/platform/external_url_launcher.dart';
 import '../../../../core/ui/widgets/app_button.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate_type.dart';
@@ -31,6 +32,7 @@ import 'health_status_option.dart';
 import 'onboarding_date_wheel_picker.dart';
 import 'onboarding_face_camera.dart';
 import 'onboarding_height_weight_input.dart';
+import 'onboarding_location_map.dart';
 import 'onboarding_location_selector_row.dart';
 import 'onboarding_photo_grid.dart';
 import 'onboarding_reference_bottom_sheet.dart';
@@ -233,22 +235,7 @@ final class _ProfileOnboardingStepContentState
               ? null
               : () => bloc.add(const LocationPermissionRequested()),
         ),
-        child: Container(
-          width: double.infinity,
-          height: 180,
-          decoration: BoxDecoration(
-            color: AppColors.mutedSurface,
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-          ),
-          alignment: Alignment.center,
-          child: widget.state.isLocationLoading
-              ? const CircularProgressIndicator()
-              : const Icon(
-                  Icons.location_on_outlined,
-                  size: 48,
-                  color: AppColors.mutedText,
-                ),
-        ),
+        child: OnboardingLocationMap(isLoading: widget.state.isLocationLoading),
       ),
       OnboardingStep.success => PledgeConfirmationStep(
         title: l10n.pledgeConfirmationTitle,
@@ -259,6 +246,11 @@ final class _ProfileOnboardingStepContentState
         buttonLabel: l10n.pledgeConfirmationButton,
         onConfirm: () =>
             bloc.add(const ProfileOnboardingFinalizationRequested()),
+        onPrivacyPressed: () => serviceLocator<ExternalUrlLauncher>().open(
+          Uri.parse(
+            'https://raqamli-nazorat.github.io/raqamli-sovchi-privacy-policy/',
+          ),
+        ),
       ),
       OnboardingStep.profileReady => SuccessStep(
         title: l10n.onboardingSuccessTitle,

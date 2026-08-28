@@ -92,6 +92,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pledgeConfirmationButton => 'Confirm pledge';
 
   @override
+  String get privacyPolicyAgreementSuffix => ' to learn more';
+
+  @override
   String get aiTestBadge => 'AI COMPATIBILITY TEST';
 
   @override
