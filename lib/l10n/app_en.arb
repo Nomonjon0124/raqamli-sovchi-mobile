@@ -202,6 +202,8 @@
   "representativeContactTitle": "Candidate’s phone number",
   "representativeContactSubtitle": "A consent request will be sent here. The profile remains hidden until confirmed.",
   "representativeContactLabel": "Phone number / email",
+  "representativeContactPhoneTab": "Phone number",
+  "representativeContactEmailTab": "Email address",
   "representativeContactWarningTitle": "This must belong to the candidate",
   "representativeContactWarningBody": "Using your own contact invalidates consent and may block the profile.",
   "representativeSendConsent": "Send consent request",

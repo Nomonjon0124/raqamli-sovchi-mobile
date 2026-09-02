@@ -627,6 +627,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get representativeContactLabel => 'Телефон / email';
 
   @override
+  String get representativeContactPhoneTab => 'Номер телефона';
+
+  @override
+  String get representativeContactEmailTab => 'Email';
+
+  @override
   String get representativeContactWarningTitle =>
       'Контакт должен принадлежать кандидату';
 

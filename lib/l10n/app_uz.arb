@@ -214,6 +214,8 @@
   "representativeContactTitle": "Nomzodning telefon raqami",
   "representativeContactSubtitle": "Shu raqamga rozilik so‘rovi yuboriladi. Nomzod tasdiqlamaguncha anketa hech kimga ko‘rinmaydi.",
   "representativeContactLabel": "Telefon raqami / email",
+  "representativeContactPhoneTab": "Telefon raqam",
+  "representativeContactEmailTab": "Email manzil",
   "representativeContactWarningTitle": "Raqam nomzodniki bo‘lishi shart",
   "representativeContactWarningBody": "O‘z raqamingizni kiritsangiz, rozilik haqiqiy hisoblanmaydi va profil bloklanadi.",
   "representativeSendConsent": "Rozilik so‘rovini yuborish",

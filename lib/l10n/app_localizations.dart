@@ -1216,6 +1216,18 @@ abstract class AppLocalizations {
   /// **'Telefon raqami / email'**
   String get representativeContactLabel;
 
+  /// No description provided for @representativeContactPhoneTab.
+  ///
+  /// In uz, this message translates to:
+  /// **'Telefon raqam'**
+  String get representativeContactPhoneTab;
+
+  /// No description provided for @representativeContactEmailTab.
+  ///
+  /// In uz, this message translates to:
+  /// **'Email manzil'**
+  String get representativeContactEmailTab;
+
   /// No description provided for @representativeContactWarningTitle.
   ///
   /// In uz, this message translates to:

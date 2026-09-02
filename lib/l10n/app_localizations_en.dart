@@ -630,6 +630,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get representativeContactLabel => 'Phone number / email';
 
   @override
+  String get representativeContactPhoneTab => 'Phone number';
+
+  @override
+  String get representativeContactEmailTab => 'Email address';
+
+  @override
   String get representativeContactWarningTitle =>
       'This must belong to the candidate';
 

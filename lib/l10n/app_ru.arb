@@ -173,6 +173,8 @@
   "representativeContactTitle": "Телефон кандидата",
   "representativeContactSubtitle": "На этот контакт будет отправлен запрос согласия. До подтверждения анкета скрыта.",
   "representativeContactLabel": "Телефон / email",
+  "representativeContactPhoneTab": "Номер телефона",
+  "representativeContactEmailTab": "Email",
   "representativeContactWarningTitle": "Контакт должен принадлежать кандидату",
   "representativeContactWarningBody": "Если указать свой контакт, согласие будет недействительным, а профиль может быть заблокирован.",
   "representativeSendConsent": "Отправить запрос согласия",

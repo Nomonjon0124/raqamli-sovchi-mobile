@@ -625,6 +625,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get representativeContactLabel => 'Telefon raqami / email';
 
   @override
+  String get representativeContactPhoneTab => 'Telefon raqam';
+
+  @override
+  String get representativeContactEmailTab => 'Email manzil';
+
+  @override
   String get representativeContactWarningTitle =>
       'Raqam nomzodniki bo‘lishi shart';
 

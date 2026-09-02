@@ -193,6 +193,78 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('representative contact switches phone and email formats', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.representativeContact,
+      representative: true,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          candidateType: CandidateType.representative,
+          currentStep: OnboardingStep.representativeContact,
+          profileServerId: 'profile-1',
+          representedCandidateType: CandidateType.bride,
+          kinshipId: 'kinship-1',
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    final field = find.byType(TextField);
+    expect(tester.widget<TextField>(field).keyboardType, TextInputType.phone);
+    expect(tester.widget<TextField>(field).decoration?.prefixText, '+998 ');
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNull,
+    );
+
+    await tester.enterText(field, '901234567');
+    await tester.pump();
+    expect(tester.widget<TextField>(field).controller!.text, '90 123 45 67');
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+
+    await tester.tap(find.text('Email manzil'));
+    await tester.pump();
+    expect(
+      tester.widget<TextField>(field).keyboardType,
+      TextInputType.emailAddress,
+    );
+    expect(tester.widget<TextField>(field).decoration?.prefixText, isNull);
+    expect(find.text('Nomzod ilovadan foydalanmaydi'), findsNothing);
+
+    await tester.enterText(field, 'candidate@example.com');
+    await tester.pump();
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   for (final scenario in [
     (type: CandidateType.groom, height: '0', weight: '0'),
     (type: CandidateType.bride, height: '0', weight: '0'),
