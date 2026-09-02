@@ -209,6 +209,8 @@ final class CandidateDetailBloc
     districtName: candidate.districtName,
     educationLevelID: candidate.educationLevelID,
     educationLevelName: candidate.educationLevelName,
+    professionId: candidate.professionId,
+    professionName: candidate.professionName,
     healthStatusId: candidate.healthStatusId,
     healthStatusName: candidate.healthStatusName,
     martialStatusId: candidate.martialStatusId,

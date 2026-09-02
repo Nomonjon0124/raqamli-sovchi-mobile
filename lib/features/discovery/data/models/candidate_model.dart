@@ -307,6 +307,8 @@ final class ResultCandidateModel extends Equatable {
       districtName: districtInfo?.name,
       educationLevelID: educationLevelInfo?.id,
       educationLevelName: educationLevelInfo?.name,
+      professionId: professionInfo?.id,
+      professionName: professionInfo?.name,
       healthStatusId: healthStatusInfo?.id,
       healthStatusName: healthStatusInfo?.name,
       martialStatusId: maritalStatusInfo?.id,

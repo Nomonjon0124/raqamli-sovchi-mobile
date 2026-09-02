@@ -959,7 +959,10 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateDetailEducation => 'Ma’lumoti';
 
   @override
-  String get candidateDetailAdditionalInformation => 'Qo‘shimcha ma’lumotlar';
+  String get candidateDetailProfession => 'Kasb';
+
+  @override
+  String get candidateDetailLifestyle => 'Turmush tarzi';
 
   @override
   String get candidateDetailHealthStatus => 'Sog‘lig‘i';

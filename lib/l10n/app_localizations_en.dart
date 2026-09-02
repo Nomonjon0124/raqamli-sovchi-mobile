@@ -962,7 +962,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateDetailEducation => 'Education';
 
   @override
-  String get candidateDetailAdditionalInformation => 'Additional information';
+  String get candidateDetailProfession => 'Profession';
+
+  @override
+  String get candidateDetailLifestyle => 'Lifestyle';
 
   @override
   String get candidateDetailHealthStatus => 'Health status';

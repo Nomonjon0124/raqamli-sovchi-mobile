@@ -1816,11 +1816,17 @@ abstract class AppLocalizations {
   /// **'Ma’lumoti'**
   String get candidateDetailEducation;
 
-  /// No description provided for @candidateDetailAdditionalInformation.
+  /// No description provided for @candidateDetailProfession.
   ///
   /// In uz, this message translates to:
-  /// **'Qo‘shimcha ma’lumotlar'**
-  String get candidateDetailAdditionalInformation;
+  /// **'Kasb'**
+  String get candidateDetailProfession;
+
+  /// No description provided for @candidateDetailLifestyle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Turmush tarzi'**
+  String get candidateDetailLifestyle;
 
   /// No description provided for @candidateDetailHealthStatus.
   ///

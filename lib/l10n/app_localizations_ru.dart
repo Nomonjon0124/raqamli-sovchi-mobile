@@ -961,8 +961,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateDetailEducation => 'Образование';
 
   @override
-  String get candidateDetailAdditionalInformation =>
-      'Дополнительная информация';
+  String get candidateDetailProfession => 'Профессия';
+
+  @override
+  String get candidateDetailLifestyle => 'Образ жизни';
 
   @override
   String get candidateDetailHealthStatus => 'Состояние здоровья';

@@ -57,10 +57,14 @@ final class CandidateDetailInformationSections extends StatelessWidget {
             label: l10n.candidateDetailEducation,
             value: candidate.educationLevelName,
           ),
+          _CandidateInformationEntry(
+            label: l10n.candidateDetailProfession,
+            value: candidate.professionName,
+          ),
         ],
       ),
       _CandidateInformationSectionData(
-        title: l10n.candidateDetailAdditionalInformation,
+        title: l10n.candidateDetailLifestyle,
         entries: [
           _CandidateInformationEntry(
             label: l10n.candidateDetailHealthStatus,

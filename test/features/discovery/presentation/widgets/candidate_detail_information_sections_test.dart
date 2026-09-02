@@ -18,6 +18,9 @@ void main() {
     expect(find.text('54 kg'), findsOneWidget);
     expect(find.text('Ta’lim va ish'), findsOneWidget);
     expect(find.text('Oliy'), findsOneWidget);
+    expect(find.text('Kasb'), findsOneWidget);
+    expect(find.text('Dasturchi'), findsOneWidget);
+    expect(find.text('Turmush tarzi'), findsOneWidget);
     expect(find.text('Sog‘lig‘i'), findsOneWidget);
   });
 
@@ -67,6 +70,8 @@ Candidate _candidate({String? educationLevelName = 'Oliy'}) => Candidate(
   districtName: 'Yunusobod',
   educationLevelID: 'higher',
   educationLevelName: educationLevelName,
+  professionId: 'profession-id',
+  professionName: 'Dasturchi',
   healthStatusId: 'healthy',
   healthStatusName: 'Sog‘lom',
   martialStatusId: 'single',
