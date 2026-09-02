@@ -95,6 +95,8 @@
   "professionOther": "Boshqa",
   "professionInputLabel": "Kasbingizni yozing",
   "professionEmpty": "Kasblar topilmadi.",
+  "representativeProfessionTitle": "Nomzodning kasbi?",
+  "representativeProfessionInputLabel": "Nomzodning kasbini yozing",
   "educationTitle": "Ma’lumotingiz qanday?",
   "heightTitle": "Bo‘yingiz",
   "heightWeightTitle": "Bo‘yingiz va vazningiz",

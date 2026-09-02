@@ -54,6 +54,8 @@
   "professionOther": "Другое",
   "professionInputLabel": "Напишите профессию",
   "professionEmpty": "Профессии не найдены.",
+  "representativeProfessionTitle": "Профессия кандидата?",
+  "representativeProfessionInputLabel": "Напишите профессию кандидата",
   "educationTitle": "Какое у вас образование?",
   "heightTitle": "Ваш рост",
   "heightWeightTitle": "Ваш рост и вес",

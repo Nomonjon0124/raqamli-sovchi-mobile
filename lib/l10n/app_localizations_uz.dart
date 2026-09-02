@@ -258,6 +258,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get professionEmpty => 'Kasblar topilmadi.';
 
   @override
+  String get representativeProfessionTitle => 'Nomzodning kasbi?';
+
+  @override
+  String get representativeProfessionInputLabel => 'Nomzodning kasbini yozing';
+
+  @override
   String get educationTitle => 'Ma’lumotingiz qanday?';
 
   @override

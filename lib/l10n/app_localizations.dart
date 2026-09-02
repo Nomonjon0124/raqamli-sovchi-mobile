@@ -550,6 +550,18 @@ abstract class AppLocalizations {
   /// **'Kasblar topilmadi.'**
   String get professionEmpty;
 
+  /// No description provided for @representativeProfessionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodning kasbi?'**
+  String get representativeProfessionTitle;
+
+  /// No description provided for @representativeProfessionInputLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodning kasbini yozing'**
+  String get representativeProfessionInputLabel;
+
   /// No description provided for @educationTitle.
   ///
   /// In uz, this message translates to:

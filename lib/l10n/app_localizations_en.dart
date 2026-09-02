@@ -259,6 +259,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get professionEmpty => 'No professions found.';
 
   @override
+  String get representativeProfessionTitle =>
+      'What is the candidate\'s profession?';
+
+  @override
+  String get representativeProfessionInputLabel =>
+      'Write the candidate\'s profession';
+
+  @override
   String get educationTitle => 'What is your education?';
 
   @override

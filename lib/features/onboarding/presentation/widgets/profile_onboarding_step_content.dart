@@ -498,7 +498,9 @@ final class _ProfileOnboardingStepContentState
 
     return StepLayout(
       step: widget.step,
-      title: l10n.professionTitle,
+      title: widget.representativeMode
+          ? l10n.representativeProfessionTitle
+          : l10n.professionTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
         onPressed: !canContinue || widget.state.isBusy
@@ -547,7 +549,9 @@ final class _ProfileOnboardingStepContentState
           if (otherSelected) ...[
             const SizedBox(height: AppSpacing.lg),
             OnboardingTextField(
-              label: l10n.professionInputLabel,
+              label: widget.representativeMode
+                  ? l10n.representativeProfessionInputLabel
+                  : l10n.professionInputLabel,
               controller: _professionController,
               onChanged: (_) => setState(() {}),
             ),

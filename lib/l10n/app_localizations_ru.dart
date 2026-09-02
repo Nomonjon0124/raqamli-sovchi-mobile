@@ -260,6 +260,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get professionEmpty => 'Профессии не найдены.';
 
   @override
+  String get representativeProfessionTitle => 'Профессия кандидата?';
+
+  @override
+  String get representativeProfessionInputLabel =>
+      'Напишите профессию кандидата';
+
+  @override
   String get educationTitle => 'Какое у вас образование?';
 
   @override

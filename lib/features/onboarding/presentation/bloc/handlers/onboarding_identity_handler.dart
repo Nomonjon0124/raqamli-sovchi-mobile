@@ -104,7 +104,7 @@ mixin OnboardingIdentityHandler
     await _save(
       draft.copyWith(
         birthDate: event.birthDate,
-        currentStep: OnboardingStep.education,
+        currentStep: OnboardingStep.profession,
       ),
       emit,
     );

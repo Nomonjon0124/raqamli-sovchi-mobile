@@ -151,6 +151,31 @@ void main() {
     await bloc.close();
   });
 
+  test('birth date advances to profession before education', () async {
+    final draft = ProfileOnboardingDraft(
+      ownerUserId: 'user-1',
+      currentStep: OnboardingStep.birthDate,
+      updatedAt: DateTime.utc(2026, 8, 13),
+    );
+    when(
+      () => draftRepository.load('user-1'),
+    ).thenAnswer((_) async => Right<Failure, ProfileOnboardingDraft?>(draft));
+    final bloc = buildBloc();
+
+    final started = bloc.stream.firstWhere((state) => state.draft != null);
+    bloc.add(const ProfileOnboardingStarted('user-1'));
+    await started;
+
+    final profession = bloc.stream.firstWhere(
+      (state) => state.draft?.currentStep == OnboardingStep.profession,
+    );
+    bloc.add(BirthDateSaved(DateTime.utc(2000, 1, 1)));
+    final result = await profession;
+
+    expect(result.draft?.currentStep, OnboardingStep.profession);
+    await bloc.close();
+  });
+
   blocTest<ProfileOnboardingBloc, ProfileOnboardingState>(
     'representative main photo skips face verification',
     build: () {

@@ -162,6 +162,37 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('representative profession step uses candidate copy', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.profession,
+      representative: true,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        professionStatus: ReferenceStatus.loaded,
+        isOtherProfessionSelected: true,
+        professions: const [Profession(id: 'profession-1', name: 'Dizayner')],
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          candidateType: CandidateType.representative,
+          currentStep: OnboardingStep.profession,
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    expect(find.text('Nomzodning kasbi?'), findsOneWidget);
+    expect(find.text('Nomzodning kasbini yozing'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   for (final scenario in [
     (type: CandidateType.groom, height: '0', weight: '0'),
     (type: CandidateType.bride, height: '0', weight: '0'),

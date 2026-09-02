@@ -83,6 +83,8 @@
   "professionOther": "Other",
   "professionInputLabel": "Write your profession",
   "professionEmpty": "No professions found.",
+  "representativeProfessionTitle": "What is the candidate''s profession?",
+  "representativeProfessionInputLabel": "Write the candidate''s profession",
   "educationTitle": "What is your education?",
   "heightTitle": "Your height",
   "heightWeightTitle": "Your height and weight",
