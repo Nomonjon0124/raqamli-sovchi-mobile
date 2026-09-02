@@ -2227,8 +2227,80 @@ abstract class AppLocalizations {
   /// No description provided for @questionnaireResultTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Sizning profilingiz tayyor'**
+  /// **'Sizning profilingiz tayyor!'**
   String get questionnaireResultTitle;
+
+  /// No description provided for @questionnaireResultSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sun’iy intellekt aniqlagan moslik endi ochiq.'**
+  String get questionnaireResultSubtitle;
+
+  /// No description provided for @questionnaireHonestyPill.
+  ///
+  /// In uz, this message translates to:
+  /// **'Samimiylik: yuqori'**
+  String get questionnaireHonestyPill;
+
+  /// No description provided for @questionnaireSeriousPill.
+  ///
+  /// In uz, this message translates to:
+  /// **'Niyati jiddiy'**
+  String get questionnaireSeriousPill;
+
+  /// No description provided for @questionnaireMatchedCandidates.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta mos nomzod'**
+  String questionnaireMatchedCandidates(int count);
+
+  /// No description provided for @questionnaireMatchedCandidatesSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik AI tomonidan hisoblandi'**
+  String get questionnaireMatchedCandidatesSubtitle;
+
+  /// No description provided for @questionnaireNextStepsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Endi nima bo‘ladi?'**
+  String get questionnaireNextStepsTitle;
+
+  /// No description provided for @questionnaireAiMatchCalculatedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'AI moslik hisoblandi'**
+  String get questionnaireAiMatchCalculatedTitle;
+
+  /// No description provided for @questionnaireAiMatchCalculatedBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javoblaringiz asosida nomzodlar tanlandi.'**
+  String get questionnaireAiMatchCalculatedBody;
+
+  /// No description provided for @questionnaireCandidatesVeiledTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodlar parda ostida'**
+  String get questionnaireCandidatesVeiledTitle;
+
+  /// No description provided for @questionnaireCandidatesVeiledBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suratlar ikkala tomon roziligidan keyin ochiladi.'**
+  String get questionnaireCandidatesVeiledBody;
+
+  /// No description provided for @questionnaireConsentOnlyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Aloqa faqat rozilik bilan'**
+  String get questionnaireConsentOnlyTitle;
+
+  /// No description provided for @questionnaireConsentOnlyBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat vakil yoki oila ishtirokida boshlanadi.'**
+  String get questionnaireConsentOnlyBody;
 
   /// No description provided for @questionnaireHonestyTitle.
   ///

@@ -83,6 +83,7 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
           supportedLocales: AppLocalizations.supportedLocales,
           routerConfig: _router,
           builder: (context, child) => Thunder(
+            enabled:true,
             dio: [serviceLocator<Dio>()],
             child: child ?? const SizedBox.shrink(),
           ),

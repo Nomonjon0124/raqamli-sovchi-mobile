@@ -1195,7 +1195,52 @@ class AppLocalizationsRu extends AppLocalizations {
       'AI формирует профиль ценностей, финансов и характера и подбирает подходящих кандидатов.';
 
   @override
-  String get questionnaireResultTitle => 'Ваш профиль готов';
+  String get questionnaireResultTitle => 'Ваш профиль готов!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'Совместимость, рассчитанная AI, теперь доступна.';
+
+  @override
+  String get questionnaireHonestyPill => 'Искренность: высокая';
+
+  @override
+  String get questionnaireSeriousPill => 'Серьёзные намерения';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count подходящих кандидатов';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Совместимость рассчитана AI';
+
+  @override
+  String get questionnaireNextStepsTitle => 'Что будет дальше?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle =>
+      'AI рассчитал совместимость';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Кандидаты подобраны на основе ваших ответов.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle =>
+      'Кандидаты остаются под пардой';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Фотографии откроются только после согласия обеих сторон.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Контакт только с согласия';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Общение начинается с участием представителя или семьи.';
 
   @override
   String get questionnaireHonestyTitle => 'Индекс искренности · высокий';

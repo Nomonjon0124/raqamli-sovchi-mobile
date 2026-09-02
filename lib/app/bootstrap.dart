@@ -21,7 +21,7 @@ Future<void> bootstrap() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await configureDependencies();
   await serviceLocator<NotificationLifecycleService>().initialize();
-  await serviceLocator<ScreenshotGuard>().enableProtection();
+  // await serviceLocator<ScreenshotGuard>().enableProtection();
 
   final authBloc = serviceLocator<AuthBloc>()..add(const AuthStarted());
 

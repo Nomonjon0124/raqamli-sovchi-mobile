@@ -429,7 +429,27 @@
   "questionnaireSubmit": "Javoblarni yuborish",
   "questionnaireAnalysisTitle": "Javoblaringiz tahlil qilinmoqda",
   "questionnaireAnalysisBody": "AI qadriyatlar, moliya va xarakter profilingizni tuzib, mos nomzodlarni tanlaydi.",
-  "questionnaireResultTitle": "Sizning profilingiz tayyor",
+  "questionnaireResultTitle": "Sizning profilingiz tayyor!",
+  "questionnaireResultSubtitle": "Sun’iy intellekt aniqlagan moslik endi ochiq.",
+  "questionnaireHonestyPill": "Samimiylik: yuqori",
+  "questionnaireSeriousPill": "Niyati jiddiy",
+  "questionnaireMatchedCandidates": "{count} ta mos nomzod",
+  "@questionnaireMatchedCandidates": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "128"
+      }
+    }
+  },
+  "questionnaireMatchedCandidatesSubtitle": "Moslik AI tomonidan hisoblandi",
+  "questionnaireNextStepsTitle": "Endi nima bo‘ladi?",
+  "questionnaireAiMatchCalculatedTitle": "AI moslik hisoblandi",
+  "questionnaireAiMatchCalculatedBody": "Javoblaringiz asosida nomzodlar tanlandi.",
+  "questionnaireCandidatesVeiledTitle": "Nomzodlar parda ostida",
+  "questionnaireCandidatesVeiledBody": "Suratlar ikkala tomon roziligidan keyin ochiladi.",
+  "questionnaireConsentOnlyTitle": "Aloqa faqat rozilik bilan",
+  "questionnaireConsentOnlyBody": "Suhbat vakil yoki oila ishtirokida boshlanadi.",
   "questionnaireHonestyTitle": "Samimiylik indeksi · yuqori",
   "questionnaireHonestyBody": "Tuzoq savollarga javoblaringiz izchil. Profil ishonchli deb belgilandi.",
   "questionnaireSeriousBadge": "“Niyati jiddiy” belgisi berildi",

@@ -1193,7 +1193,50 @@ class AppLocalizationsUz extends AppLocalizations {
       'AI qadriyatlar, moliya va xarakter profilingizni tuzib, mos nomzodlarni tanlaydi.';
 
   @override
-  String get questionnaireResultTitle => 'Sizning profilingiz tayyor';
+  String get questionnaireResultTitle => 'Sizning profilingiz tayyor!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'Sun’iy intellekt aniqlagan moslik endi ochiq.';
+
+  @override
+  String get questionnaireHonestyPill => 'Samimiylik: yuqori';
+
+  @override
+  String get questionnaireSeriousPill => 'Niyati jiddiy';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count ta mos nomzod';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Moslik AI tomonidan hisoblandi';
+
+  @override
+  String get questionnaireNextStepsTitle => 'Endi nima bo‘ladi?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle => 'AI moslik hisoblandi';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Javoblaringiz asosida nomzodlar tanlandi.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle => 'Nomzodlar parda ostida';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Suratlar ikkala tomon roziligidan keyin ochiladi.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Aloqa faqat rozilik bilan';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Suhbat vakil yoki oila ishtirokida boshlanadi.';
 
   @override
   String get questionnaireHonestyTitle => 'Samimiylik indeksi · yuqori';

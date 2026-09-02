@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:raqamli_sovchi/core/extensions/gap_extension.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
@@ -48,40 +49,20 @@ final class SuccessStep extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 28),
-                  Center(
-                    child: Assets.icons.icSmileWink.svg(
-                      width: 86,
-                      height: 86,
-                      excludeFromSemantics: true,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  28.g,
+                  Center(child: Assets.icons.icSmileWink.svg(width: 86, height: 86, excludeFromSemantics: true)),
+                  20.g,
                   SizedBox(
                     width: double.infinity,
-                    child: Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.onboardingTitle.copyWith(),
-                    ),
+                    child: Text(title, textAlign: TextAlign.start, style: AppTypography.onboardingTitle.copyWith()),
                   ),
-                  const SizedBox(height: AppSpacing.sm),
+                  AppSpacing.sm.g,
                   SizedBox(
                     width: double.infinity,
-                    child: Text(
-                      subtitle,
-                      textAlign: TextAlign.center,
-                      style: AppTypography.onboardingBody.copyWith(),
-                    ),
+                    child: Text(subtitle, textAlign: TextAlign.start, style: AppTypography.onboardingBody.copyWith()),
                   ),
-                  const SizedBox(height: 20),
-                  _AiTestOfferCard(
-                    title: aiTitle,
-                    description: aiDescription,
-                    pointOne: aiPointOne,
-                    pointTwo: aiPointTwo,
-                    pointThree: aiPointThree,
-                  ),
+                  20.g,
+                  _AiTestOfferCard(title: aiTitle, description: aiDescription, pointOne: aiPointOne, pointTwo: aiPointTwo, pointThree: aiPointThree),
                   const Spacer(),
                   CustomPrimaryButton(label: startLabel, onPressed: onStart),
                   CustomGhostButton(label: laterLabel, onPressed: onLater),
@@ -96,13 +77,7 @@ final class SuccessStep extends StatelessWidget {
 }
 
 final class _AiTestOfferCard extends StatelessWidget {
-  const _AiTestOfferCard({
-    required this.title,
-    required this.description,
-    required this.pointOne,
-    required this.pointTwo,
-    required this.pointThree,
-  });
+  const _AiTestOfferCard({required this.title, required this.description, required this.pointOne, required this.pointTwo, required this.pointThree});
 
   final String title;
   final String description;
@@ -125,22 +100,9 @@ final class _AiTestOfferCard extends StatelessWidget {
         children: [
           const _AiBadge(),
           const SizedBox(height: 15),
-          Text(
-            title,
-            style: AppTypography.onboardingTitle.copyWith(
-              fontSize: 20,
-              height: 32 / 25,
-              letterSpacing: -0.2,
-            ),
-          ),
+          Text(title, style: AppTypography.onboardingTitle.copyWith(fontSize: 20, height: 32 / 25, letterSpacing: -0.2)),
           const SizedBox(height: 15),
-          Text(
-            description,
-            style: AppTypography.onboardingBody.copyWith(
-              fontSize: 13,
-              height: 25 / 15,
-            ),
-          ),
+          Text(description, style: AppTypography.onboardingBody.copyWith(fontSize: 13, height: 25 / 15)),
           const SizedBox(height: 15),
           _AiFeatureRow(icon: Assets.icons.icAi, label: pointOne),
           const SizedBox(height: AppSpacing.md),
@@ -159,10 +121,7 @@ final class _AiBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(AppRadius.full),
-      ),
+      decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(AppRadius.full)),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
         child: Row(
@@ -171,10 +130,7 @@ final class _AiBadge extends StatelessWidget {
             Assets.icons.icAi.svg(
               width: 12,
               height: 12,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
-                BlendMode.srcIn,
-              ),
+              colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               excludeFromSemantics: true,
             ),
             const SizedBox(width: AppSpacing.sm),
@@ -213,23 +169,14 @@ final class _AiFeatureRow extends StatelessWidget {
             child: icon.svg(
               width: 16,
               height: 16,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
-                BlendMode.srcIn,
-              ),
+              colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
               excludeFromSemantics: true,
             ),
           ),
         ),
         const SizedBox(width: AppSpacing.inline),
         Expanded(
-          child: Text(
-            label,
-            style: AppTypography.onboardingBody.copyWith(
-              fontSize: 12,
-              color: AppColors.bodyText,
-            ),
-          ),
+          child: Text(label, style: AppTypography.onboardingBody.copyWith(fontSize: 12, color: AppColors.bodyText)),
         ),
       ],
     );

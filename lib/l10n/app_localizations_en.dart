@@ -1195,7 +1195,51 @@ class AppLocalizationsEn extends AppLocalizations {
       'AI builds your values, finance, and character profile and selects suitable candidates.';
 
   @override
-  String get questionnaireResultTitle => 'Your profile is ready';
+  String get questionnaireResultTitle => 'Your profile is ready!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'AI-powered compatibility is now available.';
+
+  @override
+  String get questionnaireHonestyPill => 'Sincerity: high';
+
+  @override
+  String get questionnaireSeriousPill => 'Serious intent';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count matching candidates';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Compatibility was calculated by AI';
+
+  @override
+  String get questionnaireNextStepsTitle => 'What happens next?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle =>
+      'AI compatibility calculated';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Candidates were selected based on your answers.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle => 'Candidates stay veiled';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Photos open only after both sides consent.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Contact only with consent';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Chat starts with a representative or family member involved.';
 
   @override
   String get questionnaireHonestyTitle => 'Sincerity index · high';

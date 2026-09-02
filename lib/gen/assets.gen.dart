@@ -63,6 +63,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_ai.svg
   SvgGenImage get icAi => const SvgGenImage('assets/icons/ic_ai.svg');
 
+  /// File path: assets/icons/ic_ai_spark.svg
+  SvgGenImage get icAiSpark =>
+      const SvgGenImage('assets/icons/ic_ai_spark.svg');
+
   /// File path: assets/icons/ic_arrow_left_01_round.svg
   SvgGenImage get icArrowLeft01Round =>
       const SvgGenImage('assets/icons/ic_arrow_left_01_round.svg');
@@ -99,6 +103,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_edit.svg
   SvgGenImage get icEdit => const SvgGenImage('assets/icons/ic_edit.svg');
+
+  /// File path: assets/icons/ic_eye.svg
+  SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
 
   /// File path: assets/icons/ic_fire.svg
   SvgGenImage get icFire => const SvgGenImage('assets/icons/ic_fire.svg');
@@ -221,6 +228,10 @@ class $AssetsIconsGen {
   SvgGenImage get icSquareLock =>
       const SvgGenImage('assets/icons/ic_square_lock.svg');
 
+  /// File path: assets/icons/ic_task_list_pen.svg
+  SvgGenImage get icTaskListPen =>
+      const SvgGenImage('assets/icons/ic_task_list_pen.svg');
+
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
       const SvgGenImage('assets/icons/ic_telegram_icon.svg');
@@ -320,6 +331,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
     icAi,
+    icAiSpark,
     icArrowLeft01Round,
     icArrowRight,
     icCandidateGrid,
@@ -330,6 +342,7 @@ class $AssetsIconsGen {
     icCurrentLocationDot,
     icCurrentLocationHalo,
     icEdit,
+    icEye,
     icFire,
     icGlyph,
     icGoogleIcon,
@@ -363,6 +376,7 @@ class $AssetsIconsGen {
     icShare,
     icSmileWink,
     icSquareLock,
+    icTaskListPen,
     icTelegramIcon,
     icVerifiedDevice,
     icVerifyCheck,
@@ -396,6 +410,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/.gitkeep
   String get aGitkeep => 'assets/images/.gitkeep';
 
+  /// File path: assets/images/candidate1.png
+  AssetGenImage get candidate1 =>
+      const AssetGenImage('assets/images/candidate1.png');
+
+  /// File path: assets/images/candidate2.png
+  AssetGenImage get candidate2 =>
+      const AssetGenImage('assets/images/candidate2.png');
+
+  /// File path: assets/images/candidate3.png
+  AssetGenImage get candidate3 =>
+      const AssetGenImage('assets/images/candidate3.png');
+
   /// File path: assets/images/image1.jpg
   AssetGenImage get image1 => const AssetGenImage('assets/images/image1.jpg');
 
@@ -419,6 +445,9 @@ class $AssetsImagesGen {
   /// List of all assets
   List<dynamic> get values => [
     aGitkeep,
+    candidate1,
+    candidate2,
+    candidate3,
     image1,
     image2,
     image3,
@@ -429,7 +458,6 @@ class $AssetsImagesGen {
 }
 
 abstract final class Assets {
-
   static const $AssetsAuthGen auth = $AssetsAuthGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

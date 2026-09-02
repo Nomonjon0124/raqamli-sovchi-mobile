@@ -417,7 +417,27 @@
   "questionnaireSubmit": "Submit answers",
   "questionnaireAnalysisTitle": "Analyzing your answers",
   "questionnaireAnalysisBody": "AI builds your values, finance, and character profile and selects suitable candidates.",
-  "questionnaireResultTitle": "Your profile is ready",
+  "questionnaireResultTitle": "Your profile is ready!",
+  "questionnaireResultSubtitle": "AI-powered compatibility is now available.",
+  "questionnaireHonestyPill": "Sincerity: high",
+  "questionnaireSeriousPill": "Serious intent",
+  "questionnaireMatchedCandidates": "{count} matching candidates",
+  "@questionnaireMatchedCandidates": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "128"
+      }
+    }
+  },
+  "questionnaireMatchedCandidatesSubtitle": "Compatibility was calculated by AI",
+  "questionnaireNextStepsTitle": "What happens next?",
+  "questionnaireAiMatchCalculatedTitle": "AI compatibility calculated",
+  "questionnaireAiMatchCalculatedBody": "Candidates were selected based on your answers.",
+  "questionnaireCandidatesVeiledTitle": "Candidates stay veiled",
+  "questionnaireCandidatesVeiledBody": "Photos open only after both sides consent.",
+  "questionnaireConsentOnlyTitle": "Contact only with consent",
+  "questionnaireConsentOnlyBody": "Chat starts with a representative or family member involved.",
   "questionnaireHonestyTitle": "Sincerity index · high",
   "questionnaireHonestyBody": "Your verification answers are consistent. The profile was marked as trustworthy.",
   "questionnaireSeriousBadge": "“Serious intentions” badge awarded",
