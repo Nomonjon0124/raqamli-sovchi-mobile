@@ -49,6 +49,13 @@ abstract interface class OnboardingRepository {
     required bool hasSeriousBadge,
   });
 
+  Future<Either<Failure, ReferencePage<Profession>>> getProfessions({
+    required int page,
+    String? search,
+  });
+
+  Future<Either<Failure, Profession>> createProfession(String name);
+
   Future<Either<Failure, ReferencePage<EducationLevel>>> getEducationLevels(
     int page,
   );

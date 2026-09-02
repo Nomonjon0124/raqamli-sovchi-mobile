@@ -13,6 +13,7 @@ final class ProfileBootstrapRequest extends Equatable {
     required this.regionId,
     required this.districtId,
     required this.educationLevelId,
+    this.professionId,
     required this.maritalStatusId,
     required this.hasChildren,
     required this.childrenCount,
@@ -31,6 +32,7 @@ final class ProfileBootstrapRequest extends Equatable {
   final String regionId;
   final String districtId;
   final String educationLevelId;
+  final String? professionId;
   final String maritalStatusId;
   final bool hasChildren;
   final int childrenCount;
@@ -55,6 +57,7 @@ final class ProfileBootstrapRequest extends Equatable {
     regionId,
     districtId,
     educationLevelId,
+    professionId,
     maritalStatusId,
     hasChildren,
     childrenCount,

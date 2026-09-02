@@ -19,6 +19,7 @@ final class ProfileOnboardingState extends Equatable {
   const ProfileOnboardingState({
     this.status = ProfileOnboardingStatus.initial,
     this.draft,
+    this.professions = const [],
     this.educationLevels = const [],
     this.regions = const [],
     this.districts = const [],
@@ -26,6 +27,7 @@ final class ProfileOnboardingState extends Equatable {
     this.maritalStatuses = const [],
     this.kinships = const [],
     this.educationStatus = ReferenceStatus.idle,
+    this.professionStatus = ReferenceStatus.idle,
     this.regionStatus = ReferenceStatus.idle,
     this.districtStatus = ReferenceStatus.idle,
     this.healthStatusStatus = ReferenceStatus.idle,
@@ -34,12 +36,14 @@ final class ProfileOnboardingState extends Equatable {
     this.isVoiceRecording = false,
     this.isVoicePlaying = false,
     this.isLocationLoading = false,
+    this.isOtherProfessionSelected = false,
     this.openQuestionnaire = false,
     this.failure,
   });
 
   final ProfileOnboardingStatus status;
   final ProfileOnboardingDraft? draft;
+  final List<Profession> professions;
   final List<EducationLevel> educationLevels;
   final List<Region> regions;
   final List<District> districts;
@@ -47,6 +51,7 @@ final class ProfileOnboardingState extends Equatable {
   final List<MaritalStatus> maritalStatuses;
   final List<Kinship> kinships;
   final ReferenceStatus educationStatus;
+  final ReferenceStatus professionStatus;
   final ReferenceStatus regionStatus;
   final ReferenceStatus districtStatus;
   final ReferenceStatus healthStatusStatus;
@@ -55,6 +60,7 @@ final class ProfileOnboardingState extends Equatable {
   final bool isVoiceRecording;
   final bool isVoicePlaying;
   final bool isLocationLoading;
+  final bool isOtherProfessionSelected;
   final bool openQuestionnaire;
   final Failure? failure;
 
@@ -65,6 +71,7 @@ final class ProfileOnboardingState extends Equatable {
   ProfileOnboardingState copyWith({
     ProfileOnboardingStatus? status,
     ProfileOnboardingDraft? draft,
+    List<Profession>? professions,
     List<EducationLevel>? educationLevels,
     List<Region>? regions,
     List<District>? districts,
@@ -72,6 +79,7 @@ final class ProfileOnboardingState extends Equatable {
     List<MaritalStatus>? maritalStatuses,
     List<Kinship>? kinships,
     ReferenceStatus? educationStatus,
+    ReferenceStatus? professionStatus,
     ReferenceStatus? regionStatus,
     ReferenceStatus? districtStatus,
     ReferenceStatus? healthStatusStatus,
@@ -80,6 +88,7 @@ final class ProfileOnboardingState extends Equatable {
     bool? isVoiceRecording,
     bool? isVoicePlaying,
     bool? isLocationLoading,
+    bool? isOtherProfessionSelected,
     bool? openQuestionnaire,
     Failure? failure,
     bool clearFailure = false,
@@ -87,6 +96,7 @@ final class ProfileOnboardingState extends Equatable {
     return ProfileOnboardingState(
       status: status ?? this.status,
       draft: draft ?? this.draft,
+      professions: professions ?? this.professions,
       educationLevels: educationLevels ?? this.educationLevels,
       regions: regions ?? this.regions,
       districts: districts ?? this.districts,
@@ -94,6 +104,7 @@ final class ProfileOnboardingState extends Equatable {
       maritalStatuses: maritalStatuses ?? this.maritalStatuses,
       kinships: kinships ?? this.kinships,
       educationStatus: educationStatus ?? this.educationStatus,
+      professionStatus: professionStatus ?? this.professionStatus,
       regionStatus: regionStatus ?? this.regionStatus,
       districtStatus: districtStatus ?? this.districtStatus,
       healthStatusStatus: healthStatusStatus ?? this.healthStatusStatus,
@@ -102,6 +113,8 @@ final class ProfileOnboardingState extends Equatable {
       isVoiceRecording: isVoiceRecording ?? this.isVoiceRecording,
       isVoicePlaying: isVoicePlaying ?? this.isVoicePlaying,
       isLocationLoading: isLocationLoading ?? this.isLocationLoading,
+      isOtherProfessionSelected:
+          isOtherProfessionSelected ?? this.isOtherProfessionSelected,
       openQuestionnaire: openQuestionnaire ?? this.openQuestionnaire,
       failure: clearFailure ? null : failure ?? this.failure,
     );
@@ -111,6 +124,7 @@ final class ProfileOnboardingState extends Equatable {
   List<Object?> get props => [
     status,
     draft,
+    professions,
     educationLevels,
     regions,
     districts,
@@ -118,6 +132,7 @@ final class ProfileOnboardingState extends Equatable {
     maritalStatuses,
     kinships,
     educationStatus,
+    professionStatus,
     regionStatus,
     districtStatus,
     healthStatusStatus,
@@ -126,6 +141,7 @@ final class ProfileOnboardingState extends Equatable {
     isVoiceRecording,
     isVoicePlaying,
     isLocationLoading,
+    isOtherProfessionSelected,
     openQuestionnaire,
     failure,
   ];

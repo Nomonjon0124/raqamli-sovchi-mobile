@@ -126,6 +126,33 @@ final class OnboardingRepositoryImpl implements OnboardingRepository {
   }
 
   @override
+  Future<Either<Failure, ReferencePage<Profession>>> getProfessions({
+    required int page,
+    String? search,
+  }) {
+    return _call(() async {
+      final result = await _dataSource.getProfessions(
+        page: page,
+        search: search,
+      );
+      return ReferencePage(
+        items: result.items
+            .map((item) => item.toEntity())
+            .toList(growable: false),
+        page: result.page,
+        hasNextPage: result.hasNextPage,
+      );
+    });
+  }
+
+  @override
+  Future<Either<Failure, Profession>> createProfession(String name) {
+    return _call(
+      () async => (await _dataSource.createProfession(name)).toEntity(),
+    );
+  }
+
+  @override
   Future<Either<Failure, ReferencePage<EducationLevel>>> getEducationLevels(
     int page,
   ) {

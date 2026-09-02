@@ -246,6 +246,18 @@ class AppLocalizationsUz extends AppLocalizations {
   String get patronymicLabel => 'Otasining ismi (ixtiyoriy)';
 
   @override
+  String get professionTitle => 'Kasbingiz?';
+
+  @override
+  String get professionOther => 'Boshqa';
+
+  @override
+  String get professionInputLabel => 'Kasbingizni yozing';
+
+  @override
+  String get professionEmpty => 'Kasblar topilmadi.';
+
+  @override
   String get educationTitle => 'Ma’lumotingiz qanday?';
 
   @override

@@ -49,6 +49,13 @@ abstract interface class OnboardingDataSource {
 
   Future<ReferencePageModel<EducationLevelModel>> getEducationLevels(int page);
 
+  Future<ReferencePageModel<ProfessionModel>> getProfessions({
+    required int page,
+    String? search,
+  });
+
+  Future<ProfessionModel> createProfession(String name);
+
   Future<ReferencePageModel<RegionModel>> getRegions(int page);
 
   Future<ReferencePageModel<DistrictModel>> getDistricts({
@@ -76,6 +83,7 @@ final class RemoteOnboardingDataSource implements OnboardingDataSource {
   static const _representativeConsentPath =
       '/api/v1/accounts/representatives/send-consent-request/';
   static const _educationLevelsPath = '/api/v1/references/education-levels/';
+  static const _professionsPath = '/api/v1/references/professions/';
   static const _regionsPath = '/api/v1/locations/region/';
   static const _districtsPath = '/api/v1/locations/district/';
   static const _healthStatusesPath = '/api/v1/references/health-statuses/';
@@ -105,6 +113,7 @@ final class RemoteOnboardingDataSource implements OnboardingDataSource {
         if (request.healthStatusId != null)
           'health_status': request.healthStatusId,
         'education_level': request.educationLevelId,
+        if (request.professionId != null) 'profession': request.professionId,
         'marital_status': request.maritalStatusId,
         'has_children': request.hasChildren,
         'children_count': request.childrenCount,
@@ -254,6 +263,37 @@ final class RemoteOnboardingDataSource implements OnboardingDataSource {
       page: page,
       hasNextPage: responsePage.hasNextPage,
     );
+  }
+
+  @override
+  Future<ReferencePageModel<ProfessionModel>> getProfessions({
+    required int page,
+    String? search,
+  }) async {
+    final response = await _client.get<Map<String, dynamic>>(
+      _professionsPath,
+      queryParameters: {
+        'page': page,
+        if (search?.trim().isNotEmpty ?? false) 'search': search!.trim(),
+      },
+    );
+    final responsePage = _referencePage(response.data, page);
+    return ReferencePageModel(
+      items: responsePage.items
+          .map(ProfessionModel.fromJson)
+          .toList(growable: false),
+      page: page,
+      hasNextPage: responsePage.hasNextPage,
+    );
+  }
+
+  @override
+  Future<ProfessionModel> createProfession(String name) async {
+    final response = await _client.post<Map<String, dynamic>>(
+      _professionsPath,
+      data: {'name': name.trim()},
+    );
+    return ProfessionModel.fromJson(_payload(response.data));
   }
 
   @override

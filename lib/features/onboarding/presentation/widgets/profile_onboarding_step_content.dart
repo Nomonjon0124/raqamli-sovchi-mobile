@@ -61,6 +61,7 @@ final class _ProfileOnboardingStepContentState
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _patronymicController = TextEditingController();
+  final _professionController = TextEditingController();
   final _aboutMeController = TextEditingController();
   DateTime? _selectedBirthDate;
   int? _selectedHeight;
@@ -71,6 +72,7 @@ final class _ProfileOnboardingStepContentState
     _firstNameController.dispose();
     _lastNameController.dispose();
     _patronymicController.dispose();
+    _professionController.dispose();
     _aboutMeController.dispose();
     super.dispose();
   }
@@ -84,6 +86,7 @@ final class _ProfileOnboardingStepContentState
       OnboardingStep.candidateType => _candidateType(l10n, draft, bloc),
       OnboardingStep.pledge => _pledge(l10n, draft, bloc),
       OnboardingStep.birthDate => _birthDate(l10n, draft, bloc),
+      OnboardingStep.profession => _profession(l10n, draft, bloc),
       OnboardingStep.identity => _identity(l10n, draft, bloc),
       OnboardingStep.education => _education(l10n, draft, bloc),
       OnboardingStep.height => _height(l10n, draft, bloc),
@@ -465,6 +468,90 @@ final class _ProfileOnboardingStepContentState
             controller: _patronymicController,
             onChanged: (_) => setState(() {}),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _profession(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    final professionChips = widget.state.professions
+        .where((item) => item.id.isNotEmpty && item.name.isNotEmpty)
+        .map(
+          (item) => EducationChip(
+            label: item.name,
+            selected:
+                !widget.state.isOtherProfessionSelected &&
+                draft.professionId == item.id,
+            onPressed: () =>
+                bloc.add(ProfessionSaved(id: item.id, name: item.name)),
+          ),
+        )
+        .toList(growable: false);
+    final otherSelected = widget.state.isOtherProfessionSelected;
+    final canContinue = otherSelected
+        ? _professionController.text.trim().isNotEmpty
+        : draft.professionId?.isNotEmpty == true;
+
+    return StepLayout(
+      step: widget.step,
+      title: l10n.professionTitle,
+      bottom: CustomPrimaryButton(
+        label: l10n.continueLabel,
+        onPressed: !canContinue || widget.state.isBusy
+            ? null
+            : () {
+                FocusScope.of(context).unfocus();
+                if (otherSelected) {
+                  bloc.add(
+                    CustomProfessionSubmitted(_professionController.text),
+                  );
+                } else {
+                  bloc.add(const ProfessionContinuePressed());
+                }
+              },
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (widget.state.professionStatus == ReferenceStatus.loading &&
+              professionChips.isEmpty)
+            const Center(child: CircularProgressIndicator())
+          else if (widget.state.professionStatus == ReferenceStatus.failure &&
+              professionChips.isEmpty)
+            Center(
+              child: AppButton(
+                label: l10n.retry,
+                onPressed: () => bloc.add(const ProfessionsRequested()),
+              ),
+            )
+          else if (widget.state.professionStatus == ReferenceStatus.empty &&
+              professionChips.isEmpty)
+            Text(l10n.professionEmpty, style: AppTypography.onboardingBody)
+          else
+            Wrap(
+              spacing: AppSpacing.inline - 2,
+              runSpacing: AppSpacing.inline - 2,
+              children: [
+                ...professionChips,
+                EducationChip(
+                  label: l10n.professionOther,
+                  selected: otherSelected,
+                  onPressed: () => bloc.add(const OtherProfessionSelected()),
+                ),
+              ],
+            ),
+          if (otherSelected) ...[
+            const SizedBox(height: AppSpacing.lg),
+            OnboardingTextField(
+              label: l10n.professionInputLabel,
+              controller: _professionController,
+              onChanged: (_) => setState(() {}),
+            ),
+          ],
         ],
       ),
     );

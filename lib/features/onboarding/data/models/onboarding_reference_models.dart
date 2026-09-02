@@ -16,6 +16,22 @@ final class EducationLevelModel {
   EducationLevel toEntity() => EducationLevel(id: id, name: name);
 }
 
+final class ProfessionModel {
+  const ProfessionModel({required this.id, required this.name});
+
+  factory ProfessionModel.fromJson(Map<String, dynamic> json) {
+    return ProfessionModel(
+      id: (json['id'] ?? '').toString(),
+      name: (json['name'] ?? '').toString(),
+    );
+  }
+
+  final String id;
+  final String name;
+
+  Profession toEntity() => Profession(id: id, name: name);
+}
+
 final class RegionModel {
   const RegionModel({required this.id, required this.name});
 

@@ -247,6 +247,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get patronymicLabel => 'Father\'s name (optional)';
 
   @override
+  String get professionTitle => 'What is your profession?';
+
+  @override
+  String get professionOther => 'Other';
+
+  @override
+  String get professionInputLabel => 'Write your profession';
+
+  @override
+  String get professionEmpty => 'No professions found.';
+
+  @override
   String get educationTitle => 'What is your education?';
 
   @override

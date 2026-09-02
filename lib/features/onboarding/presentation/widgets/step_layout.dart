@@ -105,7 +105,8 @@ final class _OnboardingWizardHeader extends StatelessWidget {
         ? switch (step) {
             OnboardingStep.identity => .24,
             OnboardingStep.birthDate => .29,
-            OnboardingStep.education => .35,
+            OnboardingStep.profession => .35,
+            OnboardingStep.education => .38,
             OnboardingStep.height => .41,
             OnboardingStep.location => .47,
             OnboardingStep.healthStatus => .53,
@@ -123,7 +124,8 @@ final class _OnboardingWizardHeader extends StatelessWidget {
         : switch (step) {
             OnboardingStep.identity => .08,
             OnboardingStep.birthDate => .15,
-            OnboardingStep.education => .23,
+            OnboardingStep.profession => .23,
+            OnboardingStep.education => .27,
             OnboardingStep.height => .31,
             OnboardingStep.location => .38,
             OnboardingStep.healthStatus => .46,

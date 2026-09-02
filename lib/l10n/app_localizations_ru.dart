@@ -248,6 +248,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get patronymicLabel => 'Отчество (необязательно)';
 
   @override
+  String get professionTitle => 'Ваша профессия?';
+
+  @override
+  String get professionOther => 'Другое';
+
+  @override
+  String get professionInputLabel => 'Напишите профессию';
+
+  @override
+  String get professionEmpty => 'Профессии не найдены.';
+
+  @override
   String get educationTitle => 'Какое у вас образование?';
 
   @override

@@ -14,6 +14,8 @@ void main() {
       firstName: 'Madina',
       lastName: 'Karimova',
       patronymic: 'Baxtiyor qizi',
+      professionId: 'profession-1',
+      professionName: 'Dizayner',
       heightCm: 179,
       weightKg: 68,
       regionId: 'region-1',
@@ -48,6 +50,8 @@ void main() {
     expect(restored.patronymic, 'Baxtiyor qizi');
     expect(restored.healthStatusId, 'health-1');
     expect(restored.maritalStatusId, 'marital-1');
+    expect(restored.professionId, 'profession-1');
+    expect(restored.professionName, 'Dizayner');
     expect(restored.childrenCount, 2);
     expect(restored.childrenNotLivingWithMe, isTrue);
     expect(restored.aboutMe, 'Oila qadriyatlari muhim.');

@@ -10,6 +10,16 @@ final class EducationLevel extends Equatable {
   List<Object?> get props => [id, name];
 }
 
+final class Profession extends Equatable {
+  const Profession({required this.id, required this.name});
+
+  final String id;
+  final String name;
+
+  @override
+  List<Object?> get props => [id, name];
+}
+
 final class Region extends Equatable {
   const Region({required this.id, required this.name});
 

@@ -128,6 +128,40 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('profession step renders API chips and the other input', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.profession,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        professionStatus: ReferenceStatus.loaded,
+        isOtherProfessionSelected: true,
+        professions: const [
+          Profession(id: 'profession-1', name: 'Dizayner'),
+          Profession(id: 'profession-2', name: 'Muhandis'),
+        ],
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          currentStep: OnboardingStep.profession,
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    expect(find.text('Kasbingiz?'), findsOneWidget);
+    expect(find.text('Dizayner'), findsOneWidget);
+    expect(find.text('Boshqa'), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   for (final scenario in [
     (type: CandidateType.groom, height: '0', weight: '0'),
     (type: CandidateType.bride, height: '0', weight: '0'),

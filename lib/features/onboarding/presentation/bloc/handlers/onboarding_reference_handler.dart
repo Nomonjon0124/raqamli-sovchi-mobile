@@ -7,6 +7,10 @@ mixin OnboardingReferenceHandler
   OnboardingLocationService get _locationService;
   int get _educationPage;
   set _educationPage(int value);
+  int get _professionPage;
+  set _professionPage(int value);
+  String get _professionSearch;
+  set _professionSearch(String value);
   int get _regionPage;
   set _regionPage(int value);
   int get _districtPage;
@@ -27,6 +31,136 @@ mixin OnboardingReferenceHandler
   ]);
 
   bool _isDivorcedStatus(String name);
+
+  Future<void> _onProfessionsRequested(
+    ProfessionsRequested event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    final search = event.search ?? _professionSearch;
+    final isNewSearch = search != _professionSearch;
+    final page = event.loadNextPage && !isNewSearch ? _professionPage + 1 : 1;
+    _professionSearch = search;
+    emit(
+      state.copyWith(
+        professionStatus: ReferenceStatus.loading,
+        clearFailure: true,
+      ),
+    );
+    final result = await _onboardingRepository.getProfessions(
+      page: page,
+      search: search,
+    );
+    result.fold(
+      (failure) => emit(
+        state.copyWith(
+          professionStatus: ReferenceStatus.failure,
+          failure: failure,
+        ),
+      ),
+      (response) {
+        _professionPage = page;
+        final items = event.loadNextPage && !isNewSearch
+            ? [...state.professions, ...response.items]
+            : response.items;
+        emit(
+          state.copyWith(
+            professions: items,
+            professionStatus: items.isEmpty
+                ? ReferenceStatus.empty
+                : ReferenceStatus.loaded,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onProfessionSaved(
+    ProfessionSaved event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    final draft = state.draft;
+    if (draft == null || event.id.isEmpty || event.name.trim().isEmpty) return;
+    await _save(
+      draft.copyWith(professionId: event.id, professionName: event.name.trim()),
+      emit,
+    );
+    emit(state.copyWith(isOtherProfessionSelected: false));
+  }
+
+  Future<void> _onOtherProfessionSelected(
+    OtherProfessionSelected event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    final draft = state.draft;
+    if (draft == null) return;
+    await _save(draft.copyWith(clearProfession: true), emit);
+    emit(state.copyWith(isOtherProfessionSelected: true));
+  }
+
+  Future<void> _onCustomProfessionSubmitted(
+    CustomProfessionSubmitted event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    final draft = state.draft;
+    final name = event.name.trim();
+    if (draft == null || name.isEmpty || !state.isOtherProfessionSelected) {
+      emit(state.copyWith(failure: const Failure.validation()));
+      return;
+    }
+    emit(
+      state.copyWith(
+        status: ProfileOnboardingStatus.submitting,
+        clearFailure: true,
+      ),
+    );
+    final result = await _onboardingRepository.createProfession(name);
+    await result.fold<Future<void>>(
+      (failure) async => emit(
+        state.copyWith(
+          status: ProfileOnboardingStatus.editing,
+          failure: failure,
+        ),
+      ),
+      (profession) async {
+        if (profession.id.trim().isEmpty || profession.name.trim().isEmpty) {
+          emit(
+            state.copyWith(
+              status: ProfileOnboardingStatus.editing,
+              failure: const Failure.validation(),
+            ),
+          );
+          return;
+        }
+        final professions = [
+          ...state.professions.where((item) => item.id != profession.id),
+          profession,
+        ];
+        await _save(
+          draft.copyWith(
+            professionId: profession.id,
+            professionName: profession.name,
+            currentStep: OnboardingStep.education,
+          ),
+          emit,
+        );
+        emit(
+          state.copyWith(
+            professions: professions,
+            isOtherProfessionSelected: false,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onProfessionContinuePressed(
+    ProfessionContinuePressed event,
+    Emitter<ProfileOnboardingState> emit,
+  ) async {
+    final draft = state.draft;
+    if (draft?.professionId?.isEmpty ?? true) return;
+    await _save(draft!.copyWith(currentStep: OnboardingStep.education), emit);
+  }
 
   Future<void> _onEducationLevelsRequested(
     EducationLevelsRequested event,

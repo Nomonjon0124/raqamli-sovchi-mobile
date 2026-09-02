@@ -7,6 +7,7 @@ enum OnboardingStep {
   pledge,
   identity,
   birthDate,
+  profession,
   education,
   height,
   location,
@@ -35,6 +36,7 @@ const standardOnboardingSteps = <OnboardingStep>[
   OnboardingStep.pledge,
   OnboardingStep.identity,
   OnboardingStep.birthDate,
+  OnboardingStep.profession,
   OnboardingStep.education,
   OnboardingStep.height,
   OnboardingStep.location,
@@ -58,6 +60,7 @@ const representativeOnboardingSteps = <OnboardingStep>[
   OnboardingStep.representativeCandidateType,
   OnboardingStep.identity,
   OnboardingStep.birthDate,
+  OnboardingStep.profession,
   OnboardingStep.education,
   OnboardingStep.height,
   OnboardingStep.location,
@@ -185,6 +188,8 @@ final class ProfileOnboardingDraft extends Equatable {
     this.firstName,
     this.lastName,
     this.patronymic,
+    this.professionId,
+    this.professionName,
     this.educationLevelId,
     this.heightCm,
     this.weightKg,
@@ -224,6 +229,8 @@ final class ProfileOnboardingDraft extends Equatable {
   final String? firstName;
   final String? lastName;
   final String? patronymic;
+  final String? professionId;
+  final String? professionName;
   final String? educationLevelId;
   final int? heightCm;
   final int? weightKg;
@@ -256,6 +263,7 @@ final class ProfileOnboardingDraft extends Equatable {
       birthDate != null &&
       (firstName?.trim().isNotEmpty ?? false) &&
       (lastName?.trim().isNotEmpty ?? false) &&
+      (professionId?.isNotEmpty ?? false) &&
       (educationLevelId?.isNotEmpty ?? false) &&
       heightCm != null &&
       (regionId?.isNotEmpty ?? false) &&
@@ -293,6 +301,8 @@ final class ProfileOnboardingDraft extends Equatable {
     String? firstName,
     String? lastName,
     String? patronymic,
+    String? professionId,
+    String? professionName,
     String? educationLevelId,
     int? heightCm,
     int? weightKg,
@@ -317,6 +327,7 @@ final class ProfileOnboardingDraft extends Equatable {
     bool clearAboutMe = false,
     bool clearLocation = false,
     bool clearCandidateContact = false,
+    bool clearProfession = false,
   }) {
     return ProfileOnboardingDraft(
       ownerUserId: ownerUserId,
@@ -346,6 +357,10 @@ final class ProfileOnboardingDraft extends Equatable {
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       patronymic: patronymic ?? this.patronymic,
+      professionId: clearProfession ? null : professionId ?? this.professionId,
+      professionName: clearProfession
+          ? null
+          : professionName ?? this.professionName,
       educationLevelId: educationLevelId ?? this.educationLevelId,
       heightCm: heightCm ?? this.heightCm,
       weightKg: weightKg ?? this.weightKg,
@@ -395,6 +410,8 @@ final class ProfileOnboardingDraft extends Equatable {
     firstName,
     lastName,
     patronymic,
+    professionId,
+    professionName,
     educationLevelId,
     heightCm,
     weightKg,

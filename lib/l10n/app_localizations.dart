@@ -526,6 +526,30 @@ abstract class AppLocalizations {
   /// **'Otasining ismi (ixtiyoriy)'**
   String get patronymicLabel;
 
+  /// No description provided for @professionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbingiz?'**
+  String get professionTitle;
+
+  /// No description provided for @professionOther.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa'**
+  String get professionOther;
+
+  /// No description provided for @professionInputLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbingizni yozing'**
+  String get professionInputLabel;
+
+  /// No description provided for @professionEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasblar topilmadi.'**
+  String get professionEmpty;
+
   /// No description provided for @educationTitle.
   ///
   /// In uz, this message translates to:

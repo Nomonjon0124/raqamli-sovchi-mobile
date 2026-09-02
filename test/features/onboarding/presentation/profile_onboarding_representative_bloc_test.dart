@@ -8,6 +8,7 @@ import 'package:raqamli_sovchi/features/auth/application/use_cases/commit_pendin
 import 'package:raqamli_sovchi/features/onboarding/application/services/onboarding_location_service.dart';
 import 'package:raqamli_sovchi/features/onboarding/application/services/onboarding_media_service.dart';
 import 'package:raqamli_sovchi/features/onboarding/domain/entities/candidate_type.dart';
+import 'package:raqamli_sovchi/features/onboarding/domain/entities/onboarding_reference.dart';
 import 'package:raqamli_sovchi/features/onboarding/domain/entities/profile_onboarding_draft.dart';
 import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboarding_repository.dart';
@@ -112,6 +113,43 @@ void main() {
       ),
     ],
   );
+
+  test('custom profession is created and advances to education', () async {
+    when(() => draftRepository.load('user-1')).thenAnswer(
+      (_) async => const Right<Failure, ProfileOnboardingDraft?>(null),
+    );
+    when(() => onboardingRepository.createProfession('Dizayner')).thenAnswer(
+      (_) async => const Right<Failure, Profession>(
+        Profession(id: 'profession-1', name: 'Dizayner'),
+      ),
+    );
+    final bloc = buildBloc();
+
+    final started = bloc.stream.firstWhere((state) => state.draft != null);
+    bloc.add(const ProfileOnboardingStarted('user-1'));
+    await started;
+
+    final otherSelected = bloc.stream.firstWhere(
+      (state) => state.isOtherProfessionSelected,
+    );
+    bloc.add(const OtherProfessionSelected());
+    await otherSelected;
+
+    final education = bloc.stream.firstWhere(
+      (state) =>
+          state.draft?.currentStep == OnboardingStep.education &&
+          !state.isOtherProfessionSelected,
+    );
+    bloc.add(const CustomProfessionSubmitted(' Dizayner '));
+    final result = await education;
+
+    expect(result.draft?.professionId, 'profession-1');
+    expect(result.draft?.professionName, 'Dizayner');
+    expect(result.draft?.currentStep, OnboardingStep.education);
+    expect(result.isOtherProfessionSelected, isFalse);
+    verify(() => onboardingRepository.createProfession('Dizayner')).called(1);
+    await bloc.close();
+  });
 
   blocTest<ProfileOnboardingBloc, ProfileOnboardingState>(
     'representative main photo skips face verification',
