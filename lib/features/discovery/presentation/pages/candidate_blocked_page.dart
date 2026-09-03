@@ -35,9 +35,15 @@ final class CandidateBlockedPage extends StatelessWidget {
       return;
     }
     if (Navigator.of(context).canPop()) {
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     } else {
-      context.go(RouteNames.home);
+      final homeLocation = Uri(
+        path: RouteNames.home,
+        queryParameters: {
+          'profileRefresh': DateTime.now().microsecondsSinceEpoch.toString(),
+        },
+      ).toString();
+      context.go(homeLocation);
     }
   }
 

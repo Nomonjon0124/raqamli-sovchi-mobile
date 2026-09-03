@@ -82,6 +82,47 @@ void main() {
       findsOneWidget,
     );
   });
+
+  testWidgets('renders RefreshIndicator on candidates list', (tester) async {
+    const discoveryRepository = _DiscoveryRepository();
+    final locationRepository = _LocationRepository();
+    final profileRepository = _ProfileRepository();
+    final notificationRepository = _NotificationRepository();
+    final eventBus = NotificationEventBus();
+    addTearDown(eventBus.dispose);
+
+    serviceLocator
+      ..registerFactory<DiscoveryBloc>(
+        () => DiscoveryBloc(
+          getCandidates: const GetCandidatesUseCase(discoveryRepository),
+          checkLocationAccess: CheckLocationAccessUseCase(locationRepository),
+          requestCurrentLocation: RequestCurrentLocationUseCase(
+            locationRepository,
+          ),
+          openLocationSettings: OpenLocationSettingsUseCase(locationRepository),
+          updateProfileLocation: UpdateProfileLocationUseCase(
+            profileRepository,
+          ),
+          clusterNearbyCandidates: const ClusterNearbyCandidatesUseCase(),
+        ),
+      )
+      ..registerFactory<NotificationsBloc>(
+        () => NotificationsBloc(
+          loadNotifications: LoadNotificationsUseCase(notificationRepository),
+          loadUnreadCount: LoadUnreadNotificationCountUseCase(
+            notificationRepository,
+          ),
+          markRead: MarkNotificationReadUseCase(notificationRepository),
+          markAllRead: MarkAllNotificationsReadUseCase(notificationRepository),
+          eventBus: eventBus,
+        ),
+      );
+
+    await tester.pumpWidget(const _LocalizedTestApp(child: CandidatesPage()));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(RefreshIndicator), findsOneWidget);
+  });
 }
 
 final class _LocalizedTestApp extends StatelessWidget {
@@ -106,7 +147,9 @@ final class _LocalizedTestApp extends StatelessWidget {
 }
 
 final class _DiscoveryRepository implements DiscoveryRepository {
-  const _DiscoveryRepository({required this.nearbyFailure});
+  const _DiscoveryRepository({
+    this.nearbyFailure = const Failure.unknown(),
+  });
 
   final Failure nearbyFailure;
 
