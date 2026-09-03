@@ -238,7 +238,7 @@ final class RemoteAuthDataSource implements AuthDataSource {
     final response = await _client.post<Map<String, dynamic>>(
       _tokenRefreshPath,
       data: {'refresh': refreshToken},
-      options: Options(extra: {'skipAuth': true}),
+      options: Options(extra: {'skipAuth': true, 'skipAuthRefresh': true}),
     );
     final accessToken =
         (response.data?['access'] ?? response.data?['access_token'])

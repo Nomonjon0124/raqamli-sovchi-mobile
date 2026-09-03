@@ -95,6 +95,24 @@ void main() {
       expect(apiClient.getPath, isNull);
     },
   );
+
+  test('remote refresh uses the backend token refresh contract', () async {
+    final tokenStore = _MemoryTokenStore()..refreshToken = 'refresh-token';
+    final apiClient = _RecordingApiClient({'access': 'new-access'});
+    final dataSource = RemoteAuthDataSource(
+      client: apiClient,
+      tokenStore: tokenStore,
+    );
+
+    await dataSource.refreshSession();
+
+    expect(apiClient.postPath, '/api/v1/accounts/auth/token/refresh/');
+    expect(apiClient.postData, {'refresh': 'refresh-token'});
+    expect(apiClient.postOptions?.extra?['skipAuth'], isTrue);
+    expect(apiClient.postOptions?.extra?['skipAuthRefresh'], isTrue);
+    expect(tokenStore.accessToken, 'new-access');
+    expect(tokenStore.refreshToken, 'refresh-token');
+  });
 }
 
 final class _MemorySecureStorage implements SecureStorage {
