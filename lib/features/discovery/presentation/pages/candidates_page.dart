@@ -13,6 +13,7 @@ import '../../../../core/ui/widgets/app_empty_state.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../core/ui/widgets/app_round_icon_button.dart';
 import '../../../../core/ui/widgets/app_screen_header.dart';
+import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../notifications/presentation/bloc/notification_bloc.dart';
@@ -31,11 +32,14 @@ import '../widgets/nearby_radius_settings_sheet.dart';
 import '../widgets/survey_prompt_card.dart';
 
 final class CandidatesPage extends StatelessWidget {
-  const CandidatesPage({super.key});
+  const CandidatesPage({this.profileRefreshToken, super.key});
+
+  final String? profileRefreshToken;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
+      key: ValueKey(profileRefreshToken ?? 'candidates-page'),
       providers: [
         BlocProvider(
           create: (_) => serviceLocator<DiscoveryBloc>()
@@ -71,143 +75,190 @@ final class _CandidatesPageView extends StatelessWidget {
     final viewMode = context.select(
       (DiscoveryBloc bloc) => bloc.state.viewMode,
     );
-    final hasAnsweredTest = context.select(
-      (DiscoveryBloc bloc) => bloc.state.myProfile?.hasAnsweredTest ?? false,
+    final myProfile = context.select(
+      (DiscoveryBloc bloc) => bloc.state.myProfile,
+    );
+    final currentLocation = context.select(
+      (DiscoveryBloc bloc) => bloc.state.currentLocation,
+    );
+    final nearbyClusters = context.select(
+      (DiscoveryBloc bloc) => bloc.state.nearbyClusters,
+    );
+    final nearbyMapItems = context.select(
+      (DiscoveryBloc bloc) => bloc.state.nearbyMapItems,
+    );
+    final nearbyRadiusKm = context.select(
+      (DiscoveryBloc bloc) => bloc.state.nearbyRadiusKm,
     );
 
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: const EdgeInsets.fromLTRB(18, 14, 18, AppSpacing.lg),
-            sliver: SliverList.list(
-              children: [
-                AppScreenHeader(
-                  title: l10n.candidatesTabLabel,
-                  trailing:
-                      BlocSelector<NotificationsBloc, NotificationsState, bool>(
-                        selector: (state) => state.unreadCount > 0,
-                        builder: (context, hasUnread) => AppRoundIconButton(
-                          icon: Assets.icons.icNotification,
-                          semanticLabel: l10n.notificationsActionLabel,
-                          showUnreadDot: hasUnread,
-                          onPressed: () =>
-                              context.push(RouteNames.notifications),
+    final Widget content;
+    if (discoveryStatus == DiscoveryStatus.success &&
+        selectedFilter == DiscoveryFilter.nearby &&
+        viewMode == DiscoveryViewMode.map &&
+        currentLocation != null) {
+      content = SafeArea(
+        bottom: false,
+        child: NearbyCandidatesMap(
+          currentLocation: currentLocation,
+          clusters: nearbyClusters,
+          items: nearbyMapItems,
+          radiusKm: nearbyRadiusKm,
+          onRadiusPressed: () =>
+              _showNearbySettings(context, context.read<DiscoveryBloc>().state),
+          onCandidateTap: (candidateId) =>
+              context.push(RouteNames.candidateDetailFor(candidateId)),
+          onMapClosed: () => context.read<DiscoveryBloc>().add(
+            const DiscoveryViewModeChanged(DiscoveryViewMode.grid),
+          ),
+          onViewModeChanged: (mode) =>
+              context.read<DiscoveryBloc>().add(DiscoveryViewModeChanged(mode)),
+        ),
+      );
+    } else {
+      content = SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(18, 14, 18, AppSpacing.lg),
+              sliver: SliverList.list(
+                children: [
+                  AppScreenHeader(
+                    title: l10n.candidatesTabLabel,
+                    trailing:
+                        BlocSelector<
+                          NotificationsBloc,
+                          NotificationsState,
+                          bool
+                        >(
+                          selector: (state) => state.unreadCount > 0,
+                          builder: (context, hasUnread) => AppRoundIconButton(
+                            icon: Assets.icons.icNotification,
+                            semanticLabel: l10n.notificationsActionLabel,
+                            showUnreadDot: hasUnread,
+                            onPressed: () =>
+                                context.push(RouteNames.notifications),
+                          ),
                         ),
-                      ),
-                ),
-                18.g,
-                CandidatesFilterBar(
-                  selectedFilter: selectedFilter,
-                  viewMode: viewMode,
-                  showViewToggle:
-                      selectedFilter == DiscoveryFilter.nearby &&
-                      discoveryStatus != DiscoveryStatus.permissionRequired,
-                  onFilterSelected: (filter) => context
-                      .read<DiscoveryBloc>()
-                      .add(DiscoveryFetchCandidatesRequested(filter: filter)),
-                  onViewModeChanged: (mode) => context
-                      .read<DiscoveryBloc>()
-                      .add(DiscoveryViewModeChanged(mode)),
-                ),
-                if (!hasAnsweredTest &&
-                    selectedFilter != DiscoveryFilter.nearby) ...[
+                  ),
                   18.g,
-                  SurveyPromptCard(
-                    onPressed: () => context.push(RouteNames.questionnaire),
+                  CandidatesFilterBar(
+                    selectedFilter: selectedFilter,
+                    viewMode: viewMode,
+                    showViewToggle:
+                        selectedFilter == DiscoveryFilter.nearby &&
+                        discoveryStatus != DiscoveryStatus.permissionRequired,
+                    onFilterSelected: (filter) => context
+                        .read<DiscoveryBloc>()
+                        .add(DiscoveryFetchCandidatesRequested(filter: filter)),
+                    onViewModeChanged: (mode) => context
+                        .read<DiscoveryBloc>()
+                        .add(DiscoveryViewModeChanged(mode)),
                   ),
+                  if (myProfile != null &&
+                      !myProfile.hasAnsweredTest &&
+                      selectedFilter != DiscoveryFilter.nearby) ...[
+                    18.g,
+                    SurveyPromptCard(
+                      onPressed: () => context.push(RouteNames.questionnaire),
+                    ),
+                  ],
+                  18.g,
                 ],
-                18.g,
-              ],
+              ),
             ),
-          ),
-          BlocBuilder<DiscoveryBloc, DiscoveryState>(
-            builder: (context, state) {
-              return switch (state.status) {
-                DiscoveryStatus.initial ||
-                DiscoveryStatus.loading => const SliverFillRemaining(
-                  child: Center(child: CircularProgressIndicator.adaptive()),
-                ),
-                DiscoveryStatus.failure => SliverFillRemaining(
-                  child: Center(
-                    child: AppErrorView(
-                      message: state.errorMessage ?? l10n.genericError,
-                      onRetry: () => context.read<DiscoveryBloc>().add(
-                        DiscoveryFetchCandidatesRequested(
-                          filter: state.selectedFilter,
+            BlocBuilder<DiscoveryBloc, DiscoveryState>(
+              builder: (context, state) {
+                return switch (state.status) {
+                  DiscoveryStatus.initial ||
+                  DiscoveryStatus.loading => const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator.adaptive()),
+                  ),
+                  DiscoveryStatus.failure => SliverFillRemaining(
+                    child: Center(
+                      child: AppErrorView(
+                        message: state.errorMessage ?? l10n.genericError,
+                        onRetry: () => context.read<DiscoveryBloc>().add(
+                          DiscoveryFetchCandidatesRequested(
+                            filter: state.selectedFilter,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                DiscoveryStatus.permissionRequired => SliverFillRemaining(
-                  child: NearbyLocationPermissionState(
-                    accessStatus: state.locationAccessStatus,
-                    isLoading: state.isLocationOperationInProgress,
-                    onPrimaryPressed: () => context.read<DiscoveryBloc>().add(
-                      const DiscoveryNearbyLocationActionRequested(),
-                    ),
-                    onDismissed: () => context.read<DiscoveryBloc>().add(
-                      const DiscoveryNearbyPermissionDismissed(),
-                    ),
-                  ),
-                ),
-                DiscoveryStatus.success
-                    when state.selectedFilter == DiscoveryFilter.nearby &&
-                        state.viewMode == DiscoveryViewMode.map &&
-                        state.currentLocation != null =>
-                  SliverFillRemaining(
-                    child: NearbyCandidatesMap(
-                      currentLocation: state.currentLocation!,
-                      clusters: state.nearbyClusters,
-                      items: state.nearbyMapItems,
-                      radiusKm: state.nearbyRadiusKm,
-                      onRadiusPressed: () =>
-                          _showNearbySettings(context, state),
-                      onCandidateTap: (candidateId) => context.push(
-                        RouteNames.candidateDetailFor(candidateId),
+                  DiscoveryStatus.permissionRequired => SliverFillRemaining(
+                    child: NearbyLocationPermissionState(
+                      accessStatus: state.locationAccessStatus,
+                      isLoading: state.isLocationOperationInProgress,
+                      onPrimaryPressed: () => context.read<DiscoveryBloc>().add(
+                        const DiscoveryNearbyLocationActionRequested(),
+                      ),
+                      onDismissed: () => context.read<DiscoveryBloc>().add(
+                        const DiscoveryNearbyPermissionDismissed(),
                       ),
                     ),
                   ),
-                DiscoveryStatus.empty
-                    when state.selectedFilter == DiscoveryFilter.nearby =>
-                  SliverFillRemaining(
-                    child: NearbyCandidatesEmptyState(
-                      radiusKm: state.nearbyRadiusKm,
-                      notificationsEnabled: state.areNearbyNotificationsEnabled,
-                      onExpandRadius: () => context.read<DiscoveryBloc>().add(
-                        DiscoveryNearbySettingsSaved(
-                          radiusKm: 25,
-                          isProfileVisible: state.isNearbyProfileVisible,
-                          audience: state.nearbyVisibilityAudience,
+                  DiscoveryStatus.empty
+                      when state.selectedFilter == DiscoveryFilter.nearby =>
+                    SliverFillRemaining(
+                      child: NearbyCandidatesEmptyState(
+                        radiusKm: state.nearbyRadiusKm,
+                        notificationsEnabled:
+                            state.areNearbyNotificationsEnabled,
+                        onExpandRadius: () => context.read<DiscoveryBloc>().add(
+                          DiscoveryNearbySettingsSaved(
+                            radiusKm: 25,
+                            isProfileVisible: state.isNearbyProfileVisible,
+                            audience: state.nearbyVisibilityAudience,
+                          ),
                         ),
+                        onChangeCriteria: () =>
+                            _showNearbySettings(context, state),
+                        onNotificationsChanged: (value) => context
+                            .read<DiscoveryBloc>()
+                            .add(DiscoveryNearbyNotificationsChanged(value)),
                       ),
-                      onChangeCriteria: () =>
-                          _showNearbySettings(context, state),
-                      onNotificationsChanged: (value) => context
-                          .read<DiscoveryBloc>()
-                          .add(DiscoveryNearbyNotificationsChanged(value)),
+                    ),
+                  DiscoveryStatus.empty => SliverFillRemaining(
+                    child: AppEmptyState(message: l10n.candidatesPlaceholder),
+                  ),
+                  DiscoveryStatus.success => SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(
+                      18,
+                      0,
+                      18,
+                      AppSpacing.xl,
+                    ),
+                    sliver: AppCandidateGrid(
+                      candidates: _mapEntitiesToUiData(state.candidates, l10n),
+                      privatePhotoLabel: l10n.privatePhotoLabel,
+                      onCandidateTap: (index) {
+                        final candidate = state.candidates[index];
+                        context.push(
+                          RouteNames.candidateDetailFor(candidate.id),
+                        );
+                      },
                     ),
                   ),
-                DiscoveryStatus.empty => SliverFillRemaining(
-                  child: AppEmptyState(message: l10n.candidatesPlaceholder),
-                ),
-                DiscoveryStatus.success => SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
-                  sliver: AppCandidateGrid(
-                    candidates: _mapEntitiesToUiData(state.candidates, l10n),
-                    privatePhotoLabel: l10n.privatePhotoLabel,
-                    onCandidateTap: (index) {
-                      final candidate = state.candidates[index];
-                      context.push(RouteNames.candidateDetailFor(candidate.id));
-                    },
-                  ),
-                ),
-              };
-            },
-          ),
-        ],
-      ),
+                };
+              },
+            ),
+          ],
+        ),
+      );
+    }
+
+    return BlocListener<DiscoveryBloc, DiscoveryState>(
+      listenWhen: (previous, current) =>
+          current.status == DiscoveryStatus.failure &&
+          (previous.status != current.status ||
+              previous.errorMessage != current.errorMessage),
+      listener: (context, state) {
+        AppToast.show(
+          context,
+          message: state.errorMessage ?? l10n.genericError,
+        );
+      },
+      child: content,
     );
   }
 

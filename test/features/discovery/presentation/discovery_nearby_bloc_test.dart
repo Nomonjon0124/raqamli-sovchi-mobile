@@ -70,24 +70,18 @@ void main() {
       );
       addTearDown(bloc.close);
 
-      final gridReady = bloc.stream.firstWhere(
-        (state) => state.status == DiscoveryStatus.success,
-      );
-      bloc.add(
-        const DiscoveryFetchCandidatesRequested(filter: DiscoveryFilter.nearby),
-      );
-      await gridReady;
-
       final mapReady = bloc.stream.firstWhere(
         (state) =>
             state.status == DiscoveryStatus.success &&
             state.viewMode == DiscoveryViewMode.map,
       );
-      bloc.add(const DiscoveryViewModeChanged(DiscoveryViewMode.map));
+      bloc.add(
+        const DiscoveryFetchCandidatesRequested(filter: DiscoveryFilter.nearby),
+      );
       final mapState = await mapReady;
 
-      expect(profileRepository.updatedLocations, hasLength(2));
-      expect(discoveryRepository.requests, hasLength(2));
+      expect(profileRepository.updatedLocations, hasLength(1));
+      expect(discoveryRepository.requests, hasLength(1));
       expect(discoveryRepository.requests.last.filter, DiscoveryFilter.nearby);
       expect(discoveryRepository.requests.last.pageSize, 100);
       expect(discoveryRepository.requests.last.radiusKm, 5);
@@ -157,6 +151,43 @@ void main() {
       expect(discoveryRepository.requests, hasLength(2));
     },
   );
+
+  test(
+    'matches filter falls back to recommendations when matches are empty',
+    () async {
+      final locationRepository = _LocationRepository(
+        accessStatus: LocationAccessStatus.granted,
+      );
+      final discoveryRepository = _DiscoveryRepository(
+        matchesCandidates: const [],
+        recommendedCandidates: [createCandidate(id: 'recommended-1')],
+      );
+      final profileRepository = _ProfileRepository();
+      final bloc = _buildBloc(
+        locationRepository: locationRepository,
+        discoveryRepository: discoveryRepository,
+        profileRepository: profileRepository,
+      );
+      addTearDown(bloc.close);
+
+      final loaded = bloc.stream.firstWhere(
+        (state) => state.status == DiscoveryStatus.success,
+      );
+      bloc.add(
+        const DiscoveryFetchCandidatesRequested(
+          filter: DiscoveryFilter.matches,
+        ),
+      );
+      final state = await loaded;
+
+      expect(state.selectedFilter, DiscoveryFilter.matches);
+      expect(state.candidates.single.id, 'recommended-1');
+      expect(discoveryRepository.requests.map((request) => request.filter), [
+        DiscoveryFilter.matches,
+        DiscoveryFilter.recommended,
+      ]);
+    },
+  );
 }
 
 DiscoveryBloc _buildBloc({
@@ -207,9 +238,15 @@ final class _DiscoveryRequest {
 }
 
 final class _DiscoveryRepository implements DiscoveryRepository {
-  _DiscoveryRepository({this.candidates = const []});
+  _DiscoveryRepository({
+    this.candidates = const [],
+    this.matchesCandidates,
+    this.recommendedCandidates,
+  });
 
   final List<Candidate> candidates;
+  final List<Candidate>? matchesCandidates;
+  final List<Candidate>? recommendedCandidates;
   final requests = <_DiscoveryRequest>[];
 
   @override
@@ -222,7 +259,11 @@ final class _DiscoveryRepository implements DiscoveryRepository {
     requests.add(
       _DiscoveryRequest(pageSize: pageSize, filter: filter, radiusKm: radiusKm),
     );
-    return Right(candidates);
+    return switch (filter) {
+      DiscoveryFilter.matches => Right(matchesCandidates ?? candidates),
+      DiscoveryFilter.recommended => Right(recommendedCandidates ?? candidates),
+      DiscoveryFilter.nearby => Right(candidates),
+    };
   }
 
   @override

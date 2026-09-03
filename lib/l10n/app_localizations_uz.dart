@@ -835,7 +835,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidatesFilterRecommended => 'Tavsiyalar';
 
   @override
-  String get candidatesFilterNearby => 'Yaqinlar';
+  String get candidatesFilterNearby => 'Atrofdagilar';
 
   @override
   String get privatePhotoLabel => 'Maxfiy rasm';
@@ -1350,7 +1350,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbyShowAll => 'Barchasi';
 
   @override
-  String get openStreetMapAttribution => '© OpenStreetMap ishtirokchilari';
+  String get nearbyCloseMap => 'Xaritani yopish';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1364,7 +1364,10 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbySettingsTitle => 'Radius va ko‘rinish';
 
   @override
-  String get nearbySearchRadiusLabel => 'Qidiruv radiusi';
+  String get nearbySearchRadiusLabel => 'Radius';
+
+  @override
+  String get nearbyRadiusRange => '1–25 km';
 
   @override
   String nearbyRadiusOption(int radius) {
@@ -1383,14 +1386,14 @@ class AppLocalizationsUz extends AppLocalizations {
       'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.';
 
   @override
-  String get nearbyVisibilityTitle => 'Meni Yaqinlar ro‘yxatida ko‘rsatish';
+  String get nearbyVisibilityTitle => 'Meni Atrofdagilar ro‘yxatida ko‘rsatish';
 
   @override
   String get nearbyVisibilitySubtitle =>
       'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz';
 
   @override
-  String get nearbyAudienceTitle => 'Kim meni Yaqinlarda ko‘ra oladi';
+  String get nearbyAudienceTitle => 'Kim meni Atrofdagilarda ko‘ra oladi';
 
   @override
   String get nearbyAudienceAll => 'Hamma nomzodlar';

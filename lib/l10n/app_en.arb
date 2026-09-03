@@ -483,14 +483,15 @@
     "placeholders": {"count": {"type": "int"}}
   },
   "nearbyShowAll": "View all",
-  "openStreetMapAttribution": "© OpenStreetMap contributors",
+  "nearbyCloseMap": "Close map",
   "nearbyWithinRadius": "Within {radius} km",
   "@nearbyWithinRadius": {
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Return to my location",
   "nearbySettingsTitle": "Radius and visibility",
-  "nearbySearchRadiusLabel": "Search radius",
+  "nearbySearchRadiusLabel": "Radius",
+  "nearbyRadiusRange": "1–25 km",
   "nearbyRadiusOption": "{radius} km",
   "@nearbyRadiusOption": {
     "placeholders": {"radius": {"type": "int"}}

@@ -61,11 +61,15 @@ import '../../features/discovery/domain/repositories/location_repository.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
+import '../../features/match/application/use_cases/create_photo_request.dart';
 import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
 import '../../features/match/application/use_cases/get_match_requests.dart';
 import '../../features/match/data/data_sources/match_request_data_source.dart';
+import '../../features/match/data/data_sources/photo_request_data_source.dart';
 import '../../features/match/data/repositories/match_request_repository_impl.dart';
+import '../../features/match/data/repositories/photo_request_repository_impl.dart';
 import '../../features/match/domain/repositories/match_request_repository.dart';
+import '../../features/match/domain/repositories/photo_request_repository.dart';
 import '../../features/notifications/application/use_cases/notification_use_cases.dart';
 import '../../features/notifications/data/data_sources/notification_data_source.dart';
 import '../../features/notifications/data/repositories/notification_repository_impl.dart';
@@ -201,6 +205,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<MatchRequestRepository>(
       () => MatchRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<PhotoRequestDataSource>(
+      () => RemotePhotoRequestDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<PhotoRequestRepository>(
+      () => PhotoRequestRepositoryImpl(serviceLocator()),
+    )
     ..registerLazySingleton<NotificationDataSource>(
       () => RemoteNotificationDataSource(serviceLocator()),
     )
@@ -248,6 +258,9 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<CreateMatchRequestUseCase>(
       () => CreateMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreatePhotoRequestUseCase>(
+      () => CreatePhotoRequestUseCase(serviceLocator()),
     )
     ..registerFactory<LoadNotificationsUseCase>(
       () => LoadNotificationsUseCase(serviceLocator()),

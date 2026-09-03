@@ -42,7 +42,7 @@ final class RemoteDiscoveryDataSource implements DiscoveryDataSource {
       'page_size': pageSize,
     };
     if (filter == DiscoveryFilter.nearby && radiusKm != null) {
-      queryParameters['radius'] = radiusKm;
+      queryParameters['radius'] = radiusKm.round();
     }
 
     final response = await _client.get<dynamic>(

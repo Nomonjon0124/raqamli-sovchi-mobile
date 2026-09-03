@@ -1354,7 +1354,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbyShowAll => 'Все';
 
   @override
-  String get openStreetMapAttribution => '© участники OpenStreetMap';
+  String get nearbyCloseMap => 'Закрыть карту';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1368,7 +1368,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbySettingsTitle => 'Радиус и видимость';
 
   @override
-  String get nearbySearchRadiusLabel => 'Радиус поиска';
+  String get nearbySearchRadiusLabel => 'Радиус';
+
+  @override
+  String get nearbyRadiusRange => '1–25 км';
 
   @override
   String nearbyRadiusOption(int radius) {

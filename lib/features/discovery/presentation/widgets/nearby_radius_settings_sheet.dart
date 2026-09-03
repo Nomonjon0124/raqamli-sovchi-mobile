@@ -39,7 +39,7 @@ final class NearbyRadiusSettingsSheet extends StatefulWidget {
 
 final class _NearbyRadiusSettingsSheetState
     extends State<NearbyRadiusSettingsSheet> {
-  static const _radiusOptions = [2.0, 5.0, 10.0, 25.0];
+  static const _radiusOptions = [1.0, 3.0, 5.0, 10.0, 15.0, 25.0];
 
   late double _radiusKm;
   late bool _isProfileVisible;
@@ -48,7 +48,7 @@ final class _NearbyRadiusSettingsSheetState
   @override
   void initState() {
     super.initState();
-    _radiusKm = widget.initialRadiusKm;
+    _radiusKm = _normalizeRadius(widget.initialRadiusKm);
     _isProfileVisible = widget.initialProfileVisibility;
     _audience = widget.initialAudience;
   }
@@ -83,9 +83,23 @@ final class _NearbyRadiusSettingsSheetState
                 style: AppTypography.photoRequestTitle,
               ),
               const SizedBox(height: AppSpacing.lg),
-              Text(
-                l10n.nearbySearchRadiusLabel,
-                style: AppTypography.nearbyLabel,
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l10n.nearbySearchRadiusLabel,
+                      style: AppTypography.nearbyLabel.copyWith(
+                        color: AppColors.bodyText,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    l10n.nearbyRadiusRange,
+                    style: AppTypography.onboardingBody.copyWith(
+                      color: AppColors.mutedText,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: AppSpacing.inline),
               Wrap(
@@ -98,19 +112,7 @@ final class _NearbyRadiusSettingsSheetState
                       selected: _radiusKm == radius,
                       onPressed: () => setState(() => _radiusKm = radius),
                     ),
-                  Tooltip(
-                    message: l10n.nearbyEntireRegionUnavailable,
-                    child: _RadiusChip(
-                      label: l10n.nearbyEntireRegion,
-                      selected: false,
-                    ),
-                  ),
                 ],
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              Text(
-                l10n.nearbyRadiusHint,
-                style: AppTypography.onboardingSelectorLabel,
               ),
               const SizedBox(height: AppSpacing.lg),
               _VisibilityCard(
@@ -171,6 +173,11 @@ final class _NearbyRadiusSettingsSheetState
     setState(() => _audience = audience);
   }
 
+  double _normalizeRadius(double radiusKm) {
+    final rounded = radiusKm.roundToDouble();
+    return _radiusOptions.contains(rounded) ? rounded : 10;
+  }
+
   void _save() {
     Navigator.of(context).pop(
       NearbyRadiusSettingsResult(
@@ -191,7 +198,7 @@ final class _SheetGrabber extends StatelessWidget {
       width: 38,
       height: 4,
       decoration: BoxDecoration(
-        color: AppColors.border,
+        color: AppColors.mutedSurface,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
     );
@@ -214,7 +221,7 @@ final class _RadiusChip extends StatelessWidget {
     return Opacity(
       opacity: onPressed == null ? 0.5 : 1,
       child: Material(
-        color: selected ? AppColors.primary : AppColors.subtleSurface,
+        color: selected ? AppColors.primary : AppColors.mutedSurface,
         borderRadius: BorderRadius.circular(AppRadius.full),
         child: InkWell(
           onTap: selected ? null : onPressed,
@@ -222,11 +229,11 @@ final class _RadiusChip extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: AppSpacing.input,
-              vertical: AppSpacing.dense,
+              vertical: AppSpacing.sm,
             ),
             child: Text(
               label,
-              style: AppTypography.caption.copyWith(
+              style: AppTypography.nearbyLabel.copyWith(
                 color: selected ? AppColors.surfaceLight : AppColors.bodyText,
               ),
             ),

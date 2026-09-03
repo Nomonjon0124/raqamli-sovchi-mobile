@@ -20,7 +20,7 @@ void main() {
       );
 
       expect(client.getPath, '/api/v1/accounts/profiles/nearby/');
-      expect(client.getQuery, {'page': 2, 'page_size': 100, 'radius': 5.0});
+      expect(client.getQuery, {'page': 2, 'page_size': 100, 'radius': 5});
     },
   );
 

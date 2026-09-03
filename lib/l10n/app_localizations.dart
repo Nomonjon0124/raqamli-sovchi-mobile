@@ -1597,7 +1597,7 @@ abstract class AppLocalizations {
   /// No description provided for @candidatesFilterNearby.
   ///
   /// In uz, this message translates to:
-  /// **'Yaqinlar'**
+  /// **'Atrofdagilar'**
   String get candidatesFilterNearby;
 
   /// No description provided for @privatePhotoLabel.
@@ -2500,11 +2500,11 @@ abstract class AppLocalizations {
   /// **'Barchasi'**
   String get nearbyShowAll;
 
-  /// No description provided for @openStreetMapAttribution.
+  /// No description provided for @nearbyCloseMap.
   ///
   /// In uz, this message translates to:
-  /// **'© OpenStreetMap ishtirokchilari'**
-  String get openStreetMapAttribution;
+  /// **'Xaritani yopish'**
+  String get nearbyCloseMap;
 
   /// No description provided for @nearbyWithinRadius.
   ///
@@ -2527,8 +2527,14 @@ abstract class AppLocalizations {
   /// No description provided for @nearbySearchRadiusLabel.
   ///
   /// In uz, this message translates to:
-  /// **'Qidiruv radiusi'**
+  /// **'Radius'**
   String get nearbySearchRadiusLabel;
+
+  /// No description provided for @nearbyRadiusRange.
+  ///
+  /// In uz, this message translates to:
+  /// **'1–25 km'**
+  String get nearbyRadiusRange;
 
   /// No description provided for @nearbyRadiusOption.
   ///
@@ -2557,7 +2563,7 @@ abstract class AppLocalizations {
   /// No description provided for @nearbyVisibilityTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Meni Yaqinlar ro‘yxatida ko‘rsatish'**
+  /// **'Meni Atrofdagilar ro‘yxatida ko‘rsatish'**
   String get nearbyVisibilityTitle;
 
   /// No description provided for @nearbyVisibilitySubtitle.
@@ -2569,7 +2575,7 @@ abstract class AppLocalizations {
   /// No description provided for @nearbyAudienceTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Kim meni Yaqinlarda ko‘ra oladi'**
+  /// **'Kim meni Atrofdagilarda ko‘ra oladi'**
   String get nearbyAudienceTitle;
 
   /// No description provided for @nearbyAudienceAll.

@@ -15,6 +15,7 @@ final class NearbyCandidatesSheet extends StatelessWidget {
     required this.items,
     required this.onCandidateTap,
     required this.onShowAll,
+    required this.onInteraction,
     super.key,
   });
 
@@ -22,6 +23,7 @@ final class NearbyCandidatesSheet extends StatelessWidget {
   final List<NearbyCandidateMapItem> items;
   final ValueChanged<String> onCandidateTap;
   final VoidCallback onShowAll;
+  final VoidCallback onInteraction;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +31,11 @@ final class NearbyCandidatesSheet extends StatelessWidget {
 
     return DraggableScrollableSheet(
       controller: controller,
-      initialChildSize: 0.34,
+      initialChildSize: 0.26,
       minChildSize: 0.24,
       maxChildSize: 0.76,
       snap: true,
-      snapSizes: const [0.34, 0.76],
+      snapSizes: const [0.26, 0.76],
       builder: (context, scrollController) {
         return DecoratedBox(
           decoration: const BoxDecoration(
@@ -49,66 +51,78 @@ final class NearbyCandidatesSheet extends StatelessWidget {
               ),
             ],
           ),
-          child: ListView.builder(
-            controller: scrollController,
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.card,
-              AppSpacing.inline,
-              AppSpacing.card,
-              AppSpacing.lg,
-            ),
-            itemCount: items.length + 2,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return const Center(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: AppColors.mutedSurface,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(AppRadius.full),
-                      ),
-                    ),
-                    child: SizedBox(width: 38, height: 4),
-                  ),
-                );
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (notification) {
+              if (notification is ScrollUpdateNotification ||
+                  notification is OverscrollNotification) {
+                onInteraction();
               }
-              if (index == 1) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          l10n.nearbyAroundCount(items.length),
-                          style: AppTypography.onboardingAction.copyWith(
-                            color: AppColors.text,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: items.isEmpty ? null : onShowAll,
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.sm,
-                          ),
-                          minimumSize: const Size(44, 44),
-                        ),
-                        child: Text(l10n.nearbyShowAll),
-                      ),
-                    ],
-                  ),
-                );
-              }
-
-              final item = items[index - 2];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.inline),
-                child: _NearbyCandidateRow(
-                  item: item,
-                  onTap: () => onCandidateTap(item.candidate.id),
-                ),
-              );
+              return false;
             },
+            child: ListView.builder(
+              controller: scrollController,
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.card,
+                AppSpacing.inline,
+                AppSpacing.card,
+                AppSpacing.lg,
+              ),
+              itemCount: items.length + 2,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return const Center(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: AppColors.mutedSurface,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(AppRadius.full),
+                        ),
+                      ),
+                      child: SizedBox(width: 38, height: 4),
+                    ),
+                  );
+                }
+                if (index == 1) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            l10n.nearbyAroundCount(items.length),
+                            style: AppTypography.onboardingAction.copyWith(
+                              color: AppColors.text,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: items.isEmpty ? null : onShowAll,
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.sm,
+                            ),
+                            minimumSize: const Size(44, 44),
+                          ),
+                          child: Text(l10n.nearbyShowAll),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+                final item = items[index - 2];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: AppSpacing.inline),
+                  child: _NearbyCandidateRow(
+                    item: item,
+                    onTap: () {
+                      onInteraction();
+                      onCandidateTap(item.candidate.id);
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         );
       },

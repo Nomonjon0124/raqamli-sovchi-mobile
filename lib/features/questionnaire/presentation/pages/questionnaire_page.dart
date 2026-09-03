@@ -80,7 +80,7 @@ final class _QuestionnaireView extends StatelessWidget {
           QuestionnaireStatus.submitting => const QuestionnaireAnalysisView(),
           QuestionnaireStatus.result => QuestionnaireResultView(
             result: state.result!,
-            onShowCandidates: () => context.go(RouteNames.home),
+            onShowCandidates: () => _openHomeWithFreshProfile(context),
           ),
         };
       },
@@ -93,5 +93,15 @@ final class _QuestionnaireView extends StatelessWidget {
       return;
     }
     context.go(RouteNames.home);
+  }
+
+  void _openHomeWithFreshProfile(BuildContext context) {
+    final location = Uri(
+      path: RouteNames.home,
+      queryParameters: {
+        'profileRefresh': DateTime.now().microsecondsSinceEpoch.toString(),
+      },
+    ).toString();
+    context.go(location);
   }
 }

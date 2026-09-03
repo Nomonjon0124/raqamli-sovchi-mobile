@@ -206,6 +206,10 @@ class $AssetsIconsGen {
   SvgGenImage get icSecurity =>
       const SvgGenImage('assets/icons/ic_security.svg');
 
+  /// File path: assets/icons/ic_send_email_fly.svg
+  SvgGenImage get icSendEmailFly =>
+      const SvgGenImage('assets/icons/ic_send_email_fly.svg');
+
   /// File path: assets/icons/ic_services_btv.svg
   SvgGenImage get icServicesBtv =>
       const SvgGenImage('assets/icons/ic_services_btv.svg');
@@ -370,6 +374,7 @@ class $AssetsIconsGen {
     icRadar,
     icSaved,
     icSecurity,
+    icSendEmailFly,
     icServicesBtv,
     icSetting,
     icSettings,

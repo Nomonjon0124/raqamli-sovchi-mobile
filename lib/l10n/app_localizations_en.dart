@@ -1355,7 +1355,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbyShowAll => 'View all';
 
   @override
-  String get openStreetMapAttribution => '© OpenStreetMap contributors';
+  String get nearbyCloseMap => 'Close map';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1369,7 +1369,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbySettingsTitle => 'Radius and visibility';
 
   @override
-  String get nearbySearchRadiusLabel => 'Search radius';
+  String get nearbySearchRadiusLabel => 'Radius';
+
+  @override
+  String get nearbyRadiusRange => '1–25 km';
 
   @override
   String nearbyRadiusOption(int radius) {

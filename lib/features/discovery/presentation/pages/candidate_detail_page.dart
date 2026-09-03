@@ -52,8 +52,17 @@ final class _CandidateDetailView extends StatelessWidget {
       listenWhen: (previous, current) =>
           previous.isSendingRequest &&
           !current.isSendingRequest &&
-          current.matchRequest != null,
+          (current.matchRequest != null || current.matchRequestError != null),
       listener: (context, state) {
+        if (state.matchRequestError != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.matchRequestError ?? l10n.genericError),
+            ),
+          );
+          return;
+        }
+
         final candidate = state.candidate;
         if (candidate == null) return;
         final name = [candidate.firstName, candidate.lastName]
@@ -376,6 +385,7 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CandidatePhotoRequestPage(
+          candidateId: candidate.id,
           candidateName: candidateName,
           subtitle: candidateSubtitle,
           imageUrl: _mainImageUrl(candidate),

@@ -483,14 +483,15 @@
     "placeholders": {"count": {"type": "int"}}
   },
   "nearbyShowAll": "Все",
-  "openStreetMapAttribution": "© участники OpenStreetMap",
+  "nearbyCloseMap": "Закрыть карту",
   "nearbyWithinRadius": "В радиусе {radius} км",
   "@nearbyWithinRadius": {
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Вернуться к моему местоположению",
   "nearbySettingsTitle": "Радиус и видимость",
-  "nearbySearchRadiusLabel": "Радиус поиска",
+  "nearbySearchRadiusLabel": "Радиус",
+  "nearbyRadiusRange": "1–25 км",
   "nearbyRadiusOption": "{radius} км",
   "@nearbyRadiusOption": {
     "placeholders": {"radius": {"type": "int"}}

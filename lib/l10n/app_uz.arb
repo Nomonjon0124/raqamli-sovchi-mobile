@@ -280,7 +280,7 @@
   "notificationsMarkAllRead": "Barchasini o‘qilgan deb belgilash",
   "candidatesFilterMatches": "Moslar",
   "candidatesFilterRecommended": "Tavsiyalar",
-  "candidatesFilterNearby": "Yaqinlar",
+  "candidatesFilterNearby": "Atrofdagilar",
   "privatePhotoLabel": "Maxfiy rasm",
   "matchLockedLabel": "moslik yopiq",
   "genericError": "Nimadir xato ketdi.",
@@ -495,14 +495,15 @@
     "placeholders": {"count": {"type": "int"}}
   },
   "nearbyShowAll": "Barchasi",
-  "openStreetMapAttribution": "© OpenStreetMap ishtirokchilari",
+  "nearbyCloseMap": "Xaritani yopish",
   "nearbyWithinRadius": "{radius} km ichida",
   "@nearbyWithinRadius": {
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Joylashuvimga qaytish",
   "nearbySettingsTitle": "Radius va ko‘rinish",
-  "nearbySearchRadiusLabel": "Qidiruv radiusi",
+  "nearbySearchRadiusLabel": "Radius",
+  "nearbyRadiusRange": "1–25 km",
   "nearbyRadiusOption": "{radius} km",
   "@nearbyRadiusOption": {
     "placeholders": {"radius": {"type": "int"}}
@@ -510,9 +511,9 @@
   "nearbyEntireRegion": "Butun viloyat",
   "nearbyEntireRegionUnavailable": "Butun viloyat bo‘yicha qidiruv hozircha mavjud emas",
   "nearbyRadiusHint": "Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.",
-  "nearbyVisibilityTitle": "Meni Yaqinlar ro‘yxatida ko‘rsatish",
+  "nearbyVisibilityTitle": "Meni Atrofdagilar ro‘yxatida ko‘rsatish",
   "nearbyVisibilitySubtitle": "O‘chirsangiz, siz ham hech kimni ko‘rmaysiz",
-  "nearbyAudienceTitle": "Kim meni Yaqinlarda ko‘ra oladi",
+  "nearbyAudienceTitle": "Kim meni Atrofdagilarda ko‘ra oladi",
   "nearbyAudienceAll": "Hamma nomzodlar",
   "nearbyAudienceHighMatch": "Faqat moslik 70% dan yuqori",
   "nearbyAudienceRecommended": "tavsiya etiladi",

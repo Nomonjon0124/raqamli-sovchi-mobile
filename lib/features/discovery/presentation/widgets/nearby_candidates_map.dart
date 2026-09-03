@@ -4,16 +4,17 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../core/ui/widgets/app_bottom_nav_bar.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/geo_coordinates.dart';
 import '../../domain/entities/nearby_candidate_cluster.dart';
+import '../bloc/discovery_state.dart';
 import 'current_location_marker.dart';
 import 'nearby_candidates_sheet.dart';
 import 'privacy_zone_marker.dart';
@@ -26,6 +27,8 @@ final class NearbyCandidatesMap extends StatefulWidget {
     required this.radiusKm,
     required this.onRadiusPressed,
     required this.onCandidateTap,
+    required this.onMapClosed,
+    required this.onViewModeChanged,
     super.key,
   });
 
@@ -35,6 +38,8 @@ final class NearbyCandidatesMap extends StatefulWidget {
   final double radiusKm;
   final VoidCallback onRadiusPressed;
   final ValueChanged<String> onCandidateTap;
+  final VoidCallback onMapClosed;
+  final ValueChanged<DiscoveryViewMode> onViewModeChanged;
 
   @override
   State<NearbyCandidatesMap> createState() => _NearbyCandidatesMapState();
@@ -44,9 +49,26 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
   final MapController _mapController = MapController();
   final DraggableScrollableController _sheetController =
       DraggableScrollableController();
+  AppBottomNavBarVisibilityController? _bottomNavVisibility;
+  Timer? _bottomNavHideTimer;
 
   LatLng get _currentPoint =>
       LatLng(widget.currentLocation.latitude, widget.currentLocation.longitude);
+
+  @override
+  void initState() {
+    super.initState();
+    _sheetController.addListener(_onSheetInteraction);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _hideBottomNav();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bottomNavVisibility ??= AppBottomNavBarVisibilityScope.maybeOf(context);
+  }
 
   @override
   void didUpdateWidget(covariant NearbyCandidatesMap oldWidget) {
@@ -60,6 +82,8 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
 
   @override
   void dispose() {
+    _bottomNavHideTimer?.cancel();
+    _sheetController.removeListener(_onSheetInteraction);
     _mapController.dispose();
     _sheetController.dispose();
     super.dispose();
@@ -82,6 +106,9 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
               interactionOptions: const InteractionOptions(
                 flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
               ),
+              onPositionChanged: (_, hasGesture) {
+                if (hasGesture) _hideBottomNav();
+              },
             ),
             children: [
               TileLayer(
@@ -97,39 +124,48 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
             builder: (context, child) {
               final sheetSize = _sheetController.isAttached
                   ? _sheetController.size
-                  : 0.34;
+                  : 0.26;
               return Positioned(
-                right: AppSpacing.xs,
+                right: AppSpacing.card,
                 bottom: constraints.maxHeight * sheetSize + AppSpacing.xs,
                 child: child!,
               );
             },
-            child: _OpenStreetMapAttribution(
-              label: l10n.openStreetMapAttribution,
-            ),
-          ),
-          Positioned(
-            top: AppSpacing.lg,
-            left: AppSpacing.lg,
-            child: _MapChip(
-              icon: Assets.icons.icRadar.svg(
-                width: 15,
-                height: 15,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
-              label: l10n.nearbyWithinRadius(widget.radiusKm.round()),
-              onPressed: widget.onRadiusPressed,
-            ),
-          ),
-          Positioned(
-            top: AppSpacing.lg,
-            right: AppSpacing.lg,
             child: _MapCircleButton(
               semanticLabel: l10n.nearbyRecenter,
-              onPressed: () => _mapController.move(_currentPoint, 13.5),
+              onPressed: () {
+                _showBottomNavForInteraction();
+                _mapController.move(_currentPoint, 13.5);
+              },
+            ),
+          ),
+          Positioned(
+            top: AppSpacing.md,
+            left: AppSpacing.card,
+            child: _MapTopControls(
+              radiusLabel: l10n.nearbyWithinRadius(widget.radiusKm.round()),
+              closeLabel: l10n.nearbyCloseMap,
+              onRadiusPressed: () {
+                _showBottomNavForInteraction();
+                widget.onRadiusPressed();
+              },
+              onClose: () {
+                _showBottomNavForInteraction();
+                widget.onMapClosed();
+              },
+            ),
+          ),
+          Positioned(
+            top: AppSpacing.md,
+            right: AppSpacing.card,
+            child: _MapViewToggle(
+              viewMode: DiscoveryViewMode.map,
+              gridLabel: l10n.candidatesViewGrid,
+              mapLabel: l10n.candidatesViewMap,
+              onChanged: (mode) {
+                _showBottomNavForInteraction();
+                widget.onViewModeChanged(mode);
+              },
             ),
           ),
           NearbyCandidatesSheet(
@@ -137,6 +173,7 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
             items: widget.items,
             onCandidateTap: widget.onCandidateTap,
             onShowAll: _showAllCandidates,
+            onInteraction: _showBottomNavForInteraction,
           ),
         ],
       ),
@@ -177,42 +214,187 @@ final class _NearbyCandidatesMapState extends State<NearbyCandidatesMap> {
   }
 
   void _showAllCandidates() {
+    _showBottomNavForInteraction();
     _sheetController.animateTo(
       0.76,
       duration: const Duration(milliseconds: 260),
       curve: Curves.easeOutCubic,
     );
   }
+
+  void _onSheetInteraction() => _showBottomNavForInteraction();
+
+  void _showBottomNavForInteraction() {
+    _bottomNavVisibility?.show();
+    _bottomNavHideTimer?.cancel();
+    _bottomNavHideTimer = Timer(const Duration(seconds: 3), _hideBottomNav);
+  }
+
+  void _hideBottomNav() {
+    _bottomNavHideTimer?.cancel();
+    _bottomNavHideTimer = null;
+    _bottomNavVisibility?.hide();
+  }
 }
 
-final class _OpenStreetMapAttribution extends StatelessWidget {
-  const _OpenStreetMapAttribution({required this.label});
+final class _MapTopControls extends StatelessWidget {
+  const _MapTopControls({
+    required this.radiusLabel,
+    required this.closeLabel,
+    required this.onRadiusPressed,
+    required this.onClose,
+  });
 
-  final String label;
+  final String radiusLabel;
+  final String closeLabel;
+  final VoidCallback onRadiusPressed;
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.surfaceLight.withValues(alpha: 0.86),
-      borderRadius: BorderRadius.circular(AppRadius.sm),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppRadius.sm),
-        onTap: () => unawaited(
-          launchUrl(
-            Uri.https('www.openstreetmap.org', '/copyright'),
-            mode: LaunchMode.externalApplication,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _MapIconButton(
+          icon: Assets.icons.icClose,
+          semanticLabel: closeLabel,
+          onPressed: onClose,
+        ),
+        const SizedBox(width: AppSpacing.sm),
+        _MapChip(
+          icon: Assets.icons.icRadar.svg(
+            width: 15,
+            height: 15,
+            colorFilter: const ColorFilter.mode(
+              AppColors.primary,
+              BlendMode.srcIn,
+            ),
+          ),
+          label: radiusLabel,
+          onPressed: onRadiusPressed,
+        ),
+      ],
+    );
+  }
+}
+
+final class _MapIconButton extends StatelessWidget {
+  const _MapIconButton({
+    required this.icon,
+    required this.semanticLabel,
+    required this.onPressed,
+  });
+
+  final SvgGenImage icon;
+  final String semanticLabel;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      child: Material(
+        color: AppColors.surfaceLight,
+        shape: const CircleBorder(),
+        elevation: 2,
+        shadowColor: AppColors.chipShadow,
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onPressed,
+          child: SizedBox(
+            width: 34,
+            height: 34,
+            child: Center(child: icon.svg(width: 16, height: 16)),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.compact,
-            vertical: AppSpacing.xs,
-          ),
-          child: Text(
-            label,
-            style: AppTypography.onboardingFieldLabel.copyWith(
-              letterSpacing: 0,
-              color: AppColors.mapLabelText,
+      ),
+    );
+  }
+}
+
+final class _MapViewToggle extends StatelessWidget {
+  const _MapViewToggle({
+    required this.viewMode,
+    required this.gridLabel,
+    required this.mapLabel,
+    required this.onChanged,
+  });
+
+  final DiscoveryViewMode viewMode;
+  final String gridLabel;
+  final String mapLabel;
+  final ValueChanged<DiscoveryViewMode> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.mutedSurface,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.controlInset),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _MapViewSegment(
+              icon: Assets.icons.icCandidateGrid,
+              semanticLabel: gridLabel,
+              selected: viewMode == DiscoveryViewMode.grid,
+              onTap: () => onChanged(DiscoveryViewMode.grid),
+            ),
+            const SizedBox(width: AppSpacing.xxs),
+            _MapViewSegment(
+              icon: Assets.icons.icCandidateMap,
+              semanticLabel: mapLabel,
+              selected: viewMode == DiscoveryViewMode.map,
+              onTap: () => onChanged(DiscoveryViewMode.map),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+final class _MapViewSegment extends StatelessWidget {
+  const _MapViewSegment({
+    required this.icon,
+    required this.semanticLabel,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final SvgGenImage icon;
+  final String semanticLabel;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: semanticLabel,
+      child: Material(
+        color: selected ? AppColors.surfaceLight : Colors.transparent,
+        borderRadius: BorderRadius.circular(AppRadius.full),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: selected ? null : onTap,
+          child: SizedBox(
+            width: 34,
+            height: 28,
+            child: Center(
+              child: icon.svg(
+                width: 16,
+                height: 16,
+                colorFilter: ColorFilter.mode(
+                  selected ? AppColors.primary : AppColors.mutedText,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
           ),
         ),

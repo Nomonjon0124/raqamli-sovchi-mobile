@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/errors/either.dart';
+import '../../../../core/errors/failure.dart';
 import '../../../profile/application/use_cases/get_my_profile.dart';
 import '../../application/use_cases/check_location_access.dart';
 import '../../application/use_cases/cluster_nearby_candidates.dart';
@@ -9,6 +11,7 @@ import '../../application/use_cases/get_candidates.dart';
 import '../../application/use_cases/open_location_settings.dart';
 import '../../application/use_cases/request_current_location.dart';
 import '../../application/use_cases/update_profile_location.dart';
+import '../../domain/entities/candidate.dart';
 import '../../domain/entities/discovery_filter.dart';
 import '../../domain/entities/geo_coordinates.dart';
 import '../../domain/entities/location_access_status.dart';
@@ -74,7 +77,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
           state.copyWith(
             status: DiscoveryStatus.permissionRequired,
             selectedFilter: targetFilter,
-            viewMode: DiscoveryViewMode.grid,
+            viewMode: DiscoveryViewMode.map,
             locationAccessStatus: locationAccess,
             isLocationOperationInProgress: false,
             clearError: true,
@@ -84,7 +87,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       }
       await _prepareNearby(
         emit,
-        viewMode: DiscoveryViewMode.grid,
+        viewMode: DiscoveryViewMode.map,
         showPermissionCardWhileLocating: false,
       );
       return;
@@ -110,7 +113,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
       ),
     );
 
-    final result = await _getCandidates(filter: targetFilter);
+    final result = await _getCandidatesWithMatchesFallback(targetFilter);
     if (requestId != _requestSerial) return;
 
     result.fold(
@@ -153,7 +156,7 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
 
     emit(state.copyWith(status: DiscoveryStatus.loading, clearError: true));
 
-    final result = await _getCandidates(filter: targetFilter);
+    final result = await _getCandidatesWithMatchesFallback(targetFilter);
     if (requestId != _requestSerial) return;
 
     result.fold(
@@ -427,5 +430,20 @@ final class DiscoveryBloc extends Bloc<DiscoveryEvent, DiscoveryState> {
     Emitter<DiscoveryState> emit,
   ) {
     emit(state.copyWith(myProfile: event.profile));
+  }
+
+  Future<Either<Failure, List<Candidate>>> _getCandidatesWithMatchesFallback(
+    DiscoveryFilter filter,
+  ) async {
+    final result = await _getCandidates(filter: filter);
+    if (filter != DiscoveryFilter.matches) return result;
+
+    return switch (result) {
+      Left<Failure, List<Candidate>>() => result,
+      Right<Failure, List<Candidate>>(value: final candidates) =>
+        candidates.isNotEmpty
+            ? result
+            : _getCandidates(filter: DiscoveryFilter.recommended),
+    };
   }
 }

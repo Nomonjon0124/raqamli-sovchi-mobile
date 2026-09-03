@@ -54,4 +54,40 @@ void main() {
 
     expect(selectedIndex, 4);
   });
+
+  testWidgets('slides out and back in when visibility changes', (tester) async {
+    final controller = AppBottomNavBarVisibilityController();
+    addTearDown(controller.dispose);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          bottomNavigationBar: AnimatedBuilder(
+            animation: controller,
+            builder: (context, child) => AppBottomNavBar(
+              visible: controller.isVisible,
+              currentIndex: 0,
+              onItemSelected: (_) {},
+              items: [
+                AppBottomNavItem(
+                  label: 'Nomzodlar',
+                  icon: Assets.icons.icCandidatesBtv,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Nomzodlar'), findsOneWidget);
+
+    controller.hide();
+    await tester.pumpAndSettle();
+    expect(find.text('Nomzodlar'), findsNothing);
+
+    controller.show();
+    await tester.pumpAndSettle();
+    expect(find.text('Nomzodlar'), findsOneWidget);
+  });
 }
