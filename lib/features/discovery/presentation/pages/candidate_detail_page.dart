@@ -27,6 +27,7 @@ import '../widgets/candidate_detail_voice_player.dart';
 import 'candidate_action_result_page.dart';
 import 'candidate_blocked_page.dart';
 import 'candidate_photo_request_page.dart';
+import 'candidate_report_page.dart';
 
 final class CandidateDetailPage extends StatelessWidget {
   const CandidateDetailPage({required this.candidateId, super.key});
@@ -371,7 +372,17 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
             candidateSubtitle: candidateSubtitle,
           );
         },
-        onReport: () => Navigator.of(context).pop(),
+        onReport: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => CandidateReportPage(
+                candidate: candidate,
+                candidateName: candidateName,
+              ),
+            ),
+          );
+        },
         onBlock: () async {
           Navigator.of(context).pop();
           final isBlocked = await CandidateBlockDialog.show(

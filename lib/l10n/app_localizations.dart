@@ -2098,6 +2098,138 @@ abstract class AppLocalizations {
   /// **'Yopish'**
   String get candidateBlockedClose;
 
+  /// No description provided for @candidateReportTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nima bo‘ldi?'**
+  String get candidateReportTitle;
+
+  /// No description provided for @candidateReportSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat tarixi bizda saqlanadi, tekshirishga yordam beradi.'**
+  String get candidateReportSubtitle;
+
+  /// No description provided for @candidateReportTargetProfile.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat shu profil ustidan'**
+  String get candidateReportTargetProfile;
+
+  /// No description provided for @candidateReportReasonSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sabab'**
+  String get candidateReportReasonSection;
+
+  /// No description provided for @candidateReportReasonInappropriate.
+  ///
+  /// In uz, this message translates to:
+  /// **'Odobsiz so‘z yoki rasm'**
+  String get candidateReportReasonInappropriate;
+
+  /// No description provided for @candidateReportReasonFake.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yolg‘on ma’lumot yoki soxta profil'**
+  String get candidateReportReasonFake;
+
+  /// No description provided for @candidateReportReasonNoMarriage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikoh niyati yo‘q'**
+  String get candidateReportReasonNoMarriage;
+
+  /// No description provided for @candidateReportReasonScam.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moliyaviy firibgarlik'**
+  String get candidateReportReasonScam;
+
+  /// No description provided for @candidateReportReasonOther.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa sabab'**
+  String get candidateReportReasonOther;
+
+  /// No description provided for @candidateReportNoteLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qo‘shimcha izoh (ixtiyoriy)'**
+  String get candidateReportNoteLabel;
+
+  /// No description provided for @candidateReportNoteHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nima bo‘lganini qisqacha yozing...'**
+  String get candidateReportNoteHint;
+
+  /// No description provided for @candidateReportSubmitAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyatni yuborish'**
+  String get candidateReportSubmitAction;
+
+  /// No description provided for @candidateReportSubmittedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat yuborildi'**
+  String get candidateReportSubmittedTitle;
+
+  /// No description provided for @candidateReportSubmittedSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Natija haqida xabar beramiz.'**
+  String get candidateReportSubmittedSubtitle;
+
+  /// No description provided for @candidateReportNumberLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ariza raqami'**
+  String get candidateReportNumberLabel;
+
+  /// No description provided for @candidateReportSubmittedTimeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuborildi'**
+  String get candidateReportSubmittedTimeLabel;
+
+  /// No description provided for @candidateReportStatusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Holat'**
+  String get candidateReportStatusLabel;
+
+  /// No description provided for @candidateReportStatusUnderReview.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘rib chiqilmoqda'**
+  String get candidateReportStatusUnderReview;
+
+  /// No description provided for @candidateReportStepHistoryPreserved.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat tarixi dalil sifatida saqlandi'**
+  String get candidateReportStepHistoryPreserved;
+
+  /// No description provided for @candidateReportStepModeratorReview.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moderator tekshiruvi'**
+  String get candidateReportStepModeratorReview;
+
+  /// No description provided for @candidateReportStepDecision.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qaror va xabarnoma'**
+  String get candidateReportStepDecision;
+
+  /// No description provided for @candidateReportNotice.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu foydalanuvchi siz bilan bog‘lana olmaydi. Suhbat vaqtincha yopildi.'**
+  String get candidateReportNotice;
+
   /// No description provided for @surveyPromptTitle.
   ///
   /// In uz, this message translates to:

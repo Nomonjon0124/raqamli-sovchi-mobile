@@ -1125,6 +1125,77 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateBlockedClose => 'Close';
 
   @override
+  String get candidateReportTitle => 'What happened?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'Chat history is saved with us to help with the review.';
+
+  @override
+  String get candidateReportTargetProfile => 'Report against this profile';
+
+  @override
+  String get candidateReportReasonSection => 'Reason';
+
+  @override
+  String get candidateReportReasonInappropriate =>
+      'Inappropriate word or photo';
+
+  @override
+  String get candidateReportReasonFake => 'False information or fake profile';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'No intention of marriage';
+
+  @override
+  String get candidateReportReasonScam => 'Financial fraud';
+
+  @override
+  String get candidateReportReasonOther => 'Other reason';
+
+  @override
+  String get candidateReportNoteLabel => 'Additional note (optional)';
+
+  @override
+  String get candidateReportNoteHint => 'Briefly describe what happened...';
+
+  @override
+  String get candidateReportSubmitAction => 'Submit report';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Report submitted';
+
+  @override
+  String get candidateReportSubmittedSubtitle =>
+      'We will notify you about the result.';
+
+  @override
+  String get candidateReportNumberLabel => 'Report number';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Submitted at';
+
+  @override
+  String get candidateReportStatusLabel => 'Status';
+
+  @override
+  String get candidateReportStatusUnderReview => 'Under review';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'Chat history preserved as evidence';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Moderator review';
+
+  @override
+  String get candidateReportStepDecision => 'Decision and notification';
+
+  @override
+  String get candidateReportNotice =>
+      'This user won\'t be able to contact you. Chat is temporarily closed.';
+
+  @override
   String get surveyPromptTitle => 'Match percentage locked';
 
   @override

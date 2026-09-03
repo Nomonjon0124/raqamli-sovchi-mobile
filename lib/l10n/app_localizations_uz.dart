@@ -1124,6 +1124,75 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateBlockedClose => 'Yopish';
 
   @override
+  String get candidateReportTitle => 'Nima bo‘ldi?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'Suhbat tarixi bizda saqlanadi, tekshirishga yordam beradi.';
+
+  @override
+  String get candidateReportTargetProfile => 'Shikoyat shu profil ustidan';
+
+  @override
+  String get candidateReportReasonSection => 'Sabab';
+
+  @override
+  String get candidateReportReasonInappropriate => 'Odobsiz so‘z yoki rasm';
+
+  @override
+  String get candidateReportReasonFake => 'Yolg‘on ma’lumot yoki soxta profil';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'Nikoh niyati yo‘q';
+
+  @override
+  String get candidateReportReasonScam => 'Moliyaviy firibgarlik';
+
+  @override
+  String get candidateReportReasonOther => 'Boshqa sabab';
+
+  @override
+  String get candidateReportNoteLabel => 'Qo‘shimcha izoh (ixtiyoriy)';
+
+  @override
+  String get candidateReportNoteHint => 'Nima bo‘lganini qisqacha yozing...';
+
+  @override
+  String get candidateReportSubmitAction => 'Shikoyatni yuborish';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Shikoyat yuborildi';
+
+  @override
+  String get candidateReportSubmittedSubtitle => 'Natija haqida xabar beramiz.';
+
+  @override
+  String get candidateReportNumberLabel => 'Ariza raqami';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Yuborildi';
+
+  @override
+  String get candidateReportStatusLabel => 'Holat';
+
+  @override
+  String get candidateReportStatusUnderReview => 'Ko‘rib chiqilmoqda';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'Suhbat tarixi dalil sifatida saqlandi';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Moderator tekshiruvi';
+
+  @override
+  String get candidateReportStepDecision => 'Qaror va xabarnoma';
+
+  @override
+  String get candidateReportNotice =>
+      'Bu foydalanuvchi siz bilan bog‘lana olmaydi. Suhbat vaqtincha yopildi.';
+
+  @override
   String get surveyPromptTitle => 'Moslik foizi yopiq';
 
   @override
