@@ -104,7 +104,7 @@ mixin OnboardingIdentityHandler
     await _save(
       draft.copyWith(
         birthDate: event.birthDate,
-        currentStep: OnboardingStep.education,
+        currentStep: OnboardingStep.profession,
       ),
       emit,
     );
@@ -136,8 +136,7 @@ mixin OnboardingIdentityHandler
     final draft = state.draft;
     if (draft == null ||
         event.firstName.trim().isEmpty ||
-        event.lastName.trim().isEmpty ||
-        event.patronymic.trim().isEmpty) {
+        event.lastName.trim().isEmpty) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
     }
@@ -160,8 +159,9 @@ mixin OnboardingIdentityHandler
     if (draft == null ||
         event.heightCm < 100 ||
         event.heightCm > 300 ||
-        (event.weightKg != null &&
-            (event.weightKg! < 20 || event.weightKg! > 250))) {
+        event.weightKg == null ||
+        event.weightKg! < 20 ||
+        event.weightKg! > 250) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
     }
@@ -253,10 +253,7 @@ mixin OnboardingIdentityHandler
         (draft.candidateType == CandidateType.representative &&
             !draft.hasAcceptedRepresentativeResponsibility) ||
         (draft.candidateType == CandidateType.representative &&
-            (draft.representativeInfoId?.isEmpty ?? true)) ||
-        (draft.candidateType == CandidateType.representative &&
-            draft.candidateUsesApp &&
-            !draft.consentRequestSent) ||
+            !_hasRepresentativeConsentForFinalization(draft)) ||
         !draft.pledgeAcceptedTerms) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
@@ -389,4 +386,14 @@ mixin OnboardingIdentityHandler
       const ProfileOnboardingState(status: ProfileOnboardingStatus.cancelled),
     );
   }
+}
+
+bool _hasRepresentativeConsentForFinalization(ProfileOnboardingDraft draft) {
+  if (draft.representativeInfoId?.trim().isNotEmpty ?? false) return true;
+  if (!draft.candidateUsesApp || !draft.consentRequestSent) return false;
+  final contact = draft.candidateContact?.trim();
+  if (contact == null || contact.isEmpty) return false;
+  final phone = RegExp(r'^\+998\d{9}$');
+  final email = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+  return phone.hasMatch(contact) || email.hasMatch(contact);
 }

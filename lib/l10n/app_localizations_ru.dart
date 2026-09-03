@@ -13,7 +13,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get faceCaptureSubtitle =>
-      'Мы сравним селфи с главным фото. Селфи никто не увидит, после проверки оно удаляется.';
+      'Мы сравним его с вашим основным фото. Никто его не увидит, и после проверки оно будет удалено.';
 
   @override
   String get selfieCameraLabel => 'камера селфи';
@@ -90,6 +90,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get pledgeConfirmationButton => 'Подтвердить обещание';
+
+  @override
+  String get privacyPolicyAgreementSuffix => ' для ознакомления';
 
   @override
   String get aiTestBadge => 'AI-ТЕСТ СОВМЕСТИМОСТИ';
@@ -242,7 +245,26 @@ class AppLocalizationsRu extends AppLocalizations {
   String get lastNameLabel => 'Фамилия';
 
   @override
-  String get patronymicLabel => 'Отчество';
+  String get patronymicLabel => 'Отчество (необязательно)';
+
+  @override
+  String get professionTitle => 'Ваша профессия?';
+
+  @override
+  String get professionOther => 'Другое';
+
+  @override
+  String get professionInputLabel => 'Напишите профессию';
+
+  @override
+  String get professionEmpty => 'Профессии не найдены.';
+
+  @override
+  String get representativeProfessionTitle => 'Профессия кандидата?';
+
+  @override
+  String get representativeProfessionInputLabel =>
+      'Напишите профессию кандидата';
 
   @override
   String get educationTitle => 'Какое у вас образование?';
@@ -605,6 +627,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get representativeContactLabel => 'Телефон / email';
 
   @override
+  String get representativeContactPhoneTab => 'Номер телефона';
+
+  @override
+  String get representativeContactEmailTab => 'Email';
+
+  @override
   String get representativeContactWarningTitle =>
       'Контакт должен принадлежать кандидату';
 
@@ -933,8 +961,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateDetailEducation => 'Образование';
 
   @override
-  String get candidateDetailAdditionalInformation =>
-      'Дополнительная информация';
+  String get candidateDetailProfession => 'Профессия';
+
+  @override
+  String get candidateDetailLifestyle => 'Образ жизни';
 
   @override
   String get candidateDetailHealthStatus => 'Состояние здоровья';
@@ -1192,7 +1222,52 @@ class AppLocalizationsRu extends AppLocalizations {
       'AI формирует профиль ценностей, финансов и характера и подбирает подходящих кандидатов.';
 
   @override
-  String get questionnaireResultTitle => 'Ваш профиль готов';
+  String get questionnaireResultTitle => 'Ваш профиль готов!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'Совместимость, рассчитанная AI, теперь доступна.';
+
+  @override
+  String get questionnaireHonestyPill => 'Искренность: высокая';
+
+  @override
+  String get questionnaireSeriousPill => 'Серьёзные намерения';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count подходящих кандидатов';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Совместимость рассчитана AI';
+
+  @override
+  String get questionnaireNextStepsTitle => 'Что будет дальше?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle =>
+      'AI рассчитал совместимость';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Кандидаты подобраны на основе ваших ответов.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle =>
+      'Кандидаты остаются под пардой';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Фотографии откроются только после согласия обеих сторон.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Контакт только с согласия';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Общение начинается с участием представителя или семьи.';
 
   @override
   String get questionnaireHonestyTitle => 'Индекс искренности · высокий';
@@ -1362,6 +1437,164 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get nearbyNotifySubtitle => 'Не чаще одного раза в день';
+
+  @override
+  String get profileEdit => 'Редактировать профиль';
+
+  @override
+  String get profileSettings => 'Настройки профиля';
+
+  @override
+  String profileIdentifier(String code) {
+    return 'Номер пользователя: $code';
+  }
+
+  @override
+  String get profilePreview => 'Как видят другие';
+
+  @override
+  String get profileCopyIdentifier => 'Скопировать номер пользователя';
+
+  @override
+  String get profileCompleteTitle => 'Заполните профиль';
+
+  @override
+  String get profileCompleteSubtitle => 'Чтобы точнее подобрать пару';
+
+  @override
+  String get profileMyPhotos => 'МОИ ФОТОГРАФИИ';
+
+  @override
+  String get profileMainPhoto => 'ГЛАВНОЕ';
+
+  @override
+  String get profileAddPhoto => 'Добавить фотографию';
+
+  @override
+  String profilePhotoSemantics(int index) {
+    return 'Фотография профиля $index';
+  }
+
+  @override
+  String get profileAboutSection => 'О СЕБЕ';
+
+  @override
+  String get profileNotFilled => 'Пока не заполнено';
+
+  @override
+  String get profileAdd => 'Добавить';
+
+  @override
+  String get profileEditShort => 'Изменить';
+
+  @override
+  String get profilePhotoVerification => 'Проверка фотографии';
+
+  @override
+  String get profilePhotoVerificationSubtitle =>
+      'Основная фотография сравнивается с селфи с камеры';
+
+  @override
+  String get profileServices => 'Услуги';
+
+  @override
+  String get profileServicesSubtitle =>
+      'Психолог, семейная встреча, проверка и Premium';
+
+  @override
+  String get profileIdentifierCopied => 'Номер пользователя скопирован';
+
+  @override
+  String get profileActionComingSoon =>
+      'Этот раздел будет подключён на следующем этапе профиля';
+
+  @override
+  String get settingsTitle => 'Настройки';
+
+  @override
+  String get settingsBack => 'Назад';
+
+  @override
+  String get settingsAccountSection => 'Аккаунт';
+
+  @override
+  String get settingsEditProfile => 'Редактировать профиль';
+
+  @override
+  String get settingsPhotoPrivacy => 'Конфиденциальность фотографий';
+
+  @override
+  String get settingsPhotoPrivacyAll => 'Видно всем';
+
+  @override
+  String get settingsBlockedUsers => 'Заблокированные пользователи';
+
+  @override
+  String get settingsRecoveryQuestion => 'Вопрос восстановления аккаунта';
+
+  @override
+  String get settingsPrivacyChatSection => 'Конфиденциальность и чат';
+
+  @override
+  String get settingsPrivacyVeil => 'Конфиденциальность и режим парды';
+
+  @override
+  String get settingsChatLimits => 'Лимиты чата';
+
+  @override
+  String get settingsChatLimitValue => '72 часа';
+
+  @override
+  String get settingsParentLink => 'Подключить родителя';
+
+  @override
+  String get settingsNotificationAppearanceSection => 'Уведомления и вид';
+
+  @override
+  String get settingsNotifications => 'Уведомления';
+
+  @override
+  String get settingsNotificationsSubtitle =>
+      'Сообщать о новых лайках, совпадениях и сообщениях';
+
+  @override
+  String get settingsNotificationTypes => 'Типы уведомлений';
+
+  @override
+  String get settingsDocumentsSection => 'Документы';
+
+  @override
+  String get settingsPrivacyPolicy => 'Политика конфиденциальности';
+
+  @override
+  String get settingsTerms => 'Условия использования';
+
+  @override
+  String get settingsHelpInfoSection => 'Помощь и информация';
+
+  @override
+  String get settingsServices => 'Услуги';
+
+  @override
+  String get settingsHelpCenter => 'Центр помощи';
+
+  @override
+  String get settingsShareApp => 'Поделиться приложением';
+
+  @override
+  String get settingsLogout => 'Выйти из аккаунта';
+
+  @override
+  String get settingsActionComingSoon =>
+      'Эта настройка будет подключена на следующем этапе';
+
+  @override
+  String get privacyPolicyLoadingLabel =>
+      'Политика конфиденциальности загружается';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Не удалось загрузить политику конфиденциальности. Проверьте подключение к интернету и повторите попытку.';
 
   @override
   String failureMessage(String type) {

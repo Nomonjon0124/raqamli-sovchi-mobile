@@ -106,6 +106,12 @@ final class _ProfileOnboardingViewState extends State<_ProfileOnboardingView> {
               const EducationLevelsRequested(),
             );
           }
+          if (step == OnboardingStep.profession &&
+              state.professionStatus == ReferenceStatus.idle) {
+            context.read<ProfileOnboardingBloc>().add(
+              const ProfessionsRequested(),
+            );
+          }
           if (step == OnboardingStep.location &&
               state.regionStatus == ReferenceStatus.idle) {
             context.read<ProfileOnboardingBloc>().add(const RegionsRequested());

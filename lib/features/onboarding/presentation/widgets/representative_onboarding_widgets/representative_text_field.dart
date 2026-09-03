@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_radius.dart';
@@ -14,6 +15,8 @@ final class RepresentativeTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction = TextInputAction.next,
     this.textCapitalization = TextCapitalization.words,
+    this.inputFormatters = const [],
+    this.prefixText,
   });
 
   final String label;
@@ -22,6 +25,8 @@ final class RepresentativeTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
   final TextCapitalization textCapitalization;
+  final List<TextInputFormatter> inputFormatters;
+  final String? prefixText;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +52,14 @@ final class RepresentativeTextField extends StatelessWidget {
             keyboardType: keyboardType,
             textInputAction: textInputAction,
             textCapitalization: textCapitalization,
+            inputFormatters: inputFormatters,
             style: AppTypography.onboardingFieldValue,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               isDense: true,
               border: InputBorder.none,
               contentPadding: EdgeInsets.zero,
+              prefixText: prefixText,
+              prefixStyle: AppTypography.onboardingFieldValue,
             ),
           ),
         ],

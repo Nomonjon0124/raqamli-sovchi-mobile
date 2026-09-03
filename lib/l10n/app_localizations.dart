@@ -109,7 +109,7 @@ abstract class AppLocalizations {
   /// No description provided for @faceCaptureSubtitle.
   ///
   /// In uz, this message translates to:
-  /// **'Asosiy suratingiz bilan solishtiramiz. Selfi hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.'**
+  /// **'Asosiy suratingiz bilan solishtiramiz. Hech kimga ko‘rinmaydi va tekshiruvdan keyin o‘chiriladi.'**
   String get faceCaptureSubtitle;
 
   /// No description provided for @selfieCameraLabel.
@@ -243,6 +243,12 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Qasamni tasdiqlash'**
   String get pledgeConfirmationButton;
+
+  /// No description provided for @privacyPolicyAgreementSuffix.
+  ///
+  /// In uz, this message translates to:
+  /// **' bilan tanishing'**
+  String get privacyPolicyAgreementSuffix;
 
   /// No description provided for @aiTestBadge.
   ///
@@ -517,8 +523,44 @@ abstract class AppLocalizations {
   /// No description provided for @patronymicLabel.
   ///
   /// In uz, this message translates to:
-  /// **'Otasining ismi'**
+  /// **'Otasining ismi (ixtiyoriy)'**
   String get patronymicLabel;
+
+  /// No description provided for @professionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbingiz?'**
+  String get professionTitle;
+
+  /// No description provided for @professionOther.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa'**
+  String get professionOther;
+
+  /// No description provided for @professionInputLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbingizni yozing'**
+  String get professionInputLabel;
+
+  /// No description provided for @professionEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasblar topilmadi.'**
+  String get professionEmpty;
+
+  /// No description provided for @representativeProfessionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodning kasbi?'**
+  String get representativeProfessionTitle;
+
+  /// No description provided for @representativeProfessionInputLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodning kasbini yozing'**
+  String get representativeProfessionInputLabel;
 
   /// No description provided for @educationTitle.
   ///
@@ -1174,6 +1216,18 @@ abstract class AppLocalizations {
   /// **'Telefon raqami / email'**
   String get representativeContactLabel;
 
+  /// No description provided for @representativeContactPhoneTab.
+  ///
+  /// In uz, this message translates to:
+  /// **'Telefon raqam'**
+  String get representativeContactPhoneTab;
+
+  /// No description provided for @representativeContactEmailTab.
+  ///
+  /// In uz, this message translates to:
+  /// **'Email manzil'**
+  String get representativeContactEmailTab;
+
   /// No description provided for @representativeContactWarningTitle.
   ///
   /// In uz, this message translates to:
@@ -1762,11 +1816,17 @@ abstract class AppLocalizations {
   /// **'Ma’lumoti'**
   String get candidateDetailEducation;
 
-  /// No description provided for @candidateDetailAdditionalInformation.
+  /// No description provided for @candidateDetailProfession.
   ///
   /// In uz, this message translates to:
-  /// **'Qo‘shimcha ma’lumotlar'**
-  String get candidateDetailAdditionalInformation;
+  /// **'Kasb'**
+  String get candidateDetailProfession;
+
+  /// No description provided for @candidateDetailLifestyle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Turmush tarzi'**
+  String get candidateDetailLifestyle;
 
   /// No description provided for @candidateDetailHealthStatus.
   ///
@@ -2221,8 +2281,80 @@ abstract class AppLocalizations {
   /// No description provided for @questionnaireResultTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Sizning profilingiz tayyor'**
+  /// **'Sizning profilingiz tayyor!'**
   String get questionnaireResultTitle;
+
+  /// No description provided for @questionnaireResultSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sun’iy intellekt aniqlagan moslik endi ochiq.'**
+  String get questionnaireResultSubtitle;
+
+  /// No description provided for @questionnaireHonestyPill.
+  ///
+  /// In uz, this message translates to:
+  /// **'Samimiylik: yuqori'**
+  String get questionnaireHonestyPill;
+
+  /// No description provided for @questionnaireSeriousPill.
+  ///
+  /// In uz, this message translates to:
+  /// **'Niyati jiddiy'**
+  String get questionnaireSeriousPill;
+
+  /// No description provided for @questionnaireMatchedCandidates.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} ta mos nomzod'**
+  String questionnaireMatchedCandidates(int count);
+
+  /// No description provided for @questionnaireMatchedCandidatesSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik AI tomonidan hisoblandi'**
+  String get questionnaireMatchedCandidatesSubtitle;
+
+  /// No description provided for @questionnaireNextStepsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Endi nima bo‘ladi?'**
+  String get questionnaireNextStepsTitle;
+
+  /// No description provided for @questionnaireAiMatchCalculatedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'AI moslik hisoblandi'**
+  String get questionnaireAiMatchCalculatedTitle;
+
+  /// No description provided for @questionnaireAiMatchCalculatedBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javoblaringiz asosida nomzodlar tanlandi.'**
+  String get questionnaireAiMatchCalculatedBody;
+
+  /// No description provided for @questionnaireCandidatesVeiledTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzodlar parda ostida'**
+  String get questionnaireCandidatesVeiledTitle;
+
+  /// No description provided for @questionnaireCandidatesVeiledBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suratlar ikkala tomon roziligidan keyin ochiladi.'**
+  String get questionnaireCandidatesVeiledBody;
+
+  /// No description provided for @questionnaireConsentOnlyTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Aloqa faqat rozilik bilan'**
+  String get questionnaireConsentOnlyTitle;
+
+  /// No description provided for @questionnaireConsentOnlyBody.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat vakil yoki oila ishtirokida boshlanadi.'**
+  String get questionnaireConsentOnlyBody;
 
   /// No description provided for @questionnaireHonestyTitle.
   ///
@@ -2511,6 +2643,300 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Kuniga bir marta, ko‘pi bilan'**
   String get nearbyNotifySubtitle;
+
+  /// No description provided for @profileEdit.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilni tahrirlash'**
+  String get profileEdit;
+
+  /// No description provided for @profileSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil sozlamalari'**
+  String get profileSettings;
+
+  /// No description provided for @profileIdentifier.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanuvchi raqami: {code}'**
+  String profileIdentifier(String code);
+
+  /// No description provided for @profilePreview.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqalar ko‘rinishi'**
+  String get profilePreview;
+
+  /// No description provided for @profileCopyIdentifier.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanuvchi raqamini nusxalash'**
+  String get profileCopyIdentifier;
+
+  /// No description provided for @profileCompleteTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingizni to‘ldiring'**
+  String get profileCompleteTitle;
+
+  /// No description provided for @profileCompleteSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Aniqroq juftlik topish uchun'**
+  String get profileCompleteSubtitle;
+
+  /// No description provided for @profileMyPhotos.
+  ///
+  /// In uz, this message translates to:
+  /// **'SURATLARIM'**
+  String get profileMyPhotos;
+
+  /// No description provided for @profileMainPhoto.
+  ///
+  /// In uz, this message translates to:
+  /// **'ASOSIY'**
+  String get profileMainPhoto;
+
+  /// No description provided for @profileAddPhoto.
+  ///
+  /// In uz, this message translates to:
+  /// **'Surat qo‘shish'**
+  String get profileAddPhoto;
+
+  /// No description provided for @profilePhotoSemantics.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil surati {index}'**
+  String profilePhotoSemantics(int index);
+
+  /// No description provided for @profileAboutSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'O‘ZINGIZ HAQINGIZDA'**
+  String get profileAboutSection;
+
+  /// No description provided for @profileNotFilled.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hali to‘ldirilmagan'**
+  String get profileNotFilled;
+
+  /// No description provided for @profileAdd.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qo‘shish'**
+  String get profileAdd;
+
+  /// No description provided for @profileEditShort.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tahrirlash'**
+  String get profileEditShort;
+
+  /// No description provided for @profilePhotoVerification.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm tekshiruvi'**
+  String get profilePhotoVerification;
+
+  /// No description provided for @profilePhotoVerificationSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy suratingiz kamera orqali selfi bilan solishtiriladi'**
+  String get profilePhotoVerificationSubtitle;
+
+  /// No description provided for @profileServices.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xizmatlar'**
+  String get profileServices;
+
+  /// No description provided for @profileServicesSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Psixolog, oilaviy uchrashuv, tekshiruv va Premium'**
+  String get profileServicesSubtitle;
+
+  /// No description provided for @profileIdentifierCopied.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanuvchi raqami nusxalandi'**
+  String get profileIdentifierCopied;
+
+  /// No description provided for @profileActionComingSoon.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu bo‘lim keyingi profil bosqichida ulanadi'**
+  String get profileActionComingSoon;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sozlamalar'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsBack.
+  ///
+  /// In uz, this message translates to:
+  /// **'Orqaga'**
+  String get settingsBack;
+
+  /// No description provided for @settingsAccountSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisob'**
+  String get settingsAccountSection;
+
+  /// No description provided for @settingsEditProfile.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilni tahrirlash'**
+  String get settingsEditProfile;
+
+  /// No description provided for @settingsPhotoPrivacy.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm maxfiyligi'**
+  String get settingsPhotoPrivacy;
+
+  /// No description provided for @settingsPhotoPrivacyAll.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hammaga ochiq'**
+  String get settingsPhotoPrivacyAll;
+
+  /// No description provided for @settingsBlockedUsers.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan foydalanuvchilar'**
+  String get settingsBlockedUsers;
+
+  /// No description provided for @settingsRecoveryQuestion.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobni tiklash savoli'**
+  String get settingsRecoveryQuestion;
+
+  /// No description provided for @settingsPrivacyChatSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik va suhbat'**
+  String get settingsPrivacyChatSection;
+
+  /// No description provided for @settingsPrivacyVeil.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik va parda tartibi'**
+  String get settingsPrivacyVeil;
+
+  /// No description provided for @settingsChatLimits.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat limitlari'**
+  String get settingsChatLimits;
+
+  /// No description provided for @settingsChatLimitValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'72 soat'**
+  String get settingsChatLimitValue;
+
+  /// No description provided for @settingsParentLink.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ota-ona ulash'**
+  String get settingsParentLink;
+
+  /// No description provided for @settingsNotificationAppearanceSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnoma va ko‘rinish'**
+  String get settingsNotificationAppearanceSection;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnomalar'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsNotificationsSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi like, moslik va xabarlar haqida xabar beriladi'**
+  String get settingsNotificationsSubtitle;
+
+  /// No description provided for @settingsNotificationTypes.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnoma turlari'**
+  String get settingsNotificationTypes;
+
+  /// No description provided for @settingsDocumentsSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hujjatlar'**
+  String get settingsDocumentsSection;
+
+  /// No description provided for @settingsPrivacyPolicy.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik siyosati'**
+  String get settingsPrivacyPolicy;
+
+  /// No description provided for @settingsTerms.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanish shartlari'**
+  String get settingsTerms;
+
+  /// No description provided for @settingsHelpInfoSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yordam va ma’lumot'**
+  String get settingsHelpInfoSection;
+
+  /// No description provided for @settingsServices.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xizmatlar'**
+  String get settingsServices;
+
+  /// No description provided for @settingsHelpCenter.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yordam markazi'**
+  String get settingsHelpCenter;
+
+  /// No description provided for @settingsShareApp.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ilovani ulashish'**
+  String get settingsShareApp;
+
+  /// No description provided for @settingsLogout.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobdan chiqish'**
+  String get settingsLogout;
+
+  /// No description provided for @settingsActionComingSoon.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu sozlama keyingi bosqichda ulanadi'**
+  String get settingsActionComingSoon;
+
+  /// No description provided for @privacyPolicyLoadingLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik siyosati yuklanmoqda'**
+  String get privacyPolicyLoadingLabel;
+
+  /// No description provided for @privacyPolicyLoadError.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
+  String get privacyPolicyLoadError;
 
   /// User-facing error message selected by FailureType.name.
   ///

@@ -27,7 +27,7 @@ final class RepresentativeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Column(
+    final scrollableContent = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (progress != null) ...[
@@ -50,31 +50,25 @@ final class RepresentativeLayout extends StatelessWidget {
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         child,
-        const Spacer(),
-        bottom,
       ],
     );
     return Padding(
       padding: const EdgeInsets.all(AppSpacing.xl),
-      child: keyboardAware
-          ? LayoutBuilder(
-              builder: (context, constraints) => SingleChildScrollView(
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: IntrinsicHeight(child: content),
-                ),
-              ),
-            )
-          : LayoutBuilder(
-              builder: (context, constraints) => SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: IntrinsicHeight(child: content),
-                ),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: keyboardAware
+                  ? ScrollViewKeyboardDismissBehavior.onDrag
+                  : ScrollViewKeyboardDismissBehavior.manual,
+              child: scrollableContent,
             ),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          bottom,
+        ],
+      ),
     );
   }
 }

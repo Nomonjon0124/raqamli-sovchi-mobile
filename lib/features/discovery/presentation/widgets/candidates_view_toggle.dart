@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../bloc/discovery_state.dart';
 
@@ -36,14 +36,14 @@ final class CandidatesViewToggle extends StatelessWidget {
               children: [
                 _ViewSegment(
                   semanticLabel: l10n.candidatesViewGrid,
-                  assetPath: 'assets/icons/ic_candidate_grid.svg',
+                  icon: Assets.icons.icCandidateGrid,
                   selected: viewMode == DiscoveryViewMode.grid,
                   onTap: () => onChanged(DiscoveryViewMode.grid),
                 ),
                 const SizedBox(width: AppSpacing.xxs),
                 _ViewSegment(
                   semanticLabel: l10n.candidatesViewMap,
-                  assetPath: 'assets/icons/ic_candidate_map.svg',
+                  icon: Assets.icons.icCandidateMap,
                   selected: viewMode == DiscoveryViewMode.map,
                   onTap: () => onChanged(DiscoveryViewMode.map),
                 ),
@@ -59,13 +59,13 @@ final class CandidatesViewToggle extends StatelessWidget {
 final class _ViewSegment extends StatelessWidget {
   const _ViewSegment({
     required this.semanticLabel,
-    required this.assetPath,
+    required this.icon,
     required this.selected,
     required this.onTap,
   });
 
   final String semanticLabel;
-  final String assetPath;
+  final SvgGenImage icon;
   final bool selected;
   final VoidCallback onTap;
 
@@ -85,8 +85,7 @@ final class _ViewSegment extends StatelessWidget {
             width: 36,
             height: 28,
             child: Center(
-              child: SvgPicture.asset(
-                assetPath,
+              child: icon.svg(
                 width: 16,
                 height: 16,
                 colorFilter: ColorFilter.mode(

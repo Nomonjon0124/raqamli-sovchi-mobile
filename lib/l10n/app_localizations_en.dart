@@ -13,7 +13,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get faceCaptureSubtitle =>
-      'We compare it with your main photo. The selfie is not shown to anyone and is deleted after verification.';
+      'We compare it with your main photo. No one will see it, and it will be deleted after verification.';
 
   @override
   String get selfieCameraLabel => 'selfie camera';
@@ -90,6 +90,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pledgeConfirmationButton => 'Confirm pledge';
+
+  @override
+  String get privacyPolicyAgreementSuffix => ' to learn more';
 
   @override
   String get aiTestBadge => 'AI COMPATIBILITY TEST';
@@ -241,7 +244,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lastNameLabel => 'Last name';
 
   @override
-  String get patronymicLabel => 'Father\'s name';
+  String get patronymicLabel => 'Father\'s name (optional)';
+
+  @override
+  String get professionTitle => 'What is your profession?';
+
+  @override
+  String get professionOther => 'Other';
+
+  @override
+  String get professionInputLabel => 'Write your profession';
+
+  @override
+  String get professionEmpty => 'No professions found.';
+
+  @override
+  String get representativeProfessionTitle =>
+      'What is the candidate\'s profession?';
+
+  @override
+  String get representativeProfessionInputLabel =>
+      'Write the candidate\'s profession';
 
   @override
   String get educationTitle => 'What is your education?';
@@ -607,6 +630,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get representativeContactLabel => 'Phone number / email';
 
   @override
+  String get representativeContactPhoneTab => 'Phone number';
+
+  @override
+  String get representativeContactEmailTab => 'Email address';
+
+  @override
   String get representativeContactWarningTitle =>
       'This must belong to the candidate';
 
@@ -933,7 +962,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateDetailEducation => 'Education';
 
   @override
-  String get candidateDetailAdditionalInformation => 'Additional information';
+  String get candidateDetailProfession => 'Profession';
+
+  @override
+  String get candidateDetailLifestyle => 'Lifestyle';
 
   @override
   String get candidateDetailHealthStatus => 'Health status';
@@ -1192,7 +1224,51 @@ class AppLocalizationsEn extends AppLocalizations {
       'AI builds your values, finance, and character profile and selects suitable candidates.';
 
   @override
-  String get questionnaireResultTitle => 'Your profile is ready';
+  String get questionnaireResultTitle => 'Your profile is ready!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'AI-powered compatibility is now available.';
+
+  @override
+  String get questionnaireHonestyPill => 'Sincerity: high';
+
+  @override
+  String get questionnaireSeriousPill => 'Serious intent';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count matching candidates';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Compatibility was calculated by AI';
+
+  @override
+  String get questionnaireNextStepsTitle => 'What happens next?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle =>
+      'AI compatibility calculated';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Candidates were selected based on your answers.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle => 'Candidates stay veiled';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Photos open only after both sides consent.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Contact only with consent';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Chat starts with a representative or family member involved.';
 
   @override
   String get questionnaireHonestyTitle => 'Sincerity index · high';
@@ -1363,6 +1439,164 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nearbyNotifySubtitle => 'At most once a day';
+
+  @override
+  String get profileEdit => 'Edit profile';
+
+  @override
+  String get profileSettings => 'Profile settings';
+
+  @override
+  String profileIdentifier(String code) {
+    return 'User ID: $code';
+  }
+
+  @override
+  String get profilePreview => 'View as others';
+
+  @override
+  String get profileCopyIdentifier => 'Copy user ID';
+
+  @override
+  String get profileCompleteTitle => 'Complete your profile';
+
+  @override
+  String get profileCompleteSubtitle => 'To find a more accurate match';
+
+  @override
+  String get profileMyPhotos => 'MY PHOTOS';
+
+  @override
+  String get profileMainPhoto => 'MAIN';
+
+  @override
+  String get profileAddPhoto => 'Add photo';
+
+  @override
+  String profilePhotoSemantics(int index) {
+    return 'Profile photo $index';
+  }
+
+  @override
+  String get profileAboutSection => 'ABOUT YOU';
+
+  @override
+  String get profileNotFilled => 'Not filled in yet';
+
+  @override
+  String get profileAdd => 'Add';
+
+  @override
+  String get profileEditShort => 'Edit';
+
+  @override
+  String get profilePhotoVerification => 'Photo verification';
+
+  @override
+  String get profilePhotoVerificationSubtitle =>
+      'Your main photo is compared with a camera selfie';
+
+  @override
+  String get profileServices => 'Services';
+
+  @override
+  String get profileServicesSubtitle =>
+      'Psychologist, family meeting, verification and Premium';
+
+  @override
+  String get profileIdentifierCopied => 'User ID copied';
+
+  @override
+  String get profileActionComingSoon =>
+      'This section will be connected in the next profile stage';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsBack => 'Back';
+
+  @override
+  String get settingsAccountSection => 'Account';
+
+  @override
+  String get settingsEditProfile => 'Edit profile';
+
+  @override
+  String get settingsPhotoPrivacy => 'Photo privacy';
+
+  @override
+  String get settingsPhotoPrivacyAll => 'Visible to everyone';
+
+  @override
+  String get settingsBlockedUsers => 'Blocked users';
+
+  @override
+  String get settingsRecoveryQuestion => 'Account recovery question';
+
+  @override
+  String get settingsPrivacyChatSection => 'Privacy and chat';
+
+  @override
+  String get settingsPrivacyVeil => 'Privacy and veil mode';
+
+  @override
+  String get settingsChatLimits => 'Chat limits';
+
+  @override
+  String get settingsChatLimitValue => '72 hours';
+
+  @override
+  String get settingsParentLink => 'Connect a parent';
+
+  @override
+  String get settingsNotificationAppearanceSection =>
+      'Notifications and appearance';
+
+  @override
+  String get settingsNotifications => 'Notifications';
+
+  @override
+  String get settingsNotificationsSubtitle =>
+      'Get notified about new likes, matches and messages';
+
+  @override
+  String get settingsNotificationTypes => 'Notification types';
+
+  @override
+  String get settingsDocumentsSection => 'Documents';
+
+  @override
+  String get settingsPrivacyPolicy => 'Privacy policy';
+
+  @override
+  String get settingsTerms => 'Terms of use';
+
+  @override
+  String get settingsHelpInfoSection => 'Help and information';
+
+  @override
+  String get settingsServices => 'Services';
+
+  @override
+  String get settingsHelpCenter => 'Help center';
+
+  @override
+  String get settingsShareApp => 'Share the app';
+
+  @override
+  String get settingsLogout => 'Log out of account';
+
+  @override
+  String get settingsActionComingSoon =>
+      'This setting will be connected in the next stage';
+
+  @override
+  String get privacyPolicyLoadingLabel => 'Loading privacy policy';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Could not load the privacy policy. Check your internet connection and try again.';
 
   @override
   String failureMessage(String type) {

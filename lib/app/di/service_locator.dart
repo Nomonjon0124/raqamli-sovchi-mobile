@@ -46,7 +46,6 @@ import '../../features/discovery/application/use_cases/check_location_access.dar
 import '../../features/discovery/application/use_cases/cluster_nearby_candidates.dart';
 import '../../features/discovery/application/use_cases/get_candidate.dart';
 import '../../features/discovery/application/use_cases/get_candidates.dart';
-import '../../features/discovery/application/use_cases/get_my_profile.dart';
 import '../../features/discovery/application/use_cases/get_saved_candidates.dart';
 import '../../features/discovery/application/use_cases/open_location_settings.dart';
 import '../../features/discovery/application/use_cases/request_current_location.dart';
@@ -55,13 +54,10 @@ import '../../features/discovery/application/use_cases/unsave_candidate.dart';
 import '../../features/discovery/application/use_cases/update_profile_location.dart';
 import '../../features/discovery/data/data_sources/discovery_data_source.dart';
 import '../../features/discovery/data/data_sources/location_data_source.dart';
-import '../../features/discovery/data/data_sources/profile_data_source.dart';
 import '../../features/discovery/data/repositories/discovery_repository_impl.dart';
 import '../../features/discovery/data/repositories/location_repository_impl.dart';
-import '../../features/discovery/data/repositories/profile_repository_impl.dart';
 import '../../features/discovery/domain/repositories/discovery_repository.dart';
 import '../../features/discovery/domain/repositories/location_repository.dart';
-import '../../features/discovery/domain/repositories/profile_repository.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
@@ -87,6 +83,11 @@ import '../../features/onboarding/data/services/onboarding_media_service_impl.da
 import '../../features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
+import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/data/data_sources/profile_data_source.dart';
+import '../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../features/profile/domain/repositories/profile_repository.dart';
+import '../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
 import '../../features/questionnaire/application/use_cases/submit_questionnaire.dart';
 import '../../features/questionnaire/data/data_sources/questionnaire_data_source.dart';
@@ -94,6 +95,7 @@ import '../../features/questionnaire/data/repositories/questionnaire_repository_
 import '../../features/questionnaire/domain/repositories/questionnaire_repository.dart';
 import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart';
 import '../../features/saved/presentation/bloc/saved_bloc.dart';
+import '../../features/settings/presentation/cubit/settings_cubit.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -314,6 +316,10 @@ Future<void> configureDependencies() async {
         getMatchRequests: serviceLocator(),
       ),
     )
+    ..registerFactory<ProfileBloc>(
+      () => ProfileBloc(getMyProfile: serviceLocator()),
+    )
+    ..registerFactory<SettingsCubit>(SettingsCubit.new)
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
     ..registerLazySingleton<OnboardingLocationService>(
       DeviceOnboardingLocationService.new,

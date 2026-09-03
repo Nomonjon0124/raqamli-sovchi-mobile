@@ -63,6 +63,11 @@ final class ProfileOnboardingBloc
     on<BirthDateSaved>(_onBirthDateSaved);
     on<OnboardingStepBackRequested>(_onStepBackRequested);
     on<IdentitySaved>(_onIdentitySaved);
+    on<ProfessionsRequested>(_onProfessionsRequested);
+    on<ProfessionSaved>(_onProfessionSaved);
+    on<OtherProfessionSelected>(_onOtherProfessionSelected);
+    on<CustomProfessionSubmitted>(_onCustomProfessionSubmitted);
+    on<ProfessionContinuePressed>(_onProfessionContinuePressed);
     on<EducationLevelsRequested>(_onEducationLevelsRequested);
     on<EducationLevelSaved>(_onEducationLevelSaved);
     on<EducationContinuePressed>(_onEducationContinuePressed);
@@ -134,6 +139,10 @@ final class ProfileOnboardingBloc
 
   @override
   int _educationPage = 0;
+  @override
+  int _professionPage = 0;
+  @override
+  String _professionSearch = '';
   @override
   int _regionPage = 0;
   @override

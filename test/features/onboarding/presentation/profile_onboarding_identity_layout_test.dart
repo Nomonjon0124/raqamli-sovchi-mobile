@@ -13,6 +13,7 @@ import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboardin
 import 'package:raqamli_sovchi/features/onboarding/domain/repositories/onboarding_repository.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/bloc/profile_onboarding_state.dart';
+import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/onboarding_location_map.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/profile_onboarding_step_content.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_step_content.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
@@ -82,6 +83,34 @@ void main() {
     expect(_focusedEditableTextCount(tester), 0);
   });
 
+  testWidgets('identity continue does not require a patronymic', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.identity,
+      size: const Size(390, 844),
+    );
+
+    final fields = find.byType(TextField);
+    await tester.enterText(fields.at(0), 'Ali');
+    await tester.enterText(fields.at(1), 'Valiyev');
+    await tester.pump();
+
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Davom etish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+  });
+
   testWidgets('birth date step fits in a keyboard-height viewport', (
     tester,
   ) async {
@@ -99,9 +128,186 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('profession step renders API chips and the other input', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.profession,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        professionStatus: ReferenceStatus.loaded,
+        isOtherProfessionSelected: true,
+        professions: const [
+          Profession(id: 'profession-1', name: 'Dizayner'),
+          Profession(id: 'profession-2', name: 'Muhandis'),
+        ],
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          currentStep: OnboardingStep.profession,
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    expect(find.text('Kasbingiz?'), findsOneWidget);
+    expect(find.text('Dizayner'), findsOneWidget);
+    expect(find.text('Boshqa'), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'profession step scrolls long chip lists with fixed bottom action',
+    (tester) async {
+      final bloc = _createBloc();
+      addTearDown(bloc.close);
+
+      await _pumpStep(
+        tester,
+        bloc: bloc,
+        step: OnboardingStep.profession,
+        size: const Size(390, 640),
+        state: ProfileOnboardingState(
+          status: ProfileOnboardingStatus.editing,
+          professionStatus: ReferenceStatus.loaded,
+          professions: List.generate(
+            28,
+            (index) => Profession(id: 'profession-$index', name: 'Kasb $index'),
+          ),
+          draft: ProfileOnboardingDraft(
+            ownerUserId: 'user-1',
+            currentStep: OnboardingStep.profession,
+            professionId: 'profession-0',
+            professionName: 'Kasb 0',
+            updatedAt: DateTime.utc(2026),
+          ),
+        ),
+      );
+
+      final button = find.widgetWithText(FilledButton, 'Davom etish');
+      final initialButtonTop = tester.getTopLeft(button).dy;
+
+      await tester.ensureVisible(find.text('Kasb 27'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Kasb 27'), findsOneWidget);
+      expect(tester.getTopLeft(button).dy, initialButtonTop);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('representative profession step uses candidate copy', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.profession,
+      representative: true,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        professionStatus: ReferenceStatus.loaded,
+        isOtherProfessionSelected: true,
+        professions: const [Profession(id: 'profession-1', name: 'Dizayner')],
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          candidateType: CandidateType.representative,
+          currentStep: OnboardingStep.profession,
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    expect(find.text('Nomzodning kasbi?'), findsOneWidget);
+    expect(find.text('Nomzodning kasbini yozing'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('representative contact switches phone and email formats', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.representativeContact,
+      representative: true,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          candidateType: CandidateType.representative,
+          currentStep: OnboardingStep.representativeContact,
+          profileServerId: 'profile-1',
+          representedCandidateType: CandidateType.bride,
+          kinshipId: 'kinship-1',
+          updatedAt: DateTime.utc(2026),
+        ),
+      ),
+    );
+
+    final field = find.byType(TextField);
+    expect(tester.widget<TextField>(field).keyboardType, TextInputType.phone);
+    expect(tester.widget<TextField>(field).decoration?.prefixText, '+998 ');
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNull,
+    );
+
+    await tester.enterText(field, '901234567');
+    await tester.pump();
+    expect(tester.widget<TextField>(field).controller!.text, '90 123 45 67');
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+
+    await tester.tap(find.text('Email manzil'));
+    await tester.pump();
+    expect(
+      tester.widget<TextField>(field).keyboardType,
+      TextInputType.emailAddress,
+    );
+    expect(tester.widget<TextField>(field).decoration?.prefixText, isNull);
+    expect(find.text('Nomzod ilovadan foydalanmaydi'), findsNothing);
+
+    await tester.enterText(field, 'candidate@example.com');
+    await tester.pump();
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Rozilik so‘rovini yuborish'),
+          )
+          .onPressed,
+      isNotNull,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
   for (final scenario in [
-    (type: CandidateType.groom, height: '175', weight: '75'),
-    (type: CandidateType.bride, height: '165', weight: '63'),
+    (type: CandidateType.groom, height: '0', weight: '0'),
+    (type: CandidateType.bride, height: '0', weight: '0'),
   ]) {
     testWidgets('height step defaults ${scenario.type.name} measurements', (
       tester,
@@ -441,51 +647,91 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets(
-    'voice step shows recording controls before and after recording',
-    (tester) async {
-      final bloc = _createBloc();
-      addTearDown(bloc.close);
+  testWidgets('voice step shows recording controls before and after recording', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
 
-      await _pumpStep(
-        tester,
-        bloc: bloc,
-        step: OnboardingStep.voiceIntro,
-        size: const Size(390, 844),
-      );
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+    );
 
-      expect(find.byIcon(Icons.mic_none_rounded), findsOneWidget);
-      expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
-      expect(find.text('Qayta yozish'), findsNothing);
-      expect(tester.takeException(), isNull);
+    expect(find.byIcon(Icons.mic_none_rounded), findsOneWidget);
+    expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
+    expect(
+      find.text(
+        '10–15 soniya yetarli. Ovoz odam haqida suratdan ko‘ra ko‘proq narsani aytadi.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text(
+        'Ixtiyoriy. 10–15 soniya yetarli — ovoz odam haqida ko‘proq narsani aytadi.',
+      ),
+      findsNothing,
+    );
+    expect(find.text('Qayta yozish'), findsNothing);
+    expect(tester.takeException(), isNull);
 
-      await _pumpStep(
-        tester,
-        bloc: bloc,
-        step: OnboardingStep.voiceIntro,
-        size: const Size(390, 844),
-        state: ProfileOnboardingState(
-          status: ProfileOnboardingStatus.editing,
-          draft: ProfileOnboardingDraft(
-            ownerUserId: 'user-1',
-            updatedAt: DateTime.utc(2026),
-            voiceIntroMetadata: const VoiceIntroMetadata(
-              localFilePath: '/private/voice.m4a',
-              duration: Duration(seconds: 12),
-              sizeBytes: 100,
-              uploaded: true,
-            ),
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+      state: ProfileOnboardingState(
+        status: ProfileOnboardingStatus.editing,
+        draft: ProfileOnboardingDraft(
+          ownerUserId: 'user-1',
+          updatedAt: DateTime.utc(2026),
+          voiceIntroMetadata: const VoiceIntroMetadata(
+            localFilePath: '/private/voice.m4a',
+            duration: Duration(seconds: 12),
+            sizeBytes: 100,
+            uploaded: true,
           ),
         ),
-      );
+      ),
+    );
 
-      expect(find.byIcon(Icons.play_arrow), findsOneWidget);
-      expect(find.text('0:12'), findsOneWidget);
-      expect(find.text('Qayta yozish'), findsOneWidget);
-      expect(find.text('O‘chirish'), findsOneWidget);
-      expect(tester.takeException(), isNull);
-    },
-  );
+    expect(find.byIcon(Icons.play_arrow), findsOneWidget);
+    expect(find.text('0:12'), findsOneWidget);
+    expect(find.text('Qayta yozish'), findsOneWidget);
+    expect(find.text('O‘chirish'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('representative voice step uses the shared recorder layout', (
+    tester,
+  ) async {
+    final bloc = _createBloc();
+    addTearDown(bloc.close);
+
+    await _pumpStep(
+      tester,
+      bloc: bloc,
+      step: OnboardingStep.voiceIntro,
+      size: const Size(390, 844),
+      representative: true,
+    );
+
+    expect(find.text('Nomzodning ovozli izohi'), findsOneWidget);
+    expect(find.text('Yozishni boshlash uchun bosing'), findsOneWidget);
+    expect(
+      find.text(
+        '10–15 soniya yetarli. Ovoz odam haqida suratdan ko‘ra ko‘proq narsani aytadi.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Ixtiyoriy. Nomzod keyin o‘zi qayta yozishi mumkin.'),
+      findsNothing,
+    );
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets('location permission step requires enabling location', (
     tester,
@@ -503,7 +749,7 @@ void main() {
     expect(find.text('Joylashuvingiz'), findsOneWidget);
     expect(find.text('Joylashuvni yoqish'), findsOneWidget);
     expect(find.text('O‘tkazib yuborish'), findsNothing);
-    expect(find.byIcon(Icons.location_on_outlined), findsOneWidget);
+    expect(find.byType(OnboardingLocationMap), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -526,6 +772,27 @@ void main() {
       findsOneWidget,
     );
     expect(find.text('Qasamni tasdiqlash'), findsOneWidget);
+    final pledgeButton = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Qasamni tasdiqlash'),
+    );
+    expect(pledgeButton.onPressed, isNull);
+
+    for (final statement in [
+      'Ma’lumotlarim to‘g‘ri va o‘zimga tegishli.',
+      'Niyatim jiddiy — oila qurish uchun keldim.',
+      'Suhbatdoshga hurmat bilan munosabatda bo‘laman.',
+    ]) {
+      await tester.tap(find.text(statement));
+    }
+    await tester.pump();
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Qasamni tasdiqlash'),
+          )
+          .onPressed,
+      isNotNull,
+    );
     expect(tester.takeException(), isNull);
   });
 
@@ -574,6 +841,42 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets(
+    'representative identity keeps its bottom action fixed on scroll',
+    (tester) async {
+      final bloc = _createBloc();
+      addTearDown(bloc.close);
+
+      await _pumpStep(
+        tester,
+        bloc: bloc,
+        step: OnboardingStep.representativeIdentity,
+        size: const Size(390, 420),
+        representative: true,
+        state: ProfileOnboardingState(
+          status: ProfileOnboardingStatus.editing,
+          draft: ProfileOnboardingDraft(
+            ownerUserId: 'user-1',
+            candidateType: CandidateType.representative,
+            updatedAt: DateTime.utc(2026),
+          ),
+        ),
+      );
+
+      final button = find.widgetWithText(FilledButton, 'Davom etish');
+      final initialButtonTop = tester.getTopLeft(button).dy;
+
+      await tester.drag(
+        find.byType(SingleChildScrollView),
+        const Offset(0, -80),
+      );
+      await tester.pumpAndSettle();
+
+      expect(tester.getTopLeft(button).dy, initialButtonTop);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('representative bride uses candidate measurement defaults', (
     tester,
   ) async {
@@ -598,8 +901,8 @@ void main() {
     );
 
     final fields = tester.widgetList<TextField>(find.byType(TextField));
-    expect(fields.elementAt(0).controller?.text, '165');
-    expect(fields.elementAt(1).controller?.text, '63');
+    expect(fields.elementAt(0).controller?.text, '0');
+    expect(fields.elementAt(1).controller?.text, '0');
     expect(find.text('Nomzodning bo‘yi va vazni'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

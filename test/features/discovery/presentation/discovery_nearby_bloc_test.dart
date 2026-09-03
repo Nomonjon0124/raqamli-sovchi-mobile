@@ -11,13 +11,13 @@ import 'package:raqamli_sovchi/features/discovery/domain/entities/candidate.dart
 import 'package:raqamli_sovchi/features/discovery/domain/entities/discovery_filter.dart';
 import 'package:raqamli_sovchi/features/discovery/domain/entities/geo_coordinates.dart';
 import 'package:raqamli_sovchi/features/discovery/domain/entities/location_access_status.dart';
-import 'package:raqamli_sovchi/features/discovery/domain/entities/user_profile.dart';
 import 'package:raqamli_sovchi/features/discovery/domain/repositories/discovery_repository.dart';
 import 'package:raqamli_sovchi/features/discovery/domain/repositories/location_repository.dart';
-import 'package:raqamli_sovchi/features/discovery/domain/repositories/profile_repository.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_bloc.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_event.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_state.dart';
+import 'package:raqamli_sovchi/features/profile/domain/entities/user_profile.dart';
+import 'package:raqamli_sovchi/features/profile/domain/repositories/profile_repository.dart';
 
 import '../support/candidate_factory.dart';
 
@@ -250,10 +250,13 @@ final class _ProfileRepository implements ProfileRepository {
       throw UnimplementedError();
 
   @override
-  Future<Either<Failure, bool>> updateLocation(
-    GeoCoordinates coordinates,
-  ) async {
-    updatedLocations.add(coordinates);
+  Future<Either<Failure, bool>> updateLocation({
+    required double latitude,
+    required double longitude,
+  }) async {
+    updatedLocations.add(
+      GeoCoordinates(latitude: latitude, longitude: longitude),
+    );
     return const Right(true);
   }
 }

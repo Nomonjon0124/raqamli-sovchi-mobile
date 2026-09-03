@@ -27,6 +27,8 @@ final class Candidate extends Equatable {
     required this.districtName,
     required this.educationLevelID,
     required this.educationLevelName,
+    this.professionId,
+    this.professionName,
     required this.healthStatusId,
     required this.healthStatusName,
     required this.martialStatusId,
@@ -60,6 +62,8 @@ final class Candidate extends Equatable {
   final String? districtName;
   final String? educationLevelID;
   final String? educationLevelName;
+  final String? professionId;
+  final String? professionName;
   final String? healthStatusId;
   final String? healthStatusName;
   final String? martialStatusId;
@@ -94,6 +98,8 @@ final class Candidate extends Equatable {
     districtName,
     educationLevelID,
     educationLevelName,
+    professionId,
+    professionName,
     healthStatusId,
     healthStatusName,
     martialStatusId,

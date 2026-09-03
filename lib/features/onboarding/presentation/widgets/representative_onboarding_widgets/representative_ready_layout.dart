@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/primary_action.dart';
 
-import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
 import '../../../../../gen/assets.gen.dart';
@@ -29,16 +28,7 @@ final class RepresentativeReadyLayout extends StatelessWidget {
       child: Column(
         children: [
           const Spacer(flex: 3),
-          Container(
-            width: 64,
-            height: 64,
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child: Assets.icons.icVerifyCheck.svg(width: 28, height: 28),
-          ),
+          Assets.icons.icSmileWink.svg(width: 120, height: 120),
           const SizedBox(height: AppSpacing.card),
           Text(
             title,

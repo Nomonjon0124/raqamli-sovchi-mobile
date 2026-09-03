@@ -7,12 +7,13 @@ import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/represen
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/representative_selection_card.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/representative_text_field.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/responsibility_card.dart';
-import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/secondary_action.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../core/ui/input_formatters/uz_phone_input_formatter.dart';
 import '../../../../core/ui/widgets/app_button.dart';
+import '../../../../core/ui/widgets/app_segmented_control.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/candidate_type.dart';
@@ -21,6 +22,8 @@ import '../bloc/profile_onboarding_bloc.dart';
 import '../bloc/profile_onboarding_event.dart';
 import '../bloc/profile_onboarding_state.dart';
 import 'profile_onboarding_step_content.dart';
+
+enum _RepresentativeContactMode { phone, email }
 
 final class RepresentativeOnboardingStepContent extends StatefulWidget {
   const RepresentativeOnboardingStepContent({
@@ -42,6 +45,8 @@ final class _RepresentativeOnboardingStepContentState
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _contactController = TextEditingController();
+  _RepresentativeContactMode _contactMode = _RepresentativeContactMode.phone;
+  bool _contactInitialized = false;
 
   @override
   void dispose() {
@@ -270,9 +275,23 @@ final class _RepresentativeOnboardingStepContentState
     ProfileOnboardingDraft draft,
     ProfileOnboardingBloc bloc,
   ) {
-    if (_contactController.text.isEmpty && draft.candidateContact != null) {
-      _contactController.text = draft.candidateContact!;
+    if (!_contactInitialized) {
+      final savedContact = draft.candidateContact?.trim();
+      if (savedContact?.isNotEmpty == true) {
+        _contactMode = savedContact!.contains('@')
+            ? _RepresentativeContactMode.email
+            : _RepresentativeContactMode.phone;
+        _contactController.text =
+            _contactMode == _RepresentativeContactMode.phone
+            ? _formatPhoneForDisplay(savedContact)
+            : savedContact;
+      }
+      _contactInitialized = true;
     }
+    final isPhone = _contactMode == _RepresentativeContactMode.phone;
+    final canSubmit = isPhone
+        ? UzPhoneInputFormatter.localDigits(_contactController.text).length == 9
+        : _isValidEmail(_contactController.text);
     return RepresentativeLayout(
       progress: .94,
       eyebrow: l10n.representativeConsentSection,
@@ -283,33 +302,46 @@ final class _RepresentativeOnboardingStepContentState
         children: [
           PrimaryAction(
             label: l10n.representativeSendConsent,
-            onPressed:
-                _contactController.text.trim().isEmpty || widget.state.isBusy
+            onPressed: !canSubmit || widget.state.isBusy
                 ? null
                 : () {
                     FocusScope.of(context).unfocus();
-                    bloc.add(
-                      RepresentativeContactSubmitted(_contactController.text),
-                    );
+                    final contact = isPhone
+                        ? UzPhoneInputFormatter.normalizedPhone(
+                            _contactController.text,
+                          )
+                        : _contactController.text.trim();
+                    bloc.add(RepresentativeContactSubmitted(contact));
                   },
-          ),
-          const SizedBox(height: AppSpacing.md),
-          SecondaryAction(
-            label: l10n.representativeCandidateNoApp,
-            onPressed: widget.state.isBusy
-                ? null
-                : () => bloc.add(const RepresentativeCandidateDoesNotUseApp()),
           ),
         ],
       ),
       child: Column(
         children: [
+          AppSegmentedControl(
+            labels: [
+              l10n.representativeContactPhoneTab,
+              l10n.representativeContactEmailTab,
+            ],
+            selectedIndex: _contactMode.index,
+            onSelected: (index) => setState(() {
+              _contactMode = _RepresentativeContactMode.values[index];
+              _contactController.clear();
+            }),
+          ),
+          const SizedBox(height: AppSpacing.md),
           RepresentativeTextField(
             label: l10n.representativeContactLabel,
             controller: _contactController,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: isPhone
+                ? TextInputType.phone
+                : TextInputType.emailAddress,
             textInputAction: TextInputAction.done,
             textCapitalization: TextCapitalization.none,
+            inputFormatters: isPhone
+                ? const [UzPhoneInputFormatter()]
+                : const [],
+            prefixText: isPhone ? '+998 ' : null,
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: AppSpacing.card),
@@ -321,6 +353,16 @@ final class _RepresentativeOnboardingStepContentState
         ],
       ),
     );
+  }
+
+  String _formatPhoneForDisplay(String value) {
+    return const UzPhoneInputFormatter()
+        .formatEditUpdate(TextEditingValue.empty, TextEditingValue(text: value))
+        .text;
+  }
+
+  bool _isValidEmail(String value) {
+    return RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$').hasMatch(value.trim());
   }
 
   Widget _consentSent(

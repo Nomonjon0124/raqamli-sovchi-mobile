@@ -21,12 +21,15 @@ abstract final class AppConfig {
   static const googleServerClientId = String.fromEnvironment(
     'GOOGLE_SERVER_CLIENT_ID',
   );
+  static const privacyPolicyUrl =
+      'https://raqamli-nazorat.github.io/raqamli-sovchi-privacy-policy/';
   static const flavorValue = String.fromEnvironment(
     'FLAVOR',
     defaultValue: 'dev',
   );
 
   static AppFlavor get flavor => AppFlavor.fromValue(flavorValue);
+  static Uri get privacyPolicyUri => Uri.parse(privacyPolicyUrl);
 
   static String get resolvedGoogleServerClientId {
     if (googleServerClientId.isNotEmpty) return googleServerClientId;

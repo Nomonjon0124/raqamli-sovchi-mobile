@@ -135,6 +135,43 @@ final class EducationLevelsRequested extends ProfileOnboardingEvent {
   List<Object?> get props => [loadNextPage];
 }
 
+final class ProfessionsRequested extends ProfileOnboardingEvent {
+  const ProfessionsRequested({this.loadNextPage = false, this.search});
+
+  final bool loadNextPage;
+  final String? search;
+
+  @override
+  List<Object?> get props => [loadNextPage, search];
+}
+
+final class ProfessionSaved extends ProfileOnboardingEvent {
+  const ProfessionSaved({required this.id, required this.name});
+
+  final String id;
+  final String name;
+
+  @override
+  List<Object?> get props => [id, name];
+}
+
+final class OtherProfessionSelected extends ProfileOnboardingEvent {
+  const OtherProfessionSelected();
+}
+
+final class CustomProfessionSubmitted extends ProfileOnboardingEvent {
+  const CustomProfessionSubmitted(this.name);
+
+  final String name;
+
+  @override
+  List<Object?> get props => [name];
+}
+
+final class ProfessionContinuePressed extends ProfileOnboardingEvent {
+  const ProfessionContinuePressed();
+}
+
 final class EducationLevelSaved extends ProfileOnboardingEvent {
   const EducationLevelSaved(this.educationLevelId);
 

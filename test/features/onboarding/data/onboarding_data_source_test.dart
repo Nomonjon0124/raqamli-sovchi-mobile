@@ -73,6 +73,66 @@ void main() {
     ]);
   });
 
+  test('includes the selected profession id in profile bootstrap', () async {
+    final client = _RecordingApiClient(responseData: {'id': 'profile-1'});
+    final dataSource = RemoteOnboardingDataSource(client);
+
+    await dataSource.createProfile(
+      const ProfileBootstrapRequest(
+        firstName: 'Ali',
+        lastName: 'Valiyev',
+        candidateType: CandidateType.groom,
+        birthYear: 1995,
+        heightCm: 178,
+        regionId: 'region-1',
+        districtId: 'district-1',
+        educationLevelId: 'education-1',
+        professionId: 'profession-1',
+        maritalStatusId: 'marital-1',
+        hasChildren: false,
+        childrenCount: 0,
+      ),
+    );
+
+    expect(
+      (client.postData! as Map<String, dynamic>)['profession'],
+      'profession-1',
+    );
+  });
+
+  test('loads professions with pagination and search', () async {
+    final client = _RecordingApiClient(
+      responseData: {
+        'count': 1,
+        'results': [
+          {'id': 'profession-1', 'name': 'Dizayner'},
+        ],
+      },
+    );
+    final dataSource = RemoteOnboardingDataSource(client);
+
+    final result = await dataSource.getProfessions(page: 2, search: 'diz');
+
+    expect(client.getPath, '/api/v1/references/professions/');
+    expect(client.getQuery, {'page': 2, 'search': 'diz'});
+    expect(result.items.single.id, 'profession-1');
+    expect(result.items.single.name, 'Dizayner');
+  });
+
+  test('creates a custom profession and returns its server id', () async {
+    final client = _RecordingApiClient(
+      responseData: {'id': 'profession-2', 'name': 'Aytishnik'},
+    );
+    final dataSource = RemoteOnboardingDataSource(client);
+
+    final result = await dataSource.createProfession(' Aytishnik ');
+
+    expect(client.postPath, '/api/v1/references/professions/');
+    expect(client.postData, {'name': 'Aytishnik'});
+    expect(result.id, 'profession-2');
+    expect(result.name, 'Aytishnik');
+  });
+
   test('uses represented candidate type for representative gender', () async {
     final client = _RecordingApiClient(responseData: {'id': 'profile-1'});
     final dataSource = RemoteOnboardingDataSource(client);

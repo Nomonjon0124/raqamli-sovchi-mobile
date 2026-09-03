@@ -7,11 +7,13 @@ final class AppSegmentedControl extends StatelessWidget {
   const AppSegmentedControl({
     required this.labels,
     required this.selectedIndex,
+    this.onSelected,
     super.key,
   });
 
   final List<String> labels;
   final int selectedIndex;
+  final ValueChanged<int>? onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ final class AppSegmentedControl extends StatelessWidget {
                 child: _SegmentItem(
                   label: labels[index],
                   selected: index == selectedIndex,
+                  onTap: onSelected == null ? null : () => onSelected!(index),
                 ),
               ),
           ],
@@ -39,14 +42,15 @@ final class AppSegmentedControl extends StatelessWidget {
 }
 
 final class _SegmentItem extends StatelessWidget {
-  const _SegmentItem({required this.label, required this.selected});
+  const _SegmentItem({required this.label, required this.selected, this.onTap});
 
   final String label;
   final bool selected;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
+    final content = DecoratedBox(
       decoration: BoxDecoration(
         color: selected ? AppColors.surfaceLight : Colors.transparent,
         borderRadius: BorderRadius.circular(AppRadius.full),
@@ -76,6 +80,18 @@ final class _SegmentItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+    return Semantics(
+      button: onTap != null,
+      selected: selected,
+      label: label,
+      child: onTap == null
+          ? content
+          : GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: onTap,
+              child: content,
+            ),
     );
   }
 }

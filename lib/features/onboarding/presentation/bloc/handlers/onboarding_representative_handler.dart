@@ -154,6 +154,7 @@ mixin OnboardingRepresentativeHandler
       regionId: draft.regionId!,
       districtId: draft.districtId!,
       educationLevelId: draft.educationLevelId!,
+      professionId: draft.professionId,
       maritalStatusId: draft.maritalStatusId!,
       hasChildren: draft.childrenCount > 0 || draft.childrenNotLivingWithMe,
       childrenCount: draft.childrenNotLivingWithMe ? 0 : draft.childrenCount,

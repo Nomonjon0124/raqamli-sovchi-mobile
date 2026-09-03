@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../profile/application/use_cases/get_my_profile.dart';
 import '../../application/use_cases/check_location_access.dart';
 import '../../application/use_cases/cluster_nearby_candidates.dart';
 import '../../application/use_cases/get_candidates.dart';
-import '../../application/use_cases/get_my_profile.dart';
 import '../../application/use_cases/open_location_settings.dart';
 import '../../application/use_cases/request_current_location.dart';
 import '../../application/use_cases/update_profile_location.dart';

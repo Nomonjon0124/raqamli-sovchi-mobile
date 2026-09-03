@@ -23,6 +23,11 @@ abstract final class AppColors {
   static const representativeSecondaryAction = Color(0xFFF0EBFF);
   static const mapLabelText = Color(0xFF525252);
   static const primaryTranslucent = Color(0x1F0474F3);
+  static const profileAvatarSurface = Color(0xFFE5F3FF);
+  static const profileAvatarText = Color(0xFF0072CC);
+  static const profileWarningSurface = Color(0xFFFFFBEB);
+  static const profileWarningText = Color(0xFF9A3412);
+  static const profileDashedBorder = Color(0xFFD4D4D4);
   static const softShadow = Color(0x1A000000);
   static const chipShadow = Color(0x1F000000);
   static const elevatedShadow = Color(0x24000000);

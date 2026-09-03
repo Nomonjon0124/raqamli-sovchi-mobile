@@ -19,6 +19,7 @@ final class StepLayout extends StatelessWidget {
     required this.title,
     required this.child,
     this.subtitle,
+    this.leading,
     this.step,
     this.bottom,
     this.dateWheel = false,
@@ -27,6 +28,9 @@ final class StepLayout extends StatelessWidget {
 
   final String title;
   final String? subtitle;
+
+  /// Optional visual shown between the wizard header and the title.
+  final Widget? leading;
   final Widget child;
   final OnboardingStep? step;
   final Widget? bottom;
@@ -35,7 +39,7 @@ final class StepLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Column(
+    final scrollableContent = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (step != null) ...[
@@ -47,37 +51,36 @@ final class StepLayout extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         ],
+        if (leading != null) ...[
+          leading!,
+          const SizedBox(height: AppSpacing.lg),
+        ],
         Text(title, style: AppTypography.onboardingTitle),
         if (subtitle != null) ...[
           const SizedBox(height: AppSpacing.sm),
           Text(subtitle!, style: AppTypography.onboardingBody),
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
-        if (dateWheel) ...[
-          child,
-          if (bottom != null) const Spacer(),
-        ] else ...[
-          child,
-          if (bottom != null) const Spacer(),
-        ],
-        ..._optionalWidget(bottom),
+        child,
       ],
     );
     if (bottom == null) {
-      return SingleChildScrollView(child: content);
+      return SingleChildScrollView(child: scrollableContent);
     }
-    if (!keyboardAware) {
-      return content;
-    }
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(child: content),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            keyboardDismissBehavior: keyboardAware
+                ? ScrollViewKeyboardDismissBehavior.onDrag
+                : ScrollViewKeyboardDismissBehavior.manual,
+            child: scrollableContent,
           ),
-        );
-      },
+        ),
+        const SizedBox(height: AppSpacing.md),
+        bottom!,
+      ],
     );
   }
 }
@@ -97,7 +100,8 @@ final class _OnboardingWizardHeader extends StatelessWidget {
         ? switch (step) {
             OnboardingStep.identity => .24,
             OnboardingStep.birthDate => .29,
-            OnboardingStep.education => .35,
+            OnboardingStep.profession => .35,
+            OnboardingStep.education => .38,
             OnboardingStep.height => .41,
             OnboardingStep.location => .47,
             OnboardingStep.healthStatus => .53,
@@ -115,7 +119,8 @@ final class _OnboardingWizardHeader extends StatelessWidget {
         : switch (step) {
             OnboardingStep.identity => .08,
             OnboardingStep.birthDate => .15,
-            OnboardingStep.education => .23,
+            OnboardingStep.profession => .23,
+            OnboardingStep.education => .27,
             OnboardingStep.height => .31,
             OnboardingStep.location => .38,
             OnboardingStep.healthStatus => .46,
@@ -165,8 +170,4 @@ final class _OnboardingWizardHeader extends StatelessWidget {
       ),
     );
   }
-}
-
-List<Widget> _optionalWidget(Widget? widget) {
-  return widget == null ? const <Widget>[] : <Widget>[widget];
 }

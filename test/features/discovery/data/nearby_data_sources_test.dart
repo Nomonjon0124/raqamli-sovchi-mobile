@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:raqamli_sovchi/core/network/api_client.dart';
 import 'package:raqamli_sovchi/features/discovery/data/data_sources/discovery_data_source.dart';
-import 'package:raqamli_sovchi/features/discovery/data/data_sources/profile_data_source.dart';
 import 'package:raqamli_sovchi/features/discovery/domain/entities/discovery_filter.dart';
+import 'package:raqamli_sovchi/features/profile/data/data_sources/profile_data_source.dart';
 
 void main() {
   test(

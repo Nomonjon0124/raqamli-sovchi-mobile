@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
+import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 import 'nearby_radius_settings_sheet.dart';
 
@@ -60,9 +60,7 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                     color: AppColors.mutedSurface,
                     shape: BoxShape.circle,
                   ),
-                  child: SvgPicture.asset(
-                    'assets/icons/ic_nearby_empty_radar.svg',
-                  ),
+                  child: Assets.icons.icNearbyEmptyRadar.svg(),
                 ),
                 const SizedBox(height: AppSpacing.md),
                 Text(
@@ -89,8 +87,7 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                         ),
                         textStyle: AppTypography.onboardingAction,
                       ),
-                      icon: SvgPicture.asset(
-                        'assets/icons/ic_radar.svg',
+                      icon: Assets.icons.icRadar.svg(
                         width: 16,
                         height: 16,
                         colorFilter: const ColorFilter.mode(
@@ -117,8 +114,7 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                       ),
                       textStyle: AppTypography.onboardingAction,
                     ),
-                    icon: SvgPicture.asset(
-                      'assets/icons/ic_nearby_filter_lines.svg',
+                    icon: Assets.icons.icNearbyFilterLines.svg(
                       width: 18,
                       height: 16,
                     ),

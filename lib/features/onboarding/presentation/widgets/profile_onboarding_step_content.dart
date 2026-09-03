@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/pladge_card.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/pledge_confirmation_step.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/selection_card.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/step_layout.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/success_step.dart';
 
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
-import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_button.dart';
@@ -31,6 +32,7 @@ import 'health_status_option.dart';
 import 'onboarding_date_wheel_picker.dart';
 import 'onboarding_face_camera.dart';
 import 'onboarding_height_weight_input.dart';
+import 'onboarding_location_map.dart';
 import 'onboarding_location_selector_row.dart';
 import 'onboarding_photo_grid.dart';
 import 'onboarding_reference_bottom_sheet.dart';
@@ -59,6 +61,7 @@ final class _ProfileOnboardingStepContentState
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _patronymicController = TextEditingController();
+  final _professionController = TextEditingController();
   final _aboutMeController = TextEditingController();
   DateTime? _selectedBirthDate;
   int? _selectedHeight;
@@ -69,6 +72,7 @@ final class _ProfileOnboardingStepContentState
     _firstNameController.dispose();
     _lastNameController.dispose();
     _patronymicController.dispose();
+    _professionController.dispose();
     _aboutMeController.dispose();
     super.dispose();
   }
@@ -82,6 +86,7 @@ final class _ProfileOnboardingStepContentState
       OnboardingStep.candidateType => _candidateType(l10n, draft, bloc),
       OnboardingStep.pledge => _pledge(l10n, draft, bloc),
       OnboardingStep.birthDate => _birthDate(l10n, draft, bloc),
+      OnboardingStep.profession => _profession(l10n, draft, bloc),
       OnboardingStep.identity => _identity(l10n, draft, bloc),
       OnboardingStep.education => _education(l10n, draft, bloc),
       OnboardingStep.height => _height(l10n, draft, bloc),
@@ -165,9 +170,7 @@ final class _ProfileOnboardingStepContentState
         title: widget.representativeMode
             ? l10n.representativeVoiceTitle
             : l10n.voiceTitle,
-        subtitle: widget.representativeMode
-            ? l10n.representativeVoiceSubtitle
-            : l10n.voiceSubtitle,
+        // The reference layout shows guidance next to the recorder, not here.
         step: widget.step,
         bottom: Column(
           children: [
@@ -199,7 +202,8 @@ final class _ProfileOnboardingStepContentState
           playLabel: l10n.playRecording,
           reRecordLabel: l10n.reRecordVoice,
           deleteLabel: l10n.deleteVoice,
-          hint: l10n.startRecordingHint,
+          actionHint: l10n.startRecordingHint,
+          hint: l10n.voiceShortHint,
           recordingHint: l10n.recordedVoiceHint,
           recordingDuration: _formatDuration(
             draft.voiceIntroMetadata?.duration,
@@ -234,22 +238,7 @@ final class _ProfileOnboardingStepContentState
               ? null
               : () => bloc.add(const LocationPermissionRequested()),
         ),
-        child: Container(
-          width: double.infinity,
-          height: 180,
-          decoration: BoxDecoration(
-            color: AppColors.mutedSurface,
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-          ),
-          alignment: Alignment.center,
-          child: widget.state.isLocationLoading
-              ? const CircularProgressIndicator()
-              : const Icon(
-                  Icons.location_on_outlined,
-                  size: 48,
-                  color: AppColors.mutedText,
-                ),
-        ),
+        child: OnboardingLocationMap(isLoading: widget.state.isLocationLoading),
       ),
       OnboardingStep.success => PledgeConfirmationStep(
         title: l10n.pledgeConfirmationTitle,
@@ -260,6 +249,7 @@ final class _ProfileOnboardingStepContentState
         buttonLabel: l10n.pledgeConfirmationButton,
         onConfirm: () =>
             bloc.add(const ProfileOnboardingFinalizationRequested()),
+        onPrivacyPressed: () => context.push(RouteNames.privacyPolicy),
       ),
       OnboardingStep.profileReady => SuccessStep(
         title: l10n.onboardingSuccessTitle,
@@ -446,8 +436,7 @@ final class _ProfileOnboardingStepContentState
         label: l10n.continueLabel,
         onPressed:
             _firstNameController.text.trim().isEmpty ||
-                _lastNameController.text.trim().isEmpty ||
-                _patronymicController.text.trim().isEmpty
+                _lastNameController.text.trim().isEmpty
             ? null
             : () {
                 FocusScope.of(context).unfocus();
@@ -479,6 +468,94 @@ final class _ProfileOnboardingStepContentState
             controller: _patronymicController,
             onChanged: (_) => setState(() {}),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _profession(
+    AppLocalizations l10n,
+    ProfileOnboardingDraft draft,
+    ProfileOnboardingBloc bloc,
+  ) {
+    final professionChips = widget.state.professions
+        .where((item) => item.id.isNotEmpty && item.name.isNotEmpty)
+        .map(
+          (item) => EducationChip(
+            label: item.name,
+            selected:
+                !widget.state.isOtherProfessionSelected &&
+                draft.professionId == item.id,
+            onPressed: () =>
+                bloc.add(ProfessionSaved(id: item.id, name: item.name)),
+          ),
+        )
+        .toList(growable: false);
+    final otherSelected = widget.state.isOtherProfessionSelected;
+    final canContinue = otherSelected
+        ? _professionController.text.trim().isNotEmpty
+        : draft.professionId?.isNotEmpty == true;
+
+    return StepLayout(
+      step: widget.step,
+      title: widget.representativeMode
+          ? l10n.representativeProfessionTitle
+          : l10n.professionTitle,
+      bottom: CustomPrimaryButton(
+        label: l10n.continueLabel,
+        onPressed: !canContinue || widget.state.isBusy
+            ? null
+            : () {
+                FocusScope.of(context).unfocus();
+                if (otherSelected) {
+                  bloc.add(
+                    CustomProfessionSubmitted(_professionController.text),
+                  );
+                } else {
+                  bloc.add(const ProfessionContinuePressed());
+                }
+              },
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (widget.state.professionStatus == ReferenceStatus.loading &&
+              professionChips.isEmpty)
+            const Center(child: CircularProgressIndicator())
+          else if (widget.state.professionStatus == ReferenceStatus.failure &&
+              professionChips.isEmpty)
+            Center(
+              child: AppButton(
+                label: l10n.retry,
+                onPressed: () => bloc.add(const ProfessionsRequested()),
+              ),
+            )
+          else if (widget.state.professionStatus == ReferenceStatus.empty &&
+              professionChips.isEmpty)
+            Text(l10n.professionEmpty, style: AppTypography.onboardingBody)
+          else
+            Wrap(
+              spacing: AppSpacing.inline - 2,
+              runSpacing: AppSpacing.inline - 2,
+              children: [
+                ...professionChips,
+                EducationChip(
+                  label: l10n.professionOther,
+                  selected: otherSelected,
+                  onPressed: () => bloc.add(const OtherProfessionSelected()),
+                ),
+              ],
+            ),
+          if (otherSelected) ...[
+            const SizedBox(height: AppSpacing.lg),
+            OnboardingTextField(
+              label: widget.representativeMode
+                  ? l10n.representativeProfessionInputLabel
+                  : l10n.professionInputLabel,
+              controller: _professionController,
+              onChanged: (_) => setState(() {}),
+            ),
+          ],
         ],
       ),
     );
@@ -556,7 +633,9 @@ final class _ProfileOnboardingStepContentState
           : l10n.heightWeightTitle,
       bottom: CustomPrimaryButton(
         label: l10n.continueLabel,
-        onPressed: () => bloc.add(HeightSaved(height, weightKg: weight)),
+        onPressed: height <= 0 || weight <= 0
+            ? null
+            : () => bloc.add(HeightSaved(height, weightKg: weight)),
       ),
       child: OnboardingHeightWeightInput(
         height: height,
@@ -580,17 +659,11 @@ final class _ProfileOnboardingStepContentState
   }
 
   int _defaultHeight(CandidateType? candidateType) {
-    return switch (candidateType) {
-      CandidateType.bride => 165,
-      CandidateType.groom || CandidateType.representative || null => 175,
-    };
+    return 0;
   }
 
   int _defaultWeight(CandidateType? candidateType) {
-    return switch (candidateType) {
-      CandidateType.bride => 63,
-      CandidateType.groom || CandidateType.representative || null => 75,
-    };
+    return 0;
   }
 
   Widget _location(
@@ -678,8 +751,8 @@ final class _ProfileOnboardingStepContentState
               onRetry: () => bloc.add(const RegionsRequested()),
               confirmEnabled: state.draft?.regionId?.isNotEmpty == true,
               onConfirm: () => Navigator.of(context).pop(),
-              child: ListView.builder(
-                shrinkWrap: true,
+              listBuilder: (context, scrollController) => ListView.builder(
+                controller: scrollController,
                 itemCount: state.regions.length,
                 itemBuilder: (context, index) {
                   final item = state.regions[index];
@@ -718,18 +791,19 @@ final class _ProfileOnboardingStepContentState
           builder: (context, state) {
             return OnboardingReferenceBottomSheet(
               title: l10n.districtSheetTitle,
-              subtitle: l10n.districtSheetSubtitle(
-                _selectedRegionName(state.draft!) ?? l10n.regionLabel,
-                state.districts.length,
-              ),
+              // District count is hidden in the current onboarding layout.
+              // subtitle: l10n.districtSheetSubtitle(
+              //   _selectedRegionName(state.draft!) ?? l10n.regionLabel,
+              //   state.districts.length,
+              // ),
               status: state.districtStatus,
               onRetry: () => bloc.add(const DistrictsRequested()),
               confirmEnabled: state.draft?.districtId?.isNotEmpty == true,
               onConfirm: () => Navigator.of(context).pop(),
               searchPlaceholder: l10n.locationSearchPlaceholder,
               onSearch: (value) => bloc.add(DistrictsRequested(search: value)),
-              child: ListView.builder(
-                shrinkWrap: true,
+              listBuilder: (context, scrollController) => ListView.builder(
+                controller: scrollController,
                 itemCount: state.districts.length,
                 itemBuilder: (context, index) {
                   final item = state.districts[index];

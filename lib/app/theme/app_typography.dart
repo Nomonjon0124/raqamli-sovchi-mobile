@@ -224,6 +224,111 @@ abstract final class AppTypography {
     fontWeight: FontWeight.w600,
     color: AppColors.text,
   );
+  static const profileName = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 16,
+    height: 22 / 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.2,
+    color: AppColors.text,
+  );
+  static const profileAvatar = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 24,
+    height: 30 / 24,
+    fontWeight: FontWeight.w700,
+    color: AppColors.profileAvatarText,
+  );
+  static const profileProgress = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 10,
+    height: 14 / 10,
+    fontWeight: FontWeight.w700,
+    color: AppColors.surfaceLight,
+  );
+  static const profileMainBadge = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 8,
+    height: 11 / 8,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.4,
+    color: AppColors.surfaceLight,
+  );
+  static const profileIdentifier = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 16 / 11,
+    color: AppColors.mutedText,
+  );
+  static const profileSectionLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 10,
+    height: 14 / 10,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.8,
+    color: AppColors.mutedText,
+  );
+  static const profileCardTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const profileCardBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.mutedText,
+  );
+  static const settingsPageTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 20,
+    height: 27 / 20,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
+  static const settingsSectionTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 16,
+    height: 22 / 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.2,
+    color: AppColors.text,
+  );
+  static const settingsRowTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.text,
+  );
+  static const settingsRowValue = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.mutedText,
+  );
+  static const settingsRowCaption = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.mutedText,
+  );
+  static const settingsAction = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const settingsDeleteAction = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.dangerText,
+  );
   static const candidateDetailCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
