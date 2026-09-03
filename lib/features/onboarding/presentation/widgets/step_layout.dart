@@ -39,7 +39,7 @@ final class StepLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = Column(
+    final scrollableContent = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (step != null) ...[
@@ -61,31 +61,26 @@ final class StepLayout extends StatelessWidget {
           Text(subtitle!, style: AppTypography.onboardingBody),
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
-        if (dateWheel) ...[
-          child,
-          if (bottom != null) const Spacer(),
-        ] else ...[
-          child,
-          if (bottom != null) const Spacer(),
-        ],
-        ..._optionalWidget(bottom),
+        child,
       ],
     );
     if (bottom == null) {
-      return SingleChildScrollView(child: content);
+      return SingleChildScrollView(child: scrollableContent);
     }
-    if (!keyboardAware) {
-      return content;
-    }
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: IntrinsicHeight(child: content),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            keyboardDismissBehavior: keyboardAware
+                ? ScrollViewKeyboardDismissBehavior.onDrag
+                : ScrollViewKeyboardDismissBehavior.manual,
+            child: scrollableContent,
           ),
-        );
-      },
+        ),
+        const SizedBox(height: AppSpacing.md),
+        bottom!,
+      ],
     );
   }
 }
@@ -175,8 +170,4 @@ final class _OnboardingWizardHeader extends StatelessWidget {
       ),
     );
   }
-}
-
-List<Widget> _optionalWidget(Widget? widget) {
-  return widget == null ? const <Widget>[] : <Widget>[widget];
 }

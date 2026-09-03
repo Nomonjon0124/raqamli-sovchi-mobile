@@ -179,6 +179,7 @@ final class _CandidateInformationRow extends StatelessWidget {
         ),
         12.g,
         Flexible(
+          fit: FlexFit.tight,
           child: Text(
             entry.value!,
             maxLines: 2,

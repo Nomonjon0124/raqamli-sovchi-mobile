@@ -162,6 +162,46 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets(
+    'profession step scrolls long chip lists with fixed bottom action',
+    (tester) async {
+      final bloc = _createBloc();
+      addTearDown(bloc.close);
+
+      await _pumpStep(
+        tester,
+        bloc: bloc,
+        step: OnboardingStep.profession,
+        size: const Size(390, 640),
+        state: ProfileOnboardingState(
+          status: ProfileOnboardingStatus.editing,
+          professionStatus: ReferenceStatus.loaded,
+          professions: List.generate(
+            28,
+            (index) => Profession(id: 'profession-$index', name: 'Kasb $index'),
+          ),
+          draft: ProfileOnboardingDraft(
+            ownerUserId: 'user-1',
+            currentStep: OnboardingStep.profession,
+            professionId: 'profession-0',
+            professionName: 'Kasb 0',
+            updatedAt: DateTime.utc(2026),
+          ),
+        ),
+      );
+
+      final button = find.widgetWithText(FilledButton, 'Davom etish');
+      final initialButtonTop = tester.getTopLeft(button).dy;
+
+      await tester.ensureVisible(find.text('Kasb 27'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Kasb 27'), findsOneWidget);
+      expect(tester.getTopLeft(button).dy, initialButtonTop);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('representative profession step uses candidate copy', (
     tester,
   ) async {
@@ -800,6 +840,42 @@ void main() {
     expect(find.text('O‘zingiz haqingizda'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'representative identity keeps its bottom action fixed on scroll',
+    (tester) async {
+      final bloc = _createBloc();
+      addTearDown(bloc.close);
+
+      await _pumpStep(
+        tester,
+        bloc: bloc,
+        step: OnboardingStep.representativeIdentity,
+        size: const Size(390, 420),
+        representative: true,
+        state: ProfileOnboardingState(
+          status: ProfileOnboardingStatus.editing,
+          draft: ProfileOnboardingDraft(
+            ownerUserId: 'user-1',
+            candidateType: CandidateType.representative,
+            updatedAt: DateTime.utc(2026),
+          ),
+        ),
+      );
+
+      final button = find.widgetWithText(FilledButton, 'Davom etish');
+      final initialButtonTop = tester.getTopLeft(button).dy;
+
+      await tester.drag(
+        find.byType(SingleChildScrollView),
+        const Offset(0, -80),
+      );
+      await tester.pumpAndSettle();
+
+      expect(tester.getTopLeft(button).dy, initialButtonTop);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('representative bride uses candidate measurement defaults', (
     tester,

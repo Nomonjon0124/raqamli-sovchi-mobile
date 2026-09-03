@@ -253,10 +253,7 @@ mixin OnboardingIdentityHandler
         (draft.candidateType == CandidateType.representative &&
             !draft.hasAcceptedRepresentativeResponsibility) ||
         (draft.candidateType == CandidateType.representative &&
-            (draft.representativeInfoId?.isEmpty ?? true)) ||
-        (draft.candidateType == CandidateType.representative &&
-            draft.candidateUsesApp &&
-            !draft.consentRequestSent) ||
+            !_hasRepresentativeConsentForFinalization(draft)) ||
         !draft.pledgeAcceptedTerms) {
       emit(state.copyWith(failure: const Failure.validation()));
       return;
@@ -389,4 +386,14 @@ mixin OnboardingIdentityHandler
       const ProfileOnboardingState(status: ProfileOnboardingStatus.cancelled),
     );
   }
+}
+
+bool _hasRepresentativeConsentForFinalization(ProfileOnboardingDraft draft) {
+  if (draft.representativeInfoId?.trim().isNotEmpty ?? false) return true;
+  if (!draft.candidateUsesApp || !draft.consentRequestSent) return false;
+  final contact = draft.candidateContact?.trim();
+  if (contact == null || contact.isEmpty) return false;
+  final phone = RegExp(r'^\+998\d{9}$');
+  final email = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
+  return phone.hasMatch(contact) || email.hasMatch(contact);
 }
