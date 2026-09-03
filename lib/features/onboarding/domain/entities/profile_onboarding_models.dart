@@ -8,7 +8,7 @@ final class ProfileBootstrapRequest extends Equatable {
     required this.lastName,
     this.fatherName,
     required this.candidateType,
-    required this.birthYear,
+    required this.birthDate,
     required this.heightCm,
     required this.regionId,
     required this.districtId,
@@ -26,7 +26,7 @@ final class ProfileBootstrapRequest extends Equatable {
   final String lastName;
   final String? fatherName;
   final CandidateType candidateType;
-  final int birthYear;
+  final DateTime birthDate;
   final int heightCm;
   final int? weightKg;
   final String regionId;
@@ -52,7 +52,7 @@ final class ProfileBootstrapRequest extends Equatable {
     lastName,
     fatherName,
     candidateType,
-    birthYear,
+    birthDate,
     heightCm,
     regionId,
     districtId,

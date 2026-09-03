@@ -105,7 +105,7 @@ final class RemoteOnboardingDataSource implements OnboardingDataSource {
           'middle_name': request.fatherName!.trim(),
         'gender': request.gender,
         'candidate_type': request.candidateType.apiValue,
-        'birth_year': request.birthYear,
+        'birth_date': _dateOnly(request.birthDate),
         'height': request.heightCm,
         if (request.weightKg != null) 'weight': request.weightKg,
         'region': request.regionId,
@@ -429,4 +429,11 @@ Map<String, dynamic> _payload(Map<String, dynamic>? value) {
 
 Map<String, dynamic> _map(Map value) {
   return value.map((key, item) => MapEntry(key.toString(), item));
+}
+
+String _dateOnly(DateTime value) {
+  final year = value.year.toString().padLeft(4, '0');
+  final month = value.month.toString().padLeft(2, '0');
+  final day = value.day.toString().padLeft(2, '0');
+  return '$year-$month-$day';
 }

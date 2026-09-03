@@ -191,6 +191,7 @@ final class CandidateDetailBloc
     age: candidate.age,
     isSaved: isSaved,
     birthYear: candidate.birthYear,
+    birthDate: candidate.birthDate,
     height: candidate.height,
     weight: candidate.weight,
     hasChildren: candidate.hasChildren,

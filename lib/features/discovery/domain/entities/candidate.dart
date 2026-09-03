@@ -9,6 +9,7 @@ final class Candidate extends Equatable {
     required this.age,
     required this.isSaved,
     required this.birthYear,
+    this.birthDate,
     required this.height,
     required this.weight,
     required this.hasChildren,
@@ -46,6 +47,7 @@ final class Candidate extends Equatable {
   final int? age;
   final bool isSaved;
   final int? birthYear;
+  final DateTime? birthDate;
   final int? height;
   final double? weight;
   final bool? hasChildren;
@@ -82,6 +84,7 @@ final class Candidate extends Equatable {
     age,
     isSaved,
     birthYear,
+    birthDate,
     height,
     weight,
     hasChildren,

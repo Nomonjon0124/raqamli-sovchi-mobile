@@ -10,6 +10,7 @@ final class UserProfile extends Equatable {
     this.middleName,
     this.gender,
     this.candidateType,
+    this.birthDate,
     this.birthYear,
     this.height,
     this.weight,
@@ -43,6 +44,7 @@ final class UserProfile extends Equatable {
   final String? middleName;
   final String? gender;
   final String? candidateType;
+  final DateTime? birthDate;
   final int? birthYear;
   final int? height;
   final double? weight;
@@ -73,6 +75,8 @@ final class UserProfile extends Equatable {
   ].where((part) => part.isNotEmpty).join(' ');
 
   int? get age {
+    final date = birthDate;
+    if (date != null) return _ageFromBirthDate(date, DateTime.now());
     final year = birthYear;
     if (year == null || year <= 0 || year > DateTime.now().year) return null;
     return DateTime.now().year - year;
@@ -127,6 +131,7 @@ final class UserProfile extends Equatable {
     middleName,
     gender,
     candidateType,
+    birthDate,
     birthYear,
     height,
     weight,
@@ -151,6 +156,16 @@ final class UserProfile extends Equatable {
     maritalStatusName,
     photos,
   ];
+}
+
+int? _ageFromBirthDate(DateTime birthDate, DateTime today) {
+  if (birthDate.isAfter(today)) return null;
+  var age = today.year - birthDate.year;
+  final birthdayHasPassed =
+      today.month > birthDate.month ||
+      (today.month == birthDate.month && today.day >= birthDate.day);
+  if (!birthdayHasPassed) age--;
+  return age < 0 ? null : age;
 }
 
 final class ProfilePhoto extends Equatable {

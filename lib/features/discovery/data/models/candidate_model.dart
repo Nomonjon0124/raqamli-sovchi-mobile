@@ -61,6 +61,7 @@ final class ResultCandidateModel extends Equatable {
     this.gender,
     this.candidateType,
     this.birthYear,
+    this.birthDate,
     this.height,
     this.weight,
     this.hasChildren,
@@ -96,7 +97,9 @@ final class ResultCandidateModel extends Equatable {
         middleName: _asString(json['middle_name']),
         gender: _asString(json['gender']),
         candidateType: _asString(json['candidate_type']),
-        birthYear: _asInt(json['birth_year']),
+        birthDate: _asDateTime(json['birth_date']),
+        birthYear:
+            _asInt(json['birth_year']) ?? _asDateTime(json['birth_date'])?.year,
         height: _asInt(json['height']),
         weight: _asInt(json['weight']),
         hasChildren: _asBool(json['has_children']),
@@ -151,6 +154,7 @@ final class ResultCandidateModel extends Equatable {
   final String? gender;
   final String? candidateType;
   final int? birthYear;
+  final DateTime? birthDate;
   final int? height;
   final int? weight;
   final bool? hasChildren;
@@ -185,6 +189,7 @@ final class ResultCandidateModel extends Equatable {
     String? gender,
     String? candidateType,
     int? birthYear,
+    DateTime? birthDate,
     int? height,
     int? weight,
     bool? hasChildren,
@@ -218,6 +223,7 @@ final class ResultCandidateModel extends Equatable {
     gender: gender ?? this.gender,
     candidateType: candidateType ?? this.candidateType,
     birthYear: birthYear ?? this.birthYear,
+    birthDate: birthDate ?? this.birthDate,
     height: height ?? this.height,
     weight: weight ?? this.weight,
     hasChildren: hasChildren ?? this.hasChildren,
@@ -252,7 +258,7 @@ final class ResultCandidateModel extends Equatable {
     'middle_name': middleName,
     'gender': gender,
     'candidate_type': candidateType,
-    'birth_year': birthYear,
+    'birth_date': birthDate?.toIso8601String().split('T').first,
     'height': height,
     'weight': weight,
     'has_children': hasChildren,
@@ -277,7 +283,9 @@ final class ResultCandidateModel extends Equatable {
   };
 
   Candidate toEntity() {
-    final calculatedAge = birthYear != null
+    final calculatedAge = birthDate != null
+        ? _ageFromBirthDate(birthDate!, DateTime.now())
+        : birthYear != null
         ? DateTime.now().year - birthYear!
         : null;
 
@@ -289,6 +297,7 @@ final class ResultCandidateModel extends Equatable {
       age: calculatedAge,
       isSaved: isSaved ?? false,
       birthYear: birthYear,
+      birthDate: birthDate,
       height: height,
       weight: weight?.toDouble(),
       hasChildren: hasChildren,
@@ -332,6 +341,7 @@ final class ResultCandidateModel extends Equatable {
     gender,
     candidateType,
     birthYear,
+    birthDate,
     height,
     weight,
     hasChildren,
@@ -566,5 +576,32 @@ CompatibilityScoreModel? _compatibilityScore(Object? value) {
 DateTime? _asDateTime(Object? value) {
   final stringValue = _asString(value);
   if (stringValue == null || stringValue.isEmpty) return null;
-  return DateTime.tryParse(stringValue);
+  final parsed = DateTime.tryParse(stringValue);
+  if (parsed != null) return parsed;
+  final parts = stringValue.split(RegExp(r'[./-]'));
+  if (parts.length == 3) {
+    if (parts[0].length == 4) {
+      final y = int.tryParse(parts[0]);
+      final m = int.tryParse(parts[1]);
+      final d = int.tryParse(parts[2]);
+      if (y != null && m != null && d != null) return DateTime(y, m, d);
+    } else if (parts[2].length == 4) {
+      final d = int.tryParse(parts[0]);
+      final m = int.tryParse(parts[1]);
+      final y = int.tryParse(parts[2]);
+      if (y != null && m != null && d != null) return DateTime(y, m, d);
+    }
+  }
+  return null;
+}
+
+int? _ageFromBirthDate(DateTime birthDate, DateTime today) {
+  if (birthDate.isAfter(today)) return null;
+
+  var age = today.year - birthDate.year;
+  final birthdayHasPassed =
+      today.month > birthDate.month ||
+      (today.month == birthDate.month && today.day >= birthDate.day);
+  if (!birthdayHasPassed) age--;
+  return age < 0 ? null : age;
 }

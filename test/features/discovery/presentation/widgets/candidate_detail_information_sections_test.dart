@@ -6,13 +6,15 @@ import 'package:raqamli_sovchi/features/discovery/presentation/widgets/candidate
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
 
 void main() {
-  testWidgets('renders only available candidate information', (tester) async {
+  testWidgets('renders candidate birth date in dd.MM.yyyy format', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       _testApp(CandidateDetailInformationSections(candidate: _candidate())),
     );
 
     expect(find.text('Asosiy ma’lumotlar'), findsOneWidget);
-    expect(find.text('2003 · 23 yosh'), findsOneWidget);
+    expect(find.text('20.04.2003'), findsOneWidget);
     expect(find.text('Toshkent, Yunusobod'), findsOneWidget);
     expect(find.text('165 sm'), findsOneWidget);
     expect(find.text('54 kg'), findsOneWidget);
@@ -22,6 +24,16 @@ void main() {
     expect(find.text('Dasturchi'), findsOneWidget);
     expect(find.text('Turmush tarzi'), findsOneWidget);
     expect(find.text('Sog‘lig‘i'), findsOneWidget);
+  });
+
+  testWidgets('falls back to birthYear when birthDate is null', (tester) async {
+    final candidate = _candidate(useNullBirthDate: true);
+
+    await tester.pumpWidget(
+      _testApp(CandidateDetailInformationSections(candidate: candidate)),
+    );
+
+    expect(find.text('2003'), findsOneWidget);
   });
 
   testWidgets('shows incomplete profile card when key details are missing', (
@@ -44,13 +56,18 @@ Widget _testApp(Widget child) => MaterialApp(
   home: Scaffold(body: child),
 );
 
-Candidate _candidate({String? educationLevelName = 'Oliy'}) => Candidate(
+Candidate _candidate({
+  String? educationLevelName = 'Oliy',
+  DateTime? birthDate,
+  bool useNullBirthDate = false,
+}) => Candidate(
   id: 'candidate-id',
   firstName: 'Mohira',
   lastName: 'R.',
   middleName: null,
   age: 23,
   isSaved: false,
+  birthDate: useNullBirthDate ? null : (birthDate ?? DateTime(2003, 4, 20)),
   birthYear: 2003,
   height: 165,
   weight: 54,
