@@ -2008,6 +2008,96 @@ abstract class AppLocalizations {
   /// **'Profilga qaytish'**
   String get candidatePhotoPermissionSentReturn;
 
+  /// No description provided for @candidateBlockDialogTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{candidateName} ni bloklaysizmi?'**
+  String candidateBlockDialogTitle(String candidateName);
+
+  /// No description provided for @candidateBlockDialogSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'U sizni ko‘rmaydi, siz ham uni ko‘rmaysiz. Bloklaganingizni o‘zi bilmaydi.'**
+  String get candidateBlockDialogSubtitle;
+
+  /// No description provided for @candidateBlockPointChatClosed.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat yopiladi, yozishmalar saqlanadi'**
+  String get candidateBlockPointChatClosed;
+
+  /// No description provided for @candidateBlockPointRemovedSaved.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlanganlar ro‘yxatidan olib tashlanadi'**
+  String get candidateBlockPointRemovedSaved;
+
+  /// No description provided for @candidateBlockPointRepresentativeBlocked.
+  ///
+  /// In uz, this message translates to:
+  /// **'Uning vakili ham siz bilan bog‘lana olmaydi'**
+  String get candidateBlockPointRepresentativeBlocked;
+
+  /// No description provided for @candidateBlockAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklash'**
+  String get candidateBlockAction;
+
+  /// No description provided for @candidateBlockCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get candidateBlockCancel;
+
+  /// No description provided for @candidateBlockedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil bloklandi'**
+  String get candidateBlockedTitle;
+
+  /// No description provided for @candidateBlockedSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{candidateName} endi sizni ko‘rmaydi.'**
+  String candidateBlockedSubtitle(String candidateName);
+
+  /// No description provided for @candidateBlockedWhoLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kim'**
+  String get candidateBlockedWhoLabel;
+
+  /// No description provided for @candidateBlockedTimeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklandi'**
+  String get candidateBlockedTimeLabel;
+
+  /// No description provided for @candidateBlockedStatusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Holat'**
+  String get candidateBlockedStatusLabel;
+
+  /// No description provided for @candidateBlockedStatusValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan'**
+  String get candidateBlockedStatusValue;
+
+  /// No description provided for @candidateBlockedSettingsHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'U bloklaganingizni bilmaydi. Blokni Sozlamalar → Bloklangan profillar bo‘limidan olib tashlaysiz.'**
+  String get candidateBlockedSettingsHint;
+
+  /// No description provided for @candidateBlockedClose.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yopish'**
+  String get candidateBlockedClose;
+
   /// No description provided for @surveyPromptTitle.
   ///
   /// In uz, this message translates to:

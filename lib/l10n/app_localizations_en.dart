@@ -1072,6 +1072,59 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidatePhotoPermissionSentReturn => 'Back to profile';
 
   @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return 'Block $candidateName?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'They won\'t see you, and you won\'t see them. They won\'t know you blocked them.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Chat will be closed, message history preserved';
+
+  @override
+  String get candidateBlockPointRemovedSaved => 'Removed from saved list';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Their representative won\'t be able to contact you either';
+
+  @override
+  String get candidateBlockAction => 'Block';
+
+  @override
+  String get candidateBlockCancel => 'Cancel';
+
+  @override
+  String get candidateBlockedTitle => 'Profile blocked';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName will no longer see you.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Who';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Blocked at';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Status';
+
+  @override
+  String get candidateBlockedStatusValue => 'Blocked';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'They won\'t know you blocked them. You can unblock from Settings → Blocked profiles.';
+
+  @override
+  String get candidateBlockedClose => 'Close';
+
+  @override
   String get surveyPromptTitle => 'Match percentage locked';
 
   @override

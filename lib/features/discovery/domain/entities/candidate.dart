@@ -35,9 +35,11 @@ final class Candidate extends Equatable {
     required this.martialStatusName,
     required this.photosInfo,
     this.compatibilityScore,
+    this.userId,
   });
 
   final String id;
+  final String? userId;
   final String firstName;
   final String? lastName;
   final String? middleName;
@@ -106,6 +108,7 @@ final class Candidate extends Equatable {
     martialStatusName,
     photosInfo,
     compatibilityScore,
+    userId,
   ];
 }
 

@@ -12,6 +12,7 @@ import '../../domain/entities/candidate.dart';
 import '../bloc/candidate_detail_bloc.dart';
 import '../bloc/candidate_detail_event.dart';
 import '../bloc/candidate_detail_state.dart';
+import '../widgets/candidate_block_dialog.dart';
 import '../widgets/candidate_detail_bio_section.dart';
 import '../widgets/candidate_detail_bottom_bar.dart';
 import '../widgets/candidate_detail_header.dart';
@@ -24,6 +25,7 @@ import '../widgets/candidate_detail_options_bottom_sheet.dart';
 import '../widgets/candidate_detail_sticky_header.dart';
 import '../widgets/candidate_detail_voice_player.dart';
 import 'candidate_action_result_page.dart';
+import 'candidate_blocked_page.dart';
 import 'candidate_photo_request_page.dart';
 
 final class CandidateDetailPage extends StatelessWidget {
@@ -370,7 +372,24 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
           );
         },
         onReport: () => Navigator.of(context).pop(),
-        onBlock: () => Navigator.of(context).pop(),
+        onBlock: () async {
+          Navigator.of(context).pop();
+          final isBlocked = await CandidateBlockDialog.show(
+            context,
+            candidateId: candidate.userId ?? candidate.id,
+            candidateName: candidateName,
+          );
+          if (isBlocked == true && context.mounted) {
+            await Navigator.of(context).pushReplacement(
+              MaterialPageRoute<void>(
+                builder: (_) => CandidateBlockedPage(
+                  candidateName: candidateName,
+                  blockedAt: DateTime.now(),
+                ),
+              ),
+            );
+          }
+        },
         onCancel: () => Navigator.of(context).pop(),
       ),
     );

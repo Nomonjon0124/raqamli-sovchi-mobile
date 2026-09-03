@@ -75,6 +75,10 @@ class $AssetsIconsGen {
   SvgGenImage get icArrowRight =>
       const SvgGenImage('assets/icons/ic_arrow_right.svg');
 
+  /// File path: assets/icons/ic_blocked_face.svg
+  SvgGenImage get icBlockedFace =>
+      const SvgGenImage('assets/icons/ic_blocked_face.svg');
+
   /// File path: assets/icons/ic_candidate_grid.svg
   SvgGenImage get icCandidateGrid =>
       const SvgGenImage('assets/icons/ic_candidate_grid.svg');
@@ -338,6 +342,7 @@ class $AssetsIconsGen {
     icAiSpark,
     icArrowLeft01Round,
     icArrowRight,
+    icBlockedFace,
     icCandidateGrid,
     icCandidateMap,
     icCandidatesBtv,

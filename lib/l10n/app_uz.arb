@@ -358,6 +358,27 @@
   "candidatePhotoPermissionSentTitle": "Rasm ko‘rish uchun ruxsat so‘raldi",
   "candidatePhotoPermissionSentDescription": "{name} va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.",
   "candidatePhotoPermissionSentReturn": "Profilga qaytish",
+  "candidateBlockDialogTitle": "{candidateName} ni bloklaysizmi?",
+  "@candidateBlockDialogTitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockDialogSubtitle": "U sizni ko‘rmaydi, siz ham uni ko‘rmaysiz. Bloklaganingizni o‘zi bilmaydi.",
+  "candidateBlockPointChatClosed": "Suhbat yopiladi, yozishmalar saqlanadi",
+  "candidateBlockPointRemovedSaved": "Saqlanganlar ro‘yxatidan olib tashlanadi",
+  "candidateBlockPointRepresentativeBlocked": "Uning vakili ham siz bilan bog‘lana olmaydi",
+  "candidateBlockAction": "Bloklash",
+  "candidateBlockCancel": "Bekor qilish",
+  "candidateBlockedTitle": "Profil bloklandi",
+  "candidateBlockedSubtitle": "{candidateName} endi sizni ko‘rmaydi.",
+  "@candidateBlockedSubtitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockedWhoLabel": "Kim",
+  "candidateBlockedTimeLabel": "Bloklandi",
+  "candidateBlockedStatusLabel": "Holat",
+  "candidateBlockedStatusValue": "Bloklangan",
+  "candidateBlockedSettingsHint": "U bloklaganingizni bilmaydi. Blokni Sozlamalar → Bloklangan profillar bo‘limidan olib tashlaysiz.",
+  "candidateBlockedClose": "Yopish",
   "@candidateDetailVoiceIntro": {
     "placeholders": {"duration": {"type": "String"}}
   },

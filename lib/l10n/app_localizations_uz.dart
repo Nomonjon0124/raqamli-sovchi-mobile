@@ -1070,6 +1070,60 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidatePhotoPermissionSentReturn => 'Profilga qaytish';
 
   @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return '$candidateName ni bloklaysizmi?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'U sizni ko‘rmaydi, siz ham uni ko‘rmaysiz. Bloklaganingizni o‘zi bilmaydi.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Suhbat yopiladi, yozishmalar saqlanadi';
+
+  @override
+  String get candidateBlockPointRemovedSaved =>
+      'Saqlanganlar ro‘yxatidan olib tashlanadi';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Uning vakili ham siz bilan bog‘lana olmaydi';
+
+  @override
+  String get candidateBlockAction => 'Bloklash';
+
+  @override
+  String get candidateBlockCancel => 'Bekor qilish';
+
+  @override
+  String get candidateBlockedTitle => 'Profil bloklandi';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName endi sizni ko‘rmaydi.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Kim';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Bloklandi';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Holat';
+
+  @override
+  String get candidateBlockedStatusValue => 'Bloklangan';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'U bloklaganingizni bilmaydi. Blokni Sozlamalar → Bloklangan profillar bo‘limidan olib tashlaysiz.';
+
+  @override
+  String get candidateBlockedClose => 'Yopish';
+
+  @override
   String get surveyPromptTitle => 'Moslik foizi yopiq';
 
   @override

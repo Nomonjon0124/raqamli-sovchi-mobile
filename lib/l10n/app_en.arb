@@ -346,6 +346,27 @@
   "candidatePhotoPermissionSentTitle": "Photo access requested",
   "candidatePhotoPermissionSentDescription": "A request to view the photo was sent to {name} and their representative. We will notify you when they reply.",
   "candidatePhotoPermissionSentReturn": "Back to profile",
+  "candidateBlockDialogTitle": "Block {candidateName}?",
+  "@candidateBlockDialogTitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockDialogSubtitle": "They won''t see you, and you won''t see them. They won''t know you blocked them.",
+  "candidateBlockPointChatClosed": "Chat will be closed, message history preserved",
+  "candidateBlockPointRemovedSaved": "Removed from saved list",
+  "candidateBlockPointRepresentativeBlocked": "Their representative won''t be able to contact you either",
+  "candidateBlockAction": "Block",
+  "candidateBlockCancel": "Cancel",
+  "candidateBlockedTitle": "Profile blocked",
+  "candidateBlockedSubtitle": "{candidateName} will no longer see you.",
+  "@candidateBlockedSubtitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockedWhoLabel": "Who",
+  "candidateBlockedTimeLabel": "Blocked at",
+  "candidateBlockedStatusLabel": "Status",
+  "candidateBlockedStatusValue": "Blocked",
+  "candidateBlockedSettingsHint": "They won''t know you blocked them. You can unblock from Settings → Blocked profiles.",
+  "candidateBlockedClose": "Close",
   "@candidateDetailVoiceIntro": {
     "placeholders": {"duration": {"type": "String"}}
   },

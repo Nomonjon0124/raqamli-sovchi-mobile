@@ -346,6 +346,27 @@
   "candidatePhotoPermissionSentTitle": "Запрос на просмотр фото отправлен",
   "candidatePhotoPermissionSentDescription": "Запрос на просмотр фото отправлен {name} и его представителю. Мы сообщим, когда будет ответ.",
   "candidatePhotoPermissionSentReturn": "Вернуться к профилю",
+  "candidateBlockDialogTitle": "Заблокировать {candidateName}?",
+  "@candidateBlockDialogTitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockDialogSubtitle": "Они не увидят вас, и вы не увидите их. Они не узнают о блокировке.",
+  "candidateBlockPointChatClosed": "Чат закроется, переписка сохранится",
+  "candidateBlockPointRemovedSaved": "Будет удален(а) из сохраненных",
+  "candidateBlockPointRepresentativeBlocked": "Их представитель также не сможет связаться с вами",
+  "candidateBlockAction": "Заблокировать",
+  "candidateBlockCancel": "Отмена",
+  "candidateBlockedTitle": "Профиль заблокирован",
+  "candidateBlockedSubtitle": "{candidateName} больше не увидит вас.",
+  "@candidateBlockedSubtitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockedWhoLabel": "Кто",
+  "candidateBlockedTimeLabel": "Заблокирован",
+  "candidateBlockedStatusLabel": "Статус",
+  "candidateBlockedStatusValue": "Заблокирован",
+  "candidateBlockedSettingsHint": "Пользователь не узнает о блокировке. Разблокировать можно в Настройки → Заблокированные профили.",
+  "candidateBlockedClose": "Закрыть",
   "@candidateDetailVoiceIntro": {
     "placeholders": {"duration": {"type": "String"}}
   },

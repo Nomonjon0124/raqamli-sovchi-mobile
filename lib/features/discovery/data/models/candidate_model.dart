@@ -315,6 +315,7 @@ final class ResultCandidateModel extends Equatable {
       martialStatusName: maritalStatusInfo?.name,
       photosInfo: photosInfo?.map((p) => p.toEntity()).toList(),
       compatibilityScore: compatibilityScore?.toEntity(),
+      userId: userInfo?.id,
     );
   }
 

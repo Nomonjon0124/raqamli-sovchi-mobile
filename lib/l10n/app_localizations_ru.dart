@@ -1072,6 +1072,60 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidatePhotoPermissionSentReturn => 'Вернуться к профилю';
 
   @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return 'Заблокировать $candidateName?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'Они не увидят вас, и вы не увидите их. Они не узнают о блокировке.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Чат закроется, переписка сохранится';
+
+  @override
+  String get candidateBlockPointRemovedSaved =>
+      'Будет удален(а) из сохраненных';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Их представитель также не сможет связаться с вами';
+
+  @override
+  String get candidateBlockAction => 'Заблокировать';
+
+  @override
+  String get candidateBlockCancel => 'Отмена';
+
+  @override
+  String get candidateBlockedTitle => 'Профиль заблокирован';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName больше не увидит вас.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Кто';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Заблокирован';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Статус';
+
+  @override
+  String get candidateBlockedStatusValue => 'Заблокирован';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'Пользователь не узнает о блокировке. Разблокировать можно в Настройки → Заблокированные профили.';
+
+  @override
+  String get candidateBlockedClose => 'Закрыть';
+
+  @override
   String get surveyPromptTitle => 'Процент совпадения закрыт';
 
   @override
