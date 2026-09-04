@@ -1149,6 +1149,27 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateReportReasonScam => 'Moliyaviy firibgarlik';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Odobsiz so‘z';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Soxta profil';
+
+  @override
+  String get candidateReportReasonFraud => 'Firibgarlik';
+
+  @override
+  String get candidateReportReasonSpam => 'Spam va reklama';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'Noto‘g‘ri ma’lumot';
+
+  @override
+  String get candidateReportReasonThreat => 'Haqorat va tahdid';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent => 'Nikoh niyati yo‘q';
+
+  @override
   String get candidateReportReasonOther => 'Boshqa sabab';
 
   @override

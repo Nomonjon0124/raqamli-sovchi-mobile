@@ -1153,6 +1153,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateReportReasonScam => 'Финансовое мошенничество';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Непристойные слова';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Фейковый профиль';
+
+  @override
+  String get candidateReportReasonFraud => 'Мошенничество';
+
+  @override
+  String get candidateReportReasonSpam => 'Спам и реклама';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'Ложная информация';
+
+  @override
+  String get candidateReportReasonThreat => 'Оскорбление или угроза';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent =>
+      'Нет намерения вступить в брак';
+
+  @override
   String get candidateReportReasonOther => 'Другая причина';
 
   @override

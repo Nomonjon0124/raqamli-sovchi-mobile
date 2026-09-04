@@ -3,10 +3,14 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/di/service_locator.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
+import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../moderation/application/use_cases/create_complaint.dart';
+import '../../../moderation/domain/entities/complaint.dart';
 import '../../domain/entities/candidate.dart';
 import 'candidate_report_submitted_page.dart';
 
@@ -14,11 +18,13 @@ final class CandidateReportPage extends StatefulWidget {
   const CandidateReportPage({
     required this.candidate,
     required this.candidateName,
+    this.createComplaintUseCase,
     super.key,
   });
 
   final Candidate candidate;
   final String candidateName;
+  final CreateComplaintUseCase? createComplaintUseCase;
 
   @override
   State<CandidateReportPage> createState() => _CandidateReportPageState();
@@ -26,7 +32,10 @@ final class CandidateReportPage extends StatefulWidget {
 
 final class _CandidateReportPageState extends State<CandidateReportPage> {
   int? _selectedReasonIndex;
+  bool _isSubmitting = false;
   final TextEditingController _noteController = TextEditingController();
+  late final CreateComplaintUseCase _createComplaint =
+      widget.createComplaintUseCase ?? serviceLocator<CreateComplaintUseCase>();
 
   @override
   void dispose() {
@@ -34,15 +43,50 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     super.dispose();
   }
 
-  void _handleSubmit() {
-    if (_selectedReasonIndex == null) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(
-        builder: (_) => CandidateReportSubmittedPage(
-          candidateName: widget.candidateName,
-          reportNumber: 'SH-24815',
-        ),
-      ),
+  Future<void> _handleSubmit() async {
+    final selectedReasonIndex = _selectedReasonIndex;
+    if (selectedReasonIndex == null || _isSubmitting) return;
+
+    final toUserId =
+        widget.candidate.userId != null &&
+            widget.candidate.userId!.trim().isNotEmpty
+        ? widget.candidate.userId!
+        : widget.candidate.id;
+    final reason = _reasonOptions(
+      AppLocalizations.of(context),
+    )[selectedReasonIndex].reason;
+
+    setState(() => _isSubmitting = true);
+    final result = await _createComplaint(
+      toUserId: toUserId,
+      reason: reason,
+      message: _noteController.text,
+    );
+    if (!mounted) return;
+
+    result.fold(
+      (failure) {
+        setState(() => _isSubmitting = false);
+        final error = failure.message;
+        AppToast.show(
+          context,
+          message: error == null || error.isEmpty
+              ? AppLocalizations.of(context).genericError
+              : error,
+        );
+      },
+      (complaint) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (_) => CandidateReportSubmittedPage(
+              candidateName: widget.candidateName,
+              reportNumber: complaint.id,
+              submittedAt: complaint.createdAt,
+              statusLabel: complaint.statusLabel,
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -59,13 +103,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final reasons = [
-      l10n.candidateReportReasonInappropriate,
-      l10n.candidateReportReasonFake,
-      l10n.candidateReportReasonNoMarriage,
-      l10n.candidateReportReasonScam,
-      l10n.candidateReportReasonOther,
-    ];
+    final reasons = _reasonOptions(l10n);
 
     final photoUrl = _mainImageUrl(widget.candidate);
     final shouldBlur = widget.candidate.blurPhotos ?? true;
@@ -76,7 +114,9 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
         child: FilledButton(
-          onPressed: _selectedReasonIndex != null ? _handleSubmit : null,
+          onPressed: _selectedReasonIndex != null && !_isSubmitting
+              ? _handleSubmit
+              : null,
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
@@ -88,29 +128,37 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
               borderRadius: BorderRadius.circular(AppRadius.full),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                l10n.candidateReportSubmitAction,
-                style: const TextStyle(
-                  fontFamily: 'Manrope',
-                  fontSize: 15,
-                  height: 20 / 15,
-                  fontWeight: FontWeight.w600,
+          child: _isSubmitting
+              ? const SizedBox.square(
+                  dimension: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white,
+                  ),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      l10n.candidateReportSubmitAction,
+                      style: const TextStyle(
+                        fontFamily: 'Manrope',
+                        fontSize: 15,
+                        height: 20 / 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Assets.icons.icArrowRight.svg(
+                      width: 20,
+                      height: 20,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(width: 8),
-              Assets.icons.icArrowRight.svg(
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
       body: SafeArea(
@@ -221,9 +269,11 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                           return Column(
                             children: [
                               InkWell(
-                                onTap: () => setState(
-                                  () => _selectedReasonIndex = index,
-                                ),
+                                onTap: _isSubmitting
+                                    ? null
+                                    : () => setState(
+                                        () => _selectedReasonIndex = index,
+                                      ),
                                 borderRadius: BorderRadius.vertical(
                                   top: index == 0
                                       ? const Radius.circular(AppRadius.xl)
@@ -243,7 +293,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                                       const SizedBox(width: 14),
                                       Expanded(
                                         child: Text(
-                                          reasons[index],
+                                          reasons[index].label,
                                           style: const TextStyle(
                                             fontFamily: 'Manrope',
                                             fontSize: 14,
@@ -288,6 +338,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                           ),
                           TextField(
                             controller: _noteController,
+                            enabled: !_isSubmitting,
                             maxLines: 2,
                             style: const TextStyle(
                               fontFamily: 'Manrope',
@@ -318,6 +369,48 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
       ),
     );
   }
+}
+
+List<_ComplaintReasonOption> _reasonOptions(AppLocalizations l10n) => [
+  _ComplaintReasonOption(
+    reason: ComplaintReason.abusiveLanguage,
+    label: l10n.candidateReportReasonAbusiveLanguage,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.fakeProfile,
+    label: l10n.candidateReportReasonFakeProfile,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.fraud,
+    label: l10n.candidateReportReasonFraud,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.spam,
+    label: l10n.candidateReportReasonSpam,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.falseInformation,
+    label: l10n.candidateReportReasonFalseInformation,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.threat,
+    label: l10n.candidateReportReasonThreat,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.noSeriousIntent,
+    label: l10n.candidateReportReasonNoSeriousIntent,
+  ),
+  _ComplaintReasonOption(
+    reason: ComplaintReason.other,
+    label: l10n.candidateReportReasonOther,
+  ),
+];
+
+final class _ComplaintReasonOption {
+  const _ComplaintReasonOption({required this.reason, required this.label});
+
+  final ComplaintReason reason;
+  final String label;
 }
 
 final class _BlurredAvatar extends StatelessWidget {

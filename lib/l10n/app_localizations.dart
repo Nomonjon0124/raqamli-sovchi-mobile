@@ -2146,6 +2146,48 @@ abstract class AppLocalizations {
   /// **'Moliyaviy firibgarlik'**
   String get candidateReportReasonScam;
 
+  /// No description provided for @candidateReportReasonAbusiveLanguage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Odobsiz so‘z'**
+  String get candidateReportReasonAbusiveLanguage;
+
+  /// No description provided for @candidateReportReasonFakeProfile.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soxta profil'**
+  String get candidateReportReasonFakeProfile;
+
+  /// No description provided for @candidateReportReasonFraud.
+  ///
+  /// In uz, this message translates to:
+  /// **'Firibgarlik'**
+  String get candidateReportReasonFraud;
+
+  /// No description provided for @candidateReportReasonSpam.
+  ///
+  /// In uz, this message translates to:
+  /// **'Spam va reklama'**
+  String get candidateReportReasonSpam;
+
+  /// No description provided for @candidateReportReasonFalseInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Noto‘g‘ri ma’lumot'**
+  String get candidateReportReasonFalseInformation;
+
+  /// No description provided for @candidateReportReasonThreat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Haqorat va tahdid'**
+  String get candidateReportReasonThreat;
+
+  /// No description provided for @candidateReportReasonNoSeriousIntent.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikoh niyati yo‘q'**
+  String get candidateReportReasonNoSeriousIntent;
+
   /// No description provided for @candidateReportReasonOther.
   ///
   /// In uz, this message translates to:

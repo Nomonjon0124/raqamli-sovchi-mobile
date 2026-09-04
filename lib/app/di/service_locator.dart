@@ -70,6 +70,10 @@ import '../../features/match/data/repositories/match_request_repository_impl.dar
 import '../../features/match/data/repositories/photo_request_repository_impl.dart';
 import '../../features/match/domain/repositories/match_request_repository.dart';
 import '../../features/match/domain/repositories/photo_request_repository.dart';
+import '../../features/moderation/application/use_cases/create_complaint.dart';
+import '../../features/moderation/data/data_sources/complaint_data_source.dart';
+import '../../features/moderation/data/repositories/complaint_repository_impl.dart';
+import '../../features/moderation/domain/repositories/complaint_repository.dart';
 import '../../features/notifications/application/use_cases/notification_use_cases.dart';
 import '../../features/notifications/data/data_sources/notification_data_source.dart';
 import '../../features/notifications/data/repositories/notification_repository_impl.dart';
@@ -221,6 +225,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<PhotoRequestRepository>(
       () => PhotoRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<ComplaintDataSource>(
+      () => RemoteComplaintDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<ComplaintRepository>(
+      () => ComplaintRepositoryImpl(serviceLocator()),
+    )
     ..registerLazySingleton<NotificationDataSource>(
       () => RemoteNotificationDataSource(serviceLocator()),
     )
@@ -274,6 +284,9 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<BlockUserUseCase>(
       () => BlockUserUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreateComplaintUseCase>(
+      () => CreateComplaintUseCase(serviceLocator()),
     )
     ..registerFactory<LoadNotificationsUseCase>(
       () => LoadNotificationsUseCase(serviceLocator()),

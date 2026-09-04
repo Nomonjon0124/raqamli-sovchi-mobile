@@ -12,6 +12,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
     required this.candidateName,
     this.reportNumber = 'SH-24815',
     this.submittedAt,
+    this.statusLabel,
     this.onClose,
     super.key,
   });
@@ -19,6 +20,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
   final String candidateName;
   final String reportNumber;
   final DateTime? submittedAt;
+  final String? statusLabel;
   final VoidCallback? onClose;
 
   String _formatDateTime(DateTime date) {
@@ -47,6 +49,9 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final formattedDate = _formatDateTime(submittedAt ?? DateTime.now());
+    final statusText = statusLabel == null || statusLabel!.trim().isEmpty
+        ? l10n.candidateReportStatusUnderReview
+        : statusLabel!.trim();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -157,7 +162,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                           const SizedBox(height: 12),
                           _RowItem(
                             label: l10n.candidateReportStatusLabel,
-                            value: l10n.candidateReportStatusUnderReview,
+                            value: statusText,
                             valueColor: AppColors.warningText,
                           ),
                         ],
@@ -241,13 +246,19 @@ final class _RowItem extends StatelessWidget {
             color: AppColors.mutedText,
           ),
         ),
-        Text(
-          value,
-          style: TextStyle(
-            fontFamily: 'Manrope',
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: valueColor ?? AppColors.text,
+        const SizedBox(width: 12),
+        Flexible(
+          child: Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.end,
+            style: TextStyle(
+              fontFamily: 'Manrope',
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: valueColor ?? AppColors.text,
+            ),
           ),
         ),
       ],

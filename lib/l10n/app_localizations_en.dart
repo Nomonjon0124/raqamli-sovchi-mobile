@@ -1151,6 +1151,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateReportReasonScam => 'Financial fraud';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Abusive language';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Fake profile';
+
+  @override
+  String get candidateReportReasonFraud => 'Fraud';
+
+  @override
+  String get candidateReportReasonSpam => 'Spam and advertising';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'False information';
+
+  @override
+  String get candidateReportReasonThreat => 'Insult or threat';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent => 'No intention of marriage';
+
+  @override
   String get candidateReportReasonOther => 'Other reason';
 
   @override
