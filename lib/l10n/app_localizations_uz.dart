@@ -835,7 +835,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidatesFilterRecommended => 'Tavsiyalar';
 
   @override
-  String get candidatesFilterNearby => 'Yaqinlar';
+  String get candidatesFilterNearby => 'Atrofdagilar';
 
   @override
   String get privatePhotoLabel => 'Maxfiy rasm';
@@ -1068,6 +1068,129 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get candidatePhotoPermissionSentReturn => 'Profilga qaytish';
+
+  @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return '$candidateName ni bloklaysizmi?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'U sizni ko‘rmaydi, siz ham uni ko‘rmaysiz. Bloklaganingizni o‘zi bilmaydi.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Suhbat yopiladi, yozishmalar saqlanadi';
+
+  @override
+  String get candidateBlockPointRemovedSaved =>
+      'Saqlanganlar ro‘yxatidan olib tashlanadi';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Uning vakili ham siz bilan bog‘lana olmaydi';
+
+  @override
+  String get candidateBlockAction => 'Bloklash';
+
+  @override
+  String get candidateBlockCancel => 'Bekor qilish';
+
+  @override
+  String get candidateBlockedTitle => 'Profil bloklandi';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName endi sizni ko‘rmaydi.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Kim';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Bloklandi';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Holat';
+
+  @override
+  String get candidateBlockedStatusValue => 'Bloklangan';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'U bloklaganingizni bilmaydi. Blokni Sozlamalar → Bloklangan profillar bo‘limidan olib tashlaysiz.';
+
+  @override
+  String get candidateBlockedClose => 'Yopish';
+
+  @override
+  String get candidateReportTitle => 'Nima bo‘ldi?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'Suhbat tarixi bizda saqlanadi, tekshirishga yordam beradi.';
+
+  @override
+  String get candidateReportTargetProfile => 'Shikoyat shu profil ustidan';
+
+  @override
+  String get candidateReportReasonSection => 'Sabab';
+
+  @override
+  String get candidateReportReasonInappropriate => 'Odobsiz so‘z yoki rasm';
+
+  @override
+  String get candidateReportReasonFake => 'Yolg‘on ma’lumot yoki soxta profil';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'Nikoh niyati yo‘q';
+
+  @override
+  String get candidateReportReasonScam => 'Moliyaviy firibgarlik';
+
+  @override
+  String get candidateReportReasonOther => 'Boshqa sabab';
+
+  @override
+  String get candidateReportNoteLabel => 'Qo‘shimcha izoh (ixtiyoriy)';
+
+  @override
+  String get candidateReportNoteHint => 'Nima bo‘lganini qisqacha yozing...';
+
+  @override
+  String get candidateReportSubmitAction => 'Shikoyatni yuborish';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Shikoyat yuborildi';
+
+  @override
+  String get candidateReportSubmittedSubtitle => 'Natija haqida xabar beramiz.';
+
+  @override
+  String get candidateReportNumberLabel => 'Ariza raqami';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Yuborildi';
+
+  @override
+  String get candidateReportStatusLabel => 'Holat';
+
+  @override
+  String get candidateReportStatusUnderReview => 'Ko‘rib chiqilmoqda';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'Suhbat tarixi dalil sifatida saqlandi';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Moderator tekshiruvi';
+
+  @override
+  String get candidateReportStepDecision => 'Qaror va xabarnoma';
+
+  @override
+  String get candidateReportNotice =>
+      'Bu foydalanuvchi siz bilan bog‘lana olmaydi. Suhbat vaqtincha yopildi.';
 
   @override
   String get surveyPromptTitle => 'Moslik foizi yopiq';
@@ -1350,7 +1473,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbyShowAll => 'Barchasi';
 
   @override
-  String get openStreetMapAttribution => '© OpenStreetMap ishtirokchilari';
+  String get nearbyCloseMap => 'Xaritani yopish';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1364,7 +1487,10 @@ class AppLocalizationsUz extends AppLocalizations {
   String get nearbySettingsTitle => 'Radius va ko‘rinish';
 
   @override
-  String get nearbySearchRadiusLabel => 'Qidiruv radiusi';
+  String get nearbySearchRadiusLabel => 'Radius';
+
+  @override
+  String get nearbyRadiusRange => '1–25 km';
 
   @override
   String nearbyRadiusOption(int radius) {
@@ -1383,14 +1509,14 @@ class AppLocalizationsUz extends AppLocalizations {
       'Radius qanchalik katta bo‘lsa, moslik foizi shunchalik pasayadi.';
 
   @override
-  String get nearbyVisibilityTitle => 'Meni Yaqinlar ro‘yxatida ko‘rsatish';
+  String get nearbyVisibilityTitle => 'Meni Atrofdagilar ro‘yxatida ko‘rsatish';
 
   @override
   String get nearbyVisibilitySubtitle =>
       'O‘chirsangiz, siz ham hech kimni ko‘rmaysiz';
 
   @override
-  String get nearbyAudienceTitle => 'Kim meni Yaqinlarda ko‘ra oladi';
+  String get nearbyAudienceTitle => 'Kim meni Atrofdagilarda ko‘ra oladi';
 
   @override
   String get nearbyAudienceAll => 'Hamma nomzodlar';

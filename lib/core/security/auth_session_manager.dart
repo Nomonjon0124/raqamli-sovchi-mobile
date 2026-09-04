@@ -31,6 +31,13 @@ abstract interface class AuthSessionManager {
 
   Future<String?> readEffectiveAccessToken();
 
+  Future<String?> readEffectiveRefreshToken();
+
+  Future<void> saveRefreshedTokens({
+    required String accessToken,
+    String? refreshToken,
+  });
+
   void stage({
     required String accessToken,
     required String? refreshToken,
@@ -67,6 +74,36 @@ final class DefaultAuthSessionManager implements AuthSessionManager {
   @override
   Future<String?> readEffectiveAccessToken() async {
     return _pendingSession?.accessToken ?? _tokenStore.readAccessToken();
+  }
+
+  @override
+  Future<String?> readEffectiveRefreshToken() async {
+    final pending = _pendingSession;
+    return pending != null
+        ? pending.refreshToken
+        : _tokenStore.readRefreshToken();
+  }
+
+  @override
+  Future<void> saveRefreshedTokens({
+    required String accessToken,
+    String? refreshToken,
+  }) async {
+    final pending = _pendingSession;
+    if (pending != null) {
+      _pendingSession = PendingAuthSession(
+        accessToken: accessToken,
+        refreshToken: refreshToken ?? pending.refreshToken,
+        userId: pending.userId,
+        createdAt: pending.createdAt,
+      );
+      return;
+    }
+
+    await _tokenStore.saveTokens(
+      accessToken: accessToken,
+      refreshToken: refreshToken ?? await _tokenStore.readRefreshToken(),
+    );
   }
 
   @override

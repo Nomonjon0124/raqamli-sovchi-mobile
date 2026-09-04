@@ -139,7 +139,10 @@ final class AppRouter {
             routes: [
               GoRoute(
                 path: RouteNames.home,
-                builder: (context, state) => const CandidatesPage(),
+                builder: (context, state) => CandidatesPage(
+                  profileRefreshToken:
+                      state.uri.queryParameters['profileRefresh'],
+                ),
               ),
             ],
           ),

@@ -661,6 +661,27 @@ final class _FakeAuthSessionManager implements AuthSessionManager {
   }
 
   @override
+  Future<String?> readEffectiveRefreshToken() async {
+    return _pendingSession?.refreshToken;
+  }
+
+  @override
+  Future<void> saveRefreshedTokens({
+    required String accessToken,
+    String? refreshToken,
+  }) async {
+    final pending = _pendingSession;
+    if (pending != null) {
+      _pendingSession = PendingAuthSession(
+        accessToken: accessToken,
+        refreshToken: refreshToken ?? pending.refreshToken,
+        userId: pending.userId,
+        createdAt: pending.createdAt,
+      );
+    }
+  }
+
+  @override
   Future<bool?> readProfileOnboardingCompleted() async {
     return profileOnboardingCompleted;
   }

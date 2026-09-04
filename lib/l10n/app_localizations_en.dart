@@ -1072,6 +1072,130 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidatePhotoPermissionSentReturn => 'Back to profile';
 
   @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return 'Block $candidateName?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'They won\'t see you, and you won\'t see them. They won\'t know you blocked them.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Chat will be closed, message history preserved';
+
+  @override
+  String get candidateBlockPointRemovedSaved => 'Removed from saved list';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Their representative won\'t be able to contact you either';
+
+  @override
+  String get candidateBlockAction => 'Block';
+
+  @override
+  String get candidateBlockCancel => 'Cancel';
+
+  @override
+  String get candidateBlockedTitle => 'Profile blocked';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName will no longer see you.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Who';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Blocked at';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Status';
+
+  @override
+  String get candidateBlockedStatusValue => 'Blocked';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'They won\'t know you blocked them. You can unblock from Settings → Blocked profiles.';
+
+  @override
+  String get candidateBlockedClose => 'Close';
+
+  @override
+  String get candidateReportTitle => 'What happened?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'Chat history is saved with us to help with the review.';
+
+  @override
+  String get candidateReportTargetProfile => 'Report against this profile';
+
+  @override
+  String get candidateReportReasonSection => 'Reason';
+
+  @override
+  String get candidateReportReasonInappropriate =>
+      'Inappropriate word or photo';
+
+  @override
+  String get candidateReportReasonFake => 'False information or fake profile';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'No intention of marriage';
+
+  @override
+  String get candidateReportReasonScam => 'Financial fraud';
+
+  @override
+  String get candidateReportReasonOther => 'Other reason';
+
+  @override
+  String get candidateReportNoteLabel => 'Additional note (optional)';
+
+  @override
+  String get candidateReportNoteHint => 'Briefly describe what happened...';
+
+  @override
+  String get candidateReportSubmitAction => 'Submit report';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Report submitted';
+
+  @override
+  String get candidateReportSubmittedSubtitle =>
+      'We will notify you about the result.';
+
+  @override
+  String get candidateReportNumberLabel => 'Report number';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Submitted at';
+
+  @override
+  String get candidateReportStatusLabel => 'Status';
+
+  @override
+  String get candidateReportStatusUnderReview => 'Under review';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'Chat history preserved as evidence';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Moderator review';
+
+  @override
+  String get candidateReportStepDecision => 'Decision and notification';
+
+  @override
+  String get candidateReportNotice =>
+      'This user won\'t be able to contact you. Chat is temporarily closed.';
+
+  @override
   String get surveyPromptTitle => 'Match percentage locked';
 
   @override
@@ -1355,7 +1479,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbyShowAll => 'View all';
 
   @override
-  String get openStreetMapAttribution => '© OpenStreetMap contributors';
+  String get nearbyCloseMap => 'Close map';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1369,7 +1493,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbySettingsTitle => 'Radius and visibility';
 
   @override
-  String get nearbySearchRadiusLabel => 'Search radius';
+  String get nearbySearchRadiusLabel => 'Radius';
+
+  @override
+  String get nearbyRadiusRange => '1–25 km';
 
   @override
   String nearbyRadiusOption(int radius) {

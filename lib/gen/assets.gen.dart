@@ -75,6 +75,14 @@ class $AssetsIconsGen {
   SvgGenImage get icArrowRight =>
       const SvgGenImage('assets/icons/ic_arrow_right.svg');
 
+  /// File path: assets/icons/ic_blocked_face.svg
+  SvgGenImage get icBlockedFace =>
+      const SvgGenImage('assets/icons/ic_blocked_face.svg');
+
+  /// File path: assets/icons/ic_report_dialogue.svg
+  SvgGenImage get icReportDialogue =>
+      const SvgGenImage('assets/icons/ic_report_dialogue.svg');
+
   /// File path: assets/icons/ic_candidate_grid.svg
   SvgGenImage get icCandidateGrid =>
       const SvgGenImage('assets/icons/ic_candidate_grid.svg');
@@ -206,6 +214,10 @@ class $AssetsIconsGen {
   SvgGenImage get icSecurity =>
       const SvgGenImage('assets/icons/ic_security.svg');
 
+  /// File path: assets/icons/ic_send_email_fly.svg
+  SvgGenImage get icSendEmailFly =>
+      const SvgGenImage('assets/icons/ic_send_email_fly.svg');
+
   /// File path: assets/icons/ic_services_btv.svg
   SvgGenImage get icServicesBtv =>
       const SvgGenImage('assets/icons/ic_services_btv.svg');
@@ -334,6 +346,8 @@ class $AssetsIconsGen {
     icAiSpark,
     icArrowLeft01Round,
     icArrowRight,
+    icBlockedFace,
+    icReportDialogue,
     icCandidateGrid,
     icCandidateMap,
     icCandidatesBtv,
@@ -370,6 +384,7 @@ class $AssetsIconsGen {
     icRadar,
     icSaved,
     icSecurity,
+    icSendEmailFly,
     icServicesBtv,
     icSetting,
     icSettings,

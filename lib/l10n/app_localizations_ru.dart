@@ -1072,6 +1072,133 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidatePhotoPermissionSentReturn => 'Вернуться к профилю';
 
   @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return 'Заблокировать $candidateName?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'Они не увидят вас, и вы не увидите их. Они не узнают о блокировке.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Чат закроется, переписка сохранится';
+
+  @override
+  String get candidateBlockPointRemovedSaved =>
+      'Будет удален(а) из сохраненных';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Их представитель также не сможет связаться с вами';
+
+  @override
+  String get candidateBlockAction => 'Заблокировать';
+
+  @override
+  String get candidateBlockCancel => 'Отмена';
+
+  @override
+  String get candidateBlockedTitle => 'Профиль заблокирован';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName больше не увидит вас.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Кто';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Заблокирован';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Статус';
+
+  @override
+  String get candidateBlockedStatusValue => 'Заблокирован';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'Пользователь не узнает о блокировке. Разблокировать можно в Настройки → Заблокированные профили.';
+
+  @override
+  String get candidateBlockedClose => 'Закрыть';
+
+  @override
+  String get candidateReportTitle => 'Что случилось?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'История переписки сохранена у нас для проверки.';
+
+  @override
+  String get candidateReportTargetProfile => 'Жалоба на этот профиль';
+
+  @override
+  String get candidateReportReasonSection => 'Причина';
+
+  @override
+  String get candidateReportReasonInappropriate =>
+      'Непристойные слова или фото';
+
+  @override
+  String get candidateReportReasonFake =>
+      'Ложная информация или фейковый профиль';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'Нет намерения вступить в брак';
+
+  @override
+  String get candidateReportReasonScam => 'Финансовое мошенничество';
+
+  @override
+  String get candidateReportReasonOther => 'Другая причина';
+
+  @override
+  String get candidateReportNoteLabel =>
+      'Дополнительный комментарий (необязательно)';
+
+  @override
+  String get candidateReportNoteHint => 'Кратко опишите, что произошло...';
+
+  @override
+  String get candidateReportSubmitAction => 'Отправить жалобу';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Жалоба отправлена';
+
+  @override
+  String get candidateReportSubmittedSubtitle =>
+      'Мы сообщим вам о результатах.';
+
+  @override
+  String get candidateReportNumberLabel => 'Номер обращения';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Отправлено';
+
+  @override
+  String get candidateReportStatusLabel => 'Статус';
+
+  @override
+  String get candidateReportStatusUnderReview => 'На рассмотрении';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'История переписки сохранена как доказательство';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Проверка модератором';
+
+  @override
+  String get candidateReportStepDecision => 'Решение и уведомление';
+
+  @override
+  String get candidateReportNotice =>
+      'Этот пользователь не сможет связаться с вами. Чат временно закрыт.';
+
+  @override
   String get surveyPromptTitle => 'Процент совпадения закрыт';
 
   @override
@@ -1354,7 +1481,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbyShowAll => 'Все';
 
   @override
-  String get openStreetMapAttribution => '© участники OpenStreetMap';
+  String get nearbyCloseMap => 'Закрыть карту';
 
   @override
   String nearbyWithinRadius(int radius) {
@@ -1368,7 +1495,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nearbySettingsTitle => 'Радиус и видимость';
 
   @override
-  String get nearbySearchRadiusLabel => 'Радиус поиска';
+  String get nearbySearchRadiusLabel => 'Радиус';
+
+  @override
+  String get nearbyRadiusRange => '1–25 км';
 
   @override
   String nearbyRadiusOption(int radius) {

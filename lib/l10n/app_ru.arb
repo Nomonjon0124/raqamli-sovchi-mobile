@@ -346,6 +346,49 @@
   "candidatePhotoPermissionSentTitle": "Запрос на просмотр фото отправлен",
   "candidatePhotoPermissionSentDescription": "Запрос на просмотр фото отправлен {name} и его представителю. Мы сообщим, когда будет ответ.",
   "candidatePhotoPermissionSentReturn": "Вернуться к профилю",
+  "candidateBlockDialogTitle": "Заблокировать {candidateName}?",
+  "@candidateBlockDialogTitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockDialogSubtitle": "Они не увидят вас, и вы не увидите их. Они не узнают о блокировке.",
+  "candidateBlockPointChatClosed": "Чат закроется, переписка сохранится",
+  "candidateBlockPointRemovedSaved": "Будет удален(а) из сохраненных",
+  "candidateBlockPointRepresentativeBlocked": "Их представитель также не сможет связаться с вами",
+  "candidateBlockAction": "Заблокировать",
+  "candidateBlockCancel": "Отмена",
+  "candidateBlockedTitle": "Профиль заблокирован",
+  "candidateBlockedSubtitle": "{candidateName} больше не увидит вас.",
+  "@candidateBlockedSubtitle": {
+    "placeholders": {"candidateName": {"type": "String"}}
+  },
+  "candidateBlockedWhoLabel": "Кто",
+  "candidateBlockedTimeLabel": "Заблокирован",
+  "candidateBlockedStatusLabel": "Статус",
+  "candidateBlockedStatusValue": "Заблокирован",
+  "candidateBlockedSettingsHint": "Пользователь не узнает о блокировке. Разблокировать можно в Настройки → Заблокированные профили.",
+  "candidateBlockedClose": "Закрыть",
+  "candidateReportTitle": "Что случилось?",
+  "candidateReportSubtitle": "История переписки сохранена у нас для проверки.",
+  "candidateReportTargetProfile": "Жалоба на этот профиль",
+  "candidateReportReasonSection": "Причина",
+  "candidateReportReasonInappropriate": "Непристойные слова или фото",
+  "candidateReportReasonFake": "Ложная информация или фейковый профиль",
+  "candidateReportReasonNoMarriage": "Нет намерения вступить в брак",
+  "candidateReportReasonScam": "Финансовое мошенничество",
+  "candidateReportReasonOther": "Другая причина",
+  "candidateReportNoteLabel": "Дополнительный комментарий (необязательно)",
+  "candidateReportNoteHint": "Кратко опишите, что произошло...",
+  "candidateReportSubmitAction": "Отправить жалобу",
+  "candidateReportSubmittedTitle": "Жалоба отправлена",
+  "candidateReportSubmittedSubtitle": "Мы сообщим вам о результатах.",
+  "candidateReportNumberLabel": "Номер обращения",
+  "candidateReportSubmittedTimeLabel": "Отправлено",
+  "candidateReportStatusLabel": "Статус",
+  "candidateReportStatusUnderReview": "На рассмотрении",
+  "candidateReportStepHistoryPreserved": "История переписки сохранена как доказательство",
+  "candidateReportStepModeratorReview": "Проверка модератором",
+  "candidateReportStepDecision": "Решение и уведомление",
+  "candidateReportNotice": "Этот пользователь не сможет связаться с вами. Чат временно закрыт.",
   "@candidateDetailVoiceIntro": {
     "placeholders": {"duration": {"type": "String"}}
   },
@@ -483,14 +526,15 @@
     "placeholders": {"count": {"type": "int"}}
   },
   "nearbyShowAll": "Все",
-  "openStreetMapAttribution": "© участники OpenStreetMap",
+  "nearbyCloseMap": "Закрыть карту",
   "nearbyWithinRadius": "В радиусе {radius} км",
   "@nearbyWithinRadius": {
     "placeholders": {"radius": {"type": "int"}}
   },
   "nearbyRecenter": "Вернуться к моему местоположению",
   "nearbySettingsTitle": "Радиус и видимость",
-  "nearbySearchRadiusLabel": "Радиус поиска",
+  "nearbySearchRadiusLabel": "Радиус",
+  "nearbyRadiusRange": "1–25 км",
   "nearbyRadiusOption": "{radius} км",
   "@nearbyRadiusOption": {
     "placeholders": {"radius": {"type": "int"}}

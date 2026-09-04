@@ -148,7 +148,7 @@ mixin OnboardingRepresentativeHandler
       lastName: draft.lastName!,
       fatherName: draft.patronymic,
       candidateType: draft.candidateType!,
-      birthYear: draft.birthDate!.year,
+      birthDate: draft.birthDate!,
       heightCm: draft.heightCm!,
       weightKg: draft.weightKg,
       regionId: draft.regionId!,

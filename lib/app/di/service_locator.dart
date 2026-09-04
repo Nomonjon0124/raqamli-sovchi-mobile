@@ -61,11 +61,15 @@ import '../../features/discovery/domain/repositories/location_repository.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
+import '../../features/match/application/use_cases/create_photo_request.dart';
 import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
 import '../../features/match/application/use_cases/get_match_requests.dart';
 import '../../features/match/data/data_sources/match_request_data_source.dart';
+import '../../features/match/data/data_sources/photo_request_data_source.dart';
 import '../../features/match/data/repositories/match_request_repository_impl.dart';
+import '../../features/match/data/repositories/photo_request_repository_impl.dart';
 import '../../features/match/domain/repositories/match_request_repository.dart';
+import '../../features/match/domain/repositories/photo_request_repository.dart';
 import '../../features/notifications/application/use_cases/notification_use_cases.dart';
 import '../../features/notifications/data/data_sources/notification_data_source.dart';
 import '../../features/notifications/data/repositories/notification_repository_impl.dart';
@@ -83,9 +87,13 @@ import '../../features/onboarding/data/services/onboarding_media_service_impl.da
 import '../../features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
+import '../../features/profile/application/use_cases/block_user.dart';
 import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/data/data_sources/blocked_user_data_source.dart';
 import '../../features/profile/data/data_sources/profile_data_source.dart';
+import '../../features/profile/data/repositories/blocked_user_repository_impl.dart';
 import '../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../features/profile/domain/repositories/blocked_user_repository.dart';
 import '../../features/profile/domain/repositories/profile_repository.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
@@ -195,11 +203,23 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<ProfileRepository>(
       () => ProfileRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<BlockedUserDataSource>(
+      () => RemoteBlockedUserDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<BlockedUserRepository>(
+      () => BlockedUserRepositoryImpl(serviceLocator()),
+    )
     ..registerLazySingleton<MatchRequestDataSource>(
       () => RemoteMatchRequestDataSource(serviceLocator()),
     )
     ..registerLazySingleton<MatchRequestRepository>(
       () => MatchRequestRepositoryImpl(serviceLocator()),
+    )
+    ..registerLazySingleton<PhotoRequestDataSource>(
+      () => RemotePhotoRequestDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<PhotoRequestRepository>(
+      () => PhotoRequestRepositoryImpl(serviceLocator()),
     )
     ..registerLazySingleton<NotificationDataSource>(
       () => RemoteNotificationDataSource(serviceLocator()),
@@ -248,6 +268,12 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<CreateMatchRequestUseCase>(
       () => CreateMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreatePhotoRequestUseCase>(
+      () => CreatePhotoRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<BlockUserUseCase>(
+      () => BlockUserUseCase(serviceLocator()),
     )
     ..registerFactory<LoadNotificationsUseCase>(
       () => LoadNotificationsUseCase(serviceLocator()),

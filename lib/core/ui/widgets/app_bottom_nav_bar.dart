@@ -3,6 +3,41 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/app_colors.dart';
 import '../../../gen/assets.gen.dart';
 
+final class AppBottomNavBarVisibilityController extends ChangeNotifier {
+  bool _isVisible = true;
+
+  bool get isVisible => _isVisible;
+
+  void show() {
+    if (_isVisible) return;
+    _isVisible = true;
+    notifyListeners();
+  }
+
+  void hide() {
+    if (!_isVisible) return;
+    _isVisible = false;
+    notifyListeners();
+  }
+
+  void reset() => show();
+}
+
+final class AppBottomNavBarVisibilityScope
+    extends InheritedNotifier<AppBottomNavBarVisibilityController> {
+  const AppBottomNavBarVisibilityScope({
+    required AppBottomNavBarVisibilityController controller,
+    required super.child,
+    super.key,
+  }) : super(notifier: controller);
+
+  static AppBottomNavBarVisibilityController? maybeOf(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<AppBottomNavBarVisibilityScope>()
+        ?.notifier;
+  }
+}
+
 final class AppBottomNavItem {
   const AppBottomNavItem({required this.label, required this.icon});
 
@@ -15,14 +50,60 @@ final class AppBottomNavBar extends StatelessWidget {
     required this.items,
     required this.currentIndex,
     required this.onItemSelected,
+    this.visible = true,
     super.key,
   });
 
   final List<AppBottomNavItem> items;
   final int currentIndex;
   final ValueChanged<int> onItemSelected;
+  final bool visible;
 
   static const double height = 69;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 280),
+      reverseDuration: const Duration(milliseconds: 240),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      transitionBuilder: (child, animation) {
+        final slide = Tween<Offset>(
+          begin: const Offset(0, 1),
+          end: Offset.zero,
+        ).animate(animation);
+        return ClipRect(
+          child: SizeTransition(
+            sizeFactor: animation,
+            axisAlignment: -1,
+            child: SlideTransition(position: slide, child: child),
+          ),
+        );
+      },
+      child: visible
+          ? _AppBottomNavBarContent(
+              key: const ValueKey('visible'),
+              items: items,
+              currentIndex: currentIndex,
+              onItemSelected: onItemSelected,
+            )
+          : const SizedBox(key: ValueKey('hidden')),
+    );
+  }
+}
+
+final class _AppBottomNavBarContent extends StatelessWidget {
+  const _AppBottomNavBarContent({
+    required this.items,
+    required this.currentIndex,
+    required this.onItemSelected,
+    super.key,
+  });
+
+  final List<AppBottomNavItem> items;
+  final int currentIndex;
+  final ValueChanged<int> onItemSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +115,7 @@ final class AppBottomNavBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: SizedBox(
-          height: height,
+          height: AppBottomNavBar.height,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
             child: Row(

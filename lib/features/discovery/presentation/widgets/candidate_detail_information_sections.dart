@@ -24,7 +24,7 @@ final class CandidateDetailInformationSections extends StatelessWidget {
         entries: [
           _CandidateInformationEntry(
             label: l10n.candidateDetailBirthYear,
-            value: _birthYearValue(l10n),
+            value: _birthYearValue,
           ),
           _CandidateInformationEntry(
             label: l10n.candidateDetailCity,
@@ -84,13 +84,23 @@ final class CandidateDetailInformationSections extends StatelessWidget {
     );
   }
 
-  String? _birthYearValue(AppLocalizations l10n) {
+  String? get _birthYearValue {
+    final birthDate = candidate.birthDate;
+    if (birthDate != null) {
+      return _formatDate(birthDate);
+    }
     final birthYear = candidate.birthYear;
-    if (birthYear == null) return null;
-    final age = candidate.age;
-    return age == null
-        ? birthYear.toString()
-        : l10n.candidateDetailBirthYearWithAge(birthYear, age);
+    if (birthYear != null) {
+      return birthYear.toString();
+    }
+    return null;
+  }
+
+  String _formatDate(DateTime date) {
+    final local = date.toLocal();
+    final day = local.day.toString().padLeft(2, '0');
+    final month = local.month.toString().padLeft(2, '0');
+    return '$day.$month.${local.year}';
   }
 
   String? get _locationValue {

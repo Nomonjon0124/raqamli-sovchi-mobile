@@ -12,6 +12,7 @@ final class UserProfileModel extends Equatable {
     this.middleName,
     this.gender,
     this.candidateType,
+    this.birthDate,
     this.birthYear,
     this.height,
     this.weight,
@@ -37,6 +38,7 @@ final class UserProfileModel extends Equatable {
   });
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
+    final birthDate = _asDateTime(json['birth_date']);
     final photos = json['photos_info'] is List
         ? (json['photos_info'] as List)
               .map((value) => ProfilePhotoModel.fromJson(_asMap(value)))
@@ -58,7 +60,8 @@ final class UserProfileModel extends Equatable {
       middleName: _asString(json['middle_name']),
       gender: _asString(json['gender']),
       candidateType: _asString(json['candidate_type']),
-      birthYear: _asInt(json['birth_year']),
+      birthDate: birthDate,
+      birthYear: _asInt(json['birth_year']) ?? birthDate?.year,
       height: _asInt(json['height']),
       weight: _asDouble(json['weight']),
       hasChildren: _asBool(json['has_children']),
@@ -112,6 +115,7 @@ final class UserProfileModel extends Equatable {
   final String? middleName;
   final String? gender;
   final String? candidateType;
+  final DateTime? birthDate;
   final int? birthYear;
   final int? height;
   final double? weight;
@@ -144,6 +148,7 @@ final class UserProfileModel extends Equatable {
     middleName: middleName,
     gender: gender,
     candidateType: candidateType,
+    birthDate: birthDate,
     birthYear: birthYear,
     height: height,
     weight: weight,
@@ -179,6 +184,7 @@ final class UserProfileModel extends Equatable {
     middleName,
     gender,
     candidateType,
+    birthDate,
     birthYear,
     height,
     weight,
@@ -305,4 +311,9 @@ double? _asDouble(Object? value) {
   if (value is num) return value.toDouble();
   if (value is String) return double.tryParse(value);
   return null;
+}
+
+DateTime? _asDateTime(Object? value) {
+  if (value == null) return null;
+  return DateTime.tryParse(value.toString());
 }

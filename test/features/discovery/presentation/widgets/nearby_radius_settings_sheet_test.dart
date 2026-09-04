@@ -40,15 +40,23 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Radius va ko‘rinish'), findsOneWidget);
+    expect(find.text('Radius'), findsOneWidget);
+    expect(find.text('1–25 km'), findsOneWidget);
+    expect(find.text('1 km'), findsOneWidget);
+    expect(find.text('3 km'), findsOneWidget);
     expect(find.text('5 km'), findsOneWidget);
-    expect(find.text('Butun viloyat'), findsOneWidget);
+    expect(find.text('15 km'), findsOneWidget);
+    expect(find.text('Butun viloyat'), findsNothing);
     expect(find.text('Faqat moslik 70% dan yuqori'), findsOneWidget);
+
+    await tester.tap(find.text('15 km'));
+    await tester.pumpAndSettle();
 
     await tester.ensureVisible(find.text('Saqlash'));
     await tester.tap(find.text('Saqlash'));
     await tester.pumpAndSettle();
 
-    expect(savedResult?.radiusKm, 5);
+    expect(savedResult?.radiusKm, 15);
     expect(savedResult?.isProfileVisible, isTrue);
     expect(savedResult?.audience, NearbyVisibilityAudience.highCompatibility);
   });

@@ -13,12 +13,12 @@ void main() {
     final dataSource = RemoteOnboardingDataSource(client);
 
     await dataSource.createProfile(
-      const ProfileBootstrapRequest(
+      ProfileBootstrapRequest(
         firstName: 'Ali',
         lastName: 'Valiyev',
         fatherName: 'Vali o‘g‘li',
         candidateType: CandidateType.groom,
-        birthYear: 1995,
+        birthDate: DateTime(1995, 5, 17),
         heightCm: 178,
         weightKg: 72,
         regionId: 'region-1',
@@ -38,7 +38,7 @@ void main() {
       'middle_name': 'Vali o‘g‘li',
       'gender': 'male',
       'candidate_type': 'groom',
-      'birth_year': 1995,
+      'birth_date': '1995-05-17',
       'height': 178,
       'weight': 72,
       'region': 'region-1',
@@ -78,11 +78,11 @@ void main() {
     final dataSource = RemoteOnboardingDataSource(client);
 
     await dataSource.createProfile(
-      const ProfileBootstrapRequest(
+      ProfileBootstrapRequest(
         firstName: 'Ali',
         lastName: 'Valiyev',
         candidateType: CandidateType.groom,
-        birthYear: 1995,
+        birthDate: DateTime(1995, 1, 1),
         heightCm: 178,
         regionId: 'region-1',
         districtId: 'district-1',
@@ -138,12 +138,12 @@ void main() {
     final dataSource = RemoteOnboardingDataSource(client);
 
     await dataSource.createProfile(
-      const ProfileBootstrapRequest(
+      ProfileBootstrapRequest(
         firstName: 'Safarali',
         lastName: 'Muxtorov',
         candidateType: CandidateType.representative,
         representedCandidateType: CandidateType.groom,
-        birthYear: 1995,
+        birthDate: DateTime(1995, 1, 1),
         heightCm: 175,
         regionId: 'region-1',
         districtId: 'district-1',

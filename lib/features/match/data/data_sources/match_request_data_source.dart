@@ -61,12 +61,7 @@ final class RemoteMatchRequestDataSource implements MatchRequestDataSource {
   }) async {
     final response = await _client.post<dynamic>(
       _requestsPath,
-      data: {
-        'from_profile': fromProfile,
-        'to_profile': toProfile,
-        'visibility_scope': visibilityScope.apiName,
-        if (note != null && note.trim().isNotEmpty) 'note': note.trim(),
-      },
+      data: {'to_profile': toProfile},
     );
     return MatchRequestModel.fromJson(_unwrapMap(response.data));
   }

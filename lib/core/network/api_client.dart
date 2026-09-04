@@ -46,9 +46,18 @@ abstract interface class ApiClient {
 }
 
 final class DioApiClient implements ApiClient {
-  DioApiClient({required AuthSessionManager authSessionManager, Dio? client})
-    : _dio = client ?? _createDefaultClient() {
-    _dio.interceptors.add(AuthInterceptor(authSessionManager));
+  DioApiClient({
+    required AuthSessionManager authSessionManager,
+    Dio? client,
+    Dio? refreshClient,
+  }) : _dio = client ?? _createDefaultClient() {
+    _dio.interceptors.add(
+      AuthInterceptor(
+        authSessionManager: authSessionManager,
+        client: _dio,
+        refreshClient: refreshClient ?? _createRefreshClient(_dio),
+      ),
+    );
   }
 
   final Dio _dio;
@@ -143,6 +152,18 @@ final class DioApiClient implements ApiClient {
         connectTimeout: const Duration(seconds: 15),
         receiveTimeout: const Duration(seconds: 15),
         sendTimeout: const Duration(seconds: 30),
+      ),
+    );
+  }
+
+  static Dio _createRefreshClient(Dio source) {
+    final options = source.options;
+    return Dio(
+      BaseOptions(
+        baseUrl: options.baseUrl,
+        connectTimeout: options.connectTimeout,
+        receiveTimeout: options.receiveTimeout,
+        sendTimeout: options.sendTimeout,
       ),
     );
   }

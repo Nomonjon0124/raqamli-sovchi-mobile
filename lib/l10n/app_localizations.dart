@@ -1597,7 +1597,7 @@ abstract class AppLocalizations {
   /// No description provided for @candidatesFilterNearby.
   ///
   /// In uz, this message translates to:
-  /// **'Yaqinlar'**
+  /// **'Atrofdagilar'**
   String get candidatesFilterNearby;
 
   /// No description provided for @privatePhotoLabel.
@@ -2007,6 +2007,228 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Profilga qaytish'**
   String get candidatePhotoPermissionSentReturn;
+
+  /// No description provided for @candidateBlockDialogTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{candidateName} ni bloklaysizmi?'**
+  String candidateBlockDialogTitle(String candidateName);
+
+  /// No description provided for @candidateBlockDialogSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'U sizni ko‘rmaydi, siz ham uni ko‘rmaysiz. Bloklaganingizni o‘zi bilmaydi.'**
+  String get candidateBlockDialogSubtitle;
+
+  /// No description provided for @candidateBlockPointChatClosed.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat yopiladi, yozishmalar saqlanadi'**
+  String get candidateBlockPointChatClosed;
+
+  /// No description provided for @candidateBlockPointRemovedSaved.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlanganlar ro‘yxatidan olib tashlanadi'**
+  String get candidateBlockPointRemovedSaved;
+
+  /// No description provided for @candidateBlockPointRepresentativeBlocked.
+  ///
+  /// In uz, this message translates to:
+  /// **'Uning vakili ham siz bilan bog‘lana olmaydi'**
+  String get candidateBlockPointRepresentativeBlocked;
+
+  /// No description provided for @candidateBlockAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklash'**
+  String get candidateBlockAction;
+
+  /// No description provided for @candidateBlockCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get candidateBlockCancel;
+
+  /// No description provided for @candidateBlockedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil bloklandi'**
+  String get candidateBlockedTitle;
+
+  /// No description provided for @candidateBlockedSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{candidateName} endi sizni ko‘rmaydi.'**
+  String candidateBlockedSubtitle(String candidateName);
+
+  /// No description provided for @candidateBlockedWhoLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kim'**
+  String get candidateBlockedWhoLabel;
+
+  /// No description provided for @candidateBlockedTimeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklandi'**
+  String get candidateBlockedTimeLabel;
+
+  /// No description provided for @candidateBlockedStatusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Holat'**
+  String get candidateBlockedStatusLabel;
+
+  /// No description provided for @candidateBlockedStatusValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan'**
+  String get candidateBlockedStatusValue;
+
+  /// No description provided for @candidateBlockedSettingsHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'U bloklaganingizni bilmaydi. Blokni Sozlamalar → Bloklangan profillar bo‘limidan olib tashlaysiz.'**
+  String get candidateBlockedSettingsHint;
+
+  /// No description provided for @candidateBlockedClose.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yopish'**
+  String get candidateBlockedClose;
+
+  /// No description provided for @candidateReportTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nima bo‘ldi?'**
+  String get candidateReportTitle;
+
+  /// No description provided for @candidateReportSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat tarixi bizda saqlanadi, tekshirishga yordam beradi.'**
+  String get candidateReportSubtitle;
+
+  /// No description provided for @candidateReportTargetProfile.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat shu profil ustidan'**
+  String get candidateReportTargetProfile;
+
+  /// No description provided for @candidateReportReasonSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sabab'**
+  String get candidateReportReasonSection;
+
+  /// No description provided for @candidateReportReasonInappropriate.
+  ///
+  /// In uz, this message translates to:
+  /// **'Odobsiz so‘z yoki rasm'**
+  String get candidateReportReasonInappropriate;
+
+  /// No description provided for @candidateReportReasonFake.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yolg‘on ma’lumot yoki soxta profil'**
+  String get candidateReportReasonFake;
+
+  /// No description provided for @candidateReportReasonNoMarriage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikoh niyati yo‘q'**
+  String get candidateReportReasonNoMarriage;
+
+  /// No description provided for @candidateReportReasonScam.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moliyaviy firibgarlik'**
+  String get candidateReportReasonScam;
+
+  /// No description provided for @candidateReportReasonOther.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa sabab'**
+  String get candidateReportReasonOther;
+
+  /// No description provided for @candidateReportNoteLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qo‘shimcha izoh (ixtiyoriy)'**
+  String get candidateReportNoteLabel;
+
+  /// No description provided for @candidateReportNoteHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nima bo‘lganini qisqacha yozing...'**
+  String get candidateReportNoteHint;
+
+  /// No description provided for @candidateReportSubmitAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyatni yuborish'**
+  String get candidateReportSubmitAction;
+
+  /// No description provided for @candidateReportSubmittedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat yuborildi'**
+  String get candidateReportSubmittedTitle;
+
+  /// No description provided for @candidateReportSubmittedSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Natija haqida xabar beramiz.'**
+  String get candidateReportSubmittedSubtitle;
+
+  /// No description provided for @candidateReportNumberLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ariza raqami'**
+  String get candidateReportNumberLabel;
+
+  /// No description provided for @candidateReportSubmittedTimeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuborildi'**
+  String get candidateReportSubmittedTimeLabel;
+
+  /// No description provided for @candidateReportStatusLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Holat'**
+  String get candidateReportStatusLabel;
+
+  /// No description provided for @candidateReportStatusUnderReview.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘rib chiqilmoqda'**
+  String get candidateReportStatusUnderReview;
+
+  /// No description provided for @candidateReportStepHistoryPreserved.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbat tarixi dalil sifatida saqlandi'**
+  String get candidateReportStepHistoryPreserved;
+
+  /// No description provided for @candidateReportStepModeratorReview.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moderator tekshiruvi'**
+  String get candidateReportStepModeratorReview;
+
+  /// No description provided for @candidateReportStepDecision.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qaror va xabarnoma'**
+  String get candidateReportStepDecision;
+
+  /// No description provided for @candidateReportNotice.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu foydalanuvchi siz bilan bog‘lana olmaydi. Suhbat vaqtincha yopildi.'**
+  String get candidateReportNotice;
 
   /// No description provided for @surveyPromptTitle.
   ///
@@ -2500,11 +2722,11 @@ abstract class AppLocalizations {
   /// **'Barchasi'**
   String get nearbyShowAll;
 
-  /// No description provided for @openStreetMapAttribution.
+  /// No description provided for @nearbyCloseMap.
   ///
   /// In uz, this message translates to:
-  /// **'© OpenStreetMap ishtirokchilari'**
-  String get openStreetMapAttribution;
+  /// **'Xaritani yopish'**
+  String get nearbyCloseMap;
 
   /// No description provided for @nearbyWithinRadius.
   ///
@@ -2527,8 +2749,14 @@ abstract class AppLocalizations {
   /// No description provided for @nearbySearchRadiusLabel.
   ///
   /// In uz, this message translates to:
-  /// **'Qidiruv radiusi'**
+  /// **'Radius'**
   String get nearbySearchRadiusLabel;
+
+  /// No description provided for @nearbyRadiusRange.
+  ///
+  /// In uz, this message translates to:
+  /// **'1–25 km'**
+  String get nearbyRadiusRange;
 
   /// No description provided for @nearbyRadiusOption.
   ///
@@ -2557,7 +2785,7 @@ abstract class AppLocalizations {
   /// No description provided for @nearbyVisibilityTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Meni Yaqinlar ro‘yxatida ko‘rsatish'**
+  /// **'Meni Atrofdagilar ro‘yxatida ko‘rsatish'**
   String get nearbyVisibilityTitle;
 
   /// No description provided for @nearbyVisibilitySubtitle.
@@ -2569,7 +2797,7 @@ abstract class AppLocalizations {
   /// No description provided for @nearbyAudienceTitle.
   ///
   /// In uz, this message translates to:
-  /// **'Kim meni Yaqinlarda ko‘ra oladi'**
+  /// **'Kim meni Atrofdagilarda ko‘ra oladi'**
   String get nearbyAudienceTitle;
 
   /// No description provided for @nearbyAudienceAll.

@@ -12,6 +12,7 @@ import '../../domain/entities/candidate.dart';
 import '../bloc/candidate_detail_bloc.dart';
 import '../bloc/candidate_detail_event.dart';
 import '../bloc/candidate_detail_state.dart';
+import '../widgets/candidate_block_dialog.dart';
 import '../widgets/candidate_detail_bio_section.dart';
 import '../widgets/candidate_detail_bottom_bar.dart';
 import '../widgets/candidate_detail_header.dart';
@@ -24,7 +25,9 @@ import '../widgets/candidate_detail_options_bottom_sheet.dart';
 import '../widgets/candidate_detail_sticky_header.dart';
 import '../widgets/candidate_detail_voice_player.dart';
 import 'candidate_action_result_page.dart';
+import 'candidate_blocked_page.dart';
 import 'candidate_photo_request_page.dart';
+import 'candidate_report_page.dart';
 
 final class CandidateDetailPage extends StatelessWidget {
   const CandidateDetailPage({required this.candidateId, super.key});
@@ -52,8 +55,17 @@ final class _CandidateDetailView extends StatelessWidget {
       listenWhen: (previous, current) =>
           previous.isSendingRequest &&
           !current.isSendingRequest &&
-          current.matchRequest != null,
+          (current.matchRequest != null || current.matchRequestError != null),
       listener: (context, state) {
+        if (state.matchRequestError != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.matchRequestError ?? l10n.genericError),
+            ),
+          );
+          return;
+        }
+
         final candidate = state.candidate;
         if (candidate == null) return;
         final name = [candidate.firstName, candidate.lastName]
@@ -360,8 +372,35 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
             candidateSubtitle: candidateSubtitle,
           );
         },
-        onReport: () => Navigator.of(context).pop(),
-        onBlock: () => Navigator.of(context).pop(),
+        onReport: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => CandidateReportPage(
+                candidate: candidate,
+                candidateName: candidateName,
+              ),
+            ),
+          );
+        },
+        onBlock: () async {
+          Navigator.of(context).pop();
+          final isBlocked = await CandidateBlockDialog.show(
+            context,
+            candidateId: candidate.userId ?? candidate.id,
+            candidateName: candidateName,
+          );
+          if (isBlocked == true && context.mounted) {
+            await Navigator.of(context).pushReplacement(
+              MaterialPageRoute<void>(
+                builder: (_) => CandidateBlockedPage(
+                  candidateName: candidateName,
+                  blockedAt: DateTime.now(),
+                ),
+              ),
+            );
+          }
+        },
         onCancel: () => Navigator.of(context).pop(),
       ),
     );
@@ -376,6 +415,7 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => CandidatePhotoRequestPage(
+          candidateId: candidate.id,
           candidateName: candidateName,
           subtitle: candidateSubtitle,
           imageUrl: _mainImageUrl(candidate),

@@ -31,13 +31,17 @@ Failure _mapStatusCode(int? statusCode, {String? message}) {
 }
 
 String? _extractServerErrorMessage(dynamic data) {
-  if (data is! Map<String, dynamic>) return null;
+  if (data is! Map) return null;
+  final payload = data.map((key, value) => MapEntry(key.toString(), value));
 
-  final errorObj = data['error'];
-  if (errorObj is! Map<String, dynamic>) return null;
+  final errorObj = payload['error'];
+  if (errorObj is! Map) return null;
+  final errorPayload = errorObj.map(
+    (key, value) => MapEntry(key.toString(), value),
+  );
 
-  final details = errorObj['details'];
-  if (details is Map<String, dynamic>) {
+  final details = errorPayload['details'];
+  if (details is Map) {
     for (final value in details.values) {
       if (value is List && value.isNotEmpty) {
         final firstItem = value.first;
@@ -50,7 +54,7 @@ String? _extractServerErrorMessage(dynamic data) {
     }
   }
 
-  final errorMsg = errorObj['errorMsg'];
+  final errorMsg = errorPayload['errorMsg'];
   if (errorMsg is String && errorMsg.trim().isNotEmpty) {
     return errorMsg.trim();
   }

@@ -86,23 +86,26 @@ final class CandidateActionResultPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 68,
-                      height: 68,
-                      decoration: const BoxDecoration(
-                        color: AppColors.successSurface,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: Assets.icons.icVerifyCheck.svg(
-                        width: 32,
-                        height: 32,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.successText,
-                          BlendMode.srcIn,
+                    if (isProposal)
+                      Assets.icons.icSendEmailFly.svg(width: 86, height: 86)
+                    else
+                      Container(
+                        width: 68,
+                        height: 68,
+                        decoration: const BoxDecoration(
+                          color: AppColors.successSurface,
+                          shape: BoxShape.circle,
+                        ),
+                        alignment: Alignment.center,
+                        child: Assets.icons.icVerifyCheck.svg(
+                          width: 32,
+                          height: 32,
+                          colorFilter: const ColorFilter.mode(
+                            AppColors.successText,
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
-                    ),
                     const SizedBox(height: 16),
                     Text(
                       isProposal
@@ -135,9 +138,9 @@ final class CandidateActionResultPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       _ProposalTimeline(candidateName: candidateName),
                       const SizedBox(height: 16),
-                      _ProposalQuota(),
+                      const _ProposalQuota(),
                       const SizedBox(height: 16),
-                      _ProposalNote(),
+                      const _ProposalNote(),
                     ],
                   ],
                 ),

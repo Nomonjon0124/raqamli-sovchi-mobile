@@ -17,8 +17,56 @@ void main() {
       );
 
       expect(await manager.readEffectiveAccessToken(), 'pending-access');
+      expect(await manager.readEffectiveRefreshToken(), 'pending-refresh');
       expect(await store.readAccessToken(), isNull);
       expect(await store.readRefreshToken(), isNull);
+    },
+  );
+
+  test(
+    'refreshing a pending session updates only its in-memory tokens',
+    () async {
+      final store = _MemoryTokenStore();
+      final manager = DefaultAuthSessionManager(store, _MemorySecureStorage());
+      manager.stage(
+        accessToken: 'old-access',
+        refreshToken: 'pending-refresh',
+        userId: 'user-1',
+      );
+
+      await manager.saveRefreshedTokens(accessToken: 'new-access');
+
+      expect(await manager.readEffectiveAccessToken(), 'new-access');
+      expect(await manager.readEffectiveRefreshToken(), 'pending-refresh');
+      expect(await store.readAccessToken(), isNull);
+    },
+  );
+
+  test('refreshing a persisted session preserves its refresh token', () async {
+    final store = _MemoryTokenStore(
+      accessToken: 'old-access',
+      refreshToken: 'saved-refresh',
+    );
+    final manager = DefaultAuthSessionManager(store, _MemorySecureStorage());
+
+    await manager.saveRefreshedTokens(accessToken: 'new-access');
+
+    expect(await store.readAccessToken(), 'new-access');
+    expect(await store.readRefreshToken(), 'saved-refresh');
+  });
+
+  test(
+    'pending session without a refresh token does not use persisted token',
+    () async {
+      final store = _MemoryTokenStore(refreshToken: 'saved-refresh');
+      final manager = DefaultAuthSessionManager(store, _MemorySecureStorage());
+      manager.stage(
+        accessToken: 'pending-access',
+        refreshToken: null,
+        userId: 'user-1',
+      );
+
+      expect(await manager.readEffectiveRefreshToken(), isNull);
     },
   );
 
@@ -121,6 +169,6 @@ final class _MemoryTokenStore implements TokenStore {
     String? refreshToken,
   }) async {
     this.accessToken = accessToken;
-    this.refreshToken = refreshToken;
+    if (refreshToken != null) this.refreshToken = refreshToken;
   }
 }

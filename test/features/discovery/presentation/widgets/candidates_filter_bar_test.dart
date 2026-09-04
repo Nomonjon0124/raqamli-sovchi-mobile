@@ -44,7 +44,7 @@ void main() {
       expect(find.byType(SingleChildScrollView), findsOneWidget);
       expect(find.text('Moslar'), findsOneWidget);
       expect(find.text('Tavsiyalar'), findsOneWidget);
-      expect(find.text('Yaqinlar'), findsOneWidget);
+      expect(find.text('Atrofdagilar'), findsOneWidget);
       expect(find.text('Vakil'), findsNothing);
     });
 
