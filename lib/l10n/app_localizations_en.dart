@@ -1900,4 +1900,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileEditUpdatedOk => 'OK';
+
+  @override
+  String get blockedUsersTitle => 'Blocked profiles';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Blocked profiles cannot see you in search or message you.';
+
+  @override
+  String get blockedUsersEmpty => 'No blocked profiles';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'All profiles you block will appear here.';
+
+  @override
+  String get blockedUsersNote =>
+      'A reported profile is automatically blocked after moderator review — marked as «After complaint» in this list.';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Blocked $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Blocked after complaint';
+
+  @override
+  String get unblockButton => 'Unblock';
+
+  @override
+  String get unblockSuccess => 'User unblocked';
+
+  @override
+  String get unblockConfirmTitle => 'Unblock profile?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'This profile will be able to message you and view your profile again.';
+
+  @override
+  String get cancel => 'Cancel';
 }

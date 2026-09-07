@@ -709,5 +709,25 @@
   "profileEditExit": "Chiqish",
   "profileEditUpdatedTitle": "Profil yangilandi",
   "profileEditUpdatedMessage": "Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.",
-  "profileEditUpdatedOk": "Yaxshi"
+  "profileEditUpdatedOk": "Yaxshi",
+  "blockedUsersTitle": "Bloklangan profillar",
+  "blockedUsersSubtitle": "Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.",
+  "blockedUsersEmpty": "Bloklangan profillar yo‘q",
+  "blockedUsersEmptySubtitle": "Siz bloklagan barcha profillar shu yerda ko‘rinadi.",
+  "blockedUsersNote": "Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.",
+  "blockedAtDate": "Bloklangan {date}",
+  "@blockedAtDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "28.07.2026"
+      }
+    }
+  },
+  "blockedAfterComplaint": "Shikoyatdan keyin bloklangan",
+  "unblockButton": "Blokdan chiqarish",
+  "unblockSuccess": "Foydalanuvchi blokdan chiqarildi",
+  "unblockConfirmTitle": "Blokdan chiqarilsinmi?",
+  "unblockConfirmMessage": "Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.",
+  "cancel": "Bekor qilish"
 }

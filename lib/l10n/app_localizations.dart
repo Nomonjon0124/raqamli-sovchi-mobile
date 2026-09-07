@@ -3465,6 +3465,78 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Yaxshi'**
   String get profileEditUpdatedOk;
+
+  /// No description provided for @blockedUsersTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar'**
+  String get blockedUsersTitle;
+
+  /// No description provided for @blockedUsersSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.'**
+  String get blockedUsersSubtitle;
+
+  /// No description provided for @blockedUsersEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar yo‘q'**
+  String get blockedUsersEmpty;
+
+  /// No description provided for @blockedUsersEmptySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Siz bloklagan barcha profillar shu yerda ko‘rinadi.'**
+  String get blockedUsersEmptySubtitle;
+
+  /// No description provided for @blockedUsersNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.'**
+  String get blockedUsersNote;
+
+  /// No description provided for @blockedAtDate.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan {date}'**
+  String blockedAtDate(String date);
+
+  /// No description provided for @blockedAfterComplaint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyatdan keyin bloklangan'**
+  String get blockedAfterComplaint;
+
+  /// No description provided for @unblockButton.
+  ///
+  /// In uz, this message translates to:
+  /// **'Blokdan chiqarish'**
+  String get unblockButton;
+
+  /// No description provided for @unblockSuccess.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanuvchi blokdan chiqarildi'**
+  String get unblockSuccess;
+
+  /// No description provided for @unblockConfirmTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Blokdan chiqarilsinmi?'**
+  String get unblockConfirmTitle;
+
+  /// No description provided for @unblockConfirmMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.'**
+  String get unblockConfirmMessage;
+
+  /// No description provided for @cancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate

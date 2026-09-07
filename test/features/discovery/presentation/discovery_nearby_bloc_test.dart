@@ -305,13 +305,11 @@ final class _ProfileRepository implements ProfileRepository {
   @override
   Future<Either<Failure, UserProfile>> updateProfile(
     ProfileUpdateParams params,
-  ) =>
-      throw UnimplementedError();
+  ) => throw UnimplementedError();
 
   @override
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
-  }) =>
-      throw UnimplementedError();
+  }) => throw UnimplementedError();
 }

@@ -674,5 +674,25 @@
   "profileEditExit": "Выйти",
   "profileEditUpdatedTitle": "Профиль обновлен",
   "profileEditUpdatedMessage": "Изменения сохранены. Кандидаты увидят ваш профиль в обновленном виде.",
-  "profileEditUpdatedOk": "Хорошо"
+  "profileEditUpdatedOk": "Хорошо",
+  "blockedUsersTitle": "Заблокированные профили",
+  "blockedUsersSubtitle": "Заблокированные профили не видят вас в поиске и не могут писать.",
+  "blockedUsersEmpty": "Нет заблокированных профилей",
+  "blockedUsersEmptySubtitle": "Все заблокированные вами профили будут отображаться здесь.",
+  "blockedUsersNote": "Профиль, на который подана жалоба, автоматически блокируется после проверки модератором — в этом списке помечается «После жалобы».",
+  "blockedAtDate": "Заблокирован(а) {date}",
+  "@blockedAtDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "28.07.2026"
+      }
+    }
+  },
+  "blockedAfterComplaint": "Заблокирован(а) после жалобы",
+  "unblockButton": "Разблокировать",
+  "unblockSuccess": "Пользователь разблокирован",
+  "unblockConfirmTitle": "Разблокировать профиль?",
+  "unblockConfirmMessage": "Этот профиль снова сможет писать вам и просматривать ваш профиль.",
+  "cancel": "Отмена"
 }

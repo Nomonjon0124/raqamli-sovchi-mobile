@@ -35,10 +35,15 @@ final class _ProfileUnsavedChangesSheet extends StatelessWidget {
 
     return _ProfileSheetFrame(
       children: [
-        Text(l10n.profileEditUnsavedTitle, style: AppTypography.analysisTitle),
+        Text(
+          l10n.profileEditUnsavedTitle,
+          textAlign: TextAlign.center,
+          style: AppTypography.analysisTitle,
+        ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           l10n.profileEditUnsavedMessage,
+          textAlign: TextAlign.center,
           style: AppTypography.onboardingBody.copyWith(fontSize: 14),
         ),
         const SizedBox(height: AppSpacing.card),
@@ -66,8 +71,7 @@ final class _ProfileUpdatedSheet extends StatelessWidget {
 
     return _ProfileSheetFrame(
       children: [
-        Align(
-          alignment: Alignment.centerLeft,
+        Center(
           child: Container(
             width: 48,
             height: 48,
@@ -87,10 +91,15 @@ final class _ProfileUpdatedSheet extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSpacing.lg),
-        Text(l10n.profileEditUpdatedTitle, style: AppTypography.analysisTitle),
+        Text(
+          l10n.profileEditUpdatedTitle,
+          textAlign: TextAlign.center,
+          style: AppTypography.analysisTitle,
+        ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           l10n.profileEditUpdatedMessage,
+          textAlign: TextAlign.center,
           style: AppTypography.onboardingBody.copyWith(fontSize: 14),
         ),
         const SizedBox(height: AppSpacing.card),

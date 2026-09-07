@@ -1902,4 +1902,46 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get profileEditUpdatedOk => 'Хорошо';
+
+  @override
+  String get blockedUsersTitle => 'Заблокированные профили';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Заблокированные профили не видят вас в поиске и не могут писать.';
+
+  @override
+  String get blockedUsersEmpty => 'Нет заблокированных профилей';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'Все заблокированные вами профили будут отображаться здесь.';
+
+  @override
+  String get blockedUsersNote =>
+      'Профиль, на который подана жалоба, автоматически блокируется после проверки модератором — в этом списке помечается «После жалобы».';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Заблокирован(а) $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Заблокирован(а) после жалобы';
+
+  @override
+  String get unblockButton => 'Разблокировать';
+
+  @override
+  String get unblockSuccess => 'Пользователь разблокирован';
+
+  @override
+  String get unblockConfirmTitle => 'Разблокировать профиль?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'Этот профиль снова сможет писать вам и просматривать ваш профиль.';
+
+  @override
+  String get cancel => 'Отмена';
 }

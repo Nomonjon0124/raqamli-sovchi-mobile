@@ -15,6 +15,7 @@ import '../../features/discovery/presentation/pages/candidates_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
 import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
 import '../../features/profile/domain/entities/user_profile.dart';
+import '../../features/profile/presentation/pages/blocked_users_page.dart';
 import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
@@ -120,6 +121,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.settings,
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: RouteNames.blockedUsers,
+        builder: (context, state) => const BlockedUsersPage(),
       ),
       GoRoute(
         path: RouteNames.profileEdit,

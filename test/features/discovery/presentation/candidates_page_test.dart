@@ -148,9 +148,7 @@ final class _LocalizedTestApp extends StatelessWidget {
 }
 
 final class _DiscoveryRepository implements DiscoveryRepository {
-  const _DiscoveryRepository({
-    this.nearbyFailure = const Failure.unknown(),
-  });
+  const _DiscoveryRepository({this.nearbyFailure = const Failure.unknown()});
 
   final Failure nearbyFailure;
 
@@ -213,15 +211,13 @@ final class _ProfileRepository implements ProfileRepository {
   @override
   Future<Either<Failure, UserProfile>> updateProfile(
     ProfileUpdateParams params,
-  ) =>
-      throw UnimplementedError();
+  ) => throw UnimplementedError();
 
   @override
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
-  }) =>
-      throw UnimplementedError();
+  }) => throw UnimplementedError();
 }
 
 final class _NotificationRepository implements NotificationRepository {

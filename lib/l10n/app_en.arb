@@ -674,5 +674,25 @@
   "profileEditExit": "Exit",
   "profileEditUpdatedTitle": "Profile updated",
   "profileEditUpdatedMessage": "Changes were saved. Candidates will now see your updated profile.",
-  "profileEditUpdatedOk": "OK"
+  "profileEditUpdatedOk": "OK",
+  "blockedUsersTitle": "Blocked profiles",
+  "blockedUsersSubtitle": "Blocked profiles cannot see you in search or message you.",
+  "blockedUsersEmpty": "No blocked profiles",
+  "blockedUsersEmptySubtitle": "All profiles you block will appear here.",
+  "blockedUsersNote": "A reported profile is automatically blocked after moderator review — marked as «After complaint» in this list.",
+  "blockedAtDate": "Blocked {date}",
+  "@blockedAtDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "28.07.2026"
+      }
+    }
+  },
+  "blockedAfterComplaint": "Blocked after complaint",
+  "unblockButton": "Unblock",
+  "unblockSuccess": "User unblocked",
+  "unblockConfirmTitle": "Unblock profile?",
+  "unblockConfirmMessage": "This profile will be able to message you and view your profile again.",
+  "cancel": "Cancel"
 }

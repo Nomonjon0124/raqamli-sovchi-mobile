@@ -94,6 +94,7 @@ final class _ProfileNameEditSheetState extends State<ProfileNameEditSheet> {
             const SizedBox(height: AppSpacing.lg),
             Text(
               l10n.profileEditName,
+              textAlign: TextAlign.center,
               style: AppTypography.onboardingSheetTitle,
             ),
             const SizedBox(height: AppSpacing.lg),

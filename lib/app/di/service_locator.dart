@@ -92,7 +92,9 @@ import '../../features/onboarding/domain/repositories/onboarding_draft_repositor
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
 import '../../features/profile/application/use_cases/block_user.dart';
+import '../../features/profile/application/use_cases/get_blocked_users.dart';
 import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/application/use_cases/unblock_user.dart';
 import '../../features/profile/application/use_cases/update_profile.dart';
 import '../../features/profile/application/use_cases/upload_profile_photo.dart';
 import '../../features/profile/data/data_sources/blocked_user_data_source.dart';
@@ -101,6 +103,7 @@ import '../../features/profile/data/repositories/blocked_user_repository_impl.da
 import '../../features/profile/data/repositories/profile_repository_impl.dart';
 import '../../features/profile/domain/repositories/blocked_user_repository.dart';
 import '../../features/profile/domain/repositories/profile_repository.dart';
+import '../../features/profile/presentation/bloc/blocked_users/blocked_users_cubit.dart';
 import '../../features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
@@ -294,6 +297,12 @@ Future<void> configureDependencies() async {
     ..registerFactory<BlockUserUseCase>(
       () => BlockUserUseCase(serviceLocator()),
     )
+    ..registerFactory<GetBlockedUsersUseCase>(
+      () => GetBlockedUsersUseCase(serviceLocator()),
+    )
+    ..registerFactory<UnblockUserUseCase>(
+      () => UnblockUserUseCase(serviceLocator()),
+    )
     ..registerFactory<CreateComplaintUseCase>(
       () => CreateComplaintUseCase(serviceLocator()),
     )
@@ -372,6 +381,12 @@ Future<void> configureDependencies() async {
         updateProfile: serviceLocator(),
         uploadPhoto: serviceLocator(),
         onboardingRepository: serviceLocator(),
+      ),
+    )
+    ..registerFactory<BlockedUsersCubit>(
+      () => BlockedUsersCubit(
+        getBlockedUsers: serviceLocator(),
+        unblockUser: serviceLocator(),
       ),
     )
     ..registerFactory<SettingsCubit>(SettingsCubit.new)

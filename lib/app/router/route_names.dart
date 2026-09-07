@@ -14,6 +14,7 @@ abstract final class RouteNames {
   static const profileEdit = '/profile/edit';
   static const notifications = '/notifications';
   static const settings = '/settings';
+  static const blockedUsers = '/blocked-users';
   static const privacyPolicy = '/privacy-policy';
   static const candidateDetail = '/candidate-detail/:id';
 

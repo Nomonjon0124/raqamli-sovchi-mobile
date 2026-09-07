@@ -173,7 +173,11 @@ final class _ProfileReferencePickerSheetState
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                Text(widget.title, style: AppTypography.onboardingSheetTitle),
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.onboardingSheetTitle,
+                ),
                 if (widget.hasSearch) ...[
                   const SizedBox(height: AppSpacing.md),
                   TextField(

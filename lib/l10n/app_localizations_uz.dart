@@ -1893,4 +1893,46 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get profileEditUpdatedOk => 'Yaxshi';
+
+  @override
+  String get blockedUsersTitle => 'Bloklangan profillar';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.';
+
+  @override
+  String get blockedUsersEmpty => 'Bloklangan profillar yo‘q';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'Siz bloklagan barcha profillar shu yerda ko‘rinadi.';
+
+  @override
+  String get blockedUsersNote =>
+      'Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Bloklangan $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Shikoyatdan keyin bloklangan';
+
+  @override
+  String get unblockButton => 'Blokdan chiqarish';
+
+  @override
+  String get unblockSuccess => 'Foydalanuvchi blokdan chiqarildi';
+
+  @override
+  String get unblockConfirmTitle => 'Blokdan chiqarilsinmi?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.';
+
+  @override
+  String get cancel => 'Bekor qilish';
 }

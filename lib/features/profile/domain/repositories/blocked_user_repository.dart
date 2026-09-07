@@ -7,4 +7,11 @@ abstract interface class BlockedUserRepository {
     required String blockedUserId,
     String? reason,
   });
+
+  Future<Either<Failure, List<BlockedUser>>> getBlockedUsers({int page = 1});
+
+  Future<Either<Failure, bool>> unblockUser({
+    required String userId,
+    String? blockedRecordId,
+  });
 }

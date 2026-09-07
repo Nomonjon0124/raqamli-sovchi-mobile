@@ -109,7 +109,11 @@ final class _ProfileNumberPickerSheetState
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
-          Text(widget.title, style: AppTypography.onboardingSheetTitle),
+          Text(
+            widget.title,
+            textAlign: TextAlign.center,
+            style: AppTypography.onboardingSheetTitle,
+          ),
           const SizedBox(height: AppSpacing.lg),
           SizedBox(
             height: 180,

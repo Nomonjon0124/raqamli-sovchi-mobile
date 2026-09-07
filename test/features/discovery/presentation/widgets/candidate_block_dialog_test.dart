@@ -118,6 +118,17 @@ final class _FakeBlockedUserRepository implements BlockedUserRepository {
           ),
         );
   }
+
+  @override
+  Future<Either<Failure, List<BlockedUser>>> getBlockedUsers({
+    int page = 1,
+  }) async => const Right([]);
+
+  @override
+  Future<Either<Failure, bool>> unblockUser({
+    required String userId,
+    String? blockedRecordId,
+  }) async => const Right(true);
 }
 
 final class _TestApp extends StatelessWidget {

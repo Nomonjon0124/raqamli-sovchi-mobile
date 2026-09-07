@@ -71,8 +71,10 @@ final class ProfileEditBottomBar extends StatelessWidget {
                             Assets.icons.icArrowRight.svg(
                               width: 18,
                               height: 18,
-                              colorFilter: const ColorFilter.mode(
-                                AppColors.surfaceLight,
+                              colorFilter: ColorFilter.mode(
+                                (isSaveEnabled && !isLoading)
+                                    ? AppColors.surfaceLight
+                                    : AppColors.mutedText,
                                 BlendMode.srcIn,
                               ),
                             ),
