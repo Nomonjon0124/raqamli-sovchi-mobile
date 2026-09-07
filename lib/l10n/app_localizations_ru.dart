@@ -1749,6 +1749,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось загрузить политику конфиденциальности. Проверьте подключение к интернету и повторите попытку.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Условия использования загружаются';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Не удалось загрузить условия использования. Проверьте подключение к интернету и повторите попытку.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',

@@ -155,7 +155,7 @@ final class _SettingsView extends StatelessWidget {
                         SettingsRow(
                           icon: Assets.icons.settingsDocument,
                           title: l10n.settingsTerms,
-                          onTap: () => _showComingSoon(context),
+                          onTap: () => context.push(RouteNames.termsOfService),
                         ),
                       ],
                     ),

@@ -24,6 +24,7 @@ import '../../features/services/presentation/pages/services_page.dart';
 import '../../features/settings/presentation/pages/account_deletion_page.dart';
 import '../../features/settings/presentation/pages/privacy_policy_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
+import '../../features/settings/presentation/pages/terms_of_service_page.dart';
 import 'app_shell.dart';
 import 'route_names.dart';
 
@@ -49,6 +50,7 @@ final class AppRouter {
       final onOnboarding = location == RouteNames.onboarding;
       final onQuestionnaire = location == RouteNames.questionnaire;
       final onPrivacyPolicy = location == RouteNames.privacyPolicy;
+      final onTermsOfService = location == RouteNames.termsOfService;
 
       if (status == AuthStatus.initial) {
         return onSplash ? null : RouteNames.splash;
@@ -79,7 +81,10 @@ final class AppRouter {
       }
 
       if (status == AuthStatus.onboardingRequired) {
-        return onOnboarding || onQuestionnaire || onPrivacyPolicy
+        return onOnboarding ||
+                onQuestionnaire ||
+                onPrivacyPolicy ||
+                onTermsOfService
             ? null
             : RouteNames.onboarding;
       }
@@ -142,6 +147,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.privacyPolicy,
         builder: (context, state) => const PrivacyPolicyPage(),
+      ),
+      GoRoute(
+        path: RouteNames.termsOfService,
+        builder: (context, state) => const TermsOfServicePage(),
       ),
       GoRoute(
         path: RouteNames.candidateDetail,

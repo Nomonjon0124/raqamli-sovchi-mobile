@@ -3208,6 +3208,18 @@ abstract class AppLocalizations {
   /// **'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
   String get privacyPolicyLoadError;
 
+  /// No description provided for @termsOfServiceLoadingLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanish shartlari yuklanmoqda'**
+  String get termsOfServiceLoadingLabel;
+
+  /// No description provided for @termsOfServiceLoadError.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanish shartlarini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
+  String get termsOfServiceLoadError;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:

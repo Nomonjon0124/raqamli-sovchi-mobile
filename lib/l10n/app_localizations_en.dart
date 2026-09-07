@@ -1747,6 +1747,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not load the privacy policy. Check your internet connection and try again.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Loading terms of use';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Could not load the terms of use. Check your internet connection and try again.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',

@@ -1739,6 +1739,13 @@ class AppLocalizationsUz extends AppLocalizations {
       'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Foydalanish shartlari yuklanmoqda';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Foydalanish shartlarini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',

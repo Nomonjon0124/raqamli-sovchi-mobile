@@ -296,6 +296,12 @@ https://raqamlisovchi.uz/privacy
 
 GitHub Pages vaqtinchalik ishlatilishi mumkin, lekin production uchun domain ostidagi URL yaxshiroq.
 
+Repositorydagi hujjatlar:
+
+- `doc/privacy-policy.html` — public Privacy Policy sahifasi.
+- `doc/terms-of-service.html` — public Terms of Service sahifasi.
+- `doc/index.html` — account deletion sahifasi.
+
 ## 11. Account deletion talabi
 
 Agar app account yaratishga ruxsat bersa, Google Play account deletion uchun ikki yo'lni kutadi:
@@ -308,6 +314,10 @@ Bu loyihada app ichida Delete account UI qo'shildi. Web sahifa uchun hozir:
 ```text
 doc/index.html
 ```
+
+Privacy Policy va Terms of Service uchun HTML va Markdown manba fayllari ham
+`doc/` papkasida saqlanadi. Ular Play Console'ga beriladigan public URL'larga
+deploy qilinishi kerak.
 
 ### 11.1 GitHub Pages masalasi
 

@@ -625,6 +625,8 @@
   "settingsActionComingSoon": "This setting will be connected in the next stage",
   "privacyPolicyLoadingLabel": "Loading privacy policy",
   "privacyPolicyLoadError": "Could not load the privacy policy. Check your internet connection and try again.",
+  "termsOfServiceLoadingLabel": "Loading terms of use",
+  "termsOfServiceLoadError": "Could not load the terms of use. Check your internet connection and try again.",
   "failureMessage": "{type, select, networkTimeout{Connection timed out.} noInternet{No internet connection.} unauthorized{Session expired.} cancelled{} forbidden{Access denied.} notFound{Data was not found.} validation{Please check your input.} configuration{Google sign-in is not configured for this build.} unsupported{This sign-in method is not available yet.} server{A server error occurred.} unknown{Something went wrong.} other{Something went wrong.}}",
   "profileEditTitle": "Edit profile",
   "profileEditAvatarTitle": "Profile photo",

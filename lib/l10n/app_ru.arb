@@ -625,6 +625,8 @@
   "settingsActionComingSoon": "Эта настройка будет подключена на следующем этапе",
   "privacyPolicyLoadingLabel": "Политика конфиденциальности загружается",
   "privacyPolicyLoadError": "Не удалось загрузить политику конфиденциальности. Проверьте подключение к интернету и повторите попытку.",
+  "termsOfServiceLoadingLabel": "Условия использования загружаются",
+  "termsOfServiceLoadError": "Не удалось загрузить условия использования. Проверьте подключение к интернету и повторите попытку.",
   "failureMessage": "{type, select, networkTimeout{Время подключения истекло.} noInternet{Нет подключения к интернету.} unauthorized{Сессия истекла.} cancelled{} forbidden{Доступ запрещен.} notFound{Данные не найдены.} validation{Проверьте введенные данные.} configuration{Вход через Google не настроен для этой сборки.} unsupported{Этот способ входа пока недоступен.} server{Произошла ошибка сервера.} unknown{Что-то пошло не так.} other{Что-то пошло не так.}}",
   "profileEditTitle": "Редактировать профиль",
   "profileEditAvatarTitle": "Фото профиля",

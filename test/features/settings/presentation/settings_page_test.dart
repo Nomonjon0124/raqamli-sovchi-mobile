@@ -48,9 +48,10 @@ void main() {
     expect(find.text('Sozlamalar'), findsOneWidget);
     expect(find.text('Hisob'), findsOneWidget);
     expect(find.text('Profilni tahrirlash'), findsOneWidget);
-    expect(find.text('Maxfiylik va suhbat'), findsOneWidget);
     expect(find.text('Bildirishnoma va ko‘rinish'), findsOneWidget);
     expect(find.text('Hujjatlar'), findsOneWidget);
+    expect(find.text('Maxfiylik siyosati'), findsOneWidget);
+    expect(find.text('Foydalanish shartlari'), findsOneWidget);
 
     await tester.scrollUntilVisible(find.text('Yordam va ma’lumot'), 250);
     expect(find.text('Yordam va ma’lumot'), findsOneWidget);
@@ -119,6 +120,10 @@ void main() {
           path: RouteNames.privacyPolicy,
           builder: (_, _) => const Scaffold(body: Text('Privacy route opened')),
         ),
+        GoRoute(
+          path: RouteNames.termsOfService,
+          builder: (_, _) => const Scaffold(body: Text('Terms route opened')),
+        ),
       ],
     );
 
@@ -146,6 +151,48 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
 
     expect(find.text('Privacy route opened'), findsOneWidget);
+  });
+
+  testWidgets('opens terms of service through the configured route', (
+    tester,
+  ) async {
+    await _loadManrope();
+    await configureDependencies();
+    final authBloc = serviceLocator<AuthBloc>();
+    final router = GoRouter(
+      routes: [
+        GoRoute(path: '/', builder: (_, _) => const SettingsPage()),
+        GoRoute(
+          path: RouteNames.termsOfService,
+          builder: (_, _) => const Scaffold(body: Text('Terms route opened')),
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      BlocProvider<AuthBloc>.value(
+        value: authBloc,
+        child: MaterialApp.router(
+          locale: const Locale('uz'),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: router,
+        ),
+      ),
+    );
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Foydalanish shartlari'), 250);
+    await tester.tap(find.text('Foydalanish shartlari'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    expect(find.text('Terms route opened'), findsOneWidget);
   });
 
   testWidgets('keeps SettingsRow title on the left and value on the right', (
