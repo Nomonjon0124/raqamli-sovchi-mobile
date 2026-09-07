@@ -3537,6 +3537,90 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Bekor qilish'**
   String get cancel;
+
+  /// No description provided for @accountDeletionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobni oʻchirish'**
+  String get accountDeletionTitle;
+
+  /// No description provided for @accountDeletionWarningTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu amal qaytarilmaydi'**
+  String get accountDeletionWarningTitle;
+
+  /// No description provided for @accountDeletionWarningMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.'**
+  String get accountDeletionWarningMessage;
+
+  /// No description provided for @accountDeletionItemsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'NIMALAR OʻCHIRILADI'**
+  String get accountDeletionItemsTitle;
+
+  /// No description provided for @accountDeletionPhotos.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barcha suratlar va ovozli tanishtiruv'**
+  String get accountDeletionPhotos;
+
+  /// No description provided for @accountDeletionQuestionnaire.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrovnoma javoblari va moslik natijalari'**
+  String get accountDeletionQuestionnaire;
+
+  /// No description provided for @accountDeletionChats.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatlar va saqlangan profillar'**
+  String get accountDeletionChats;
+
+  /// No description provided for @accountDeletionRepresentative.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ulangan vakil bilan bogʻlanish'**
+  String get accountDeletionRepresentative;
+
+  /// No description provided for @accountDeletionReasonTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'SABAB (IXTIYORIY)'**
+  String get accountDeletionReasonTitle;
+
+  /// No description provided for @accountDeletionReasonFoundMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Juftlik topdim'**
+  String get accountDeletionReasonFoundMatch;
+
+  /// No description provided for @accountDeletionReasonNoTime.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha vaqtim yoʻq'**
+  String get accountDeletionReasonNoTime;
+
+  /// No description provided for @accountDeletionReasonPrivacy.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik xavotiri'**
+  String get accountDeletionReasonPrivacy;
+
+  /// No description provided for @accountDeletionConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobni oʻchirish'**
+  String get accountDeletionConfirm;
+
+  /// No description provided for @accountDeletionCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get accountDeletionCancel;
 }
 
 class _AppLocalizationsDelegate

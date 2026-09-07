@@ -13,6 +13,8 @@ abstract final class AppColors {
   static const danger = Color(0xFFFF3B30);
   static const dangerSurface = Color(0xFFFEF2F2);
   static const dangerText = Color(0xFFDC2626);
+  static const dangerBorder = Color(0xFFFCA5A5);
+  static const strongBorder = Color(0xFFA3A3A3);
   static const mutedSurface = Color(0xFFF5F5F5);
   static const subtleSurface = Color(0xFFFAFAFA);
   static const bodyText = Color(0xFF404040);

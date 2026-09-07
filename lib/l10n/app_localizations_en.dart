@@ -1942,4 +1942,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get accountDeletionTitle => 'Delete account';
+
+  @override
+  String get accountDeletionWarningTitle => 'This action cannot be undone';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'Once deleted, your profile cannot be restored.';
+
+  @override
+  String get accountDeletionItemsTitle => 'WHAT WILL BE DELETED';
+
+  @override
+  String get accountDeletionPhotos => 'All photos and voice introduction';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Questionnaire answers and compatibility results';
+
+  @override
+  String get accountDeletionChats => 'Chats and saved profiles';
+
+  @override
+  String get accountDeletionRepresentative =>
+      'Connection with your representative';
+
+  @override
+  String get accountDeletionReasonTitle => 'REASON (OPTIONAL)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'I found a match';
+
+  @override
+  String get accountDeletionReasonNoTime => 'I do not have time right now';
+
+  @override
+  String get accountDeletionReasonPrivacy => 'Privacy concerns';
+
+  @override
+  String get accountDeletionConfirm => 'Delete account';
+
+  @override
+  String get accountDeletionCancel => 'Cancel';
 }

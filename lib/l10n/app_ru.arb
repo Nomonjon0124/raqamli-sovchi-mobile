@@ -694,5 +694,19 @@
   "unblockSuccess": "Пользователь разблокирован",
   "unblockConfirmTitle": "Разблокировать профиль?",
   "unblockConfirmMessage": "Этот профиль снова сможет писать вам и просматривать ваш профиль.",
-  "cancel": "Отмена"
+  "cancel": "Отмена",
+  "accountDeletionTitle": "Удалить аккаунт",
+  "accountDeletionWarningTitle": "Это действие нельзя отменить",
+  "accountDeletionWarningMessage": "После удаления профиль невозможно восстановить.",
+  "accountDeletionItemsTitle": "ЧТО БУДЕТ УДАЛЕНО",
+  "accountDeletionPhotos": "Все фотографии и голосовое представление",
+  "accountDeletionQuestionnaire": "Ответы анкеты и результаты совместимости",
+  "accountDeletionChats": "Чаты и сохранённые профили",
+  "accountDeletionRepresentative": "Связь с вашим представителем",
+  "accountDeletionReasonTitle": "ПРИЧИНА (НЕОБЯЗАТЕЛЬНО)",
+  "accountDeletionReasonFoundMatch": "Я нашёл(ла) пару",
+  "accountDeletionReasonNoTime": "Сейчас нет времени",
+  "accountDeletionReasonPrivacy": "Есть вопросы по конфиденциальности",
+  "accountDeletionConfirm": "Удалить аккаунт",
+  "accountDeletionCancel": "Отмена"
 }

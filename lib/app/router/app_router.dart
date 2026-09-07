@@ -21,6 +21,7 @@ import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
+import '../../features/settings/presentation/pages/account_deletion_page.dart';
 import '../../features/settings/presentation/pages/privacy_policy_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import 'app_shell.dart';
@@ -121,6 +122,10 @@ final class AppRouter {
       GoRoute(
         path: RouteNames.settings,
         builder: (context, state) => const SettingsPage(),
+      ),
+      GoRoute(
+        path: RouteNames.accountDeletion,
+        builder: (context, state) => const AccountDeletionPage(),
       ),
       GoRoute(
         path: RouteNames.blockedUsers,

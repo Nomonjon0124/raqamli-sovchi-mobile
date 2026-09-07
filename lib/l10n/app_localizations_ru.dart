@@ -1944,4 +1944,50 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cancel => 'Отмена';
+
+  @override
+  String get accountDeletionTitle => 'Удалить аккаунт';
+
+  @override
+  String get accountDeletionWarningTitle => 'Это действие нельзя отменить';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'После удаления профиль невозможно восстановить.';
+
+  @override
+  String get accountDeletionItemsTitle => 'ЧТО БУДЕТ УДАЛЕНО';
+
+  @override
+  String get accountDeletionPhotos =>
+      'Все фотографии и голосовое представление';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Ответы анкеты и результаты совместимости';
+
+  @override
+  String get accountDeletionChats => 'Чаты и сохранённые профили';
+
+  @override
+  String get accountDeletionRepresentative => 'Связь с вашим представителем';
+
+  @override
+  String get accountDeletionReasonTitle => 'ПРИЧИНА (НЕОБЯЗАТЕЛЬНО)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'Я нашёл(ла) пару';
+
+  @override
+  String get accountDeletionReasonNoTime => 'Сейчас нет времени';
+
+  @override
+  String get accountDeletionReasonPrivacy =>
+      'Есть вопросы по конфиденциальности';
+
+  @override
+  String get accountDeletionConfirm => 'Удалить аккаунт';
+
+  @override
+  String get accountDeletionCancel => 'Отмена';
 }

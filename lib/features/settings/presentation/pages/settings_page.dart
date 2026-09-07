@@ -16,7 +16,6 @@ import '../../../profile/application/use_cases/get_my_profile.dart';
 import '../cubit/settings_cubit.dart';
 import '../cubit/settings_state.dart';
 import '../widgets/settings_account_actions.dart';
-import '../widgets/settings_delete_dialog.dart';
 import '../widgets/settings_header.dart';
 import '../widgets/settings_section.dart';
 
@@ -192,7 +191,8 @@ final class _SettingsView extends StatelessWidget {
                         onLogout: () => context.read<AuthBloc>().add(
                           const AuthSignOutRequested(),
                         ),
-                        onDelete: () => _deleteAccount(context),
+                        onDelete: () =>
+                            context.push(RouteNames.accountDeletion),
                       ),
                     ),
                   ],
@@ -203,21 +203,6 @@ final class _SettingsView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _deleteAccount(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (_) => SettingsDeleteDialog(
-        title: l10n.deleteAccountTitle,
-        message: l10n.deleteAccountMessage,
-        cancelText: l10n.deleteAccountCancel,
-        confirmText: l10n.deleteAccountConfirm,
-      ),
-    );
-    if (confirmed != true || !context.mounted) return;
-    context.read<AuthBloc>().add(const AuthDeleteAccountRequested());
   }
 
   Future<void> _openEditProfile(BuildContext context) async {

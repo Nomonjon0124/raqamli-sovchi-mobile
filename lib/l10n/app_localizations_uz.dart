@@ -1935,4 +1935,48 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get cancel => 'Bekor qilish';
+
+  @override
+  String get accountDeletionTitle => 'Hisobni oʻchirish';
+
+  @override
+  String get accountDeletionWarningTitle => 'Bu amal qaytarilmaydi';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.';
+
+  @override
+  String get accountDeletionItemsTitle => 'NIMALAR OʻCHIRILADI';
+
+  @override
+  String get accountDeletionPhotos => 'Barcha suratlar va ovozli tanishtiruv';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Soʻrovnoma javoblari va moslik natijalari';
+
+  @override
+  String get accountDeletionChats => 'Suhbatlar va saqlangan profillar';
+
+  @override
+  String get accountDeletionRepresentative => 'Ulangan vakil bilan bogʻlanish';
+
+  @override
+  String get accountDeletionReasonTitle => 'SABAB (IXTIYORIY)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'Juftlik topdim';
+
+  @override
+  String get accountDeletionReasonNoTime => 'Hozircha vaqtim yoʻq';
+
+  @override
+  String get accountDeletionReasonPrivacy => 'Maxfiylik xavotiri';
+
+  @override
+  String get accountDeletionConfirm => 'Hisobni oʻchirish';
+
+  @override
+  String get accountDeletionCancel => 'Bekor qilish';
 }

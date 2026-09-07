@@ -694,5 +694,19 @@
   "unblockSuccess": "User unblocked",
   "unblockConfirmTitle": "Unblock profile?",
   "unblockConfirmMessage": "This profile will be able to message you and view your profile again.",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "accountDeletionTitle": "Delete account",
+  "accountDeletionWarningTitle": "This action cannot be undone",
+  "accountDeletionWarningMessage": "Once deleted, your profile cannot be restored.",
+  "accountDeletionItemsTitle": "WHAT WILL BE DELETED",
+  "accountDeletionPhotos": "All photos and voice introduction",
+  "accountDeletionQuestionnaire": "Questionnaire answers and compatibility results",
+  "accountDeletionChats": "Chats and saved profiles",
+  "accountDeletionRepresentative": "Connection with your representative",
+  "accountDeletionReasonTitle": "REASON (OPTIONAL)",
+  "accountDeletionReasonFoundMatch": "I found a match",
+  "accountDeletionReasonNoTime": "I do not have time right now",
+  "accountDeletionReasonPrivacy": "Privacy concerns",
+  "accountDeletionConfirm": "Delete account",
+  "accountDeletionCancel": "Cancel"
 }

@@ -729,5 +729,19 @@
   "unblockSuccess": "Foydalanuvchi blokdan chiqarildi",
   "unblockConfirmTitle": "Blokdan chiqarilsinmi?",
   "unblockConfirmMessage": "Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.",
-  "cancel": "Bekor qilish"
+  "cancel": "Bekor qilish",
+  "accountDeletionTitle": "Hisobni oʻchirish",
+  "accountDeletionWarningTitle": "Bu amal qaytarilmaydi",
+  "accountDeletionWarningMessage": "Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.",
+  "accountDeletionItemsTitle": "NIMALAR OʻCHIRILADI",
+  "accountDeletionPhotos": "Barcha suratlar va ovozli tanishtiruv",
+  "accountDeletionQuestionnaire": "Soʻrovnoma javoblari va moslik natijalari",
+  "accountDeletionChats": "Suhbatlar va saqlangan profillar",
+  "accountDeletionRepresentative": "Ulangan vakil bilan bogʻlanish",
+  "accountDeletionReasonTitle": "SABAB (IXTIYORIY)",
+  "accountDeletionReasonFoundMatch": "Juftlik topdim",
+  "accountDeletionReasonNoTime": "Hozircha vaqtim yoʻq",
+  "accountDeletionReasonPrivacy": "Maxfiylik xavotiri",
+  "accountDeletionConfirm": "Hisobni oʻchirish",
+  "accountDeletionCancel": "Bekor qilish"
 }
