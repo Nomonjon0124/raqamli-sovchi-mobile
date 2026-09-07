@@ -78,22 +78,22 @@ final class _SettingsView extends StatelessWidget {
                           title: l10n.settingsEditProfile,
                           onTap: () => _openEditProfile(context),
                         ),
-                        SettingsRow(
-                          icon: Assets.icons.settingsImage,
-                          title: l10n.settingsPhotoPrivacy,
-                          value: l10n.settingsPhotoPrivacyAll,
-                          onTap: () => _showComingSoon(context),
-                        ),
+                        // SettingsRow(
+                        //   icon: Assets.icons.settingsImage,
+                        //   title: l10n.settingsPhotoPrivacy,
+                        //   value: l10n.settingsPhotoPrivacyAll,
+                        //   onTap: () => _showComingSoon(context),
+                        // ),
                         SettingsRow(
                           icon: Assets.icons.settingsLock,
                           title: l10n.settingsBlockedUsers,
                           onTap: () => context.push(RouteNames.blockedUsers),
                         ),
-                        SettingsRow(
-                          icon: Assets.icons.settingsShield,
-                          title: l10n.settingsRecoveryQuestion,
-                          onTap: () => _showComingSoon(context),
-                        ),
+                        // SettingsRow(
+                        //   icon: Assets.icons.settingsShield,
+                        //   title: l10n.settingsRecoveryQuestion,
+                        //   onTap: () => _showComingSoon(context),
+                        // ),
                       ],
                     ),
                     // Maxfiylik va suhbat qismi hozircha ishlatilmaydi
