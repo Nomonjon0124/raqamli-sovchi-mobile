@@ -53,6 +53,10 @@ void main() {
     expect(profile.isVerified, isTrue);
     expect(profile.mainPhoto?.id, 'main');
     expect(profile.photos.map((photo) => photo.id), ['main', 'second']);
+    expect(profile.regionId, 'region-id');
+    expect(profile.districtId, 'district-id');
+    expect(profile.educationLevelId, 'education-id');
+    expect(profile.professionId, 'profession-id');
     expect(profile.completionPercent, 91);
   });
 }

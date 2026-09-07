@@ -646,5 +646,68 @@
         "example": "networkTimeout"
       }
     }
-  }
+  },
+  "profileEditTitle": "Profilni tahrirlash",
+  "profileEditAvatarTitle": "Profil surati",
+  "profileEditChangePhoto": "Suratni oʻzgartirish",
+  "profileEditName": "Ism",
+  "profileEditBirthYear": "Tugʻilgan yil",
+  "profileEditHeight": "Boʻy",
+  "profileEditWeight": "Vazn",
+  "profileEditEducation": "Maʼlumoti",
+  "profileEditProfession": "Kasbi",
+  "profileEditRegion": "Viloyat",
+  "profileEditDistrict": "Tuman",
+  "profileEditMaritalStatus": "Oilaviy holati",
+  "profileEditAboutSection": "OʻZINGIZ HAQINGIZDA",
+  "profileEditAboutPlaceholder": "Oʻzingiz, qadriyatlaringiz va kelajak rejalaringiz haqida qisqa yozing…",
+  "profileEditSave": "Saqlash",
+  "profileEditCancel": "Bekor qilish",
+  "profileEditSuccess": "Profil muvaffaqiyatli saqlandi",
+  "profileEditFirstName": "Ism",
+  "profileEditLastName": "Familiya",
+  "profileEditSelect": "Tanlash",
+  "profileEditSelectOption": "Tanlang",
+  "profileEditProfessionOther": "Boshqa",
+  "profileEditProfessionInputLabel": "Kasbingizni yozing",
+  "profileEditSearchPlaceholder": "Qidirish...",
+  "profileEditRegionSearchHint": "Viloyat qidirish...",
+  "profileEditDistrictSearchHint": "Tuman qidirish...",
+  "profileEditDistrictRegionCaption": "{region} boʻyicha",
+  "@profileEditDistrictRegionCaption": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "profileEditNoOptions": "Maʼlumot topilmadi",
+  "profileEditCm": "{cm} sm",
+  "@profileEditCm": {
+    "placeholders": {
+      "cm": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditKg": "{kg} kg",
+  "@profileEditKg": {
+    "placeholders": {
+      "kg": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditSelectRegionFirst": "Oldin viloyatni tanlang",
+  "profileEditDiscardConfirmTitle": "Oʻzgarishlarni bekor qilasizmi?",
+  "profileEditDiscardConfirmMessage": "Saqlanmagan maʼlumotlar yoʻqoladi.",
+  "profileEditDiscard": "Bekor qilish",
+  "profileEditKeepEditing": "Qolish",
+  "profileEditUnsavedTitle": "Oʻzgarishlar saqlanmadi",
+  "profileEditUnsavedMessage": "Chiqsangiz, kiritilgan oʻzgarishlar yoʻqoladi.",
+  "profileEditStayEditing": "Tahrirlashda qolish",
+  "profileEditExit": "Chiqish",
+  "profileEditUpdatedTitle": "Profil yangilandi",
+  "profileEditUpdatedMessage": "Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.",
+  "profileEditUpdatedOk": "Yaxshi"
 }

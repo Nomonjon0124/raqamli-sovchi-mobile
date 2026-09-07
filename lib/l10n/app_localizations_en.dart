@@ -1764,4 +1764,140 @@ class AppLocalizationsEn extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileEditAvatarTitle => 'Profile photo';
+
+  @override
+  String get profileEditChangePhoto => 'Change photo';
+
+  @override
+  String get profileEditName => 'Name';
+
+  @override
+  String get profileEditBirthYear => 'Birth year';
+
+  @override
+  String get profileEditHeight => 'Height';
+
+  @override
+  String get profileEditWeight => 'Weight';
+
+  @override
+  String get profileEditEducation => 'Education';
+
+  @override
+  String get profileEditProfession => 'Profession';
+
+  @override
+  String get profileEditRegion => 'Region';
+
+  @override
+  String get profileEditDistrict => 'District';
+
+  @override
+  String get profileEditMaritalStatus => 'Marital status';
+
+  @override
+  String get profileEditAboutSection => 'ABOUT YOU';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Write briefly about yourself, values, and future plans…';
+
+  @override
+  String get profileEditSave => 'Save';
+
+  @override
+  String get profileEditCancel => 'Cancel';
+
+  @override
+  String get profileEditSuccess => 'Profile successfully saved';
+
+  @override
+  String get profileEditFirstName => 'First name';
+
+  @override
+  String get profileEditLastName => 'Last name';
+
+  @override
+  String get profileEditSelect => 'Select';
+
+  @override
+  String get profileEditSelectOption => 'Select';
+
+  @override
+  String get profileEditProfessionOther => 'Other';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Enter your profession';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Search...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Search region...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Search district...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return 'In $region';
+  }
+
+  @override
+  String get profileEditNoOptions => 'No results found';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm cm';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg kg';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Please select region first';
+
+  @override
+  String get profileEditDiscardConfirmTitle => 'Discard changes?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Unsaved changes will be lost.';
+
+  @override
+  String get profileEditDiscard => 'Discard';
+
+  @override
+  String get profileEditKeepEditing => 'Keep editing';
+
+  @override
+  String get profileEditUnsavedTitle => 'Changes were not saved';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'If you leave, your changes will be lost.';
+
+  @override
+  String get profileEditStayEditing => 'Keep editing';
+
+  @override
+  String get profileEditExit => 'Exit';
+
+  @override
+  String get profileEditUpdatedTitle => 'Profile updated';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Changes were saved. Candidates will now see your updated profile.';
+
+  @override
+  String get profileEditUpdatedOk => 'OK';
 }

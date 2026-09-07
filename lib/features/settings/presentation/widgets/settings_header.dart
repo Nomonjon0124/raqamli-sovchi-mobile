@@ -32,7 +32,7 @@ final class SettingsHeader extends StatelessWidget {
             child: SizedBox.square(
               dimension: 36,
               child: Center(
-                child: Assets.icons.settingsBack.svg(
+                child: Assets.icons.icArrowLeft01Round.svg(
                   width: 19,
                   height: 19,
                   colorFilter: const ColorFilter.mode(

@@ -23,6 +23,7 @@ import 'package:raqamli_sovchi/features/notifications/application/use_cases/noti
 import 'package:raqamli_sovchi/features/notifications/domain/entities/app_notification.dart';
 import 'package:raqamli_sovchi/features/notifications/domain/repositories/notification_repository.dart';
 import 'package:raqamli_sovchi/features/notifications/presentation/bloc/notification_bloc.dart';
+import 'package:raqamli_sovchi/features/profile/domain/entities/profile_update_params.dart';
 import 'package:raqamli_sovchi/features/profile/domain/entities/user_profile.dart';
 import 'package:raqamli_sovchi/features/profile/domain/repositories/profile_repository.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
@@ -208,6 +209,19 @@ final class _ProfileRepository implements ProfileRepository {
   }) async {
     return const Right(true);
   }
+
+  @override
+  Future<Either<Failure, UserProfile>> updateProfile(
+    ProfileUpdateParams params,
+  ) =>
+      throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> uploadPhoto({
+    required String profileId,
+    required String filePath,
+  }) =>
+      throw UnimplementedError();
 }
 
 final class _NotificationRepository implements NotificationRepository {

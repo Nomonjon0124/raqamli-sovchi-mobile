@@ -26,12 +26,17 @@ final class UserProfile extends Equatable {
     this.isVerified = false,
     this.phoneNumber,
     this.email,
+    this.regionId,
     this.regionName,
+    this.districtId,
     this.districtName,
+    this.educationLevelId,
     this.educationLevelName,
     this.nationalityName,
+    this.professionId,
     this.professionName,
     this.healthStatusName,
+    this.maritalStatusId,
     this.maritalStatusName,
     this.photos = const [],
   });
@@ -60,12 +65,17 @@ final class UserProfile extends Equatable {
   final bool isVerified;
   final String? phoneNumber;
   final String? email;
+  final String? regionId;
   final String? regionName;
+  final String? districtId;
   final String? districtName;
+  final String? educationLevelId;
   final String? educationLevelName;
   final String? nationalityName;
+  final String? professionId;
   final String? professionName;
   final String? healthStatusName;
+  final String? maritalStatusId;
   final String? maritalStatusName;
   final List<ProfilePhoto> photos;
 
@@ -147,12 +157,17 @@ final class UserProfile extends Equatable {
     isVerified,
     phoneNumber,
     email,
+    regionId,
     regionName,
+    districtId,
     districtName,
+    educationLevelId,
     educationLevelName,
     nationalityName,
+    professionId,
     professionName,
     healthStatusName,
+    maritalStatusId,
     maritalStatusName,
     photos,
   ];

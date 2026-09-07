@@ -5,6 +5,7 @@ import 'package:raqamli_sovchi/app/di/service_locator.dart';
 import 'package:raqamli_sovchi/core/errors/either.dart';
 import 'package:raqamli_sovchi/core/errors/failure.dart';
 import 'package:raqamli_sovchi/features/profile/application/use_cases/get_my_profile.dart';
+import 'package:raqamli_sovchi/features/profile/domain/entities/profile_update_params.dart';
 import 'package:raqamli_sovchi/features/profile/domain/entities/user_profile.dart';
 import 'package:raqamli_sovchi/features/profile/domain/repositories/profile_repository.dart';
 import 'package:raqamli_sovchi/features/profile/presentation/bloc/profile_bloc.dart';
@@ -74,4 +75,15 @@ final class _ProfileRepository implements ProfileRepository {
     required double latitude,
     required double longitude,
   }) async => const Right(true);
+
+  @override
+  Future<Either<Failure, UserProfile>> updateProfile(
+    ProfileUpdateParams params,
+  ) => throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> uploadPhoto({
+    required String profileId,
+    required String filePath,
+  }) => throw UnimplementedError();
 }

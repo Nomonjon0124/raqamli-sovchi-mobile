@@ -1756,4 +1756,141 @@ class AppLocalizationsUz extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Profilni tahrirlash';
+
+  @override
+  String get profileEditAvatarTitle => 'Profil surati';
+
+  @override
+  String get profileEditChangePhoto => 'Suratni oʻzgartirish';
+
+  @override
+  String get profileEditName => 'Ism';
+
+  @override
+  String get profileEditBirthYear => 'Tugʻilgan yil';
+
+  @override
+  String get profileEditHeight => 'Boʻy';
+
+  @override
+  String get profileEditWeight => 'Vazn';
+
+  @override
+  String get profileEditEducation => 'Maʼlumoti';
+
+  @override
+  String get profileEditProfession => 'Kasbi';
+
+  @override
+  String get profileEditRegion => 'Viloyat';
+
+  @override
+  String get profileEditDistrict => 'Tuman';
+
+  @override
+  String get profileEditMaritalStatus => 'Oilaviy holati';
+
+  @override
+  String get profileEditAboutSection => 'OʻZINGIZ HAQINGIZDA';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Oʻzingiz, qadriyatlaringiz va kelajak rejalaringiz haqida qisqa yozing…';
+
+  @override
+  String get profileEditSave => 'Saqlash';
+
+  @override
+  String get profileEditCancel => 'Bekor qilish';
+
+  @override
+  String get profileEditSuccess => 'Profil muvaffaqiyatli saqlandi';
+
+  @override
+  String get profileEditFirstName => 'Ism';
+
+  @override
+  String get profileEditLastName => 'Familiya';
+
+  @override
+  String get profileEditSelect => 'Tanlash';
+
+  @override
+  String get profileEditSelectOption => 'Tanlang';
+
+  @override
+  String get profileEditProfessionOther => 'Boshqa';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Kasbingizni yozing';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Qidirish...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Viloyat qidirish...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Tuman qidirish...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return '$region boʻyicha';
+  }
+
+  @override
+  String get profileEditNoOptions => 'Maʼlumot topilmadi';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm sm';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg kg';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Oldin viloyatni tanlang';
+
+  @override
+  String get profileEditDiscardConfirmTitle =>
+      'Oʻzgarishlarni bekor qilasizmi?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Saqlanmagan maʼlumotlar yoʻqoladi.';
+
+  @override
+  String get profileEditDiscard => 'Bekor qilish';
+
+  @override
+  String get profileEditKeepEditing => 'Qolish';
+
+  @override
+  String get profileEditUnsavedTitle => 'Oʻzgarishlar saqlanmadi';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'Chiqsangiz, kiritilgan oʻzgarishlar yoʻqoladi.';
+
+  @override
+  String get profileEditStayEditing => 'Tahrirlashda qolish';
+
+  @override
+  String get profileEditExit => 'Chiqish';
+
+  @override
+  String get profileEditUpdatedTitle => 'Profil yangilandi';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.';
+
+  @override
+  String get profileEditUpdatedOk => 'Yaxshi';
 }

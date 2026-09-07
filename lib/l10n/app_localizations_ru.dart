@@ -1766,4 +1766,140 @@ class AppLocalizationsRu extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Редактировать профиль';
+
+  @override
+  String get profileEditAvatarTitle => 'Фото профиля';
+
+  @override
+  String get profileEditChangePhoto => 'Изменить фото';
+
+  @override
+  String get profileEditName => 'Имя';
+
+  @override
+  String get profileEditBirthYear => 'Год рождения';
+
+  @override
+  String get profileEditHeight => 'Рост';
+
+  @override
+  String get profileEditWeight => 'Вес';
+
+  @override
+  String get profileEditEducation => 'Образование';
+
+  @override
+  String get profileEditProfession => 'Профессия';
+
+  @override
+  String get profileEditRegion => 'Область';
+
+  @override
+  String get profileEditDistrict => 'Район';
+
+  @override
+  String get profileEditMaritalStatus => 'Семейное положение';
+
+  @override
+  String get profileEditAboutSection => 'О СЕБЕ';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Напишите коротко о себе, своих ценностях и планах на будущее…';
+
+  @override
+  String get profileEditSave => 'Сохранить';
+
+  @override
+  String get profileEditCancel => 'Отмена';
+
+  @override
+  String get profileEditSuccess => 'Профиль успешно сохранен';
+
+  @override
+  String get profileEditFirstName => 'Имя';
+
+  @override
+  String get profileEditLastName => 'Фамилия';
+
+  @override
+  String get profileEditSelect => 'Выбрать';
+
+  @override
+  String get profileEditSelectOption => 'Выбрать';
+
+  @override
+  String get profileEditProfessionOther => 'Другое';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Введите профессию';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Поиск...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Поиск области...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Поиск района...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return 'По $region';
+  }
+
+  @override
+  String get profileEditNoOptions => 'Ничего не найдено';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm см';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg кг';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Сначала выберите область';
+
+  @override
+  String get profileEditDiscardConfirmTitle => 'Отменить изменения?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Несохраненные данные будут потеряны.';
+
+  @override
+  String get profileEditDiscard => 'Отменить';
+
+  @override
+  String get profileEditKeepEditing => 'Остаться';
+
+  @override
+  String get profileEditUnsavedTitle => 'Изменения не сохранены';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'Если выйти, внесенные изменения будут потеряны.';
+
+  @override
+  String get profileEditStayEditing => 'Остаться в редактировании';
+
+  @override
+  String get profileEditExit => 'Выйти';
+
+  @override
+  String get profileEditUpdatedTitle => 'Профиль обновлен';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Изменения сохранены. Кандидаты увидят ваш профиль в обновленном виде.';
+
+  @override
+  String get profileEditUpdatedOk => 'Хорошо';
 }

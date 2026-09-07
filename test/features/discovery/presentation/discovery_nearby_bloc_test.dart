@@ -16,6 +16,7 @@ import 'package:raqamli_sovchi/features/discovery/domain/repositories/location_r
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_bloc.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_event.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_state.dart';
+import 'package:raqamli_sovchi/features/profile/domain/entities/profile_update_params.dart';
 import 'package:raqamli_sovchi/features/profile/domain/entities/user_profile.dart';
 import 'package:raqamli_sovchi/features/profile/domain/repositories/profile_repository.dart';
 
@@ -300,4 +301,17 @@ final class _ProfileRepository implements ProfileRepository {
     );
     return const Right(true);
   }
+
+  @override
+  Future<Either<Failure, UserProfile>> updateProfile(
+    ProfileUpdateParams params,
+  ) =>
+      throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> uploadPhoto({
+    required String profileId,
+    required String filePath,
+  }) =>
+      throw UnimplementedError();
 }
