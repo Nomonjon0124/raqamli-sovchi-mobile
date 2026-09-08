@@ -1149,6 +1149,27 @@ class AppLocalizationsUz extends AppLocalizations {
   String get candidateReportReasonScam => 'Moliyaviy firibgarlik';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Odobsiz so‘z';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Soxta profil';
+
+  @override
+  String get candidateReportReasonFraud => 'Firibgarlik';
+
+  @override
+  String get candidateReportReasonSpam => 'Spam va reklama';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'Noto‘g‘ri ma’lumot';
+
+  @override
+  String get candidateReportReasonThreat => 'Haqorat va tahdid';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent => 'Nikoh niyati yo‘q';
+
+  @override
   String get candidateReportReasonOther => 'Boshqa sabab';
 
   @override
@@ -1718,6 +1739,13 @@ class AppLocalizationsUz extends AppLocalizations {
       'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Foydalanish shartlari yuklanmoqda';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Foydalanish shartlarini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Ulanish vaqti tugadi.',
@@ -1735,4 +1763,227 @@ class AppLocalizationsUz extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Profilni tahrirlash';
+
+  @override
+  String get profileEditAvatarTitle => 'Profil surati';
+
+  @override
+  String get profileEditChangePhoto => 'Suratni oʻzgartirish';
+
+  @override
+  String get profileEditName => 'Ism';
+
+  @override
+  String get profileEditBirthYear => 'Tugʻilgan yil';
+
+  @override
+  String get profileEditHeight => 'Boʻy';
+
+  @override
+  String get profileEditWeight => 'Vazn';
+
+  @override
+  String get profileEditEducation => 'Maʼlumoti';
+
+  @override
+  String get profileEditProfession => 'Kasbi';
+
+  @override
+  String get profileEditRegion => 'Viloyat';
+
+  @override
+  String get profileEditDistrict => 'Tuman';
+
+  @override
+  String get profileEditMaritalStatus => 'Oilaviy holati';
+
+  @override
+  String get profileEditAboutSection => 'OʻZINGIZ HAQINGIZDA';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Oʻzingiz, qadriyatlaringiz va kelajak rejalaringiz haqida qisqa yozing…';
+
+  @override
+  String get profileEditSave => 'Saqlash';
+
+  @override
+  String get profileEditCancel => 'Bekor qilish';
+
+  @override
+  String get profileEditSuccess => 'Profil muvaffaqiyatli saqlandi';
+
+  @override
+  String get profileEditFirstName => 'Ism';
+
+  @override
+  String get profileEditLastName => 'Familiya';
+
+  @override
+  String get profileEditSelect => 'Tanlash';
+
+  @override
+  String get profileEditSelectOption => 'Tanlang';
+
+  @override
+  String get profileEditProfessionOther => 'Boshqa';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Kasbingizni yozing';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Qidirish...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Viloyat qidirish...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Tuman qidirish...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return '$region boʻyicha';
+  }
+
+  @override
+  String get profileEditNoOptions => 'Maʼlumot topilmadi';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm sm';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg kg';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Oldin viloyatni tanlang';
+
+  @override
+  String get profileEditDiscardConfirmTitle =>
+      'Oʻzgarishlarni bekor qilasizmi?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Saqlanmagan maʼlumotlar yoʻqoladi.';
+
+  @override
+  String get profileEditDiscard => 'Bekor qilish';
+
+  @override
+  String get profileEditKeepEditing => 'Qolish';
+
+  @override
+  String get profileEditUnsavedTitle => 'Oʻzgarishlar saqlanmadi';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'Chiqsangiz, kiritilgan oʻzgarishlar yoʻqoladi.';
+
+  @override
+  String get profileEditStayEditing => 'Tahrirlashda qolish';
+
+  @override
+  String get profileEditExit => 'Chiqish';
+
+  @override
+  String get profileEditUpdatedTitle => 'Profil yangilandi';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.';
+
+  @override
+  String get profileEditUpdatedOk => 'Yaxshi';
+
+  @override
+  String get blockedUsersTitle => 'Bloklangan profillar';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.';
+
+  @override
+  String get blockedUsersEmpty => 'Bloklangan profillar yo‘q';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'Siz bloklagan barcha profillar shu yerda ko‘rinadi.';
+
+  @override
+  String get blockedUsersNote =>
+      'Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Bloklangan $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Shikoyatdan keyin bloklangan';
+
+  @override
+  String get unblockButton => 'Blokdan chiqarish';
+
+  @override
+  String get unblockSuccess => 'Foydalanuvchi blokdan chiqarildi';
+
+  @override
+  String get unblockConfirmTitle => 'Blokdan chiqarilsinmi?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.';
+
+  @override
+  String get cancel => 'Bekor qilish';
+
+  @override
+  String get accountDeletionTitle => 'Hisobni oʻchirish';
+
+  @override
+  String get accountDeletionWarningTitle => 'Bu amal qaytarilmaydi';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.';
+
+  @override
+  String get accountDeletionItemsTitle => 'NIMALAR OʻCHIRILADI';
+
+  @override
+  String get accountDeletionPhotos => 'Barcha suratlar va ovozli tanishtiruv';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Soʻrovnoma javoblari va moslik natijalari';
+
+  @override
+  String get accountDeletionChats => 'Suhbatlar va saqlangan profillar';
+
+  @override
+  String get accountDeletionRepresentative => 'Ulangan vakil bilan bogʻlanish';
+
+  @override
+  String get accountDeletionReasonTitle => 'SABAB (IXTIYORIY)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'Juftlik topdim';
+
+  @override
+  String get accountDeletionReasonNoTime => 'Hozircha vaqtim yoʻq';
+
+  @override
+  String get accountDeletionReasonPrivacy => 'Maxfiylik xavotiri';
+
+  @override
+  String get accountDeletionConfirm => 'Hisobni oʻchirish';
+
+  @override
+  String get accountDeletionCancel => 'Bekor qilish';
 }

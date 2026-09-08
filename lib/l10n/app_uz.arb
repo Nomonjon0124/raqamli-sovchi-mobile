@@ -387,6 +387,13 @@
   "candidateReportReasonFake": "Yolg‘on ma’lumot yoki soxta profil",
   "candidateReportReasonNoMarriage": "Nikoh niyati yo‘q",
   "candidateReportReasonScam": "Moliyaviy firibgarlik",
+  "candidateReportReasonAbusiveLanguage": "Odobsiz so‘z",
+  "candidateReportReasonFakeProfile": "Soxta profil",
+  "candidateReportReasonFraud": "Firibgarlik",
+  "candidateReportReasonSpam": "Spam va reklama",
+  "candidateReportReasonFalseInformation": "Noto‘g‘ri ma’lumot",
+  "candidateReportReasonThreat": "Haqorat va tahdid",
+  "candidateReportReasonNoSeriousIntent": "Nikoh niyati yo‘q",
   "candidateReportReasonOther": "Boshqa sabab",
   "candidateReportNoteLabel": "Qo‘shimcha izoh (ixtiyoriy)",
   "candidateReportNoteHint": "Nima bo‘lganini qisqacha yozing...",
@@ -630,6 +637,8 @@
   "settingsActionComingSoon": "Bu sozlama keyingi bosqichda ulanadi",
   "privacyPolicyLoadingLabel": "Maxfiylik siyosati yuklanmoqda",
   "privacyPolicyLoadError": "Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.",
+  "termsOfServiceLoadingLabel": "Foydalanish shartlari yuklanmoqda",
+  "termsOfServiceLoadError": "Foydalanish shartlarini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.",
   "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",
@@ -639,5 +648,102 @@
         "example": "networkTimeout"
       }
     }
-  }
+  },
+  "profileEditTitle": "Profilni tahrirlash",
+  "profileEditAvatarTitle": "Profil surati",
+  "profileEditChangePhoto": "Suratni oʻzgartirish",
+  "profileEditName": "Ism",
+  "profileEditBirthYear": "Tugʻilgan yil",
+  "profileEditHeight": "Boʻy",
+  "profileEditWeight": "Vazn",
+  "profileEditEducation": "Maʼlumoti",
+  "profileEditProfession": "Kasbi",
+  "profileEditRegion": "Viloyat",
+  "profileEditDistrict": "Tuman",
+  "profileEditMaritalStatus": "Oilaviy holati",
+  "profileEditAboutSection": "OʻZINGIZ HAQINGIZDA",
+  "profileEditAboutPlaceholder": "Oʻzingiz, qadriyatlaringiz va kelajak rejalaringiz haqida qisqa yozing…",
+  "profileEditSave": "Saqlash",
+  "profileEditCancel": "Bekor qilish",
+  "profileEditSuccess": "Profil muvaffaqiyatli saqlandi",
+  "profileEditFirstName": "Ism",
+  "profileEditLastName": "Familiya",
+  "profileEditSelect": "Tanlash",
+  "profileEditSelectOption": "Tanlang",
+  "profileEditProfessionOther": "Boshqa",
+  "profileEditProfessionInputLabel": "Kasbingizni yozing",
+  "profileEditSearchPlaceholder": "Qidirish...",
+  "profileEditRegionSearchHint": "Viloyat qidirish...",
+  "profileEditDistrictSearchHint": "Tuman qidirish...",
+  "profileEditDistrictRegionCaption": "{region} boʻyicha",
+  "@profileEditDistrictRegionCaption": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "profileEditNoOptions": "Maʼlumot topilmadi",
+  "profileEditCm": "{cm} sm",
+  "@profileEditCm": {
+    "placeholders": {
+      "cm": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditKg": "{kg} kg",
+  "@profileEditKg": {
+    "placeholders": {
+      "kg": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditSelectRegionFirst": "Oldin viloyatni tanlang",
+  "profileEditDiscardConfirmTitle": "Oʻzgarishlarni bekor qilasizmi?",
+  "profileEditDiscardConfirmMessage": "Saqlanmagan maʼlumotlar yoʻqoladi.",
+  "profileEditDiscard": "Bekor qilish",
+  "profileEditKeepEditing": "Qolish",
+  "profileEditUnsavedTitle": "Oʻzgarishlar saqlanmadi",
+  "profileEditUnsavedMessage": "Chiqsangiz, kiritilgan oʻzgarishlar yoʻqoladi.",
+  "profileEditStayEditing": "Tahrirlashda qolish",
+  "profileEditExit": "Chiqish",
+  "profileEditUpdatedTitle": "Profil yangilandi",
+  "profileEditUpdatedMessage": "Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.",
+  "profileEditUpdatedOk": "Yaxshi",
+  "blockedUsersTitle": "Bloklangan profillar",
+  "blockedUsersSubtitle": "Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.",
+  "blockedUsersEmpty": "Bloklangan profillar yo‘q",
+  "blockedUsersEmptySubtitle": "Siz bloklagan barcha profillar shu yerda ko‘rinadi.",
+  "blockedUsersNote": "Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.",
+  "blockedAtDate": "Bloklangan {date}",
+  "@blockedAtDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "28.07.2026"
+      }
+    }
+  },
+  "blockedAfterComplaint": "Shikoyatdan keyin bloklangan",
+  "unblockButton": "Blokdan chiqarish",
+  "unblockSuccess": "Foydalanuvchi blokdan chiqarildi",
+  "unblockConfirmTitle": "Blokdan chiqarilsinmi?",
+  "unblockConfirmMessage": "Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.",
+  "cancel": "Bekor qilish",
+  "accountDeletionTitle": "Hisobni oʻchirish",
+  "accountDeletionWarningTitle": "Bu amal qaytarilmaydi",
+  "accountDeletionWarningMessage": "Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.",
+  "accountDeletionItemsTitle": "NIMALAR OʻCHIRILADI",
+  "accountDeletionPhotos": "Barcha suratlar va ovozli tanishtiruv",
+  "accountDeletionQuestionnaire": "Soʻrovnoma javoblari va moslik natijalari",
+  "accountDeletionChats": "Suhbatlar va saqlangan profillar",
+  "accountDeletionRepresentative": "Ulangan vakil bilan bogʻlanish",
+  "accountDeletionReasonTitle": "SABAB (IXTIYORIY)",
+  "accountDeletionReasonFoundMatch": "Juftlik topdim",
+  "accountDeletionReasonNoTime": "Hozircha vaqtim yoʻq",
+  "accountDeletionReasonPrivacy": "Maxfiylik xavotiri",
+  "accountDeletionConfirm": "Hisobni oʻchirish",
+  "accountDeletionCancel": "Bekor qilish"
 }

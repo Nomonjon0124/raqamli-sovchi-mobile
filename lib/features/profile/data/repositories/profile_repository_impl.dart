@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import '../../../../core/errors/either.dart';
 import '../../../../core/errors/exception_mapper.dart';
 import '../../../../core/errors/failure.dart';
+import '../../domain/entities/profile_update_params.dart';
 import '../../domain/entities/user_profile.dart';
 import '../../domain/repositories/profile_repository.dart';
 import '../data_sources/profile_data_source.dart';
@@ -37,6 +38,42 @@ final class ProfileRepositoryImpl implements ProfileRepository {
         longitude: longitude,
       );
       return const Right(true);
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserProfile>> updateProfile(
+    ProfileUpdateParams params,
+  ) async {
+    try {
+      final model = await _dataSource.updateProfile(params.toApiMap());
+      return Right(model.toEntity());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> uploadPhoto({
+    required String profileId,
+    required String filePath,
+  }) async {
+    try {
+      final model = await _dataSource.uploadPhoto(
+        profileId: profileId,
+        localFilePath: filePath,
+      );
+      return Right(model.toEntity());
     } on DioException catch (error) {
       return Left(mapDioException(error));
     } catch (error) {

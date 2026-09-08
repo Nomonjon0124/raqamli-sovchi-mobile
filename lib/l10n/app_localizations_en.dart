@@ -1151,6 +1151,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get candidateReportReasonScam => 'Financial fraud';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Abusive language';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Fake profile';
+
+  @override
+  String get candidateReportReasonFraud => 'Fraud';
+
+  @override
+  String get candidateReportReasonSpam => 'Spam and advertising';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'False information';
+
+  @override
+  String get candidateReportReasonThreat => 'Insult or threat';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent => 'No intention of marriage';
+
+  @override
   String get candidateReportReasonOther => 'Other reason';
 
   @override
@@ -1726,6 +1747,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Could not load the privacy policy. Check your internet connection and try again.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Loading terms of use';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Could not load the terms of use. Check your internet connection and try again.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Connection timed out.',
@@ -1743,4 +1771,227 @@ class AppLocalizationsEn extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Edit profile';
+
+  @override
+  String get profileEditAvatarTitle => 'Profile photo';
+
+  @override
+  String get profileEditChangePhoto => 'Change photo';
+
+  @override
+  String get profileEditName => 'Name';
+
+  @override
+  String get profileEditBirthYear => 'Birth year';
+
+  @override
+  String get profileEditHeight => 'Height';
+
+  @override
+  String get profileEditWeight => 'Weight';
+
+  @override
+  String get profileEditEducation => 'Education';
+
+  @override
+  String get profileEditProfession => 'Profession';
+
+  @override
+  String get profileEditRegion => 'Region';
+
+  @override
+  String get profileEditDistrict => 'District';
+
+  @override
+  String get profileEditMaritalStatus => 'Marital status';
+
+  @override
+  String get profileEditAboutSection => 'ABOUT YOU';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Write briefly about yourself, values, and future plans…';
+
+  @override
+  String get profileEditSave => 'Save';
+
+  @override
+  String get profileEditCancel => 'Cancel';
+
+  @override
+  String get profileEditSuccess => 'Profile successfully saved';
+
+  @override
+  String get profileEditFirstName => 'First name';
+
+  @override
+  String get profileEditLastName => 'Last name';
+
+  @override
+  String get profileEditSelect => 'Select';
+
+  @override
+  String get profileEditSelectOption => 'Select';
+
+  @override
+  String get profileEditProfessionOther => 'Other';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Enter your profession';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Search...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Search region...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Search district...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return 'In $region';
+  }
+
+  @override
+  String get profileEditNoOptions => 'No results found';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm cm';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg kg';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Please select region first';
+
+  @override
+  String get profileEditDiscardConfirmTitle => 'Discard changes?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Unsaved changes will be lost.';
+
+  @override
+  String get profileEditDiscard => 'Discard';
+
+  @override
+  String get profileEditKeepEditing => 'Keep editing';
+
+  @override
+  String get profileEditUnsavedTitle => 'Changes were not saved';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'If you leave, your changes will be lost.';
+
+  @override
+  String get profileEditStayEditing => 'Keep editing';
+
+  @override
+  String get profileEditExit => 'Exit';
+
+  @override
+  String get profileEditUpdatedTitle => 'Profile updated';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Changes were saved. Candidates will now see your updated profile.';
+
+  @override
+  String get profileEditUpdatedOk => 'OK';
+
+  @override
+  String get blockedUsersTitle => 'Blocked profiles';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Blocked profiles cannot see you in search or message you.';
+
+  @override
+  String get blockedUsersEmpty => 'No blocked profiles';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'All profiles you block will appear here.';
+
+  @override
+  String get blockedUsersNote =>
+      'A reported profile is automatically blocked after moderator review — marked as «After complaint» in this list.';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Blocked $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Blocked after complaint';
+
+  @override
+  String get unblockButton => 'Unblock';
+
+  @override
+  String get unblockSuccess => 'User unblocked';
+
+  @override
+  String get unblockConfirmTitle => 'Unblock profile?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'This profile will be able to message you and view your profile again.';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get accountDeletionTitle => 'Delete account';
+
+  @override
+  String get accountDeletionWarningTitle => 'This action cannot be undone';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'Once deleted, your profile cannot be restored.';
+
+  @override
+  String get accountDeletionItemsTitle => 'WHAT WILL BE DELETED';
+
+  @override
+  String get accountDeletionPhotos => 'All photos and voice introduction';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Questionnaire answers and compatibility results';
+
+  @override
+  String get accountDeletionChats => 'Chats and saved profiles';
+
+  @override
+  String get accountDeletionRepresentative =>
+      'Connection with your representative';
+
+  @override
+  String get accountDeletionReasonTitle => 'REASON (OPTIONAL)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'I found a match';
+
+  @override
+  String get accountDeletionReasonNoTime => 'I do not have time right now';
+
+  @override
+  String get accountDeletionReasonPrivacy => 'Privacy concerns';
+
+  @override
+  String get accountDeletionConfirm => 'Delete account';
+
+  @override
+  String get accountDeletionCancel => 'Cancel';
 }

@@ -23,6 +23,8 @@ abstract final class AppConfig {
   );
   static const privacyPolicyUrl =
       'https://raqamli-nazorat.github.io/raqamli-sovchi-privacy-policy/';
+  static const termsOfServiceUrl =
+      'https://raqamli-nazorat.github.io/raqamli-sovchi-privacy-policy/terms-of-service.html';
   static const flavorValue = String.fromEnvironment(
     'FLAVOR',
     defaultValue: 'dev',
@@ -30,6 +32,7 @@ abstract final class AppConfig {
 
   static AppFlavor get flavor => AppFlavor.fromValue(flavorValue);
   static Uri get privacyPolicyUri => Uri.parse(privacyPolicyUrl);
+  static Uri get termsOfServiceUri => Uri.parse(termsOfServiceUrl);
 
   static String get resolvedGoogleServerClientId {
     if (googleServerClientId.isNotEmpty) return googleServerClientId;

@@ -11,6 +11,7 @@ import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../domain/entities/user_profile.dart';
 import '../bloc/profile_bloc.dart';
 import '../bloc/profile_event.dart';
 import '../bloc/profile_state.dart';
@@ -93,17 +94,15 @@ final class _ProfileView extends StatelessWidget {
                     title: l10n.profileTabLabel,
                     editLabel: l10n.profileEdit,
                     settingsLabel: l10n.profileSettings,
-                    onEdit: () => _showComingSoon(context),
+                    onEdit: () => _openEdit(context, profile),
                     onSettings: () => context.push(RouteNames.settings),
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   ProfileHeroCard(
                     profile: profile,
                     identifierText: l10n.profileIdentifier(profile.publicCode),
-                    previewText: l10n.profilePreview,
                     copyLabel: l10n.profileCopyIdentifier,
                     onCopy: () => _copyIdentifier(context, profile.publicCode),
-                    onPreview: () => _showComingSoon(context),
                   ),
                   if (profile.completionPercent < 100) ...[
                     const SizedBox(height: AppSpacing.lg),
@@ -111,7 +110,7 @@ final class _ProfileView extends StatelessWidget {
                       title: l10n.profileCompleteTitle,
                       subtitle: l10n.profileCompleteSubtitle,
                       percent: profile.completionPercent,
-                      onTap: () => _showComingSoon(context),
+                      onTap: () => _openEdit(context, profile),
                     ),
                   ],
                   const SizedBox(height: AppSpacing.lg),
@@ -121,7 +120,7 @@ final class _ProfileView extends StatelessWidget {
                     addLabel: l10n.profileAddPhoto,
                     photoSemantics: l10n.profilePhotoSemantics,
                     photos: profile.photos,
-                    onAdd: () => _showComingSoon(context),
+                    onAdd: () => _openEdit(context, profile),
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   ProfileAboutCard(
@@ -131,7 +130,7 @@ final class _ProfileView extends StatelessWidget {
                     addText: profile.bio?.trim().isNotEmpty ?? false
                         ? l10n.profileEditShort
                         : l10n.profileAdd,
-                    onTap: () => _showComingSoon(context),
+                    onTap: () => _openEdit(context, profile),
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   ProfileActionTile(
@@ -155,6 +154,16 @@ final class _ProfileView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _openEdit(BuildContext context, UserProfile profile) async {
+    final updated = await context.push<bool>(
+      RouteNames.profileEdit,
+      extra: profile,
+    );
+    if (updated == true && context.mounted) {
+      context.read<ProfileBloc>().add(const ProfileRefreshRequested());
+    }
   }
 
   Future<void> _refresh(BuildContext context) async {

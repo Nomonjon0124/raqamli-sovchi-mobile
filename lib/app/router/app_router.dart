@@ -14,12 +14,17 @@ import '../../features/discovery/presentation/pages/candidate_detail_page.dart';
 import '../../features/discovery/presentation/pages/candidates_page.dart';
 import '../../features/notifications/presentation/pages/notifications_page.dart';
 import '../../features/onboarding/presentation/pages/profile_onboarding_page.dart';
+import '../../features/profile/domain/entities/user_profile.dart';
+import '../../features/profile/presentation/pages/blocked_users_page.dart';
+import '../../features/profile/presentation/pages/profile_edit_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
+import '../../features/settings/presentation/pages/account_deletion_page.dart';
 import '../../features/settings/presentation/pages/privacy_policy_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
+import '../../features/settings/presentation/pages/terms_of_service_page.dart';
 import 'app_shell.dart';
 import 'route_names.dart';
 
@@ -45,6 +50,7 @@ final class AppRouter {
       final onOnboarding = location == RouteNames.onboarding;
       final onQuestionnaire = location == RouteNames.questionnaire;
       final onPrivacyPolicy = location == RouteNames.privacyPolicy;
+      final onTermsOfService = location == RouteNames.termsOfService;
 
       if (status == AuthStatus.initial) {
         return onSplash ? null : RouteNames.splash;
@@ -75,7 +81,10 @@ final class AppRouter {
       }
 
       if (status == AuthStatus.onboardingRequired) {
-        return onOnboarding || onQuestionnaire || onPrivacyPolicy
+        return onOnboarding ||
+                onQuestionnaire ||
+                onPrivacyPolicy ||
+                onTermsOfService
             ? null
             : RouteNames.onboarding;
       }
@@ -120,8 +129,28 @@ final class AppRouter {
         builder: (context, state) => const SettingsPage(),
       ),
       GoRoute(
+        path: RouteNames.accountDeletion,
+        builder: (context, state) => const AccountDeletionPage(),
+      ),
+      GoRoute(
+        path: RouteNames.blockedUsers,
+        builder: (context, state) => const BlockedUsersPage(),
+      ),
+      GoRoute(
+        path: RouteNames.profileEdit,
+        builder: (context, state) => ProfileEditPage(
+          initialProfile: state.extra is UserProfile
+              ? state.extra! as UserProfile
+              : null,
+        ),
+      ),
+      GoRoute(
         path: RouteNames.privacyPolicy,
         builder: (context, state) => const PrivacyPolicyPage(),
+      ),
+      GoRoute(
+        path: RouteNames.termsOfService,
+        builder: (context, state) => const TermsOfServicePage(),
       ),
       GoRoute(
         path: RouteNames.candidateDetail,

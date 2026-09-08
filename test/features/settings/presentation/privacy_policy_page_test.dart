@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:raqamli_sovchi/core/config/app_config.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/pages/privacy_policy_page.dart';
+import 'package:raqamli_sovchi/features/settings/presentation/pages/terms_of_service_page.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
@@ -56,7 +57,22 @@ void main() {
     expect(find.textContaining('yuklab bo‘lmadi'), findsNothing);
   });
 
-  testWidgets('app bar back navigates WebView history before closing page', (
+  testWidgets('loads the configured terms of service URL in a WebView', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_testApp(const TermsOfServicePage()));
+    await tester.pump();
+
+    final controller = webViewPlatform.controllers.single;
+    expect(find.text('Foydalanish shartlari'), findsOneWidget);
+    expect(find.byKey(const ValueKey('fake-webview')), findsOneWidget);
+    expect(controller.javaScriptMode, JavaScriptMode.unrestricted);
+    expect(controller.lastRequest?.uri, AppConfig.termsOfServiceUri);
+    expect(controller.loadRequestCount, 1);
+    expect(find.byType(LinearProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('app bar back closes the page without WebView history', (
     tester,
   ) async {
     await tester.pumpWidget(_navigatorTestApp());
@@ -69,17 +85,9 @@ void main() {
     controller.canGoBackValue = true;
 
     await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
-    expect(controller.goBackCount, 1);
-    expect(find.byType(PrivacyPolicyPage), findsOneWidget);
-
-    controller.canGoBackValue = false;
-    await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-    await tester.pump();
-
+    expect(controller.goBackCount, 0);
     expect(find.text('Open'), findsOneWidget);
     expect(find.byType(PrivacyPolicyPage), findsNothing);
   });

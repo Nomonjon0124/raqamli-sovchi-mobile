@@ -1153,6 +1153,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get candidateReportReasonScam => 'Финансовое мошенничество';
 
   @override
+  String get candidateReportReasonAbusiveLanguage => 'Непристойные слова';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Фейковый профиль';
+
+  @override
+  String get candidateReportReasonFraud => 'Мошенничество';
+
+  @override
+  String get candidateReportReasonSpam => 'Спам и реклама';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'Ложная информация';
+
+  @override
+  String get candidateReportReasonThreat => 'Оскорбление или угроза';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent =>
+      'Нет намерения вступить в брак';
+
+  @override
   String get candidateReportReasonOther => 'Другая причина';
 
   @override
@@ -1727,6 +1749,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось загрузить политику конфиденциальности. Проверьте подключение к интернету и повторите попытку.';
 
   @override
+  String get termsOfServiceLoadingLabel => 'Условия использования загружаются';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Не удалось загрузить условия использования. Проверьте подключение к интернету и повторите попытку.';
+
+  @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
       'networkTimeout': 'Время подключения истекло.',
@@ -1744,4 +1773,228 @@ class AppLocalizationsRu extends AppLocalizations {
     });
     return '$_temp0';
   }
+
+  @override
+  String get profileEditTitle => 'Редактировать профиль';
+
+  @override
+  String get profileEditAvatarTitle => 'Фото профиля';
+
+  @override
+  String get profileEditChangePhoto => 'Изменить фото';
+
+  @override
+  String get profileEditName => 'Имя';
+
+  @override
+  String get profileEditBirthYear => 'Год рождения';
+
+  @override
+  String get profileEditHeight => 'Рост';
+
+  @override
+  String get profileEditWeight => 'Вес';
+
+  @override
+  String get profileEditEducation => 'Образование';
+
+  @override
+  String get profileEditProfession => 'Профессия';
+
+  @override
+  String get profileEditRegion => 'Область';
+
+  @override
+  String get profileEditDistrict => 'Район';
+
+  @override
+  String get profileEditMaritalStatus => 'Семейное положение';
+
+  @override
+  String get profileEditAboutSection => 'О СЕБЕ';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Напишите коротко о себе, своих ценностях и планах на будущее…';
+
+  @override
+  String get profileEditSave => 'Сохранить';
+
+  @override
+  String get profileEditCancel => 'Отмена';
+
+  @override
+  String get profileEditSuccess => 'Профиль успешно сохранен';
+
+  @override
+  String get profileEditFirstName => 'Имя';
+
+  @override
+  String get profileEditLastName => 'Фамилия';
+
+  @override
+  String get profileEditSelect => 'Выбрать';
+
+  @override
+  String get profileEditSelectOption => 'Выбрать';
+
+  @override
+  String get profileEditProfessionOther => 'Другое';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Введите профессию';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Поиск...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Поиск области...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Поиск района...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return 'По $region';
+  }
+
+  @override
+  String get profileEditNoOptions => 'Ничего не найдено';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm см';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg кг';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Сначала выберите область';
+
+  @override
+  String get profileEditDiscardConfirmTitle => 'Отменить изменения?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Несохраненные данные будут потеряны.';
+
+  @override
+  String get profileEditDiscard => 'Отменить';
+
+  @override
+  String get profileEditKeepEditing => 'Остаться';
+
+  @override
+  String get profileEditUnsavedTitle => 'Изменения не сохранены';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'Если выйти, внесенные изменения будут потеряны.';
+
+  @override
+  String get profileEditStayEditing => 'Остаться в редактировании';
+
+  @override
+  String get profileEditExit => 'Выйти';
+
+  @override
+  String get profileEditUpdatedTitle => 'Профиль обновлен';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Изменения сохранены. Кандидаты увидят ваш профиль в обновленном виде.';
+
+  @override
+  String get profileEditUpdatedOk => 'Хорошо';
+
+  @override
+  String get blockedUsersTitle => 'Заблокированные профили';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Заблокированные профили не видят вас в поиске и не могут писать.';
+
+  @override
+  String get blockedUsersEmpty => 'Нет заблокированных профилей';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'Все заблокированные вами профили будут отображаться здесь.';
+
+  @override
+  String get blockedUsersNote =>
+      'Профиль, на который подана жалоба, автоматически блокируется после проверки модератором — в этом списке помечается «После жалобы».';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Заблокирован(а) $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Заблокирован(а) после жалобы';
+
+  @override
+  String get unblockButton => 'Разблокировать';
+
+  @override
+  String get unblockSuccess => 'Пользователь разблокирован';
+
+  @override
+  String get unblockConfirmTitle => 'Разблокировать профиль?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'Этот профиль снова сможет писать вам и просматривать ваш профиль.';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get accountDeletionTitle => 'Удалить аккаунт';
+
+  @override
+  String get accountDeletionWarningTitle => 'Это действие нельзя отменить';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'После удаления профиль невозможно восстановить.';
+
+  @override
+  String get accountDeletionItemsTitle => 'ЧТО БУДЕТ УДАЛЕНО';
+
+  @override
+  String get accountDeletionPhotos =>
+      'Все фотографии и голосовое представление';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Ответы анкеты и результаты совместимости';
+
+  @override
+  String get accountDeletionChats => 'Чаты и сохранённые профили';
+
+  @override
+  String get accountDeletionRepresentative => 'Связь с вашим представителем';
+
+  @override
+  String get accountDeletionReasonTitle => 'ПРИЧИНА (НЕОБЯЗАТЕЛЬНО)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'Я нашёл(ла) пару';
+
+  @override
+  String get accountDeletionReasonNoTime => 'Сейчас нет времени';
+
+  @override
+  String get accountDeletionReasonPrivacy =>
+      'Есть вопросы по конфиденциальности';
+
+  @override
+  String get accountDeletionConfirm => 'Удалить аккаунт';
+
+  @override
+  String get accountDeletionCancel => 'Отмена';
 }

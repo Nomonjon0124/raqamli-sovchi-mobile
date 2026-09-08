@@ -11,9 +11,13 @@ abstract final class RouteNames {
   static const services = '/services';
   static const saved = '/saved';
   static const profile = '/profile';
+  static const profileEdit = '/profile/edit';
   static const notifications = '/notifications';
   static const settings = '/settings';
+  static const accountDeletion = '/settings/account-deletion';
+  static const blockedUsers = '/blocked-users';
   static const privacyPolicy = '/privacy-policy';
+  static const termsOfService = '/terms-of-service';
   static const candidateDetail = '/candidate-detail/:id';
 
   static String candidateDetailFor(String id) =>

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../app/theme/app_colors.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
                   child: OutlinedButton.icon(
                     onPressed: isLoading
                         ? null
-                        : () => _confirmDeleteAccount(context),
+                        : () => context.push(RouteNames.accountDeletion),
                     icon: isLoading
                         ? const SizedBox(
                             width: 18,
@@ -77,32 +78,5 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _confirmDeleteAccount(BuildContext context) async {
-    final l10n = AppLocalizations.of(context);
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(l10n.deleteAccountTitle),
-        content: Text(
-          l10n.deleteAccountMessage,
-          style: AppTypography.body.copyWith(color: AppColors.text),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(l10n.deleteAccountCancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: Text(l10n.deleteAccountConfirm),
-          ),
-        ],
-      ),
-    );
-    if (confirmed != true || !context.mounted) return;
-    context.read<AuthBloc>().add(const AuthDeleteAccountRequested());
   }
 }

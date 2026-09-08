@@ -2146,6 +2146,48 @@ abstract class AppLocalizations {
   /// **'Moliyaviy firibgarlik'**
   String get candidateReportReasonScam;
 
+  /// No description provided for @candidateReportReasonAbusiveLanguage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Odobsiz so‘z'**
+  String get candidateReportReasonAbusiveLanguage;
+
+  /// No description provided for @candidateReportReasonFakeProfile.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soxta profil'**
+  String get candidateReportReasonFakeProfile;
+
+  /// No description provided for @candidateReportReasonFraud.
+  ///
+  /// In uz, this message translates to:
+  /// **'Firibgarlik'**
+  String get candidateReportReasonFraud;
+
+  /// No description provided for @candidateReportReasonSpam.
+  ///
+  /// In uz, this message translates to:
+  /// **'Spam va reklama'**
+  String get candidateReportReasonSpam;
+
+  /// No description provided for @candidateReportReasonFalseInformation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Noto‘g‘ri ma’lumot'**
+  String get candidateReportReasonFalseInformation;
+
+  /// No description provided for @candidateReportReasonThreat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Haqorat va tahdid'**
+  String get candidateReportReasonThreat;
+
+  /// No description provided for @candidateReportReasonNoSeriousIntent.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikoh niyati yo‘q'**
+  String get candidateReportReasonNoSeriousIntent;
+
   /// No description provided for @candidateReportReasonOther.
   ///
   /// In uz, this message translates to:
@@ -3166,11 +3208,431 @@ abstract class AppLocalizations {
   /// **'Maxfiylik siyosatini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
   String get privacyPolicyLoadError;
 
+  /// No description provided for @termsOfServiceLoadingLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanish shartlari yuklanmoqda'**
+  String get termsOfServiceLoadingLabel;
+
+  /// No description provided for @termsOfServiceLoadError.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanish shartlarini yuklab bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.'**
+  String get termsOfServiceLoadError;
+
   /// User-facing error message selected by FailureType.name.
   ///
   /// In uz, this message translates to:
   /// **'{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}'**
   String failureMessage(String type);
+
+  /// No description provided for @profileEditTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilni tahrirlash'**
+  String get profileEditTitle;
+
+  /// No description provided for @profileEditAvatarTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil surati'**
+  String get profileEditAvatarTitle;
+
+  /// No description provided for @profileEditChangePhoto.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suratni oʻzgartirish'**
+  String get profileEditChangePhoto;
+
+  /// No description provided for @profileEditName.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ism'**
+  String get profileEditName;
+
+  /// No description provided for @profileEditBirthYear.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tugʻilgan yil'**
+  String get profileEditBirthYear;
+
+  /// No description provided for @profileEditHeight.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boʻy'**
+  String get profileEditHeight;
+
+  /// No description provided for @profileEditWeight.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vazn'**
+  String get profileEditWeight;
+
+  /// No description provided for @profileEditEducation.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maʼlumoti'**
+  String get profileEditEducation;
+
+  /// No description provided for @profileEditProfession.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbi'**
+  String get profileEditProfession;
+
+  /// No description provided for @profileEditRegion.
+  ///
+  /// In uz, this message translates to:
+  /// **'Viloyat'**
+  String get profileEditRegion;
+
+  /// No description provided for @profileEditDistrict.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tuman'**
+  String get profileEditDistrict;
+
+  /// No description provided for @profileEditMaritalStatus.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy holati'**
+  String get profileEditMaritalStatus;
+
+  /// No description provided for @profileEditAboutSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'OʻZINGIZ HAQINGIZDA'**
+  String get profileEditAboutSection;
+
+  /// No description provided for @profileEditAboutPlaceholder.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻzingiz, qadriyatlaringiz va kelajak rejalaringiz haqida qisqa yozing…'**
+  String get profileEditAboutPlaceholder;
+
+  /// No description provided for @profileEditSave.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlash'**
+  String get profileEditSave;
+
+  /// No description provided for @profileEditCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get profileEditCancel;
+
+  /// No description provided for @profileEditSuccess.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil muvaffaqiyatli saqlandi'**
+  String get profileEditSuccess;
+
+  /// No description provided for @profileEditFirstName.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ism'**
+  String get profileEditFirstName;
+
+  /// No description provided for @profileEditLastName.
+  ///
+  /// In uz, this message translates to:
+  /// **'Familiya'**
+  String get profileEditLastName;
+
+  /// No description provided for @profileEditSelect.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tanlash'**
+  String get profileEditSelect;
+
+  /// No description provided for @profileEditSelectOption.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tanlang'**
+  String get profileEditSelectOption;
+
+  /// No description provided for @profileEditProfessionOther.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa'**
+  String get profileEditProfessionOther;
+
+  /// No description provided for @profileEditProfessionInputLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kasbingizni yozing'**
+  String get profileEditProfessionInputLabel;
+
+  /// No description provided for @profileEditSearchPlaceholder.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qidirish...'**
+  String get profileEditSearchPlaceholder;
+
+  /// No description provided for @profileEditRegionSearchHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Viloyat qidirish...'**
+  String get profileEditRegionSearchHint;
+
+  /// No description provided for @profileEditDistrictSearchHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tuman qidirish...'**
+  String get profileEditDistrictSearchHint;
+
+  /// No description provided for @profileEditDistrictRegionCaption.
+  ///
+  /// In uz, this message translates to:
+  /// **'{region} boʻyicha'**
+  String profileEditDistrictRegionCaption(String region);
+
+  /// No description provided for @profileEditNoOptions.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maʼlumot topilmadi'**
+  String get profileEditNoOptions;
+
+  /// No description provided for @profileEditCm.
+  ///
+  /// In uz, this message translates to:
+  /// **'{cm} sm'**
+  String profileEditCm(int cm);
+
+  /// No description provided for @profileEditKg.
+  ///
+  /// In uz, this message translates to:
+  /// **'{kg} kg'**
+  String profileEditKg(int kg);
+
+  /// No description provided for @profileEditSelectRegionFirst.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oldin viloyatni tanlang'**
+  String get profileEditSelectRegionFirst;
+
+  /// No description provided for @profileEditDiscardConfirmTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻzgarishlarni bekor qilasizmi?'**
+  String get profileEditDiscardConfirmTitle;
+
+  /// No description provided for @profileEditDiscardConfirmMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Saqlanmagan maʼlumotlar yoʻqoladi.'**
+  String get profileEditDiscardConfirmMessage;
+
+  /// No description provided for @profileEditDiscard.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get profileEditDiscard;
+
+  /// No description provided for @profileEditKeepEditing.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qolish'**
+  String get profileEditKeepEditing;
+
+  /// No description provided for @profileEditUnsavedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻzgarishlar saqlanmadi'**
+  String get profileEditUnsavedTitle;
+
+  /// No description provided for @profileEditUnsavedMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chiqsangiz, kiritilgan oʻzgarishlar yoʻqoladi.'**
+  String get profileEditUnsavedMessage;
+
+  /// No description provided for @profileEditStayEditing.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tahrirlashda qolish'**
+  String get profileEditStayEditing;
+
+  /// No description provided for @profileEditExit.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chiqish'**
+  String get profileEditExit;
+
+  /// No description provided for @profileEditUpdatedTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil yangilandi'**
+  String get profileEditUpdatedTitle;
+
+  /// No description provided for @profileEditUpdatedMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻzgarishlar saqlandi. Profilingiz nomzodlarga yangilangan koʻrinishda koʻrsatiladi.'**
+  String get profileEditUpdatedMessage;
+
+  /// No description provided for @profileEditUpdatedOk.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaxshi'**
+  String get profileEditUpdatedOk;
+
+  /// No description provided for @blockedUsersTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar'**
+  String get blockedUsersTitle;
+
+  /// No description provided for @blockedUsersSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar sizni qidiruvda ko‘rmaydi va yozolmaydi.'**
+  String get blockedUsersSubtitle;
+
+  /// No description provided for @blockedUsersEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan profillar yo‘q'**
+  String get blockedUsersEmpty;
+
+  /// No description provided for @blockedUsersEmptySubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Siz bloklagan barcha profillar shu yerda ko‘rinadi.'**
+  String get blockedUsersEmptySubtitle;
+
+  /// No description provided for @blockedUsersNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat qilingan profil moderator ko‘rigidan keyin avtomatik bloklanadi — bu ro‘yxatda «Shikoyatdan keyin» deb belgilanadi.'**
+  String get blockedUsersNote;
+
+  /// No description provided for @blockedAtDate.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bloklangan {date}'**
+  String blockedAtDate(String date);
+
+  /// No description provided for @blockedAfterComplaint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyatdan keyin bloklangan'**
+  String get blockedAfterComplaint;
+
+  /// No description provided for @unblockButton.
+  ///
+  /// In uz, this message translates to:
+  /// **'Blokdan chiqarish'**
+  String get unblockButton;
+
+  /// No description provided for @unblockSuccess.
+  ///
+  /// In uz, this message translates to:
+  /// **'Foydalanuvchi blokdan chiqarildi'**
+  String get unblockSuccess;
+
+  /// No description provided for @unblockConfirmTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Blokdan chiqarilsinmi?'**
+  String get unblockConfirmTitle;
+
+  /// No description provided for @unblockConfirmMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ushbu profil yana sizga xabar yoza oladi va profilingizni ko‘ra oladi.'**
+  String get unblockConfirmMessage;
+
+  /// No description provided for @cancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get cancel;
+
+  /// No description provided for @accountDeletionTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobni oʻchirish'**
+  String get accountDeletionTitle;
+
+  /// No description provided for @accountDeletionWarningTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu amal qaytarilmaydi'**
+  String get accountDeletionWarningTitle;
+
+  /// No description provided for @accountDeletionWarningMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisob oʻchirilgach profilingizni tiklash imkoni boʻlmaydi.'**
+  String get accountDeletionWarningMessage;
+
+  /// No description provided for @accountDeletionItemsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'NIMALAR OʻCHIRILADI'**
+  String get accountDeletionItemsTitle;
+
+  /// No description provided for @accountDeletionPhotos.
+  ///
+  /// In uz, this message translates to:
+  /// **'Barcha suratlar va ovozli tanishtiruv'**
+  String get accountDeletionPhotos;
+
+  /// No description provided for @accountDeletionQuestionnaire.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrovnoma javoblari va moslik natijalari'**
+  String get accountDeletionQuestionnaire;
+
+  /// No description provided for @accountDeletionChats.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatlar va saqlangan profillar'**
+  String get accountDeletionChats;
+
+  /// No description provided for @accountDeletionRepresentative.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ulangan vakil bilan bogʻlanish'**
+  String get accountDeletionRepresentative;
+
+  /// No description provided for @accountDeletionReasonTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'SABAB (IXTIYORIY)'**
+  String get accountDeletionReasonTitle;
+
+  /// No description provided for @accountDeletionReasonFoundMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Juftlik topdim'**
+  String get accountDeletionReasonFoundMatch;
+
+  /// No description provided for @accountDeletionReasonNoTime.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha vaqtim yoʻq'**
+  String get accountDeletionReasonNoTime;
+
+  /// No description provided for @accountDeletionReasonPrivacy.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiylik xavotiri'**
+  String get accountDeletionReasonPrivacy;
+
+  /// No description provided for @accountDeletionConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hisobni oʻchirish'**
+  String get accountDeletionConfirm;
+
+  /// No description provided for @accountDeletionCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get accountDeletionCancel;
 }
 
 class _AppLocalizationsDelegate

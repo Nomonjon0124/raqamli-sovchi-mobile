@@ -29,4 +29,40 @@ final class BlockedUserRepositoryImpl implements BlockedUserRepository {
       return const Left(Failure.unknown());
     }
   }
+
+  @override
+  Future<Either<Failure, List<BlockedUser>>> getBlockedUsers({
+    int page = 1,
+  }) async {
+    try {
+      final models = await _dataSource.getBlockedUsers(page: page);
+      return Right(models.map((m) => m.toEntity()).toList());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> unblockUser({
+    required String userId,
+    String? blockedRecordId,
+  }) async {
+    try {
+      final success = await _dataSource.unblockUser(
+        userId: userId,
+        blockedRecordId: blockedRecordId,
+      );
+      return Right(success);
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
 }

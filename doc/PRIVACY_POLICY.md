@@ -204,9 +204,15 @@ You can delete your account in the app:
 
 1. Open the Raqamli Sovchi app.
 2. Sign in.
-3. Open the home or settings area.
+3. Open **Settings**.
 4. Tap **Delete account**.
-5. Confirm deletion.
+5. Review the warning and the data list. You may select an optional reason.
+6. Tap **Delete account** to send the request.
+
+When the backend accepts the request, the account is deactivated and the app
+clears the local session and PIN. Account data is deleted or de-identified
+according to the retention rules above; records that must be retained for legal,
+security, abuse-prevention, or dispute reasons may remain for a limited period.
 
 If you cannot access the app, you may send an account deletion request to:
 
@@ -217,6 +223,14 @@ Include the phone number, email address, or other account identifier connected t
 Account deletion web page:
 
 `doc/index.html`
+
+Public privacy policy page:
+
+`doc/privacy-policy.html`
+
+Related Terms of Service:
+
+`doc/TERMS_OF_SERVICE.md` and `doc/terms-of-service.html`
 
 For Google Play, this page should be deployed to a public URL such as:
 

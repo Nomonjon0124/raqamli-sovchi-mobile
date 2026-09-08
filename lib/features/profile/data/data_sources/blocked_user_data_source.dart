@@ -6,6 +6,10 @@ abstract interface class BlockedUserDataSource {
     required String blockedUserId,
     String? reason,
   });
+
+  Future<List<BlockedUserModel>> getBlockedUsers({int page = 1});
+
+  Future<bool> unblockUser({required String userId, String? blockedRecordId});
 }
 
 final class RemoteBlockedUserDataSource implements BlockedUserDataSource {
@@ -28,6 +32,57 @@ final class RemoteBlockedUserDataSource implements BlockedUserDataSource {
       },
     );
     return BlockedUserModel.fromJson(_unwrapMap(response.data));
+  }
+
+  @override
+  Future<List<BlockedUserModel>> getBlockedUsers({int page = 1}) async {
+    final response = await _client.get<dynamic>(
+      _blockedUsersPath,
+      queryParameters: {'page': page},
+    );
+    final map = _unwrapMap(response.data);
+    final results = map['results'];
+    if (results is List) {
+      return results
+          .whereType<Map>()
+          .map(
+            (item) => BlockedUserModel.fromJson(
+              item.map((k, v) => MapEntry(k.toString(), v)),
+            ),
+          )
+          .toList();
+    }
+    if (response.data is List) {
+      return (response.data as List)
+          .whereType<Map>()
+          .map(
+            (item) => BlockedUserModel.fromJson(
+              item.map((k, v) => MapEntry(k.toString(), v)),
+            ),
+          )
+          .toList();
+    }
+    return const <BlockedUserModel>[];
+  }
+
+  @override
+  Future<bool> unblockUser({
+    required String userId,
+    String? blockedRecordId,
+  }) async {
+    try {
+      await _client.post<dynamic>(
+        '/api/v1/accounts/users/$userId/unblock/',
+        data: const {'reason': 'mistake'},
+      );
+      return true;
+    } catch (_) {
+      if (blockedRecordId != null && blockedRecordId.isNotEmpty) {
+        await _client.delete<dynamic>('$_blockedUsersPath$blockedRecordId/');
+        return true;
+      }
+      rethrow;
+    }
   }
 }
 

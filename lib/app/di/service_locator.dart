@@ -70,6 +70,10 @@ import '../../features/match/data/repositories/match_request_repository_impl.dar
 import '../../features/match/data/repositories/photo_request_repository_impl.dart';
 import '../../features/match/domain/repositories/match_request_repository.dart';
 import '../../features/match/domain/repositories/photo_request_repository.dart';
+import '../../features/moderation/application/use_cases/create_complaint.dart';
+import '../../features/moderation/data/data_sources/complaint_data_source.dart';
+import '../../features/moderation/data/repositories/complaint_repository_impl.dart';
+import '../../features/moderation/domain/repositories/complaint_repository.dart';
 import '../../features/notifications/application/use_cases/notification_use_cases.dart';
 import '../../features/notifications/data/data_sources/notification_data_source.dart';
 import '../../features/notifications/data/repositories/notification_repository_impl.dart';
@@ -88,13 +92,19 @@ import '../../features/onboarding/domain/repositories/onboarding_draft_repositor
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
 import '../../features/profile/application/use_cases/block_user.dart';
+import '../../features/profile/application/use_cases/get_blocked_users.dart';
 import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/application/use_cases/unblock_user.dart';
+import '../../features/profile/application/use_cases/update_profile.dart';
+import '../../features/profile/application/use_cases/upload_profile_photo.dart';
 import '../../features/profile/data/data_sources/blocked_user_data_source.dart';
 import '../../features/profile/data/data_sources/profile_data_source.dart';
 import '../../features/profile/data/repositories/blocked_user_repository_impl.dart';
 import '../../features/profile/data/repositories/profile_repository_impl.dart';
 import '../../features/profile/domain/repositories/blocked_user_repository.dart';
 import '../../features/profile/domain/repositories/profile_repository.dart';
+import '../../features/profile/presentation/bloc/blocked_users/blocked_users_cubit.dart';
+import '../../features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
 import '../../features/questionnaire/application/use_cases/submit_questionnaire.dart';
@@ -221,6 +231,12 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<PhotoRequestRepository>(
       () => PhotoRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<ComplaintDataSource>(
+      () => RemoteComplaintDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<ComplaintRepository>(
+      () => ComplaintRepositoryImpl(serviceLocator()),
+    )
     ..registerLazySingleton<NotificationDataSource>(
       () => RemoteNotificationDataSource(serviceLocator()),
     )
@@ -248,6 +264,12 @@ Future<void> configureDependencies() async {
     ..registerFactory<GetMyProfileUseCase>(
       () => GetMyProfileUseCase(serviceLocator()),
     )
+    ..registerFactory<UpdateProfileUseCase>(
+      () => UpdateProfileUseCase(serviceLocator()),
+    )
+    ..registerFactory<UploadProfilePhotoUseCase>(
+      () => UploadProfilePhotoUseCase(serviceLocator()),
+    )
     ..registerFactory<GetCandidateUseCase>(
       () => GetCandidateUseCase(serviceLocator()),
     )
@@ -274,6 +296,15 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<BlockUserUseCase>(
       () => BlockUserUseCase(serviceLocator()),
+    )
+    ..registerFactory<GetBlockedUsersUseCase>(
+      () => GetBlockedUsersUseCase(serviceLocator()),
+    )
+    ..registerFactory<UnblockUserUseCase>(
+      () => UnblockUserUseCase(serviceLocator()),
+    )
+    ..registerFactory<CreateComplaintUseCase>(
+      () => CreateComplaintUseCase(serviceLocator()),
     )
     ..registerFactory<LoadNotificationsUseCase>(
       () => LoadNotificationsUseCase(serviceLocator()),
@@ -344,6 +375,19 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<ProfileBloc>(
       () => ProfileBloc(getMyProfile: serviceLocator()),
+    )
+    ..registerFactory<EditProfileBloc>(
+      () => EditProfileBloc(
+        updateProfile: serviceLocator(),
+        uploadPhoto: serviceLocator(),
+        onboardingRepository: serviceLocator(),
+      ),
+    )
+    ..registerFactory<BlockedUsersCubit>(
+      () => BlockedUsersCubit(
+        getBlockedUsers: serviceLocator(),
+        unblockUser: serviceLocator(),
+      ),
     )
     ..registerFactory<SettingsCubit>(SettingsCubit.new)
     ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
