@@ -101,10 +101,8 @@ final class _ProfileView extends StatelessWidget {
                   ProfileHeroCard(
                     profile: profile,
                     identifierText: l10n.profileIdentifier(profile.publicCode),
-                    previewText: l10n.profilePreview,
                     copyLabel: l10n.profileCopyIdentifier,
                     onCopy: () => _copyIdentifier(context, profile.publicCode),
-                    onPreview: () => _showComingSoon(context),
                   ),
                   if (profile.completionPercent < 100) ...[
                     const SizedBox(height: AppSpacing.lg),

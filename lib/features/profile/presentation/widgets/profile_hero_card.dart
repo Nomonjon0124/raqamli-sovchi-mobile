@@ -11,19 +11,15 @@ final class ProfileHeroCard extends StatelessWidget {
   const ProfileHeroCard({
     required this.profile,
     required this.identifierText,
-    required this.previewText,
     required this.copyLabel,
     required this.onCopy,
-    required this.onPreview,
     super.key,
   });
 
   final UserProfile profile;
   final String identifierText;
-  final String previewText;
   final String copyLabel;
   final VoidCallback onCopy;
-  final VoidCallback onPreview;
 
   @override
   Widget build(BuildContext context) {
@@ -40,120 +36,112 @@ final class ProfileHeroCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.lg),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _ProfileAvatar(
-              initials: profile.initials,
-              completionPercent: profile.completionPercent,
-            ),
-            const SizedBox(width: AppSpacing.input),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+        child: ColoredBox(
+          color: AppColors.surfaceLight,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 78),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: AppSpacing.input,
+              children: [
+                _ProfileAvatar(
+                  initials: profile.initials,
+                  completionPercent: profile.completionPercent,
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppSpacing.xs,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Flexible(
-                        child: Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTypography.profileName,
-                        ),
-                      ),
-                      if (profile.isVerified) ...[
-                        const SizedBox(width: AppSpacing.compact),
-                        Assets.icons.profileVerified.svg(
-                          width: 18,
-                          height: 18,
-                          excludeFromSemantics: true,
-                        ),
-                      ],
-                    ],
-                  ),
-                  const SizedBox(height: AppSpacing.xs),
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Text(
-                          identifierText,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTypography.profileIdentifier,
-                        ),
-                      ),
-                      const SizedBox(width: AppSpacing.xs),
-                      Semantics(
-                        button: true,
-                        label: copyLabel,
-                        child: InkResponse(
-                          onTap: onCopy,
-                          radius: 18,
-                          child: Padding(
-                            padding: const EdgeInsets.all(AppSpacing.xs),
-                            child: Assets.icons.icCopy.svg(
-                              width: 14,
-                              height: 14,
-                              colorFilter: const ColorFilter.mode(
-                                AppColors.mutedText,
-                                BlendMode.srcIn,
-                              ),
-                              excludeFromSemantics: true,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTypography.profileName,
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  Material(
-                    color: AppColors.mutedSurface,
-                    borderRadius: BorderRadius.circular(AppRadius.full),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(AppRadius.full),
-                      onTap: onPreview,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.inline,
-                          vertical: AppSpacing.compact,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Assets.icons.profilePreview.svg(
-                              width: 15,
-                              height: 15,
-                              colorFilter: const ColorFilter.mode(
-                                AppColors.mutedText,
-                                BlendMode.srcIn,
-                              ),
-                              excludeFromSemantics: true,
-                            ),
+                          if (profile.isVerified) ...[
                             const SizedBox(width: AppSpacing.compact),
-                            Flexible(
-                              child: Text(
-                                previewText,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTypography.profileIdentifier.copyWith(
-                                  fontWeight: FontWeight.w500,
+                            const _VerifiedBadge(),
+                          ],
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              identifierText,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTypography.profileCardBody,
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.xs),
+                          Semantics(
+                            button: true,
+                            label: copyLabel,
+                            child: InkResponse(
+                              onTap: onCopy,
+                              radius: 22,
+                              child: SizedBox.square(
+                                dimension: 44,
+                                child: Center(
+                                  child: Assets.icons.icCopy.svg(
+                                    width: 13,
+                                    height: 13,
+                                    colorFilter: const ColorFilter.mode(
+                                      AppColors.mutedText,
+                                      BlendMode.srcIn,
+                                    ),
+                                    excludeFromSemantics: true,
+                                  ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
+}
+
+final class _VerifiedBadge extends StatelessWidget {
+  const _VerifiedBadge();
+
+  @override
+  Widget build(BuildContext context) => DecoratedBox(
+    decoration: const BoxDecoration(
+      color: AppColors.primary,
+      shape: BoxShape.circle,
+    ),
+    child: SizedBox.square(
+      dimension: 18,
+      child: Center(
+        child: Assets.icons.icVerifyCheck.svg(
+          width: 11,
+          height: 11,
+          colorFilter: const ColorFilter.mode(
+            AppColors.surfaceLight,
+            BlendMode.srcIn,
+          ),
+          excludeFromSemantics: true,
+        ),
+      ),
+    ),
+  );
 }
 
 final class _ProfileAvatar extends StatelessWidget {
@@ -167,10 +155,10 @@ final class _ProfileAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-    width: 76,
-    height: 82,
+    width: 72,
+    height: 78,
     child: Stack(
-      alignment: Alignment.topCenter,
+      clipBehavior: Clip.none,
       children: [
         Container(
           width: 72,
@@ -181,20 +169,25 @@ final class _ProfileAvatar extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.primary, width: 2),
           ),
-          child: Text(initials, style: AppTypography.profileAvatar),
+          child: Text(
+            initials,
+            maxLines: 1,
+            overflow: TextOverflow.clip,
+            style: AppTypography.profileAvatar,
+          ),
         ),
         Positioned(
-          bottom: 0,
+          left: 15,
+          top: 56,
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(AppRadius.full),
-              border: Border.all(color: AppColors.surfaceLight, width: 2),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.sm,
-                vertical: AppSpacing.xxs,
+                vertical: AppSpacing.controlInset,
               ),
               child: Text(
                 '$completionPercent%',

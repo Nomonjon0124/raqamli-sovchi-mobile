@@ -237,13 +237,14 @@ abstract final class AppTypography {
     fontSize: 24,
     height: 30 / 24,
     fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
     color: AppColors.profileAvatarText,
   );
   static const profileProgress = TextStyle(
     fontFamily: 'Manrope',
-    fontSize: 10,
-    height: 14 / 10,
-    fontWeight: FontWeight.w700,
+    fontSize: 11,
+    height: 15 / 11,
+    fontWeight: FontWeight.w600,
     color: AppColors.surfaceLight,
   );
   static const profileMainBadge = TextStyle(
