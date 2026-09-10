@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:raqamli_sovchi/app/di/service_locator.dart';
 import 'package:thunder/thunder.dart';
 
+import '../core/security/background_lock_gate.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
 import '../features/auth/presentation/bloc/auth_state.dart';
@@ -14,9 +15,10 @@ import 'router/app_router.dart';
 import 'theme/app_theme.dart';
 
 class App extends StatefulWidget {
-  const App({required this.authBloc, super.key});
+  const App({required this.authBloc, this.backgroundLockGate, super.key});
 
   final AuthBloc authBloc;
+  final BackgroundLockGate? backgroundLockGate;
 
   @override
   State<App> createState() => _AppState();
@@ -26,7 +28,8 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
   late final RouterConfig<Object> _router = AppRouter(
     authBloc: widget.authBloc,
   ).router;
-  bool _wasPaused = false;
+  late final BackgroundLockGate _backgroundLockGate =
+      widget.backgroundLockGate ?? serviceLocator<BackgroundLockGate>();
 
   @override
   void initState() {
@@ -44,12 +47,12 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused ||
         state == AppLifecycleState.detached) {
-      _wasPaused = true;
+      _backgroundLockGate.markBackgrounded();
       return;
     }
 
-    if (state == AppLifecycleState.resumed && _wasPaused) {
-      _wasPaused = false;
+    if (state == AppLifecycleState.resumed &&
+        _backgroundLockGate.consumeShouldLockOnResume()) {
       widget.authBloc.add(const AuthApplicationResumed());
     }
   }

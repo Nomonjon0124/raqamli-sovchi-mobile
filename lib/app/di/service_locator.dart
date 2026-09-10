@@ -7,6 +7,7 @@ import '../../core/network/api_client.dart';
 import '../../core/notifications/notification_event_bus.dart';
 import '../../core/platform/external_url_launcher.dart';
 import '../../core/security/auth_session_manager.dart';
+import '../../core/security/background_lock_gate.dart';
 import '../../core/security/biometric_auth_service.dart';
 import '../../core/security/notification_device_store.dart';
 import '../../core/security/screenshot_guard.dart';
@@ -91,9 +92,12 @@ import '../../features/onboarding/data/services/onboarding_media_service_impl.da
 import '../../features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
+import '../../features/profile/application/services/profile_photo_picker.dart';
 import '../../features/profile/application/use_cases/block_user.dart';
+import '../../features/profile/application/use_cases/delete_profile_photo.dart';
 import '../../features/profile/application/use_cases/get_blocked_users.dart';
 import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/application/use_cases/set_main_profile_photo.dart';
 import '../../features/profile/application/use_cases/unblock_user.dart';
 import '../../features/profile/application/use_cases/update_profile.dart';
 import '../../features/profile/application/use_cases/upload_profile_photo.dart';
@@ -101,11 +105,14 @@ import '../../features/profile/data/data_sources/blocked_user_data_source.dart';
 import '../../features/profile/data/data_sources/profile_data_source.dart';
 import '../../features/profile/data/repositories/blocked_user_repository_impl.dart';
 import '../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../features/profile/data/services/profile_photo_picker_impl.dart';
 import '../../features/profile/domain/repositories/blocked_user_repository.dart';
 import '../../features/profile/domain/repositories/profile_repository.dart';
 import '../../features/profile/presentation/bloc/blocked_users/blocked_users_cubit.dart';
 import '../../features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
+import '../../features/profile/presentation/bloc/profile_face_verification/profile_face_verification_bloc.dart';
+import '../../features/profile/presentation/bloc/profile_photo_management/profile_photo_management_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
 import '../../features/questionnaire/application/use_cases/submit_questionnaire.dart';
 import '../../features/questionnaire/data/data_sources/questionnaire_data_source.dart';
@@ -134,6 +141,7 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<AuthSessionManager>(
       () => DefaultAuthSessionManager(serviceLocator(), serviceLocator()),
     )
+    ..registerLazySingleton<BackgroundLockGate>(BackgroundLockGate.new)
     ..registerLazySingleton<ScreenshotGuard>(SecureScreenshotGuard.new)
     ..registerLazySingleton<ExternalUrlLauncher>(UrlLauncherService.new)
     ..registerLazySingleton<BiometricAuthService>(LocalBiometricAuthService.new)
@@ -270,6 +278,15 @@ Future<void> configureDependencies() async {
     ..registerFactory<UploadProfilePhotoUseCase>(
       () => UploadProfilePhotoUseCase(serviceLocator()),
     )
+    ..registerFactory<SetMainProfilePhotoUseCase>(
+      () => SetMainProfilePhotoUseCase(serviceLocator()),
+    )
+    ..registerFactory<DeleteProfilePhotoUseCase>(
+      () => DeleteProfilePhotoUseCase(serviceLocator()),
+    )
+    ..registerFactory<ProfilePhotoPicker>(
+      () => DeviceProfilePhotoPicker(backgroundLockGate: serviceLocator()),
+    )
     ..registerFactory<GetCandidateUseCase>(
       () => GetCandidateUseCase(serviceLocator()),
     )
@@ -374,13 +391,34 @@ Future<void> configureDependencies() async {
       ),
     )
     ..registerFactory<ProfileBloc>(
-      () => ProfileBloc(getMyProfile: serviceLocator()),
+      () => ProfileBloc(
+        getMyProfile: serviceLocator(),
+        uploadPhoto: serviceLocator(),
+        setMainPhoto: serviceLocator(),
+        deletePhoto: serviceLocator(),
+        photoPicker: serviceLocator(),
+      ),
     )
     ..registerFactory<EditProfileBloc>(
       () => EditProfileBloc(
         updateProfile: serviceLocator(),
         uploadPhoto: serviceLocator(),
         onboardingRepository: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ProfilePhotoManagementBloc>(
+      () => ProfilePhotoManagementBloc(
+        getMyProfile: serviceLocator(),
+        uploadPhoto: serviceLocator(),
+        setMainPhoto: serviceLocator(),
+        deletePhoto: serviceLocator(),
+        photoPicker: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ProfileFaceVerificationBloc>(
+      () => ProfileFaceVerificationBloc(
+        onboardingRepository: serviceLocator(),
+        mediaService: serviceLocator(),
       ),
     )
     ..registerFactory<BlockedUsersCubit>(
@@ -390,7 +428,9 @@ Future<void> configureDependencies() async {
       ),
     )
     ..registerFactory<SettingsCubit>(SettingsCubit.new)
-    ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
+    ..registerFactory<OnboardingMediaService>(
+      () => DeviceOnboardingMediaService(backgroundLockGate: serviceLocator()),
+    )
     ..registerLazySingleton<OnboardingLocationService>(
       DeviceOnboardingLocationService.new,
     )

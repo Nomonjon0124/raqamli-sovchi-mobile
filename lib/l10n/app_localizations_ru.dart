@@ -1628,6 +1628,41 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get profilePhotoSourceTitle => 'Новое фото';
+
+  @override
+  String get profilePhotoSourceSubtitle =>
+      'После загрузки фотография пройдёт проверку лица.';
+
+  @override
+  String get profilePhotoCamera => 'Сделать снимок камерой';
+
+  @override
+  String get profilePhotoGallery => 'Выбрать из галереи';
+
+  @override
+  String get profilePhotoActionsTitle => 'Фото';
+
+  @override
+  String get profilePhotoSetMain => 'Сделать главным';
+
+  @override
+  String get profilePhotoReplace => 'Заменить';
+
+  @override
+  String get profilePhotoDelete => 'Удалить';
+
+  @override
+  String get profilePhotoCancel => 'Отмена';
+
+  @override
+  String get profilePhotoDeleteTitle => 'Удалить это фото?';
+
+  @override
+  String get profilePhotoDeleteSubtitle =>
+      'Фото будет удалено из профиля. Вместо него можно загрузить новое.';
+
+  @override
   String get profileAboutSection => 'О СЕБЕ';
 
   @override
@@ -1782,6 +1817,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get profileEditChangePhoto => 'Изменить фото';
+
+  @override
+  String get profilePhotoManagementTitle => 'Главное фото';
+
+  @override
+  String get profilePhotoManagementSubtitle =>
+      'Это фото будет первым в профиле и списке кандидатов. При проверке селфи оно используется для сравнения.';
+
+  @override
+  String get profilePhotoConfirm => 'Подтвердить';
+
+  @override
+  String get profileFaceVerificationDone => 'Продолжить';
 
   @override
   String get profileEditName => 'Имя';

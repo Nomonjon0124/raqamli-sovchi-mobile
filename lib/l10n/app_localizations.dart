@@ -2980,6 +2980,72 @@ abstract class AppLocalizations {
   /// **'Profil surati {index}'**
   String profilePhotoSemantics(int index);
 
+  /// No description provided for @profilePhotoSourceTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi surat'**
+  String get profilePhotoSourceTitle;
+
+  /// No description provided for @profilePhotoSourceSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuklangandan soʻng surat yuz tekshiruvidan oʻtadi.'**
+  String get profilePhotoSourceSubtitle;
+
+  /// No description provided for @profilePhotoCamera.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kameradan olish'**
+  String get profilePhotoCamera;
+
+  /// No description provided for @profilePhotoGallery.
+  ///
+  /// In uz, this message translates to:
+  /// **'Galereyadan tanlash'**
+  String get profilePhotoGallery;
+
+  /// No description provided for @profilePhotoActionsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Surat'**
+  String get profilePhotoActionsTitle;
+
+  /// No description provided for @profilePhotoSetMain.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy qilib belgilash'**
+  String get profilePhotoSetMain;
+
+  /// No description provided for @profilePhotoReplace.
+  ///
+  /// In uz, this message translates to:
+  /// **'Almashtirish'**
+  String get profilePhotoReplace;
+
+  /// No description provided for @profilePhotoDelete.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻchirish'**
+  String get profilePhotoDelete;
+
+  /// No description provided for @profilePhotoCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get profilePhotoCancel;
+
+  /// No description provided for @profilePhotoDeleteTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suratni oʻchirasizmi?'**
+  String get profilePhotoDeleteTitle;
+
+  /// No description provided for @profilePhotoDeleteSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Surat profilingizdan olib tashlanadi. Oʻrniga yangisini yuklashingiz mumkin.'**
+  String get profilePhotoDeleteSubtitle;
+
   /// No description provided for @profileAboutSection.
   ///
   /// In uz, this message translates to:
@@ -3243,6 +3309,30 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Suratni oʻzgartirish'**
   String get profileEditChangePhoto;
+
+  /// No description provided for @profilePhotoManagementTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy surat'**
+  String get profilePhotoManagementTitle;
+
+  /// No description provided for @profilePhotoManagementSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingizda va nomzodlar roʻyxatida birinchi shu surat ko‘rinadi. Selfi tekshiruvi ham shu surat bilan solishtiriladi.'**
+  String get profilePhotoManagementSubtitle;
+
+  /// No description provided for @profilePhotoConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tasdiqlash'**
+  String get profilePhotoConfirm;
+
+  /// No description provided for @profileFaceVerificationDone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Davom etish'**
+  String get profileFaceVerificationDone;
 
   /// No description provided for @profileEditName.
   ///

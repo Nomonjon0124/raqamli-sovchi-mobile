@@ -11,26 +11,37 @@ final class ProfileState extends Equatable {
     this.profile,
     this.failure,
     this.isRefreshing = false,
+    this.isPhotoActionInProgress = false,
   });
 
   final ProfileStatus status;
   final UserProfile? profile;
   final Failure? failure;
   final bool isRefreshing;
+  final bool isPhotoActionInProgress;
 
   ProfileState copyWith({
     ProfileStatus? status,
     UserProfile? profile,
     Failure? failure,
     bool? isRefreshing,
+    bool? isPhotoActionInProgress,
     bool clearFailure = false,
   }) => ProfileState(
     status: status ?? this.status,
     profile: profile ?? this.profile,
     failure: clearFailure ? null : failure ?? this.failure,
     isRefreshing: isRefreshing ?? this.isRefreshing,
+    isPhotoActionInProgress:
+        isPhotoActionInProgress ?? this.isPhotoActionInProgress,
   );
 
   @override
-  List<Object?> get props => [status, profile, failure, isRefreshing];
+  List<Object?> get props => [
+    status,
+    profile,
+    failure,
+    isRefreshing,
+    isPhotoActionInProgress,
+  ];
 }

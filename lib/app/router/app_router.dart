@@ -17,7 +17,9 @@ import '../../features/onboarding/presentation/pages/profile_onboarding_page.dar
 import '../../features/profile/domain/entities/user_profile.dart';
 import '../../features/profile/presentation/pages/blocked_users_page.dart';
 import '../../features/profile/presentation/pages/profile_edit_page.dart';
+import '../../features/profile/presentation/pages/profile_face_verification_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
+import '../../features/profile/presentation/pages/profile_photo_management_page.dart';
 import '../../features/questionnaire/presentation/pages/questionnaire_page.dart';
 import '../../features/saved/presentation/pages/saved_page.dart';
 import '../../features/services/presentation/pages/services_page.dart';
@@ -143,6 +145,18 @@ final class AppRouter {
               ? state.extra! as UserProfile
               : null,
         ),
+      ),
+      GoRoute(
+        path: RouteNames.profilePhotos,
+        builder: (context, state) {
+          final profile = state.extra;
+          if (profile is! UserProfile) return const ProfilePage();
+          return ProfilePhotoManagementPage(initialProfile: profile);
+        },
+      ),
+      GoRoute(
+        path: RouteNames.profileFaceVerification,
+        builder: (context, state) => const ProfileFaceVerificationPage(),
       ),
       GoRoute(
         path: RouteNames.privacyPolicy,

@@ -16,6 +16,7 @@ final class ProfilePhotoGallery extends StatelessWidget {
     required this.photoSemantics,
     required this.photos,
     required this.onAdd,
+    required this.onPhotoTap,
     super.key,
   });
 
@@ -28,6 +29,7 @@ final class ProfilePhotoGallery extends StatelessWidget {
   final String Function(int index) photoSemantics;
   final List<ProfilePhoto> photos;
   final VoidCallback onAdd;
+  final ValueChanged<ProfilePhoto> onPhotoTap;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,7 @@ final class ProfilePhotoGallery extends StatelessWidget {
                         photo: photo,
                         mainLabel: mainLabel,
                         semanticLabel: photoSemantics(index + 1),
+                        onTap: () => onPhotoTap(photo),
                       ),
               ),
             );
@@ -79,57 +82,71 @@ final class _PhotoSlot extends StatelessWidget {
     required this.photo,
     required this.mainLabel,
     required this.semanticLabel,
+    required this.onTap,
   });
 
   final ProfilePhoto photo;
   final String mainLabel;
   final String semanticLabel;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => Semantics(
     image: true,
     label: semanticLabel,
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.lg),
-      child: SizedBox(
-        height: 132,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            CachedNetworkImage(
-              imageUrl: photo.imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const ColoredBox(
-                color: AppColors.mutedSurface,
-                child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
-              ),
-              errorWidget: (context, url, error) => const ColoredBox(
-                color: AppColors.mutedSurface,
-                child: Icon(Icons.person_rounded, color: AppColors.mutedText),
-              ),
-            ),
-            if (photo.isMain)
-              Positioned(
-                top: AppSpacing.sm,
-                left: AppSpacing.sm,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(AppRadius.full),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.sm,
-                      vertical: AppSpacing.xs,
+    child: Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          child: SizedBox(
+            height: 132,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                CachedNetworkImage(
+                  imageUrl: photo.imageUrl,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const ColoredBox(
+                    color: AppColors.mutedSurface,
+                    child: Center(
+                      child: CircularProgressIndicator(strokeWidth: 2),
                     ),
-                    child: Text(
-                      mainLabel,
-                      style: AppTypography.profileMainBadge,
+                  ),
+                  errorWidget: (context, url, error) => const ColoredBox(
+                    color: AppColors.mutedSurface,
+                    child: Icon(
+                      Icons.person_rounded,
+                      color: AppColors.mutedText,
                     ),
                   ),
                 ),
-              ),
-          ],
+                if (photo.isMain)
+                  Positioned(
+                    top: AppSpacing.sm,
+                    left: AppSpacing.sm,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(AppRadius.full),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
+                        child: Text(
+                          mainLabel,
+                          style: AppTypography.profileMainBadge,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     ),

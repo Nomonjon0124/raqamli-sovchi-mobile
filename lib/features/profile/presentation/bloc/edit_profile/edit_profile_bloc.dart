@@ -33,6 +33,7 @@ final class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     on<EditProfileMaritalStatusChanged>(_onMaritalStatusChanged);
     on<EditProfileBioChanged>(_onBioChanged);
     on<EditProfilePhotoPickRequested>(_onPhotoPickRequested);
+    on<EditProfilePhotosUpdated>(_onPhotosUpdated);
     on<EditProfileSubmitted>(_onSubmitted);
   }
 
@@ -301,6 +302,20 @@ final class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     } catch (e) {
       emit(state.copyWith(isUploadingPhoto: false));
     }
+  }
+
+  void _onPhotosUpdated(
+    EditProfilePhotosUpdated event,
+    Emitter<EditProfileState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        originalProfile: event.profile,
+        mainPhotoUrl: event.profile.mainPhoto?.imageUrl,
+        clearLocalPhotoPath: true,
+        clearMainPhotoUrl: event.profile.mainPhoto == null,
+      ),
+    );
   }
 
   Future<void> _onSubmitted(

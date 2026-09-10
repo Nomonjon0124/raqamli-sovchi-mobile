@@ -1619,6 +1619,41 @@ class AppLocalizationsUz extends AppLocalizations {
   }
 
   @override
+  String get profilePhotoSourceTitle => 'Yangi surat';
+
+  @override
+  String get profilePhotoSourceSubtitle =>
+      'Yuklangandan soʻng surat yuz tekshiruvidan oʻtadi.';
+
+  @override
+  String get profilePhotoCamera => 'Kameradan olish';
+
+  @override
+  String get profilePhotoGallery => 'Galereyadan tanlash';
+
+  @override
+  String get profilePhotoActionsTitle => 'Surat';
+
+  @override
+  String get profilePhotoSetMain => 'Asosiy qilib belgilash';
+
+  @override
+  String get profilePhotoReplace => 'Almashtirish';
+
+  @override
+  String get profilePhotoDelete => 'Oʻchirish';
+
+  @override
+  String get profilePhotoCancel => 'Bekor qilish';
+
+  @override
+  String get profilePhotoDeleteTitle => 'Suratni oʻchirasizmi?';
+
+  @override
+  String get profilePhotoDeleteSubtitle =>
+      'Surat profilingizdan olib tashlanadi. Oʻrniga yangisini yuklashingiz mumkin.';
+
+  @override
   String get profileAboutSection => 'O‘ZINGIZ HAQINGIZDA';
 
   @override
@@ -1772,6 +1807,19 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get profileEditChangePhoto => 'Suratni oʻzgartirish';
+
+  @override
+  String get profilePhotoManagementTitle => 'Asosiy surat';
+
+  @override
+  String get profilePhotoManagementSubtitle =>
+      'Profilingizda va nomzodlar roʻyxatida birinchi shu surat ko‘rinadi. Selfi tekshiruvi ham shu surat bilan solishtiriladi.';
+
+  @override
+  String get profilePhotoConfirm => 'Tasdiqlash';
+
+  @override
+  String get profileFaceVerificationDone => 'Davom etish';
 
   @override
   String get profileEditName => 'Ism';

@@ -217,7 +217,16 @@ final class _ProfileRepository implements ProfileRepository {
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
+    bool isMain = true,
   }) => throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> setMainPhoto(String photoId) =>
+      throw UnimplementedError();
+
+  @override
+  Future<Either<Failure, void>> deletePhoto(String photoId) =>
+      throw UnimplementedError();
 }
 
 final class _NotificationRepository implements NotificationRepository {

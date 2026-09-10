@@ -1626,6 +1626,41 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get profilePhotoSourceTitle => 'New photo';
+
+  @override
+  String get profilePhotoSourceSubtitle =>
+      'After uploading, the photo will go through face verification.';
+
+  @override
+  String get profilePhotoCamera => 'Take with camera';
+
+  @override
+  String get profilePhotoGallery => 'Choose from gallery';
+
+  @override
+  String get profilePhotoActionsTitle => 'Photo';
+
+  @override
+  String get profilePhotoSetMain => 'Set as main';
+
+  @override
+  String get profilePhotoReplace => 'Replace';
+
+  @override
+  String get profilePhotoDelete => 'Delete';
+
+  @override
+  String get profilePhotoCancel => 'Cancel';
+
+  @override
+  String get profilePhotoDeleteTitle => 'Delete this photo?';
+
+  @override
+  String get profilePhotoDeleteSubtitle =>
+      'The photo will be removed from your profile. You can upload a new one instead.';
+
+  @override
   String get profileAboutSection => 'ABOUT YOU';
 
   @override
@@ -1780,6 +1815,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileEditChangePhoto => 'Change photo';
+
+  @override
+  String get profilePhotoManagementTitle => 'Main photo';
+
+  @override
+  String get profilePhotoManagementSubtitle =>
+      'This photo appears first on your profile and in candidate lists. Your selfie verification is compared with this photo.';
+
+  @override
+  String get profilePhotoConfirm => 'Confirm';
+
+  @override
+  String get profileFaceVerificationDone => 'Continue';
 
   @override
   String get profileEditName => 'Name';

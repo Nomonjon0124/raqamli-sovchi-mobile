@@ -11,5 +11,10 @@ final class UploadProfilePhotoUseCase {
   Future<Either<Failure, ProfilePhoto>> call({
     required String profileId,
     required String filePath,
-  }) => _repository.uploadPhoto(profileId: profileId, filePath: filePath);
+    bool isMain = true,
+  }) => _repository.uploadPhoto(
+    profileId: profileId,
+    filePath: filePath,
+    isMain: isMain,
+  );
 }

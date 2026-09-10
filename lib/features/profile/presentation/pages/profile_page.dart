@@ -11,6 +11,7 @@ import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../application/services/profile_photo_picker.dart';
 import '../../domain/entities/user_profile.dart';
 import '../bloc/profile_bloc.dart';
 import '../bloc/profile_event.dart';
@@ -21,6 +22,7 @@ import '../widgets/profile_completion_card.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_hero_card.dart';
 import '../widgets/profile_photo_gallery.dart';
+import '../widgets/profile_photo_sheets.dart';
 
 final class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -120,7 +122,8 @@ final class _ProfileView extends StatelessWidget {
                     addLabel: l10n.profileAddPhoto,
                     photoSemantics: l10n.profilePhotoSemantics,
                     photos: profile.photos,
-                    onAdd: () => _openEdit(context, profile),
+                    onAdd: () => _openPhotoSource(context),
+                    onPhotoTap: (photo) => _openPhotoActions(context, photo.id),
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   ProfileAboutCard(
@@ -170,6 +173,46 @@ final class _ProfileView extends StatelessWidget {
     final bloc = context.read<ProfileBloc>();
     bloc.add(const ProfileRefreshRequested());
     await bloc.stream.firstWhere((state) => !state.isRefreshing);
+  }
+
+  Future<void> _openPhotoSource(BuildContext context) async {
+    final source = await showProfilePhotoSourceSheet(context);
+    if (source == null || !context.mounted) return;
+    context.read<ProfileBloc>().add(
+      ProfilePhotoPickRequested(
+        source == ProfilePhotoPickerSource.camera
+            ? ProfilePhotoSource.camera
+            : ProfilePhotoSource.gallery,
+      ),
+    );
+  }
+
+  Future<void> _openPhotoActions(BuildContext context, String photoId) async {
+    final action = await showProfilePhotoActionsSheet(context);
+    if (action == null || !context.mounted) return;
+    switch (action) {
+      case ProfilePhotoAction.setMain:
+        context.read<ProfileBloc>().add(ProfilePhotoSetMainRequested(photoId));
+      case ProfilePhotoAction.replace:
+        await _replacePhoto(context);
+      case ProfilePhotoAction.delete:
+        final confirmed = await showProfilePhotoDeleteDialog(context);
+        if (confirmed == true && context.mounted) {
+          context.read<ProfileBloc>().add(ProfilePhotoDeleteRequested(photoId));
+        }
+    }
+  }
+
+  Future<void> _replacePhoto(BuildContext context) async {
+    final source = await showProfilePhotoSourceSheet(context);
+    if (source == null || !context.mounted) return;
+    context.read<ProfileBloc>().add(
+      ProfilePhotoPickRequested(
+        source == ProfilePhotoPickerSource.camera
+            ? ProfilePhotoSource.camera
+            : ProfilePhotoSource.gallery,
+      ),
+    );
   }
 
   Future<void> _copyIdentifier(BuildContext context, String code) async {

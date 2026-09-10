@@ -12,6 +12,8 @@ abstract final class RouteNames {
   static const saved = '/saved';
   static const profile = '/profile';
   static const profileEdit = '/profile/edit';
+  static const profilePhotos = '/profile/photos';
+  static const profileFaceVerification = '/profile/face-verification';
   static const notifications = '/notifications';
   static const settings = '/settings';
   static const accountDeletion = '/settings/account-deletion';

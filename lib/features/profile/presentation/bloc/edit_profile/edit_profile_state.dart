@@ -143,6 +143,7 @@ final class EditProfileState extends Equatable {
     bool clearFailure = false,
     bool clearDistrict = false,
     bool clearLocalPhotoPath = false,
+    bool clearMainPhotoUrl = false,
   }) {
     return EditProfileState(
       status: status ?? this.status,
@@ -167,7 +168,9 @@ final class EditProfileState extends Equatable {
       localPhotoPath: clearLocalPhotoPath
           ? null
           : localPhotoPath ?? this.localPhotoPath,
-      mainPhotoUrl: mainPhotoUrl ?? this.mainPhotoUrl,
+      mainPhotoUrl: clearMainPhotoUrl
+          ? null
+          : mainPhotoUrl ?? this.mainPhotoUrl,
       educationLevels: educationLevels ?? this.educationLevels,
       professions: professions ?? this.professions,
       regions: regions ?? this.regions,
