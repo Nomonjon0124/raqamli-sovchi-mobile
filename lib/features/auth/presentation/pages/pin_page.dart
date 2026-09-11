@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
-import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -13,9 +12,10 @@ import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
 import '../widgets/auth_back_button.dart';
 import '../widgets/auth_keypad.dart';
-import '../widgets/auth_primary_button.dart';
 
 enum PinPageMode { create, unlock }
+
+enum _PinSetupStep { create, confirm }
 
 final class PinPage extends StatefulWidget {
   const PinPage({required this.mode, super.key});
@@ -28,6 +28,9 @@ final class PinPage extends StatefulWidget {
 
 final class _PinPageState extends State<PinPage> {
   String _value = '';
+  String? _initialPin;
+  _PinSetupStep _setupStep = _PinSetupStep.create;
+  bool _hasPinMismatch = false;
   bool _requestedBiometricAvailability = false;
   bool _requestedBiometricUnlock = false;
 
@@ -56,12 +59,59 @@ final class _PinPageState extends State<PinPage> {
 
   void _addDigit(String digit) {
     if (_value.length >= 4) return;
-    setState(() => _value += digit);
+    final nextValue = '$_value$digit';
+    setState(() {
+      _value = nextValue;
+      _hasPinMismatch = false;
+    });
+    if (nextValue.length == 4) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _onPinCompleted(nextValue),
+      );
+    }
   }
 
   void _removeDigit() {
     if (_value.isEmpty) return;
     setState(() => _value = _value.substring(0, _value.length - 1));
+  }
+
+  void _onPinCompleted(String pin) {
+    if (!mounted || _value != pin) return;
+
+    if (widget.mode == PinPageMode.unlock) {
+      context.read<AuthBloc>().add(AuthPinUnlockRequested(pin));
+      return;
+    }
+
+    if (_setupStep == _PinSetupStep.create) {
+      setState(() {
+        _initialPin = pin;
+        _setupStep = _PinSetupStep.confirm;
+        _value = '';
+        _hasPinMismatch = false;
+      });
+      return;
+    }
+
+    if (_initialPin != pin) {
+      setState(() {
+        _initialPin = null;
+        _setupStep = _PinSetupStep.create;
+        _value = '';
+        _hasPinMismatch = true;
+      });
+      return;
+    }
+
+    context.read<AuthBloc>().add(AuthPinCreated(pin));
+  }
+
+  void _onAuthStateChanged(AuthState state) {
+    if (state.status == AuthStatus.pinSetupRequired ||
+        state.status == AuthStatus.pinLocked) {
+      if (_value.isNotEmpty) setState(() => _value = '');
+    }
   }
 
   @override
@@ -70,115 +120,122 @@ final class _PinPageState extends State<PinPage> {
     final authState = context.watch<AuthBloc>().state;
     _requestBiometricUnlockIfReady(authState);
     final isCreate = widget.mode == PinPageMode.create;
+    final isConfirming = isCreate && _setupStep == _PinSetupStep.confirm;
     final isLoading = authState.status == AuthStatus.loading;
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-            AppSpacing.xl,
-            AppSpacing.lg,
-            AppSpacing.xl,
-            AppSpacing.lg,
-          ),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: AuthBackButton(
-                  onPressed: () {
-                    context.read<AuthBloc>().add(const AuthFlowCancelled());
-                    context.go(isCreate ? RouteNames.login : RouteNames.login);
-                  },
+    return BlocListener<AuthBloc, AuthState>(
+      listenWhen: (previous, current) =>
+          previous.status == AuthStatus.loading &&
+          current.status != AuthStatus.loading,
+      listener: (_, state) => _onAuthStateChanged(state),
+      child: Scaffold(
+        backgroundColor: AppColors.surfaceLight,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.screen,
+              AppSpacing.lg,
+              AppSpacing.screen,
+              AppSpacing.xl,
+            ),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: AuthBackButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(const AuthFlowCancelled());
+                      context.go(RouteNames.login);
+                    },
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: AppColors.border),
-                          borderRadius: BorderRadius.circular(AppRadius.md),
-                        ),
-                        child: Text(
-                          isCreate ? l10n.pinHintCreate : l10n.pinHintUnlock,
-                          style: AppTypography.caption.copyWith(
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                const Spacer(),
+                Text(
+                  isConfirming
+                      ? l10n.pinConfirmTitle
+                      : isCreate
+                      ? l10n.pinCreateTitle
+                      : l10n.pinUnlockTitle,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.pinTitle,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  isConfirming
+                      ? l10n.pinHintConfirm
+                      : isCreate
+                      ? l10n.pinHintCreate
+                      : l10n.pinHintUnlock,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.onboardingBody,
+                ),
+                const SizedBox(height: AppSpacing.xxl),
+                _PinIndicator(valueLength: _value.length),
+                if (_hasPinMismatch) ...[
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    l10n.pinMismatch,
+                    textAlign: TextAlign.center,
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.dangerText,
+                    ),
+                  ),
+                ],
+                if (authState.failure != null) ...[
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    l10n.failureMessage(authState.failure!.type.name),
+                    textAlign: TextAlign.center,
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.dangerText,
+                    ),
+                  ),
+                ],
+                const Spacer(),
+                AbsorbPointer(
+                  absorbing: isLoading,
+                  child: Opacity(
+                    opacity: isLoading ? 0.5 : 1,
+                    child: AuthKeypad(
+                      onDigit: _addDigit,
+                      onBackspace: _removeDigit,
+                      showFingerprint:
+                          !isCreate && authState.biometricAvailable,
+                      onFingerprint: () => context.read<AuthBloc>().add(
+                        const AuthBiometricUnlockRequested(),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          isCreate ? l10n.pinCreateTitle : l10n.pinUnlockTitle,
-                          style: AppTypography.pinTitle,
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            for (var index = 0; index < 4; index++) ...[
-                              Container(
-                                width: 12,
-                                height: 12,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: index < _value.length
-                                      ? AppColors.primary
-                                      : AppColors.border,
-                                ),
-                              ),
-                              if (index != 3) const SizedBox(width: 14),
-                            ],
-                          ],
-                        ),
-                        const SizedBox(height: AppSpacing.xl),
-                        AuthKeypad(
-                          onDigit: _addDigit,
-                          onBackspace: _removeDigit,
-                          showFingerprint:
-                              !isCreate && authState.biometricAvailable,
-                          onFingerprint: () => context.read<AuthBloc>().add(
-                            const AuthBiometricUnlockRequested(),
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.lg),
-                        AuthPrimaryButton(
-                          label: isCreate
-                              ? l10n.continueLabel
-                              : l10n.unlockLabel,
-                          enabled: _value.length == 4,
-                          isLoading: isLoading,
-                          onPressed: () => context.read<AuthBloc>().add(
-                            isCreate
-                                ? AuthPinCreated(_value)
-                                : AuthPinUnlockRequested(_value),
-                          ),
-                        ),
-                        if (authState.failure != null) ...[
-                          const SizedBox(height: AppSpacing.sm),
-                          Text(
-                            l10n.failureMessage(authState.failure!.type.name),
-                            style: AppTypography.caption.copyWith(
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
+}
+
+final class _PinIndicator extends StatelessWidget {
+  const _PinIndicator({required this.valueLength});
+
+  final int valueLength;
+
+  @override
+  Widget build(BuildContext context) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      for (var index = 0; index < 4; index++) ...[
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          width: 12,
+          height: 12,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: index < valueLength ? AppColors.primary : AppColors.border,
+          ),
+        ),
+        if (index != 3) const SizedBox(width: AppSpacing.input),
+      ],
+    ],
+  );
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
@@ -13,6 +14,7 @@ final class ChatHeader extends StatelessWidget {
     required this.backLabel,
     required this.moreLabel,
     required this.onBack,
+    this.avatarUrl,
     super.key,
   });
 
@@ -22,6 +24,7 @@ final class ChatHeader extends StatelessWidget {
   final String backLabel;
   final String moreLabel;
   final VoidCallback onBack;
+  final String? avatarUrl;
 
   @override
   Widget build(BuildContext context) => Material(
@@ -52,16 +55,7 @@ final class ChatHeader extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              CircleAvatar(
-                radius: 18,
-                backgroundColor: AppColors.primaryTranslucent,
-                child: Text(
-                  _initials(name),
-                  style: AppTypography.chatHeaderName.copyWith(
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
+              _ChatAvatar(name: name, avatarUrl: avatarUrl),
               if (isOnline)
                 const Positioned(
                   right: -1,
@@ -125,6 +119,30 @@ final class ChatHeader extends StatelessWidget {
       ),
     ),
   );
+}
+
+final class _ChatAvatar extends StatelessWidget {
+  const _ChatAvatar({required this.name, this.avatarUrl});
+
+  final String name;
+  final String? avatarUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final fallback = Text(
+      _initials(name),
+      style: AppTypography.chatHeaderName.copyWith(color: AppColors.primary),
+    );
+    final url = avatarUrl?.trim();
+    return CircleAvatar(
+      radius: 18,
+      backgroundColor: AppColors.primaryTranslucent,
+      foregroundImage: url == null || url.isEmpty
+          ? null
+          : CachedNetworkImageProvider(url),
+      child: fallback,
+    );
+  }
 }
 
 String _initials(String name) => name

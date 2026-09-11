@@ -93,9 +93,11 @@ final class _MessagesView extends StatelessWidget {
                       thread: thread,
                       name:
                           thread.participantName ??
+                          thread.room.participantName ??
                           l10n.chatParticipantFallback,
                       preview: l10n.chatThreadOpen,
                       isOnline: presence?.isOnline ?? false,
+                      avatarUrl: thread.participantAvatarUrl,
                       onTap: () => context.push(
                         RouteNames.chatRoomFor(thread.room.id),
                         extra: thread,

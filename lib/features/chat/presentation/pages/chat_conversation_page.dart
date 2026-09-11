@@ -79,6 +79,8 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
     final thread = widget.thread;
     final name = thread?.participantName?.trim().isNotEmpty == true
         ? thread!.participantName!
+        : thread?.room.participantName?.trim().isNotEmpty == true
+        ? thread!.room.participantName!
         : l10n.chatParticipantFallback;
     final icebreakers = [
       l10n.chatIcebreakerGoal,
@@ -122,6 +124,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
                     ? l10n.chatTyping
                     : l10n.chatOpenTimeRemaining,
                 isOnline: state.presence?.isOnline ?? false,
+                avatarUrl: thread?.participantAvatarUrl,
                 backLabel: l10n.settingsBack,
                 moreLabel: l10n.chatMoreActions,
                 onBack: () => context.pop(),
@@ -221,7 +224,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
             padding: const EdgeInsets.only(bottom: AppSpacing.md),
             child: ChatMessageBubble(
               message: message,
-              isMine: message.senderId == currentUserId,
+              isMine: _isMyMessage(message, currentUserId),
               replyLabel: l10n.chatReplyTo,
               onReply: () => context.read<ChatConversationBloc>().add(
                 ChatReplySelected(message),
@@ -263,5 +266,11 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
         ? null
         : _messageKeys[quote.id]?.currentContext;
     if (target != null) Scrollable.ensureVisible(target);
+  }
+
+  bool _isMyMessage(ChatMessage message, String currentUserId) {
+    final senderId = message.senderId.trim();
+    final userId = currentUserId.trim();
+    return senderId.isNotEmpty && userId.isNotEmpty && senderId == userId;
   }
 }

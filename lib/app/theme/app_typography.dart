@@ -21,6 +21,12 @@ abstract final class AppTypography {
     fontSize: 13,
     height: 21 / 13,
   );
+  static const chatMessageTime = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 10,
+    height: 14 / 10,
+    color: AppColors.mutedText,
+  );
   static const chatSystem = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,

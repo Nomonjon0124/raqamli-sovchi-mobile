@@ -7,12 +7,19 @@ final class ChatThread extends Equatable {
     required this.room,
     this.participantName,
     this.participantProfileId,
+    this.participantAvatarUrl,
   });
 
   final ChatRoom room;
   final String? participantName;
   final String? participantProfileId;
+  final String? participantAvatarUrl;
 
   @override
-  List<Object?> get props => [room, participantName, participantProfileId];
+  List<Object?> get props => [
+    room,
+    participantName,
+    participantProfileId,
+    participantAvatarUrl,
+  ];
 }

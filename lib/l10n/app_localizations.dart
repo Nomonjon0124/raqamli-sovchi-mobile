@@ -1414,6 +1414,18 @@ abstract class AppLocalizations {
   /// **'Qisqa kod oʻylab toping'**
   String get pinCreateTitle;
 
+  /// No description provided for @pinConfirmTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'PIN-kodni qayta kiriting'**
+  String get pinConfirmTitle;
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kiritilgan PIN-kodlar bir xil emas. Qaytadan urinib ko‘ring.'**
+  String get pinMismatch;
+
   /// No description provided for @pinUnlockTitle.
   ///
   /// In uz, this message translates to:
@@ -1425,6 +1437,12 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Hisobingiz faqat sizniki boʻlib qolishi uchun. Har safar kirishda shu kodni terasiz.'**
   String get pinHintCreate;
+
+  /// No description provided for @pinHintConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaratgan PIN-kodingizni yana bir marta kiriting.'**
+  String get pinHintConfirm;
 
   /// No description provided for @pinHintUnlock.
   ///

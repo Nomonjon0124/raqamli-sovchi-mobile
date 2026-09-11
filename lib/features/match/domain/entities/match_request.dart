@@ -49,6 +49,8 @@ final class MatchRequest extends Equatable {
     required this.toProfileId,
     this.fromProfileName,
     this.toProfileName,
+    this.fromProfileImageUrl,
+    this.toProfileImageUrl,
   });
 
   final String id;
@@ -61,6 +63,8 @@ final class MatchRequest extends Equatable {
   final String? toProfileId;
   final String? fromProfileName;
   final String? toProfileName;
+  final String? fromProfileImageUrl;
+  final String? toProfileImageUrl;
 
   DateTime get retryAvailableAt => updatedAt.add(const Duration(days: 7));
 
@@ -78,5 +82,7 @@ final class MatchRequest extends Equatable {
     toProfileId,
     fromProfileName,
     toProfileName,
+    fromProfileImageUrl,
+    toProfileImageUrl,
   ];
 }

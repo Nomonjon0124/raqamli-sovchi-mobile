@@ -14,6 +14,8 @@ final class MatchRequestModel extends Equatable {
     this.toProfileId,
     this.fromProfileName,
     this.toProfileName,
+    this.fromProfileImageUrl,
+    this.toProfileImageUrl,
   });
 
   factory MatchRequestModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,8 @@ final class MatchRequestModel extends Equatable {
       toProfileId: _asString(json['to_profile'] ?? toProfile['id']),
       fromProfileName: _profileName(fromProfile),
       toProfileName: _profileName(toProfile),
+      fromProfileImageUrl: _profileImageUrl(fromProfile),
+      toProfileImageUrl: _profileImageUrl(toProfile),
     );
   }
 
@@ -47,6 +51,8 @@ final class MatchRequestModel extends Equatable {
   final String? toProfileId;
   final String? fromProfileName;
   final String? toProfileName;
+  final String? fromProfileImageUrl;
+  final String? toProfileImageUrl;
 
   MatchRequest toEntity() => MatchRequest(
     id: id,
@@ -59,6 +65,8 @@ final class MatchRequestModel extends Equatable {
     toProfileId: toProfileId,
     fromProfileName: fromProfileName,
     toProfileName: toProfileName,
+    fromProfileImageUrl: fromProfileImageUrl,
+    toProfileImageUrl: toProfileImageUrl,
   );
 
   @override
@@ -73,6 +81,8 @@ final class MatchRequestModel extends Equatable {
     toProfileId,
     fromProfileName,
     toProfileName,
+    fromProfileImageUrl,
+    toProfileImageUrl,
   ];
 }
 
@@ -123,6 +133,19 @@ String? _profileName(Map<String, dynamic> profile) {
   final lastName = _asString(profile['last_name'])?.trim() ?? '';
   final name = '$firstName $lastName'.trim();
   return name.isEmpty ? null : name;
+}
+
+String? _profileImageUrl(Map<String, dynamic> profile) {
+  for (final value in [
+    profile['main_photo'],
+    profile['avatar'],
+    profile['photo'],
+    _asMap(profile['main_photo_info'])['image'],
+  ]) {
+    final url = _asString(value)?.trim();
+    if (url != null && url.isNotEmpty) return url;
+  }
+  return null;
 }
 
 MatchRequestVisibilityScope? _visibilityScope(String? value) {

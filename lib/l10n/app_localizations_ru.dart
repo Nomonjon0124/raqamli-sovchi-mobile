@@ -743,11 +743,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pinCreateTitle => 'Создайте короткий код';
 
   @override
+  String get pinConfirmTitle => 'Повторите PIN-код';
+
+  @override
+  String get pinMismatch => 'PIN-коды не совпадают. Попробуйте ещё раз.';
+
+  @override
   String get pinUnlockTitle => 'Введите PIN-код';
 
   @override
   String get pinHintCreate =>
       'Чтобы аккаунт оставался только вашим. Этот код нужно будет вводить при каждом входе.';
+
+  @override
+  String get pinHintConfirm => 'Ещё раз введите созданный PIN-код.';
 
   @override
   String get pinHintUnlock =>

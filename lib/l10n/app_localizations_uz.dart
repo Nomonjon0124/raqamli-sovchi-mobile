@@ -741,11 +741,22 @@ class AppLocalizationsUz extends AppLocalizations {
   String get pinCreateTitle => 'Qisqa kod oʻylab toping';
 
   @override
+  String get pinConfirmTitle => 'PIN-kodni qayta kiriting';
+
+  @override
+  String get pinMismatch =>
+      'Kiritilgan PIN-kodlar bir xil emas. Qaytadan urinib ko‘ring.';
+
+  @override
   String get pinUnlockTitle => 'PIN-kodni kiriting';
 
   @override
   String get pinHintCreate =>
       'Hisobingiz faqat sizniki boʻlib qolishi uchun. Har safar kirishda shu kodni terasiz.';
+
+  @override
+  String get pinHintConfirm =>
+      'Yaratgan PIN-kodingizni yana bir marta kiriting.';
 
   @override
   String get pinHintUnlock =>

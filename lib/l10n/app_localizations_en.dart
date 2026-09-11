@@ -746,11 +746,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pinCreateTitle => 'Create a short code';
 
   @override
+  String get pinConfirmTitle => 'Re-enter your PIN';
+
+  @override
+  String get pinMismatch => 'The PIN codes do not match. Please try again.';
+
+  @override
   String get pinUnlockTitle => 'Enter your PIN';
 
   @override
   String get pinHintCreate =>
       'Keep your account private. You will enter this code every time you sign in.';
+
+  @override
+  String get pinHintConfirm => 'Enter the PIN you just created one more time.';
 
   @override
   String get pinHintUnlock => 'Enter the PIN you created for this device.';

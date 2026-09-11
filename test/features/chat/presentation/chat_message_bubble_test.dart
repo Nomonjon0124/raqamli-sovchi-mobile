@@ -12,7 +12,7 @@ void main() {
       senderId: 'user-1',
       content: 'Salom',
       isRead: true,
-      createdAt: DateTime.utc(2026),
+      createdAt: DateTime(2026, 1, 1, 12, 34),
     );
 
     await tester.pumpWidget(
@@ -36,5 +36,6 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(replySelected, isTrue);
+    expect(find.text('12:34'), findsOneWidget);
   });
 }

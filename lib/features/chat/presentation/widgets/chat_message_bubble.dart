@@ -117,6 +117,21 @@ final class ChatMessageBubble extends StatelessWidget {
                         color: foreground,
                       ),
                     ),
+                    const SizedBox(height: AppSpacing.xs),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        MaterialLocalizations.of(context).formatTimeOfDay(
+                          TimeOfDay.fromDateTime(message.createdAt.toLocal()),
+                          alwaysUse24HourFormat: true,
+                        ),
+                        style: AppTypography.chatMessageTime.copyWith(
+                          color: isMine
+                              ? AppColors.chatReplyOnPrimary
+                              : AppColors.mutedText,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
@@ -12,6 +13,7 @@ final class MessageThreadRow extends StatelessWidget {
     required this.preview,
     required this.isOnline,
     required this.onTap,
+    this.avatarUrl,
     super.key,
   });
 
@@ -20,6 +22,7 @@ final class MessageThreadRow extends StatelessWidget {
   final String preview;
   final bool isOnline;
   final VoidCallback onTap;
+  final String? avatarUrl;
 
   @override
   Widget build(BuildContext context) => InkWell(
@@ -38,16 +41,7 @@ final class MessageThreadRow extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                CircleAvatar(
-                  radius: AppSpacing.xl,
-                  backgroundColor: AppColors.primaryTranslucent,
-                  child: Text(
-                    _initials(name),
-                    style: AppTypography.chatHeaderName.copyWith(
-                      color: AppColors.primary,
-                    ),
-                  ),
-                ),
+                _ThreadAvatar(name: name, avatarUrl: avatarUrl),
                 if (isOnline)
                   const Positioned(
                     right: 0,
@@ -100,6 +94,29 @@ final class MessageThreadRow extends StatelessWidget {
       ),
     ),
   );
+}
+
+final class _ThreadAvatar extends StatelessWidget {
+  const _ThreadAvatar({required this.name, this.avatarUrl});
+
+  final String name;
+  final String? avatarUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = avatarUrl?.trim();
+    return CircleAvatar(
+      radius: AppSpacing.xl,
+      backgroundColor: AppColors.primaryTranslucent,
+      foregroundImage: url == null || url.isEmpty
+          ? null
+          : CachedNetworkImageProvider(url),
+      child: Text(
+        _initials(name),
+        style: AppTypography.chatHeaderName.copyWith(color: AppColors.primary),
+      ),
+    );
+  }
 }
 
 String _initials(String name) => name

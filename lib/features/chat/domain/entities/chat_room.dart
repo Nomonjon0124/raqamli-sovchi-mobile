@@ -7,6 +7,8 @@ final class ChatRoom extends Equatable {
     required this.updatedAt,
     this.matchRequestId,
     this.participantUserId,
+    this.participantName,
+    this.participantAvatarUrl,
   });
 
   final String id;
@@ -14,6 +16,8 @@ final class ChatRoom extends Equatable {
   final DateTime updatedAt;
   final String? matchRequestId;
   final String? participantUserId;
+  final String? participantName;
+  final String? participantAvatarUrl;
 
   @override
   List<Object?> get props => [
@@ -22,5 +26,7 @@ final class ChatRoom extends Equatable {
     updatedAt,
     matchRequestId,
     participantUserId,
+    participantName,
+    participantAvatarUrl,
   ];
 }

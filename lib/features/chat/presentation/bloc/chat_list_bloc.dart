@@ -78,14 +78,20 @@ final class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
           return ChatThread(
             room: room,
             participantName: switch (isFromProfile) {
-              true => request?.toProfileName,
-              false => request?.fromProfileName,
-              null => null,
+              true => request?.toProfileName ?? room.participantName,
+              false => request?.fromProfileName ?? room.participantName,
+              null => room.participantName,
             },
             participantProfileId: switch (isFromProfile) {
               true => request?.toProfileId,
               false => request?.fromProfileId,
               null => null,
+            },
+            participantAvatarUrl: switch (isFromProfile) {
+              true => request?.toProfileImageUrl ?? room.participantAvatarUrl,
+              false =>
+                request?.fromProfileImageUrl ?? room.participantAvatarUrl,
+              null => room.participantAvatarUrl,
             },
           );
         }).toList();
