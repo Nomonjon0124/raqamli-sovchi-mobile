@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/notifications/notification_event_bus.dart';
+
 import '../../../../core/notifications/notification_event.dart';
+import '../../../../core/notifications/notification_event_bus.dart';
 import '../../application/use_cases/notification_use_cases.dart';
 import 'notification_event.dart';
 import 'notification_state.dart';
@@ -25,9 +27,9 @@ final class NotificationsBloc
     on<NotificationsRealtimeReceived>(
       (_, emit) => add(const NotificationsLoadRequested()),
     );
-    _subscription = eventBus.events.listen(
-      (_) => add(const NotificationsRealtimeReceived()),
-    );
+    _subscription = eventBus.events
+        .where((event) => !event.isPresence)
+        .listen((_) => add(const NotificationsRealtimeReceived()));
   }
   final LoadNotificationsUseCase _loadNotifications;
   final LoadUnreadNotificationCountUseCase _loadUnreadCount;

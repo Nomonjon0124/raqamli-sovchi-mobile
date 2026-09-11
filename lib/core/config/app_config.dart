@@ -16,7 +16,10 @@ abstract final class AppConfig {
     'BASE_URL',
     defaultValue: 'https://backend.raqamlisovchi.uz',
   );
-  static const wsUrl = String.fromEnvironment('WS_URL');
+  static const wsUrl = String.fromEnvironment(
+    'WS_URL',
+    defaultValue: 'wss://backend.raqamlisovchi.uz',
+  );
   static const googleClientId = String.fromEnvironment('GOOGLE_CLIENT_ID');
   static const googleServerClientId = String.fromEnvironment(
     'GOOGLE_SERVER_CLIENT_ID',

@@ -2350,6 +2350,96 @@ abstract class AppLocalizations {
   /// **'Soʻrovlar'**
   String get messagesSegmentRequests;
 
+  /// No description provided for @chatRoomsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha ochiq suhbatlar yoʻq'**
+  String get chatRoomsEmpty;
+
+  /// No description provided for @chatThreadOpen.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatni ochish'**
+  String get chatThreadOpen;
+
+  /// No description provided for @chatParticipantFallback.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatdosh'**
+  String get chatParticipantFallback;
+
+  /// No description provided for @chatSafetyNotice.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatni Sunʼiy intellekt kuzatib turadi — odobsiz soʻz va rasm oʻtmaydi.'**
+  String get chatSafetyNotice;
+
+  /// No description provided for @chatIcebreakerGoal.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hayotingizdagi eng katta maqsadingiz nima?'**
+  String get chatIcebreakerGoal;
+
+  /// No description provided for @chatIcebreakerFamily.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilada qanday anʼanani davom ettirishni xohlaysiz?'**
+  String get chatIcebreakerFamily;
+
+  /// No description provided for @chatIcebreakerBook.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sizni qaysi kitob eng koʻp ilhomlantiradi?'**
+  String get chatIcebreakerBook;
+
+  /// No description provided for @chatIcebreakerChange.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻz hayotingizda oʻzgartirmoqchi boʻlgan bir narsani ayting.'**
+  String get chatIcebreakerChange;
+
+  /// No description provided for @chatWriteMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xabar yozing…'**
+  String get chatWriteMessage;
+
+  /// No description provided for @chatSendMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xabarni yuborish'**
+  String get chatSendMessage;
+
+  /// No description provided for @chatReplyTo.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javob berish'**
+  String get chatReplyTo;
+
+  /// No description provided for @chatReplyCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javobni bekor qilish'**
+  String get chatReplyCancel;
+
+  /// No description provided for @chatTyping.
+  ///
+  /// In uz, this message translates to:
+  /// **'yozyapti…'**
+  String get chatTyping;
+
+  /// No description provided for @chatOpenTimeRemaining.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chat 72 soat ochiq'**
+  String get chatOpenTimeRemaining;
+
+  /// No description provided for @chatMoreActions.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qoʻshimcha amallar'**
+  String get chatMoreActions;
+
   /// No description provided for @mockMessageMohiraName.
   ///
   /// In uz, this message translates to:

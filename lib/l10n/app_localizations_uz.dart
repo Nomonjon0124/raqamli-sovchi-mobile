@@ -1254,6 +1254,54 @@ class AppLocalizationsUz extends AppLocalizations {
   String get messagesSegmentRequests => 'Soʻrovlar';
 
   @override
+  String get chatRoomsEmpty => 'Hozircha ochiq suhbatlar yoʻq';
+
+  @override
+  String get chatThreadOpen => 'Suhbatni ochish';
+
+  @override
+  String get chatParticipantFallback => 'Suhbatdosh';
+
+  @override
+  String get chatSafetyNotice =>
+      'Suhbatni Sunʼiy intellekt kuzatib turadi — odobsiz soʻz va rasm oʻtmaydi.';
+
+  @override
+  String get chatIcebreakerGoal => 'Hayotingizdagi eng katta maqsadingiz nima?';
+
+  @override
+  String get chatIcebreakerFamily =>
+      'Oilada qanday anʼanani davom ettirishni xohlaysiz?';
+
+  @override
+  String get chatIcebreakerBook => 'Sizni qaysi kitob eng koʻp ilhomlantiradi?';
+
+  @override
+  String get chatIcebreakerChange =>
+      'Oʻz hayotingizda oʻzgartirmoqchi boʻlgan bir narsani ayting.';
+
+  @override
+  String get chatWriteMessage => 'Xabar yozing…';
+
+  @override
+  String get chatSendMessage => 'Xabarni yuborish';
+
+  @override
+  String get chatReplyTo => 'Javob berish';
+
+  @override
+  String get chatReplyCancel => 'Javobni bekor qilish';
+
+  @override
+  String get chatTyping => 'yozyapti…';
+
+  @override
+  String get chatOpenTimeRemaining => 'Chat 72 soat ochiq';
+
+  @override
+  String get chatMoreActions => 'Qoʻshimcha amallar';
+
+  @override
   String get mockMessageMohiraName => 'Mohira R.';
 
   @override

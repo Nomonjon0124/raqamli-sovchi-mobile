@@ -8,6 +8,7 @@ abstract final class RouteNames {
   static const questionnaire = '/questionnaire';
   static const home = '/home';
   static const messages = '/messages';
+  static const chatRoom = '/messages/:roomId';
   static const services = '/services';
   static const saved = '/saved';
   static const profile = '/profile';
@@ -24,4 +25,7 @@ abstract final class RouteNames {
 
   static String candidateDetailFor(String id) =>
       '/candidate-detail/${Uri.encodeComponent(id)}';
+
+  static String chatRoomFor(String id) =>
+      '/messages/${Uri.encodeComponent(id)}';
 }

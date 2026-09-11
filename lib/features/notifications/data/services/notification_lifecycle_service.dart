@@ -43,6 +43,7 @@ final class NotificationLifecycleService {
   StreamSubscription<RemoteMessage>? _openedSubscription;
   StreamSubscription<dynamic>? _socketSubscription;
   WebSocketChannel? _socket;
+  Timer? _pingTimer;
   bool _initialized = false;
   bool _active = false;
 
@@ -76,18 +77,18 @@ final class NotificationLifecycleService {
 
   Future<void> activate() async {
     if (_active) return;
+    _active = true;
+    await _connectSocket();
     final settings = await _messaging.requestPermission(
       alert: true,
       badge: true,
       sound: true,
     );
     if (settings.authorizationStatus == AuthorizationStatus.denied) return;
-    _active = true;
     await _messaging.setAutoInitEnabled(true);
     final token = await _messaging.getToken();
     if (token != null && token.isNotEmpty) await _syncToken(token);
     _tokenSubscription = _messaging.onTokenRefresh.listen(_syncToken);
-    await _connectSocket();
     final initial = await _messaging.getInitialMessage();
     if (initial != null) _handleOpened(initial);
   }
@@ -98,6 +99,8 @@ final class NotificationLifecycleService {
     _tokenSubscription = null;
     await _socketSubscription?.cancel();
     _socketSubscription = null;
+    _pingTimer?.cancel();
+    _pingTimer = null;
     await _socket?.sink.close();
     _socket = null;
     final deviceId = await _deviceStore.readOrCreateDeviceId();
@@ -120,7 +123,7 @@ final class NotificationLifecycleService {
       deviceId: deviceId,
       deviceType: Platform.isIOS ? 'ios' : 'android',
     );
-    result.fold((_) {}, (_) => _deviceStore.saveFcmToken(token));
+    result.fold((_) {}, (_) => unawaited(_deviceStore.saveFcmToken(token)));
   }
 
   Future<void> _connectSocket() async {
@@ -132,16 +135,22 @@ final class NotificationLifecycleService {
         queryParameters: {'ticket': ticket},
       );
       _socket = WebSocketChannel.connect(endpoint);
+      _pingTimer = Timer.periodic(const Duration(seconds: 30), (_) {
+        try {
+          _socket?.sink.add(jsonEncode({'type': 'ping'}));
+        } catch (_) {}
+      });
       _socketSubscription = _socket!.stream.listen((dynamic raw) {
         if (raw is! String) return;
         try {
           final decoded = jsonDecode(raw);
-          if (decoded is Map)
+          if (decoded is Map) {
             _eventBus.add(
               NotificationEvent.fromWebSocket(
                 decoded.map((key, value) => MapEntry(key.toString(), value)),
               ),
             );
+          }
         } catch (_) {}
       });
     });

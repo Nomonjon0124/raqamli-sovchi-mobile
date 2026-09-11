@@ -33,4 +33,5 @@ abstract final class AppColors {
   static const softShadow = Color(0x1A000000);
   static const chipShadow = Color(0x1F000000);
   static const elevatedShadow = Color(0x24000000);
+  static const chatReplyOnPrimary = Color(0xFFE9E9E9);
 }

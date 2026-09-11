@@ -3,6 +3,47 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 abstract final class AppTypography {
+  static const chatHeaderName = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const chatHeaderSubtitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.primary,
+  );
+  static const chatBubble = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 21 / 13,
+  );
+  static const chatSystem = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.mutedText,
+  );
+  static const chatChip = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.bodyText,
+  );
+  static const chatReply = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+  );
+  static const chatThreadPreview = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.mutedText,
+  );
   static const pageTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 26,

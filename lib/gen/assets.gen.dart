@@ -79,10 +79,6 @@ class $AssetsIconsGen {
   SvgGenImage get icBlockedFace =>
       const SvgGenImage('assets/icons/ic_blocked_face.svg');
 
-  /// File path: assets/icons/ic_report_dialogue.svg
-  SvgGenImage get icReportDialogue =>
-      const SvgGenImage('assets/icons/ic_report_dialogue.svg');
-
   /// File path: assets/icons/ic_candidate_grid.svg
   SvgGenImage get icCandidateGrid =>
       const SvgGenImage('assets/icons/ic_candidate_grid.svg');
@@ -94,6 +90,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_candidates_btv.svg
   SvgGenImage get icCandidatesBtv =>
       const SvgGenImage('assets/icons/ic_candidates_btv.svg');
+
+  /// File path: assets/icons/ic_chat_empty.svg
+  SvgGenImage get icChatEmpty =>
+      const SvgGenImage('assets/icons/ic_chat_empty.svg');
+
+  /// File path: assets/icons/ic_chat_send.svg
+  SvgGenImage get icChatSend =>
+      const SvgGenImage('assets/icons/ic_chat_send.svg');
 
   /// File path: assets/icons/ic_close.svg
   SvgGenImage get icClose => const SvgGenImage('assets/icons/ic_close.svg');
@@ -206,6 +210,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_radar.svg
   SvgGenImage get icRadar => const SvgGenImage('assets/icons/ic_radar.svg');
+
+  /// File path: assets/icons/ic_report_dialogue.svg
+  SvgGenImage get icReportDialogue =>
+      const SvgGenImage('assets/icons/ic_report_dialogue.svg');
 
   /// File path: assets/icons/ic_saved.svg
   SvgGenImage get icSaved => const SvgGenImage('assets/icons/ic_saved.svg');
@@ -347,10 +355,11 @@ class $AssetsIconsGen {
     icArrowLeft01Round,
     icArrowRight,
     icBlockedFace,
-    icReportDialogue,
     icCandidateGrid,
     icCandidateMap,
     icCandidatesBtv,
+    icChatEmpty,
+    icChatSend,
     icClose,
     icCopy,
     icCurrentLocationDot,
@@ -382,6 +391,7 @@ class $AssetsIconsGen {
     icPreservedBtv,
     icProfileBtv,
     icRadar,
+    icReportDialogue,
     icSaved,
     icSecurity,
     icSendEmailFly,
@@ -472,7 +482,9 @@ class $AssetsImagesGen {
   ];
 }
 
-abstract final class Assets {
+class Assets {
+  const Assets._();
+
   static const $AssetsAuthGen auth = $AssetsAuthGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

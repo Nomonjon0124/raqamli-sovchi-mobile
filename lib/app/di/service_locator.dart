@@ -43,6 +43,13 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/repositories/google_oauth_provider.dart';
 import '../../features/auth/domain/repositories/pin_repository.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/chat/application/use_cases/chat_use_cases.dart';
+import '../../features/chat/data/data_sources/chat_data_source.dart';
+import '../../features/chat/data/repositories/chat_repository_impl.dart';
+import '../../features/chat/data/services/chat_web_socket_service.dart';
+import '../../features/chat/domain/repositories/chat_repository.dart';
+import '../../features/chat/presentation/bloc/chat_conversation_bloc.dart';
+import '../../features/chat/presentation/bloc/chat_list_bloc.dart';
 import '../../features/discovery/application/use_cases/check_location_access.dart';
 import '../../features/discovery/application/use_cases/cluster_nearby_candidates.dart';
 import '../../features/discovery/application/use_cases/get_candidate.dart';
@@ -233,6 +240,15 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<MatchRequestRepository>(
       () => MatchRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<ChatDataSource>(
+      () => RemoteChatDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<ChatWebSocketService>(
+      () => ChatWebSocketService(serviceLocator()),
+    )
+    ..registerLazySingleton<ChatRepository>(
+      () => ChatRepositoryImpl(serviceLocator(), serviceLocator()),
+    )
     ..registerLazySingleton<PhotoRequestDataSource>(
       () => RemotePhotoRequestDataSource(serviceLocator()),
     )
@@ -302,6 +318,33 @@ Future<void> configureDependencies() async {
     ..registerFactory<GetMatchRequestsUseCase>(
       () => GetMatchRequestsUseCase(serviceLocator()),
     )
+    ..registerFactory<LoadChatRoomsUseCase>(
+      () => LoadChatRoomsUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatMessagesUseCase>(
+      () => LoadChatMessagesUseCase(serviceLocator()),
+    )
+    ..registerFactory<SendChatMessageUseCase>(
+      () => SendChatMessageUseCase(serviceLocator()),
+    )
+    ..registerFactory<MarkChatRoomReadUseCase>(
+      () => MarkChatRoomReadUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatRoomPresenceUseCase>(
+      () => LoadChatRoomPresenceUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatRoomsPresenceUseCase>(
+      () => LoadChatRoomsPresenceUseCase(serviceLocator()),
+    )
+    ..registerFactory<ConnectChatRoomUseCase>(
+      () => ConnectChatRoomUseCase(serviceLocator()),
+    )
+    ..registerFactory<DisconnectChatRoomUseCase>(
+      () => DisconnectChatRoomUseCase(serviceLocator()),
+    )
+    ..registerFactory<SendChatTypingUseCase>(
+      () => SendChatTypingUseCase(serviceLocator()),
+    )
     ..registerFactory<GetMatchRequestForCandidateUseCase>(
       () => GetMatchRequestForCandidateUseCase(serviceLocator()),
     )
@@ -359,6 +402,28 @@ Future<void> configureDependencies() async {
         loadUnreadCount: serviceLocator(),
         markRead: serviceLocator(),
         markAllRead: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ChatListBloc>(
+      () => ChatListBloc(
+        loadChatRooms: serviceLocator(),
+        loadRoomsPresence: serviceLocator(),
+        getMyProfile: serviceLocator(),
+        getMatchRequests: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ChatConversationBloc>(
+      () => ChatConversationBloc(
+        loadMessages: serviceLocator(),
+        sendMessage: serviceLocator(),
+        markRoomRead: serviceLocator(),
+        loadPresence: serviceLocator(),
+        connectChatRoom: serviceLocator(),
+        disconnectChatRoom: serviceLocator(),
+        sendTyping: serviceLocator(),
+        repository: serviceLocator(),
         eventBus: serviceLocator(),
       ),
     )

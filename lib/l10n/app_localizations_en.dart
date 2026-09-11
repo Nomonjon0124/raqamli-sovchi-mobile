@@ -1257,6 +1257,54 @@ class AppLocalizationsEn extends AppLocalizations {
   String get messagesSegmentRequests => 'Requests';
 
   @override
+  String get chatRoomsEmpty => 'There are no open conversations yet';
+
+  @override
+  String get chatThreadOpen => 'Open conversation';
+
+  @override
+  String get chatParticipantFallback => 'Conversation partner';
+
+  @override
+  String get chatSafetyNotice =>
+      'The conversation is monitored by artificial intelligence — inappropriate words and images are blocked.';
+
+  @override
+  String get chatIcebreakerGoal => 'What is the biggest goal in your life?';
+
+  @override
+  String get chatIcebreakerFamily =>
+      'Which family tradition would you like to continue?';
+
+  @override
+  String get chatIcebreakerBook => 'Which book inspires you the most?';
+
+  @override
+  String get chatIcebreakerChange =>
+      'Tell one thing you would like to change in your life.';
+
+  @override
+  String get chatWriteMessage => 'Write a message…';
+
+  @override
+  String get chatSendMessage => 'Send message';
+
+  @override
+  String get chatReplyTo => 'Reply';
+
+  @override
+  String get chatReplyCancel => 'Cancel reply';
+
+  @override
+  String get chatTyping => 'typing…';
+
+  @override
+  String get chatOpenTimeRemaining => 'Chat is open for 72 hours';
+
+  @override
+  String get chatMoreActions => 'More actions';
+
+  @override
   String get mockMessageMohiraName => 'Mohira R.';
 
   @override

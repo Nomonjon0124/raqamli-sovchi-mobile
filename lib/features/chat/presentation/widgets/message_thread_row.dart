@@ -1,110 +1,110 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
-import '../../../../gen/assets.gen.dart';
-
-final class MessageThreadData {
-  const MessageThreadData({
-    required this.name,
-    required this.preview,
-    required this.time,
-    required this.avatar,
-    this.unread = false,
-  });
-
-  final String name;
-  final String preview;
-  final String time;
-  final AssetGenImage avatar;
-  final bool unread;
-}
+import '../../../../app/theme/app_spacing.dart';
+import '../../../../app/theme/app_typography.dart';
+import '../../domain/entities/chat_thread.dart';
 
 final class MessageThreadRow extends StatelessWidget {
-  const MessageThreadRow({required this.thread, super.key});
+  const MessageThreadRow({
+    required this.thread,
+    required this.name,
+    required this.preview,
+    required this.isOnline,
+    required this.onTap,
+    super.key,
+  });
 
-  final MessageThreadData thread;
+  final ChatThread thread;
+  final String name;
+  final String preview;
+  final bool isOnline;
+  final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
+  Widget build(BuildContext context) => InkWell(
+    onTap: onTap,
+    child: DecoratedBox(
       decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(color: AppColors.mutedSurface)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.xs,
+          vertical: AppSpacing.input,
+        ),
         child: Row(
           children: [
-            ClipOval(
-              child: thread.avatar.image(
-                width: 48,
-                height: 48,
-                fit: BoxFit.cover,
-                excludeFromSemantics: true,
-              ),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                CircleAvatar(
+                  radius: AppSpacing.xl,
+                  backgroundColor: AppColors.primaryTranslucent,
+                  child: Text(
+                    _initials(name),
+                    style: AppTypography.chatHeaderName.copyWith(
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ),
+                if (isOnline)
+                  const Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: AppColors.surfaceLight,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSpacing.xxs),
+                        child: SizedBox(
+                          width: AppSpacing.sm,
+                          height: AppSpacing.sm,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: AppColors.successText,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
             ),
-            const SizedBox(width: 14),
+            const SizedBox(width: AppSpacing.input),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          thread.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontFamily: 'Manrope',
-                            fontSize: 14,
-                            height: 19 / 14,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.text,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        thread.time,
-                        style: const TextStyle(
-                          fontFamily: 'Manrope',
-                          fontSize: 11,
-                          height: 17 / 11,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.placeholder,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 3),
                   Text(
-                    thread.preview,
+                    name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: 'Manrope',
-                      fontSize: 12,
-                      height: 19 / 12,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.mutedText,
-                    ),
+                    style: AppTypography.chatHeaderName,
+                  ),
+                  const SizedBox(height: AppSpacing.controlInset),
+                  Text(
+                    preview,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.chatThreadPreview,
                   ),
                 ],
               ),
             ),
-            if (thread.unread) ...[
-              const SizedBox(width: 14),
-              const DecoratedBox(
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
-                ),
-                child: SizedBox(width: 8, height: 8),
-              ),
-            ],
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }
+
+String _initials(String name) => name
+    .split(RegExp(r'\s+'))
+    .where((part) => part.isNotEmpty)
+    .take(2)
+    .map((part) => part[0].toUpperCase())
+    .join();

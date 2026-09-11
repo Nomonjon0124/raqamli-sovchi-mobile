@@ -1261,6 +1261,54 @@ class AppLocalizationsRu extends AppLocalizations {
   String get messagesSegmentRequests => 'Запросы';
 
   @override
+  String get chatRoomsEmpty => 'Открытых чатов пока нет';
+
+  @override
+  String get chatThreadOpen => 'Открыть чат';
+
+  @override
+  String get chatParticipantFallback => 'Собеседник';
+
+  @override
+  String get chatSafetyNotice =>
+      'Чат контролируется искусственным интеллектом — неприличные слова и изображения не пройдут.';
+
+  @override
+  String get chatIcebreakerGoal => 'Какая самая большая цель в вашей жизни?';
+
+  @override
+  String get chatIcebreakerFamily =>
+      'Какую семейную традицию вы хотели бы продолжить?';
+
+  @override
+  String get chatIcebreakerBook => 'Какая книга вдохновляет вас больше всего?';
+
+  @override
+  String get chatIcebreakerChange =>
+      'Расскажите об одной вещи, которую вы хотели бы изменить в своей жизни.';
+
+  @override
+  String get chatWriteMessage => 'Напишите сообщение…';
+
+  @override
+  String get chatSendMessage => 'Отправить сообщение';
+
+  @override
+  String get chatReplyTo => 'Ответить';
+
+  @override
+  String get chatReplyCancel => 'Отменить ответ';
+
+  @override
+  String get chatTyping => 'печатает…';
+
+  @override
+  String get chatOpenTimeRemaining => 'Чат открыт на 72 часа';
+
+  @override
+  String get chatMoreActions => 'Дополнительные действия';
+
+  @override
   String get mockMessageMohiraName => 'Мохира Р.';
 
   @override
