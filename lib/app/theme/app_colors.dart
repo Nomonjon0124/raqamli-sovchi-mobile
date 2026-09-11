@@ -34,4 +34,13 @@ abstract final class AppColors {
   static const chipShadow = Color(0x1F000000);
   static const elevatedShadow = Color(0x24000000);
   static const chatReplyOnPrimary = Color(0xFFE9E9E9);
+  static const servicesHeroStart = Color(0xFFFB0000);
+  static const servicesHeroEnd = Color(0xFFFF5D5D);
+  static const servicesWarningSurface = Color(0xFFFFFBEB);
+  static const servicesWarningText = Color(0xFF92400E);
+  static const servicesMeetingSurface = Color(0xFFEEEAFB);
+  static const servicesMeetingIcon = Color(0xFF5B4BC4);
+  static const servicesVerifySurface = Color(0xFFE6F5EC);
+  static const servicesVerifyIcon = Color(0xFF1E7A48);
+  static const servicesInfoSurface = Color(0xFFFCFCFC);
 }

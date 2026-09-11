@@ -814,6 +814,120 @@ class AppLocalizationsUz extends AppLocalizations {
   String get servicesPlaceholder => 'Hozircha xizmatlar sahifasi.';
 
   @override
+  String get servicesHeroTitle => 'Tanishuv yo‘lida\nyolg‘iz emassiz';
+
+  @override
+  String get servicesHeroSubtitle =>
+      'Psixolog, oilaviy uchrashuv va profil tekshiruvi — hammasi bir joyda.';
+
+  @override
+  String get servicesHeroSupportValue => '24/7';
+
+  @override
+  String get servicesHeroSupportLabel => 'yordam';
+
+  @override
+  String get servicesHeroPsychologistsValue => '12';
+
+  @override
+  String get servicesHeroPsychologistsLabel => 'psixolog';
+
+  @override
+  String get servicesHeroPrivacyValue => 'Maxfiy';
+
+  @override
+  String get servicesHeroPrivacyLabel => 'suhbat';
+
+  @override
+  String get servicesPopularSection => 'Eng ko‘p tanlanadi';
+
+  @override
+  String get servicePsychologistTitle => 'Oilaviy psixolog';
+
+  @override
+  String get servicePsychologistSubtitle => 'Nikohdan oldin suhbat';
+
+  @override
+  String get servicePsychologistRating => '4.9';
+
+  @override
+  String get servicePsychologistDescription =>
+      'Kelishmovchilik sabablarini oldindan ko‘rasiz. Suhbat to‘liq maxfiy — hech kim bilmaydi.';
+
+  @override
+  String get servicePsychologistDuration => '50 daqiqa';
+
+  @override
+  String get servicePsychologistFormat => 'Oflayn yoki uyda';
+
+  @override
+  String get servicePsychologistExperts => '12 mutaxassis';
+
+  @override
+  String get servicePsychologistPrice => 'bitta sessiy';
+
+  @override
+  String get serviceViewAction => 'Ko‘rish';
+
+  @override
+  String get servicesOtherSection => 'Boshqa xizmatlar';
+
+  @override
+  String get serviceMeetingTitle => 'Oilaviy uchrashuv';
+
+  @override
+  String get serviceMeetingSubtitle => 'Faqat vakillar taklif qiladi';
+
+  @override
+  String get serviceVerificationTitle => 'Profil tekshiruvi';
+
+  @override
+  String get serviceVerificationSubtitle => 'Selfi orqali tasdiqlash';
+
+  @override
+  String get servicePremiumTitle => 'Sovchi Premium';
+
+  @override
+  String get servicePremiumSubtitle =>
+      'Ko‘proq taklif va to‘liq moslik tahlili';
+
+  @override
+  String get serviceBoostTitle => 'Yuqoriga ko‘tarish';
+
+  @override
+  String get serviceBoostSubtitle =>
+      'Profilingiz 24 soat davomida ro‘yxat boshida ko‘rinadi.';
+
+  @override
+  String get servicesHowSection => 'Qanday ishlaydi';
+
+  @override
+  String get servicesHowStepOneTitle => 'Xizmatni tanlaysiz';
+
+  @override
+  String get servicesHowStepOneSubtitle =>
+      'Har biri haqida to‘liq ma’lumot bor';
+
+  @override
+  String get servicesHowStepTwoTitle => 'Vaqt va shaklni belgilaysiz';
+
+  @override
+  String get servicesHowStepTwoSubtitle => 'Oflayn yoki uyingizda';
+
+  @override
+  String get servicesHowStepThreeTitle => 'To‘laysiz va uchrashasiz';
+
+  @override
+  String get servicesHowStepThreeSubtitle => 'Bekor qilsangiz pul qaytadi';
+
+  @override
+  String get servicesOptionalNote =>
+      'Hech bir xizmat majburiy emas — ularsiz ham ilovadan to‘liq foydalanasiz.';
+
+  @override
+  String get servicesActionComingSoon => 'Bu xizmat keyingi bosqichda ulanadi';
+
+  @override
   String get savedPlaceholder => 'Hozircha saqlanganlar sahifasi.';
 
   @override

@@ -399,4 +399,92 @@ abstract final class AppTypography {
     fontWeight: FontWeight.w500,
     color: AppColors.text,
   );
+  static const servicesHeroTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 24,
+    height: 30 / 24,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
+    color: AppColors.surfaceLight,
+  );
+  static const servicesHeroBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 21 / 13,
+    color: AppColors.surfaceLight,
+  );
+  static const servicesHeroStatValue = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 15,
+    height: 20 / 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.surfaceLight,
+  );
+  static const servicesHeroStatLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.surfaceLight,
+  );
+  static const servicesSectionTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const servicesCardTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 16,
+    height: 22 / 16,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.2,
+    color: AppColors.text,
+  );
+  static const servicesCardBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 21 / 13,
+    color: AppColors.mapLabelText,
+  );
+  static const servicesTileTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 14,
+    height: 19 / 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const servicesCaption = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.mutedText,
+  );
+  static const servicesPill = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 15 / 11,
+    fontWeight: FontWeight.w600,
+    color: AppColors.mapLabelText,
+  );
+  static const servicesAction = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+    color: AppColors.surfaceLight,
+  );
+  static const servicesStepTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const servicesNote = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.mapLabelText,
+  );
 }

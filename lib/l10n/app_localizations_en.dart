@@ -818,6 +818,120 @@ class AppLocalizationsEn extends AppLocalizations {
   String get servicesPlaceholder => 'Services page for now.';
 
   @override
+  String get servicesHeroTitle => 'You are not alone\non the way to meeting';
+
+  @override
+  String get servicesHeroSubtitle =>
+      'Psychologist, family meeting, and profile verification — all in one place.';
+
+  @override
+  String get servicesHeroSupportValue => '24/7';
+
+  @override
+  String get servicesHeroSupportLabel => 'support';
+
+  @override
+  String get servicesHeroPsychologistsValue => '12';
+
+  @override
+  String get servicesHeroPsychologistsLabel => 'psychologists';
+
+  @override
+  String get servicesHeroPrivacyValue => 'Private';
+
+  @override
+  String get servicesHeroPrivacyLabel => 'chat';
+
+  @override
+  String get servicesPopularSection => 'Most chosen';
+
+  @override
+  String get servicePsychologistTitle => 'Family psychologist';
+
+  @override
+  String get servicePsychologistSubtitle => 'Pre-marriage consultation';
+
+  @override
+  String get servicePsychologistRating => '4.9';
+
+  @override
+  String get servicePsychologistDescription =>
+      'See possible causes of disagreement in advance. The conversation is fully private — no one will know.';
+
+  @override
+  String get servicePsychologistDuration => '50 minutes';
+
+  @override
+  String get servicePsychologistFormat => 'Offline or at home';
+
+  @override
+  String get servicePsychologistExperts => '12 specialists';
+
+  @override
+  String get servicePsychologistPrice => 'one session';
+
+  @override
+  String get serviceViewAction => 'View';
+
+  @override
+  String get servicesOtherSection => 'Other services';
+
+  @override
+  String get serviceMeetingTitle => 'Family meeting';
+
+  @override
+  String get serviceMeetingSubtitle => 'Only representatives can invite';
+
+  @override
+  String get serviceVerificationTitle => 'Profile verification';
+
+  @override
+  String get serviceVerificationSubtitle => 'Confirm with a selfie';
+
+  @override
+  String get servicePremiumTitle => 'Sovchi Premium';
+
+  @override
+  String get servicePremiumSubtitle =>
+      'More proposals and full compatibility analysis';
+
+  @override
+  String get serviceBoostTitle => 'Boost to top';
+
+  @override
+  String get serviceBoostSubtitle =>
+      'Your profile appears at the top of the list for 24 hours.';
+
+  @override
+  String get servicesHowSection => 'How it works';
+
+  @override
+  String get servicesHowStepOneTitle => 'Choose a service';
+
+  @override
+  String get servicesHowStepOneSubtitle => 'Each one has full details';
+
+  @override
+  String get servicesHowStepTwoTitle => 'Set time and format';
+
+  @override
+  String get servicesHowStepTwoSubtitle => 'Offline or at your home';
+
+  @override
+  String get servicesHowStepThreeTitle => 'Pay and meet';
+
+  @override
+  String get servicesHowStepThreeSubtitle => 'If you cancel, money is returned';
+
+  @override
+  String get servicesOptionalNote =>
+      'No service is required — you can use the full app without them.';
+
+  @override
+  String get servicesActionComingSoon =>
+      'This service will be connected in the next stage';
+
+  @override
   String get savedPlaceholder => 'Saved page for now.';
 
   @override

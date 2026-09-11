@@ -208,6 +208,10 @@ class $AssetsIconsGen {
   SvgGenImage get icProfileBtv =>
       const SvgGenImage('assets/icons/ic_profile_btv.svg');
 
+  /// File path: assets/icons/ic_psychology.svg
+  SvgGenImage get icPsychology =>
+      const SvgGenImage('assets/icons/ic_psychology.svg');
+
   /// File path: assets/icons/ic_radar.svg
   SvgGenImage get icRadar => const SvgGenImage('assets/icons/ic_radar.svg');
 
@@ -247,6 +251,26 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_square_lock.svg
   SvgGenImage get icSquareLock =>
       const SvgGenImage('assets/icons/ic_square_lock.svg');
+
+  /// File path: assets/icons/ic_srv_chervon.svg
+  SvgGenImage get icSrvChervon =>
+      const SvgGenImage('assets/icons/ic_srv_chervon.svg');
+
+  /// File path: assets/icons/ic_srv_meeting.svg
+  SvgGenImage get icSrvMeeting =>
+      const SvgGenImage('assets/icons/ic_srv_meeting.svg');
+
+  /// File path: assets/icons/ic_srv_premium.svg
+  SvgGenImage get icSrvPremium =>
+      const SvgGenImage('assets/icons/ic_srv_premium.svg');
+
+  /// File path: assets/icons/ic_srv_premium2.svg
+  SvgGenImage get icSrvPremium2 =>
+      const SvgGenImage('assets/icons/ic_srv_premium2.svg');
+
+  /// File path: assets/icons/ic_srv_verify.svg
+  SvgGenImage get icSrvVerify =>
+      const SvgGenImage('assets/icons/ic_srv_verify.svg');
 
   /// File path: assets/icons/ic_task_list_pen.svg
   SvgGenImage get icTaskListPen =>
@@ -390,6 +414,7 @@ class $AssetsIconsGen {
     icPlay,
     icPreservedBtv,
     icProfileBtv,
+    icPsychology,
     icRadar,
     icReportDialogue,
     icSaved,
@@ -401,6 +426,11 @@ class $AssetsIconsGen {
     icShare,
     icSmileWink,
     icSquareLock,
+    icSrvChervon,
+    icSrvMeeting,
+    icSrvPremium,
+    icSrvPremium2,
+    icSrvVerify,
     icTaskListPen,
     icTelegramIcon,
     icVerifiedDevice,
@@ -482,9 +512,7 @@ class $AssetsImagesGen {
   ];
 }
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   static const $AssetsAuthGen auth = $AssetsAuthGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

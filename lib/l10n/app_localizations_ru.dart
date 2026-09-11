@@ -816,6 +816,120 @@ class AppLocalizationsRu extends AppLocalizations {
   String get servicesPlaceholder => 'Пока страница услуг.';
 
   @override
+  String get servicesHeroTitle => 'На пути знакомства\nвы не одни';
+
+  @override
+  String get servicesHeroSubtitle =>
+      'Психолог, семейная встреча и проверка профиля — всё в одном месте.';
+
+  @override
+  String get servicesHeroSupportValue => '24/7';
+
+  @override
+  String get servicesHeroSupportLabel => 'помощь';
+
+  @override
+  String get servicesHeroPsychologistsValue => '12';
+
+  @override
+  String get servicesHeroPsychologistsLabel => 'психологов';
+
+  @override
+  String get servicesHeroPrivacyValue => 'Тайно';
+
+  @override
+  String get servicesHeroPrivacyLabel => 'общение';
+
+  @override
+  String get servicesPopularSection => 'Чаще всего выбирают';
+
+  @override
+  String get servicePsychologistTitle => 'Семейный психолог';
+
+  @override
+  String get servicePsychologistSubtitle => 'Беседа до брака';
+
+  @override
+  String get servicePsychologistRating => '4.9';
+
+  @override
+  String get servicePsychologistDescription =>
+      'Вы заранее увидите причины разногласий. Беседа полностью конфиденциальна — никто не узнает.';
+
+  @override
+  String get servicePsychologistDuration => '50 минут';
+
+  @override
+  String get servicePsychologistFormat => 'Офлайн или дома';
+
+  @override
+  String get servicePsychologistExperts => '12 специалистов';
+
+  @override
+  String get servicePsychologistPrice => 'одна сессия';
+
+  @override
+  String get serviceViewAction => 'Смотреть';
+
+  @override
+  String get servicesOtherSection => 'Другие услуги';
+
+  @override
+  String get serviceMeetingTitle => 'Семейная встреча';
+
+  @override
+  String get serviceMeetingSubtitle => 'Приглашают только представители';
+
+  @override
+  String get serviceVerificationTitle => 'Проверка профиля';
+
+  @override
+  String get serviceVerificationSubtitle => 'Подтверждение через селфи';
+
+  @override
+  String get servicePremiumTitle => 'Sovchi Premium';
+
+  @override
+  String get servicePremiumSubtitle =>
+      'Больше предложений и полный анализ совместимости';
+
+  @override
+  String get serviceBoostTitle => 'Поднять вверх';
+
+  @override
+  String get serviceBoostSubtitle =>
+      'Ваш профиль будет 24 часа виден в начале списка.';
+
+  @override
+  String get servicesHowSection => 'Как это работает';
+
+  @override
+  String get servicesHowStepOneTitle => 'Вы выбираете услугу';
+
+  @override
+  String get servicesHowStepOneSubtitle => 'О каждой есть подробная информация';
+
+  @override
+  String get servicesHowStepTwoTitle => 'Вы выбираете время и формат';
+
+  @override
+  String get servicesHowStepTwoSubtitle => 'Офлайн или у вас дома';
+
+  @override
+  String get servicesHowStepThreeTitle => 'Оплачиваете и встречаетесь';
+
+  @override
+  String get servicesHowStepThreeSubtitle => 'При отмене деньги возвращаются';
+
+  @override
+  String get servicesOptionalNote =>
+      'Ни одна услуга не обязательна — приложением можно полноценно пользоваться и без них.';
+
+  @override
+  String get servicesActionComingSoon =>
+      'Эта услуга будет подключена на следующем этапе';
+
+  @override
   String get savedPlaceholder => 'Пока страница сохраненного.';
 
   @override

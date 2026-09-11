@@ -3,6 +3,7 @@ abstract final class AppRadius {
   static const md = 12.0;
   static const lg = 14.0;
   static const xl = 16.0;
+  static const card = 18.0;
   static const sheet = 20.0;
   static const xxl = 24.0;
   static const full = 999.0;

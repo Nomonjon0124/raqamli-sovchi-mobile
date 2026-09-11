@@ -1552,6 +1552,222 @@ abstract class AppLocalizations {
   /// **'Hozircha xizmatlar sahifasi.'**
   String get servicesPlaceholder;
 
+  /// No description provided for @servicesHeroTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tanishuv yo‘lida\nyolg‘iz emassiz'**
+  String get servicesHeroTitle;
+
+  /// No description provided for @servicesHeroSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Psixolog, oilaviy uchrashuv va profil tekshiruvi — hammasi bir joyda.'**
+  String get servicesHeroSubtitle;
+
+  /// No description provided for @servicesHeroSupportValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'24/7'**
+  String get servicesHeroSupportValue;
+
+  /// No description provided for @servicesHeroSupportLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'yordam'**
+  String get servicesHeroSupportLabel;
+
+  /// No description provided for @servicesHeroPsychologistsValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'12'**
+  String get servicesHeroPsychologistsValue;
+
+  /// No description provided for @servicesHeroPsychologistsLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'psixolog'**
+  String get servicesHeroPsychologistsLabel;
+
+  /// No description provided for @servicesHeroPrivacyValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiy'**
+  String get servicesHeroPrivacyValue;
+
+  /// No description provided for @servicesHeroPrivacyLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'suhbat'**
+  String get servicesHeroPrivacyLabel;
+
+  /// No description provided for @servicesPopularSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Eng ko‘p tanlanadi'**
+  String get servicesPopularSection;
+
+  /// No description provided for @servicePsychologistTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy psixolog'**
+  String get servicePsychologistTitle;
+
+  /// No description provided for @servicePsychologistSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikohdan oldin suhbat'**
+  String get servicePsychologistSubtitle;
+
+  /// No description provided for @servicePsychologistRating.
+  ///
+  /// In uz, this message translates to:
+  /// **'4.9'**
+  String get servicePsychologistRating;
+
+  /// No description provided for @servicePsychologistDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kelishmovchilik sabablarini oldindan ko‘rasiz. Suhbat to‘liq maxfiy — hech kim bilmaydi.'**
+  String get servicePsychologistDescription;
+
+  /// No description provided for @servicePsychologistDuration.
+  ///
+  /// In uz, this message translates to:
+  /// **'50 daqiqa'**
+  String get servicePsychologistDuration;
+
+  /// No description provided for @servicePsychologistFormat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oflayn yoki uyda'**
+  String get servicePsychologistFormat;
+
+  /// No description provided for @servicePsychologistExperts.
+  ///
+  /// In uz, this message translates to:
+  /// **'12 mutaxassis'**
+  String get servicePsychologistExperts;
+
+  /// No description provided for @servicePsychologistPrice.
+  ///
+  /// In uz, this message translates to:
+  /// **'bitta sessiy'**
+  String get servicePsychologistPrice;
+
+  /// No description provided for @serviceViewAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘rish'**
+  String get serviceViewAction;
+
+  /// No description provided for @servicesOtherSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa xizmatlar'**
+  String get servicesOtherSection;
+
+  /// No description provided for @serviceMeetingTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy uchrashuv'**
+  String get serviceMeetingTitle;
+
+  /// No description provided for @serviceMeetingSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat vakillar taklif qiladi'**
+  String get serviceMeetingSubtitle;
+
+  /// No description provided for @serviceVerificationTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil tekshiruvi'**
+  String get serviceVerificationTitle;
+
+  /// No description provided for @serviceVerificationSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Selfi orqali tasdiqlash'**
+  String get serviceVerificationSubtitle;
+
+  /// No description provided for @servicePremiumTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sovchi Premium'**
+  String get servicePremiumTitle;
+
+  /// No description provided for @servicePremiumSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘proq taklif va to‘liq moslik tahlili'**
+  String get servicePremiumSubtitle;
+
+  /// No description provided for @serviceBoostTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuqoriga ko‘tarish'**
+  String get serviceBoostTitle;
+
+  /// No description provided for @serviceBoostSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingiz 24 soat davomida ro‘yxat boshida ko‘rinadi.'**
+  String get serviceBoostSubtitle;
+
+  /// No description provided for @servicesHowSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qanday ishlaydi'**
+  String get servicesHowSection;
+
+  /// No description provided for @servicesHowStepOneTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xizmatni tanlaysiz'**
+  String get servicesHowStepOneTitle;
+
+  /// No description provided for @servicesHowStepOneSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Har biri haqida to‘liq ma’lumot bor'**
+  String get servicesHowStepOneSubtitle;
+
+  /// No description provided for @servicesHowStepTwoTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vaqt va shaklni belgilaysiz'**
+  String get servicesHowStepTwoTitle;
+
+  /// No description provided for @servicesHowStepTwoSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oflayn yoki uyingizda'**
+  String get servicesHowStepTwoSubtitle;
+
+  /// No description provided for @servicesHowStepThreeTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'To‘laysiz va uchrashasiz'**
+  String get servicesHowStepThreeTitle;
+
+  /// No description provided for @servicesHowStepThreeSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilsangiz pul qaytadi'**
+  String get servicesHowStepThreeSubtitle;
+
+  /// No description provided for @servicesOptionalNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hech bir xizmat majburiy emas — ularsiz ham ilovadan to‘liq foydalanasiz.'**
+  String get servicesOptionalNote;
+
+  /// No description provided for @servicesActionComingSoon.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu xizmat keyingi bosqichda ulanadi'**
+  String get servicesActionComingSoon;
+
   /// No description provided for @savedPlaceholder.
   ///
   /// In uz, this message translates to:
