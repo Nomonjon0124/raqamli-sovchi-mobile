@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -180,45 +178,58 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
           onIcebreakerPressed: (value) => _controller.text = value,
         ),
       ),
-      ChatConversationStatus.success => ListView(
+      ChatConversationStatus.success => ListView.builder(
         controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.all(AppSpacing.card),
-        children: [
-          Align(child: ChatSystemNotice(message: l10n.chatSafetyNotice)),
-          const SizedBox(height: AppSpacing.md),
-          ...state.messages.map(
-            (message) => Padding(
-              key: _messageKeys.putIfAbsent(message.id, GlobalKey.new),
-              padding: const EdgeInsets.only(bottom: AppSpacing.md),
-              child: ChatMessageBubble(
-                message: message,
-                isMine: message.senderId == currentUserId,
-                replyLabel: l10n.chatReplyTo,
-                onReply: () => context.read<ChatConversationBloc>().add(
-                  ChatReplySelected(message),
+        itemCount: state.messages.length + 3,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Align(
+              child: ChatSystemNotice(message: l10n.chatSafetyNotice),
+            );
+          }
+          if (index == 1) return const SizedBox(height: AppSpacing.md);
+          if (index == state.messages.length + 2) {
+            return Padding(
+              padding: const EdgeInsets.only(top: AppSpacing.sm),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                reverse: true,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: icebreakers
+                      .take(2)
+                      .map(
+                        (text) => Padding(
+                          padding: const EdgeInsets.only(left: AppSpacing.sm),
+                          child: ActionChip(
+                            label: Text(text, style: AppTypography.chatChip),
+                            onPressed: () => _controller.text = text,
+                          ),
+                        ),
+                      )
+                      .toList(),
                 ),
-                onQuotedMessagePressed: () => _scrollToMessage(message.replyTo),
               ),
+            );
+          }
+
+          final message = state.messages[index - 2];
+          return Padding(
+            key: _messageKeys.putIfAbsent(message.id, GlobalKey.new),
+            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+            child: ChatMessageBubble(
+              message: message,
+              isMine: message.senderId == currentUserId,
+              replyLabel: l10n.chatReplyTo,
+              onReply: () => context.read<ChatConversationBloc>().add(
+                ChatReplySelected(message),
+              ),
+              onQuotedMessagePressed: () => _scrollToMessage(message.replyTo),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Wrap(
-              alignment: WrapAlignment.end,
-              spacing: AppSpacing.sm,
-              runSpacing: AppSpacing.sm,
-              children: icebreakers
-                  .take(2)
-                  .map(
-                    (text) => ActionChip(
-                      label: Text(text, style: AppTypography.chatChip),
-                      onPressed: () => _controller.text = text,
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
-        ],
+          );
+        },
       ),
     };
   }

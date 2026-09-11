@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../../../core/network/api_client.dart';
+import '../../../../core/security/auth_session_manager.dart';
 import '../../../../core/security/token_store.dart';
 import '../models/auth_session_model.dart';
 import '../models/current_user_model.dart';
@@ -137,8 +138,10 @@ final class RemoteAuthDataSource implements AuthDataSource {
   RemoteAuthDataSource({
     required ApiClient client,
     required TokenStore tokenStore,
+    AuthSessionManager? sessionManager,
   }) : _client = client,
-       _tokenStore = tokenStore;
+       _tokenStore = tokenStore,
+       _sessionManager = sessionManager;
 
   static const _phonePath = '/api/v1/accounts/auth/phone/';
   static const _tokenPath = '/api/v1/accounts/auth/token/';
@@ -148,6 +151,7 @@ final class RemoteAuthDataSource implements AuthDataSource {
 
   final ApiClient _client;
   final TokenStore _tokenStore;
+  final AuthSessionManager? _sessionManager;
   String? _pendingPhoneNumber;
   AuthSessionModel? _pendingPhoneSession;
 
@@ -156,8 +160,24 @@ final class RemoteAuthDataSource implements AuthDataSource {
     final accessToken = await _tokenStore.readAccessToken();
     if (accessToken == null || accessToken.isEmpty) return null;
 
+    var userId = await _sessionManager?.readCurrentUserId();
+    if ((userId == null || userId.isEmpty) && _sessionManager != null) {
+      try {
+        final response = await _client.get<Map<String, dynamic>>(_mePath);
+        final restoredUserId = AuthSessionModel.fromJson(
+          response.data ?? const {},
+        ).userId;
+        if (restoredUserId.isNotEmpty && restoredUserId != 'unknown') {
+          userId = restoredUserId;
+          await _sessionManager.saveCurrentUserId(restoredUserId);
+        }
+      } on Object {
+        // Session restore stays available when identity migration is offline.
+      }
+    }
+
     return AuthSessionModel.local(
-      userId: 'local-session',
+      userId: userId ?? 'local-session',
       displayName: 'Raqamli Sovchi',
       accessToken: accessToken,
       isVerified: true,

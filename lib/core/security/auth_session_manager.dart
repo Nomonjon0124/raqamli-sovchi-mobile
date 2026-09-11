@@ -33,6 +33,10 @@ abstract interface class AuthSessionManager {
 
   Future<String?> readEffectiveRefreshToken();
 
+  Future<String?> readCurrentUserId();
+
+  Future<void> saveCurrentUserId(String userId);
+
   Future<void> saveRefreshedTokens({
     required String accessToken,
     String? refreshToken,
@@ -60,6 +64,7 @@ final class DefaultAuthSessionManager implements AuthSessionManager {
 
   static const _profileOnboardingCompletedKey =
       'auth.profile_onboarding_completed';
+  static const _currentUserIdKey = 'auth.current_user_id';
 
   final TokenStore _tokenStore;
   final SecureStorage _storage;
@@ -82,6 +87,16 @@ final class DefaultAuthSessionManager implements AuthSessionManager {
     return pending != null
         ? pending.refreshToken
         : _tokenStore.readRefreshToken();
+  }
+
+  @override
+  Future<String?> readCurrentUserId() {
+    return _storage.read(key: _currentUserIdKey);
+  }
+
+  @override
+  Future<void> saveCurrentUserId(String userId) {
+    return _storage.write(key: _currentUserIdKey, value: userId);
   }
 
   @override
@@ -131,8 +146,10 @@ final class DefaultAuthSessionManager implements AuthSessionManager {
           accessToken: pending.accessToken,
           refreshToken: pending.refreshToken,
         );
+        await _storage.write(key: _currentUserIdKey, value: pending.userId);
       } catch (_) {
         await _tokenStore.clear();
+        await _storage.delete(key: _currentUserIdKey);
         rethrow;
       }
 
@@ -167,5 +184,6 @@ final class DefaultAuthSessionManager implements AuthSessionManager {
     _pendingSession = null;
     await _tokenStore.clear();
     await _storage.delete(key: _profileOnboardingCompletedKey);
+    await _storage.delete(key: _currentUserIdKey);
   }
 }

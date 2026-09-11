@@ -174,6 +174,7 @@ Future<void> configureDependencies() async {
           : RemoteAuthDataSource(
               client: serviceLocator(),
               tokenStore: serviceLocator(),
+              sessionManager: serviceLocator(),
             ),
     )
     ..registerLazySingleton<TelegramAuthDataSource>(

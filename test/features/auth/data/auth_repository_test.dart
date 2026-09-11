@@ -96,6 +96,52 @@ void main() {
     },
   );
 
+  test('remote restore keeps persisted user id for chat ownership', () async {
+    final tokenStore = _MemoryTokenStore(accessToken: 'access-token');
+    final secureStorage = _MemorySecureStorage();
+    final sessionManager = DefaultAuthSessionManager(tokenStore, secureStorage);
+    sessionManager.stage(
+      accessToken: 'access-token',
+      refreshToken: 'refresh-token',
+      userId: 'user-1',
+    );
+    await sessionManager.commitPendingTokens();
+
+    final dataSource = RemoteAuthDataSource(
+      client: _RecordingApiClient(const {}),
+      tokenStore: tokenStore,
+      sessionManager: sessionManager,
+    );
+
+    final session = await dataSource.restoreSession();
+
+    expect(session?.userId, 'user-1');
+  });
+
+  test(
+    'remote restore migrates user id for an existing token session',
+    () async {
+      final tokenStore = _MemoryTokenStore(accessToken: 'access-token');
+      final secureStorage = _MemorySecureStorage();
+      final sessionManager = DefaultAuthSessionManager(
+        tokenStore,
+        secureStorage,
+      );
+      final apiClient = _RecordingApiClient({'id': 'user-1'});
+      final dataSource = RemoteAuthDataSource(
+        client: apiClient,
+        tokenStore: tokenStore,
+        sessionManager: sessionManager,
+      );
+
+      final session = await dataSource.restoreSession();
+
+      expect(session?.userId, 'user-1');
+      expect(apiClient.getPath, '/api/v1/accounts/users/me/');
+      expect(await sessionManager.readCurrentUserId(), 'user-1');
+    },
+  );
+
   test('remote refresh uses the backend token refresh contract', () async {
     final tokenStore = _MemoryTokenStore()..refreshToken = 'refresh-token';
     final apiClient = _RecordingApiClient({'access': 'new-access'});
