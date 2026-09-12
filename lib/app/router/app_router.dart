@@ -9,8 +9,10 @@ import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/pages/pin_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
+import '../../features/chat/domain/entities/chat_request_profile.dart';
 import '../../features/chat/domain/entities/chat_thread.dart';
 import '../../features/chat/presentation/pages/chat_conversation_page.dart';
+import '../../features/chat/presentation/pages/chat_request_profile_page.dart';
 import '../../features/chat/presentation/pages/messages_page.dart';
 import '../../features/discovery/presentation/pages/candidate_detail_page.dart';
 import '../../features/discovery/presentation/pages/candidates_page.dart';
@@ -129,6 +131,21 @@ final class AppRouter {
         builder: (context, state) => const NotificationsPage(),
       ),
       GoRoute(
+        path: RouteNames.chatRequestProfile,
+        builder: (context, state) {
+          final requestId = state.pathParameters['requestId'];
+          if (requestId == null || requestId.isEmpty) {
+            return const SizedBox.shrink();
+          }
+          return ChatRequestProfilePage(
+            requestId: requestId,
+            request: state.extra is ChatRequestProfile
+                ? state.extra! as ChatRequestProfile
+                : null,
+          );
+        },
+      ),
+      GoRoute(
         path: RouteNames.chatRoom,
         builder: (context, state) {
           final roomId = state.pathParameters['roomId'];
@@ -208,7 +225,11 @@ final class AppRouter {
             routes: [
               GoRoute(
                 path: RouteNames.messages,
-                builder: (context, state) => const MessagesPage(),
+                builder: (context, state) => MessagesPage(
+                  initialTab: state.uri.queryParameters['tab'] == 'requests'
+                      ? 1
+                      : 0,
+                ),
               ),
             ],
           ),

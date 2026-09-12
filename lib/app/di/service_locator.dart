@@ -50,6 +50,7 @@ import '../../features/chat/data/services/chat_web_socket_service.dart';
 import '../../features/chat/domain/repositories/chat_repository.dart';
 import '../../features/chat/presentation/bloc/chat_conversation_bloc.dart';
 import '../../features/chat/presentation/bloc/chat_list_bloc.dart';
+import '../../features/chat/presentation/bloc/chat_request_profile_bloc.dart';
 import '../../features/discovery/application/use_cases/check_location_access.dart';
 import '../../features/discovery/application/use_cases/cluster_nearby_candidates.dart';
 import '../../features/discovery/application/use_cases/get_candidate.dart';
@@ -68,10 +69,13 @@ import '../../features/discovery/domain/repositories/discovery_repository.dart';
 import '../../features/discovery/domain/repositories/location_repository.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
+import '../../features/match/application/use_cases/accept_match_request.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
 import '../../features/match/application/use_cases/create_photo_request.dart';
+import '../../features/match/application/use_cases/get_match_request.dart';
 import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
 import '../../features/match/application/use_cases/get_match_requests.dart';
+import '../../features/match/application/use_cases/reject_match_request.dart';
 import '../../features/match/data/data_sources/match_request_data_source.dart';
 import '../../features/match/data/data_sources/photo_request_data_source.dart';
 import '../../features/match/data/repositories/match_request_repository_impl.dart';
@@ -319,6 +323,15 @@ Future<void> configureDependencies() async {
     ..registerFactory<GetMatchRequestsUseCase>(
       () => GetMatchRequestsUseCase(serviceLocator()),
     )
+    ..registerFactory<GetMatchRequestUseCase>(
+      () => GetMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<AcceptMatchRequestUseCase>(
+      () => AcceptMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<RejectMatchRequestUseCase>(
+      () => RejectMatchRequestUseCase(serviceLocator()),
+    )
     ..registerFactory<LoadChatRoomsUseCase>(
       () => LoadChatRoomsUseCase(serviceLocator()),
     )
@@ -451,6 +464,14 @@ Future<void> configureDependencies() async {
         createMatchRequest: serviceLocator(),
         saveCandidate: serviceLocator(),
         unsaveCandidate: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ChatRequestProfileBloc>(
+      () => ChatRequestProfileBloc(
+        getRequest: serviceLocator(),
+        getCandidate: serviceLocator(),
+        acceptRequest: serviceLocator(),
+        rejectRequest: serviceLocator(),
       ),
     )
     ..registerFactory<SavedBloc>(

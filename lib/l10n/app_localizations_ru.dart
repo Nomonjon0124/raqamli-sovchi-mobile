@@ -1384,6 +1384,88 @@ class AppLocalizationsRu extends AppLocalizations {
   String get messagesSegmentRequests => 'Запросы';
 
   @override
+  String get chatRequestsEmpty => 'Входящих запросов пока нет';
+
+  @override
+  String chatRequestCardTitle(String name) {
+    return 'Запрос / $name';
+  }
+
+  @override
+  String get chatRequestPendingHint =>
+      'Пока вы не примете запрос, кандидат не сможет вам написать.';
+
+  @override
+  String get chatRequestProfileTitle => 'Профиль кандидата';
+
+  @override
+  String get chatRequestCompatibilityLabel => 'СОВПАДЕНИЕ ПО РАЗДЕЛАМ';
+
+  @override
+  String get chatRequestCompatibilityShortLabel => 'совпадение';
+
+  @override
+  String get chatRequestCompatibilityUnavailable =>
+      'Процент совпадения ещё не рассчитан.';
+
+  @override
+  String get chatRequestAccept => 'Принять';
+
+  @override
+  String get chatRequestReject => 'Отклонить';
+
+  @override
+  String get chatRequestViaRepresentative => 'Через представителя';
+
+  @override
+  String get chatRequestPhotoVerified => 'Фото проверено';
+
+  @override
+  String get chatRequestSeriousIntent => 'Серьёзные намерения';
+
+  @override
+  String chatRequestRepresentativeLabel(String name) {
+    return 'Представитель: $name';
+  }
+
+  @override
+  String get chatRequestRepresentativeNote =>
+      'Запрос пришёл через представителя';
+
+  @override
+  String get chatRequestProfileUnavailable =>
+      'Данные профиля временно недоступны.';
+
+  @override
+  String chatRequestLocationProfession(String location, String profession) {
+    return '$location, $profession';
+  }
+
+  @override
+  String get chatRequestCandidateFallback => 'Кандидат';
+
+  @override
+  String get chatRequestSectionFaith => 'Религия и ценности';
+
+  @override
+  String get chatRequestSectionFinance => 'Финансы и управление';
+
+  @override
+  String get chatRequestSectionFamily => 'Родственники';
+
+  @override
+  String get chatRequestSectionCharacter => 'Характер';
+
+  @override
+  String get chatRequestSectionPlans => 'Планы на будущее';
+
+  @override
+  String get chatRequestAccepted => 'Запрос принят';
+
+  @override
+  String get chatRequestRejected => 'Запрос отклонён';
+
+  @override
   String get chatRoomsEmpty => 'Открытых чатов пока нет';
 
   @override

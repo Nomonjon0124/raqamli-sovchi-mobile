@@ -2584,6 +2584,150 @@ abstract class AppLocalizations {
   /// **'Soʻrovlar'**
   String get messagesSegmentRequests;
 
+  /// No description provided for @chatRequestsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha kelgan soʻrovlar yoʻq'**
+  String get chatRequestsEmpty;
+
+  /// No description provided for @chatRequestCardTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov / {name}'**
+  String chatRequestCardTitle(String name);
+
+  /// No description provided for @chatRequestPendingHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qabul qilmaguningizcha nomzod sizga yoza olmaydi.'**
+  String get chatRequestPendingHint;
+
+  /// No description provided for @chatRequestProfileTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod profili'**
+  String get chatRequestProfileTitle;
+
+  /// No description provided for @chatRequestCompatibilityLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'MOSLIK BOʻLIMLAR KESIMIDA'**
+  String get chatRequestCompatibilityLabel;
+
+  /// No description provided for @chatRequestCompatibilityShortLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'moslik'**
+  String get chatRequestCompatibilityShortLabel;
+
+  /// No description provided for @chatRequestCompatibilityUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik foizi hali hisoblanmagan.'**
+  String get chatRequestCompatibilityUnavailable;
+
+  /// No description provided for @chatRequestAccept.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qabul qilish'**
+  String get chatRequestAccept;
+
+  /// No description provided for @chatRequestReject.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rad etish'**
+  String get chatRequestReject;
+
+  /// No description provided for @chatRequestViaRepresentative.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakil orqali'**
+  String get chatRequestViaRepresentative;
+
+  /// No description provided for @chatRequestPhotoVerified.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm tekshiruvi oʻtgan'**
+  String get chatRequestPhotoVerified;
+
+  /// No description provided for @chatRequestSeriousIntent.
+  ///
+  /// In uz, this message translates to:
+  /// **'Niyati jiddiy'**
+  String get chatRequestSeriousIntent;
+
+  /// No description provided for @chatRequestRepresentativeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakili: {name}'**
+  String chatRequestRepresentativeLabel(String name);
+
+  /// No description provided for @chatRequestRepresentativeNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Murojaat vakil orqali kelgan'**
+  String get chatRequestRepresentativeNote;
+
+  /// No description provided for @chatRequestProfileUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil maʼlumotlari vaqtincha mavjud emas.'**
+  String get chatRequestProfileUnavailable;
+
+  /// No description provided for @chatRequestLocationProfession.
+  ///
+  /// In uz, this message translates to:
+  /// **'{location}, {profession}'**
+  String chatRequestLocationProfession(String location, String profession);
+
+  /// No description provided for @chatRequestCandidateFallback.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod'**
+  String get chatRequestCandidateFallback;
+
+  /// No description provided for @chatRequestSectionFaith.
+  ///
+  /// In uz, this message translates to:
+  /// **'Din va qadriyatlar'**
+  String get chatRequestSectionFaith;
+
+  /// No description provided for @chatRequestSectionFinance.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moliya va boshqaruv'**
+  String get chatRequestSectionFinance;
+
+  /// No description provided for @chatRequestSectionFamily.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qarindoshlar'**
+  String get chatRequestSectionFamily;
+
+  /// No description provided for @chatRequestSectionCharacter.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xarakter'**
+  String get chatRequestSectionCharacter;
+
+  /// No description provided for @chatRequestSectionPlans.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kelajak rejalari'**
+  String get chatRequestSectionPlans;
+
+  /// No description provided for @chatRequestAccepted.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov qabul qilindi'**
+  String get chatRequestAccepted;
+
+  /// No description provided for @chatRequestRejected.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov rad etildi'**
+  String get chatRequestRejected;
+
   /// No description provided for @chatRoomsEmpty.
   ///
   /// In uz, this message translates to:

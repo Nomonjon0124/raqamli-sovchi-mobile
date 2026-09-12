@@ -16,6 +16,7 @@ final class ChatHeader extends StatelessWidget {
     required this.onBack,
     required this.onMore,
     this.avatarUrl,
+    this.subtitleWidget,
     super.key,
   });
 
@@ -27,6 +28,7 @@ final class ChatHeader extends StatelessWidget {
   final VoidCallback onBack;
   final VoidCallback onMore;
   final String? avatarUrl;
+  final Widget? subtitleWidget;
 
   @override
   Widget build(BuildContext context) => Material(
@@ -96,12 +98,13 @@ final class ChatHeader extends StatelessWidget {
                   style: AppTypography.chatHeaderName,
                 ),
                 const SizedBox(height: AppSpacing.xxs),
-                Text(
-                  subtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTypography.chatHeaderSubtitle,
-                ),
+                subtitleWidget ??
+                    Text(
+                      subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.chatHeaderSubtitle,
+                    ),
               ],
             ),
           ),

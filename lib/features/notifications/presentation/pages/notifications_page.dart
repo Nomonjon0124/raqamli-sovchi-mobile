@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
+import '../../../../core/notifications/notification_event.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -66,11 +69,25 @@ final class _NotificationsView extends StatelessWidget {
                 final item = state.notifications[index];
                 return Card(
                   child: ListTile(
-                    onTap: item.isRead
-                        ? null
-                        : () => context.read<NotificationsBloc>().add(
-                            NotificationsReadRequested(item.id),
-                          ),
+                    onTap: () {
+                      if (!item.isRead) {
+                        context.read<NotificationsBloc>().add(
+                          NotificationsReadRequested(item.id),
+                        );
+                      }
+                      final requestId = notificationMatchRequestId(
+                        item.extraData,
+                      );
+                      if (requestId != null) {
+                        context.push(
+                          RouteNames.chatRequestProfileFor(requestId),
+                        );
+                      } else if (isMatchRequestNotificationData(
+                        item.extraData,
+                      )) {
+                        context.go('${RouteNames.messages}?tab=requests');
+                      }
+                    },
                     leading: Icon(
                       item.isRead
                           ? Icons.notifications_none

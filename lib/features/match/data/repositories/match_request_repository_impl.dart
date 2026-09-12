@@ -44,6 +44,28 @@ final class MatchRequestRepositoryImpl implements MatchRequestRepository {
   }
 
   @override
+  Future<Either<Failure, MatchRequest>> acceptRequest(String id) async {
+    try {
+      return Right((await _dataSource.acceptRequest(id)).toEntity());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (_) {
+      return const Left(Failure.unknown());
+    }
+  }
+
+  @override
+  Future<Either<Failure, MatchRequest>> rejectRequest(String id) async {
+    try {
+      return Right((await _dataSource.rejectRequest(id)).toEntity());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (_) {
+      return const Left(Failure.unknown());
+    }
+  }
+
+  @override
   Future<Either<Failure, MatchRequest>> createRequest({
     required String fromProfile,
     required String toProfile,

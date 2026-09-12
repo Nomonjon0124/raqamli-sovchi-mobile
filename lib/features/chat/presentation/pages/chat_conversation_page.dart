@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
-import '../../../../app/theme/app_typography.dart';
 // import '../../../../core/security/screenshot_guard.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -22,6 +21,7 @@ import '../widgets/chat_delete_dialog.dart';
 import '../widgets/chat_empty_thread.dart';
 import '../widgets/chat_header.dart';
 import '../widgets/chat_message_bubble.dart';
+import '../widgets/chat_typing_indicator.dart';
 
 final class ChatConversationPage extends StatelessWidget {
   const ChatConversationPage({
@@ -131,6 +131,9 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
                 subtitle: state.isOtherTyping
                     ? l10n.chatTyping
                     : l10n.chatOpenTimeRemaining,
+                subtitleWidget: state.isOtherTyping
+                    ? ChatTypingIndicator(label: l10n.chatTyping)
+                    : null,
                 isOnline: state.presence?.isOnline ?? false,
                 avatarUrl: thread?.participantAvatarUrl,
                 backLabel: l10n.settingsBack,
@@ -187,14 +190,16 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
         child: ChatEmptyThread(
           safetyNotice: l10n.chatSafetyNotice,
           icebreakers: icebreakers,
-          onIcebreakerPressed: (value) => _controller.text = value,
+          onIcebreakerPressed: (value) => context
+              .read<ChatConversationBloc>()
+              .add(ChatMessageSubmitted(value)),
         ),
       ),
       ChatConversationStatus.success => ListView.builder(
         controller: _scrollController,
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.all(AppSpacing.card),
-        itemCount: state.messages.length + 3,
+        itemCount: state.messages.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {
             return Align(
@@ -202,31 +207,6 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
             );
           }
           if (index == 1) return const SizedBox(height: AppSpacing.md);
-          if (index == state.messages.length + 2) {
-            return Padding(
-              padding: const EdgeInsets.only(top: AppSpacing.sm),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                reverse: true,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: icebreakers
-                      .take(2)
-                      .map(
-                        (text) => Padding(
-                          padding: const EdgeInsets.only(left: AppSpacing.sm),
-                          child: ActionChip(
-                            label: Text(text, style: AppTypography.chatChip),
-                            onPressed: () => _controller.text = text,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
-            );
-          }
-
           final message = state.messages[index - 2];
           return Padding(
             key: _messageKeys.putIfAbsent(message.id, GlobalKey.new),

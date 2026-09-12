@@ -1380,6 +1380,88 @@ class AppLocalizationsEn extends AppLocalizations {
   String get messagesSegmentRequests => 'Requests';
 
   @override
+  String get chatRequestsEmpty => 'There are no incoming requests yet';
+
+  @override
+  String chatRequestCardTitle(String name) {
+    return 'Request / $name';
+  }
+
+  @override
+  String get chatRequestPendingHint =>
+      'The candidate cannot write to you until you accept the request.';
+
+  @override
+  String get chatRequestProfileTitle => 'Candidate profile';
+
+  @override
+  String get chatRequestCompatibilityLabel => 'COMPATIBILITY BY SECTION';
+
+  @override
+  String get chatRequestCompatibilityShortLabel => 'match';
+
+  @override
+  String get chatRequestCompatibilityUnavailable =>
+      'The compatibility percentage is not calculated yet.';
+
+  @override
+  String get chatRequestAccept => 'Accept';
+
+  @override
+  String get chatRequestReject => 'Reject';
+
+  @override
+  String get chatRequestViaRepresentative => 'Via representative';
+
+  @override
+  String get chatRequestPhotoVerified => 'Photo verified';
+
+  @override
+  String get chatRequestSeriousIntent => 'Serious intentions';
+
+  @override
+  String chatRequestRepresentativeLabel(String name) {
+    return 'Representative: $name';
+  }
+
+  @override
+  String get chatRequestRepresentativeNote =>
+      'The request came through a representative';
+
+  @override
+  String get chatRequestProfileUnavailable =>
+      'Profile details are temporarily unavailable.';
+
+  @override
+  String chatRequestLocationProfession(String location, String profession) {
+    return '$location, $profession';
+  }
+
+  @override
+  String get chatRequestCandidateFallback => 'Candidate';
+
+  @override
+  String get chatRequestSectionFaith => 'Faith and values';
+
+  @override
+  String get chatRequestSectionFinance => 'Finance and management';
+
+  @override
+  String get chatRequestSectionFamily => 'Relatives';
+
+  @override
+  String get chatRequestSectionCharacter => 'Character';
+
+  @override
+  String get chatRequestSectionPlans => 'Future plans';
+
+  @override
+  String get chatRequestAccepted => 'Request accepted';
+
+  @override
+  String get chatRequestRejected => 'Request rejected';
+
+  @override
   String get chatRoomsEmpty => 'There are no open conversations yet';
 
   @override

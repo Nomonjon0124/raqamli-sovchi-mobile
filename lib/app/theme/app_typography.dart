@@ -77,6 +77,77 @@ abstract final class AppTypography {
     height: 19 / 12,
     color: AppColors.mutedText,
   );
+  static const chatRequestCardTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 15,
+    height: 20 / 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const chatRequestCardBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 17 / 11,
+    color: AppColors.mutedText,
+  );
+  static const chatRequestCardScore = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 15,
+    height: 20 / 15,
+    fontWeight: FontWeight.w700,
+    color: AppColors.primary,
+  );
+  static const chatRequestProfileTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 20,
+    height: 27 / 20,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
+  static const chatRequestProfileName = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 20,
+    height: 27 / 20,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
+  static const chatRequestProfileScore = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 22,
+    height: 27 / 22,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.5,
+    color: AppColors.primary,
+  );
+  static const chatRequestBadge = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 15 / 11,
+    fontWeight: FontWeight.w600,
+    color: AppColors.mapLabelText,
+  );
+  static const chatRequestSectionLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 10,
+    height: 14 / 10,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.8,
+    color: AppColors.mutedText,
+  );
+  static const chatRequestSectionBody = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.bodyText,
+  );
+  static const chatRequestAction = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 18 / 13,
+    fontWeight: FontWeight.w600,
+  );
   static const pageTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 26,

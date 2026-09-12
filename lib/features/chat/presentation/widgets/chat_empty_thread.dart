@@ -31,18 +31,18 @@ final class ChatEmptyThread extends StatelessWidget {
       const Spacer(),
       Align(
         alignment: Alignment.centerRight,
-        child: Wrap(
-          alignment: WrapAlignment.end,
-          spacing: AppSpacing.sm,
-          runSpacing: AppSpacing.sm,
-          children: icebreakers
-              .map(
-                (message) => _IcebreakerChip(
-                  label: message,
-                  onPressed: () => onIcebreakerPressed(message),
-                ),
-              )
-              .toList(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            for (var index = 0; index < icebreakers.length; index++) ...[
+              _IcebreakerChip(
+                label: icebreakers[index],
+                onPressed: () => onIcebreakerPressed(icebreakers[index]),
+              ),
+              if (index < icebreakers.length - 1)
+                const SizedBox(height: AppSpacing.sm),
+            ],
+          ],
         ),
       ),
     ],

@@ -67,6 +67,15 @@ final class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
         );
         final List<MatchRequest> requests = requestsResult
             .fold<List<MatchRequest>>((_) => const [], (value) => value);
+        final incomingRequests = profile == null
+            ? const <MatchRequest>[]
+            : requests
+                  .where(
+                    (request) =>
+                        request.toProfileId == profile.id &&
+                        request.status == MatchRequestStatus.pending,
+                  )
+                  .toList();
         final requestsById = {
           for (final request in requests) request.id: request,
         };
@@ -101,10 +110,11 @@ final class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
         );
         emit(
           ChatListState(
-            status: threads.isEmpty
+            status: threads.isEmpty && incomingRequests.isEmpty
                 ? ChatListStatus.empty
                 : ChatListStatus.success,
             threads: threads,
+            requests: incomingRequests,
             presences: presences,
           ),
         );

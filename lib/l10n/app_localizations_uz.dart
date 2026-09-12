@@ -1379,6 +1379,87 @@ class AppLocalizationsUz extends AppLocalizations {
   String get messagesSegmentRequests => 'Soʻrovlar';
 
   @override
+  String get chatRequestsEmpty => 'Hozircha kelgan soʻrovlar yoʻq';
+
+  @override
+  String chatRequestCardTitle(String name) {
+    return 'Soʻrov / $name';
+  }
+
+  @override
+  String get chatRequestPendingHint =>
+      'Qabul qilmaguningizcha nomzod sizga yoza olmaydi.';
+
+  @override
+  String get chatRequestProfileTitle => 'Nomzod profili';
+
+  @override
+  String get chatRequestCompatibilityLabel => 'MOSLIK BOʻLIMLAR KESIMIDA';
+
+  @override
+  String get chatRequestCompatibilityShortLabel => 'moslik';
+
+  @override
+  String get chatRequestCompatibilityUnavailable =>
+      'Moslik foizi hali hisoblanmagan.';
+
+  @override
+  String get chatRequestAccept => 'Qabul qilish';
+
+  @override
+  String get chatRequestReject => 'Rad etish';
+
+  @override
+  String get chatRequestViaRepresentative => 'Vakil orqali';
+
+  @override
+  String get chatRequestPhotoVerified => 'Rasm tekshiruvi oʻtgan';
+
+  @override
+  String get chatRequestSeriousIntent => 'Niyati jiddiy';
+
+  @override
+  String chatRequestRepresentativeLabel(String name) {
+    return 'Vakili: $name';
+  }
+
+  @override
+  String get chatRequestRepresentativeNote => 'Murojaat vakil orqali kelgan';
+
+  @override
+  String get chatRequestProfileUnavailable =>
+      'Profil maʼlumotlari vaqtincha mavjud emas.';
+
+  @override
+  String chatRequestLocationProfession(String location, String profession) {
+    return '$location, $profession';
+  }
+
+  @override
+  String get chatRequestCandidateFallback => 'Nomzod';
+
+  @override
+  String get chatRequestSectionFaith => 'Din va qadriyatlar';
+
+  @override
+  String get chatRequestSectionFinance => 'Moliya va boshqaruv';
+
+  @override
+  String get chatRequestSectionFamily => 'Qarindoshlar';
+
+  @override
+  String get chatRequestSectionCharacter => 'Xarakter';
+
+  @override
+  String get chatRequestSectionPlans => 'Kelajak rejalari';
+
+  @override
+  String get chatRequestAccepted => 'Soʻrov qabul qilindi';
+
+  @override
+  String get chatRequestRejected => 'Soʻrov rad etildi';
+
+  @override
   String get chatRoomsEmpty => 'Hozircha ochiq suhbatlar yoʻq';
 
   @override

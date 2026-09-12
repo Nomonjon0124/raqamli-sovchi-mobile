@@ -54,7 +54,10 @@ final class NotificationLifecycleService {
       android: android,
       iOS: DarwinInitializationSettings(),
     );
-    await _localNotifications.initialize(settings: settings);
+    await _localNotifications.initialize(
+      settings: settings,
+      onDidReceiveNotificationResponse: _handleLocalNotificationResponse,
+    );
     const channel = AndroidNotificationChannel(
       channelId,
       'Raqamli Sovchi bildirishnomalari',
@@ -174,21 +177,44 @@ final class NotificationLifecycleService {
           priority: Priority.high,
         ),
       ),
+      payload: jsonEncode({
+        ...message.data,
+        'notification_id': event?.id ?? message.messageId ?? '',
+        'title': notification.title,
+        'message': notification.body,
+      }),
     );
   }
 
   void _handleOpened(RemoteMessage message) {
-    final event = _eventFromMessage(message);
+    final event = _eventFromMessage(message, isOpened: true);
     if (event != null) _eventBus.add(event);
   }
 
-  NotificationEvent? _eventFromMessage(RemoteMessage message) {
+  void _handleLocalNotificationResponse(NotificationResponse response) {
+    final rawPayload = response.payload;
+    if (rawPayload == null || rawPayload.isEmpty) return;
+    try {
+      final decoded = jsonDecode(rawPayload);
+      if (decoded is! Map) return;
+      final event = NotificationEvent.fromPushData(
+        decoded.map((key, value) => MapEntry(key.toString(), value)),
+        isOpened: true,
+      );
+      _eventBus.add(event);
+    } catch (_) {}
+  }
+
+  NotificationEvent? _eventFromMessage(
+    RemoteMessage message, {
+    bool isOpened = false,
+  }) {
     try {
       return NotificationEvent.fromPushData({
         ...message.data,
         'title': message.notification?.title ?? message.data['title'],
         'message': message.notification?.body ?? message.data['message'],
-      });
+      }, isOpened: isOpened);
     } catch (_) {
       return null;
     }

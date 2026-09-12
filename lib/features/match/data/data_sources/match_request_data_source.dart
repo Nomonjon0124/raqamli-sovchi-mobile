@@ -11,6 +11,10 @@ abstract interface class MatchRequestDataSource {
 
   Future<MatchRequestModel> fetchRequest(String id);
 
+  Future<MatchRequestModel> acceptRequest(String id);
+
+  Future<MatchRequestModel> rejectRequest(String id);
+
   Future<MatchRequestModel> createRequest({
     required String fromProfile,
     required String toProfile,
@@ -49,6 +53,18 @@ final class RemoteMatchRequestDataSource implements MatchRequestDataSource {
   @override
   Future<MatchRequestModel> fetchRequest(String id) async {
     final response = await _client.get<dynamic>('$_requestsPath$id/');
+    return MatchRequestModel.fromJson(_unwrapMap(response.data));
+  }
+
+  @override
+  Future<MatchRequestModel> acceptRequest(String id) async {
+    final response = await _client.post<dynamic>('$_requestsPath$id/accept/');
+    return MatchRequestModel.fromJson(_unwrapMap(response.data));
+  }
+
+  @override
+  Future<MatchRequestModel> rejectRequest(String id) async {
+    final response = await _client.post<dynamic>('$_requestsPath$id/reject/');
     return MatchRequestModel.fromJson(_unwrapMap(response.data));
   }
 

@@ -12,6 +12,7 @@ final class NotificationEvent extends Equatable {
     this.presenceUserId,
     this.presenceStatus,
     this.presenceLastSeen,
+    this.isOpened = false,
   });
 
   final String id;
@@ -22,17 +23,31 @@ final class NotificationEvent extends Equatable {
   final String? presenceUserId;
   final String? presenceStatus;
   final DateTime? presenceLastSeen;
+  final bool isOpened;
 
-  factory NotificationEvent.fromPushData(Map<String, dynamic> data) {
+  factory NotificationEvent.fromPushData(
+    Map<String, dynamic> data, {
+    bool isOpened = false,
+  }) {
     final rawPayload = data['payload'];
     final decoded = rawPayload is String ? jsonDecode(rawPayload) : rawPayload;
+    final extraData =
+        <String, dynamic>{
+            ...data,
+            if (decoded is Map)
+              ...decoded.map((key, value) => MapEntry(key.toString(), value)),
+          }
+          ..remove('payload')
+          ..remove('title')
+          ..remove('message')
+          ..remove('notification_id');
     return NotificationEvent(
       id: data['notification_id']?.toString() ?? '',
       title: data['title']?.toString() ?? '',
       message: data['message']?.toString() ?? '',
-      extraData: decoded is Map
-          ? decoded.map((key, value) => MapEntry(key.toString(), value))
-          : const {},
+      extraData: extraData,
+      type: data['type']?.toString() ?? 'notification',
+      isOpened: isOpened,
     );
   }
 
@@ -53,6 +68,7 @@ final class NotificationEvent extends Equatable {
       presenceLastSeen: type == 'presence'
           ? DateTime.tryParse(data['last_seen']?.toString() ?? '')
           : null,
+      isOpened: false,
     );
   }
 
@@ -71,5 +87,35 @@ final class NotificationEvent extends Equatable {
     presenceUserId,
     presenceStatus,
     presenceLastSeen,
+    isOpened,
   ];
+}
+
+String? notificationMatchRequestId(Map<String, dynamic> data) {
+  const keys = [
+    'match_request_id',
+    'matchRequestId',
+    'request_id',
+    'requestId',
+    'match_request',
+    'matchRequest',
+  ];
+  for (final key in keys) {
+    final value = data[key];
+    if (value is String && value.trim().isNotEmpty) return value.trim();
+    if (value is Map) {
+      final id = value['id']?.toString().trim();
+      if (id != null && id.isNotEmpty) return id;
+    }
+  }
+  return null;
+}
+
+bool isMatchRequestNotificationData(Map<String, dynamic> data) {
+  final type = (data['type'] ?? data['event_type'] ?? '').toString();
+  return type.contains('match') ||
+      type.contains('request') ||
+      data.keys.any(
+        (key) => key == 'match_request' || key == 'match_request_id',
+      );
 }
