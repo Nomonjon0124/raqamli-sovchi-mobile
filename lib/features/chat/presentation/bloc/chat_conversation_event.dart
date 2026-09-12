@@ -24,6 +24,10 @@ final class ChatMessageSubmitted extends ChatConversationEvent {
   List<Object?> get props => [content];
 }
 
+final class ChatConversationDeletionRequested extends ChatConversationEvent {
+  const ChatConversationDeletionRequested();
+}
+
 final class ChatReplySelected extends ChatConversationEvent {
   const ChatReplySelected(this.message);
   final ChatMessage message;

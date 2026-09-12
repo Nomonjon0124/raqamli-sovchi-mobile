@@ -18,6 +18,15 @@ final class LoadChatMessagesUseCase {
       _repository.getMessages(chatRoomId);
 }
 
+final class DeleteChatConversationUseCase {
+  const DeleteChatConversationUseCase(this._repository);
+
+  final ChatRepository _repository;
+
+  Future<Either<Failure, void>> call(String chatRoomId) =>
+      _repository.deleteConversation(chatRoomId);
+}
+
 final class SendChatMessageUseCase {
   const SendChatMessageUseCase(this._repository);
   final ChatRepository _repository;

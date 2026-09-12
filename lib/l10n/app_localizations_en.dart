@@ -1428,6 +1428,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatMoreActions => 'More actions';
 
   @override
+  String get chatMoreSheetTitle => 'Share the app';
+
+  @override
+  String get chatMoreSheetSubtitle =>
+      'Invite your friends to Sovchi with an invitation code.';
+
+  @override
+  String get chatReportAction => 'Report';
+
+  @override
+  String get chatDeleteAction => 'Delete chat';
+
+  @override
+  String chatDeleteTitle(String name) {
+    return 'Delete conversation with $name?';
+  }
+
+  @override
+  String get chatDeleteSubtitle =>
+      'If you delete the conversation, the candidate\'s details will also be hidden!';
+
+  @override
+  String get chatDeleteCancel => 'Cancel';
+
+  @override
+  String get chatDeleteConfirm => 'Delete';
+
+  @override
   String get mockMessageMohiraName => 'Mohira R.';
 
   @override

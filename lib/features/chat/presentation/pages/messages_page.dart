@@ -98,10 +98,17 @@ final class _MessagesView extends StatelessWidget {
                       preview: l10n.chatThreadOpen,
                       isOnline: presence?.isOnline ?? false,
                       avatarUrl: thread.participantAvatarUrl,
-                      onTap: () => context.push(
-                        RouteNames.chatRoomFor(thread.room.id),
-                        extra: thread,
-                      ),
+                      onTap: () async {
+                        final deleted = await context.push<bool>(
+                          RouteNames.chatRoomFor(thread.room.id),
+                          extra: thread,
+                        );
+                        if (context.mounted && deleted == true) {
+                          context.read<ChatListBloc>().add(
+                            const ChatListLoadRequested(),
+                          );
+                        }
+                      },
                     );
                   },
                 ),

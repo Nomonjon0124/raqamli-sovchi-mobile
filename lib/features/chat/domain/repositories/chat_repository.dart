@@ -10,6 +10,7 @@ abstract interface class ChatRepository {
 
   Future<Either<Failure, List<ChatRoom>>> getChatRooms();
   Future<Either<Failure, List<ChatMessage>>> getMessages(String chatRoomId);
+  Future<Either<Failure, void>> deleteConversation(String chatRoomId);
   Future<Either<Failure, ChatMessage>> sendMessage({
     required String chatRoomId,
     required String content,

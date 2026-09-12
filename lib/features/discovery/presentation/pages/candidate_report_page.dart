@@ -16,14 +16,16 @@ import 'candidate_report_submitted_page.dart';
 
 final class CandidateReportPage extends StatefulWidget {
   const CandidateReportPage({
-    required this.candidate,
     required this.candidateName,
+    this.candidate,
+    this.targetUserId,
     this.createComplaintUseCase,
     super.key,
-  });
+  }) : assert(candidate != null || targetUserId != null);
 
-  final Candidate candidate;
+  final Candidate? candidate;
   final String candidateName;
+  final String? targetUserId;
   final CreateComplaintUseCase? createComplaintUseCase;
 
   @override
@@ -47,11 +49,11 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     final selectedReasonIndex = _selectedReasonIndex;
     if (selectedReasonIndex == null || _isSubmitting) return;
 
-    final toUserId =
-        widget.candidate.userId != null &&
-            widget.candidate.userId!.trim().isNotEmpty
-        ? widget.candidate.userId!
-        : widget.candidate.id;
+    final toUserId = widget.targetUserId?.trim().isNotEmpty == true
+        ? widget.targetUserId!
+        : widget.candidate?.userId?.trim().isNotEmpty == true
+        ? widget.candidate!.userId!
+        : widget.candidate?.id ?? '';
     final reason = _reasonOptions(
       AppLocalizations.of(context),
     )[selectedReasonIndex].reason;
@@ -90,7 +92,8 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     );
   }
 
-  String? _mainImageUrl(Candidate candidate) {
+  String? _mainImageUrl(Candidate? candidate) {
+    if (candidate == null) return null;
     final photos = candidate.photosInfo;
     if (photos == null || photos.isEmpty) return null;
     final photo = photos.firstWhere(
@@ -106,7 +109,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     final reasons = _reasonOptions(l10n);
 
     final photoUrl = _mainImageUrl(widget.candidate);
-    final shouldBlur = widget.candidate.blurPhotos ?? true;
+    final shouldBlur = widget.candidate?.blurPhotos ?? true;
 
     return Scaffold(
       backgroundColor: Colors.white,

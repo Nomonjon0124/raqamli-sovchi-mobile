@@ -15,6 +15,8 @@ final class ChatConversationState extends Equatable {
     this.failure,
     this.isSending = false,
     this.isOtherTyping = false,
+    this.isDeleting = false,
+    this.isDeleted = false,
   });
 
   final ChatConversationStatus status;
@@ -24,6 +26,8 @@ final class ChatConversationState extends Equatable {
   final Failure? failure;
   final bool isSending;
   final bool isOtherTyping;
+  final bool isDeleting;
+  final bool isDeleted;
 
   ChatConversationState copyWith({
     ChatConversationStatus? status,
@@ -33,6 +37,8 @@ final class ChatConversationState extends Equatable {
     Failure? failure,
     bool? isSending,
     bool? isOtherTyping,
+    bool? isDeleting,
+    bool? isDeleted,
     bool clearReplyingTo = false,
     bool clearFailure = false,
   }) => ChatConversationState(
@@ -43,6 +49,8 @@ final class ChatConversationState extends Equatable {
     failure: clearFailure ? null : failure ?? this.failure,
     isSending: isSending ?? this.isSending,
     isOtherTyping: isOtherTyping ?? this.isOtherTyping,
+    isDeleting: isDeleting ?? this.isDeleting,
+    isDeleted: isDeleted ?? this.isDeleted,
   );
 
   @override
@@ -54,5 +62,7 @@ final class ChatConversationState extends Equatable {
     failure,
     isSending,
     isOtherTyping,
+    isDeleting,
+    isDeleted,
   ];
 }

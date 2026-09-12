@@ -16,4 +16,5 @@ abstract final class AppSpacing {
   static const screen = 22.0;
   static const xl = 24.0;
   static const xxl = 32.0;
+  static const chatActionHeight = 48.0;
 }

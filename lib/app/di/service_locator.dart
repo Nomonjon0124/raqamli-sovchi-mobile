@@ -325,6 +325,9 @@ Future<void> configureDependencies() async {
     ..registerFactory<LoadChatMessagesUseCase>(
       () => LoadChatMessagesUseCase(serviceLocator()),
     )
+    ..registerFactory<DeleteChatConversationUseCase>(
+      () => DeleteChatConversationUseCase(serviceLocator()),
+    )
     ..registerFactory<SendChatMessageUseCase>(
       () => SendChatMessageUseCase(serviceLocator()),
     )
@@ -424,6 +427,7 @@ Future<void> configureDependencies() async {
         connectChatRoom: serviceLocator(),
         disconnectChatRoom: serviceLocator(),
         sendTyping: serviceLocator(),
+        deleteConversation: serviceLocator(),
         repository: serviceLocator(),
         eventBus: serviceLocator(),
       ),

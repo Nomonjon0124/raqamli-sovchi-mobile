@@ -1427,6 +1427,34 @@ class AppLocalizationsUz extends AppLocalizations {
   String get chatMoreActions => 'Qoʻshimcha amallar';
 
   @override
+  String get chatMoreSheetTitle => 'Ilovani ulashish';
+
+  @override
+  String get chatMoreSheetSubtitle =>
+      'Doʻstlaringizni Sovchiʼga taklif qiling — taklif kodi bilan.';
+
+  @override
+  String get chatReportAction => 'Shikoyat qilish';
+
+  @override
+  String get chatDeleteAction => 'Chatni oʻchirish';
+
+  @override
+  String chatDeleteTitle(String name) {
+    return '$name ni suhbatni oʻchirmoqchimisiz?';
+  }
+
+  @override
+  String get chatDeleteSubtitle =>
+      'Agar suhbatni oʻchirsangiz nomzod maʼlumotlari ham berkitiladi!';
+
+  @override
+  String get chatDeleteCancel => 'Bekor qilish';
+
+  @override
+  String get chatDeleteConfirm => 'Oʻchirish';
+
+  @override
   String get mockMessageMohiraName => 'Mohira R.';
 
   @override

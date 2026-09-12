@@ -36,6 +36,17 @@ final class ChatRepositoryImpl implements ChatRepository {
       );
 
   @override
+  Future<Either<Failure, void>> deleteConversation(String chatRoomId) =>
+      _guard(() async {
+        final messages = await _dataSource.fetchMessages(chatRoomId);
+        // ponytail: backend exposes message DELETE only; replace loop with
+        // room-level DELETE when API adds that endpoint.
+        for (final message in messages) {
+          await _dataSource.deleteMessage(message.id);
+        }
+      });
+
+  @override
   Future<Either<Failure, ChatMessage>> sendMessage({
     required String chatRoomId,
     required String content,

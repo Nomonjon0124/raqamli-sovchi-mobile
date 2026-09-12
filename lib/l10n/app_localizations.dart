@@ -2674,6 +2674,54 @@ abstract class AppLocalizations {
   /// **'Qoʻshimcha amallar'**
   String get chatMoreActions;
 
+  /// No description provided for @chatMoreSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ilovani ulashish'**
+  String get chatMoreSheetTitle;
+
+  /// No description provided for @chatMoreSheetSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Doʻstlaringizni Sovchiʼga taklif qiling — taklif kodi bilan.'**
+  String get chatMoreSheetSubtitle;
+
+  /// No description provided for @chatReportAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat qilish'**
+  String get chatReportAction;
+
+  /// No description provided for @chatDeleteAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chatni oʻchirish'**
+  String get chatDeleteAction;
+
+  /// No description provided for @chatDeleteTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{name} ni suhbatni oʻchirmoqchimisiz?'**
+  String chatDeleteTitle(String name);
+
+  /// No description provided for @chatDeleteSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Agar suhbatni oʻchirsangiz nomzod maʼlumotlari ham berkitiladi!'**
+  String get chatDeleteSubtitle;
+
+  /// No description provided for @chatDeleteCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get chatDeleteCancel;
+
+  /// No description provided for @chatDeleteConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻchirish'**
+  String get chatDeleteConfirm;
+
   /// No description provided for @mockMessageMohiraName.
   ///
   /// In uz, this message translates to:

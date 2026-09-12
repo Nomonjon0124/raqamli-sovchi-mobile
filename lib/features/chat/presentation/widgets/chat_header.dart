@@ -14,6 +14,7 @@ final class ChatHeader extends StatelessWidget {
     required this.backLabel,
     required this.moreLabel,
     required this.onBack,
+    required this.onMore,
     this.avatarUrl,
     super.key,
   });
@@ -24,6 +25,7 @@ final class ChatHeader extends StatelessWidget {
   final String backLabel;
   final String moreLabel;
   final VoidCallback onBack;
+  final VoidCallback onMore;
   final String? avatarUrl;
 
   @override
@@ -104,7 +106,7 @@ final class ChatHeader extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: null,
+            onPressed: onMore,
             tooltip: moreLabel,
             icon: Assets.icons.icMoreHorizontal.svg(
               width: 20,

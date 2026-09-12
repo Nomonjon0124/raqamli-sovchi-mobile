@@ -10,12 +10,15 @@ import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../discovery/presentation/pages/candidate_report_page.dart';
 import '../../domain/entities/chat_message.dart';
 import '../../domain/entities/chat_thread.dart';
 import '../bloc/chat_conversation_bloc.dart';
 import '../bloc/chat_conversation_event.dart';
 import '../bloc/chat_conversation_state.dart';
+import '../widgets/chat_actions_bottom_sheet.dart';
 import '../widgets/chat_composer.dart';
+import '../widgets/chat_delete_dialog.dart';
 import '../widgets/chat_empty_thread.dart';
 import '../widgets/chat_header.dart';
 import '../widgets/chat_message_bubble.dart';
@@ -93,7 +96,8 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
       listenWhen: (previous, current) =>
           previous.isSending != current.isSending ||
           previous.messages.length != current.messages.length ||
-          previous.failure != current.failure,
+          previous.failure != current.failure ||
+          previous.isDeleted != current.isDeleted,
       listener: (context, state) {
         final previous = _lastState;
         if (previous?.failure != state.failure && state.failure != null) {
@@ -102,6 +106,10 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
               content: Text(l10n.failureMessage(state.failure!.type.name)),
             ),
           );
+        }
+        if (previous?.isDeleted != true && state.isDeleted) {
+          context.pop(true);
+          return;
         }
         if (previous?.isSending == true &&
             !state.isSending &&
@@ -128,6 +136,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
                 backLabel: l10n.settingsBack,
                 moreLabel: l10n.chatMoreActions,
                 onBack: () => context.pop(),
+                onMore: () => _showMoreActions(name),
               ),
               Expanded(
                 child: _threadBody(context, state, currentUserId, icebreakers),
@@ -273,4 +282,45 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
     final userId = currentUserId.trim();
     return senderId.isNotEmpty && userId.isNotEmpty && senderId == userId;
   }
+
+  Future<void> _showMoreActions(String name) async {
+    final action = await showModalBottomSheet<_ChatAction>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => ChatActionsBottomSheet(
+        onReport: () => Navigator.of(context).pop(_ChatAction.report),
+        onDelete: () => Navigator.of(context).pop(_ChatAction.delete),
+      ),
+    );
+    if (!mounted) return;
+
+    switch (action) {
+      case _ChatAction.report:
+        await Navigator.of(context).push<void>(
+          MaterialPageRoute(
+            builder: (_) => CandidateReportPage(
+              candidateName: name,
+              targetUserId:
+                  widget.thread?.room.participantUserId ??
+                  widget.thread?.participantProfileId,
+            ),
+          ),
+        );
+      case _ChatAction.delete:
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (_) => ChatDeleteDialog(participantName: name),
+        );
+        if (confirmed == true && mounted) {
+          context.read<ChatConversationBloc>().add(
+            const ChatConversationDeletionRequested(),
+          );
+        }
+      case null:
+        return;
+    }
+  }
 }
+
+enum _ChatAction { report, delete }

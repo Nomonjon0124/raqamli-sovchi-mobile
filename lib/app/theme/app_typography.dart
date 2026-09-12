@@ -44,6 +44,33 @@ abstract final class AppTypography {
     fontSize: 12,
     height: 19 / 12,
   );
+  static const chatActionTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 18,
+    height: 23 / 18,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
+  static const chatActionCaption = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 12,
+    height: 19 / 12,
+    color: AppColors.mutedText,
+  );
+  static const chatActionLabel = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 11,
+    height: 15 / 11,
+    fontWeight: FontWeight.w600,
+    color: AppColors.dangerText,
+  );
+  static const chatDeleteButton = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 15,
+    height: 20 / 15,
+    fontWeight: FontWeight.w600,
+  );
   static const chatThreadPreview = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,

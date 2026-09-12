@@ -26,6 +26,7 @@ void main() {
       connectChatRoom: ConnectChatRoomUseCase(repository),
       disconnectChatRoom: DisconnectChatRoomUseCase(repository),
       sendTyping: SendChatTypingUseCase(repository),
+      deleteConversation: DeleteChatConversationUseCase(repository),
       repository: repository,
       eventBus: eventBus,
     );
@@ -49,6 +50,36 @@ void main() {
     await eventBus.dispose();
     await repository.dispose();
   });
+
+  test('deletes conversation and emits deleted state', () async {
+    final repository = _ChatRepository();
+    final eventBus = NotificationEventBus();
+    final bloc = ChatConversationBloc(
+      loadMessages: LoadChatMessagesUseCase(repository),
+      sendMessage: SendChatMessageUseCase(repository),
+      markRoomRead: MarkChatRoomReadUseCase(repository),
+      loadPresence: LoadChatRoomPresenceUseCase(repository),
+      connectChatRoom: ConnectChatRoomUseCase(repository),
+      disconnectChatRoom: DisconnectChatRoomUseCase(repository),
+      sendTyping: SendChatTypingUseCase(repository),
+      deleteConversation: DeleteChatConversationUseCase(repository),
+      repository: repository,
+      eventBus: eventBus,
+    );
+
+    bloc.add(const ChatConversationOpened('room-1'));
+    await bloc.stream.firstWhere(
+      (state) => state.status == ChatConversationStatus.success,
+    );
+    bloc.add(const ChatConversationDeletionRequested());
+    await bloc.stream.firstWhere((state) => state.isDeleted);
+
+    expect(repository.deletedChatRoomId, 'room-1');
+
+    await bloc.close();
+    await eventBus.dispose();
+    await repository.dispose();
+  });
 }
 
 final class _ChatRepository implements ChatRepository {
@@ -62,6 +93,7 @@ final class _ChatRepository implements ChatRepository {
     createdAt: DateTime.utc(2026, 9, 10),
   );
   ChatMessage? sentMessage;
+  String? deletedChatRoomId;
 
   @override
   Stream<ChatRealtimeEvent> get realtimeEvents => _events.stream;
@@ -77,6 +109,15 @@ final class _ChatRepository implements ChatRepository {
   Future<Either<Failure, List<ChatMessage>>> getMessages(
     String chatRoomId,
   ) async => Right([initialMessage]);
+
+  @override
+  Future<Either<Failure, void>> deleteConversation(String chatRoomId) =>
+      _delete(chatRoomId);
+
+  Future<Either<Failure, void>> _delete(String chatRoomId) async {
+    deletedChatRoomId = chatRoomId;
+    return const Right(null);
+  }
 
   @override
   Future<Either<Failure, ChatPresence>> getRoomPresence(

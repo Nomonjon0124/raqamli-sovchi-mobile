@@ -1432,6 +1432,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chatMoreActions => 'Дополнительные действия';
 
   @override
+  String get chatMoreSheetTitle => 'Поделиться приложением';
+
+  @override
+  String get chatMoreSheetSubtitle =>
+      'Пригласите друзей в Sovchi по коду приглашения.';
+
+  @override
+  String get chatReportAction => 'Пожаловаться';
+
+  @override
+  String get chatDeleteAction => 'Удалить чат';
+
+  @override
+  String chatDeleteTitle(String name) {
+    return 'Удалить разговор с $name?';
+  }
+
+  @override
+  String get chatDeleteSubtitle =>
+      'После удаления разговора данные кандидата также будут скрыты!';
+
+  @override
+  String get chatDeleteCancel => 'Отмена';
+
+  @override
+  String get chatDeleteConfirm => 'Удалить';
+
+  @override
   String get mockMessageMohiraName => 'Мохира Р.';
 
   @override

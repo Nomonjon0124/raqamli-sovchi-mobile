@@ -22,6 +22,7 @@ final class ChatConversationBloc
     required ConnectChatRoomUseCase connectChatRoom,
     required DisconnectChatRoomUseCase disconnectChatRoom,
     required SendChatTypingUseCase sendTyping,
+    required DeleteChatConversationUseCase deleteConversation,
     required ChatRepository repository,
     required NotificationEventBus eventBus,
   }) : _loadMessages = loadMessages,
@@ -31,9 +32,11 @@ final class ChatConversationBloc
        _connectChatRoom = connectChatRoom,
        _disconnectChatRoom = disconnectChatRoom,
        _sendTyping = sendTyping,
+       _deleteConversation = deleteConversation,
        super(const ChatConversationState()) {
     on<ChatConversationOpened>(_onOpened);
     on<ChatMessageSubmitted>(_onSubmitted);
+    on<ChatConversationDeletionRequested>(_onDeletionRequested);
     on<ChatReplySelected>(
       (event, emit) => emit(state.copyWith(replyingTo: event.message)),
     );
@@ -69,6 +72,7 @@ final class ChatConversationBloc
   final ConnectChatRoomUseCase _connectChatRoom;
   final DisconnectChatRoomUseCase _disconnectChatRoom;
   final SendChatTypingUseCase _sendTyping;
+  final DeleteChatConversationUseCase _deleteConversation;
   late final StreamSubscription<ChatRealtimeEvent> _realtimeSubscription;
   late final StreamSubscription<NotificationEvent> _presenceSubscription;
   Timer? _typingTimer;
@@ -136,6 +140,28 @@ final class ChatConversationBloc
           messages: _addMessage(message),
           isSending: false,
           clearReplyingTo: true,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onDeletionRequested(
+    ChatConversationDeletionRequested event,
+    Emitter<ChatConversationState> emit,
+  ) async {
+    final chatRoomId = _chatRoomId;
+    if (chatRoomId == null || state.isDeleting) return;
+
+    emit(state.copyWith(isDeleting: true, clearFailure: true));
+    final result = await _deleteConversation(chatRoomId);
+    result.fold(
+      (failure) => emit(state.copyWith(isDeleting: false, failure: failure)),
+      (_) => emit(
+        state.copyWith(
+          status: ChatConversationStatus.empty,
+          messages: const [],
+          isDeleting: false,
+          isDeleted: true,
         ),
       ),
     );
