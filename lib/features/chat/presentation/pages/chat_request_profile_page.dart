@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
+import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../domain/entities/chat_request_profile.dart';
 import '../bloc/chat_request_profile_bloc.dart';
@@ -38,10 +39,9 @@ final class _ChatRequestProfileView extends StatelessWidget {
       listener: (context, state) {
         if (state.actionStatus == ChatRequestActionStatus.failure &&
             state.failure != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.failure!.message ?? l10n.genericError),
-            ),
+          AppToast.show(
+            context,
+            message: state.failure!.message ?? l10n.genericError,
           );
         }
         if (state.actionStatus == ChatRequestActionStatus.success &&
@@ -49,9 +49,7 @@ final class _ChatRequestProfileView extends StatelessWidget {
           final message = state.actionResult == ChatRequestActionResult.accepted
               ? l10n.chatRequestAccepted
               : l10n.chatRequestRejected;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(message)));
+          AppToast.show(context, message: message, type: ToastType.success);
           Navigator.of(context).pop(true);
         }
       },

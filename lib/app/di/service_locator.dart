@@ -518,7 +518,7 @@ Future<void> configureDependencies() async {
         unblockUser: serviceLocator(),
       ),
     )
-    ..registerFactory<SettingsCubit>(SettingsCubit.new)
+    ..registerLazySingleton<SettingsCubit>(SettingsCubit.new)
     ..registerFactory<OnboardingMediaService>(
       () => DeviceOnboardingMediaService(backgroundLockGate: serviceLocator()),
     )

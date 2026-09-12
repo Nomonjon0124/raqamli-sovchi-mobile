@@ -1,0 +1,981 @@
+{
+  "@@locale": "uz_Cyrl",
+  "faceCaptureTitle": "Бир марта селфи оламиз",
+  "faceCaptureSubtitle": "Асосий суратингиз билан солиштирамиз. Ҳеч кимга кўринмайди ва текширувдан кейин ўчирилади.",
+  "selfieCameraLabel": "селфи камера",
+  "faceRuleOne": "Юзингизни доира ичига жойлаштиринг.",
+  "faceRuleTwo": "Юзингиз яхши кўринсин — шу йетарли.",
+  "faceRuleThree": "Телефонни кўз даражасида ушланг.",
+  "takeSelfieLabel": "Селфи олиш",
+  "aboutMeTitle": "Ўзингиз ҳақингизда",
+  "aboutMeSubtitle": "Ихтиёрий. Қисқача ёзинг — номзодлар шуни ўқийди.",
+  "aboutMeHint": "Ўзингиз, касбингиз ва оилавий қадриятларингиз ҳақида 2–3 гап...",
+  "aboutMeCounter": "{count} / 300 belgi",
+  "@aboutMeCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "mainPhotoSelectionHint": "Асосий суратни танланг",
+  "mainPhotoSubtitle": "Профилингизда биринчи шу сурат кўринади ва селфи билан солиштирилади.",
+  "mainPhotoBadge": "АСОСИЙ",
+  "faceRetryHint": "Селфи мос келмади. Қайта уриниб кўринг.",
+  "faceCameraError": "Камера ишга тушмади.",
+  "onboardingSuccessTitle": "Профиллингиз тайёр!",
+  "onboardingSuccessSubtitle": "Ҳаммаси сақланди. Енди сизга мос номзодларни кўришингиз мумкин.",
+  "pledgeConfirmationTitle": "Ниятингизни тасдиқланг",
+  "pledgeConfirmationSubtitle": "Бу қадам мажбурий. Тасдиқлагач профилингизда «Нияти жиддий» белгиси пайдо бўлади.",
+  "pledgeConfirmationPointOne": "Малумотларим тўғри ва ўзимга тегишли.",
+  "pledgeConfirmationPointTwo": "Ниятим жиддий — оила қуриш учун келдим.",
+  "pledgeConfirmationPointThree": "Суҳбатдошга ҳурмат билан муносабатда бўламан.",
+  "pledgeConfirmationButton": "Қасамни тасдиқлаш",
+  "privacyPolicyAgreementSuffix": " билан танишинг",
+  "aiTestBadge": "АИ МОСЛИК ТЕСТИ",
+  "aiTestTitle": "30 та саволга жавоб берасизми?",
+  "aiTestDescription": "Жавобларингиз асосида ҳар бир номзод билан қанчалик мос келишингизни ҳисоблаймиз. Тахминан 8 дақиқа.",
+  "aiTestPointOne": "АИ таҳлили — 8 дақиқада тайёр",
+  "aiTestPointTwo": "Мос жуфтлар автоматик танланади",
+  "aiTestPointThree": "Жавобларингиз ҳеч кимга кўрсатилмайди",
+  "startAiTest": "Ҳа, тестни бошлайман",
+  "viewCandidatesLater": "Кейинроқ — аввал номзодларни кўраман",
+  "appTitle": "Рақамли Совчи",
+  "@appTitle": {
+    "description": "Application title."
+  },
+  "loading": "Юкланмоқда...",
+  "splashSubtitle": "Шошилмасдан, оила билан",
+  "loginTitle": "Хуш келибсиз",
+  "loginHeadline": "Шошилмасдан,\nоила билан",
+  "loginSubtitle": "Телефон рақамингиз билан бошлаймиз",
+  "phoneLabel": "Телефон рақам",
+  "phoneError": "Телефон рақамни тўғри киритинг.",
+  "continueLabel": "Давом етиш",
+  "orLabel": "ёки",
+  "loginNote": "Рақамингизни ҳеч ким кўрмайди. Ҳар бир профил қўлда текширилади. Бу йерда фақат никоҳ ниятидагилар қолади.",
+  "otpTitle": "Кодни киритинг",
+  "otpSentTo": "{phone} raqamiga 4 xonali kod yubordik",
+  "@otpSentTo": {
+    "description": "Message shown after sending OTP to a phone number.",
+    "placeholders": {
+      "phone": {
+        "type": "String",
+        "example": "+998 90 123 45 67"
+      }
+    }
+  },
+  "otpResend": "Код келмадими? 00:48 дан кейин қайта юборамиз",
+  "confirmLabel": "Тасдиқлаш",
+  "candidateTypeTitle": "Ким сифатида қидиряпсиз?",
+  "candidateTypeSubtitle": "Бу танлов анкетангиз қандай бўлишини белгилайди. Жинсни қайта сўрамаймиз.",
+  "groomCandidateTitle": "Куёв номзоди",
+  "groomCandidateSubtitle": "Еркакман, ўзим учун излаяпман",
+  "brideCandidateTitle": "Келин номзоди",
+  "brideCandidateSubtitle": "Аёлман, ўзим учун излаяпман",
+  "representativeCandidateTitle": "Вакил",
+  "representativeCandidateSubtitle": "Яқиним номидан ариза тўлдираман",
+  "pledgeTitle": "Бир-биримизга ишонч учун",
+  "pledgePointOne": "Бу иловадан фақат никоҳ ниятида фойдаланаман.",
+  "pledgePointTwo": "Малумотларим тўғри, суратлар ўзимники.",
+  "pledgePointThree": "Суҳбатда одоб сақлайман. АИ модератор назоратига розиман.",
+  "pledgeAgreement": "Розиман. Профилимда «Нияти жиддий» белгиси кўринсин.",
+  "pledgeStart": "Анкетани бошлаш",
+  "onboardingProgress": "{total} bosqichdan {current}-bosqich",
+  "birthDateTitle": "Туғилган йилингиз",
+  "birthDateHint": "18 ёшдан кичик фойдаланувчилар рўйхатдан ўта олмайди.",
+  "birthDateSubtitle": "Ёшингиз номзодларга кўринади, аниқ сана емас.",
+  "identityTitle": "Исмингиз ва фамилиянгиз",
+  "identitySubtitle": "Паспортдагидек ёзинг — номзодлар шу исмни кўради.",
+  "firstNameLabel": "Исмингиз",
+  "lastNameLabel": "Фамилиянгиз",
+  "patronymicLabel": "Отасининг исми (ихтиёрий)",
+  "professionTitle": "Касбингиз?",
+  "professionOther": "Бошқа",
+  "professionInputLabel": "Касбингизни ёзинг",
+  "professionEmpty": "Касблар топилмади.",
+  "representativeProfessionTitle": "Номзоднинг касби?",
+  "representativeProfessionInputLabel": "Номзоднинг касбини ёзинг",
+  "educationTitle": "Малумотингиз қандай?",
+  "heightTitle": "Бўйингиз",
+  "heightWeightTitle": "Бўйингиз ва вазнингиз",
+  "heightLabel": "Бўйи (см)",
+  "heightInputLabel": "Бўйингиз",
+  "heightUnit": "см",
+  "weightLabel": "Вазни (кг)",
+  "weightInputLabel": "Вазнингиз",
+  "weightUnit": "кг",
+  "decreaseHeightLabel": "Бўйни камайтириш",
+  "increaseHeightLabel": "Бўйни ошириш",
+  "decreaseWeightLabel": "Вазнни камайтириш",
+  "increaseWeightLabel": "Вазнни ошириш",
+  "locationTitle": "Қайерда яшайсиз?",
+  "regionLabel": "Вилоят",
+  "districtLabel": "Туман ёки шаҳар",
+  "regionSheetTitle": "Вилоятни танланг",
+  "regionSheetCount": "{count} ta hudud",
+  "districtSheetTitle": "Туман / шаҳарни танланг",
+  "districtSheetSubtitle": "{region} · {count} ta tuman",
+  "locationSearchPlaceholder": "Туман номи бўйича қидириш",
+  "selectLabel": "Танлаш",
+  "unselectedValue": "Танланмаган",
+  "selectRegionFirstValue": "Аввал вилоятни танланг",
+  "healthStatusTitle": "Соғлиқлик даражангиз",
+  "healthStatusSubtitle": "Бу малумот фақат мосликни ҳисоблашда ишлатилади.",
+  "healthHealthyLabel": "Соғлом",
+  "healthDisabilityLabel": "Ногиронлиги бор",
+  "healthDisabilityHint": "Кейинги қадамда қисқача изоҳлашингиз мумкин",
+  "maritalStatusTitle": "Оилавий ҳолатингиз",
+  "maritalStatusDivorcedHint": "«Ажрашган» танланганда фарзандлар сони мажбурий бўлади.",
+  "maritalStatusFirstMarriageDetail": "Аввал турмуш қурмаган",
+  "maritalStatusDivorcedDetail": "Фарзандлар сони сўралади",
+  "childrenCountLabel": "Фарзандларингиз сони",
+  "decreaseChildrenLabel": "Фарзандлар сонини камайтириш",
+  "increaseChildrenLabel": "Фарзандлар сонини ошириш",
+  "childrenNotLivingTitle": "Фарзандлар мен билан яшамайди",
+  "childrenNotLivingDetail": "Профилда «фарзанди бор» деб кўрсатилади, тафсилот ёзилмайди",
+  "photoTitle": "Суратларингизни қўшинг",
+  "photoHint": "5 тагача сурат. Уларни фақат сиз рухсат берган одам кўради.",
+  "photoPrivacyHint": "Камида 1 та сурат керак. Юз аниқ кўриниши шарт.",
+  "photoSlotAddLabel": "сурат",
+  "photoSlotFilledLabel": "surat {order} ✓",
+  "@photoSlotFilledLabel": {
+    "placeholders": {
+      "order": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "addPhoto": "Сурат қўшиш",
+  "setMainPhoto": "Асосий қилиш",
+  "removePhoto": "Ўчириш",
+  "voiceTitle": "Овозли таништирув",
+  "voiceHint": "ААС/М4А форматда 30 сониягача ёзинг.",
+  "voiceShortHint": "10–15 сония йетарли. Овоз одам ҳақида суратдан кўра кўпроқ нарсани айтади.",
+  "startRecording": "Ёзишни бошлаш",
+  "stopRecording": "Ёзишни тўхтатиш",
+  "playRecording": "Ёзувни ешитиш",
+  "voiceSubtitle": "Ихтиёрий. 10–15 сония йетарли — овоз одам ҳақида кўпроқ нарсани айтади.",
+  "startRecordingHint": "Ёзишни бошлаш учун босинг",
+  "recordedVoiceHint": "Ешитиб кўринг. Ёқмаса қайта ёзинг ёки ўчиринг — овоз ихтиёрий.",
+  "reRecordVoice": "Қайта ёзиш",
+  "deleteVoice": "Ўчириш",
+  "locationPermissionTitle": "Жойлашувингиз",
+  "locationPermissionSubtitle": "Яқин ҳудуддаги номзодларни биринчи кўрсатиш учун жойлашув рухсати керак. Аниқ манзил ҳеч кимга кўринмайди.",
+  "enableLocation": "Жойлашувни ёқиш",
+  "skipLabel": "Ўтказиб юбориш",
+  "faceTitle": "Юзингизни тасдиқланг",
+  "faceHint": "Юзингиз тўғри қараган ва кўзларингиз очиқ ҳолда селфие олинг.",
+  "verifyFace": "Юзни тасдиқлаш",
+  "finishOnboarding": "Якунлаш ва профилни очиш",
+  "representativeFlowMessage": "Вакил оқими алоҳида анкета бўлиб, кейинроқ очилади.",
+  "representativeIntroTitle": "Сиз вакил сифатида кирдингиз",
+  "representativeIntroSubtitle": "Вакил — номзоднинг яқин қариндоши: амма, хола, амаки ёки тоға. Сиз унинг номидан анкета тўлдирасиз ва келган таклифларни кўриб чиқасиз.",
+  "representativeConsentRequiredTitle": "Номзоднинг розилиги шарт",
+  "representativeConsentRequiredBody": "Анкета тўлдирилгач номзодга СМС юборилади. У тасдиқламагунча профил ҳеч кимга кўринмайди.",
+  "representativeIntroFootnote": "Кейинги қадамларда аввал ўзингиз ҳақингизда, сўнг номзод ҳақида малумот сўраймиз.",
+  "startLabel": "Бошлаш",
+  "representativeSelfSection": "1-ҚИСМ · СИЗ ҲАҚИНГИЗДА",
+  "representativeSelfTitle": "Ўзингиз ҳақингизда",
+  "representativeSelfSubtitle": "Номзод розилик сўровида шу исмни кўради.",
+  "representativeRelationTitle": "Номзодга кимсиз?",
+  "representativeCandidateSection": "2-ҚИСМ · НОМЗОД ҲАҚИДА",
+  "representativeCandidateTypeTitle": "Номзод ким?",
+  "representativeCandidateTypeSubtitle": "Шундан кейинги барча саволлар номзод ҳақида бўлади — ўзингиз ҳақингизда емас.",
+  "representativeBrideTitle": "Келин",
+  "representativeBrideSubtitle": "Аёл номзод",
+  "representativeGroomTitle": "Куёв",
+  "representativeGroomSubtitle": "Еркак номзод",
+  "representativeCandidateIdentityTitle": "Номзоднинг исми ва фамилияси",
+  "representativeCandidateIdentitySubtitle": "Бу малумотларни номзоднинг ўзи тасдиқлайди. Хато бўлса, кейин тузатиш мумкин.",
+  "representativeBirthDateTitle": "Номзод туғилган йили",
+  "representativeEducationTitle": "Номзоднинг малумоти",
+  "representativeHeightWeightTitle": "Номзоднинг бўйи ва вазни",
+  "representativeHeightInputLabel": "Номзоднинг бўйи",
+  "representativeWeightInputLabel": "Номзоднинг вазни",
+  "representativeLocationTitle": "Номзод қайерда яшайди?",
+  "representativeHealthStatusTitle": "Номзоднинг соғлиқлик даражаси",
+  "representativeMaritalStatusTitle": "Номзоднинг оилавий ҳолати",
+  "representativeChildrenCountLabel": "Номзоднинг фарзандлари сони",
+  "representativeChildrenNotLivingTitle": "Фарзандлар номзод билан яшамайди",
+  "representativePhotoTitle": "Номзоднинг суратлари",
+  "representativePhotoHint": "5 тагача сурат. Уларни фақат номзод рухсат берган одам кўради.",
+  "representativeMainPhotoSubtitle": "Номзод профилида биринчи шу сурат кўринади.",
+  "representativeAboutTitle": "Номзод ҳақида",
+  "representativeAboutSubtitle": "Ихтиёрий. Саволлар номзод ҳақида — ўзингиз ҳақингизда емас.",
+  "representativeAboutHint": "Номзоднинг касби, қизиқишлари ва оилавий қадриятлари ҳақида 2–3 гап...",
+  "representativeVoiceTitle": "Номзоднинг овозли изоҳи",
+  "representativeVoiceSubtitle": "Ихтиёрий. Номзод кейин ўзи қайта ёзиши мумкин.",
+  "representativeLocationPermissionTitle": "Номзоднинг жойлашуви",
+  "representativeLocationPermissionSubtitle": "Ихтиёрий. Аниқ манзил ҳеч кимга кўринмайди.",
+  "representativeConsentSection": "3-ҚИСМ · РОЗИЛИК",
+  "representativeContactTitle": "Номзоднинг телефон рақами",
+  "representativeContactSubtitle": "Шу рақамга розилик сўрови юборилади. Номзод тасдиқламагунча анкета ҳеч кимга кўринмайди.",
+  "representativeContactLabel": "Телефон рақами / емаил",
+  "representativeContactPhoneTab": "Телефон рақам",
+  "representativeContactEmailTab": "Емаил манзил",
+  "representativeContactWarningTitle": "Рақам номзодники бўлиши шарт",
+  "representativeContactWarningBody": "Ўз рақамингизни киритсангиз, розилик ҳақиқий ҳисобланмайди ва профил блокланади.",
+  "representativeSendConsent": "Розилик сўровини юбориш",
+  "representativeCandidateNoApp": "Номзод иловадан фойдаланмайди",
+  "representativeConsentSentTitle": "Сўров юборилди",
+  "representativeConsentSentSubtitle": "{firstName} tasdiqlashi kutilmoqda. Tasdiqlangunga qadar anketa yashirin.",
+  "@representativeConsentSentSubtitle": {
+    "placeholders": {
+      "firstName": {
+        "type": "String"
+      }
+    }
+  },
+  "representativeSmsSentTitle": "Номзодга СМС кетди",
+  "representativeSmsSentBody": "{representativeName} sizning nomingizdan anketa to‘ldirdi. Rozimisiz?",
+  "@representativeSmsSentBody": {
+    "placeholders": {
+      "representativeName": {
+        "type": "String"
+      }
+    }
+  },
+  "representativeConsentRevocation": "Номзод розиликни исталган вақтда қайтариб олиши мумкин — шунда анкета дарҳол яширилади.",
+  "understoodLabel": "Тушунарли",
+  "resendRequestLabel": "Сўровни қайта юбориш",
+  "representativePledgeTitle": "Масулиятни тасдиқланг",
+  "representativePledgeSubtitle": "Бу қадам мажбурий. Сиз бошқа одам номидан малумот киритаяпсиз.",
+  "representativePledgePointOne": "Номзод ҳақидаги малумотлар тўғри ва унинг розилиги билан киритилди.",
+  "representativePledgePointTwo": "Номзоднинг шахсий суҳбатларига аралашмайман.",
+  "representativePledgePointThree": "Таклиф ва сўровларни номзод манфаатида кўриб чиқаман.",
+  "representativeReadyTitle": "Профиллингиз тайёр!",
+  "representativeReadySubtitle": "Ҳаммаси сақланди. Енди сизга мос номзодларни кўришингиз мумкин.",
+  "representativeSetCriteria": "Қидирув мезонларини созлаш",
+  "laterLabel": "Кейинроқ",
+  "candidateConsentEyebrow": "НОМЗОД ТЕЛЕФОНИДА",
+  "candidateConsentTitle": "Сизнинг номингиздан анкета тўлдирилди",
+  "candidateConsentBody": "{representativeName} ({relation}) siz uchun anketa to‘ldirdi. Roziligingizsiz u hech kimga ko‘rinmaydi.",
+  "@candidateConsentBody": {
+    "placeholders": {
+      "representativeName": {
+        "type": "String"
+      },
+      "relation": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateConsentApproveTitle": "Розилик берсангиз",
+  "candidateConsentApproveBody": "Анкета фаоллашади, таклифлар кела бошлайди. Кейин ўзингиз таҳрирлашингиз мумкин.",
+  "candidateConsentRejectHint": "Рад етсангиз анкета ўчирилади ва вакилга хабар берилади.",
+  "agreeLabel": "Розиман",
+  "rejectLabel": "Рад етаман",
+  "backLabel": "Орқага",
+  "temporaryOtpHint": "Вақтинчалик адаптер: 1234 кодидан фойдаланинг",
+  "pinCreateTitle": "Қисқа код ўйлаб топинг",
+  "pinConfirmTitle": "ПИН-кодни қайта киритинг",
+  "pinMismatch": "Киритилган ПИН-кодлар бир хил емас. Қайтадан уриниб кўринг.",
+  "pinUnlockTitle": "ПИН-кодни киритинг",
+  "pinHintCreate": "Ҳисобингиз фақат сизники бўлиб қолиши учун. Ҳар сафар киришда шу кодни терасиз.",
+  "pinHintConfirm": "Яратган ПИН-кодингизни яна бир марта киритинг.",
+  "pinHintUnlock": "Бу қурилма учун яратган ПИН-кодингизни киритинг.",
+  "unlockLabel": "Очиш",
+  "signInAsDemo": "Демо сифатида кириш",
+  "homeTitle": "Бош саҳифа",
+  "homeMessage": "Фоундатион кейинги феатуре учун тайёр.",
+  "logout": "Чиқиш",
+  "deleteAccount": "Ҳисобни ўчириш",
+  "deleteAccountTitle": "Ҳисобингиз ўчирилсинми?",
+  "deleteAccountMessage": "Бу амал ҳисобингиз ва унга боғлиқ профил малумотларини ўчиради. Амални ортга қайтариб бўлмайди.",
+  "deleteAccountCancel": "Бекор қилиш",
+  "deleteAccountConfirm": "Ўчириш",
+  "retry": "Қайта уриниш",
+  "telegramWaiting": "Телеграмда телефон рақамингизни тасдиқланг, кейин иловага қайтинг.",
+  "candidatesTabLabel": "Номзодлар",
+  "messagesTabLabel": "Хабарлар",
+  "servicesTabLabel": "Хизматлар",
+  "savedTabLabel": "Сақланган",
+  "profileTabLabel": "Профил",
+  "candidatesPlaceholder": "Ҳозирча номзодлар саҳифаси.",
+  "messagesPlaceholder": "Ҳозирча хабарлар саҳифаси.",
+  "servicesPlaceholder": "Ҳозирча хизматлар саҳифаси.",
+  "servicesHeroTitle": "Танишув йўлида\nёлғиз емассиз",
+  "servicesHeroSubtitle": "Психолог, оилавий учрашув ва профил текшируви — ҳаммаси бир жойда.",
+  "servicesHeroSupportValue": "24/7",
+  "servicesHeroSupportLabel": "ёрдам",
+  "servicesHeroPsychologistsValue": "12",
+  "servicesHeroPsychologistsLabel": "психолог",
+  "servicesHeroPrivacyValue": "Махфий",
+  "servicesHeroPrivacyLabel": "суҳбат",
+  "servicesPopularSection": "Енг кўп танланади",
+  "servicePsychologistTitle": "Оилавий психолог",
+  "servicePsychologistSubtitle": "Никоҳдан олдин суҳбат",
+  "servicePsychologistRating": "4.9",
+  "servicePsychologistDescription": "Келишмовчилик сабабларини олдиндан кўрасиз. Суҳбат тўлиқ махфий — ҳеч ким билмайди.",
+  "servicePsychologistDuration": "50 дақиқа",
+  "servicePsychologistFormat": "Офлайн ёки уйда",
+  "servicePsychologistExperts": "12 мутахассис",
+  "servicePsychologistPrice": "битта сессий",
+  "serviceViewAction": "Кўриш",
+  "servicesOtherSection": "Бошқа хизматлар",
+  "serviceMeetingTitle": "Оилавий учрашув",
+  "serviceMeetingSubtitle": "Фақат вакиллар таклиф қилади",
+  "serviceVerificationTitle": "Профил текшируви",
+  "serviceVerificationSubtitle": "Селфи орқали тасдиқлаш",
+  "servicePremiumTitle": "Совчи Премиум",
+  "servicePremiumSubtitle": "Кўпроқ таклиф ва тўлиқ мослик таҳлили",
+  "serviceBoostTitle": "Юқорига кўтариш",
+  "serviceBoostSubtitle": "Профилингиз 24 соат давомида рўйхат бошида кўринади.",
+  "servicesHowSection": "Қандай ишлайди",
+  "servicesHowStepOneTitle": "Хизматни танлайсиз",
+  "servicesHowStepOneSubtitle": "Ҳар бири ҳақида тўлиқ малумот бор",
+  "servicesHowStepTwoTitle": "Вақт ва шаклни белгилайсиз",
+  "servicesHowStepTwoSubtitle": "Офлайн ёки уйингизда",
+  "servicesHowStepThreeTitle": "Тўлайсиз ва учрашасиз",
+  "servicesHowStepThreeSubtitle": "Бекор қилсангиз пул қайтади",
+  "servicesOptionalNote": "Ҳеч бир хизмат мажбурий емас — уларсиз ҳам иловадан тўлиқ фойдаланасиз.",
+  "servicesActionComingSoon": "Бу хизмат кейинги босқичда уланади",
+  "savedPlaceholder": "Ҳозирча сақланганлар саҳифаси.",
+  "profilePlaceholder": "Ҳозирча профил саҳифаси.",
+  "notificationsActionLabel": "Билдиришномалар",
+  "notificationsEmpty": "Ҳозирча билдиришномалар йўқ",
+  "notificationsMarkAllRead": "Барчасини ўқилган деб белгилаш",
+  "candidatesFilterMatches": "Мослар",
+  "candidatesFilterRecommended": "Тавсиялар",
+  "candidatesFilterNearby": "Атрофдагилар",
+  "privatePhotoLabel": "Махфий расм",
+  "matchLockedLabel": "мослик ёпиқ",
+  "genericError": "Нимадир хато кетди.",
+  "savedEmptyState": "Ҳозирча сақланган профил йўқ.",
+  "candidateDetailRequestPhotoPermission": "Расмни кўриш учун рухсат сўраш",
+  "candidateDetailOptionsSubtitle": "Нима қилмоқчисиз?",
+  "candidateDetailSaveSubtitle": "Кейин «Сақланган» бўлимидан топасиз",
+  "candidateDetailSaveToSaved": "Сақланганларга қўшиш",
+  "candidateDetailShare": "Профилни улашиш",
+  "candidateDetailShareSubtitle": "Вакилингизга ёки оилангизга юборинг",
+  "candidateDetailPhotoPermissionSubtitle": "Сўров номзодга ва унинг вакилига боради",
+  "candidateDetailReport": "Шикоят қилиш",
+  "candidateDetailReportSubtitle": "Модератор 24 соат ичида кўради",
+  "candidateDetailBlock": "Профилни блоклаш",
+  "candidateDetailBlockSubtitle": "У сизни бошқа кўрмайди",
+  "candidateDetailCompatibilityTitle": "Умумий мослик",
+  "candidateDetailVoiceIntro": "Ovozli tanishtiruv · {duration}",
+  "candidateDetailVoiceDuration": "12 сек",
+  "candidateDetailSendProposal": "Совчи таклифи юбориш",
+  "candidateDetailSave": "Сақлаш",
+  "candidateDetailUnsave": "Сақланганлардан олиб ташлаш",
+  "candidateDetailNoPhoto": "Профил расми йўқ",
+  "candidateDetailLastActivity": "Охирги фаоллик: яқинда",
+  "candidateDetailCompatibilityUnavailableTitle": "Мослик ҳисобланмаган",
+  "candidateDetailCompatibilityUnavailableDescription": "Номзод 30 саволлик сўровномани ҳали тўлдирмаган — шу сабабли мослик фоизи кўрсатилмайди. Қуйидаги малумотлар номзод анкетасидан олинган.",
+  "candidateDetailBasicInformation": "Асосий малумотлар",
+  "candidateDetailBirthYear": "Туғилган йили",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} yosh",
+  "@candidateDetailBirthYearWithAge": {
+    "placeholders": {
+      "birthYear": {
+        "type": "int"
+      },
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "candidateDetailCity": "Шаҳар",
+  "candidateDetailMaritalStatus": "Оилавий ҳолати",
+  "candidateDetailChildren": "Фарзандлари",
+  "candidateDetailNoChildren": "Йўқ",
+  "candidateDetailHasChildren": "Бор",
+  "candidateDetailChildrenCount": "{count} ta",
+  "@candidateDetailChildrenCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "candidateDetailEducationAndWork": "Талим ва иш",
+  "candidateDetailEducation": "Малумоти",
+  "candidateDetailProfession": "Касб",
+  "candidateDetailLifestyle": "Турмуш тарзи",
+  "candidateDetailHealthStatus": "Соғлиғи",
+  "candidateDetailIncompleteProfileTitle": "Анкета тўлиқ емас",
+  "candidateDetailIncompleteProfileDescription": "Номзод айрим малумотларни ҳали тўлдирмаган. Совчи таклифи юборилганда унга анкетани тўлдириш еслатмаси боради.",
+  "candidateDetailAbout": "Номзод ҳақида",
+  "candidateRequestPending": "Жараёнда...",
+  "candidateRequestRetry": "Қайта сўров юбориш",
+  "candidateRequestRetryAt": "Qayta so‘rov yuborish: {date}",
+  "candidateRequestChat": "Суҳбатлашиш",
+  "candidateRequestForwarded": "Вакилга йўналтирилди",
+  "photoRequestTitle": "Расм кўриш сўрови",
+  "photoRequestDescription": "Сўров номзодга ва унинг вакилига юборилади. Қарор фақат уларга тегишли.",
+  "photoRequestMessageHint": "Хабар (ихтиёрий)",
+  "photoRequestDurationLabel": "Сўров муддати",
+  "photoRequestDurationValue": "7 кун",
+  "photoRequestRejectLabel": "Рад етилса",
+  "photoRequestRejectValue": "қайта сўраш 7 кундан кейин",
+  "photoRequestPrivacyNote": "Расм очилса, у фақат сизга кўринади ва скриншот блокланади.",
+  "photoRequestSubmit": "Сўров юбориш",
+  "candidateProposalSentTitle": "Таклиф юборилди",
+  "candidateProposalSentDescription": "{name} va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.",
+  "candidateProposalSentTimelineSent": "Таклиф юборилди",
+  "candidateProposalSentTimelineReview": "{name} ko‘rib chiqadi",
+  "candidateProposalSentTimelineChat": "Жавоб келса — суҳбат очилади",
+  "candidateProposalSentQuotaLabel": "Бу ҳафталик таклифлар",
+  "candidateProposalSentQuotaValue": "2 / 3",
+  "candidateProposalSentNote": "Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana {remaining} ta taklif qoldi.",
+  "candidateProposalSentReturn": "Номзодларга қайтиш",
+  "candidatePhotoPermissionSentTitle": "Расм кўриш учун рухсат сўралди",
+  "candidatePhotoPermissionSentDescription": "{name} va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.",
+  "candidatePhotoPermissionSentReturn": "Профилга қайтиш",
+  "candidateBlockDialogTitle": "{candidateName} ni bloklaysizmi?",
+  "@candidateBlockDialogTitle": {
+    "placeholders": {
+      "candidateName": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateBlockDialogSubtitle": "У сизни кўрмайди, сиз ҳам уни кўрмайсиз. Блоклаганингизни ўзи билмайди.",
+  "candidateBlockPointChatClosed": "Суҳбат ёпилади, ёзишмалар сақланади",
+  "candidateBlockPointRemovedSaved": "Сақланганлар рўйхатидан олиб ташланади",
+  "candidateBlockPointRepresentativeBlocked": "Унинг вакили ҳам сиз билан боғлана олмайди",
+  "candidateBlockAction": "Блоклаш",
+  "candidateBlockCancel": "Бекор қилиш",
+  "candidateBlockedTitle": "Профил блокланди",
+  "candidateBlockedSubtitle": "{candidateName} endi sizni ko‘rmaydi.",
+  "@candidateBlockedSubtitle": {
+    "placeholders": {
+      "candidateName": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateBlockedWhoLabel": "Ким",
+  "candidateBlockedTimeLabel": "Блокланди",
+  "candidateBlockedStatusLabel": "Ҳолат",
+  "candidateBlockedStatusValue": "Блокланган",
+  "candidateBlockedSettingsHint": "У блоклаганингизни билмайди. Блокни Созламалар → Блокланган профиллар бўлимидан олиб ташлайсиз.",
+  "candidateBlockedClose": "Ёпиш",
+  "candidateReportTitle": "Нима бўлди?",
+  "candidateReportSubtitle": "Суҳбат тарихи бизда сақланади, текширишга ёрдам беради.",
+  "candidateReportTargetProfile": "Шикоят шу профил устидан",
+  "candidateReportReasonSection": "Сабаб",
+  "candidateReportReasonInappropriate": "Одобсиз сўз ёки расм",
+  "candidateReportReasonFake": "Ёлғон малумот ёки сохта профил",
+  "candidateReportReasonNoMarriage": "Никоҳ нияти йўқ",
+  "candidateReportReasonScam": "Молиявий фирибгарлик",
+  "candidateReportReasonAbusiveLanguage": "Одобсиз сўз",
+  "candidateReportReasonFakeProfile": "Сохта профил",
+  "candidateReportReasonFraud": "Фирибгарлик",
+  "candidateReportReasonSpam": "Спам ва реклама",
+  "candidateReportReasonFalseInformation": "Нотўғри малумот",
+  "candidateReportReasonThreat": "Ҳақорат ва таҳдид",
+  "candidateReportReasonNoSeriousIntent": "Никоҳ нияти йўқ",
+  "candidateReportReasonOther": "Бошқа сабаб",
+  "candidateReportNoteLabel": "Қўшимча изоҳ (ихтиёрий)",
+  "candidateReportNoteHint": "Нима бўлганини қисқача ёзинг...",
+  "candidateReportSubmitAction": "Шикоятни юбориш",
+  "candidateReportSubmittedTitle": "Шикоят юборилди",
+  "candidateReportSubmittedSubtitle": "Натижа ҳақида хабар берамиз.",
+  "candidateReportNumberLabel": "Ариза рақами",
+  "candidateReportSubmittedTimeLabel": "Юборилди",
+  "candidateReportStatusLabel": "Ҳолат",
+  "candidateReportStatusUnderReview": "Кўриб чиқилмоқда",
+  "candidateReportStepHistoryPreserved": "Суҳбат тарихи далил сифатида сақланди",
+  "candidateReportStepModeratorReview": "Модератор текшируви",
+  "candidateReportStepDecision": "Қарор ва хабарнома",
+  "candidateReportNotice": "Бу фойдаланувчи сиз билан боғлана олмайди. Суҳбат вақтинча ёпилди.",
+  "@candidateDetailVoiceIntro": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "surveyPromptTitle": "Мослик фоизи ёпиқ",
+  "surveyPromptMessage": "30 та саволга жавоб беринг — АИ жавобларингизни таҳлил қилиб, ҳар бир номзод билан мослик фоизингизни автоматик ҳисоблайди.",
+  "surveyPromptButton": "Сўровномани бошлаш",
+  "mockCandidateMohira": "Моҳира Р., 23",
+  "mockCandidateZilola": "Зилола К., 25",
+  "mockCandidateNilufar": "Нилуфар А., 22",
+  "mockCandidateDilnoza": "Дилноза С., 27",
+  "mockCityTashkent": "Тошкент",
+  "mockCitySamarkand": "Самарқанд",
+  "mockCityFergana": "Фарғона",
+  "mockCityBukhara": "Бухоро",
+  "messagesSegmentChats": "Суҳбатлар",
+  "messagesSegmentRequests": "Сўровлар",
+  "chatRequestsEmpty": "Ҳозирча келган сўровлар йўқ",
+  "chatRequestCardTitle": "Soʻrov / {name}",
+  "chatRequestPendingHint": "Қабул қилмагунингизча номзод сизга ёза олмайди.",
+  "chatRequestProfileTitle": "Номзод профили",
+  "chatRequestCompatibilityLabel": "МОСЛИК БЎЛИМЛАР КЕСИМИДА",
+  "chatRequestCompatibilityShortLabel": "мослик",
+  "chatRequestCompatibilityUnavailable": "Мослик фоизи ҳали ҳисобланмаган.",
+  "chatRequestAccept": "Қабул қилиш",
+  "chatRequestReject": "Рад етиш",
+  "chatRequestViaRepresentative": "Вакил орқали",
+  "chatRequestPhotoVerified": "Расм текшируви ўтган",
+  "chatRequestSeriousIntent": "Нияти жиддий",
+  "chatRequestRepresentativeLabel": "Vakili: {name}",
+  "chatRequestRepresentativeNote": "Мурожаат вакил орқали келган",
+  "chatRequestProfileUnavailable": "Профил малумотлари вақтинча мавжуд емас.",
+  "chatRequestLocationProfession": "{location}, {profession}",
+  "chatRequestCandidateFallback": "Номзод",
+  "chatRequestSectionFaith": "Дин ва қадриятлар",
+  "chatRequestSectionFinance": "Молия ва бошқарув",
+  "chatRequestSectionFamily": "Қариндошлар",
+  "chatRequestSectionCharacter": "Характер",
+  "chatRequestSectionPlans": "Келажак режалари",
+  "chatRequestAccepted": "Сўров қабул қилинди",
+  "chatRequestRejected": "Сўров рад етилди",
+  "@chatRequestCardTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@chatRequestRepresentativeLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@chatRequestLocationProfession": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      },
+      "profession": {
+        "type": "String"
+      }
+    }
+  },
+  "chatRoomsEmpty": "Ҳозирча очиқ суҳбатлар йўқ",
+  "chatThreadOpen": "Суҳбатни очиш",
+  "chatParticipantFallback": "Суҳбатдош",
+  "chatSafetyNotice": "Суҳбатни Суний интеллект кузатиб туради — одобсиз сўз ва расм ўтмайди.",
+  "chatIcebreakerGoal": "Ҳаётингиздаги енг катта мақсадингиз нима?",
+  "chatIcebreakerFamily": "Оилада қандай ананани давом еттиришни хоҳлайсиз?",
+  "chatIcebreakerBook": "Сизни қайси китоб енг кўп илҳомлантиради?",
+  "chatIcebreakerChange": "Ўз ҳаётингизда ўзгартирмоқчи бўлган бир нарсани айтинг.",
+  "chatWriteMessage": "Хабар ёзинг…",
+  "chatSendMessage": "Хабарни юбориш",
+  "chatReplyTo": "Жавоб бериш",
+  "chatReplyCancel": "Жавобни бекор қилиш",
+  "chatTyping": "ёзяпти…",
+  "chatOpenTimeRemaining": "Чат 72 соат очиқ",
+  "chatMoreActions": "Қўшимча амаллар",
+  "chatMoreSheetTitle": "Иловани улашиш",
+  "chatMoreSheetSubtitle": "Дўстларингизни Совчига таклиф қилинг — таклиф коди билан.",
+  "chatReportAction": "Шикоят қилиш",
+  "chatDeleteAction": "Чатни ўчириш",
+  "chatDeleteTitle": "{name} ni suhbatni oʻchirmoqchimisiz?",
+  "@chatDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "chatDeleteSubtitle": "Агар суҳбатни ўчирсангиз номзод малумотлари ҳам беркитилади!",
+  "chatDeleteCancel": "Бекор қилиш",
+  "chatDeleteConfirm": "Ўчириш",
+  "mockMessageMohiraName": "Моҳира Р.",
+  "mockMessageZilolaName": "Зилола К.",
+  "mockMessageNilufarName": "Нилуфар А.",
+  "mockMessageDilnozaName": "Дилноза С.",
+  "mockMessageMohiraPreview": "Вақтингиз бўлса танишсак.",
+  "mockMessageZilolaPreview": "Таклифингиз кўрилди",
+  "mockMessageNilufarPreview": "Чат муддати тугади",
+  "mockMessageDilnozaPreview": "Ҳозирча жавоб кутилмоқда",
+  "messageTimeYesterday": "Кеча",
+  "messageTimeMonday": "Душ",
+  "messageTimeTuesday": "Сеш",
+  "savedFilterAll": "Ҳаммаси",
+  "savedFilterInvited": "Таклиф юборилган",
+  "savedFilterWaiting": "Жавоб кутилмоқда",
+  "savedLimitLabel": "{savedCount} / {limit} saqlangan",
+  "@savedLimitLabel": {
+    "placeholders": {
+      "savedCount": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "savedPremiumCta": "Премиум — чексиз",
+  "savedUpsellTitle": "Yana {remaining} ta joy qoldi",
+  "@savedUpsellTitle": {
+    "placeholders": {
+      "remaining": {
+        "type": "int"
+      }
+    }
+  },
+  "savedUpsellMessage": "Бепул режада 10 тагача профил сақланади. Премиум билан чеклов йўқ.",
+  "questionnaireOptionalBadge": "Ихтиёрий қадам",
+  "questionnaireIntroTitle": "{count} ta savol — {minutes} daqiqa",
+  "@questionnaireIntroTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "questionnaireIntroDescription": "Жавобларингизни таҳлил қилиб, ҳар бир номзод билан мослик фоизингизни кўрсатамиз. Хоҳламасангиз, кейинроқ ҳам топширасиз.",
+  "questionnaireQuestionCount": "{count} savol",
+  "@questionnaireQuestionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "questionnaireWithoutTitle": "Сўровномасиз нима бўлади?",
+  "questionnaireWithoutBody": "Профилингиз ишлайди ва номзодларни кўрасиз, лекин АИ мосликни ҳисобламайди — фоиз ва бўлимлар кесимидаги таҳлил ёпиқ қолади.",
+  "questionnaireStart": "Ҳа, сўровномани бошлайман",
+  "questionnaireLater": "Кейинроқ тўлдираман",
+  "questionnaireEmpty": "Ҳозирча саволлар мавжуд емас.",
+  "questionnaireProgress": "{current}/{total}",
+  "@questionnaireProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questionnaireNext": "Кейинги савол",
+  "questionnaireSubmit": "Жавобларни юбориш",
+  "questionnaireAnalysisTitle": "Жавобларингиз таҳлил қилинмоқда",
+  "questionnaireAnalysisBody": "АИ қадриятлар, молия ва характер профилингизни тузиб, мос номзодларни танлайди.",
+  "questionnaireResultTitle": "Сизнинг профилингиз тайёр!",
+  "questionnaireResultSubtitle": "Суний интеллект аниқлаган мослик енди очиқ.",
+  "questionnaireHonestyPill": "Самимийлик: юқори",
+  "questionnaireSeriousPill": "Нияти жиддий",
+  "questionnaireMatchedCandidates": "{count} ta mos nomzod",
+  "@questionnaireMatchedCandidates": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "128"
+      }
+    }
+  },
+  "questionnaireMatchedCandidatesSubtitle": "Мослик АИ томонидан ҳисобланди",
+  "questionnaireNextStepsTitle": "Енди нима бўлади?",
+  "questionnaireAiMatchCalculatedTitle": "АИ мослик ҳисобланди",
+  "questionnaireAiMatchCalculatedBody": "Жавобларингиз асосида номзодлар танланди.",
+  "questionnaireCandidatesVeiledTitle": "Номзодлар парда остида",
+  "questionnaireCandidatesVeiledBody": "Суратлар иккала томон розилигидан кейин очилади.",
+  "questionnaireConsentOnlyTitle": "Алоқа фақат розилик билан",
+  "questionnaireConsentOnlyBody": "Суҳбат вакил ёки оила иштирокида бошланади.",
+  "questionnaireHonestyTitle": "Самимийлик индекси · юқори",
+  "questionnaireHonestyBody": "Тузоқ саволларга жавобларингиз изчил. Профил ишончли деб белгиланди.",
+  "questionnaireSeriousBadge": "“Нияти жиддий” белгиси берилди",
+  "questionnaireShowCandidates": "Мос номзодларни кўриш",
+  "questionnaireTraitTraditional": "ананавий",
+  "questionnaireTraitBalanced": "балансли",
+  "candidatesViewGrid": "Катак кўриниши",
+  "candidatesViewMap": "Харита кўриниши",
+  "nearbyPermissionTitle": "Яқин атрофдаги номзодлар",
+  "nearbyPermissionDescription": "Жойлашувингиз аниқ нуқта сифатида емас, тахминий зона сифатида ишлатилади.",
+  "nearbyPermissionOpenSettings": "Созламаларни очиш",
+  "nearbyPermissionEnableService": "Жойлашувни ёқиш",
+  "nearbyPermissionAllow": "Жойлашувга рухсат бериш",
+  "nearbyPermissionNotNow": "Ҳозир емас",
+  "nearbyPermissionFootnote": "«Ҳозир емас» ни танласангиз, Мослар ва Тавсиялар аввалгидек ишлайди.",
+  "nearbyPermissionRuleHidden": "Аниқ манзилингиз ҳеч кимга кўрсатилмайди",
+  "nearbyPermissionRuleZone": "Бошқалар сизни ~2 км ли зона ичида кўради",
+  "nearbyPermissionRuleSettings": "Исталган вақтда Созламалардан ўчирасиз",
+  "nearbyUnknownZone": "Яқин зона",
+  "nearbyCandidateCount": "{count} ta nomzod",
+  "@nearbyCandidateCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyZoneDistance": "{zone} · ~{distance} km",
+  "@nearbyZoneDistance": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      },
+      "distance": {
+        "type": "String"
+      }
+    }
+  },
+  "nearbyYou": "Сиз",
+  "nearbyAroundCount": "Atrofingizda {count} ta nomzod",
+  "@nearbyAroundCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyShowAll": "Барчаси",
+  "nearbyCloseMap": "Харитани ёпиш",
+  "nearbyWithinRadius": "{radius} km ichida",
+  "@nearbyWithinRadius": {
+    "placeholders": {
+      "radius": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyRecenter": "Жойлашувимга қайтиш",
+  "nearbySettingsTitle": "Радиус ва кўриниш",
+  "nearbySearchRadiusLabel": "Радиус",
+  "nearbyRadiusRange": "1–25 км",
+  "nearbyRadiusOption": "{radius} km",
+  "@nearbyRadiusOption": {
+    "placeholders": {
+      "radius": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyEntireRegion": "Бутун вилоят",
+  "nearbyEntireRegionUnavailable": "Бутун вилоят бўйича қидирув ҳозирча мавжуд емас",
+  "nearbyRadiusHint": "Радиус қанчалик катта бўлса, мослик фоизи шунчалик пасаяди.",
+  "nearbyVisibilityTitle": "Мени Атрофдагилар рўйхатида кўрсатиш",
+  "nearbyVisibilitySubtitle": "Ўчирсангиз, сиз ҳам ҳеч кимни кўрмайсиз",
+  "nearbyAudienceTitle": "Ким мени Атрофдагиларда кўра олади",
+  "nearbyAudienceAll": "Ҳамма номзодлар",
+  "nearbyAudienceHighMatch": "Фақат мослик 70% дан юқори",
+  "nearbyAudienceRecommended": "тавсия етилади",
+  "nearbyAudienceRepresented": "Фақат вакили бор номзодлар",
+  "nearbyPrivacyZoneNote": "Зона маркази кунига бир марта тасодифий силжийди — шунинг учун сизнинг уйингизни ҳисоблаб бўлмайди.",
+  "nearbySettingsSave": "Сақлаш",
+  "nearbyEmptyTitle": "{radius} km ichida hozircha nomzod yo‘q",
+  "@nearbyEmptyTitle": {
+    "placeholders": {
+      "radius": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyEmptyDescription": "Радиусни кенгайтиринг ёки мезонларни бироз юмшатинг.",
+  "nearbyExpandRadius": "Radiusni {radius} km ga kengaytirish",
+  "@nearbyExpandRadius": {
+    "placeholders": {
+      "radius": {
+        "type": "int"
+      }
+    }
+  },
+  "nearbyChangeCriteria": "Мезонларни ўзгартириш",
+  "nearbyNotifyTitle": "Янги номзод пайдо бўлса хабар беринг",
+  "nearbyNotifySubtitle": "Кунига бир марта, кўпи билан",
+  "profileEdit": "Профилни таҳрирлаш",
+  "profileSettings": "Профил созламалари",
+  "profileIdentifier": "Foydalanuvchi raqami: {code}",
+  "@profileIdentifier": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePreview": "Бошқалар кўриниши",
+  "profileCopyIdentifier": "Фойдаланувчи рақамини нусхалаш",
+  "profileCompleteTitle": "Профилингизни тўлдиринг",
+  "profileCompleteSubtitle": "Аниқроқ жуфтлик топиш учун",
+  "profileMyPhotos": "СУРАТЛАРИМ",
+  "profileMainPhoto": "АСОСИЙ",
+  "profileAddPhoto": "Сурат қўшиш",
+  "profilePhotoSemantics": "Profil surati {index}",
+  "@profilePhotoSemantics": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "profilePhotoSourceTitle": "Янги сурат",
+  "profilePhotoSourceSubtitle": "Юклангандан сўнг сурат юз текширувидан ўтади.",
+  "profilePhotoCamera": "Камерадан олиш",
+  "profilePhotoGallery": "Галереядан танлаш",
+  "profilePhotoActionsTitle": "Сурат",
+  "profilePhotoSetMain": "Асосий қилиб белгилаш",
+  "profilePhotoReplace": "Алмаштириш",
+  "profilePhotoDelete": "Ўчириш",
+  "profilePhotoCancel": "Бекор қилиш",
+  "profilePhotoDeleteTitle": "Суратни ўчирасизми?",
+  "profilePhotoDeleteSubtitle": "Сурат профилингиздан олиб ташланади. Ўрнига янгисини юклашингиз мумкин.",
+  "profileAboutSection": "ЎЗИНГИЗ ҲАҚИНГИЗДА",
+  "profileNotFilled": "Ҳали тўлдирилмаган",
+  "profileAdd": "Қўшиш",
+  "profileEditShort": "Таҳрирлаш",
+  "profilePhotoVerification": "Расм текшируви",
+  "profilePhotoVerificationSubtitle": "Асосий суратингиз камера орқали селфи билан солиштирилади",
+  "profileServices": "Хизматлар",
+  "profileServicesSubtitle": "Психолог, оилавий учрашув, текширув ва Премиум",
+  "profileIdentifierCopied": "Фойдаланувчи рақами нусхаланди",
+  "profileActionComingSoon": "Бу бўлим кейинги профил босқичида уланади",
+  "settingsTitle": "Созламалар",
+  "settingsBack": "Орқага",
+  "settingsAccountSection": "Ҳисоб",
+  "settingsLanguage": "Тил",
+  "settingsTheme": "Мавзу",
+  "settingsLanguageSheetTitle": "Тил",
+  "settingsThemeSheetTitle": "Мавзу",
+  "settingsLanguageUzbekLatin": "O‘zbek",
+  "settingsLanguageUzbekCyrillic": "Ўзбек",
+  "settingsLanguageRussian": "Русский",
+  "settingsLanguageEnglish": "English",
+  "settingsThemeSystem": "Автоматик",
+  "settingsThemeLight": "Ёруғ",
+  "settingsThemeDark": "Қоронғи",
+  "settingsEditProfile": "Профилни таҳрирлаш",
+  "settingsPhotoPrivacy": "Расм махфийлиги",
+  "settingsPhotoPrivacyAll": "Ҳаммага очиқ",
+  "settingsBlockedUsers": "Блокланган фойдаланувчилар",
+  "settingsRecoveryQuestion": "Ҳисобни тиклаш саволи",
+  "settingsPrivacyChatSection": "Махфийлик ва суҳбат",
+  "settingsPrivacyVeil": "Махфийлик ва парда тартиби",
+  "settingsChatLimits": "Суҳбат лимитлари",
+  "settingsChatLimitValue": "72 соат",
+  "settingsParentLink": "Ота-она улаш",
+  "settingsNotificationAppearanceSection": "Билдиришнома ва кўриниш",
+  "settingsNotifications": "Билдиришномалар",
+  "settingsNotificationsSubtitle": "Янги лайк, мослик ва хабарлар ҳақида хабар берилади",
+  "settingsNotificationTypes": "Билдиришнома турлари",
+  "settingsDocumentsSection": "Ҳужжатлар",
+  "settingsPrivacyPolicy": "Махфийлик сиёсати",
+  "settingsTerms": "Фойдаланиш шартлари",
+  "settingsHelpInfoSection": "Ёрдам ва маълумот",
+  "settingsServices": "Хизматлар",
+  "settingsHelpCenter": "Ёрдам маркази",
+  "settingsShareApp": "Иловани улашиш",
+  "settingsLogout": "Ҳисобдан чиқиш",
+  "settingsActionComingSoon": "Бу созлама кейинги босқичда уланади",
+  "privacyPolicyLoadingLabel": "Махфийлик сиёсати юкланмоқда",
+  "privacyPolicyLoadError": "Махфийлик сиёсатини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.",
+  "termsOfServiceLoadingLabel": "Фойдаланиш шартлари юкланмоқда",
+  "termsOfServiceLoadError": "Фойдаланиш шартларини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.",
+  "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
+  "@failureMessage": {
+    "description": "User-facing error message selected by FailureType.name.",
+    "placeholders": {
+      "type": {
+        "type": "String",
+        "example": "networkTimeout"
+      }
+    }
+  },
+  "profileEditTitle": "Профилни таҳрирлаш",
+  "profileEditAvatarTitle": "Профил сурати",
+  "profileEditChangePhoto": "Суратни ўзгартириш",
+  "profilePhotoManagementTitle": "Асосий сурат",
+  "profilePhotoManagementSubtitle": "Профилингизда ва номзодлар рўйхатида биринчи шу сурат кўринади. Селфи текшируви ҳам шу сурат билан солиштирилади.",
+  "profilePhotoConfirm": "Тасдиқлаш",
+  "profileFaceVerificationDone": "Давом етиш",
+  "profileEditName": "Исм",
+  "profileEditBirthYear": "Туғилган йил",
+  "profileEditHeight": "Бўй",
+  "profileEditWeight": "Вазн",
+  "profileEditEducation": "Малумоти",
+  "profileEditProfession": "Касби",
+  "profileEditRegion": "Вилоят",
+  "profileEditDistrict": "Туман",
+  "profileEditMaritalStatus": "Оилавий ҳолати",
+  "profileEditAboutSection": "ЎЗИНГИЗ ҲАҚИНГИЗДА",
+  "profileEditAboutPlaceholder": "Ўзингиз, қадриятларингиз ва келажак режаларингиз ҳақида қисқа ёзинг…",
+  "profileEditSave": "Сақлаш",
+  "profileEditCancel": "Бекор қилиш",
+  "profileEditSuccess": "Профил муваффақиятли сақланди",
+  "profileEditFirstName": "Исм",
+  "profileEditLastName": "Фамилия",
+  "profileEditSelect": "Танлаш",
+  "profileEditSelectOption": "Танланг",
+  "profileEditProfessionOther": "Бошқа",
+  "profileEditProfessionInputLabel": "Касбингизни ёзинг",
+  "profileEditSearchPlaceholder": "Қидириш...",
+  "profileEditRegionSearchHint": "Вилоят қидириш...",
+  "profileEditDistrictSearchHint": "Туман қидириш...",
+  "profileEditDistrictRegionCaption": "{region} boʻyicha",
+  "@profileEditDistrictRegionCaption": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "profileEditNoOptions": "Малумот топилмади",
+  "profileEditCm": "{cm} sm",
+  "@profileEditCm": {
+    "placeholders": {
+      "cm": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditKg": "{kg} kg",
+  "@profileEditKg": {
+    "placeholders": {
+      "kg": {
+        "type": "int"
+      }
+    }
+  },
+  "profileEditSelectRegionFirst": "Олдин вилоятни танланг",
+  "profileEditDiscardConfirmTitle": "Ўзгаришларни бекор қиласизми?",
+  "profileEditDiscardConfirmMessage": "Сақланмаган малумотлар йўқолади.",
+  "profileEditDiscard": "Бекор қилиш",
+  "profileEditKeepEditing": "Қолиш",
+  "profileEditUnsavedTitle": "Ўзгаришлар сақланмади",
+  "profileEditUnsavedMessage": "Чиқсангиз, киритилган ўзгаришлар йўқолади.",
+  "profileEditStayEditing": "Таҳрирлашда қолиш",
+  "profileEditExit": "Чиқиш",
+  "profileEditUpdatedTitle": "Профил янгиланди",
+  "profileEditUpdatedMessage": "Ўзгаришлар сақланди. Профилингиз номзодларга янгиланган кўринишда кўрсатилади.",
+  "profileEditUpdatedOk": "Яхши",
+  "blockedUsersTitle": "Блокланган профиллар",
+  "blockedUsersSubtitle": "Блокланган профиллар сизни қидирувда кўрмайди ва ёзолмайди.",
+  "blockedUsersEmpty": "Блокланган профиллар йўқ",
+  "blockedUsersEmptySubtitle": "Сиз блоклаган барча профиллар шу йерда кўринади.",
+  "blockedUsersNote": "Шикоят қилинган профил модератор кўригидан кейин автоматик блокланади — бу рўйхатда «Шикоятдан кейин» деб белгиланади.",
+  "blockedAtDate": "Bloklangan {date}",
+  "@blockedAtDate": {
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "28.07.2026"
+      }
+    }
+  },
+  "blockedAfterComplaint": "Шикоятдан кейин блокланган",
+  "unblockButton": "Блокдан чиқариш",
+  "unblockSuccess": "Фойдаланувчи блокдан чиқарилди",
+  "unblockConfirmTitle": "Блокдан чиқарилсинми?",
+  "unblockConfirmMessage": "Ушбу профил яна сизга хабар ёза олади ва профилингизни кўра олади.",
+  "cancel": "Бекор қилиш",
+  "accountDeletionTitle": "Ҳисобни ўчириш",
+  "accountDeletionWarningTitle": "Бу амал қайтарилмайди",
+  "accountDeletionWarningMessage": "Ҳисоб ўчирилгач профилингизни тиклаш имкони бўлмайди.",
+  "accountDeletionItemsTitle": "НИМАЛАР ЎЧИРИЛАДИ",
+  "accountDeletionPhotos": "Барча суратлар ва овозли таништирув",
+  "accountDeletionQuestionnaire": "Сўровнома жавоблари ва мослик натижалари",
+  "accountDeletionChats": "Суҳбатлар ва сақланган профиллар",
+  "accountDeletionRepresentative": "Уланган вакил билан боғланиш",
+  "accountDeletionReasonTitle": "САБАБ (ИХТИЁРИЙ)",
+  "accountDeletionReasonFoundMatch": "Жуфтлик топдим",
+  "accountDeletionReasonNoTime": "Ҳозирча вақтим йўқ",
+  "accountDeletionReasonPrivacy": "Махфийлик хавотири",
+  "accountDeletionConfirm": "Ҳисобни ўчириш",
+  "accountDeletionCancel": "Бекор қилиш"
+}

@@ -67,7 +67,7 @@ final class ChatMessageBubble extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 300),
                 padding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.input,
-                  vertical: AppSpacing.md,
+                  vertical: AppSpacing.sm,
                 ),
                 decoration: BoxDecoration(
                   color: isMine ? AppColors.primary : AppColors.surfaceLight,

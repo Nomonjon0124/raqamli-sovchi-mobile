@@ -98,6 +98,7 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('ru'),
     Locale('uz'),
+    Locale.fromSubtags(languageCode: 'uz', scriptCode: 'Cyrl'),
   ];
 
   /// No description provided for @faceCaptureTitle.
@@ -3640,6 +3641,72 @@ abstract class AppLocalizations {
   /// **'Hisob'**
   String get settingsAccountSection;
 
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Til'**
+  String get settingsLanguage;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mavzu'**
+  String get settingsTheme;
+
+  /// No description provided for @settingsLanguageSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Til'**
+  String get settingsLanguageSheetTitle;
+
+  /// No description provided for @settingsThemeSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mavzu'**
+  String get settingsThemeSheetTitle;
+
+  /// No description provided for @settingsLanguageUzbekLatin.
+  ///
+  /// In uz, this message translates to:
+  /// **'O‘zbek'**
+  String get settingsLanguageUzbekLatin;
+
+  /// No description provided for @settingsLanguageUzbekCyrillic.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ўзбек'**
+  String get settingsLanguageUzbekCyrillic;
+
+  /// No description provided for @settingsLanguageRussian.
+  ///
+  /// In uz, this message translates to:
+  /// **'Русский'**
+  String get settingsLanguageRussian;
+
+  /// No description provided for @settingsLanguageEnglish.
+  ///
+  /// In uz, this message translates to:
+  /// **'English'**
+  String get settingsLanguageEnglish;
+
+  /// No description provided for @settingsThemeSystem.
+  ///
+  /// In uz, this message translates to:
+  /// **'Avtomatik'**
+  String get settingsThemeSystem;
+
+  /// No description provided for @settingsThemeLight.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yorug‘'**
+  String get settingsThemeLight;
+
+  /// No description provided for @settingsThemeDark.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qorong‘i'**
+  String get settingsThemeDark;
+
   /// No description provided for @settingsEditProfile.
   ///
   /// In uz, this message translates to:
@@ -4259,6 +4326,18 @@ class _AppLocalizationsDelegate
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+script codes are specified.
+  switch (locale.languageCode) {
+    case 'uz':
+      {
+        switch (locale.scriptCode) {
+          case 'Cyrl':
+            return AppLocalizationsUzCyrl();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':

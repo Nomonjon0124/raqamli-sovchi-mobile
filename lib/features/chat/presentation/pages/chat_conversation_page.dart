@@ -210,7 +210,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
           final message = state.messages[index - 2];
           return Padding(
             key: _messageKeys.putIfAbsent(message.id, GlobalKey.new),
-            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
             child: ChatMessageBubble(
               message: message,
               isMine: _isMyMessage(message, currentUserId),

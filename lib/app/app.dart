@@ -15,6 +15,8 @@ import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
 import '../features/auth/presentation/bloc/auth_state.dart';
 import '../features/notifications/data/services/notification_lifecycle_service.dart';
+import '../features/settings/presentation/cubit/settings_cubit.dart';
+import '../features/settings/presentation/cubit/settings_state.dart';
 import '../l10n/app_localizations.dart';
 import 'router/app_router.dart';
 import 'router/route_names.dart';
@@ -32,6 +34,7 @@ class App extends StatefulWidget {
 
 final class _AppState extends State<App> with WidgetsBindingObserver {
   late final GoRouter _router = AppRouter(authBloc: widget.authBloc).router;
+  late final SettingsCubit _settingsCubit = serviceLocator<SettingsCubit>();
   late final BackgroundLockGate _backgroundLockGate =
       widget.backgroundLockGate ?? serviceLocator<BackgroundLockGate>();
   late final StreamSubscription<NotificationEvent> _notificationSubscription;
@@ -77,8 +80,11 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: widget.authBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: widget.authBloc),
+        BlocProvider.value(value: _settingsCubit),
+      ],
       child: BlocListener<AuthBloc, AuthState>(
         listener: (_, state) {
           final lifecycle = serviceLocator<NotificationLifecycleService>();
@@ -88,25 +94,27 @@ final class _AppState extends State<App> with WidgetsBindingObserver {
             lifecycle.deactivate();
           }
         },
-        child: MaterialApp.router(
-          onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
-          themeMode: ThemeMode.light,
-          locale: const Locale('uz'),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          routerConfig: _router,
-          builder: (context, child) => Thunder(
-            enabled: true,
-            dio: [serviceLocator<Dio>()],
-            child: child ?? const SizedBox.shrink(),
+        child: BlocBuilder<SettingsCubit, SettingsState>(
+          builder: (context, settings) => MaterialApp.router(
+            onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: settings.themeMode,
+            locale: settings.locale,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            routerConfig: _router,
+            builder: (context, child) => Thunder(
+              enabled: true,
+              dio: [serviceLocator<Dio>()],
+              child: child ?? const SizedBox.shrink(),
+            ),
           ),
         ),
       ),

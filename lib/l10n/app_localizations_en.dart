@@ -1984,6 +1984,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAccountSection => 'Account';
 
   @override
+  String get settingsLanguage => 'Language';
+
+  @override
+  String get settingsTheme => 'Theme';
+
+  @override
+  String get settingsLanguageSheetTitle => 'Language';
+
+  @override
+  String get settingsThemeSheetTitle => 'Theme';
+
+  @override
+  String get settingsLanguageUzbekLatin => 'Uzbek';
+
+  @override
+  String get settingsLanguageUzbekCyrillic => 'Ўзбек';
+
+  @override
+  String get settingsLanguageRussian => 'Русский';
+
+  @override
+  String get settingsLanguageEnglish => 'English';
+
+  @override
+  String get settingsThemeSystem => 'Automatic';
+
+  @override
+  String get settingsThemeLight => 'Light';
+
+  @override
+  String get settingsThemeDark => 'Dark';
+
+  @override
   String get settingsEditProfile => 'Edit profile';
 
   @override

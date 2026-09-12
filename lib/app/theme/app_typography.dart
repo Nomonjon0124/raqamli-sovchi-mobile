@@ -475,6 +475,22 @@ abstract final class AppTypography {
     height: 19 / 12,
     color: AppColors.dangerText,
   );
+  static const settingsSheetTitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 18,
+    height: 23 / 18,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.3,
+    color: AppColors.text,
+  );
+  static const settingsSheetOption = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 15,
+    height: 20 / 15,
+    fontWeight: FontWeight.w600,
+    color: AppColors.text,
+  );
+  static const settingsSheetFlag = TextStyle(fontSize: 18, height: 1);
   static const candidateDetailCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,

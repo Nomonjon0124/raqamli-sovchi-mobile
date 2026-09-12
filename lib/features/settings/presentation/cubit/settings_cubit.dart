@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'settings_state.dart';
@@ -7,5 +8,13 @@ final class SettingsCubit extends Cubit<SettingsState> {
 
   void notificationsChanged(bool enabled) {
     emit(state.copyWith(notificationsEnabled: enabled));
+  }
+
+  void localeChanged(Locale locale) {
+    emit(state.copyWith(locale: locale));
+  }
+
+  void themeModeChanged(ThemeMode themeMode) {
+    emit(state.copyWith(themeMode: themeMode));
   }
 }

@@ -1978,6 +1978,39 @@ class AppLocalizationsUz extends AppLocalizations {
   String get settingsAccountSection => 'Hisob';
 
   @override
+  String get settingsLanguage => 'Til';
+
+  @override
+  String get settingsTheme => 'Mavzu';
+
+  @override
+  String get settingsLanguageSheetTitle => 'Til';
+
+  @override
+  String get settingsThemeSheetTitle => 'Mavzu';
+
+  @override
+  String get settingsLanguageUzbekLatin => 'O‘zbek';
+
+  @override
+  String get settingsLanguageUzbekCyrillic => 'Ўзбек';
+
+  @override
+  String get settingsLanguageRussian => 'Русский';
+
+  @override
+  String get settingsLanguageEnglish => 'English';
+
+  @override
+  String get settingsThemeSystem => 'Avtomatik';
+
+  @override
+  String get settingsThemeLight => 'Yorug‘';
+
+  @override
+  String get settingsThemeDark => 'Qorong‘i';
+
+  @override
   String get settingsEditProfile => 'Profilni tahrirlash';
 
   @override
@@ -2316,4 +2349,2344 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get accountDeletionCancel => 'Bekor qilish';
+}
+
+/// The translations for Uzbek, using the Cyrillic script (`uz_Cyrl`).
+class AppLocalizationsUzCyrl extends AppLocalizationsUz {
+  AppLocalizationsUzCyrl() : super('uz_Cyrl');
+
+  @override
+  String get faceCaptureTitle => 'Бир марта селфи оламиз';
+
+  @override
+  String get faceCaptureSubtitle =>
+      'Асосий суратингиз билан солиштирамиз. Ҳеч кимга кўринмайди ва текширувдан кейин ўчирилади.';
+
+  @override
+  String get selfieCameraLabel => 'селфи камера';
+
+  @override
+  String get faceRuleOne => 'Юзингизни доира ичига жойлаштиринг.';
+
+  @override
+  String get faceRuleTwo => 'Юзингиз яхши кўринсин — шу йетарли.';
+
+  @override
+  String get faceRuleThree => 'Телефонни кўз даражасида ушланг.';
+
+  @override
+  String get takeSelfieLabel => 'Селфи олиш';
+
+  @override
+  String get aboutMeTitle => 'Ўзингиз ҳақингизда';
+
+  @override
+  String get aboutMeSubtitle =>
+      'Ихтиёрий. Қисқача ёзинг — номзодлар шуни ўқийди.';
+
+  @override
+  String get aboutMeHint =>
+      'Ўзингиз, касбингиз ва оилавий қадриятларингиз ҳақида 2–3 гап...';
+
+  @override
+  String aboutMeCounter(int count) {
+    return '$count / 300 belgi';
+  }
+
+  @override
+  String get mainPhotoSelectionHint => 'Асосий суратни танланг';
+
+  @override
+  String get mainPhotoSubtitle =>
+      'Профилингизда биринчи шу сурат кўринади ва селфи билан солиштирилади.';
+
+  @override
+  String get mainPhotoBadge => 'АСОСИЙ';
+
+  @override
+  String get faceRetryHint => 'Селфи мос келмади. Қайта уриниб кўринг.';
+
+  @override
+  String get faceCameraError => 'Камера ишга тушмади.';
+
+  @override
+  String get onboardingSuccessTitle => 'Профиллингиз тайёр!';
+
+  @override
+  String get onboardingSuccessSubtitle =>
+      'Ҳаммаси сақланди. Енди сизга мос номзодларни кўришингиз мумкин.';
+
+  @override
+  String get pledgeConfirmationTitle => 'Ниятингизни тасдиқланг';
+
+  @override
+  String get pledgeConfirmationSubtitle =>
+      'Бу қадам мажбурий. Тасдиқлагач профилингизда «Нияти жиддий» белгиси пайдо бўлади.';
+
+  @override
+  String get pledgeConfirmationPointOne =>
+      'Малумотларим тўғри ва ўзимга тегишли.';
+
+  @override
+  String get pledgeConfirmationPointTwo =>
+      'Ниятим жиддий — оила қуриш учун келдим.';
+
+  @override
+  String get pledgeConfirmationPointThree =>
+      'Суҳбатдошга ҳурмат билан муносабатда бўламан.';
+
+  @override
+  String get pledgeConfirmationButton => 'Қасамни тасдиқлаш';
+
+  @override
+  String get privacyPolicyAgreementSuffix => ' билан танишинг';
+
+  @override
+  String get aiTestBadge => 'АИ МОСЛИК ТЕСТИ';
+
+  @override
+  String get aiTestTitle => '30 та саволга жавоб берасизми?';
+
+  @override
+  String get aiTestDescription =>
+      'Жавобларингиз асосида ҳар бир номзод билан қанчалик мос келишингизни ҳисоблаймиз. Тахминан 8 дақиқа.';
+
+  @override
+  String get aiTestPointOne => 'АИ таҳлили — 8 дақиқада тайёр';
+
+  @override
+  String get aiTestPointTwo => 'Мос жуфтлар автоматик танланади';
+
+  @override
+  String get aiTestPointThree => 'Жавобларингиз ҳеч кимга кўрсатилмайди';
+
+  @override
+  String get startAiTest => 'Ҳа, тестни бошлайман';
+
+  @override
+  String get viewCandidatesLater => 'Кейинроқ — аввал номзодларни кўраман';
+
+  @override
+  String get appTitle => 'Рақамли Совчи';
+
+  @override
+  String get loading => 'Юкланмоқда...';
+
+  @override
+  String get splashSubtitle => 'Шошилмасдан, оила билан';
+
+  @override
+  String get loginTitle => 'Хуш келибсиз';
+
+  @override
+  String get loginHeadline => 'Шошилмасдан,\nоила билан';
+
+  @override
+  String get loginSubtitle => 'Телефон рақамингиз билан бошлаймиз';
+
+  @override
+  String get phoneLabel => 'Телефон рақам';
+
+  @override
+  String get phoneError => 'Телефон рақамни тўғри киритинг.';
+
+  @override
+  String get continueLabel => 'Давом етиш';
+
+  @override
+  String get orLabel => 'ёки';
+
+  @override
+  String get loginNote =>
+      'Рақамингизни ҳеч ким кўрмайди. Ҳар бир профил қўлда текширилади. Бу йерда фақат никоҳ ниятидагилар қолади.';
+
+  @override
+  String get otpTitle => 'Кодни киритинг';
+
+  @override
+  String otpSentTo(String phone) {
+    return '$phone raqamiga 4 xonali kod yubordik';
+  }
+
+  @override
+  String get otpResend => 'Код келмадими? 00:48 дан кейин қайта юборамиз';
+
+  @override
+  String get confirmLabel => 'Тасдиқлаш';
+
+  @override
+  String get candidateTypeTitle => 'Ким сифатида қидиряпсиз?';
+
+  @override
+  String get candidateTypeSubtitle =>
+      'Бу танлов анкетангиз қандай бўлишини белгилайди. Жинсни қайта сўрамаймиз.';
+
+  @override
+  String get groomCandidateTitle => 'Куёв номзоди';
+
+  @override
+  String get groomCandidateSubtitle => 'Еркакман, ўзим учун излаяпман';
+
+  @override
+  String get brideCandidateTitle => 'Келин номзоди';
+
+  @override
+  String get brideCandidateSubtitle => 'Аёлман, ўзим учун излаяпман';
+
+  @override
+  String get representativeCandidateTitle => 'Вакил';
+
+  @override
+  String get representativeCandidateSubtitle =>
+      'Яқиним номидан ариза тўлдираман';
+
+  @override
+  String get pledgeTitle => 'Бир-биримизга ишонч учун';
+
+  @override
+  String get pledgePointOne => 'Бу иловадан фақат никоҳ ниятида фойдаланаман.';
+
+  @override
+  String get pledgePointTwo => 'Малумотларим тўғри, суратлар ўзимники.';
+
+  @override
+  String get pledgePointThree =>
+      'Суҳбатда одоб сақлайман. АИ модератор назоратига розиман.';
+
+  @override
+  String get pledgeAgreement =>
+      'Розиман. Профилимда «Нияти жиддий» белгиси кўринсин.';
+
+  @override
+  String get pledgeStart => 'Анкетани бошлаш';
+
+  @override
+  String onboardingProgress(Object current, Object total) {
+    return '$total bosqichdan $current-bosqich';
+  }
+
+  @override
+  String get birthDateTitle => 'Туғилган йилингиз';
+
+  @override
+  String get birthDateHint =>
+      '18 ёшдан кичик фойдаланувчилар рўйхатдан ўта олмайди.';
+
+  @override
+  String get birthDateSubtitle =>
+      'Ёшингиз номзодларга кўринади, аниқ сана емас.';
+
+  @override
+  String get identityTitle => 'Исмингиз ва фамилиянгиз';
+
+  @override
+  String get identitySubtitle =>
+      'Паспортдагидек ёзинг — номзодлар шу исмни кўради.';
+
+  @override
+  String get firstNameLabel => 'Исмингиз';
+
+  @override
+  String get lastNameLabel => 'Фамилиянгиз';
+
+  @override
+  String get patronymicLabel => 'Отасининг исми (ихтиёрий)';
+
+  @override
+  String get professionTitle => 'Касбингиз?';
+
+  @override
+  String get professionOther => 'Бошқа';
+
+  @override
+  String get professionInputLabel => 'Касбингизни ёзинг';
+
+  @override
+  String get professionEmpty => 'Касблар топилмади.';
+
+  @override
+  String get representativeProfessionTitle => 'Номзоднинг касби?';
+
+  @override
+  String get representativeProfessionInputLabel => 'Номзоднинг касбини ёзинг';
+
+  @override
+  String get educationTitle => 'Малумотингиз қандай?';
+
+  @override
+  String get heightTitle => 'Бўйингиз';
+
+  @override
+  String get heightWeightTitle => 'Бўйингиз ва вазнингиз';
+
+  @override
+  String get heightLabel => 'Бўйи (см)';
+
+  @override
+  String get heightInputLabel => 'Бўйингиз';
+
+  @override
+  String get heightUnit => 'см';
+
+  @override
+  String get weightLabel => 'Вазни (кг)';
+
+  @override
+  String get weightInputLabel => 'Вазнингиз';
+
+  @override
+  String get weightUnit => 'кг';
+
+  @override
+  String get decreaseHeightLabel => 'Бўйни камайтириш';
+
+  @override
+  String get increaseHeightLabel => 'Бўйни ошириш';
+
+  @override
+  String get decreaseWeightLabel => 'Вазнни камайтириш';
+
+  @override
+  String get increaseWeightLabel => 'Вазнни ошириш';
+
+  @override
+  String get locationTitle => 'Қайерда яшайсиз?';
+
+  @override
+  String get regionLabel => 'Вилоят';
+
+  @override
+  String get districtLabel => 'Туман ёки шаҳар';
+
+  @override
+  String get regionSheetTitle => 'Вилоятни танланг';
+
+  @override
+  String regionSheetCount(Object count) {
+    return '$count ta hudud';
+  }
+
+  @override
+  String get districtSheetTitle => 'Туман / шаҳарни танланг';
+
+  @override
+  String districtSheetSubtitle(Object count, Object region) {
+    return '$region · $count ta tuman';
+  }
+
+  @override
+  String get locationSearchPlaceholder => 'Туман номи бўйича қидириш';
+
+  @override
+  String get selectLabel => 'Танлаш';
+
+  @override
+  String get unselectedValue => 'Танланмаган';
+
+  @override
+  String get selectRegionFirstValue => 'Аввал вилоятни танланг';
+
+  @override
+  String get healthStatusTitle => 'Соғлиқлик даражангиз';
+
+  @override
+  String get healthStatusSubtitle =>
+      'Бу малумот фақат мосликни ҳисоблашда ишлатилади.';
+
+  @override
+  String get healthHealthyLabel => 'Соғлом';
+
+  @override
+  String get healthDisabilityLabel => 'Ногиронлиги бор';
+
+  @override
+  String get healthDisabilityHint =>
+      'Кейинги қадамда қисқача изоҳлашингиз мумкин';
+
+  @override
+  String get maritalStatusTitle => 'Оилавий ҳолатингиз';
+
+  @override
+  String get maritalStatusDivorcedHint =>
+      '«Ажрашган» танланганда фарзандлар сони мажбурий бўлади.';
+
+  @override
+  String get maritalStatusFirstMarriageDetail => 'Аввал турмуш қурмаган';
+
+  @override
+  String get maritalStatusDivorcedDetail => 'Фарзандлар сони сўралади';
+
+  @override
+  String get childrenCountLabel => 'Фарзандларингиз сони';
+
+  @override
+  String get decreaseChildrenLabel => 'Фарзандлар сонини камайтириш';
+
+  @override
+  String get increaseChildrenLabel => 'Фарзандлар сонини ошириш';
+
+  @override
+  String get childrenNotLivingTitle => 'Фарзандлар мен билан яшамайди';
+
+  @override
+  String get childrenNotLivingDetail =>
+      'Профилда «фарзанди бор» деб кўрсатилади, тафсилот ёзилмайди';
+
+  @override
+  String get photoTitle => 'Суратларингизни қўшинг';
+
+  @override
+  String get photoHint =>
+      '5 тагача сурат. Уларни фақат сиз рухсат берган одам кўради.';
+
+  @override
+  String get photoPrivacyHint =>
+      'Камида 1 та сурат керак. Юз аниқ кўриниши шарт.';
+
+  @override
+  String get photoSlotAddLabel => 'сурат';
+
+  @override
+  String photoSlotFilledLabel(int order) {
+    return 'surat $order ✓';
+  }
+
+  @override
+  String get addPhoto => 'Сурат қўшиш';
+
+  @override
+  String get setMainPhoto => 'Асосий қилиш';
+
+  @override
+  String get removePhoto => 'Ўчириш';
+
+  @override
+  String get voiceTitle => 'Овозли таништирув';
+
+  @override
+  String get voiceHint => 'ААС/М4А форматда 30 сониягача ёзинг.';
+
+  @override
+  String get voiceShortHint =>
+      '10–15 сония йетарли. Овоз одам ҳақида суратдан кўра кўпроқ нарсани айтади.';
+
+  @override
+  String get startRecording => 'Ёзишни бошлаш';
+
+  @override
+  String get stopRecording => 'Ёзишни тўхтатиш';
+
+  @override
+  String get playRecording => 'Ёзувни ешитиш';
+
+  @override
+  String get voiceSubtitle =>
+      'Ихтиёрий. 10–15 сония йетарли — овоз одам ҳақида кўпроқ нарсани айтади.';
+
+  @override
+  String get startRecordingHint => 'Ёзишни бошлаш учун босинг';
+
+  @override
+  String get recordedVoiceHint =>
+      'Ешитиб кўринг. Ёқмаса қайта ёзинг ёки ўчиринг — овоз ихтиёрий.';
+
+  @override
+  String get reRecordVoice => 'Қайта ёзиш';
+
+  @override
+  String get deleteVoice => 'Ўчириш';
+
+  @override
+  String get locationPermissionTitle => 'Жойлашувингиз';
+
+  @override
+  String get locationPermissionSubtitle =>
+      'Яқин ҳудуддаги номзодларни биринчи кўрсатиш учун жойлашув рухсати керак. Аниқ манзил ҳеч кимга кўринмайди.';
+
+  @override
+  String get enableLocation => 'Жойлашувни ёқиш';
+
+  @override
+  String get skipLabel => 'Ўтказиб юбориш';
+
+  @override
+  String get faceTitle => 'Юзингизни тасдиқланг';
+
+  @override
+  String get faceHint =>
+      'Юзингиз тўғри қараган ва кўзларингиз очиқ ҳолда селфие олинг.';
+
+  @override
+  String get verifyFace => 'Юзни тасдиқлаш';
+
+  @override
+  String get finishOnboarding => 'Якунлаш ва профилни очиш';
+
+  @override
+  String get representativeFlowMessage =>
+      'Вакил оқими алоҳида анкета бўлиб, кейинроқ очилади.';
+
+  @override
+  String get representativeIntroTitle => 'Сиз вакил сифатида кирдингиз';
+
+  @override
+  String get representativeIntroSubtitle =>
+      'Вакил — номзоднинг яқин қариндоши: амма, хола, амаки ёки тоға. Сиз унинг номидан анкета тўлдирасиз ва келган таклифларни кўриб чиқасиз.';
+
+  @override
+  String get representativeConsentRequiredTitle => 'Номзоднинг розилиги шарт';
+
+  @override
+  String get representativeConsentRequiredBody =>
+      'Анкета тўлдирилгач номзодга СМС юборилади. У тасдиқламагунча профил ҳеч кимга кўринмайди.';
+
+  @override
+  String get representativeIntroFootnote =>
+      'Кейинги қадамларда аввал ўзингиз ҳақингизда, сўнг номзод ҳақида малумот сўраймиз.';
+
+  @override
+  String get startLabel => 'Бошлаш';
+
+  @override
+  String get representativeSelfSection => '1-ҚИСМ · СИЗ ҲАҚИНГИЗДА';
+
+  @override
+  String get representativeSelfTitle => 'Ўзингиз ҳақингизда';
+
+  @override
+  String get representativeSelfSubtitle =>
+      'Номзод розилик сўровида шу исмни кўради.';
+
+  @override
+  String get representativeRelationTitle => 'Номзодга кимсиз?';
+
+  @override
+  String get representativeCandidateSection => '2-ҚИСМ · НОМЗОД ҲАҚИДА';
+
+  @override
+  String get representativeCandidateTypeTitle => 'Номзод ким?';
+
+  @override
+  String get representativeCandidateTypeSubtitle =>
+      'Шундан кейинги барча саволлар номзод ҳақида бўлади — ўзингиз ҳақингизда емас.';
+
+  @override
+  String get representativeBrideTitle => 'Келин';
+
+  @override
+  String get representativeBrideSubtitle => 'Аёл номзод';
+
+  @override
+  String get representativeGroomTitle => 'Куёв';
+
+  @override
+  String get representativeGroomSubtitle => 'Еркак номзод';
+
+  @override
+  String get representativeCandidateIdentityTitle =>
+      'Номзоднинг исми ва фамилияси';
+
+  @override
+  String get representativeCandidateIdentitySubtitle =>
+      'Бу малумотларни номзоднинг ўзи тасдиқлайди. Хато бўлса, кейин тузатиш мумкин.';
+
+  @override
+  String get representativeBirthDateTitle => 'Номзод туғилган йили';
+
+  @override
+  String get representativeEducationTitle => 'Номзоднинг малумоти';
+
+  @override
+  String get representativeHeightWeightTitle => 'Номзоднинг бўйи ва вазни';
+
+  @override
+  String get representativeHeightInputLabel => 'Номзоднинг бўйи';
+
+  @override
+  String get representativeWeightInputLabel => 'Номзоднинг вазни';
+
+  @override
+  String get representativeLocationTitle => 'Номзод қайерда яшайди?';
+
+  @override
+  String get representativeHealthStatusTitle => 'Номзоднинг соғлиқлик даражаси';
+
+  @override
+  String get representativeMaritalStatusTitle => 'Номзоднинг оилавий ҳолати';
+
+  @override
+  String get representativeChildrenCountLabel => 'Номзоднинг фарзандлари сони';
+
+  @override
+  String get representativeChildrenNotLivingTitle =>
+      'Фарзандлар номзод билан яшамайди';
+
+  @override
+  String get representativePhotoTitle => 'Номзоднинг суратлари';
+
+  @override
+  String get representativePhotoHint =>
+      '5 тагача сурат. Уларни фақат номзод рухсат берган одам кўради.';
+
+  @override
+  String get representativeMainPhotoSubtitle =>
+      'Номзод профилида биринчи шу сурат кўринади.';
+
+  @override
+  String get representativeAboutTitle => 'Номзод ҳақида';
+
+  @override
+  String get representativeAboutSubtitle =>
+      'Ихтиёрий. Саволлар номзод ҳақида — ўзингиз ҳақингизда емас.';
+
+  @override
+  String get representativeAboutHint =>
+      'Номзоднинг касби, қизиқишлари ва оилавий қадриятлари ҳақида 2–3 гап...';
+
+  @override
+  String get representativeVoiceTitle => 'Номзоднинг овозли изоҳи';
+
+  @override
+  String get representativeVoiceSubtitle =>
+      'Ихтиёрий. Номзод кейин ўзи қайта ёзиши мумкин.';
+
+  @override
+  String get representativeLocationPermissionTitle => 'Номзоднинг жойлашуви';
+
+  @override
+  String get representativeLocationPermissionSubtitle =>
+      'Ихтиёрий. Аниқ манзил ҳеч кимга кўринмайди.';
+
+  @override
+  String get representativeConsentSection => '3-ҚИСМ · РОЗИЛИК';
+
+  @override
+  String get representativeContactTitle => 'Номзоднинг телефон рақами';
+
+  @override
+  String get representativeContactSubtitle =>
+      'Шу рақамга розилик сўрови юборилади. Номзод тасдиқламагунча анкета ҳеч кимга кўринмайди.';
+
+  @override
+  String get representativeContactLabel => 'Телефон рақами / емаил';
+
+  @override
+  String get representativeContactPhoneTab => 'Телефон рақам';
+
+  @override
+  String get representativeContactEmailTab => 'Емаил манзил';
+
+  @override
+  String get representativeContactWarningTitle =>
+      'Рақам номзодники бўлиши шарт';
+
+  @override
+  String get representativeContactWarningBody =>
+      'Ўз рақамингизни киритсангиз, розилик ҳақиқий ҳисобланмайди ва профил блокланади.';
+
+  @override
+  String get representativeSendConsent => 'Розилик сўровини юбориш';
+
+  @override
+  String get representativeCandidateNoApp => 'Номзод иловадан фойдаланмайди';
+
+  @override
+  String get representativeConsentSentTitle => 'Сўров юборилди';
+
+  @override
+  String representativeConsentSentSubtitle(String firstName) {
+    return '$firstName tasdiqlashi kutilmoqda. Tasdiqlangunga qadar anketa yashirin.';
+  }
+
+  @override
+  String get representativeSmsSentTitle => 'Номзодга СМС кетди';
+
+  @override
+  String representativeSmsSentBody(String representativeName) {
+    return '$representativeName sizning nomingizdan anketa to‘ldirdi. Rozimisiz?';
+  }
+
+  @override
+  String get representativeConsentRevocation =>
+      'Номзод розиликни исталган вақтда қайтариб олиши мумкин — шунда анкета дарҳол яширилади.';
+
+  @override
+  String get understoodLabel => 'Тушунарли';
+
+  @override
+  String get resendRequestLabel => 'Сўровни қайта юбориш';
+
+  @override
+  String get representativePledgeTitle => 'Масулиятни тасдиқланг';
+
+  @override
+  String get representativePledgeSubtitle =>
+      'Бу қадам мажбурий. Сиз бошқа одам номидан малумот киритаяпсиз.';
+
+  @override
+  String get representativePledgePointOne =>
+      'Номзод ҳақидаги малумотлар тўғри ва унинг розилиги билан киритилди.';
+
+  @override
+  String get representativePledgePointTwo =>
+      'Номзоднинг шахсий суҳбатларига аралашмайман.';
+
+  @override
+  String get representativePledgePointThree =>
+      'Таклиф ва сўровларни номзод манфаатида кўриб чиқаман.';
+
+  @override
+  String get representativeReadyTitle => 'Профиллингиз тайёр!';
+
+  @override
+  String get representativeReadySubtitle =>
+      'Ҳаммаси сақланди. Енди сизга мос номзодларни кўришингиз мумкин.';
+
+  @override
+  String get representativeSetCriteria => 'Қидирув мезонларини созлаш';
+
+  @override
+  String get laterLabel => 'Кейинроқ';
+
+  @override
+  String get candidateConsentEyebrow => 'НОМЗОД ТЕЛЕФОНИДА';
+
+  @override
+  String get candidateConsentTitle => 'Сизнинг номингиздан анкета тўлдирилди';
+
+  @override
+  String candidateConsentBody(String representativeName, String relation) {
+    return '$representativeName ($relation) siz uchun anketa to‘ldirdi. Roziligingizsiz u hech kimga ko‘rinmaydi.';
+  }
+
+  @override
+  String get candidateConsentApproveTitle => 'Розилик берсангиз';
+
+  @override
+  String get candidateConsentApproveBody =>
+      'Анкета фаоллашади, таклифлар кела бошлайди. Кейин ўзингиз таҳрирлашингиз мумкин.';
+
+  @override
+  String get candidateConsentRejectHint =>
+      'Рад етсангиз анкета ўчирилади ва вакилга хабар берилади.';
+
+  @override
+  String get agreeLabel => 'Розиман';
+
+  @override
+  String get rejectLabel => 'Рад етаман';
+
+  @override
+  String get backLabel => 'Орқага';
+
+  @override
+  String get temporaryOtpHint =>
+      'Вақтинчалик адаптер: 1234 кодидан фойдаланинг';
+
+  @override
+  String get pinCreateTitle => 'Қисқа код ўйлаб топинг';
+
+  @override
+  String get pinConfirmTitle => 'ПИН-кодни қайта киритинг';
+
+  @override
+  String get pinMismatch =>
+      'Киритилган ПИН-кодлар бир хил емас. Қайтадан уриниб кўринг.';
+
+  @override
+  String get pinUnlockTitle => 'ПИН-кодни киритинг';
+
+  @override
+  String get pinHintCreate =>
+      'Ҳисобингиз фақат сизники бўлиб қолиши учун. Ҳар сафар киришда шу кодни терасиз.';
+
+  @override
+  String get pinHintConfirm => 'Яратган ПИН-кодингизни яна бир марта киритинг.';
+
+  @override
+  String get pinHintUnlock =>
+      'Бу қурилма учун яратган ПИН-кодингизни киритинг.';
+
+  @override
+  String get unlockLabel => 'Очиш';
+
+  @override
+  String get signInAsDemo => 'Демо сифатида кириш';
+
+  @override
+  String get homeTitle => 'Бош саҳифа';
+
+  @override
+  String get homeMessage => 'Фоундатион кейинги феатуре учун тайёр.';
+
+  @override
+  String get logout => 'Чиқиш';
+
+  @override
+  String get deleteAccount => 'Ҳисобни ўчириш';
+
+  @override
+  String get deleteAccountTitle => 'Ҳисобингиз ўчирилсинми?';
+
+  @override
+  String get deleteAccountMessage =>
+      'Бу амал ҳисобингиз ва унга боғлиқ профил малумотларини ўчиради. Амални ортга қайтариб бўлмайди.';
+
+  @override
+  String get deleteAccountCancel => 'Бекор қилиш';
+
+  @override
+  String get deleteAccountConfirm => 'Ўчириш';
+
+  @override
+  String get retry => 'Қайта уриниш';
+
+  @override
+  String get telegramWaiting =>
+      'Телеграмда телефон рақамингизни тасдиқланг, кейин иловага қайтинг.';
+
+  @override
+  String get candidatesTabLabel => 'Номзодлар';
+
+  @override
+  String get messagesTabLabel => 'Хабарлар';
+
+  @override
+  String get servicesTabLabel => 'Хизматлар';
+
+  @override
+  String get savedTabLabel => 'Сақланган';
+
+  @override
+  String get profileTabLabel => 'Профил';
+
+  @override
+  String get candidatesPlaceholder => 'Ҳозирча номзодлар саҳифаси.';
+
+  @override
+  String get messagesPlaceholder => 'Ҳозирча хабарлар саҳифаси.';
+
+  @override
+  String get servicesPlaceholder => 'Ҳозирча хизматлар саҳифаси.';
+
+  @override
+  String get servicesHeroTitle => 'Танишув йўлида\nёлғиз емассиз';
+
+  @override
+  String get servicesHeroSubtitle =>
+      'Психолог, оилавий учрашув ва профил текшируви — ҳаммаси бир жойда.';
+
+  @override
+  String get servicesHeroSupportValue => '24/7';
+
+  @override
+  String get servicesHeroSupportLabel => 'ёрдам';
+
+  @override
+  String get servicesHeroPsychologistsValue => '12';
+
+  @override
+  String get servicesHeroPsychologistsLabel => 'психолог';
+
+  @override
+  String get servicesHeroPrivacyValue => 'Махфий';
+
+  @override
+  String get servicesHeroPrivacyLabel => 'суҳбат';
+
+  @override
+  String get servicesPopularSection => 'Енг кўп танланади';
+
+  @override
+  String get servicePsychologistTitle => 'Оилавий психолог';
+
+  @override
+  String get servicePsychologistSubtitle => 'Никоҳдан олдин суҳбат';
+
+  @override
+  String get servicePsychologistRating => '4.9';
+
+  @override
+  String get servicePsychologistDescription =>
+      'Келишмовчилик сабабларини олдиндан кўрасиз. Суҳбат тўлиқ махфий — ҳеч ким билмайди.';
+
+  @override
+  String get servicePsychologistDuration => '50 дақиқа';
+
+  @override
+  String get servicePsychologistFormat => 'Офлайн ёки уйда';
+
+  @override
+  String get servicePsychologistExperts => '12 мутахассис';
+
+  @override
+  String get servicePsychologistPrice => 'битта сессий';
+
+  @override
+  String get serviceViewAction => 'Кўриш';
+
+  @override
+  String get servicesOtherSection => 'Бошқа хизматлар';
+
+  @override
+  String get serviceMeetingTitle => 'Оилавий учрашув';
+
+  @override
+  String get serviceMeetingSubtitle => 'Фақат вакиллар таклиф қилади';
+
+  @override
+  String get serviceVerificationTitle => 'Профил текшируви';
+
+  @override
+  String get serviceVerificationSubtitle => 'Селфи орқали тасдиқлаш';
+
+  @override
+  String get servicePremiumTitle => 'Совчи Премиум';
+
+  @override
+  String get servicePremiumSubtitle => 'Кўпроқ таклиф ва тўлиқ мослик таҳлили';
+
+  @override
+  String get serviceBoostTitle => 'Юқорига кўтариш';
+
+  @override
+  String get serviceBoostSubtitle =>
+      'Профилингиз 24 соат давомида рўйхат бошида кўринади.';
+
+  @override
+  String get servicesHowSection => 'Қандай ишлайди';
+
+  @override
+  String get servicesHowStepOneTitle => 'Хизматни танлайсиз';
+
+  @override
+  String get servicesHowStepOneSubtitle => 'Ҳар бири ҳақида тўлиқ малумот бор';
+
+  @override
+  String get servicesHowStepTwoTitle => 'Вақт ва шаклни белгилайсиз';
+
+  @override
+  String get servicesHowStepTwoSubtitle => 'Офлайн ёки уйингизда';
+
+  @override
+  String get servicesHowStepThreeTitle => 'Тўлайсиз ва учрашасиз';
+
+  @override
+  String get servicesHowStepThreeSubtitle => 'Бекор қилсангиз пул қайтади';
+
+  @override
+  String get servicesOptionalNote =>
+      'Ҳеч бир хизмат мажбурий емас — уларсиз ҳам иловадан тўлиқ фойдаланасиз.';
+
+  @override
+  String get servicesActionComingSoon => 'Бу хизмат кейинги босқичда уланади';
+
+  @override
+  String get savedPlaceholder => 'Ҳозирча сақланганлар саҳифаси.';
+
+  @override
+  String get profilePlaceholder => 'Ҳозирча профил саҳифаси.';
+
+  @override
+  String get notificationsActionLabel => 'Билдиришномалар';
+
+  @override
+  String get notificationsEmpty => 'Ҳозирча билдиришномалар йўқ';
+
+  @override
+  String get notificationsMarkAllRead => 'Барчасини ўқилган деб белгилаш';
+
+  @override
+  String get candidatesFilterMatches => 'Мослар';
+
+  @override
+  String get candidatesFilterRecommended => 'Тавсиялар';
+
+  @override
+  String get candidatesFilterNearby => 'Атрофдагилар';
+
+  @override
+  String get privatePhotoLabel => 'Махфий расм';
+
+  @override
+  String get matchLockedLabel => 'мослик ёпиқ';
+
+  @override
+  String get genericError => 'Нимадир хато кетди.';
+
+  @override
+  String get savedEmptyState => 'Ҳозирча сақланган профил йўқ.';
+
+  @override
+  String get candidateDetailRequestPhotoPermission =>
+      'Расмни кўриш учун рухсат сўраш';
+
+  @override
+  String get candidateDetailOptionsSubtitle => 'Нима қилмоқчисиз?';
+
+  @override
+  String get candidateDetailSaveSubtitle =>
+      'Кейин «Сақланган» бўлимидан топасиз';
+
+  @override
+  String get candidateDetailSaveToSaved => 'Сақланганларга қўшиш';
+
+  @override
+  String get candidateDetailShare => 'Профилни улашиш';
+
+  @override
+  String get candidateDetailShareSubtitle =>
+      'Вакилингизга ёки оилангизга юборинг';
+
+  @override
+  String get candidateDetailPhotoPermissionSubtitle =>
+      'Сўров номзодга ва унинг вакилига боради';
+
+  @override
+  String get candidateDetailReport => 'Шикоят қилиш';
+
+  @override
+  String get candidateDetailReportSubtitle => 'Модератор 24 соат ичида кўради';
+
+  @override
+  String get candidateDetailBlock => 'Профилни блоклаш';
+
+  @override
+  String get candidateDetailBlockSubtitle => 'У сизни бошқа кўрмайди';
+
+  @override
+  String get candidateDetailCompatibilityTitle => 'Умумий мослик';
+
+  @override
+  String candidateDetailVoiceIntro(String duration) {
+    return 'Ovozli tanishtiruv · $duration';
+  }
+
+  @override
+  String get candidateDetailVoiceDuration => '12 сек';
+
+  @override
+  String get candidateDetailSendProposal => 'Совчи таклифи юбориш';
+
+  @override
+  String get candidateDetailSave => 'Сақлаш';
+
+  @override
+  String get candidateDetailUnsave => 'Сақланганлардан олиб ташлаш';
+
+  @override
+  String get candidateDetailNoPhoto => 'Профил расми йўқ';
+
+  @override
+  String get candidateDetailLastActivity => 'Охирги фаоллик: яқинда';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableTitle =>
+      'Мослик ҳисобланмаган';
+
+  @override
+  String get candidateDetailCompatibilityUnavailableDescription =>
+      'Номзод 30 саволлик сўровномани ҳали тўлдирмаган — шу сабабли мослик фоизи кўрсатилмайди. Қуйидаги малумотлар номзод анкетасидан олинган.';
+
+  @override
+  String get candidateDetailBasicInformation => 'Асосий малумотлар';
+
+  @override
+  String get candidateDetailBirthYear => 'Туғилган йили';
+
+  @override
+  String candidateDetailBirthYearWithAge(int birthYear, int age) {
+    return '$birthYear · $age yosh';
+  }
+
+  @override
+  String get candidateDetailCity => 'Шаҳар';
+
+  @override
+  String get candidateDetailMaritalStatus => 'Оилавий ҳолати';
+
+  @override
+  String get candidateDetailChildren => 'Фарзандлари';
+
+  @override
+  String get candidateDetailNoChildren => 'Йўқ';
+
+  @override
+  String get candidateDetailHasChildren => 'Бор';
+
+  @override
+  String candidateDetailChildrenCount(int count) {
+    return '$count ta';
+  }
+
+  @override
+  String get candidateDetailEducationAndWork => 'Талим ва иш';
+
+  @override
+  String get candidateDetailEducation => 'Малумоти';
+
+  @override
+  String get candidateDetailProfession => 'Касб';
+
+  @override
+  String get candidateDetailLifestyle => 'Турмуш тарзи';
+
+  @override
+  String get candidateDetailHealthStatus => 'Соғлиғи';
+
+  @override
+  String get candidateDetailIncompleteProfileTitle => 'Анкета тўлиқ емас';
+
+  @override
+  String get candidateDetailIncompleteProfileDescription =>
+      'Номзод айрим малумотларни ҳали тўлдирмаган. Совчи таклифи юборилганда унга анкетани тўлдириш еслатмаси боради.';
+
+  @override
+  String get candidateDetailAbout => 'Номзод ҳақида';
+
+  @override
+  String get candidateRequestPending => 'Жараёнда...';
+
+  @override
+  String get candidateRequestRetry => 'Қайта сўров юбориш';
+
+  @override
+  String candidateRequestRetryAt(Object date) {
+    return 'Qayta so‘rov yuborish: $date';
+  }
+
+  @override
+  String get candidateRequestChat => 'Суҳбатлашиш';
+
+  @override
+  String get candidateRequestForwarded => 'Вакилга йўналтирилди';
+
+  @override
+  String get photoRequestTitle => 'Расм кўриш сўрови';
+
+  @override
+  String get photoRequestDescription =>
+      'Сўров номзодга ва унинг вакилига юборилади. Қарор фақат уларга тегишли.';
+
+  @override
+  String get photoRequestMessageHint => 'Хабар (ихтиёрий)';
+
+  @override
+  String get photoRequestDurationLabel => 'Сўров муддати';
+
+  @override
+  String get photoRequestDurationValue => '7 кун';
+
+  @override
+  String get photoRequestRejectLabel => 'Рад етилса';
+
+  @override
+  String get photoRequestRejectValue => 'қайта сўраш 7 кундан кейин';
+
+  @override
+  String get photoRequestPrivacyNote =>
+      'Расм очилса, у фақат сизга кўринади ва скриншот блокланади.';
+
+  @override
+  String get photoRequestSubmit => 'Сўров юбориш';
+
+  @override
+  String get candidateProposalSentTitle => 'Таклиф юборилди';
+
+  @override
+  String candidateProposalSentDescription(Object name) {
+    return '$name va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.';
+  }
+
+  @override
+  String get candidateProposalSentTimelineSent => 'Таклиф юборилди';
+
+  @override
+  String candidateProposalSentTimelineReview(Object name) {
+    return '$name ko‘rib chiqadi';
+  }
+
+  @override
+  String get candidateProposalSentTimelineChat =>
+      'Жавоб келса — суҳбат очилади';
+
+  @override
+  String get candidateProposalSentQuotaLabel => 'Бу ҳафталик таклифлар';
+
+  @override
+  String get candidateProposalSentQuotaValue => '2 / 3';
+
+  @override
+  String candidateProposalSentNote(Object remaining) {
+    return 'Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana $remaining ta taklif qoldi.';
+  }
+
+  @override
+  String get candidateProposalSentReturn => 'Номзодларга қайтиш';
+
+  @override
+  String get candidatePhotoPermissionSentTitle =>
+      'Расм кўриш учун рухсат сўралди';
+
+  @override
+  String candidatePhotoPermissionSentDescription(Object name) {
+    return '$name va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.';
+  }
+
+  @override
+  String get candidatePhotoPermissionSentReturn => 'Профилга қайтиш';
+
+  @override
+  String candidateBlockDialogTitle(String candidateName) {
+    return '$candidateName ni bloklaysizmi?';
+  }
+
+  @override
+  String get candidateBlockDialogSubtitle =>
+      'У сизни кўрмайди, сиз ҳам уни кўрмайсиз. Блоклаганингизни ўзи билмайди.';
+
+  @override
+  String get candidateBlockPointChatClosed =>
+      'Суҳбат ёпилади, ёзишмалар сақланади';
+
+  @override
+  String get candidateBlockPointRemovedSaved =>
+      'Сақланганлар рўйхатидан олиб ташланади';
+
+  @override
+  String get candidateBlockPointRepresentativeBlocked =>
+      'Унинг вакили ҳам сиз билан боғлана олмайди';
+
+  @override
+  String get candidateBlockAction => 'Блоклаш';
+
+  @override
+  String get candidateBlockCancel => 'Бекор қилиш';
+
+  @override
+  String get candidateBlockedTitle => 'Профил блокланди';
+
+  @override
+  String candidateBlockedSubtitle(String candidateName) {
+    return '$candidateName endi sizni ko‘rmaydi.';
+  }
+
+  @override
+  String get candidateBlockedWhoLabel => 'Ким';
+
+  @override
+  String get candidateBlockedTimeLabel => 'Блокланди';
+
+  @override
+  String get candidateBlockedStatusLabel => 'Ҳолат';
+
+  @override
+  String get candidateBlockedStatusValue => 'Блокланган';
+
+  @override
+  String get candidateBlockedSettingsHint =>
+      'У блоклаганингизни билмайди. Блокни Созламалар → Блокланган профиллар бўлимидан олиб ташлайсиз.';
+
+  @override
+  String get candidateBlockedClose => 'Ёпиш';
+
+  @override
+  String get candidateReportTitle => 'Нима бўлди?';
+
+  @override
+  String get candidateReportSubtitle =>
+      'Суҳбат тарихи бизда сақланади, текширишга ёрдам беради.';
+
+  @override
+  String get candidateReportTargetProfile => 'Шикоят шу профил устидан';
+
+  @override
+  String get candidateReportReasonSection => 'Сабаб';
+
+  @override
+  String get candidateReportReasonInappropriate => 'Одобсиз сўз ёки расм';
+
+  @override
+  String get candidateReportReasonFake => 'Ёлғон малумот ёки сохта профил';
+
+  @override
+  String get candidateReportReasonNoMarriage => 'Никоҳ нияти йўқ';
+
+  @override
+  String get candidateReportReasonScam => 'Молиявий фирибгарлик';
+
+  @override
+  String get candidateReportReasonAbusiveLanguage => 'Одобсиз сўз';
+
+  @override
+  String get candidateReportReasonFakeProfile => 'Сохта профил';
+
+  @override
+  String get candidateReportReasonFraud => 'Фирибгарлик';
+
+  @override
+  String get candidateReportReasonSpam => 'Спам ва реклама';
+
+  @override
+  String get candidateReportReasonFalseInformation => 'Нотўғри малумот';
+
+  @override
+  String get candidateReportReasonThreat => 'Ҳақорат ва таҳдид';
+
+  @override
+  String get candidateReportReasonNoSeriousIntent => 'Никоҳ нияти йўқ';
+
+  @override
+  String get candidateReportReasonOther => 'Бошқа сабаб';
+
+  @override
+  String get candidateReportNoteLabel => 'Қўшимча изоҳ (ихтиёрий)';
+
+  @override
+  String get candidateReportNoteHint => 'Нима бўлганини қисқача ёзинг...';
+
+  @override
+  String get candidateReportSubmitAction => 'Шикоятни юбориш';
+
+  @override
+  String get candidateReportSubmittedTitle => 'Шикоят юборилди';
+
+  @override
+  String get candidateReportSubmittedSubtitle => 'Натижа ҳақида хабар берамиз.';
+
+  @override
+  String get candidateReportNumberLabel => 'Ариза рақами';
+
+  @override
+  String get candidateReportSubmittedTimeLabel => 'Юборилди';
+
+  @override
+  String get candidateReportStatusLabel => 'Ҳолат';
+
+  @override
+  String get candidateReportStatusUnderReview => 'Кўриб чиқилмоқда';
+
+  @override
+  String get candidateReportStepHistoryPreserved =>
+      'Суҳбат тарихи далил сифатида сақланди';
+
+  @override
+  String get candidateReportStepModeratorReview => 'Модератор текшируви';
+
+  @override
+  String get candidateReportStepDecision => 'Қарор ва хабарнома';
+
+  @override
+  String get candidateReportNotice =>
+      'Бу фойдаланувчи сиз билан боғлана олмайди. Суҳбат вақтинча ёпилди.';
+
+  @override
+  String get surveyPromptTitle => 'Мослик фоизи ёпиқ';
+
+  @override
+  String get surveyPromptMessage =>
+      '30 та саволга жавоб беринг — АИ жавобларингизни таҳлил қилиб, ҳар бир номзод билан мослик фоизингизни автоматик ҳисоблайди.';
+
+  @override
+  String get surveyPromptButton => 'Сўровномани бошлаш';
+
+  @override
+  String get mockCandidateMohira => 'Моҳира Р., 23';
+
+  @override
+  String get mockCandidateZilola => 'Зилола К., 25';
+
+  @override
+  String get mockCandidateNilufar => 'Нилуфар А., 22';
+
+  @override
+  String get mockCandidateDilnoza => 'Дилноза С., 27';
+
+  @override
+  String get mockCityTashkent => 'Тошкент';
+
+  @override
+  String get mockCitySamarkand => 'Самарқанд';
+
+  @override
+  String get mockCityFergana => 'Фарғона';
+
+  @override
+  String get mockCityBukhara => 'Бухоро';
+
+  @override
+  String get messagesSegmentChats => 'Суҳбатлар';
+
+  @override
+  String get messagesSegmentRequests => 'Сўровлар';
+
+  @override
+  String get chatRequestsEmpty => 'Ҳозирча келган сўровлар йўқ';
+
+  @override
+  String chatRequestCardTitle(String name) {
+    return 'Soʻrov / $name';
+  }
+
+  @override
+  String get chatRequestPendingHint =>
+      'Қабул қилмагунингизча номзод сизга ёза олмайди.';
+
+  @override
+  String get chatRequestProfileTitle => 'Номзод профили';
+
+  @override
+  String get chatRequestCompatibilityLabel => 'МОСЛИК БЎЛИМЛАР КЕСИМИДА';
+
+  @override
+  String get chatRequestCompatibilityShortLabel => 'мослик';
+
+  @override
+  String get chatRequestCompatibilityUnavailable =>
+      'Мослик фоизи ҳали ҳисобланмаган.';
+
+  @override
+  String get chatRequestAccept => 'Қабул қилиш';
+
+  @override
+  String get chatRequestReject => 'Рад етиш';
+
+  @override
+  String get chatRequestViaRepresentative => 'Вакил орқали';
+
+  @override
+  String get chatRequestPhotoVerified => 'Расм текшируви ўтган';
+
+  @override
+  String get chatRequestSeriousIntent => 'Нияти жиддий';
+
+  @override
+  String chatRequestRepresentativeLabel(String name) {
+    return 'Vakili: $name';
+  }
+
+  @override
+  String get chatRequestRepresentativeNote => 'Мурожаат вакил орқали келган';
+
+  @override
+  String get chatRequestProfileUnavailable =>
+      'Профил малумотлари вақтинча мавжуд емас.';
+
+  @override
+  String chatRequestLocationProfession(String location, String profession) {
+    return '$location, $profession';
+  }
+
+  @override
+  String get chatRequestCandidateFallback => 'Номзод';
+
+  @override
+  String get chatRequestSectionFaith => 'Дин ва қадриятлар';
+
+  @override
+  String get chatRequestSectionFinance => 'Молия ва бошқарув';
+
+  @override
+  String get chatRequestSectionFamily => 'Қариндошлар';
+
+  @override
+  String get chatRequestSectionCharacter => 'Характер';
+
+  @override
+  String get chatRequestSectionPlans => 'Келажак режалари';
+
+  @override
+  String get chatRequestAccepted => 'Сўров қабул қилинди';
+
+  @override
+  String get chatRequestRejected => 'Сўров рад етилди';
+
+  @override
+  String get chatRoomsEmpty => 'Ҳозирча очиқ суҳбатлар йўқ';
+
+  @override
+  String get chatThreadOpen => 'Суҳбатни очиш';
+
+  @override
+  String get chatParticipantFallback => 'Суҳбатдош';
+
+  @override
+  String get chatSafetyNotice =>
+      'Суҳбатни Суний интеллект кузатиб туради — одобсиз сўз ва расм ўтмайди.';
+
+  @override
+  String get chatIcebreakerGoal => 'Ҳаётингиздаги енг катта мақсадингиз нима?';
+
+  @override
+  String get chatIcebreakerFamily =>
+      'Оилада қандай ананани давом еттиришни хоҳлайсиз?';
+
+  @override
+  String get chatIcebreakerBook => 'Сизни қайси китоб енг кўп илҳомлантиради?';
+
+  @override
+  String get chatIcebreakerChange =>
+      'Ўз ҳаётингизда ўзгартирмоқчи бўлган бир нарсани айтинг.';
+
+  @override
+  String get chatWriteMessage => 'Хабар ёзинг…';
+
+  @override
+  String get chatSendMessage => 'Хабарни юбориш';
+
+  @override
+  String get chatReplyTo => 'Жавоб бериш';
+
+  @override
+  String get chatReplyCancel => 'Жавобни бекор қилиш';
+
+  @override
+  String get chatTyping => 'ёзяпти…';
+
+  @override
+  String get chatOpenTimeRemaining => 'Чат 72 соат очиқ';
+
+  @override
+  String get chatMoreActions => 'Қўшимча амаллар';
+
+  @override
+  String get chatMoreSheetTitle => 'Иловани улашиш';
+
+  @override
+  String get chatMoreSheetSubtitle =>
+      'Дўстларингизни Совчига таклиф қилинг — таклиф коди билан.';
+
+  @override
+  String get chatReportAction => 'Шикоят қилиш';
+
+  @override
+  String get chatDeleteAction => 'Чатни ўчириш';
+
+  @override
+  String chatDeleteTitle(String name) {
+    return '$name ni suhbatni oʻchirmoqchimisiz?';
+  }
+
+  @override
+  String get chatDeleteSubtitle =>
+      'Агар суҳбатни ўчирсангиз номзод малумотлари ҳам беркитилади!';
+
+  @override
+  String get chatDeleteCancel => 'Бекор қилиш';
+
+  @override
+  String get chatDeleteConfirm => 'Ўчириш';
+
+  @override
+  String get mockMessageMohiraName => 'Моҳира Р.';
+
+  @override
+  String get mockMessageZilolaName => 'Зилола К.';
+
+  @override
+  String get mockMessageNilufarName => 'Нилуфар А.';
+
+  @override
+  String get mockMessageDilnozaName => 'Дилноза С.';
+
+  @override
+  String get mockMessageMohiraPreview => 'Вақтингиз бўлса танишсак.';
+
+  @override
+  String get mockMessageZilolaPreview => 'Таклифингиз кўрилди';
+
+  @override
+  String get mockMessageNilufarPreview => 'Чат муддати тугади';
+
+  @override
+  String get mockMessageDilnozaPreview => 'Ҳозирча жавоб кутилмоқда';
+
+  @override
+  String get messageTimeYesterday => 'Кеча';
+
+  @override
+  String get messageTimeMonday => 'Душ';
+
+  @override
+  String get messageTimeTuesday => 'Сеш';
+
+  @override
+  String get savedFilterAll => 'Ҳаммаси';
+
+  @override
+  String get savedFilterInvited => 'Таклиф юборилган';
+
+  @override
+  String get savedFilterWaiting => 'Жавоб кутилмоқда';
+
+  @override
+  String savedLimitLabel(int savedCount, int limit) {
+    return '$savedCount / $limit saqlangan';
+  }
+
+  @override
+  String get savedPremiumCta => 'Премиум — чексиз';
+
+  @override
+  String savedUpsellTitle(int remaining) {
+    return 'Yana $remaining ta joy qoldi';
+  }
+
+  @override
+  String get savedUpsellMessage =>
+      'Бепул режада 10 тагача профил сақланади. Премиум билан чеклов йўқ.';
+
+  @override
+  String get questionnaireOptionalBadge => 'Ихтиёрий қадам';
+
+  @override
+  String questionnaireIntroTitle(int count, int minutes) {
+    return '$count ta savol — $minutes daqiqa';
+  }
+
+  @override
+  String get questionnaireIntroDescription =>
+      'Жавобларингизни таҳлил қилиб, ҳар бир номзод билан мослик фоизингизни кўрсатамиз. Хоҳламасангиз, кейинроқ ҳам топширасиз.';
+
+  @override
+  String questionnaireQuestionCount(int count) {
+    return '$count savol';
+  }
+
+  @override
+  String get questionnaireWithoutTitle => 'Сўровномасиз нима бўлади?';
+
+  @override
+  String get questionnaireWithoutBody =>
+      'Профилингиз ишлайди ва номзодларни кўрасиз, лекин АИ мосликни ҳисобламайди — фоиз ва бўлимлар кесимидаги таҳлил ёпиқ қолади.';
+
+  @override
+  String get questionnaireStart => 'Ҳа, сўровномани бошлайман';
+
+  @override
+  String get questionnaireLater => 'Кейинроқ тўлдираман';
+
+  @override
+  String get questionnaireEmpty => 'Ҳозирча саволлар мавжуд емас.';
+
+  @override
+  String questionnaireProgress(int current, int total) {
+    return '$current/$total';
+  }
+
+  @override
+  String get questionnaireNext => 'Кейинги савол';
+
+  @override
+  String get questionnaireSubmit => 'Жавобларни юбориш';
+
+  @override
+  String get questionnaireAnalysisTitle => 'Жавобларингиз таҳлил қилинмоқда';
+
+  @override
+  String get questionnaireAnalysisBody =>
+      'АИ қадриятлар, молия ва характер профилингизни тузиб, мос номзодларни танлайди.';
+
+  @override
+  String get questionnaireResultTitle => 'Сизнинг профилингиз тайёр!';
+
+  @override
+  String get questionnaireResultSubtitle =>
+      'Суний интеллект аниқлаган мослик енди очиқ.';
+
+  @override
+  String get questionnaireHonestyPill => 'Самимийлик: юқори';
+
+  @override
+  String get questionnaireSeriousPill => 'Нияти жиддий';
+
+  @override
+  String questionnaireMatchedCandidates(int count) {
+    return '$count ta mos nomzod';
+  }
+
+  @override
+  String get questionnaireMatchedCandidatesSubtitle =>
+      'Мослик АИ томонидан ҳисобланди';
+
+  @override
+  String get questionnaireNextStepsTitle => 'Енди нима бўлади?';
+
+  @override
+  String get questionnaireAiMatchCalculatedTitle => 'АИ мослик ҳисобланди';
+
+  @override
+  String get questionnaireAiMatchCalculatedBody =>
+      'Жавобларингиз асосида номзодлар танланди.';
+
+  @override
+  String get questionnaireCandidatesVeiledTitle => 'Номзодлар парда остида';
+
+  @override
+  String get questionnaireCandidatesVeiledBody =>
+      'Суратлар иккала томон розилигидан кейин очилади.';
+
+  @override
+  String get questionnaireConsentOnlyTitle => 'Алоқа фақат розилик билан';
+
+  @override
+  String get questionnaireConsentOnlyBody =>
+      'Суҳбат вакил ёки оила иштирокида бошланади.';
+
+  @override
+  String get questionnaireHonestyTitle => 'Самимийлик индекси · юқори';
+
+  @override
+  String get questionnaireHonestyBody =>
+      'Тузоқ саволларга жавобларингиз изчил. Профил ишончли деб белгиланди.';
+
+  @override
+  String get questionnaireSeriousBadge => '“Нияти жиддий” белгиси берилди';
+
+  @override
+  String get questionnaireShowCandidates => 'Мос номзодларни кўриш';
+
+  @override
+  String get questionnaireTraitTraditional => 'ананавий';
+
+  @override
+  String get questionnaireTraitBalanced => 'балансли';
+
+  @override
+  String get candidatesViewGrid => 'Катак кўриниши';
+
+  @override
+  String get candidatesViewMap => 'Харита кўриниши';
+
+  @override
+  String get nearbyPermissionTitle => 'Яқин атрофдаги номзодлар';
+
+  @override
+  String get nearbyPermissionDescription =>
+      'Жойлашувингиз аниқ нуқта сифатида емас, тахминий зона сифатида ишлатилади.';
+
+  @override
+  String get nearbyPermissionOpenSettings => 'Созламаларни очиш';
+
+  @override
+  String get nearbyPermissionEnableService => 'Жойлашувни ёқиш';
+
+  @override
+  String get nearbyPermissionAllow => 'Жойлашувга рухсат бериш';
+
+  @override
+  String get nearbyPermissionNotNow => 'Ҳозир емас';
+
+  @override
+  String get nearbyPermissionFootnote =>
+      '«Ҳозир емас» ни танласангиз, Мослар ва Тавсиялар аввалгидек ишлайди.';
+
+  @override
+  String get nearbyPermissionRuleHidden =>
+      'Аниқ манзилингиз ҳеч кимга кўрсатилмайди';
+
+  @override
+  String get nearbyPermissionRuleZone =>
+      'Бошқалар сизни ~2 км ли зона ичида кўради';
+
+  @override
+  String get nearbyPermissionRuleSettings =>
+      'Исталган вақтда Созламалардан ўчирасиз';
+
+  @override
+  String get nearbyUnknownZone => 'Яқин зона';
+
+  @override
+  String nearbyCandidateCount(int count) {
+    return '$count ta nomzod';
+  }
+
+  @override
+  String nearbyZoneDistance(String zone, String distance) {
+    return '$zone · ~$distance km';
+  }
+
+  @override
+  String get nearbyYou => 'Сиз';
+
+  @override
+  String nearbyAroundCount(int count) {
+    return 'Atrofingizda $count ta nomzod';
+  }
+
+  @override
+  String get nearbyShowAll => 'Барчаси';
+
+  @override
+  String get nearbyCloseMap => 'Харитани ёпиш';
+
+  @override
+  String nearbyWithinRadius(int radius) {
+    return '$radius km ichida';
+  }
+
+  @override
+  String get nearbyRecenter => 'Жойлашувимга қайтиш';
+
+  @override
+  String get nearbySettingsTitle => 'Радиус ва кўриниш';
+
+  @override
+  String get nearbySearchRadiusLabel => 'Радиус';
+
+  @override
+  String get nearbyRadiusRange => '1–25 км';
+
+  @override
+  String nearbyRadiusOption(int radius) {
+    return '$radius km';
+  }
+
+  @override
+  String get nearbyEntireRegion => 'Бутун вилоят';
+
+  @override
+  String get nearbyEntireRegionUnavailable =>
+      'Бутун вилоят бўйича қидирув ҳозирча мавжуд емас';
+
+  @override
+  String get nearbyRadiusHint =>
+      'Радиус қанчалик катта бўлса, мослик фоизи шунчалик пасаяди.';
+
+  @override
+  String get nearbyVisibilityTitle => 'Мени Атрофдагилар рўйхатида кўрсатиш';
+
+  @override
+  String get nearbyVisibilitySubtitle =>
+      'Ўчирсангиз, сиз ҳам ҳеч кимни кўрмайсиз';
+
+  @override
+  String get nearbyAudienceTitle => 'Ким мени Атрофдагиларда кўра олади';
+
+  @override
+  String get nearbyAudienceAll => 'Ҳамма номзодлар';
+
+  @override
+  String get nearbyAudienceHighMatch => 'Фақат мослик 70% дан юқори';
+
+  @override
+  String get nearbyAudienceRecommended => 'тавсия етилади';
+
+  @override
+  String get nearbyAudienceRepresented => 'Фақат вакили бор номзодлар';
+
+  @override
+  String get nearbyPrivacyZoneNote =>
+      'Зона маркази кунига бир марта тасодифий силжийди — шунинг учун сизнинг уйингизни ҳисоблаб бўлмайди.';
+
+  @override
+  String get nearbySettingsSave => 'Сақлаш';
+
+  @override
+  String nearbyEmptyTitle(int radius) {
+    return '$radius km ichida hozircha nomzod yo‘q';
+  }
+
+  @override
+  String get nearbyEmptyDescription =>
+      'Радиусни кенгайтиринг ёки мезонларни бироз юмшатинг.';
+
+  @override
+  String nearbyExpandRadius(int radius) {
+    return 'Radiusni $radius km ga kengaytirish';
+  }
+
+  @override
+  String get nearbyChangeCriteria => 'Мезонларни ўзгартириш';
+
+  @override
+  String get nearbyNotifyTitle => 'Янги номзод пайдо бўлса хабар беринг';
+
+  @override
+  String get nearbyNotifySubtitle => 'Кунига бир марта, кўпи билан';
+
+  @override
+  String get profileEdit => 'Профилни таҳрирлаш';
+
+  @override
+  String get profileSettings => 'Профил созламалари';
+
+  @override
+  String profileIdentifier(String code) {
+    return 'Foydalanuvchi raqami: $code';
+  }
+
+  @override
+  String get profilePreview => 'Бошқалар кўриниши';
+
+  @override
+  String get profileCopyIdentifier => 'Фойдаланувчи рақамини нусхалаш';
+
+  @override
+  String get profileCompleteTitle => 'Профилингизни тўлдиринг';
+
+  @override
+  String get profileCompleteSubtitle => 'Аниқроқ жуфтлик топиш учун';
+
+  @override
+  String get profileMyPhotos => 'СУРАТЛАРИМ';
+
+  @override
+  String get profileMainPhoto => 'АСОСИЙ';
+
+  @override
+  String get profileAddPhoto => 'Сурат қўшиш';
+
+  @override
+  String profilePhotoSemantics(int index) {
+    return 'Profil surati $index';
+  }
+
+  @override
+  String get profilePhotoSourceTitle => 'Янги сурат';
+
+  @override
+  String get profilePhotoSourceSubtitle =>
+      'Юклангандан сўнг сурат юз текширувидан ўтади.';
+
+  @override
+  String get profilePhotoCamera => 'Камерадан олиш';
+
+  @override
+  String get profilePhotoGallery => 'Галереядан танлаш';
+
+  @override
+  String get profilePhotoActionsTitle => 'Сурат';
+
+  @override
+  String get profilePhotoSetMain => 'Асосий қилиб белгилаш';
+
+  @override
+  String get profilePhotoReplace => 'Алмаштириш';
+
+  @override
+  String get profilePhotoDelete => 'Ўчириш';
+
+  @override
+  String get profilePhotoCancel => 'Бекор қилиш';
+
+  @override
+  String get profilePhotoDeleteTitle => 'Суратни ўчирасизми?';
+
+  @override
+  String get profilePhotoDeleteSubtitle =>
+      'Сурат профилингиздан олиб ташланади. Ўрнига янгисини юклашингиз мумкин.';
+
+  @override
+  String get profileAboutSection => 'ЎЗИНГИЗ ҲАҚИНГИЗДА';
+
+  @override
+  String get profileNotFilled => 'Ҳали тўлдирилмаган';
+
+  @override
+  String get profileAdd => 'Қўшиш';
+
+  @override
+  String get profileEditShort => 'Таҳрирлаш';
+
+  @override
+  String get profilePhotoVerification => 'Расм текшируви';
+
+  @override
+  String get profilePhotoVerificationSubtitle =>
+      'Асосий суратингиз камера орқали селфи билан солиштирилади';
+
+  @override
+  String get profileServices => 'Хизматлар';
+
+  @override
+  String get profileServicesSubtitle =>
+      'Психолог, оилавий учрашув, текширув ва Премиум';
+
+  @override
+  String get profileIdentifierCopied => 'Фойдаланувчи рақами нусхаланди';
+
+  @override
+  String get profileActionComingSoon =>
+      'Бу бўлим кейинги профил босқичида уланади';
+
+  @override
+  String get settingsTitle => 'Созламалар';
+
+  @override
+  String get settingsBack => 'Орқага';
+
+  @override
+  String get settingsAccountSection => 'Ҳисоб';
+
+  @override
+  String get settingsLanguage => 'Тил';
+
+  @override
+  String get settingsTheme => 'Мавзу';
+
+  @override
+  String get settingsLanguageSheetTitle => 'Тил';
+
+  @override
+  String get settingsThemeSheetTitle => 'Мавзу';
+
+  @override
+  String get settingsLanguageUzbekLatin => 'O‘zbek';
+
+  @override
+  String get settingsLanguageUzbekCyrillic => 'Ўзбек';
+
+  @override
+  String get settingsLanguageRussian => 'Русский';
+
+  @override
+  String get settingsLanguageEnglish => 'English';
+
+  @override
+  String get settingsThemeSystem => 'Автоматик';
+
+  @override
+  String get settingsThemeLight => 'Ёруғ';
+
+  @override
+  String get settingsThemeDark => 'Қоронғи';
+
+  @override
+  String get settingsEditProfile => 'Профилни таҳрирлаш';
+
+  @override
+  String get settingsPhotoPrivacy => 'Расм махфийлиги';
+
+  @override
+  String get settingsPhotoPrivacyAll => 'Ҳаммага очиқ';
+
+  @override
+  String get settingsBlockedUsers => 'Блокланган фойдаланувчилар';
+
+  @override
+  String get settingsRecoveryQuestion => 'Ҳисобни тиклаш саволи';
+
+  @override
+  String get settingsPrivacyChatSection => 'Махфийлик ва суҳбат';
+
+  @override
+  String get settingsPrivacyVeil => 'Махфийлик ва парда тартиби';
+
+  @override
+  String get settingsChatLimits => 'Суҳбат лимитлари';
+
+  @override
+  String get settingsChatLimitValue => '72 соат';
+
+  @override
+  String get settingsParentLink => 'Ота-она улаш';
+
+  @override
+  String get settingsNotificationAppearanceSection => 'Билдиришнома ва кўриниш';
+
+  @override
+  String get settingsNotifications => 'Билдиришномалар';
+
+  @override
+  String get settingsNotificationsSubtitle =>
+      'Янги лайк, мослик ва хабарлар ҳақида хабар берилади';
+
+  @override
+  String get settingsNotificationTypes => 'Билдиришнома турлари';
+
+  @override
+  String get settingsDocumentsSection => 'Ҳужжатлар';
+
+  @override
+  String get settingsPrivacyPolicy => 'Махфийлик сиёсати';
+
+  @override
+  String get settingsTerms => 'Фойдаланиш шартлари';
+
+  @override
+  String get settingsHelpInfoSection => 'Ёрдам ва маълумот';
+
+  @override
+  String get settingsServices => 'Хизматлар';
+
+  @override
+  String get settingsHelpCenter => 'Ёрдам маркази';
+
+  @override
+  String get settingsShareApp => 'Иловани улашиш';
+
+  @override
+  String get settingsLogout => 'Ҳисобдан чиқиш';
+
+  @override
+  String get settingsActionComingSoon => 'Бу созлама кейинги босқичда уланади';
+
+  @override
+  String get privacyPolicyLoadingLabel => 'Махфийлик сиёсати юкланмоқда';
+
+  @override
+  String get privacyPolicyLoadError =>
+      'Махфийлик сиёсатини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.';
+
+  @override
+  String get termsOfServiceLoadingLabel => 'Фойдаланиш шартлари юкланмоқда';
+
+  @override
+  String get termsOfServiceLoadError =>
+      'Фойдаланиш шартларини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.';
+
+  @override
+  String failureMessage(String type) {
+    String _temp0 = intl.Intl.selectLogic(type, {
+      'networkTimeout': 'Ulanish vaqti tugadi.',
+      'noInternet': 'Internet aloqasi yoʻq.',
+      'unauthorized': 'Sessiya tugagan.',
+      'cancelled': '',
+      'forbidden': 'Kirish rad etildi.',
+      'notFound': 'Maʼlumot topilmadi.',
+      'validation': 'Kiritilgan maʼlumotni tekshiring.',
+      'configuration': 'Google orqali kirish ushbu build uchun sozlanmagan.',
+      'unsupported': 'Bu kirish usuli hali mavjud emas.',
+      'server': 'Serverda xatolik yuz berdi.',
+      'unknown': 'Nimadir xato ketdi.',
+      'other': 'Nimadir xato ketdi.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get profileEditTitle => 'Профилни таҳрирлаш';
+
+  @override
+  String get profileEditAvatarTitle => 'Профил сурати';
+
+  @override
+  String get profileEditChangePhoto => 'Суратни ўзгартириш';
+
+  @override
+  String get profilePhotoManagementTitle => 'Асосий сурат';
+
+  @override
+  String get profilePhotoManagementSubtitle =>
+      'Профилингизда ва номзодлар рўйхатида биринчи шу сурат кўринади. Селфи текшируви ҳам шу сурат билан солиштирилади.';
+
+  @override
+  String get profilePhotoConfirm => 'Тасдиқлаш';
+
+  @override
+  String get profileFaceVerificationDone => 'Давом етиш';
+
+  @override
+  String get profileEditName => 'Исм';
+
+  @override
+  String get profileEditBirthYear => 'Туғилган йил';
+
+  @override
+  String get profileEditHeight => 'Бўй';
+
+  @override
+  String get profileEditWeight => 'Вазн';
+
+  @override
+  String get profileEditEducation => 'Малумоти';
+
+  @override
+  String get profileEditProfession => 'Касби';
+
+  @override
+  String get profileEditRegion => 'Вилоят';
+
+  @override
+  String get profileEditDistrict => 'Туман';
+
+  @override
+  String get profileEditMaritalStatus => 'Оилавий ҳолати';
+
+  @override
+  String get profileEditAboutSection => 'ЎЗИНГИЗ ҲАҚИНГИЗДА';
+
+  @override
+  String get profileEditAboutPlaceholder =>
+      'Ўзингиз, қадриятларингиз ва келажак режаларингиз ҳақида қисқа ёзинг…';
+
+  @override
+  String get profileEditSave => 'Сақлаш';
+
+  @override
+  String get profileEditCancel => 'Бекор қилиш';
+
+  @override
+  String get profileEditSuccess => 'Профил муваффақиятли сақланди';
+
+  @override
+  String get profileEditFirstName => 'Исм';
+
+  @override
+  String get profileEditLastName => 'Фамилия';
+
+  @override
+  String get profileEditSelect => 'Танлаш';
+
+  @override
+  String get profileEditSelectOption => 'Танланг';
+
+  @override
+  String get profileEditProfessionOther => 'Бошқа';
+
+  @override
+  String get profileEditProfessionInputLabel => 'Касбингизни ёзинг';
+
+  @override
+  String get profileEditSearchPlaceholder => 'Қидириш...';
+
+  @override
+  String get profileEditRegionSearchHint => 'Вилоят қидириш...';
+
+  @override
+  String get profileEditDistrictSearchHint => 'Туман қидириш...';
+
+  @override
+  String profileEditDistrictRegionCaption(String region) {
+    return '$region boʻyicha';
+  }
+
+  @override
+  String get profileEditNoOptions => 'Малумот топилмади';
+
+  @override
+  String profileEditCm(int cm) {
+    return '$cm sm';
+  }
+
+  @override
+  String profileEditKg(int kg) {
+    return '$kg kg';
+  }
+
+  @override
+  String get profileEditSelectRegionFirst => 'Олдин вилоятни танланг';
+
+  @override
+  String get profileEditDiscardConfirmTitle => 'Ўзгаришларни бекор қиласизми?';
+
+  @override
+  String get profileEditDiscardConfirmMessage =>
+      'Сақланмаган малумотлар йўқолади.';
+
+  @override
+  String get profileEditDiscard => 'Бекор қилиш';
+
+  @override
+  String get profileEditKeepEditing => 'Қолиш';
+
+  @override
+  String get profileEditUnsavedTitle => 'Ўзгаришлар сақланмади';
+
+  @override
+  String get profileEditUnsavedMessage =>
+      'Чиқсангиз, киритилган ўзгаришлар йўқолади.';
+
+  @override
+  String get profileEditStayEditing => 'Таҳрирлашда қолиш';
+
+  @override
+  String get profileEditExit => 'Чиқиш';
+
+  @override
+  String get profileEditUpdatedTitle => 'Профил янгиланди';
+
+  @override
+  String get profileEditUpdatedMessage =>
+      'Ўзгаришлар сақланди. Профилингиз номзодларга янгиланган кўринишда кўрсатилади.';
+
+  @override
+  String get profileEditUpdatedOk => 'Яхши';
+
+  @override
+  String get blockedUsersTitle => 'Блокланган профиллар';
+
+  @override
+  String get blockedUsersSubtitle =>
+      'Блокланган профиллар сизни қидирувда кўрмайди ва ёзолмайди.';
+
+  @override
+  String get blockedUsersEmpty => 'Блокланган профиллар йўқ';
+
+  @override
+  String get blockedUsersEmptySubtitle =>
+      'Сиз блоклаган барча профиллар шу йерда кўринади.';
+
+  @override
+  String get blockedUsersNote =>
+      'Шикоят қилинган профил модератор кўригидан кейин автоматик блокланади — бу рўйхатда «Шикоятдан кейин» деб белгиланади.';
+
+  @override
+  String blockedAtDate(String date) {
+    return 'Bloklangan $date';
+  }
+
+  @override
+  String get blockedAfterComplaint => 'Шикоятдан кейин блокланган';
+
+  @override
+  String get unblockButton => 'Блокдан чиқариш';
+
+  @override
+  String get unblockSuccess => 'Фойдаланувчи блокдан чиқарилди';
+
+  @override
+  String get unblockConfirmTitle => 'Блокдан чиқарилсинми?';
+
+  @override
+  String get unblockConfirmMessage =>
+      'Ушбу профил яна сизга хабар ёза олади ва профилингизни кўра олади.';
+
+  @override
+  String get cancel => 'Бекор қилиш';
+
+  @override
+  String get accountDeletionTitle => 'Ҳисобни ўчириш';
+
+  @override
+  String get accountDeletionWarningTitle => 'Бу амал қайтарилмайди';
+
+  @override
+  String get accountDeletionWarningMessage =>
+      'Ҳисоб ўчирилгач профилингизни тиклаш имкони бўлмайди.';
+
+  @override
+  String get accountDeletionItemsTitle => 'НИМАЛАР ЎЧИРИЛАДИ';
+
+  @override
+  String get accountDeletionPhotos => 'Барча суратлар ва овозли таништирув';
+
+  @override
+  String get accountDeletionQuestionnaire =>
+      'Сўровнома жавоблари ва мослик натижалари';
+
+  @override
+  String get accountDeletionChats => 'Суҳбатлар ва сақланган профиллар';
+
+  @override
+  String get accountDeletionRepresentative => 'Уланган вакил билан боғланиш';
+
+  @override
+  String get accountDeletionReasonTitle => 'САБАБ (ИХТИЁРИЙ)';
+
+  @override
+  String get accountDeletionReasonFoundMatch => 'Жуфтлик топдим';
+
+  @override
+  String get accountDeletionReasonNoTime => 'Ҳозирча вақтим йўқ';
+
+  @override
+  String get accountDeletionReasonPrivacy => 'Махфийлик хавотири';
+
+  @override
+  String get accountDeletionConfirm => 'Ҳисобни ўчириш';
+
+  @override
+  String get accountDeletionCancel => 'Бекор қилиш';
 }

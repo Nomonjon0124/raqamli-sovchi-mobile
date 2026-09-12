@@ -1986,6 +1986,39 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsAccountSection => 'Аккаунт';
 
   @override
+  String get settingsLanguage => 'Язык';
+
+  @override
+  String get settingsTheme => 'Тема';
+
+  @override
+  String get settingsLanguageSheetTitle => 'Язык';
+
+  @override
+  String get settingsThemeSheetTitle => 'Тема';
+
+  @override
+  String get settingsLanguageUzbekLatin => 'O‘zbek';
+
+  @override
+  String get settingsLanguageUzbekCyrillic => 'Ўзбек';
+
+  @override
+  String get settingsLanguageRussian => 'Русский';
+
+  @override
+  String get settingsLanguageEnglish => 'English';
+
+  @override
+  String get settingsThemeSystem => 'Автоматически';
+
+  @override
+  String get settingsThemeLight => 'Светлая';
+
+  @override
+  String get settingsThemeDark => 'Тёмная';
+
+  @override
   String get settingsEditProfile => 'Редактировать профиль';
 
   @override
