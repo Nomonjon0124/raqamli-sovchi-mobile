@@ -27,12 +27,28 @@ final class SavedBloc extends Bloc<SavedEvent, SavedState> {
   final GetMyProfileUseCase _getMyProfile;
   final GetMatchRequestsUseCase _getMatchRequests;
 
+  List<Candidate>? _savedCandidatesCache;
+  String? _myProfileIdCache;
+  final Map<MatchRequestStatus, List<MatchRequest>> _matchRequestsCache = {};
+  Future<Either<Failure, List<Candidate>>>? _savedCandidatesRequest;
+  Future<Either<Failure, String>>? _myProfileIdRequest;
+  final Map<MatchRequestStatus, Future<Either<Failure, List<MatchRequest>>>>
+  _matchRequestsInFlight = {};
+  int _loadGeneration = 0;
+
   Future<void> _onLoad(
     SavedLoadRequested event,
     Emitter<SavedState> emit,
   ) async {
+    if (event.forceRefresh) _clearCache();
+
+    final filter = state.filter;
+    final generation = ++_loadGeneration;
     emit(state.copyWith(status: SavedStatus.loading, errorMessage: ''));
-    final result = await _loadCandidates();
+    final result = await _loadCandidates(filter);
+
+    if (generation != _loadGeneration || filter != state.filter) return;
+
     result.fold(
       (failure) => emit(
         state.copyWith(
@@ -50,16 +66,21 @@ final class SavedBloc extends Bloc<SavedEvent, SavedState> {
     );
   }
 
-  Future<Either<Failure, List<Candidate>>> _loadCandidates() async {
-    final savedResult = await _getSavedCandidates();
-    if (state.filter == SavedRequestFilter.all) return savedResult;
+  Future<Either<Failure, List<Candidate>>> _loadCandidates(
+    SavedRequestFilter filter,
+  ) async {
+    final savedResult = await _loadSavedCandidates();
+    if (filter == SavedRequestFilter.all) return savedResult;
+    if (filter != SavedRequestFilter.invited) {
+      return const Right<Failure, List<Candidate>>([]);
+    }
 
     return savedResult.fold(Left.new, (candidates) async {
-      final profileResult = await _getMyProfile();
-      return profileResult.fold(Left.new, (profile) async {
-        final requestsResult = await _getMatchRequests(
-          fromProfile: profile.id,
-          status: _statusFor(state.filter),
+      final profileIdResult = await _loadMyProfileId();
+      return profileIdResult.fold(Left.new, (profileId) async {
+        final requestsResult = await _loadMatchRequests(
+          fromProfile: profileId,
+          status: MatchRequestStatus.pending,
         );
         return requestsResult.fold(
           Left.new,
@@ -81,19 +102,97 @@ final class SavedBloc extends Bloc<SavedEvent, SavedState> {
     SavedFilterChanged event,
     Emitter<SavedState> emit,
   ) async {
+    if (event.filter == SavedRequestFilter.waiting) return;
     if (event.filter == state.filter && state.status != SavedStatus.initial) {
       return;
     }
+    ++_loadGeneration;
     emit(state.copyWith(filter: event.filter));
     add(const SavedLoadRequested());
   }
 
-  MatchRequestStatus _statusFor(SavedRequestFilter filter) {
-    return switch (filter) {
-      SavedRequestFilter.all => MatchRequestStatus.pending,
-      SavedRequestFilter.invited => MatchRequestStatus.pending,
-      SavedRequestFilter.waiting =>
-        MatchRequestStatus.forwardedToRepresentative,
-    };
+  Future<Either<Failure, List<Candidate>>> _loadSavedCandidates() async {
+    final cached = _savedCandidatesCache;
+    if (cached != null) return Right(cached);
+
+    final inFlight = _savedCandidatesRequest;
+    if (inFlight != null) return inFlight;
+
+    final request = _getSavedCandidates();
+    _savedCandidatesRequest = request;
+    try {
+      final result = await request;
+      result.fold(
+        (_) {},
+        (candidates) => _savedCandidatesCache = List.unmodifiable(candidates),
+      );
+      return result;
+    } finally {
+      if (identical(_savedCandidatesRequest, request)) {
+        _savedCandidatesRequest = null;
+      }
+    }
+  }
+
+  Future<Either<Failure, String>> _loadMyProfileId() async {
+    final cached = _myProfileIdCache;
+    if (cached != null) return Right(cached);
+
+    final inFlight = _myProfileIdRequest;
+    if (inFlight != null) return inFlight;
+
+    final request = _getMyProfile();
+    final mappedRequest = request.then(
+      (result) => result.fold<Either<Failure, String>>(
+        (failure) => Left<Failure, String>(failure),
+        (profile) {
+          _myProfileIdCache = profile.id;
+          return Right<Failure, String>(profile.id);
+        },
+      ),
+    );
+    _myProfileIdRequest = mappedRequest;
+    try {
+      return await mappedRequest;
+    } finally {
+      if (identical(_myProfileIdRequest, mappedRequest)) {
+        _myProfileIdRequest = null;
+      }
+    }
+  }
+
+  Future<Either<Failure, List<MatchRequest>>> _loadMatchRequests({
+    required String fromProfile,
+    required MatchRequestStatus status,
+  }) async {
+    final cached = _matchRequestsCache[status];
+    if (cached != null) return Right(cached);
+
+    final inFlight = _matchRequestsInFlight[status];
+    if (inFlight != null) return inFlight;
+
+    final request = _getMatchRequests(fromProfile: fromProfile, status: status);
+    _matchRequestsInFlight[status] = request;
+    try {
+      final result = await request;
+      result.fold(
+        (_) {},
+        (requests) => _matchRequestsCache[status] = List.unmodifiable(requests),
+      );
+      return result;
+    } finally {
+      if (identical(_matchRequestsInFlight[status], request)) {
+        final _ = _matchRequestsInFlight.remove(status);
+      }
+    }
+  }
+
+  void _clearCache() {
+    _savedCandidatesCache = null;
+    _myProfileIdCache = null;
+    _matchRequestsCache.clear();
+    _savedCandidatesRequest = null;
+    _myProfileIdRequest = null;
+    _matchRequestsInFlight.clear();
   }
 }

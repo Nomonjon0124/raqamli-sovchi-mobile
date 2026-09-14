@@ -4,9 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
-import '../../../../app/theme/app_status_colors.dart';
 import '../../../../core/ui/widgets/app_candidate_card.dart';
 import '../../../../core/ui/widgets/app_candidate_grid.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
@@ -38,8 +36,6 @@ final class _SavedPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    final statusColors = context.statusColors;
     return SafeArea(
       child: CustomScrollView(
         slivers: [
@@ -69,6 +65,7 @@ final class _SavedPageView extends StatelessWidget {
                           filter: SavedRequestFilter.invited,
                           selected: state.filter == SavedRequestFilter.invited,
                         ),
+                        /*
                         const SizedBox(width: AppSpacing.sm),
                         _filterPill(
                           context,
@@ -76,11 +73,13 @@ final class _SavedPageView extends StatelessWidget {
                           filter: SavedRequestFilter.waiting,
                           selected: state.filter == SavedRequestFilter.waiting,
                         ),
+                        */
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),
+                /*
                 BlocBuilder<SavedBloc, SavedState>(
                   buildWhen: (previous, current) =>
                       previous.candidates.length != current.candidates.length,
@@ -112,6 +111,7 @@ final class _SavedPageView extends StatelessWidget {
                     ],
                   ),
                 ),
+                */
                 const SizedBox(height: AppSpacing.lg),
               ],
             ),
@@ -128,7 +128,7 @@ final class _SavedPageView extends StatelessWidget {
                     child: AppErrorView(
                       message: state.errorMessage ?? l10n.genericError,
                       onRetry: () => context.read<SavedBloc>().add(
-                        const SavedLoadRequested(),
+                        const SavedLoadRequested(forceRefresh: true),
                       ),
                     ),
                   ),
@@ -149,6 +149,7 @@ final class _SavedPageView extends StatelessWidget {
               };
             },
           ),
+          /*
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(18, 0, 18, AppSpacing.xl),
             sliver: SliverToBoxAdapter(
@@ -188,6 +189,7 @@ final class _SavedPageView extends StatelessWidget {
               ),
             ),
           ),
+          */
         ],
       ),
     );
@@ -217,8 +219,6 @@ final class _SavedPageView extends StatelessWidget {
     );
   }).toList();
 
-  static const _savedLimit = 10;
-
   static Widget _filterPill(
     BuildContext context, {
     required String label,
@@ -231,30 +231,4 @@ final class _SavedPageView extends StatelessWidget {
       onTap: () => context.read<SavedBloc>().add(SavedFilterChanged(filter)),
     );
   }
-
-  static int _remainingSlots(int savedCount) {
-    final remaining = _savedLimit - savedCount;
-    return remaining < 0 ? 0 : remaining;
-  }
-
-  static const _body13 = TextStyle(
-    fontFamily: 'Manrope',
-    fontSize: 13,
-    height: 18 / 13,
-    fontWeight: FontWeight.w600,
-  );
-
-  static const _upsellTitle = TextStyle(
-    fontFamily: 'Manrope',
-    fontSize: 14,
-    height: 19 / 14,
-    fontWeight: FontWeight.w600,
-  );
-
-  static const _upsellBody = TextStyle(
-    fontFamily: 'Manrope',
-    fontSize: 12,
-    height: 19 / 12,
-    fontWeight: FontWeight.w400,
-  );
 }

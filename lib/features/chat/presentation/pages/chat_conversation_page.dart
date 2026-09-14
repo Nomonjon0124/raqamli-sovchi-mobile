@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 // import '../../../../core/security/screenshot_guard.dart';
@@ -143,6 +144,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
                 moreLabel: l10n.chatMoreActions,
                 onBack: () => context.pop(),
                 onMore: () => _showMoreActions(name, state),
+                onUserTap: _openCandidateDetail,
               ),
               Expanded(
                 child: _threadBody(context, state, currentUserId, icebreakers),
@@ -315,6 +317,16 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
       case null:
         return;
     }
+  }
+
+  void _openCandidateDetail() {
+    final candidateId = widget.thread?.participantProfileId?.trim();
+    final fallbackId = widget.thread?.room.participantUserId?.trim();
+    final id = (candidateId != null && candidateId.isNotEmpty)
+        ? candidateId
+        : fallbackId;
+    if (id == null || id.isEmpty) return;
+    context.push(RouteNames.candidateDetailFor(id));
   }
 
   Future<_ReportTarget?> _resolveReportTarget(
