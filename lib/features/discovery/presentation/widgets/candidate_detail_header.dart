@@ -65,7 +65,10 @@ final class _VerifiedBadge extends StatelessWidget {
         child: Assets.icons.icVerifyCheck.svg(
           width: 13,
           height: 13,
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).colorScheme.surface,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

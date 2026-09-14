@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/extensions/gap_extension.dart';
@@ -15,9 +14,9 @@ final class CandidateDetailNoCompatibilityCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -29,8 +28,8 @@ final class CandidateDetailNoCompatibilityCard extends StatelessWidget {
                 Assets.icons.icGlyph.svg(
                   width: 18,
                   height: 18,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.bodyText,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onSurfaceVariant,
                     BlendMode.srcIn,
                   ),
                 ),

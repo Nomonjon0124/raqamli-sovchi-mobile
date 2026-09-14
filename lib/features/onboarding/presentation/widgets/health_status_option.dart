@@ -22,7 +22,7 @@ final class HealthStatusOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.surface,
       borderRadius: BorderRadius.circular(AppRadius.lg),
       child: InkWell(
         onTap: onPressed,
@@ -32,7 +32,9 @@ final class HealthStatusOption extends StatelessWidget {
           padding: const EdgeInsets.all(AppSpacing.lg),
           decoration: BoxDecoration(
             border: Border.all(
-              color: selected ? AppColors.primary : AppColors.border,
+              color: selected
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.outline,
               width: selected ? 1.5 : 1,
             ),
             borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -75,9 +77,9 @@ final class _HealthRadio extends StatelessWidget {
       width: 18,
       height: 18,
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary : Colors.transparent,
+        color: selected ? AppColors.primary : AppColors.transparent,
         border: Border.all(
-          color: selected ? AppColors.primary : const Color(0xFFA3A3A3),
+          color: selected ? AppColors.primary : AppColors.strongBorder,
           width: 1.5,
         ),
         shape: BoxShape.circle,

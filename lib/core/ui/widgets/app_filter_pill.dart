@@ -17,20 +17,25 @@ final class AppFilterPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(AppRadius.full),
-        splashColor: (selected ? Colors.white : AppColors.primary).withValues(
-          alpha: 0.12,
-        ),
-        highlightColor: Colors.transparent,
+        splashColor:
+            (selected
+                    ? Theme.of(context).colorScheme.surface
+                    : AppColors.primary)
+                .withValues(alpha: 0.12),
+        highlightColor: AppColors.transparent,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeInOut,
           decoration: BoxDecoration(
-            color: selected ? AppColors.primary : AppColors.mutedSurface,
+            color: selected
+                ? colorScheme.primary
+                : colorScheme.surfaceContainer,
             borderRadius: BorderRadius.circular(AppRadius.full),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 9),
@@ -43,8 +48,8 @@ final class AppFilterPill extends StatelessWidget {
               height: 18 / 13,
               fontWeight: FontWeight.w600,
               color: selected
-                  ? AppColors.surfaceLight
-                  : const Color(0xFF525252),
+                  ? colorScheme.onPrimary
+                  : colorScheme.onSurfaceVariant,
             ),
             child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
           ),

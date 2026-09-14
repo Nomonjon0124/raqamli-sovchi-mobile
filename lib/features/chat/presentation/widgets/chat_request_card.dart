@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -22,16 +21,17 @@ final class ChatRequestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
     final name = request.fromProfileName?.trim().isNotEmpty == true
         ? request.fromProfileName!.trim()
         : l10n.chatRequestCandidateFallback;
     final imageUrl = request.fromProfileImageUrl?.trim();
 
     return Material(
-      color: AppColors.subtleSurface,
+      color: colorScheme.surfaceContainerLow,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        side: const BorderSide(color: AppColors.mutedSurface),
+        side: BorderSide(color: colorScheme.surfaceContainer),
       ),
       child: InkWell(
         onTap: onTap,
@@ -53,14 +53,18 @@ final class ChatRequestCard extends StatelessWidget {
                           l10n.chatRequestCardTitle(name),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: AppTypography.chatRequestCardTitle,
+                          style: AppTypography.chatRequestCardTitle.copyWith(
+                            color: colorScheme.onSurface,
+                          ),
                         ),
                         const SizedBox(height: AppSpacing.xxs),
                         Text(
                           l10n.chatRequestProfileUnavailable,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: AppTypography.chatRequestCardBody,
+                          style: AppTypography.chatRequestCardBody.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                         ),
                       ],
                     ),
@@ -69,8 +73,8 @@ final class ChatRequestCard extends StatelessWidget {
                   Assets.icons.icArrowRight.svg(
                     width: 18,
                     height: 18,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.mutedText,
+                    colorFilter: ColorFilter.mode(
+                      colorScheme.onSurfaceVariant,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -79,7 +83,7 @@ final class ChatRequestCard extends StatelessWidget {
               const SizedBox(height: AppSpacing.md),
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: AppColors.mutedSurface,
+                  color: colorScheme.surfaceContainer,
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: Padding(
@@ -93,8 +97,8 @@ final class ChatRequestCard extends StatelessWidget {
                       Assets.icons.icInfo.svg(
                         width: 17,
                         height: 17,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.mutedText,
+                        colorFilter: ColorFilter.mode(
+                          colorScheme.onSurfaceVariant,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -102,7 +106,9 @@ final class ChatRequestCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           l10n.chatRequestPendingHint,
-                          style: AppTypography.chatRequestCardBody,
+                          style: AppTypography.chatRequestCardBody.copyWith(
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                         ),
                       ),
                     ],
@@ -125,9 +131,10 @@ final class _RequestAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final url = imageUrl;
+    final colorScheme = Theme.of(context).colorScheme;
     return CircleAvatar(
       radius: 23,
-      backgroundColor: AppColors.mutedSurface,
+      backgroundColor: colorScheme.surfaceContainer,
       foregroundImage: url == null || url.isEmpty
           ? null
           : CachedNetworkImageProvider(url),
@@ -135,8 +142,8 @@ final class _RequestAvatar extends StatelessWidget {
           ? Assets.icons.icSquareLock.svg(
               width: 18,
               height: 18,
-              colorFilter: const ColorFilter.mode(
-                AppColors.mutedText,
+              colorFilter: ColorFilter.mode(
+                colorScheme.onSurfaceVariant,
                 BlendMode.srcIn,
               ),
             )

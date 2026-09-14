@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
 
@@ -12,8 +11,12 @@ final class AuthLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstColor = onPrimary ? Colors.white : AppColors.mutedText;
-    final secondColor = onPrimary ? Colors.white : AppColors.text;
+    final firstColor = onPrimary
+        ? Theme.of(context).colorScheme.surface
+        : Theme.of(context).colorScheme.onSurfaceVariant;
+    final secondColor = onPrimary
+        ? Theme.of(context).colorScheme.surface
+        : Theme.of(context).colorScheme.onSurface;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

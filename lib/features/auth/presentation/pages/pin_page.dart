@@ -128,7 +128,7 @@ final class _PinPageState extends State<PinPage> {
           current.status != AuthStatus.loading,
       listener: (_, state) => _onAuthStateChanged(state),
       child: Scaffold(
-        backgroundColor: AppColors.surfaceLight,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -176,7 +176,7 @@ final class _PinPageState extends State<PinPage> {
                     l10n.pinMismatch,
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
-                      color: AppColors.dangerText,
+                      color: Theme.of(context).colorScheme.onErrorContainer,
                     ),
                   ),
                 ],
@@ -186,7 +186,7 @@ final class _PinPageState extends State<PinPage> {
                     l10n.failureMessage(authState.failure!.type.name),
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
-                      color: AppColors.dangerText,
+                      color: Theme.of(context).colorScheme.onErrorContainer,
                     ),
                   ),
                 ],
@@ -231,7 +231,9 @@ final class _PinIndicator extends StatelessWidget {
           height: 12,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: index < valueLength ? AppColors.primary : AppColors.border,
+            color: index < valueLength
+                ? AppColors.primary
+                : Theme.of(context).colorScheme.outline,
           ),
         ),
         if (index != 3) const SizedBox(width: AppSpacing.input),

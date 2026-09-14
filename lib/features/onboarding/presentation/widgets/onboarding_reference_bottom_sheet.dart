@@ -75,8 +75,8 @@ final class _OnboardingReferenceBottomSheetState
               AppSpacing.xl,
               AppSpacing.xl,
             ),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(AppSpacing.xl),
               ),
@@ -89,7 +89,9 @@ final class _OnboardingReferenceBottomSheetState
                     width: 36,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: AppColors.mutedSurface,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                   ),
@@ -112,7 +114,9 @@ final class _OnboardingReferenceBottomSheetState
                       hintText: searchPlaceholder,
                       hintStyle: AppTypography.onboardingSearch,
                       filled: true,
-                      fillColor: AppColors.mutedSurface,
+                      fillColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppRadius.lg),
                         borderSide: BorderSide.none,
@@ -157,9 +161,13 @@ final class _OnboardingReferenceBottomSheetState
                       horizontal: AppSpacing.lg,
                     ),
                     backgroundColor: AppColors.primary,
-                    disabledBackgroundColor: AppColors.border,
-                    foregroundColor: Colors.white,
-                    disabledForegroundColor: AppColors.mutedText,
+                    disabledBackgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.outline,
+                    foregroundColor: Theme.of(context).colorScheme.surface,
+                    disabledForegroundColor: Theme.of(
+                      context,
+                    ).colorScheme.onSurfaceVariant,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
@@ -191,7 +199,9 @@ final class OnboardingReferenceOptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: selected ? AppColors.mutedSurface : Colors.transparent,
+      color: selected
+          ? Theme.of(context).colorScheme.surfaceContainerHighest
+          : AppColors.transparent,
       borderRadius: BorderRadius.circular(AppRadius.lg),
       child: InkWell(
         onTap: onPressed,
@@ -228,9 +238,9 @@ final class _ReferenceRadio extends StatelessWidget {
       width: 18,
       height: 18,
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary : Colors.transparent,
+        color: selected ? AppColors.primary : AppColors.transparent,
         border: Border.all(
-          color: selected ? AppColors.primary : const Color(0xFFA3A3A3),
+          color: selected ? AppColors.primary : AppColors.strongBorder,
           width: 1.5,
         ),
         shape: BoxShape.circle,

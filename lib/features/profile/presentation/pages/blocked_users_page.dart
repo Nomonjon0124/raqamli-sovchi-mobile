@@ -35,7 +35,7 @@ final class _BlockedUsersView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: BlocConsumer<BlockedUsersCubit, BlockedUsersState>(
           listenWhen: (previous, current) =>
@@ -73,7 +73,9 @@ final class _BlockedUsersView extends StatelessWidget {
                         button: true,
                         label: l10n.settingsBack,
                         child: Material(
-                          color: AppColors.mutedSurface,
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
                           shape: const CircleBorder(),
                           child: InkWell(
                             customBorder: const CircleBorder(),
@@ -84,8 +86,8 @@ final class _BlockedUsersView extends StatelessWidget {
                                 child: Assets.icons.icArrowLeft01Round.svg(
                                   width: 19,
                                   height: 19,
-                                  colorFilter: const ColorFilter.mode(
-                                    AppColors.text,
+                                  colorFilter: ColorFilter.mode(
+                                    Theme.of(context).colorScheme.onSurface,
                                     BlendMode.srcIn,
                                   ),
                                   excludeFromSemantics: true,
@@ -114,10 +116,10 @@ final class _BlockedUsersView extends StatelessWidget {
                   ),
                   child: Text(
                     l10n.blockedUsersSubtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 14,
-                      color: AppColors.mutedText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       height: 1.4,
                     ),
                   ),
@@ -165,59 +167,60 @@ final class _BlockedUsersView extends StatelessWidget {
         ),
         children: [
           if (state.blockedUsers.isEmpty)
-            _buildEmptyCard(l10n)
+            _buildEmptyCard(context, l10n)
           else
             _buildUsersListCard(context, state.blockedUsers, state),
           const SizedBox(height: AppSpacing.lg),
-          _buildInfoNote(l10n),
+          _buildInfoNote(context, l10n),
         ],
       ),
     );
   }
 
-  Widget _buildEmptyCard(AppLocalizations l10n) => Container(
-    padding: const EdgeInsets.all(AppSpacing.xl),
-    decoration: BoxDecoration(
-      color: AppColors.surfaceLight,
-      borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: AppColors.border),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Assets.icons.settingsLock.svg(
-          width: 40,
-          height: 40,
-          colorFilter: const ColorFilter.mode(
-            AppColors.mutedText,
-            BlendMode.srcIn,
-          ),
-          excludeFromSemantics: true,
+  Widget _buildEmptyCard(BuildContext context, AppLocalizations l10n) =>
+      Container(
+        padding: const EdgeInsets.all(AppSpacing.xl),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Theme.of(context).colorScheme.outline),
         ),
-        const SizedBox(height: AppSpacing.md),
-        Text(
-          l10n.blockedUsersEmpty,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: 'Manrope',
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: AppColors.text,
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Assets.icons.settingsLock.svg(
+              width: 40,
+              height: 40,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSurfaceVariant,
+                BlendMode.srcIn,
+              ),
+              excludeFromSemantics: true,
+            ),
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              l10n.blockedUsersEmpty,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            Text(
+              l10n.blockedUsersEmptySubtitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: 13,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: AppSpacing.xs),
-        Text(
-          l10n.blockedUsersEmptySubtitle,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: 'Manrope',
-            fontSize: 13,
-            color: AppColors.mutedText,
-          ),
-        ),
-      ],
-    ),
-  );
+      );
 
   Widget _buildUsersListCard(
     BuildContext context,
@@ -225,9 +228,9 @@ final class _BlockedUsersView extends StatelessWidget {
     BlockedUsersState state,
   ) => Container(
     decoration: BoxDecoration(
-      color: AppColors.surfaceLight,
+      color: Theme.of(context).colorScheme.surface,
       borderRadius: BorderRadius.circular(16),
-      border: Border.all(color: AppColors.border),
+      border: Border.all(color: Theme.of(context).colorScheme.outline),
     ),
     clipBehavior: Clip.antiAlias,
     child: Column(
@@ -235,7 +238,11 @@ final class _BlockedUsersView extends StatelessWidget {
       children: [
         for (var i = 0; i < users.length; i++) ...[
           if (i > 0)
-            const Divider(height: 1, thickness: 1, color: AppColors.border),
+            Divider(
+              height: 1,
+              thickness: 1,
+              color: Theme.of(context).colorScheme.outline,
+            ),
           BlockedUserTile(
             blockedUser: users[i],
             isUnblocking: state.isUnblocking(
@@ -248,40 +255,41 @@ final class _BlockedUsersView extends StatelessWidget {
     ),
   );
 
-  Widget _buildInfoNote(AppLocalizations l10n) => Container(
-    padding: const EdgeInsets.all(AppSpacing.md),
-    decoration: BoxDecoration(
-      color: AppColors.subtleSurface,
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: AppColors.border),
-    ),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Assets.icons.settingsInfo.svg(
-          width: 20,
-          height: 20,
-          colorFilter: const ColorFilter.mode(
-            AppColors.mutedText,
-            BlendMode.srcIn,
-          ),
-          excludeFromSemantics: true,
+  Widget _buildInfoNote(BuildContext context, AppLocalizations l10n) =>
+      Container(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainer,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Theme.of(context).colorScheme.outline),
         ),
-        const SizedBox(width: AppSpacing.sm),
-        Expanded(
-          child: Text(
-            l10n.blockedUsersNote,
-            style: const TextStyle(
-              fontFamily: 'Manrope',
-              fontSize: 13,
-              color: AppColors.mutedText,
-              height: 1.4,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Assets.icons.settingsInfo.svg(
+              width: 20,
+              height: 20,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSurfaceVariant,
+                BlendMode.srcIn,
+              ),
+              excludeFromSemantics: true,
             ),
-          ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: Text(
+                l10n.blockedUsersNote,
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 13,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
   Future<void> _confirmAndUnblock(
     BuildContext context,
@@ -300,9 +308,9 @@ final class _BlockedUsersView extends StatelessWidget {
         ),
         content: Text(
           l10n.unblockConfirmMessage,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
-            color: AppColors.bodyText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         actions: [
@@ -310,7 +318,9 @@ final class _BlockedUsersView extends StatelessWidget {
             onPressed: () => Navigator.of(ctx).pop(false),
             child: Text(
               l10n.cancel,
-              style: const TextStyle(color: AppColors.mutedText),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
           ),
           TextButton(

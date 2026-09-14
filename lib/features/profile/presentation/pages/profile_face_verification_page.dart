@@ -40,7 +40,7 @@ final class _ProfileFaceVerificationView extends StatelessWidget {
         final verifying =
             state.status == ProfileFaceVerificationStatus.verifying;
         return Scaffold(
-          backgroundColor: AppColors.surfaceLight,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(

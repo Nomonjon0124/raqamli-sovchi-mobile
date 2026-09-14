@@ -23,7 +23,9 @@ final class CustomGhostButton extends StatelessWidget {
         onPressed: onPressed,
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
-          disabledForegroundColor: AppColors.mutedText,
+          disabledForegroundColor: Theme.of(
+            context,
+          ).colorScheme.onSurfaceVariant,
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg + AppSpacing.xs,
             vertical: AppSpacing.lg,

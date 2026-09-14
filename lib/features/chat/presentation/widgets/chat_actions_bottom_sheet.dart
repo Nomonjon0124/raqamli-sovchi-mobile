@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -23,8 +22,8 @@ final class ChatActionsBottomSheet extends StatelessWidget {
     return SafeArea(
       top: false,
       child: DecoratedBox(
-        decoration: const BoxDecoration(
-          color: AppColors.surfaceLight,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(AppRadius.xxl),
           ),
@@ -45,7 +44,7 @@ final class ChatActionsBottomSheet extends StatelessWidget {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: AppColors.border,
+                    color: Theme.of(context).colorScheme.outline,
                     borderRadius: BorderRadius.circular(AppRadius.full),
                   ),
                 ),
@@ -68,10 +67,10 @@ final class ChatActionsBottomSheet extends StatelessWidget {
               ),
               const SizedBox(height: AppSpacing.inline),
               _ChatActionButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.delete_outline,
                   size: 20,
-                  color: AppColors.dangerText,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
                 ),
                 label: l10n.chatDeleteAction,
                 onTap: onDelete,
@@ -97,10 +96,12 @@ final class _ChatActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: AppColors.subtleSurface,
+    color: Theme.of(context).colorScheme.surfaceContainerLow,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      side: const BorderSide(color: AppColors.mutedSurface),
+      side: BorderSide(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      ),
     ),
     child: InkWell(
       onTap: onTap,

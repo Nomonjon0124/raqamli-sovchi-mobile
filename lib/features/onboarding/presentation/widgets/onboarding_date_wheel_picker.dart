@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -44,7 +43,7 @@ final class OnboardingDateWheelPicker extends StatelessWidget {
                   child: Container(
                     height: 58,
                     decoration: BoxDecoration(
-                      color: AppColors.border,
+                      color: Theme.of(context).colorScheme.outline,
                       borderRadius: BorderRadius.circular(AppRadius.lg),
                     ),
                   ),
@@ -158,8 +157,8 @@ final class _DateWheelColumnState extends State<_DateWheelColumn> {
         builder: (context, index) {
           final distance = (index - widget.selectedIndex).abs();
           final color = distance == 0
-              ? AppColors.text
-              : AppColors.mutedText.withValues(
+              ? Theme.of(context).colorScheme.onSurface
+              : Theme.of(context).colorScheme.onSurfaceVariant.withValues(
                   alpha: distance == 1 ? 0.45 : 0.2,
                 );
           return Center(

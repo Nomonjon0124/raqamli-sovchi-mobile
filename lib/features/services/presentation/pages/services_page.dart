@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -74,7 +75,7 @@ final class ServicesPage extends StatelessWidget {
                   children: [
                     ServiceGridTile(
                       icon: Assets.icons.icSrvMeeting,
-                      iconBackground: AppColors.servicesMeetingSurface,
+                      iconBackground: context.statusColors.meetingContainer,
                       title: l10n.serviceMeetingTitle,
                       subtitle: l10n.serviceMeetingSubtitle,
                       onTap: () => _showComingSoon(context),
@@ -82,7 +83,7 @@ final class ServicesPage extends StatelessWidget {
                     const SizedBox(width: AppSpacing.md),
                     ServiceGridTile(
                       icon: Assets.icons.icSrvVerify,
-                      iconBackground: AppColors.servicesVerifySurface,
+                      iconBackground: context.statusColors.infoContainer,
                       title: l10n.serviceVerificationTitle,
                       subtitle: l10n.serviceVerificationSubtitle,
                       onTap: () => _showComingSoon(context),
@@ -125,7 +126,7 @@ final class ServicesPage extends StatelessWidget {
                 const SizedBox(height: AppSpacing.lg),
                 DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AppColors.servicesInfoSurface,
+                    color: context.statusColors.infoContainer,
                     borderRadius: BorderRadius.circular(AppRadius.lg),
                   ),
                   child: Padding(

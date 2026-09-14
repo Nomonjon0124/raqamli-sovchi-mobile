@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -16,7 +15,7 @@ final class ChatDeleteDialog extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Dialog(
       insetPadding: const EdgeInsets.symmetric(horizontal: 30),
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
@@ -39,7 +38,7 @@ final class ChatDeleteDialog extends StatelessWidget {
             Text(
               l10n.chatDeleteSubtitle,
               style: AppTypography.chatActionCaption.copyWith(
-                color: AppColors.mapLabelText,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: AppSpacing.md),
@@ -52,11 +51,13 @@ final class ChatDeleteDialog extends StatelessWidget {
                     label: Text(l10n.chatDeleteCancel),
                     style: OutlinedButton.styleFrom(
                       minimumSize: const Size.fromHeight(52),
-                      foregroundColor: AppColors.text,
+                      foregroundColor: Theme.of(context).colorScheme.onSurface,
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppSpacing.section,
                       ),
-                      side: const BorderSide(color: AppColors.border),
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.full),
                       ),
@@ -72,8 +73,10 @@ final class ChatDeleteDialog extends StatelessWidget {
                     label: Text(l10n.chatDeleteConfirm),
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(52),
-                      backgroundColor: AppColors.dangerText,
-                      foregroundColor: AppColors.surfaceLight,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.onErrorContainer,
+                      foregroundColor: Theme.of(context).colorScheme.surface,
                       padding: const EdgeInsets.symmetric(
                         horizontal: AppSpacing.section,
                       ),

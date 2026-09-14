@@ -47,11 +47,15 @@ final class CandidateDetailStickyHeader extends StatelessWidget {
           opacity: visible ? 1 : 0,
           duration: const Duration(milliseconds: 140),
           child: Material(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.surface,
             child: Container(
               padding: EdgeInsets.fromLTRB(22, topInset + 12, 18, 12),
-              decoration: const BoxDecoration(
-                border: Border(bottom: BorderSide(color: AppColors.border)),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                ),
               ),
               child: Row(
                 children: [
@@ -61,8 +65,8 @@ final class CandidateDetailStickyHeader extends StatelessWidget {
                     icon: Assets.icons.icArrowLeft01Round.svg(
                       width: 20,
                       height: 20,
-                      colorFilter: const ColorFilter.mode(
-                        AppColors.text,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.onSurface,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -97,7 +101,9 @@ final class CandidateDetailStickyHeader extends StatelessWidget {
                       width: 22,
                       height: 22,
                       colorFilter: ColorFilter.mode(
-                        isSaved ? AppColors.primary : AppColors.text,
+                        isSaved
+                            ? AppColors.primary
+                            : Theme.of(context).colorScheme.onSurface,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -144,8 +150,8 @@ final class CandidateDetailFloatingActions extends StatelessWidget {
               icon: Assets.icons.icArrowLeft01Round.svg(
                 width: 20,
                 height: 20,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.text,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.onSurface,
                   BlendMode.srcIn,
                 ),
               ),
@@ -159,7 +165,9 @@ final class CandidateDetailFloatingActions extends StatelessWidget {
                 width: 20,
                 height: 20,
                 colorFilter: ColorFilter.mode(
-                  isSaved ? AppColors.primary : AppColors.text,
+                  isSaved
+                      ? AppColors.primary
+                      : Theme.of(context).colorScheme.onSurface,
                   BlendMode.srcIn,
                 ),
               ),
@@ -185,10 +193,12 @@ final class _RoundActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: Colors.white,
+    color: Theme.of(context).colorScheme.surface,
     shape: const CircleBorder(),
     elevation: 2,
-    shadowColor: Colors.black.withValues(alpha: 0.08),
+    shadowColor: Theme.of(
+      context,
+    ).colorScheme.onSurface.withValues(alpha: 0.08),
     child: IconButton(
       onPressed: onPressed,
       tooltip: label,
@@ -208,7 +218,9 @@ final class _CandidateAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = imageUrl == null || imageUrl!.trim().isEmpty
-        ? const ColoredBox(color: AppColors.mutedSurface)
+        ? ColoredBox(
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          )
         : CachedNetworkImage(imageUrl: imageUrl!, fit: BoxFit.cover);
     return ClipOval(
       child: SizedBox(
@@ -242,7 +254,10 @@ final class _VerifiedBadge extends StatelessWidget {
     child: Assets.icons.icVerifyCheck.svg(
       width: size * .6,
       height: size * .6,
-      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+      colorFilter: ColorFilter.mode(
+        Theme.of(context).colorScheme.surface,
+        BlendMode.srcIn,
+      ),
     ),
   );
 }

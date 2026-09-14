@@ -20,13 +20,14 @@ final class CandidatesViewToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return SizedBox(
       height: 44,
       child: Center(
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.mutedSurface,
+            color: colorScheme.surfaceContainer,
             borderRadius: BorderRadius.circular(AppRadius.full),
           ),
           child: Padding(
@@ -71,12 +72,13 @@ final class _ViewSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Semantics(
       button: true,
       selected: selected,
       label: semanticLabel,
       child: Material(
-        color: selected ? AppColors.surfaceLight : Colors.transparent,
+        color: selected ? colorScheme.surface : AppColors.transparent,
         borderRadius: BorderRadius.circular(AppRadius.full),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -89,7 +91,7 @@ final class _ViewSegment extends StatelessWidget {
                 width: 16,
                 height: 16,
                 colorFilter: ColorFilter.mode(
-                  selected ? AppColors.primary : AppColors.mutedText,
+                  selected ? colorScheme.primary : colorScheme.onSurfaceVariant,
                   BlendMode.srcIn,
                 ),
               ),

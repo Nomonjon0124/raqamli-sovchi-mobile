@@ -24,9 +24,10 @@ final class ServiceGridTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Expanded(
       child: Material(
-        color: AppColors.subtleSurface,
+        color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
         child: InkWell(
           onTap: onTap,
@@ -50,14 +51,18 @@ final class ServiceGridTile extends StatelessWidget {
                   title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTypography.servicesTileTitle,
+                  style: AppTypography.servicesTileTitle.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xxs),
                 Text(
                   subtitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTypography.servicesCaption,
+                  style: AppTypography.servicesCaption.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
@@ -84,8 +89,9 @@ final class ServiceListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: AppColors.subtleSurface,
+      color: colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.xl),
       child: InkWell(
         onTap: onTap,
@@ -109,14 +115,18 @@ final class ServiceListTile extends StatelessWidget {
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTypography.servicesTileTitle,
+                      style: AppTypography.servicesTileTitle.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.xxs),
                     Text(
                       subtitle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTypography.servicesCaption,
+                      style: AppTypography.servicesCaption.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ),
@@ -125,8 +135,8 @@ final class ServiceListTile extends StatelessWidget {
               Assets.icons.icSrvChervon.svg(
                 width: 16,
                 height: 16,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.mapLabelText,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurfaceVariant,
                   BlendMode.srcIn,
                 ),
                 excludeFromSemantics: true,

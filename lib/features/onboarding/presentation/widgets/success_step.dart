@@ -117,7 +117,7 @@ final class _AiTestOfferCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         border: Border.all(color: AppColors.primary, width: 1.5),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
@@ -172,8 +172,8 @@ final class _AiBadge extends StatelessWidget {
             Assets.icons.icAi.svg(
               width: 12,
               height: 12,
-              colorFilter: const ColorFilter.mode(
-                Colors.white,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.surface,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,
@@ -182,7 +182,7 @@ final class _AiBadge extends StatelessWidget {
             Text(
               AppLocalizations.of(context).aiTestBadge,
               style: AppTypography.onboardingCardBody.copyWith(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 fontSize: 10,
                 height: 16 / 13,
                 fontWeight: FontWeight.w600,
@@ -228,7 +228,7 @@ final class _AiFeatureRow extends StatelessWidget {
             label,
             style: AppTypography.onboardingBody.copyWith(
               fontSize: 12,
-              color: AppColors.bodyText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),

@@ -91,66 +91,69 @@ final class _PhotoSlot extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    image: true,
-    label: semanticLabel,
-    child: Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: ClipRRect(
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Semantics(
+      image: true,
+      label: semanticLabel,
+      child: Material(
+        color: AppColors.transparent,
+        child: InkWell(
+          onTap: onTap,
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: SizedBox(
-            height: 132,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                CachedNetworkImage(
-                  imageUrl: photo.imageUrl,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => const ColoredBox(
-                    color: AppColors.mutedSurface,
-                    child: Center(
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => const ColoredBox(
-                    color: AppColors.mutedSurface,
-                    child: Icon(
-                      Icons.person_rounded,
-                      color: AppColors.mutedText,
-                    ),
-                  ),
-                ),
-                if (photo.isMain)
-                  Positioned(
-                    top: AppSpacing.sm,
-                    left: AppSpacing.sm,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius: BorderRadius.circular(AppRadius.full),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            child: SizedBox(
+              height: 132,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: photo.imageUrl,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => ColoredBox(
+                      color: colorScheme.surfaceContainer,
+                      child: const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.sm,
-                          vertical: AppSpacing.xs,
-                        ),
-                        child: Text(
-                          mainLabel,
-                          style: AppTypography.profileMainBadge,
-                        ),
+                    ),
+                    errorWidget: (context, url, error) => ColoredBox(
+                      color: colorScheme.surfaceContainer,
+                      child: Icon(
+                        Icons.person_rounded,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ),
-              ],
+                  if (photo.isMain)
+                    Positioned(
+                      top: AppSpacing.sm,
+                      left: AppSpacing.sm,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(AppRadius.full),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm,
+                            vertical: AppSpacing.xs,
+                          ),
+                          child: Text(
+                            mainLabel,
+                            style: AppTypography.profileMainBadge,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _AddPhotoSlot extends StatelessWidget {
@@ -160,38 +163,45 @@ final class _AddPhotoSlot extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    button: true,
-    label: label,
-    child: Material(
-      color: AppColors.subtleSurface,
-      borderRadius: BorderRadius.circular(AppRadius.lg),
-      child: InkWell(
-        onTap: onTap,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: CustomPaint(
-          foregroundPainter: _DashedBorderPainter(),
-          child: SizedBox(
-            height: 132,
-            child: Center(
-              child: Assets.icons.profileAdd.svg(
-                width: 24,
-                height: 24,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.mutedText,
-                  BlendMode.srcIn,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          child: CustomPaint(
+            foregroundPainter: _DashedBorderPainter(color: colorScheme.outline),
+            child: SizedBox(
+              height: 132,
+              child: Center(
+                child: Assets.icons.profileAdd.svg(
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.onSurfaceVariant,
+                    BlendMode.srcIn,
+                  ),
+                  excludeFromSemantics: true,
                 ),
-                excludeFromSemantics: true,
               ),
             ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _DashedBorderPainter extends CustomPainter {
+  const _DashedBorderPainter({required this.color});
+
+  final Color color;
+
   @override
   void paint(Canvas canvas, Size size) {
     final path = Path()
@@ -203,7 +213,7 @@ final class _DashedBorderPainter extends CustomPainter {
       );
     final metric = path.computeMetrics().first;
     final paint = Paint()
-      ..color = AppColors.profileDashedBorder
+      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
     const dashLength = 5.0;
@@ -216,5 +226,6 @@ final class _DashedBorderPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _DashedBorderPainter oldDelegate) =>
+      oldDelegate.color != color;
 }

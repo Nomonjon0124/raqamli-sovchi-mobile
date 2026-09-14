@@ -75,7 +75,7 @@ final class _ProfilePhotoManagementView extends StatelessWidget {
             }
           },
           child: Scaffold(
-            backgroundColor: AppColors.surfaceLight,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(
@@ -253,14 +253,16 @@ final class _PhotoSlot extends StatelessWidget {
     image: true,
     label: semanticLabel,
     child: Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: enabled ? onTap : null,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: photo.isMain ? AppColors.primary : AppColors.border,
+              color: photo.isMain
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.outline,
               width: photo.isMain ? 2 : 1,
             ),
             borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -273,17 +275,21 @@ final class _PhotoSlot extends StatelessWidget {
                 CachedNetworkImage(
                   imageUrl: photo.imageUrl,
                   fit: BoxFit.cover,
-                  placeholder: (_, _) => const ColoredBox(
-                    color: AppColors.mutedSurface,
+                  placeholder: (_, _) => ColoredBox(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
                     child: Center(
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                   ),
-                  errorWidget: (_, _, _) => const ColoredBox(
-                    color: AppColors.mutedSurface,
+                  errorWidget: (_, _, _) => ColoredBox(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
                     child: Icon(
                       Icons.person_rounded,
-                      color: AppColors.mutedText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ),
@@ -304,7 +310,7 @@ final class _PhotoSlot extends StatelessWidget {
                         child: Text(
                           mainLabel,
                           style: AppTypography.onboardingFieldLabel.copyWith(
-                            color: AppColors.surfaceLight,
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                         ),
                       ),
@@ -335,7 +341,7 @@ final class _AddSlot extends StatelessWidget {
     button: true,
     label: label,
     child: Material(
-      color: AppColors.subtleSurface,
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.lg),
       child: InkWell(
         onTap: enabled ? onTap : null,
@@ -346,8 +352,8 @@ final class _AddSlot extends StatelessWidget {
             child: Assets.icons.profileAdd.svg(
               width: 24,
               height: 24,
-              colorFilter: const ColorFilter.mode(
-                AppColors.mutedText,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSurfaceVariant,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,
@@ -378,8 +384,8 @@ final class _ConfirmButton extends StatelessWidget {
       onPressed: enabled ? onPressed : null,
       style: FilledButton.styleFrom(
         backgroundColor: AppColors.primary,
-        disabledBackgroundColor: AppColors.border,
-        foregroundColor: AppColors.surfaceLight,
+        disabledBackgroundColor: Theme.of(context).colorScheme.outline,
+        foregroundColor: Theme.of(context).colorScheme.surface,
         textStyle: AppTypography.onboardingAction,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.full),

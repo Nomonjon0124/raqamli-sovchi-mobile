@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
@@ -28,7 +27,7 @@ final class CurrentLocationMarker extends StatelessWidget {
             top: 52,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColors.surfaceLight,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
               child: Padding(
@@ -36,7 +35,7 @@ final class CurrentLocationMarker extends StatelessWidget {
                 child: Text(
                   l10n.nearbyYou,
                   style: AppTypography.onboardingFieldLabel.copyWith(
-                    color: AppColors.mapLabelText,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),

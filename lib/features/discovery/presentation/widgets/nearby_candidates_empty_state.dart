@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -46,8 +45,8 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
               AppSpacing.screen,
             ),
             decoration: BoxDecoration(
-              color: AppColors.surfaceLight,
-              border: Border.all(color: AppColors.border),
+              color: Theme.of(context).colorScheme.surface,
+              border: Border.all(color: Theme.of(context).colorScheme.outline),
               borderRadius: BorderRadius.circular(AppRadius.xl),
             ),
             child: Column(
@@ -56,8 +55,10 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                   width: 58,
                   height: 58,
                   padding: const EdgeInsets.all(AppSpacing.lg),
-                  decoration: const BoxDecoration(
-                    color: AppColors.mutedSurface,
+                  decoration: BoxDecoration(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
                     shape: BoxShape.circle,
                   ),
                   child: Assets.icons.icNearbyEmptyRadar.svg(),
@@ -90,8 +91,8 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                       icon: Assets.icons.icRadar.svg(
                         width: 16,
                         height: 16,
-                        colorFilter: const ColorFilter.mode(
-                          AppColors.surfaceLight,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.surface,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -106,8 +107,10 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                   child: FilledButton.icon(
                     onPressed: onChangeCriteria,
                     style: FilledButton.styleFrom(
-                      backgroundColor: AppColors.mutedSurface,
-                      foregroundColor: AppColors.text,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
+                      foregroundColor: Theme.of(context).colorScheme.onSurface,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -132,7 +135,7 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
               vertical: AppSpacing.md,
             ),
             decoration: BoxDecoration(
-              color: AppColors.subtleSurface,
+              color: Theme.of(context).colorScheme.surfaceContainerLow,
               borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Row(

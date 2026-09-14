@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -24,7 +23,8 @@ final class ChatMessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = isMine ? AppColors.surfaceLight : AppColors.text;
+    final colorScheme = Theme.of(context).colorScheme;
+    final foreground = isMine ? colorScheme.onPrimary : colorScheme.onSurface;
     return Dismissible(
       key: ValueKey('chat-reply-${message.id}'),
       direction: DismissDirection.endToStart,
@@ -34,13 +34,13 @@ final class ChatMessageBubble extends StatelessWidget {
         if (direction == DismissDirection.endToStart) onReply();
         return false;
       },
-      background: const Align(
+      background: Align(
         alignment: Alignment.centerRight,
         child: Padding(
           padding: EdgeInsets.only(right: AppSpacing.md),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: AppColors.primary,
+              color: colorScheme.primary,
               shape: BoxShape.circle,
             ),
             child: Padding(
@@ -48,7 +48,7 @@ final class ChatMessageBubble extends StatelessWidget {
               child: Icon(
                 Icons.reply_rounded,
                 size: 18,
-                color: AppColors.surfaceLight,
+                color: colorScheme.onPrimary,
               ),
             ),
           ),
@@ -70,11 +70,11 @@ final class ChatMessageBubble extends StatelessWidget {
                   vertical: AppSpacing.sm,
                 ),
                 decoration: BoxDecoration(
-                  color: isMine ? AppColors.primary : AppColors.surfaceLight,
+                  color: isMine ? colorScheme.primary : colorScheme.surface,
                   borderRadius: BorderRadius.circular(AppRadius.md),
                   border: isMine
-                      ? Border.all(color: AppColors.primary)
-                      : Border.all(color: AppColors.border),
+                      ? Border.all(color: colorScheme.primary)
+                      : Border.all(color: colorScheme.outline),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,8 +92,10 @@ final class ChatMessageBubble extends StatelessWidget {
                             border: Border(
                               left: BorderSide(
                                 color: isMine
-                                    ? AppColors.mutedSurface
-                                    : AppColors.primary,
+                                    ? colorScheme.onPrimary.withValues(
+                                        alpha: .4,
+                                      )
+                                    : colorScheme.primary,
                               ),
                             ),
                           ),
@@ -103,8 +105,8 @@ final class ChatMessageBubble extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: AppTypography.chatReply.copyWith(
                               color: isMine
-                                  ? AppColors.chatReplyOnPrimary
-                                  : AppColors.placeholder,
+                                  ? colorScheme.onPrimary.withValues(alpha: .8)
+                                  : colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ),
@@ -127,8 +129,8 @@ final class ChatMessageBubble extends StatelessWidget {
                         ),
                         style: AppTypography.chatMessageTime.copyWith(
                           color: isMine
-                              ? AppColors.chatReplyOnPrimary
-                              : AppColors.mutedText,
+                              ? colorScheme.onPrimary.withValues(alpha: .8)
+                              : colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ),

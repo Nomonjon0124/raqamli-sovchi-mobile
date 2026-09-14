@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
@@ -36,7 +38,7 @@ final class ChatRequestProfileView extends StatelessWidget {
     final score = _overallScore;
 
     return Scaffold(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(
@@ -89,8 +91,8 @@ final class ChatRequestProfileView extends StatelessWidget {
               child: _ActionButton(
                 label: l10n.chatRequestAccept,
                 icon: Assets.icons.icVerifyCheck,
-                backgroundColor: AppColors.successSurface,
-                foregroundColor: AppColors.successText,
+                backgroundColor: context.statusColors.successContainer,
+                foregroundColor: context.statusColors.onSuccessContainer,
                 onPressed: isActionLoading ? null : onAccept,
               ),
             ),
@@ -98,8 +100,10 @@ final class ChatRequestProfileView extends StatelessWidget {
             Expanded(
               child: _ActionButton(
                 label: l10n.chatRequestReject,
-                backgroundColor: AppColors.mutedSurface,
-                foregroundColor: AppColors.bodyText,
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
+                foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
                 onPressed: isActionLoading ? null : onReject,
               ),
             ),
@@ -193,7 +197,7 @@ final class _RoundIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: AppColors.mutedSurface,
+    color: Theme.of(context).colorScheme.surfaceContainerHighest,
     shape: const CircleBorder(),
     child: InkWell(
       onTap: onPressed,
@@ -203,7 +207,10 @@ final class _RoundIconButton extends StatelessWidget {
         child: Assets.icons.icArrowLeft01Round.svg(
           width: 20,
           height: 20,
-          colorFilter: const ColorFilter.mode(AppColors.text, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).colorScheme.onSurface,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     ),
@@ -306,15 +313,15 @@ final class _ProfilePhoto extends StatelessWidget {
     final showImage = !isPhotoHidden && imageUrl?.isNotEmpty == true;
     return CircleAvatar(
       radius: 36,
-      backgroundColor: AppColors.mutedSurface,
+      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
       foregroundImage: showImage ? CachedNetworkImageProvider(imageUrl!) : null,
       child: showImage
           ? null
           : Assets.icons.icSquareLock.svg(
               width: 20,
               height: 20,
-              colorFilter: const ColorFilter.mode(
-                AppColors.mutedText,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSurfaceVariant,
                 BlendMode.srcIn,
               ),
             ),
@@ -333,8 +340,8 @@ final class _Badge extends StatelessWidget {
   Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
       color: isSuccess
-          ? AppColors.successSurface
-          : AppColors.servicesInfoSurface,
+          ? context.statusColors.successContainer
+          : context.statusColors.infoContainer,
       borderRadius: BorderRadius.circular(AppRadius.full),
     ),
     child: Padding(
@@ -350,7 +357,9 @@ final class _Badge extends StatelessWidget {
               width: 12,
               height: 12,
               colorFilter: ColorFilter.mode(
-                isSuccess ? AppColors.successText : AppColors.mapLabelText,
+                isSuccess
+                    ? context.statusColors.onSuccessContainer
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
                 BlendMode.srcIn,
               ),
             ),
@@ -359,7 +368,9 @@ final class _Badge extends StatelessWidget {
           Text(
             label,
             style: AppTypography.chatRequestBadge.copyWith(
-              color: isSuccess ? AppColors.successText : AppColors.mapLabelText,
+              color: isSuccess
+                  ? context.statusColors.onSuccessContainer
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ],
@@ -418,7 +429,7 @@ final class _BreakdownRow extends StatelessWidget {
             Text(
               '$percent%',
               style: AppTypography.chatRequestBadge.copyWith(
-                color: AppColors.text,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ],
@@ -430,7 +441,9 @@ final class _BreakdownRow extends StatelessWidget {
             height: AppSpacing.compact,
             child: LinearProgressIndicator(
               value: percent / 100,
-              backgroundColor: AppColors.mutedSurface,
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest,
               color: AppColors.primary,
             ),
           ),
@@ -449,7 +462,7 @@ final class _RepresentativeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
-      color: AppColors.servicesInfoSurface,
+      color: context.statusColors.infoContainer,
       borderRadius: BorderRadius.circular(AppRadius.lg),
     ),
     child: Padding(
@@ -462,8 +475,8 @@ final class _RepresentativeCard extends StatelessWidget {
           Assets.icons.icPersons.svg(
             width: 18,
             height: 18,
-            colorFilter: const ColorFilter.mode(
-              AppColors.mapLabelText,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).colorScheme.onSurfaceVariant,
               BlendMode.srcIn,
             ),
           ),
@@ -492,9 +505,11 @@ final class _Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DecoratedBox(
     decoration: BoxDecoration(
-      color: AppColors.subtleSurface,
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      border: Border.all(color: AppColors.mutedSurface),
+      border: Border.all(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      ),
     ),
     child: Padding(
       padding: const EdgeInsets.all(AppSpacing.input),

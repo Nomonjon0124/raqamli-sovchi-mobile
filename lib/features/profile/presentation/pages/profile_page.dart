@@ -43,7 +43,7 @@ final class _ProfileView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return ColoredBox(
-      color: AppColors.surfaceLight,
+      color: Theme.of(context).colorScheme.surface,
       child: SafeArea(
         bottom: false,
         child: BlocConsumer<ProfileBloc, ProfileState>(

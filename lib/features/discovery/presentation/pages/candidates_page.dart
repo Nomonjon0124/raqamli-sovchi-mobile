@@ -323,8 +323,10 @@ final class _CandidatesPageView extends StatelessWidget {
     final result = await showModalBottomSheet<NearbyRadiusSettingsResult>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: AppColors.text.withValues(alpha: 0.4),
+      backgroundColor: AppColors.transparent,
+      barrierColor: Theme.of(
+        context,
+      ).colorScheme.onSurface.withValues(alpha: 0.4),
       useSafeArea: true,
       builder: (sheetContext) => ConstrainedBox(
         constraints: BoxConstraints(

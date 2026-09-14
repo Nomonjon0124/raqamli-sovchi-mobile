@@ -43,7 +43,7 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
         );
       },
       child: Scaffold(
-        backgroundColor: AppColors.surfaceLight,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -123,9 +123,11 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
         const SizedBox(height: AppSpacing.md),
         DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.subtleSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(color: AppColors.mutedSurface),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+            ),
           ),
           child: Column(
             children: [
@@ -135,13 +137,19 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
                 onTap: () =>
                     setState(() => _reason = _DeletionReason.foundMatch),
               ),
-              const Divider(height: 1, color: AppColors.mutedSurface),
+              Divider(
+                height: 1,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              ),
               _ReasonTile(
                 label: l10n.accountDeletionReasonNoTime,
                 selected: _reason == _DeletionReason.noTime,
                 onTap: () => setState(() => _reason = _DeletionReason.noTime),
               ),
-              const Divider(height: 1, color: AppColors.mutedSurface),
+              Divider(
+                height: 1,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              ),
               _ReasonTile(
                 label: l10n.accountDeletionReasonPrivacy,
                 selected: _reason == _DeletionReason.privacy,
@@ -171,20 +179,22 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
                     const AuthDeleteAccountRequested(),
                   ),
             icon: isLoading
-                ? const SizedBox.square(
+                ? SizedBox.square(
                     dimension: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: AppColors.surfaceLight,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   )
                 : const Icon(Icons.delete_outline, size: 20),
             label: Text(l10n.accountDeletionConfirm),
             style: FilledButton.styleFrom(
-              backgroundColor: AppColors.dangerText,
-              foregroundColor: AppColors.surfaceLight,
-              disabledBackgroundColor: AppColors.dangerText,
-              disabledForegroundColor: AppColors.surfaceLight,
+              backgroundColor: Theme.of(context).colorScheme.onErrorContainer,
+              foregroundColor: Theme.of(context).colorScheme.surface,
+              disabledBackgroundColor: Theme.of(
+                context,
+              ).colorScheme.onErrorContainer,
+              disabledForegroundColor: Theme.of(context).colorScheme.surface,
               textStyle: AppTypography.onboardingAction,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.full),
@@ -201,17 +211,17 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
             icon: Assets.icons.icClose.svg(
               width: 14,
               height: 14,
-              colorFilter: const ColorFilter.mode(
-                AppColors.text,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.onSurface,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,
             ),
             label: Text(l10n.accountDeletionCancel),
             style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.text,
+              foregroundColor: Theme.of(context).colorScheme.onSurface,
               textStyle: AppTypography.onboardingAction,
-              side: const BorderSide(color: AppColors.border),
+              side: BorderSide(color: Theme.of(context).colorScheme.outline),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
@@ -232,18 +242,18 @@ final class _WarningCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(AppSpacing.controlInset + 10),
     decoration: BoxDecoration(
-      color: AppColors.dangerSurface,
-      border: Border.all(color: AppColors.dangerBorder),
+      color: Theme.of(context).colorScheme.errorContainer,
+      border: Border.all(color: Theme.of(context).colorScheme.error),
       borderRadius: BorderRadius.circular(AppRadius.lg),
     ),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 1),
           child: Icon(
             Icons.error_outline,
-            color: AppColors.dangerText,
+            color: Theme.of(context).colorScheme.onErrorContainer,
             size: 18,
           ),
         ),
@@ -255,7 +265,7 @@ final class _WarningCard extends StatelessWidget {
               Text(
                 l10n.accountDeletionWarningTitle,
                 style: AppTypography.sectionCardTitle.copyWith(
-                  color: AppColors.dangerText,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
                 ),
               ),
               const SizedBox(height: AppSpacing.controlInset + 1),
@@ -265,7 +275,7 @@ final class _WarningCard extends StatelessWidget {
                   fontSize: 11,
                   height: 17 / 11,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.bodyText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ],
@@ -287,11 +297,11 @@ final class _DeletedItem extends StatelessWidget {
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(top: 1),
           child: Icon(
             Icons.delete_outline,
-            color: AppColors.dangerText,
+            color: Theme.of(context).colorScheme.onErrorContainer,
             size: 15,
           ),
         ),
@@ -303,7 +313,7 @@ final class _DeletedItem extends StatelessWidget {
               fontSize: 12,
               height: 19 / 12,
               fontWeight: FontWeight.w400,
-              color: AppColors.bodyText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),
@@ -336,7 +346,7 @@ final class _ReasonTile extends StatelessWidget {
             height: 18,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: selected ? AppColors.primary : Colors.transparent,
+              color: selected ? AppColors.primary : AppColors.transparent,
               border: Border.all(
                 color: selected ? AppColors.primary : AppColors.strongBorder,
                 width: 1.5,
@@ -350,7 +360,7 @@ final class _ReasonTile extends StatelessWidget {
               style: AppTypography.onboardingReferenceOption.copyWith(
                 fontSize: 14,
                 height: 19 / 14,
-                color: AppColors.text,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),

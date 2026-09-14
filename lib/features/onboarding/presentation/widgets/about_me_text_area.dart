@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -22,7 +21,7 @@ final class AboutMeTextArea extends StatelessWidget {
       height: 132,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: AppColors.mutedSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(AppRadius.lg),
       ),
       child: TextField(
@@ -38,7 +37,7 @@ final class AboutMeTextArea extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: AppTypography.onboardingChip.copyWith(
-            color: AppColors.placeholder,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           border: InputBorder.none,
           isDense: true,

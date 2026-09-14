@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../gen/assets.gen.dart';
@@ -28,13 +27,13 @@ final class CandidateDetailHeroImage extends StatelessWidget {
     final fallbackWidget = Semantics(
       label: AppLocalizations.of(context).candidateDetailNoPhoto,
       image: true,
-      child: const ColoredBox(
-        color: AppColors.mutedSurface,
+      child: ColoredBox(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         child: Center(
           child: Icon(
             Icons.person_rounded,
             size: 88,
-            color: AppColors.mutedText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ),
@@ -54,7 +53,7 @@ final class CandidateDetailHeroImage extends StatelessWidget {
         height: heroHeight,
         width: double.infinity,
         child: ColoredBox(
-          color: AppColors.mutedSurface,
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
           child: Stack(
             fit: StackFit.expand,
             clipBehavior: Clip.hardEdge,
@@ -78,7 +77,7 @@ final class CandidateDetailHeroImage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppRadius.md),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                         borderRadius: BorderRadius.circular(AppRadius.md),
                       ),
                       child: Padding(
@@ -92,8 +91,8 @@ final class CandidateDetailHeroImage extends StatelessWidget {
                             Assets.icons.icGlyph.svg(
                               width: 15,
                               height: 15,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
+                              colorFilter: ColorFilter.mode(
+                                Theme.of(context).colorScheme.surface,
                                 BlendMode.srcIn,
                               ),
                             ),
@@ -102,12 +101,12 @@ final class CandidateDetailHeroImage extends StatelessWidget {
                               AppLocalizations.of(
                                 context,
                               ).candidateDetailRequestPhotoPermission,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Manrope',
                                 fontSize: 12,
                                 height: 16 / 12,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.surface,
                               ),
                             ),
                           ],

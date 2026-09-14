@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
+import '../../../../app/theme/app_status_colors.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
 
@@ -32,15 +33,16 @@ final class FeaturedServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: AppColors.surfaceLight,
+      color: colorScheme.surface,
       borderRadius: BorderRadius.circular(AppRadius.card),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(AppRadius.card),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: colorScheme.outline),
             borderRadius: BorderRadius.circular(AppRadius.card),
           ),
           child: Padding(
@@ -60,14 +62,18 @@ final class FeaturedServiceCard extends StatelessWidget {
                             title,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: AppTypography.servicesCardTitle,
+                            style: AppTypography.servicesCardTitle.copyWith(
+                              color: colorScheme.onSurface,
+                            ),
                           ),
                           const SizedBox(height: AppSpacing.xxs),
                           Text(
                             subtitle,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: AppTypography.servicesCaption,
+                            style: AppTypography.servicesCaption.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                            ),
                           ),
                         ],
                       ),
@@ -77,7 +83,12 @@ final class FeaturedServiceCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.input),
-                Text(description, style: AppTypography.servicesCardBody),
+                Text(
+                  description,
+                  style: AppTypography.servicesCardBody.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
                 const SizedBox(height: AppSpacing.md),
                 Wrap(
                   spacing: AppSpacing.sm,
@@ -93,7 +104,7 @@ final class FeaturedServiceCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTypography.servicesHeroStatValue.copyWith(
-                          color: AppColors.text,
+                          color: colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -139,9 +150,10 @@ final class _RatingPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final statusColors = context.statusColors;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.servicesWarningSurface,
+        color: statusColors.warningContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
@@ -158,7 +170,7 @@ final class _RatingPill extends StatelessWidget {
             Text(
               rating,
               style: AppTypography.servicesPill.copyWith(
-                color: AppColors.servicesWarningText,
+                color: statusColors.onWarningContainer,
               ),
             ),
           ],
@@ -175,14 +187,20 @@ final class _InfoPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.mutedSurface,
+        color: colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-        child: Text(label, style: AppTypography.servicesPill),
+        child: Text(
+          label,
+          style: AppTypography.servicesPill.copyWith(
+            color: colorScheme.onSurfaceVariant,
+          ),
+        ),
       ),
     );
   }

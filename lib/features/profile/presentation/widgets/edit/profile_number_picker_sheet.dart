@@ -37,7 +37,7 @@ final class ProfileNumberPickerSheet extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => ProfileNumberPickerSheet(
         title: title,
         initialValue: initialValue,
@@ -90,8 +90,8 @@ final class _ProfileNumberPickerSheetState
         AppSpacing.xl,
         AppSpacing.xl,
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.surfaceLight,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
@@ -103,7 +103,7 @@ final class _ProfileNumberPickerSheetState
               width: 36,
               height: 4,
               decoration: BoxDecoration(
-                color: AppColors.border,
+                color: Theme.of(context).colorScheme.outline,
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
             ),
@@ -144,7 +144,7 @@ final class _ProfileNumberPickerSheetState
                             : FontWeight.w500,
                         color: isSelected
                             ? AppColors.primary
-                            : AppColors.mutedText,
+                            : Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   );

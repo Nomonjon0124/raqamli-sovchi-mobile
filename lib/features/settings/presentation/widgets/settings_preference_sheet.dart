@@ -220,33 +220,36 @@ final class _PreferenceOption extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Material(
-    color: Colors.transparent,
-    child: InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: AppSpacing.settingsRowVertical,
-        ),
-        child: Row(
-          children: [
-            SizedBox(width: 24, child: Center(child: leading)),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Text(
-                label,
-                style: AppTypography.settingsSheetOption.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Material(
+      color: AppColors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: AppSpacing.settingsRowVertical,
+          ),
+          child: Row(
+            children: [
+              SizedBox(width: 24, child: Center(child: leading)),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: Text(
+                  label,
+                  style: AppTypography.settingsSheetOption.copyWith(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
               ),
-            ),
-            if (selected)
-              const Icon(Icons.check, color: AppColors.primary, size: 24),
-          ],
+              if (selected)
+                Icon(Icons.check, color: colorScheme.primary, size: 24),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 bool _sameLocale(Locale first, Locale second) =>

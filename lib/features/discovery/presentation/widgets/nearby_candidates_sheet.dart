@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -28,6 +27,7 @@ final class NearbyCandidatesSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return DraggableScrollableSheet(
       controller: controller,
@@ -38,14 +38,14 @@ final class NearbyCandidatesSheet extends StatelessWidget {
       snapSizes: const [0.26, 0.76],
       builder: (context, scrollController) {
         return DecoratedBox(
-          decoration: const BoxDecoration(
-            color: AppColors.surfaceLight,
-            borderRadius: BorderRadius.vertical(
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: const BorderRadius.vertical(
               top: Radius.circular(AppRadius.sheet),
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.softShadow,
+                color: colorScheme.shadow,
                 offset: Offset(0, -3),
                 blurRadius: 14,
               ),
@@ -70,10 +70,10 @@ final class NearbyCandidatesSheet extends StatelessWidget {
               itemCount: items.length + 2,
               itemBuilder: (context, index) {
                 if (index == 0) {
-                  return const Center(
+                  return Center(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: AppColors.mutedSurface,
+                        color: colorScheme.surfaceContainer,
                         borderRadius: BorderRadius.all(
                           Radius.circular(AppRadius.full),
                         ),
@@ -91,7 +91,7 @@ final class NearbyCandidatesSheet extends StatelessWidget {
                           child: Text(
                             l10n.nearbyAroundCount(items.length),
                             style: AppTypography.onboardingAction.copyWith(
-                              color: AppColors.text,
+                              color: colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -145,9 +145,10 @@ final class _NearbyCandidateRow extends StatelessWidget {
         ? item.distanceKm.toStringAsFixed(1)
         : item.distanceKm.round().toString();
     final score = candidate.compatibilityScore?.overallScore;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Material(
-      color: AppColors.subtleSurface,
+      color: colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.md),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -165,15 +166,15 @@ final class _NearbyCandidateRow extends StatelessWidget {
                 width: 40,
                 height: 40,
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: AppColors.mutedSurface,
+                decoration: BoxDecoration(
+                  color: colorScheme.surfaceContainer,
                   shape: BoxShape.circle,
                 ),
                 child: Assets.icons.icSquareLock.svg(
                   width: 16,
                   height: 16,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.mutedText,
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.onSurfaceVariant,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -195,7 +196,7 @@ final class _NearbyCandidateRow extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppTypography.onboardingSelectorLabel.copyWith(
-                        color: AppColors.mutedText,
+                        color: colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -205,7 +206,7 @@ final class _NearbyCandidateRow extends StatelessWidget {
               Text(
                 score == null ? l10n.matchLockedLabel : '${score.round()}%',
                 style: AppTypography.sectionCardTitle.copyWith(
-                  color: AppColors.primary,
+                  color: colorScheme.primary,
                 ),
               ),
             ],

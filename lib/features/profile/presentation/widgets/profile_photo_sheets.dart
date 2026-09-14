@@ -11,7 +11,7 @@ Future<ProfilePhotoPickerSource?> showProfilePhotoSourceSheet(
   BuildContext context,
 ) => showModalBottomSheet<ProfilePhotoPickerSource>(
   context: context,
-  backgroundColor: Colors.transparent,
+  backgroundColor: AppColors.transparent,
   builder: (_) => const _ProfilePhotoSourceSheet(),
 );
 
@@ -19,7 +19,7 @@ Future<ProfilePhotoAction?> showProfilePhotoActionsSheet(
   BuildContext context,
 ) => showModalBottomSheet<ProfilePhotoAction>(
   context: context,
-  backgroundColor: Colors.transparent,
+  backgroundColor: AppColors.transparent,
   builder: (_) => const _ProfilePhotoActionsSheet(),
 );
 
@@ -54,14 +54,14 @@ final class _ProfilePhotoSourceSheet extends StatelessWidget {
         _ProfilePhotoActionRow(
           icon: Assets.icons.profileCamera,
           label: l10n.profilePhotoCamera,
-          color: AppColors.text,
+          color: Theme.of(context).colorScheme.onSurface,
           onTap: () =>
               Navigator.of(context).pop(ProfilePhotoPickerSource.camera),
         ),
         _ProfilePhotoActionRow(
           icon: Assets.icons.settingsImage,
           label: l10n.profilePhotoGallery,
-          color: AppColors.text,
+          color: Theme.of(context).colorScheme.onSurface,
           onTap: () =>
               Navigator.of(context).pop(ProfilePhotoPickerSource.gallery),
         ),
@@ -101,7 +101,7 @@ final class _ProfilePhotoActionsSheet extends StatelessWidget {
         _ProfilePhotoActionRow.material(
           materialIcon: Icons.delete_outline_rounded,
           label: l10n.profilePhotoDelete,
-          color: AppColors.dangerText,
+          color: Theme.of(context).colorScheme.onErrorContainer,
           onTap: () => Navigator.of(context).pop(ProfilePhotoAction.delete),
         ),
         const SizedBox(height: AppSpacing.inline),
@@ -121,7 +121,7 @@ final class _ProfilePhotoDeleteDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Dialog(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       insetPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.section),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppRadius.xxl),
@@ -165,7 +165,7 @@ final class _ProfilePhotoDeleteDialog extends StatelessWidget {
                       label: Text(l10n.profilePhotoDelete),
                       style: FilledButton.styleFrom(
                         backgroundColor: AppColors.danger,
-                        foregroundColor: AppColors.surfaceLight,
+                        foregroundColor: Theme.of(context).colorScheme.surface,
                         textStyle: AppTypography.onboardingAction,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppRadius.full),
@@ -208,7 +208,7 @@ final class _ProfilePhotoSheetFrame extends StatelessWidget {
         28,
       ),
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: roundedTopOnly
             ? const BorderRadius.vertical(top: Radius.circular(AppRadius.xxl))
             : BorderRadius.circular(AppRadius.xxl),
@@ -234,59 +234,67 @@ final class _ProfilePhotoActionRow extends StatelessWidget {
   final VoidCallback onTap;
   final SvgGenImage? icon;
   final IconData? materialIcon;
-  final Color color;
+  final Color? color;
 
-  const _ProfilePhotoActionRow.material({
+  _ProfilePhotoActionRow.material({
     required this.label,
     required this.onTap,
     required IconData this.materialIcon,
-    this.color = AppColors.text,
+    this.color,
   }) : icon = null;
 
   @override
-  Widget build(BuildContext context) => Semantics(
-    button: true,
-    label: label,
-    child: Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: AppSpacing.settingsRowVertical,
-          ),
-          child: Row(
-            children: [
-              if (icon != null)
-                icon!.svg(
-                  width: 24,
-                  height: 24,
-                  colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-                  excludeFromSemantics: true,
-                )
-              else
-                Icon(materialIcon, size: 24, color: color),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Text(
-                  label,
-                  style: AppTypography.onboardingAction.copyWith(color: color),
+  Widget build(BuildContext context) {
+    final foreground = color ?? Theme.of(context).colorScheme.onSurface;
+    return Semantics(
+      button: true,
+      label: label,
+      child: Material(
+        color: AppColors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSpacing.settingsRowVertical,
+            ),
+            child: Row(
+              children: [
+                if (icon != null)
+                  icon!.svg(
+                    width: 24,
+                    height: 24,
+                    colorFilter: ColorFilter.mode(foreground, BlendMode.srcIn),
+                    excludeFromSemantics: true,
+                  )
+                else
+                  Icon(materialIcon, size: 24, color: foreground),
+                const SizedBox(width: AppSpacing.md),
+                Expanded(
+                  child: Text(
+                    label,
+                    style: AppTypography.onboardingAction.copyWith(
+                      color: foreground,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _ProfilePhotoDivider extends StatelessWidget {
   const _ProfilePhotoDivider();
 
   @override
-  Widget build(BuildContext context) =>
-      const Divider(height: 1, thickness: 1, color: AppColors.subtleSurface);
+  Widget build(BuildContext context) => Divider(
+    height: 1,
+    thickness: 1,
+    color: Theme.of(context).colorScheme.outline,
+  );
 }
 
 final class _ProfilePhotoCancelButton extends StatelessWidget {
@@ -304,9 +312,9 @@ final class _ProfilePhotoCancelButton extends StatelessWidget {
     child: OutlinedButton(
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
-        backgroundColor: AppColors.surfaceLight,
-        foregroundColor: AppColors.text,
-        side: const BorderSide(color: AppColors.border),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        foregroundColor: Theme.of(context).colorScheme.onSurface,
+        side: BorderSide(color: Theme.of(context).colorScheme.outline),
         textStyle: AppTypography.onboardingAction,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppRadius.full),

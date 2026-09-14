@@ -153,7 +153,11 @@ final class _OnboardingWizardHeader extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    const ColoredBox(color: AppColors.mutedSurface),
+                    ColoredBox(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
+                    ),
                     FractionallySizedBox(
                       alignment: Alignment.centerLeft,
                       widthFactor: progress,

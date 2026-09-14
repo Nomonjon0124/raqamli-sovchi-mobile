@@ -164,7 +164,7 @@ final class _OnboardingHeightRulerState extends State<OnboardingHeightRuler> {
                             return Center(
                               child: _HeightTick(
                                 height: height % 5 == 0 ? 22 : 14,
-                                color: AppColors.border,
+                                color: Theme.of(context).colorScheme.outline,
                               ),
                             );
                           },
@@ -206,14 +206,18 @@ final class _HeightStepButton extends StatelessWidget {
       label: label,
       enabled: onPressed != null,
       child: Material(
-        color: AppColors.mutedSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         shape: const CircleBorder(),
         child: InkWell(
           customBorder: const CircleBorder(),
           onTap: onPressed,
           child: SizedBox.square(
             dimension: 44,
-            child: Icon(icon, color: AppColors.text, size: 24),
+            child: Icon(
+              icon,
+              color: Theme.of(context).colorScheme.onSurface,
+              size: 24,
+            ),
           ),
         ),
       ),

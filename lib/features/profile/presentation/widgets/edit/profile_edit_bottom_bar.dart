@@ -26,7 +26,7 @@ final class ProfileEditBottomBar extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return ColoredBox(
-      color: AppColors.surfaceLight,
+      color: Theme.of(context).colorScheme.surface,
       child: SafeArea(
         top: false,
         child: Padding(
@@ -46,20 +46,24 @@ final class ProfileEditBottomBar extends StatelessWidget {
                   onPressed: (isSaveEnabled && !isLoading) ? onSave : null,
                   style: FilledButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    disabledBackgroundColor: AppColors.border,
-                    disabledForegroundColor: AppColors.mutedText,
+                    foregroundColor: Theme.of(context).colorScheme.surface,
+                    disabledBackgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.outline,
+                    disabledForegroundColor: Theme.of(
+                      context,
+                    ).colorScheme.onSurfaceVariant,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                     textStyle: AppTypography.onboardingAction,
                   ),
                   child: isLoading
-                      ? const SizedBox.square(
+                      ? SizedBox.square(
                           dimension: 22,
                           child: CircularProgressIndicator(
                             strokeWidth: 2.2,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                         )
                       : Row(
@@ -73,8 +77,10 @@ final class ProfileEditBottomBar extends StatelessWidget {
                               height: 18,
                               colorFilter: ColorFilter.mode(
                                 (isSaveEnabled && !isLoading)
-                                    ? AppColors.surfaceLight
-                                    : AppColors.mutedText,
+                                    ? Theme.of(context).colorScheme.surface
+                                    : Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
                                 BlendMode.srcIn,
                               ),
                             ),
@@ -89,9 +95,11 @@ final class ProfileEditBottomBar extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: isLoading ? null : onCancel,
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: AppColors.surfaceLight,
-                    foregroundColor: AppColors.text,
-                    side: const BorderSide(color: AppColors.border),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    foregroundColor: Theme.of(context).colorScheme.onSurface,
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.outline,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),

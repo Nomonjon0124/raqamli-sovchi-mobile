@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
+import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../gen/assets.gen.dart';
@@ -245,7 +246,7 @@ final class _SettingsView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final selected = await showModalBottomSheet<Locale>(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       isScrollControlled: true,
       builder: (sheetContext) => SettingsLanguageSheet(
         title: l10n.settingsLanguageSheetTitle,
@@ -265,7 +266,7 @@ final class _SettingsView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final selected = await showModalBottomSheet<ThemeMode>(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       isScrollControlled: true,
       builder: (sheetContext) => SettingsThemeSheet(
         title: l10n.settingsThemeSheetTitle,

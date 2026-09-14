@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
-
 abstract final class AppTypography {
   static const chatHeaderName = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const chatHeaderSubtitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.primary,
   );
   static const chatBubble = TextStyle(
     fontFamily: 'Manrope',
@@ -25,19 +21,16 @@ abstract final class AppTypography {
     fontFamily: 'Manrope',
     fontSize: 10,
     height: 14 / 10,
-    color: AppColors.mutedText,
   );
   static const chatSystem = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.mutedText,
   );
   static const chatChip = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.bodyText,
   );
   static const chatReply = TextStyle(
     fontFamily: 'Manrope',
@@ -50,20 +43,17 @@ abstract final class AppTypography {
     height: 23 / 18,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const chatActionCaption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const chatActionLabel = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 15 / 11,
     fontWeight: FontWeight.w600,
-    color: AppColors.dangerText,
   );
   static const chatDeleteButton = TextStyle(
     fontFamily: 'Manrope',
@@ -75,27 +65,23 @@ abstract final class AppTypography {
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const chatRequestCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const chatRequestCardBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.mutedText,
   );
   static const chatRequestCardScore = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w700,
-    color: AppColors.primary,
   );
   static const chatRequestProfileTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -103,7 +89,6 @@ abstract final class AppTypography {
     height: 27 / 20,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const chatRequestProfileName = TextStyle(
     fontFamily: 'Manrope',
@@ -111,7 +96,6 @@ abstract final class AppTypography {
     height: 27 / 20,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const chatRequestProfileScore = TextStyle(
     fontFamily: 'Manrope',
@@ -119,14 +103,12 @@ abstract final class AppTypography {
     height: 27 / 22,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.primary,
   );
   static const chatRequestBadge = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 15 / 11,
     fontWeight: FontWeight.w600,
-    color: AppColors.mapLabelText,
   );
   static const chatRequestSectionLabel = TextStyle(
     fontFamily: 'Manrope',
@@ -134,13 +116,11 @@ abstract final class AppTypography {
     height: 14 / 10,
     fontWeight: FontWeight.w600,
     letterSpacing: 0.8,
-    color: AppColors.mutedText,
   );
   static const chatRequestSectionBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.bodyText,
   );
   static const chatRequestAction = TextStyle(
     fontFamily: 'Manrope',
@@ -154,7 +134,6 @@ abstract final class AppTypography {
     height: 31 / 26,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.7,
-    color: AppColors.text,
   );
   static const photoRequestTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -162,7 +141,6 @@ abstract final class AppTypography {
     height: 27 / 22,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.text,
   );
   static const pinTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -170,7 +148,6 @@ abstract final class AppTypography {
     height: 30 / 24,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.text,
   );
   static const onboardingTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -178,7 +155,6 @@ abstract final class AppTypography {
     height: 30 / 24,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.text,
   );
   static const body = TextStyle(
     fontFamily: 'Manrope',
@@ -190,13 +166,11 @@ abstract final class AppTypography {
     fontSize: 12,
     height: 16 / 12,
     fontWeight: FontWeight.w600,
-    color: AppColors.mutedText,
   );
   static const onboardingBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 21 / 13,
-    color: AppColors.mutedText,
   );
   static const onboardingCardTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -204,13 +178,11 @@ abstract final class AppTypography {
     height: 22 / 16,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.2,
-    color: AppColors.text,
   );
   static const onboardingCardBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const onboardingAction = TextStyle(
     fontFamily: 'Manrope',
@@ -222,7 +194,6 @@ abstract final class AppTypography {
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 21 / 13,
-    color: AppColors.bodyText,
   );
   static const onboardingWheel = TextStyle(
     fontFamily: 'Manrope',
@@ -234,20 +205,17 @@ abstract final class AppTypography {
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 21 / 14,
-    color: AppColors.bodyText,
   );
   static const onboardingName = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 18,
     height: 24 / 18,
-    color: AppColors.text,
   );
   static const onboardingProgress = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 16 / 12,
     fontWeight: FontWeight.w600,
-    color: AppColors.mutedText,
   );
   static const onboardingSheetTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -255,33 +223,28 @@ abstract final class AppTypography {
     height: 27 / 20,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const onboardingSheetCaption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const onboardingReferenceOption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w500,
-    color: AppColors.bodyText,
   );
   static const onboardingReferenceSelected = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const onboardingSearch = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 21 / 14,
-    color: AppColors.placeholder,
   );
   static const onboardingNumeric = TextStyle(
     fontFamily: 'Manrope',
@@ -289,20 +252,17 @@ abstract final class AppTypography {
     height: 40 / 34,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.primary,
   );
   static const onboardingSelectorLabel = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.placeholder,
   );
   static const onboardingSelectorValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w500,
-    color: AppColors.text,
   );
   static const onboardingFieldLabel = TextStyle(
     fontFamily: 'Manrope',
@@ -310,34 +270,29 @@ abstract final class AppTypography {
     height: 14 / 10,
     fontWeight: FontWeight.w600,
     letterSpacing: 0.8,
-    color: AppColors.placeholder,
   );
   static const onboardingFieldValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.text,
   );
   static const onboardingMeasurementValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 22,
     height: 28 / 22,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const onboardingMeasurementUnit = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const sectionCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const analysisTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -345,7 +300,6 @@ abstract final class AppTypography {
     height: 23 / 18,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const candidateDetailName = TextStyle(
     fontFamily: 'Manrope',
@@ -353,21 +307,18 @@ abstract final class AppTypography {
     height: 27 / 22,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.text,
   );
   static const candidateDetailSectionTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 18 / 13,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const nearbyLabel = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 18 / 13,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const profileName = TextStyle(
     fontFamily: 'Manrope',
@@ -375,7 +326,6 @@ abstract final class AppTypography {
     height: 22 / 16,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.2,
-    color: AppColors.text,
   );
   static const profileAvatar = TextStyle(
     fontFamily: 'Manrope',
@@ -383,14 +333,12 @@ abstract final class AppTypography {
     height: 30 / 24,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.profileAvatarText,
   );
   static const profileProgress = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 15 / 11,
     fontWeight: FontWeight.w600,
-    color: AppColors.surfaceLight,
   );
   static const profileMainBadge = TextStyle(
     fontFamily: 'Manrope',
@@ -398,13 +346,11 @@ abstract final class AppTypography {
     height: 11 / 8,
     fontWeight: FontWeight.w700,
     letterSpacing: 0.4,
-    color: AppColors.surfaceLight,
   );
   static const profileIdentifier = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 16 / 11,
-    color: AppColors.mutedText,
   );
   static const profileSectionLabel = TextStyle(
     fontFamily: 'Manrope',
@@ -412,20 +358,17 @@ abstract final class AppTypography {
     height: 14 / 10,
     fontWeight: FontWeight.w600,
     letterSpacing: 0.8,
-    color: AppColors.mutedText,
   );
   static const profileCardTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const profileCardBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.mutedText,
   );
   static const settingsPageTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -433,7 +376,6 @@ abstract final class AppTypography {
     height: 27 / 20,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const settingsSectionTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -441,39 +383,33 @@ abstract final class AppTypography {
     height: 22 / 16,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.2,
-    color: AppColors.text,
   );
   static const settingsRowTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.text,
   );
   static const settingsRowValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mutedText,
   );
   static const settingsRowCaption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.mutedText,
   );
   static const settingsAction = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const settingsDeleteAction = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.dangerText,
   );
   static const settingsSheetTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -481,14 +417,12 @@ abstract final class AppTypography {
     height: 23 / 18,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.3,
-    color: AppColors.text,
   );
   static const settingsSheetOption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const settingsSheetFlag = TextStyle(fontSize: 18, height: 1);
   static const candidateDetailCardTitle = TextStyle(
@@ -496,28 +430,24 @@ abstract final class AppTypography {
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const candidateDetailBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
     fontWeight: FontWeight.w400,
-    color: AppColors.mutedText,
   );
   static const candidateDetailInfoLabel = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 21 / 13,
     fontWeight: FontWeight.w400,
-    color: AppColors.mutedText,
   );
   static const candidateDetailInfoValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w500,
-    color: AppColors.text,
   );
   static const servicesHeroTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -525,33 +455,28 @@ abstract final class AppTypography {
     height: 30 / 24,
     fontWeight: FontWeight.w700,
     letterSpacing: -0.5,
-    color: AppColors.surfaceLight,
   );
   static const servicesHeroBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 21 / 13,
-    color: AppColors.surfaceLight,
   );
   static const servicesHeroStatValue = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 15,
     height: 20 / 15,
     fontWeight: FontWeight.w600,
-    color: AppColors.surfaceLight,
   );
   static const servicesHeroStatLabel = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.surfaceLight,
   );
   static const servicesSectionTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const servicesCardTitle = TextStyle(
     fontFamily: 'Manrope',
@@ -559,52 +484,44 @@ abstract final class AppTypography {
     height: 22 / 16,
     fontWeight: FontWeight.w600,
     letterSpacing: -0.2,
-    color: AppColors.text,
   );
   static const servicesCardBody = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 21 / 13,
-    color: AppColors.mapLabelText,
   );
   static const servicesTileTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const servicesCaption = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 17 / 11,
-    color: AppColors.mutedText,
   );
   static const servicesPill = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 11,
     height: 15 / 11,
     fontWeight: FontWeight.w600,
-    color: AppColors.mapLabelText,
   );
   static const servicesAction = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 18 / 13,
     fontWeight: FontWeight.w600,
-    color: AppColors.surfaceLight,
   );
   static const servicesStepTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 13,
     height: 18 / 13,
     fontWeight: FontWeight.w600,
-    color: AppColors.text,
   );
   static const servicesNote = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 12,
     height: 19 / 12,
-    color: AppColors.mapLabelText,
   );
 }

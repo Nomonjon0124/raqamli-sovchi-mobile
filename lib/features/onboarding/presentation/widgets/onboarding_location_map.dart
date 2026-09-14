@@ -33,10 +33,12 @@ final class OnboardingLocationMap extends StatelessWidget {
               ),
             ),
             if (isLoading)
-              const ColoredBox(
-                color: Color(0x66000000),
+              ColoredBox(
+                color: AppColors.imageLoadingScrim,
                 child: Center(
-                  child: CircularProgressIndicator(color: Colors.white),
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.surface,
+                  ),
                 ),
               ),
           ],

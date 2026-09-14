@@ -19,6 +19,7 @@ final class ServicesHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppRadius.sheet),
@@ -52,9 +53,19 @@ final class ServicesHero extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: AppTypography.servicesHeroTitle),
+                      Text(
+                        title,
+                        style: AppTypography.servicesHeroTitle.copyWith(
+                          color: colorScheme.onPrimary,
+                        ),
+                      ),
                       const SizedBox(height: AppSpacing.sm),
-                      Text(subtitle, style: AppTypography.servicesHeroBody),
+                      Text(
+                        subtitle,
+                        style: AppTypography.servicesHeroBody.copyWith(
+                          color: colorScheme.onPrimary,
+                        ),
+                      ),
                       const Spacer(),
                       Row(
                         children: [
@@ -95,6 +106,7 @@ final class _HeroStat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Flexible(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,14 +116,18 @@ final class _HeroStat extends StatelessWidget {
             stat.value,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: AppTypography.servicesHeroStatValue,
+            style: AppTypography.servicesHeroStatValue.copyWith(
+              color: colorScheme.onPrimary,
+            ),
           ),
           const SizedBox(height: AppSpacing.xxs),
           Text(
             stat.label,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: AppTypography.servicesHeroStatLabel,
+            style: AppTypography.servicesHeroStatLabel.copyWith(
+              color: colorScheme.onPrimary,
+            ),
           ),
         ],
       ),
@@ -130,7 +146,7 @@ final class _HeroGlow extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: AppColors.surfaceLight.withValues(alpha: .16),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: .16),
         ),
       ),
       child: SizedBox.square(dimension: size),

@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -25,75 +27,84 @@ final class MessageThreadRow extends StatelessWidget {
   final String? avatarUrl;
 
   @override
-  Widget build(BuildContext context) => InkWell(
-    onTap: onTap,
-    child: DecoratedBox(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.mutedSurface)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.xs,
-          vertical: AppSpacing.input,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return InkWell(
+      onTap: onTap,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: colorScheme.surfaceContainer),
+          ),
         ),
-        child: Row(
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                _ThreadAvatar(name: name, avatarUrl: avatarUrl),
-                if (isOnline)
-                  const Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: AppColors.surfaceLight,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(AppSpacing.xxs),
-                        child: SizedBox(
-                          width: AppSpacing.sm,
-                          height: AppSpacing.sm,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: AppColors.successText,
-                              shape: BoxShape.circle,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs,
+            vertical: AppSpacing.input,
+          ),
+          child: Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  _ThreadAvatar(name: name, avatarUrl: avatarUrl),
+                  if (isOnline)
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: colorScheme.surface,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppSpacing.xxs),
+                          child: SizedBox(
+                            width: AppSpacing.sm,
+                            height: AppSpacing.sm,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: context.statusColors.onSuccessContainer,
+                                shape: BoxShape.circle,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-              ],
-            ),
-            const SizedBox(width: AppSpacing.input),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypography.chatHeaderName,
-                  ),
-                  const SizedBox(height: AppSpacing.controlInset),
-                  Text(
-                    preview,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypography.chatThreadPreview,
-                  ),
                 ],
               ),
-            ),
-          ],
+              const SizedBox(width: AppSpacing.input),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.chatHeaderName.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.controlInset),
+                    Text(
+                      preview,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.chatThreadPreview.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _ThreadAvatar extends StatelessWidget {
@@ -113,7 +124,9 @@ final class _ThreadAvatar extends StatelessWidget {
           : CachedNetworkImageProvider(url),
       child: Text(
         _initials(name),
-        style: AppTypography.chatHeaderName.copyWith(color: AppColors.primary),
+        style: AppTypography.chatHeaderName.copyWith(
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }

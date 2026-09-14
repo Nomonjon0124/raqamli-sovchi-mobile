@@ -405,8 +405,8 @@ final class _RepresentativeOnboardingStepContentState
           Container(
             width: 96,
             height: 96,
-            decoration: const BoxDecoration(
-              color: AppColors.subtleSurface,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceContainerLow,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,

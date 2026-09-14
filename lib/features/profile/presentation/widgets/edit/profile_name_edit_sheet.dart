@@ -28,7 +28,7 @@ final class ProfileNameEditSheet extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => ProfileNameEditSheet(
         initialFirstName: initialFirstName,
         initialLastName: initialLastName,
@@ -73,8 +73,8 @@ final class _ProfileNameEditSheetState extends State<ProfileNameEditSheet> {
           AppSpacing.xl,
           AppSpacing.xl,
         ),
-        decoration: const BoxDecoration(
-          color: AppColors.surfaceLight,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -86,7 +86,7 @@ final class _ProfileNameEditSheetState extends State<ProfileNameEditSheet> {
                 width: 36,
                 height: 4,
                 decoration: BoxDecoration(
-                  color: AppColors.border,
+                  color: Theme.of(context).colorScheme.outline,
                   borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
               ),
@@ -104,7 +104,9 @@ final class _ProfileNameEditSheetState extends State<ProfileNameEditSheet> {
               decoration: InputDecoration(
                 labelText: l10n.profileEditFirstName,
                 filled: true,
-                fillColor: AppColors.mutedSurface,
+                fillColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                   borderSide: BorderSide.none,
@@ -118,7 +120,9 @@ final class _ProfileNameEditSheetState extends State<ProfileNameEditSheet> {
               decoration: InputDecoration(
                 labelText: l10n.profileEditLastName,
                 filled: true,
-                fillColor: AppColors.mutedSurface,
+                fillColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                   borderSide: BorderSide.none,

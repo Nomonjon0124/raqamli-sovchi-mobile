@@ -145,9 +145,9 @@ final class _PhotoSlot extends StatelessWidget {
     final currentPhoto = photo;
     if (currentPhoto == null) {
       return _DashedBorder(
-        color: AppColors.border,
+        color: Theme.of(context).colorScheme.outline,
         child: Material(
-          color: AppColors.subtleSurface,
+          color: Theme.of(context).colorScheme.surfaceContainerLow,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: InkWell(
             onTap: onAdd,
@@ -155,13 +155,17 @@ final class _PhotoSlot extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.add, color: AppColors.mutedText, size: 22),
+                Icon(
+                  Icons.add,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  size: 22,
+                ),
                 const SizedBox(height: AppSpacing.xs + 2),
                 Text(
                   addLabel,
                   textAlign: TextAlign.center,
                   style: AppTypography.onboardingSelectorLabel.copyWith(
-                    color: AppColors.mutedText,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],
@@ -174,7 +178,7 @@ final class _PhotoSlot extends StatelessWidget {
     final failed = currentPhoto.uploadStatus == PhotoUploadStatus.failed;
     final uploading = currentPhoto.uploadStatus == PhotoUploadStatus.uploading;
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: currentPhoto.serverId == null || onMainSelected == null
             ? null
@@ -182,7 +186,7 @@ final class _PhotoSlot extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.lg),
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.subtleSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
             border: showMainBadge && currentPhoto.isMain
                 ? Border.all(color: AppColors.primary, width: 2)
                 : null,
@@ -206,7 +210,7 @@ final class _PhotoSlot extends StatelessWidget {
               if (failed)
                 Positioned.fill(
                   child: Material(
-                    color: Colors.transparent,
+                    color: AppColors.transparent,
                     child: InkWell(
                       onTap: () => onRetry(currentPhoto.localFilePath),
                     ),
@@ -226,7 +230,7 @@ final class _PhotoSlot extends StatelessWidget {
                       child: Icon(
                         Icons.cancel_rounded,
                         color: uploading
-                            ? AppColors.mutedText
+                            ? Theme.of(context).colorScheme.onSurfaceVariant
                             : AppColors.danger,
                         size: 20,
                       ),
@@ -253,7 +257,7 @@ final class _PhotoSlot extends StatelessWidget {
                           mainBadgeLabel,
                           textAlign: TextAlign.center,
                           style: AppTypography.onboardingFieldLabel.copyWith(
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             fontSize: 10,
                             height: 14 / 10,
                             letterSpacing: 0.8,

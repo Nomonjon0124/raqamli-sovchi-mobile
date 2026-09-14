@@ -10,6 +10,7 @@ final class AppScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Row(
       children: [
         Expanded(
@@ -17,7 +18,9 @@ final class AppScreenHeader extends StatelessWidget {
             title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: AppTypography.pageTitle,
+            style: AppTypography.pageTitle.copyWith(
+              color: colorScheme.onSurface,
+            ),
           ),
         ),
         ?trailing,

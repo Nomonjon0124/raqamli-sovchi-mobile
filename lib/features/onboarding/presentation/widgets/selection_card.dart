@@ -32,9 +32,13 @@ final class SelectionCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(AppSpacing.card),
           decoration: BoxDecoration(
-            color: selected ? AppColors.subtleSurface : Colors.white,
+            color: selected
+                ? Theme.of(context).colorScheme.surfaceContainerLow
+                : Theme.of(context).colorScheme.surface,
             border: Border.all(
-              color: selected ? AppColors.primary : AppColors.border,
+              color: selected
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.outline,
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(AppRadius.xl),

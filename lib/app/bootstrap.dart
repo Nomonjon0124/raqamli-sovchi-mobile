@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 
 import '../core/media/android_photo_picker_config.dart';
+import '../core/security/screenshot_guard.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
 import '../features/notifications/data/services/notification_lifecycle_service.dart';
@@ -22,7 +23,7 @@ Future<void> bootstrap() async {
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await configureDependencies();
   await serviceLocator<NotificationLifecycleService>().initialize();
-  // await serviceLocator<ScreenshotGuard>().enableProtection();
+  await serviceLocator<ScreenshotGuard>().enableProtection();
 
   final authBloc = serviceLocator<AuthBloc>()..add(const AuthStarted());
 

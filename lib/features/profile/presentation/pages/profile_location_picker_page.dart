@@ -118,7 +118,7 @@ final class _ProfileLocationPickerScaffoldState
     }).toList();
 
     return Scaffold(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -219,18 +219,18 @@ final class _LocationSearchField extends StatelessWidget {
       onChanged: onChanged,
       style: AppTypography.body.copyWith(
         fontWeight: FontWeight.w500,
-        color: AppColors.text,
+        color: Theme.of(context).colorScheme.onSurface,
       ),
       decoration: InputDecoration(
         isDense: true,
         filled: true,
-        fillColor: AppColors.mutedSurface,
+        fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
         hintText: hintText,
         hintStyle: AppTypography.onboardingSearch,
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           Icons.search,
           size: 18,
-          color: AppColors.placeholder,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         prefixIconConstraints: const BoxConstraints(
           minWidth: 40,
@@ -264,9 +264,9 @@ final class _LocationOptionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -274,8 +274,10 @@ final class _LocationOptionList extends StatelessWidget {
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: EdgeInsets.zero,
           itemCount: items.length,
-          separatorBuilder: (_, _) =>
-              const Divider(height: 1, color: AppColors.mutedSurface),
+          separatorBuilder: (_, _) => Divider(
+            height: 1,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          ),
           itemBuilder: (context, index) {
             final item = items[index];
             final isSelected = item.id == selectedId;
@@ -297,8 +299,10 @@ final class _LocationOptionList extends StatelessWidget {
                           style: AppTypography.onboardingReferenceOption
                               .copyWith(
                                 color: isSelected
-                                    ? AppColors.text
-                                    : AppColors.bodyText,
+                                    ? Theme.of(context).colorScheme.onSurface
+                                    : Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
                               ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -331,9 +335,9 @@ final class _LocationRadio extends StatelessWidget {
       height: 18,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isSelected ? AppColors.primary : Colors.transparent,
+        color: isSelected ? AppColors.primary : AppColors.transparent,
         border: Border.all(
-          color: isSelected ? AppColors.primary : const Color(0xFFA3A3A3),
+          color: isSelected ? AppColors.primary : AppColors.strongBorder,
           width: 1.5,
         ),
       ),
@@ -363,9 +367,11 @@ final class _LocationPickerBottomBar extends StatelessWidget {
           onPressed: isEnabled ? onSelect : null,
           style: FilledButton.styleFrom(
             backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.surfaceLight,
-            disabledBackgroundColor: AppColors.border,
-            disabledForegroundColor: AppColors.mutedText,
+            foregroundColor: Theme.of(context).colorScheme.surface,
+            disabledBackgroundColor: Theme.of(context).colorScheme.outline,
+            disabledForegroundColor: Theme.of(
+              context,
+            ).colorScheme.onSurfaceVariant,
             textStyle: AppTypography.onboardingAction,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -381,7 +387,9 @@ final class _LocationPickerBottomBar extends StatelessWidget {
                 width: 18,
                 height: 18,
                 colorFilter: ColorFilter.mode(
-                  isEnabled ? AppColors.surfaceLight : AppColors.mutedText,
+                  isEnabled
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.onSurfaceVariant,
                   BlendMode.srcIn,
                 ),
               ),

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
@@ -31,99 +30,104 @@ final class ChatHeader extends StatelessWidget {
   final Widget? subtitleWidget;
 
   @override
-  Widget build(BuildContext context) => Material(
-    color: AppColors.surfaceLight,
-    child: Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.card,
-        vertical: AppSpacing.md,
-      ),
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.mutedSurface)),
-      ),
-      child: Row(
-        children: [
-          IconButton(
-            onPressed: onBack,
-            tooltip: backLabel,
-            icon: Assets.icons.icArrowLeft01Round.svg(
-              width: 20,
-              height: 20,
-              colorFilter: const ColorFilter.mode(
-                AppColors.text,
-                BlendMode.srcIn,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Material(
+      color: colorScheme.surface,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.card,
+          vertical: AppSpacing.md,
+        ),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: colorScheme.surfaceContainer),
+          ),
+        ),
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: onBack,
+              tooltip: backLabel,
+              icon: Assets.icons.icArrowLeft01Round.svg(
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: AppSpacing.xs),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              _ChatAvatar(name: name, avatarUrl: avatarUrl),
-              if (isOnline)
-                const Positioned(
-                  right: -1,
-                  bottom: -1,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceLight,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(AppSpacing.xxs),
-                      child: SizedBox(
-                        width: AppSpacing.sm,
-                        height: AppSpacing.sm,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: AppColors.successText,
-                            shape: BoxShape.circle,
+            const SizedBox(width: AppSpacing.xs),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                _ChatAvatar(name: name, avatarUrl: avatarUrl),
+                if (isOnline)
+                  Positioned(
+                    right: -1,
+                    bottom: -1,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: colorScheme.surface,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSpacing.xxs),
+                        child: SizedBox(
+                          width: AppSpacing.sm,
+                          height: AppSpacing.sm,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: colorScheme.primary,
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-            ],
-          ),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTypography.chatHeaderName,
-                ),
-                const SizedBox(height: AppSpacing.xxs),
-                subtitleWidget ??
-                    Text(
-                      subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTypography.chatHeaderSubtitle,
-                    ),
               ],
             ),
-          ),
-          IconButton(
-            onPressed: onMore,
-            tooltip: moreLabel,
-            icon: Assets.icons.icMoreHorizontal.svg(
-              width: 20,
-              height: 20,
-              colorFilter: const ColorFilter.mode(
-                AppColors.text,
-                BlendMode.srcIn,
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.chatHeaderName,
+                  ),
+                  const SizedBox(height: AppSpacing.xxs),
+                  subtitleWidget ??
+                      Text(
+                        subtitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTypography.chatHeaderSubtitle,
+                      ),
+                ],
               ),
             ),
-          ),
-        ],
+            IconButton(
+              onPressed: onMore,
+              tooltip: moreLabel,
+              icon: Assets.icons.icMoreHorizontal.svg(
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _ChatAvatar extends StatelessWidget {
@@ -134,14 +138,15 @@ final class _ChatAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final fallback = Text(
       _initials(name),
-      style: AppTypography.chatHeaderName.copyWith(color: AppColors.primary),
+      style: AppTypography.chatHeaderName.copyWith(color: colorScheme.primary),
     );
     final url = avatarUrl?.trim();
     return CircleAvatar(
       radius: 18,
-      backgroundColor: AppColors.primaryTranslucent,
+      backgroundColor: colorScheme.primary.withValues(alpha: .12),
       foregroundImage: url == null || url.isEmpty
           ? null
           : CachedNetworkImageProvider(url),

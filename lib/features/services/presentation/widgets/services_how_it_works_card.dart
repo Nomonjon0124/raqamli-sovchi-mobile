@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -12,9 +11,10 @@ final class ServicesHowItWorksCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Padding(
@@ -45,19 +45,25 @@ final class _StepRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.dense),
       child: Row(
         children: [
           DecoratedBox(
-            decoration: const BoxDecoration(
-              color: AppColors.mutedSurface,
+            decoration: BoxDecoration(
+              color: colorScheme.surfaceContainer,
               shape: BoxShape.circle,
             ),
             child: SizedBox.square(
               dimension: 26,
               child: Center(
-                child: Text('$number', style: AppTypography.servicesPill),
+                child: Text(
+                  '$number',
+                  style: AppTypography.servicesPill.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
               ),
             ),
           ),
@@ -70,14 +76,18 @@ final class _StepRow extends StatelessWidget {
                   step.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTypography.servicesStepTitle,
+                  style: AppTypography.servicesStepTitle.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xxs),
                 Text(
                   step.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTypography.servicesCaption,
+                  style: AppTypography.servicesCaption.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -69,7 +68,7 @@ final class _SafetyNotice extends StatelessWidget {
       vertical: AppSpacing.compact,
     ),
     decoration: BoxDecoration(
-      color: AppColors.mutedSurface,
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
       borderRadius: BorderRadius.circular(AppRadius.sm),
     ),
     child: Text(
@@ -87,10 +86,10 @@ final class _IcebreakerChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: AppColors.surfaceLight,
+    color: Theme.of(context).colorScheme.surface,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppRadius.md),
-      side: const BorderSide(color: AppColors.border),
+      side: BorderSide(color: Theme.of(context).colorScheme.outline),
     ),
     child: InkWell(
       onTap: onPressed,

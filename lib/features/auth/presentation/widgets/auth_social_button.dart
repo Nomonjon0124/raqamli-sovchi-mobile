@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -30,7 +29,7 @@ final class AuthSocialButton extends StatelessWidget {
             fontSize: 14,
             height: 19 / 14,
             fontWeight: FontWeight.w500,
-            color: AppColors.text,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         style: OutlinedButton.styleFrom(
@@ -38,7 +37,7 @@ final class AuthSocialButton extends StatelessWidget {
             horizontal: AppSpacing.lg,
             vertical: 14,
           ),
-          side: const BorderSide(color: AppColors.border),
+          side: BorderSide(color: Theme.of(context).colorScheme.outline),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.full),
           ),

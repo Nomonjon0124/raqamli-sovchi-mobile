@@ -122,7 +122,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
         _lastState = state;
       },
       builder: (context, state) => Scaffold(
-        backgroundColor: AppColors.subtleSurface,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
         body: SafeArea(
           child: Column(
             children: [
@@ -266,7 +266,7 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
   Future<void> _showMoreActions(String name) async {
     final action = await showModalBottomSheet<_ChatAction>(
       context: context,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       isScrollControlled: true,
       builder: (_) => ChatActionsBottomSheet(
         onReport: () => Navigator.of(context).pop(_ChatAction.report),

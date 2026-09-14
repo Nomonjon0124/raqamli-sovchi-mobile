@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -32,8 +31,8 @@ final class OnboardingLocationSelectorRow extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(AppSpacing.lg),
           decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: AppColors.border),
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Row(
@@ -49,8 +48,8 @@ final class OnboardingLocationSelectorRow extends StatelessWidget {
                         value!,
                         style: AppTypography.onboardingSelectorValue.copyWith(
                           color: isPlaceholder || enabled
-                              ? AppColors.text
-                              : AppColors.mutedText,
+                              ? Theme.of(context).colorScheme.onSurface
+                              : Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ],
@@ -59,7 +58,9 @@ final class OnboardingLocationSelectorRow extends StatelessWidget {
               ),
               Icon(
                 Icons.chevron_right_rounded,
-                color: enabled ? AppColors.mutedText : AppColors.border,
+                color: enabled
+                    ? Theme.of(context).colorScheme.onSurfaceVariant
+                    : Theme.of(context).colorScheme.outline,
                 size: 24,
               ),
             ],

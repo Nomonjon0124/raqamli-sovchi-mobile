@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_round_icon_button.dart';
@@ -103,7 +102,7 @@ final class _ProfileEditViewState extends State<_ProfileEditView> {
             _handleCancel(context, state);
           },
           child: Scaffold(
-            backgroundColor: AppColors.surfaceLight,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             bottomNavigationBar: ProfileEditBottomBar(
               onSave: () => context.read<EditProfileBloc>().add(
                 const EditProfileSubmitted(),

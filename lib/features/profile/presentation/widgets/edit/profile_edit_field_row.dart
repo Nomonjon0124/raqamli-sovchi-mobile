@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_radius.dart';
 import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
@@ -28,7 +27,7 @@ final class ProfileEditFieldRow extends StatelessWidget {
     final isPlaceholder = value.trim().isEmpty;
 
     return Material(
-      color: AppColors.surfaceLight,
+      color: Theme.of(context).colorScheme.surface,
       borderRadius: BorderRadius.circular(AppRadius.md),
       child: InkWell(
         onTap: onTap,
@@ -41,7 +40,7 @@ final class ProfileEditFieldRow extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppRadius.md),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Row(
             children: [
@@ -61,7 +60,9 @@ final class ProfileEditFieldRow extends StatelessWidget {
                       displayValue,
                       style: isPlaceholder
                           ? AppTypography.onboardingFieldValue.copyWith(
-                              color: AppColors.placeholder,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             )
                           : AppTypography.onboardingFieldValue,
                       maxLines: 1,
@@ -75,8 +76,8 @@ final class ProfileEditFieldRow extends StatelessWidget {
                 Assets.icons.profileChevron.svg(
                   width: 18,
                   height: 18,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.placeholder,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onSurfaceVariant,
                     BlendMode.srcIn,
                   ),
                 ),

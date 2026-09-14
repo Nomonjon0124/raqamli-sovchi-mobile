@@ -28,7 +28,7 @@ final class CandidateDetailIncompleteProfileCard extends StatelessWidget {
       foregroundPainter: const _DashedBorderPainter(),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: AppColors.subtleSurface,
+          color: Theme.of(context).colorScheme.surfaceContainerLow,
           borderRadius: BorderRadius.circular(AppRadius.xl),
         ),
         child: Padding(
@@ -39,7 +39,7 @@ final class CandidateDetailIncompleteProfileCard extends StatelessWidget {
               Text(
                 l10n.candidateDetailIncompleteProfileTitle,
                 style: AppTypography.candidateDetailCardTitle.copyWith(
-                  color: AppColors.bodyText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
               8.g,

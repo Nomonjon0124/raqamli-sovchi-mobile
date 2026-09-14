@@ -34,10 +34,12 @@ final class CandidateDetailBottomBar extends StatelessWidget {
         MediaQuery.of(context).padding.bottom + 12,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, -4),
           ),
@@ -53,20 +55,20 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                 style: FilledButton.styleFrom(
                   backgroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
-                      ? AppColors.dangerSurface
+                      ? Theme.of(context).colorScheme.errorContainer
                       : AppColors.primary,
                   disabledBackgroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
-                      ? AppColors.dangerSurface
+                      ? Theme.of(context).colorScheme.errorContainer
                       : AppColors.primary,
                   foregroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
-                      ? AppColors.mutedText
-                      : Colors.white,
+                      ? Theme.of(context).colorScheme.onSurfaceVariant
+                      : Theme.of(context).colorScheme.surface,
                   disabledForegroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
-                      ? AppColors.mutedText
-                      : Colors.white,
+                      ? Theme.of(context).colorScheme.onSurfaceVariant
+                      : Theme.of(context).colorScheme.surface,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.full),
@@ -83,12 +85,12 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                             ).candidateDetailSendProposal,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Manrope',
                           fontSize: 15,
                           height: 20 / 15,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                     ),
@@ -100,8 +102,8 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                         colorFilter: ColorFilter.mode(
                           actionVariant ==
                                   CandidateDetailActionVariant.retryLocked
-                              ? AppColors.mutedText
-                              : Colors.white,
+                              ? Theme.of(context).colorScheme.onSurfaceVariant
+                              : Theme.of(context).colorScheme.surface,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -116,9 +118,9 @@ final class CandidateDetailBottomBar extends StatelessWidget {
             width: 52,
             height: 52,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.surface,
               shape: BoxShape.circle,
-              border: Border.all(color: AppColors.border),
+              border: Border.all(color: Theme.of(context).colorScheme.outline),
             ),
             child: InkWell(
               onTap: onMoreOptions,

@@ -98,21 +98,21 @@ final class _CandidateDetailVoicePlayerState
       children: [
         Text(
           l10n.candidateDetailVoiceIntro(duration),
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
             fontSize: 12,
             height: 16 / 12,
             fontWeight: FontWeight.w600,
-            color: Color(0xFF525252),
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         8.g,
         Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Row(
             children: [
@@ -131,7 +131,7 @@ final class _CandidateDetailVoicePlayerState
                           ? Icons.pause_rounded
                           : Icons.play_arrow_rounded,
                       size: 20,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                 ),

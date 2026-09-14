@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_radius.dart';
 import '../../../../../app/theme/app_spacing.dart';
@@ -10,7 +12,7 @@ import '../../../../../l10n/app_localizations.dart';
 Future<bool> showProfileUnsavedChangesSheet(BuildContext context) async {
   final result = await showModalBottomSheet<bool>(
     context: context,
-    backgroundColor: Colors.transparent,
+    backgroundColor: AppColors.transparent,
     builder: (_) => const _ProfileUnsavedChangesSheet(),
   );
   return result ?? false;
@@ -21,7 +23,7 @@ Future<void> showProfileUpdatedSheet(BuildContext context) {
     context: context,
     isDismissible: false,
     enableDrag: false,
-    backgroundColor: Colors.transparent,
+    backgroundColor: AppColors.transparent,
     builder: (_) => const _ProfileUpdatedSheet(),
   );
 }
@@ -75,16 +77,16 @@ final class _ProfileUpdatedSheet extends StatelessWidget {
           child: Container(
             width: 48,
             height: 48,
-            decoration: const BoxDecoration(
-              color: AppColors.successSurface,
+            decoration: BoxDecoration(
+              color: context.statusColors.successContainer,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
             child: Assets.icons.icVerifyCheck.svg(
               width: 24,
               height: 24,
-              colorFilter: const ColorFilter.mode(
-                AppColors.successText,
+              colorFilter: ColorFilter.mode(
+                context.statusColors.onSuccessContainer,
                 BlendMode.srcIn,
               ),
             ),
@@ -129,8 +131,8 @@ final class _ProfileSheetFrame extends StatelessWidget {
           AppSpacing.section,
           28,
         ),
-        decoration: const BoxDecoration(
-          color: AppColors.surfaceLight,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Column(
@@ -163,7 +165,7 @@ final class _ProfileSheetActionButton extends StatelessWidget {
           onPressed: onPressed,
           style: FilledButton.styleFrom(
             backgroundColor: AppColors.primary,
-            foregroundColor: AppColors.surfaceLight,
+            foregroundColor: Theme.of(context).colorScheme.surface,
             textStyle: AppTypography.onboardingAction,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -179,9 +181,9 @@ final class _ProfileSheetActionButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          backgroundColor: AppColors.surfaceLight,
-          foregroundColor: AppColors.text,
-          side: const BorderSide(color: AppColors.border),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          side: BorderSide(color: Theme.of(context).colorScheme.outline),
           textStyle: AppTypography.onboardingAction,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.full),

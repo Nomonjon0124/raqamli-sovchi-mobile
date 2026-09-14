@@ -18,14 +18,10 @@ final class SettingsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final isLight = theme.brightness == Brightness.light;
-    final textColor = isLight ? AppColors.text : colorScheme.onSurface;
-    final cardColor = isLight ? AppColors.subtleSurface : colorScheme.surface;
-    final dividerColor = isLight
-        ? AppColors.mutedSurface
-        : colorScheme.outlineVariant;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textColor = colorScheme.onSurface;
+    final cardColor = colorScheme.surfaceContainerLow;
+    final dividerColor = colorScheme.surfaceContainer;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -81,18 +77,12 @@ final class SettingsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final isLight = theme.brightness == Brightness.light;
-    final textColor = isLight ? AppColors.text : colorScheme.onSurface;
-    final iconColor = isLight
-        ? AppColors.bodyText
-        : colorScheme.onSurfaceVariant;
-    final mutedColor = isLight
-        ? AppColors.mutedText
-        : colorScheme.onSurfaceVariant;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textColor = colorScheme.onSurface;
+    final iconColor = colorScheme.onSurfaceVariant;
+    final mutedColor = colorScheme.onSurfaceVariant;
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: onTap,
         child: Padding(
@@ -162,13 +152,9 @@ final class SettingsToggleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final surfaceColor = theme.brightness == Brightness.light
-        ? AppColors.surfaceLight
-        : colorScheme.surface;
+    final colorScheme = Theme.of(context).colorScheme;
     return ColoredBox(
-      color: surfaceColor,
+      color: colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.lg,
@@ -183,18 +169,14 @@ final class SettingsToggleRow extends StatelessWidget {
                   Text(
                     title,
                     style: AppTypography.settingsRowTitle.copyWith(
-                      color: theme.brightness == Brightness.light
-                          ? AppColors.text
-                          : colorScheme.onSurface,
+                      color: colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: AppSpacing.controlInset),
                   Text(
                     subtitle,
                     style: AppTypography.settingsRowCaption.copyWith(
-                      color: theme.brightness == Brightness.light
-                          ? AppColors.mutedText
-                          : colorScheme.onSurfaceVariant,
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -229,7 +211,9 @@ final class _SettingsSwitch extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.controlInset),
         alignment: value ? Alignment.centerRight : Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: value ? AppColors.primary : AppColors.border,
+          color: value
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
           borderRadius: BorderRadius.circular(AppRadius.full),
         ),
         child: Assets.icons.settingsToggleKnob.svg(

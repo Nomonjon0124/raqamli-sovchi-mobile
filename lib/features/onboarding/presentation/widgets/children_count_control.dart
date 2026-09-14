@@ -39,14 +39,16 @@ final class ChildrenCountControl extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.surface,
             border: Border.all(color: AppColors.primary, width: 1.5),
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Text(
             '$count',
             style: AppTypography.onboardingMeasurementValue.copyWith(
-              color: enabled ? AppColors.primary : AppColors.mutedText,
+              color: enabled
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),
@@ -82,10 +84,16 @@ final class _ChildrenCountAction extends StatelessWidget {
         onPressed: onPressed,
         icon: Icon(icon),
         style: IconButton.styleFrom(
-          backgroundColor: AppColors.mutedSurface,
-          disabledBackgroundColor: AppColors.mutedSurface,
-          foregroundColor: AppColors.bodyText,
-          disabledForegroundColor: AppColors.mutedText,
+          backgroundColor: Theme.of(
+            context,
+          ).colorScheme.surfaceContainerHighest,
+          disabledBackgroundColor: Theme.of(
+            context,
+          ).colorScheme.surfaceContainerHighest,
+          foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
+          disabledForegroundColor: Theme.of(
+            context,
+          ).colorScheme.onSurfaceVariant,
           fixedSize: const Size(40, 40),
           minimumSize: const Size(40, 40),
           padding: EdgeInsets.zero,

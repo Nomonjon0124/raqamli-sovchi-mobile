@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -42,7 +41,7 @@ final class QuestionnaireOverview extends StatelessWidget {
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: AppColors.mutedSurface,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
                 child: Padding(
@@ -53,7 +52,7 @@ final class QuestionnaireOverview extends StatelessWidget {
                   child: Text(
                     l10n.questionnaireOptionalBadge.toUpperCase(),
                     style: AppTypography.onboardingFieldLabel.copyWith(
-                      color: AppColors.bodyText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ),
@@ -92,8 +91,10 @@ final class QuestionnaireOverview extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(AppSpacing.lg),
                 decoration: BoxDecoration(
-                  color: AppColors.surfaceLight,
-                  border: Border.all(color: AppColors.border),
+                  color: Theme.of(context).colorScheme.surface,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: Column(
@@ -102,7 +103,7 @@ final class QuestionnaireOverview extends StatelessWidget {
                     Text(
                       l10n.questionnaireWithoutTitle,
                       style: AppTypography.caption.copyWith(
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: AppSpacing.sm),
@@ -135,7 +136,7 @@ final class QuestionnaireOverview extends StatelessWidget {
             TextButton(
               onPressed: onLater,
               style: TextButton.styleFrom(
-                foregroundColor: AppColors.mutedText,
+                foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
                 padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
                 textStyle: AppTypography.onboardingAction,
               ),

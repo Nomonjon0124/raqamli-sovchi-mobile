@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_radius.dart';
 import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
@@ -26,16 +25,18 @@ final class ProfileEditBioSection extends StatelessWidget {
         Text(
           l10n.profileEditAboutSection,
           style: AppTypography.onboardingFieldLabel.copyWith(
-            color: AppColors.mutedText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(height: AppSpacing.xs + 2),
         Container(
           constraints: const BoxConstraints(minHeight: 92),
           decoration: BoxDecoration(
-            color: AppColors.subtleSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(AppRadius.lg),
-            border: Border.all(color: AppColors.mutedSurface),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+            ),
           ),
           padding: const EdgeInsets.all(14),
           child: TextField(
@@ -45,23 +46,23 @@ final class ProfileEditBioSection extends StatelessWidget {
             maxLines: 6,
             keyboardType: TextInputType.multiline,
             textCapitalization: TextCapitalization.sentences,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Manrope',
               fontSize: 13,
               fontWeight: FontWeight.w400,
               height: 21 / 13,
-              color: AppColors.text,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
             decoration: InputDecoration(
               isCollapsed: true,
               border: InputBorder.none,
               hintText: l10n.profileEditAboutPlaceholder,
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
                 height: 21 / 13,
-                color: AppColors.placeholder,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ),

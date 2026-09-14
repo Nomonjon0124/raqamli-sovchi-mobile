@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -22,6 +21,7 @@ final class AuthKeypad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       children: [
         for (final row in [
@@ -61,9 +61,9 @@ final class AuthKeypad extends StatelessWidget {
             const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: _Key(
-                icon: const Icon(
+                icon: Icon(
                   Icons.backspace_outlined,
-                  color: AppColors.text,
+                  color: colorScheme.onSurface,
                   size: 24,
                 ),
                 onTap: onBackspace,
@@ -85,10 +85,11 @@ final class _Key extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox(
       height: 56,
       child: Material(
-        color: AppColors.mutedSurface,
+        color: colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         child: InkWell(
           onTap: onTap,
@@ -102,7 +103,7 @@ final class _Key extends StatelessWidget {
                     fontSize: 22,
                     height: 28 / 22,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.text,
+                    color: colorScheme.onSurface,
                   ),
                 ),
           ),

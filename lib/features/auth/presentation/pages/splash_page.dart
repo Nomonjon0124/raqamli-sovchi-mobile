@@ -15,11 +15,15 @@ final class SplashPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.white, Color(0xFFB9DCFF), AppColors.primary],
+            colors: [
+              Theme.of(context).colorScheme.surface,
+              AppColors.primaryLight,
+              AppColors.primary,
+            ],
             stops: [0, 0.46, 1],
           ),
         ),
@@ -45,7 +49,7 @@ final class SplashPage extends StatelessWidget {
                   Text(
                     l10n.splashSubtitle,
                     style: AppTypography.caption.copyWith(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.surface,
                       fontSize: 13,
                       height: 21 / 13,
                       fontWeight: FontWeight.w400,

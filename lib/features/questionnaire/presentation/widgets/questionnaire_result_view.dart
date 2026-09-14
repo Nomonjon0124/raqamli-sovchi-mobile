@@ -133,7 +133,11 @@ final class _TrustPill extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppRadius.full),
         gradient: const LinearGradient(
-          colors: [Color(0xFF83C7FF), Color(0xFF8FA8E6), Color(0xFF7EB3F0)],
+          colors: [
+            AppColors.primaryLight,
+            AppColors.primaryLight,
+            AppColors.primaryLight,
+          ],
           stops: [0, 0.52, 1],
         ),
       ),
@@ -141,10 +145,10 @@ final class _TrustPill extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.check_rounded,
             size: 14,
-            color: AppColors.surfaceLight,
+            color: Theme.of(context).colorScheme.surface,
           ),
           const SizedBox(width: AppSpacing.compact),
           Flexible(
@@ -153,7 +157,7 @@ final class _TrustPill extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTypography.caption.copyWith(
-                color: AppColors.surfaceLight,
+                color: Theme.of(context).colorScheme.surface,
               ),
             ),
           ),
@@ -228,10 +232,10 @@ final class _AvatarStack extends StatelessWidget {
               height: _avatarSize,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: AppColors.mutedSurface,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppRadius.full),
                 border: Border.all(
-                  color: AppColors.surfaceLight,
+                  color: Theme.of(context).colorScheme.surface,
                   width: AppSpacing.xxs,
                 ),
               ),
@@ -239,7 +243,7 @@ final class _AvatarStack extends StatelessWidget {
                 '+125',
                 style: AppTypography.profileCardBody.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: AppColors.mapLabelText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ),
@@ -263,7 +267,7 @@ final class _CandidateAvatar extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppRadius.full),
         border: Border.all(
-          color: AppColors.surfaceLight,
+          color: Theme.of(context).colorScheme.surface,
           width: AppSpacing.xxs,
         ),
         image: DecorationImage(image: image.provider(), fit: BoxFit.cover),
@@ -333,7 +337,7 @@ final class _NextStepRow extends StatelessWidget {
           height: AppSpacing.xxl,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.subtleSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(AppRadius.sm),
           ),
           child: icon.svg(
@@ -374,8 +378,10 @@ final class _ResultSurface extends StatelessWidget {
       width: double.infinity,
       padding: padding,
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
-        border: Border.all(color: const Color(0xFFF3F3F3)),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border.all(
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        ),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: child,

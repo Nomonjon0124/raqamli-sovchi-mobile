@@ -112,7 +112,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     final shouldBlur = widget.candidate?.blurPhotos ?? true;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: SafeArea(
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
@@ -124,19 +124,21 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
             disabledBackgroundColor: AppColors.primary.withValues(alpha: 0.4),
-            foregroundColor: Colors.white,
-            disabledForegroundColor: Colors.white.withValues(alpha: 0.8),
+            foregroundColor: Theme.of(context).colorScheme.surface,
+            disabledForegroundColor: Theme.of(
+              context,
+            ).colorScheme.surface.withValues(alpha: 0.8),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
             ),
           ),
           child: _isSubmitting
-              ? const SizedBox.square(
+              ? SizedBox.square(
                   dimension: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.surface,
                   ),
                 )
               : Row(
@@ -155,8 +157,8 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                     Assets.icons.icArrowRight.svg(
                       width: 20,
                       height: 20,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.surface,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -186,23 +188,23 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                   children: [
                     Text(
                       l10n.candidateReportTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 24,
                         height: 30 / 24,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       l10n.candidateReportSubtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 14,
                         height: 20 / 14,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -210,7 +212,9 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF9FAFB),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow,
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Row(
@@ -226,20 +230,24 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                               children: [
                                 Text(
                                   widget.candidateName,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Manrope',
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
-                                    color: AppColors.text,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurface,
                                   ),
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
                                   l10n.candidateReportTargetProfile,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Manrope',
                                     fontSize: 13,
-                                    color: AppColors.mutedText,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurfaceVariant,
                                   ),
                                 ),
                               ],
@@ -251,18 +259,20 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                     const SizedBox(height: 20),
                     Text(
                       l10n.candidateReportReasonSection,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 12),
                     // Reasons list
                     Container(
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF9FAFB),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow,
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Column(
@@ -297,11 +307,13 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                                       Expanded(
                                         child: Text(
                                           reasons[index].label,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontFamily: 'Manrope',
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
-                                            color: AppColors.text,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurface,
                                           ),
                                         ),
                                       ),
@@ -310,10 +322,12 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                                 ),
                               ),
                               if (!isLast)
-                                const Divider(
+                                Divider(
                                   height: 1,
                                   thickness: 1,
-                                  color: Color(0xFFF3F4F6),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.surfaceContainerHighest,
                                 ),
                             ],
                           );
@@ -325,7 +339,9 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                     Container(
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                       decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xFFE5E7EB)),
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Column(
@@ -333,27 +349,31 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                         children: [
                           Text(
                             l10n.candidateReportNoteLabel,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Manrope',
                               fontSize: 12,
-                              color: AppColors.mutedText,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                           ),
                           TextField(
                             controller: _noteController,
                             enabled: !_isSubmitting,
                             maxLines: 2,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Manrope',
                               fontSize: 14,
-                              color: AppColors.text,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                             decoration: InputDecoration(
                               hintText: l10n.candidateReportNoteHint,
-                              hintStyle: const TextStyle(
+                              hintStyle: TextStyle(
                                 fontFamily: 'Manrope',
                                 fontSize: 14,
-                                color: Color(0xFF9CA3AF),
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
                               ),
                               isDense: true,
                               border: InputBorder.none,
@@ -476,9 +496,11 @@ final class _RadioIndicator extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isSelected ? AppColors.primary : Colors.transparent,
+        color: isSelected ? AppColors.primary : AppColors.transparent,
         border: Border.all(
-          color: isSelected ? AppColors.primary : const Color(0xFFD1D5DB),
+          color: isSelected
+              ? AppColors.primary
+              : Theme.of(context).colorScheme.outline,
           width: 2,
         ),
       ),
@@ -487,9 +509,9 @@ final class _RadioIndicator extends StatelessWidget {
           ? Container(
               width: 8,
               height: 8,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
               ),
             )
           : null,

@@ -40,13 +40,15 @@ final class ProfileEditAvatarSection extends StatelessWidget {
                 _buildAvatarContent(),
                 if (isUploading)
                   Container(
-                    color: Colors.black38,
-                    child: const Center(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: .38),
+                    child: Center(
                       child: SizedBox.square(
                         dimension: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       ),
                     ),
@@ -63,17 +65,17 @@ final class ProfileEditAvatarSection extends StatelessWidget {
             children: [
               Text(
                 l10n.profileEditAvatarTitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   height: 19 / 14,
-                  color: AppColors.text,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               const SizedBox(height: 6),
               Material(
-                color: AppColors.mutedSurface,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppRadius.full),
                 child: InkWell(
                   onTap: isUploading ? null : onChangePhoto,
@@ -89,20 +91,22 @@ final class ProfileEditAvatarSection extends StatelessWidget {
                         Assets.icons.profileCamera.svg(
                           width: 13,
                           height: 13,
-                          colorFilter: const ColorFilter.mode(
-                            AppColors.bodyText,
+                          colorFilter: ColorFilter.mode(
+                            Theme.of(context).colorScheme.onSurfaceVariant,
                             BlendMode.srcIn,
                           ),
                         ),
                         const SizedBox(width: 5),
                         Text(
                           l10n.profileEditChangePhoto,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             height: 15 / 11,
-                            color: AppColors.bodyText,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],

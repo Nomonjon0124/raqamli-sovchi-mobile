@@ -739,7 +739,7 @@ final class _ProfileOnboardingStepContentState
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => BlocProvider.value(
         value: bloc,
         child: BlocBuilder<ProfileOnboardingBloc, ProfileOnboardingState>(
@@ -784,7 +784,7 @@ final class _ProfileOnboardingStepContentState
       context: context,
       useSafeArea: true,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => BlocProvider.value(
         value: bloc,
         child: BlocBuilder<ProfileOnboardingBloc, ProfileOnboardingState>(
@@ -951,7 +951,7 @@ final class _ProfileOnboardingStepContentState
                     ? l10n.representativeChildrenCountLabel
                     : l10n.childrenCountLabel,
                 style: AppTypography.onboardingChip.copyWith(
-                  color: AppColors.bodyText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
               const SizedBox(height: AppSpacing.sm),
@@ -1127,7 +1127,7 @@ final class _ProfileOnboardingStepContentState
                       child: Text(
                         rule,
                         style: AppTypography.onboardingCardBody.copyWith(
-                          color: AppColors.bodyText,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ),
