@@ -8,10 +8,14 @@ abstract final class RouteNames {
   static const questionnaire = '/questionnaire';
   static const home = '/home';
   static const messages = '/messages';
+  static const chatRoom = '/messages/:roomId';
+  static const chatRequestProfile = '/messages/requests/:requestId';
   static const services = '/services';
   static const saved = '/saved';
   static const profile = '/profile';
   static const profileEdit = '/profile/edit';
+  static const profilePhotos = '/profile/photos';
+  static const profileFaceVerification = '/profile/face-verification';
   static const notifications = '/notifications';
   static const settings = '/settings';
   static const accountDeletion = '/settings/account-deletion';
@@ -22,4 +26,10 @@ abstract final class RouteNames {
 
   static String candidateDetailFor(String id) =>
       '/candidate-detail/${Uri.encodeComponent(id)}';
+
+  static String chatRoomFor(String id) =>
+      '/messages/${Uri.encodeComponent(id)}';
+
+  static String chatRequestProfileFor(String id) =>
+      '/messages/requests/${Uri.encodeComponent(id)}';
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_spacing.dart';
 import '../../../app/theme/app_typography.dart';
 
@@ -34,7 +33,9 @@ final class AppTabPlaceholder extends StatelessWidget {
               Text(
                 message,
                 textAlign: TextAlign.center,
-                style: AppTypography.body.copyWith(color: AppColors.mutedText),
+                style: AppTypography.body.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               if (footer != null) ...[
                 const SizedBox(height: AppSpacing.xl),

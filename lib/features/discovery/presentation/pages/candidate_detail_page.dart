@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
+import '../../../../app/theme/app_colors.dart';
 import '../../../../core/extensions/gap_extension.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -165,7 +166,7 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
     final action = _requestAction(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: CandidateDetailBottomBar(
         actionLabel: action.label,
         actionVariant: action.variant,
@@ -355,7 +356,7 @@ final class _LoadedCandidateDetailState extends State<_LoadedCandidateDetail> {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => CandidateDetailOptionsBottomSheet(
         candidateName: candidateName,
         onSave: () {

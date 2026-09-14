@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -25,6 +24,7 @@ final class ProfileAboutCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasBio = bio?.trim().isNotEmpty ?? false;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +32,7 @@ final class ProfileAboutCard extends StatelessWidget {
         Text(sectionTitle, style: AppTypography.profileSectionLabel),
         const SizedBox(height: AppSpacing.sm),
         Material(
-          color: AppColors.subtleSurface,
+          color: colorScheme.surfaceContainerLow,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           child: InkWell(
             onTap: onTap,
@@ -49,7 +49,7 @@ final class ProfileAboutCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: hasBio
                           ? AppTypography.profileCardBody.copyWith(
-                              color: AppColors.bodyText,
+                              color: colorScheme.onSurface,
                             )
                           : AppTypography.profileCardBody,
                     ),
@@ -57,7 +57,7 @@ final class ProfileAboutCard extends StatelessWidget {
                   const SizedBox(width: AppSpacing.md),
                   DecoratedBox(
                     decoration: BoxDecoration(
-                      color: AppColors.mutedSurface,
+                      color: colorScheme.surfaceContainer,
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                     child: Padding(
@@ -74,8 +74,8 @@ final class ProfileAboutCard extends StatelessWidget {
                               .svg(
                                 width: 14,
                                 height: 14,
-                                colorFilter: const ColorFilter.mode(
-                                  AppColors.text,
+                                colorFilter: ColorFilter.mode(
+                                  colorScheme.onSurface,
                                   BlendMode.srcIn,
                                 ),
                                 excludeFromSemantics: true,
@@ -84,7 +84,7 @@ final class ProfileAboutCard extends StatelessWidget {
                           Text(
                             addText,
                             style: AppTypography.profileIdentifier.copyWith(
-                              color: AppColors.text,
+                              color: colorScheme.onSurface,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

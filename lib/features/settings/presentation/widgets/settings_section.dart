@@ -17,120 +17,123 @@ final class SettingsSection extends StatelessWidget {
   final List<Widget> children;
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(title, style: AppTypography.settingsSectionTitle),
-      const SizedBox(height: AppSpacing.inline),
-      DecoratedBox(
-        decoration: BoxDecoration(
-          color: AppColors.subtleSurface,
-          border: Border.all(color: AppColors.mutedSurface),
-          borderRadius: BorderRadius.circular(AppRadius.lg),
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textColor = colorScheme.onSurface;
+    final cardColor = colorScheme.surfaceContainerLow;
+    final dividerColor = colorScheme.surfaceContainer;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: AppTypography.settingsSectionTitle.copyWith(color: textColor),
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (var index = 0; index < children.length; index++) ...[
-                children[index],
-                if (index != children.length - 1)
-                  const Divider(
-                    height: AppSpacing.hairline,
-                    thickness: AppSpacing.hairline,
-                    color: AppColors.mutedSurface,
-                  ),
+        const SizedBox(height: AppSpacing.inline),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: cardColor,
+            border: Border.all(color: dividerColor),
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (var index = 0; index < children.length; index++) ...[
+                  children[index],
+                  if (index != children.length - 1)
+                    Divider(
+                      height: AppSpacing.hairline,
+                      thickness: AppSpacing.hairline,
+                      color: dividerColor,
+                    ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 final class SettingsRow extends StatelessWidget {
   const SettingsRow({
-    required this.icon,
     required this.title,
     required this.onTap,
+    this.icon,
+    this.leading,
     this.value,
     super.key,
-  });
+  }) : assert(icon != null || leading != null);
 
-  final SvgGenImage icon;
+  final SvgGenImage? icon;
+  final Widget? leading;
   final String title;
   final String? value;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Material(
-    color: Colors.transparent,
-    child: InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.input,
-          vertical: AppSpacing.settingsRowVertical,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  icon.svg(
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textColor = colorScheme.onSurface;
+    final iconColor = colorScheme.onSurfaceVariant;
+    final mutedColor = colorScheme.onSurfaceVariant;
+    return Material(
+      color: AppColors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.input,
+            vertical: AppSpacing.settingsRowVertical,
+          ),
+          child: Row(
+            children: [
+              leading ??
+                  icon!.svg(
                     width: 19,
                     height: 19,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.bodyText,
-                      BlendMode.srcIn,
-                    ),
+                    colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
                     excludeFromSemantics: true,
                   ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: Text(
-                      title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTypography.settingsRowTitle,
-                    ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Text(
+                  title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.settingsRowTitle.copyWith(
+                    color: textColor,
                   ),
-                ],
+                ),
               ),
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (value != null) ...[
-                  const SizedBox(width: AppSpacing.sm),
-                  Text(
-                    value!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypography.settingsRowValue,
+              if (value != null) ...[
+                const SizedBox(width: AppSpacing.md),
+                Text(
+                  value!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.settingsRowValue.copyWith(
+                    color: mutedColor,
                   ),
-                ],
-                const SizedBox(width: AppSpacing.sm),
-                Assets.icons.settingsChevron.svg(
-                  width: 16,
-                  height: 16,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.mutedText,
-                    BlendMode.srcIn,
-                  ),
-                  excludeFromSemantics: true,
                 ),
               ],
-            ),
-          ],
+              const SizedBox(width: AppSpacing.md),
+              Assets.icons.settingsChevron.svg(
+                width: 16,
+                height: 16,
+                colorFilter: ColorFilter.mode(mutedColor, BlendMode.srcIn),
+                excludeFromSemantics: true,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class SettingsToggleRow extends StatelessWidget {
@@ -148,31 +151,44 @@ final class SettingsToggleRow extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   @override
-  Widget build(BuildContext context) => ColoredBox(
-    color: AppColors.surfaceLight,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.input,
-        vertical: AppSpacing.settingsRowVertical,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: AppTypography.settingsRowTitle),
-                const SizedBox(height: AppSpacing.controlInset),
-                Text(subtitle, style: AppTypography.settingsRowCaption),
-              ],
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return ColoredBox(
+      color: colorScheme.surface,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.lg,
+          vertical: AppSpacing.settingsRowVertical,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: AppTypography.settingsRowTitle.copyWith(
+                      color: colorScheme.onSurface,
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.controlInset),
+                  Text(
+                    subtitle,
+                    style: AppTypography.settingsRowCaption.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: AppSpacing.input),
-          _SettingsSwitch(value: value, onChanged: onChanged),
-        ],
+            const SizedBox(width: AppSpacing.input),
+            _SettingsSwitch(value: value, onChanged: onChanged),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 final class _SettingsSwitch extends StatelessWidget {
@@ -195,7 +211,9 @@ final class _SettingsSwitch extends StatelessWidget {
         padding: const EdgeInsets.all(AppSpacing.controlInset),
         alignment: value ? Alignment.centerRight : Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: value ? AppColors.primary : AppColors.border,
+          color: value
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
           borderRadius: BorderRadius.circular(AppRadius.full),
         ),
         child: Assets.icons.settingsToggleKnob.svg(

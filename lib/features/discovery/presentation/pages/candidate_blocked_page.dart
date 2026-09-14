@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
@@ -53,7 +55,7 @@ final class CandidateBlockedPage extends StatelessWidget {
     final formattedDate = _formatDateTime(blockedAt ?? DateTime.now());
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: SafeArea(
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
@@ -62,7 +64,7 @@ final class CandidateBlockedPage extends StatelessWidget {
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
+            foregroundColor: Theme.of(context).colorScheme.surface,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -84,8 +86,8 @@ final class CandidateBlockedPage extends StatelessWidget {
               Assets.icons.icArrowRight.svg(
                 width: 20,
                 height: 20,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.surface,
                   BlendMode.srcIn,
                 ),
               ),
@@ -117,23 +119,23 @@ final class CandidateBlockedPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       l10n.candidateBlockedTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 24,
                         height: 30 / 24,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       l10n.candidateBlockedSubtitle(candidateName),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 14,
                         height: 20 / 14,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -187,7 +189,7 @@ final class _CandidateInfoCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9FAFB),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Column(
@@ -199,7 +201,7 @@ final class _CandidateInfoCard extends StatelessWidget {
           _RowItem(
             label: statusLabel,
             value: statusValue,
-            valueColor: AppColors.dangerText,
+            valueColor: Theme.of(context).colorScheme.onErrorContainer,
           ),
         ],
       ),
@@ -221,10 +223,10 @@ final class _RowItem extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
             fontSize: 13,
-            color: AppColors.mutedText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         Text(
@@ -233,7 +235,7 @@ final class _RowItem extends StatelessWidget {
             fontFamily: 'Manrope',
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: valueColor ?? AppColors.text,
+            color: valueColor ?? Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ],
@@ -257,7 +259,7 @@ final class _ConsequencesCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9FAFB),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Column(
@@ -287,8 +289,8 @@ final class _BulletPoint extends StatelessWidget {
         Container(
           width: 8,
           height: 8,
-          decoration: const BoxDecoration(
-            color: Color(0xFF00966D),
+          decoration: BoxDecoration(
+            color: context.statusColors.onSuccessContainer,
             shape: BoxShape.circle,
           ),
         ),
@@ -296,12 +298,12 @@ final class _BulletPoint extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Manrope',
               fontSize: 13,
               fontWeight: FontWeight.w500,
               height: 18 / 13,
-              color: AppColors.text,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -321,16 +323,16 @@ final class _NoticeCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF9FAFB),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontFamily: 'Manrope',
           fontSize: 12,
           height: 18 / 12,
-          color: Color(0xFF6B7280),
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
       ),
     );

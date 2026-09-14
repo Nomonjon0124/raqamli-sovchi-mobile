@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/extensions/gap_extension.dart';
@@ -151,16 +150,19 @@ final class _CandidateInformationSection extends StatelessWidget {
         8.g,
         DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.subtleSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(AppRadius.xl),
-            border: Border.all(color: AppColors.border),
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
           ),
           child: Column(
             children: [
               for (var index = 0; index < entries.length; index++) ...[
                 _CandidateInformationRow(entry: entries[index]),
                 if (index < entries.length - 1)
-                  const Divider(height: 1, color: AppColors.border),
+                  Divider(
+                    height: 1,
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
               ],
             ],
           ),

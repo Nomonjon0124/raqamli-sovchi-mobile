@@ -187,7 +187,9 @@ void main() {
     );
     await tester.pump();
 
-    await tester.scrollUntilVisible(find.text('Foydalanish shartlari'), 250);
+    await tester.scrollUntilVisible(find.text('Foydalanish shartlari'), 500);
+    await tester.ensureVisible(find.text('Foydalanish shartlari'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Foydalanish shartlari'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));

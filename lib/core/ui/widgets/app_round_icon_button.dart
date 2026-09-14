@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_radius.dart';
 import '../../../gen/assets.gen.dart';
 
@@ -20,11 +19,12 @@ final class AppRoundIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Material(
-          color: AppColors.mutedSurface,
+          color: colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(AppRadius.full),
           child: InkWell(
             onTap: onPressed,
@@ -37,8 +37,8 @@ final class AppRoundIconButton extends StatelessWidget {
                   width: 20,
                   height: 20,
                   semanticsLabel: semanticLabel,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.text,
+                  colorFilter: ColorFilter.mode(
+                    colorScheme.onSurface,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -47,15 +47,15 @@ final class AppRoundIconButton extends StatelessWidget {
           ),
         ),
         if (showUnreadDot)
-          const Positioned(
+          Positioned(
             top: -1,
             right: 0,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColors.primary,
+                color: colorScheme.primary,
                 shape: BoxShape.circle,
               ),
-              child: SizedBox(width: 8, height: 8),
+              child: const SizedBox(width: 8, height: 8),
             ),
           ),
       ],

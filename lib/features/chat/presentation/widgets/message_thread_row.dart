@@ -1,110 +1,140 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../app/theme/app_colors.dart';
-import '../../../../gen/assets.gen.dart';
-
-final class MessageThreadData {
-  const MessageThreadData({
-    required this.name,
-    required this.preview,
-    required this.time,
-    required this.avatar,
-    this.unread = false,
-  });
-
-  final String name;
-  final String preview;
-  final String time;
-  final AssetGenImage avatar;
-  final bool unread;
-}
+import '../../../../app/theme/app_spacing.dart';
+import '../../../../app/theme/app_typography.dart';
+import '../../domain/entities/chat_thread.dart';
 
 final class MessageThreadRow extends StatelessWidget {
-  const MessageThreadRow({required this.thread, super.key});
+  const MessageThreadRow({
+    required this.thread,
+    required this.name,
+    required this.preview,
+    required this.isOnline,
+    required this.onTap,
+    this.avatarUrl,
+    super.key,
+  });
 
-  final MessageThreadData thread;
+  final ChatThread thread;
+  final String name;
+  final String preview;
+  final bool isOnline;
+  final VoidCallback onTap;
+  final String? avatarUrl;
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: AppColors.mutedSurface)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
-        child: Row(
-          children: [
-            ClipOval(
-              child: thread.avatar.image(
-                width: 48,
-                height: 48,
-                fit: BoxFit.cover,
-                excludeFromSemantics: true,
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    final colorScheme = Theme.of(context).colorScheme;
+    return InkWell(
+      onTap: onTap,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: colorScheme.surfaceContainer),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs,
+            vertical: AppSpacing.input,
+          ),
+          child: Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          thread.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontFamily: 'Manrope',
-                            fontSize: 14,
-                            height: 19 / 14,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.text,
+                  _ThreadAvatar(name: name, avatarUrl: avatarUrl),
+                  if (isOnline)
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: colorScheme.surface,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppSpacing.xxs),
+                          child: SizedBox(
+                            width: AppSpacing.sm,
+                            height: AppSpacing.sm,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: context.statusColors.onSuccessContainer,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        thread.time,
-                        style: const TextStyle(
-                          fontFamily: 'Manrope',
-                          fontSize: 11,
-                          height: 17 / 11,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.placeholder,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 3),
-                  Text(
-                    thread.preview,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: 'Manrope',
-                      fontSize: 12,
-                      height: 19 / 12,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.mutedText,
                     ),
-                  ),
                 ],
               ),
-            ),
-            if (thread.unread) ...[
-              const SizedBox(width: 14),
-              const DecoratedBox(
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  shape: BoxShape.circle,
+              const SizedBox(width: AppSpacing.input),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.chatHeaderName.copyWith(
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.controlInset),
+                    Text(
+                      preview,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.chatThreadPreview.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
                 ),
-                child: SizedBox(width: 8, height: 8),
               ),
             ],
-          ],
+          ),
         ),
       ),
     );
   }
 }
+
+final class _ThreadAvatar extends StatelessWidget {
+  const _ThreadAvatar({required this.name, this.avatarUrl});
+
+  final String name;
+  final String? avatarUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    final url = avatarUrl?.trim();
+    return CircleAvatar(
+      radius: AppSpacing.xl,
+      backgroundColor: AppColors.primaryTranslucent,
+      foregroundImage: url == null || url.isEmpty
+          ? null
+          : CachedNetworkImageProvider(url),
+      child: Text(
+        _initials(name),
+        style: AppTypography.chatHeaderName.copyWith(
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ),
+    );
+  }
+}
+
+String _initials(String name) => name
+    .split(RegExp(r'\s+'))
+    .where((part) => part.isNotEmpty)
+    .take(2)
+    .map((part) => part[0].toUpperCase())
+    .join();

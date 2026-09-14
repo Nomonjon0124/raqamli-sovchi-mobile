@@ -181,7 +181,7 @@ final class _MeasurementRow extends StatelessWidget {
         Text(
           label,
           style: AppTypography.onboardingSelectorValue.copyWith(
-            color: AppColors.bodyText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(height: AppSpacing.sm + 2),
@@ -200,7 +200,7 @@ final class _MeasurementRow extends StatelessWidget {
               height: 48,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                   border: Border.all(color: AppColors.primary, width: 1.5),
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
@@ -263,7 +263,7 @@ final class _StepButton extends StatelessWidget {
       label: semanticLabel,
       enabled: enabled,
       child: Material(
-        color: AppColors.mutedSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         shape: const CircleBorder(),
         child: InkWell(
           onTap: enabled ? onPressed : null,
@@ -272,7 +272,9 @@ final class _StepButton extends StatelessWidget {
             dimension: 40,
             child: Icon(
               icon,
-              color: enabled ? AppColors.text : AppColors.placeholder,
+              color: enabled
+                  ? Theme.of(context).colorScheme.onSurface
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
               size: 20,
             ),
           ),

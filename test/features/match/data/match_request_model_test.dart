@@ -16,11 +16,13 @@ void main() {
         'id': 'profile-1',
         'first_name': 'Ali',
         'last_name': 'Valiyev',
+        'main_photo': 'https://cdn.example.com/ali.jpg',
       },
       'to_profile_info': {
         'id': 'profile-2',
         'first_name': 'Mohira',
         'last_name': 'Rasulova',
+        'main_photo': 'https://cdn.example.com/mohira.jpg',
       },
     });
 
@@ -31,6 +33,8 @@ void main() {
     expect(request.fromProfileId, 'profile-1');
     expect(request.toProfileId, 'profile-2');
     expect(request.toProfileName, 'Mohira Rasulova');
+    expect(request.fromProfileImageUrl, 'https://cdn.example.com/ali.jpg');
+    expect(request.toProfileImageUrl, 'https://cdn.example.com/mohira.jpg');
     expect(request.canRetryAt(DateTime.parse('2026-08-09T10:00:00Z')), isTrue);
   });
 }

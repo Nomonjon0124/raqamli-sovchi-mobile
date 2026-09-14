@@ -17,8 +17,8 @@ final class SurveyPromptCard extends StatelessWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFFAFAFA),
-        border: Border.all(color: AppColors.border),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -31,8 +31,8 @@ final class SurveyPromptCard extends StatelessWidget {
                 Assets.icons.icGlyph.svg(
                   width: 18,
                   height: 18,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.placeholder,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onSurfaceVariant,
                     BlendMode.srcIn,
                   ),
                   excludeFromSemantics: true,
@@ -43,12 +43,12 @@ final class SurveyPromptCard extends StatelessWidget {
                     l10n.surveyPromptTitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 14,
                       height: 19 / 14,
                       fontWeight: FontWeight.w600,
-                      color: AppColors.text,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                 ),
@@ -57,12 +57,12 @@ final class SurveyPromptCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
             Text(
               l10n.surveyPromptMessage,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 12,
                 height: 19 / 12,
                 fontWeight: FontWeight.w400,
-                color: AppColors.mutedText,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: AppSpacing.md),
@@ -72,7 +72,7 @@ final class SurveyPromptCard extends StatelessWidget {
                 onPressed: onPressed,
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.surfaceLight,
+                  foregroundColor: Theme.of(context).colorScheme.surface,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: AppSpacing.lg,

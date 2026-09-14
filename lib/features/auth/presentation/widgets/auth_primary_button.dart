@@ -31,11 +31,13 @@ final class AuthPrimaryButton extends StatelessWidget {
                   colors: [AppColors.primary, AppColors.primaryLight],
                 )
               : null,
-          color: isEnabled ? null : AppColors.mutedSurface,
+          color: isEnabled
+              ? null
+              : Theme.of(context).colorScheme.surfaceContainerHighest,
           borderRadius: BorderRadius.circular(AppRadius.full),
         ),
         child: Material(
-          color: Colors.transparent,
+          color: AppColors.transparent,
           child: InkWell(
             onTap: isEnabled ? onPressed : null,
             borderRadius: BorderRadius.circular(AppRadius.full),
@@ -43,19 +45,19 @@ final class AuthPrimaryButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
               child: Center(
                 child: isLoading
-                    ? const SizedBox.square(
+                    ? SizedBox.square(
                         dimension: 20,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                       )
                     : Text(
                         label,
                         style: AppTypography.body.copyWith(
                           color: isEnabled
-                              ? Colors.white
-                              : AppColors.placeholder,
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context).colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

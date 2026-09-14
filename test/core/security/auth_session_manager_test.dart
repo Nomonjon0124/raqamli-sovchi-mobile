@@ -86,6 +86,7 @@ void main() {
       expect(manager.hasPendingSession, isFalse);
       expect(await store.readAccessToken(), 'access');
       expect(await store.readRefreshToken(), 'refresh');
+      expect(await manager.readCurrentUserId(), 'user-1');
       expect(await manager.readProfileOnboardingCompleted(), isTrue);
     },
   );
@@ -124,6 +125,7 @@ void main() {
     expect(manager.hasPendingSession, isFalse);
     expect(await store.readAccessToken(), isNull);
     expect(await store.readRefreshToken(), isNull);
+    expect(await manager.readCurrentUserId(), isNull);
     expect(await manager.readProfileOnboardingCompleted(), isNull);
   });
 }

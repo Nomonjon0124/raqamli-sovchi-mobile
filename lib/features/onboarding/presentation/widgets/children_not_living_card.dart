@@ -34,8 +34,8 @@ final class ChildrenNotLivingCard extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(AppSpacing.lg),
           decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: AppColors.border),
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).colorScheme.outline),
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Row(
@@ -74,11 +74,16 @@ final class _OnboardingToggle extends StatelessWidget {
       padding: const EdgeInsets.all(3),
       alignment: value ? Alignment.centerRight : Alignment.centerLeft,
       decoration: BoxDecoration(
-        color: value ? AppColors.primary : AppColors.border,
+        color: value
+            ? AppColors.primary
+            : Theme.of(context).colorScheme.outline,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
-      child: const DecoratedBox(
-        decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          shape: BoxShape.circle,
+        ),
         child: SizedBox(width: 20, height: 20),
       ),
     );

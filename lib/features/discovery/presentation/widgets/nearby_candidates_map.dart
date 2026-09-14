@@ -252,6 +252,7 @@ final class _MapTopControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -265,10 +266,7 @@ final class _MapTopControls extends StatelessWidget {
           icon: Assets.icons.icRadar.svg(
             width: 15,
             height: 15,
-            colorFilter: const ColorFilter.mode(
-              AppColors.primary,
-              BlendMode.srcIn,
-            ),
+            colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
           ),
           label: radiusLabel,
           onPressed: onRadiusPressed,
@@ -291,14 +289,15 @@ final class _MapIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Semantics(
       button: true,
       label: semanticLabel,
       child: Material(
-        color: AppColors.surfaceLight,
+        color: colorScheme.surface,
         shape: const CircleBorder(),
         elevation: 2,
-        shadowColor: AppColors.chipShadow,
+        shadowColor: colorScheme.shadow,
         child: InkWell(
           customBorder: const CircleBorder(),
           onTap: onPressed,
@@ -328,9 +327,10 @@ final class _MapViewToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.mutedSurface,
+        color: colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
@@ -373,12 +373,13 @@ final class _MapViewSegment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Semantics(
       button: true,
       selected: selected,
       label: semanticLabel,
       child: Material(
-        color: selected ? AppColors.surfaceLight : Colors.transparent,
+        color: selected ? colorScheme.surface : AppColors.transparent,
         borderRadius: BorderRadius.circular(AppRadius.full),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -391,7 +392,7 @@ final class _MapViewSegment extends StatelessWidget {
                 width: 16,
                 height: 16,
                 colorFilter: ColorFilter.mode(
-                  selected ? AppColors.primary : AppColors.mutedText,
+                  selected ? colorScheme.primary : colorScheme.onSurfaceVariant,
                   BlendMode.srcIn,
                 ),
               ),
@@ -416,11 +417,12 @@ final class _MapChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: AppColors.surfaceLight,
+      color: colorScheme.surface,
       borderRadius: BorderRadius.circular(AppRadius.full),
       elevation: 3,
-      shadowColor: AppColors.chipShadow,
+      shadowColor: colorScheme.shadow,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onPressed,
@@ -438,7 +440,9 @@ final class _MapChip extends StatelessWidget {
               const SizedBox(width: AppSpacing.compact),
               Text(
                 label,
-                style: AppTypography.caption.copyWith(color: AppColors.text),
+                style: AppTypography.caption.copyWith(
+                  color: colorScheme.onSurface,
+                ),
               ),
             ],
           ),
@@ -459,11 +463,12 @@ final class _MapCircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Material(
-      color: AppColors.surfaceLight,
+      color: colorScheme.surface,
       shape: const CircleBorder(),
       elevation: 3,
-      shadowColor: AppColors.elevatedShadow,
+      shadowColor: colorScheme.shadow,
       child: IconButton(
         onPressed: onPressed,
         tooltip: semanticLabel,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
-import '../../../../app/theme/app_colors.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_round_icon_button.dart';
@@ -101,7 +102,7 @@ final class _ProfileEditViewState extends State<_ProfileEditView> {
             _handleCancel(context, state);
           },
           child: Scaffold(
-            backgroundColor: AppColors.surfaceLight,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             bottomNavigationBar: ProfileEditBottomBar(
               onSave: () => context.read<EditProfileBloc>().add(
                 const EditProfileSubmitted(),
@@ -124,9 +125,7 @@ final class _ProfileEditViewState extends State<_ProfileEditView> {
                     photoUrl: state.mainPhotoUrl,
                     localPhotoPath: state.localPhotoPath,
                     isUploading: state.isUploadingPhoto,
-                    onChangePhoto: () => context.read<EditProfileBloc>().add(
-                      const EditProfilePhotoPickRequested(),
-                    ),
+                    onChangePhoto: () => _openPhotoManagement(context, state),
                   ),
                   const SizedBox(height: AppSpacing.card),
                   _buildFieldRows(context, state, l10n),
@@ -145,6 +144,20 @@ final class _ProfileEditViewState extends State<_ProfileEditView> {
         );
       },
     );
+  }
+
+  Future<void> _openPhotoManagement(
+    BuildContext context,
+    EditProfileState state,
+  ) async {
+    final profile = state.originalProfile;
+    if (profile == null || state.isUploadingPhoto) return;
+    final updated = await context.push<UserProfile>(
+      RouteNames.profilePhotos,
+      extra: profile,
+    );
+    if (!context.mounted || updated == null) return;
+    context.read<EditProfileBloc>().add(EditProfilePhotosUpdated(updated));
   }
 
   Widget _buildHeader(

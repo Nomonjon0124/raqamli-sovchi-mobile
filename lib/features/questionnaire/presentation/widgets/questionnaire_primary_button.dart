@@ -26,9 +26,13 @@ final class QuestionnairePrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.primary,
-          foregroundColor: AppColors.surfaceLight,
-          disabledBackgroundColor: AppColors.mutedSurface,
-          disabledForegroundColor: AppColors.placeholder,
+          foregroundColor: Theme.of(context).colorScheme.surface,
+          disabledBackgroundColor: Theme.of(
+            context,
+          ).colorScheme.surfaceContainerHighest,
+          disabledForegroundColor: Theme.of(
+            context,
+          ).colorScheme.onSurfaceVariant,
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.section,
             vertical: AppSpacing.lg,
@@ -45,7 +49,7 @@ final class QuestionnairePrimaryButton extends StatelessWidget {
             final foregroundColor =
                 IconTheme.of(context).color ??
                 DefaultTextStyle.of(context).style.color ??
-                AppColors.surfaceLight;
+                Theme.of(context).colorScheme.surface;
 
             return Row(
               mainAxisSize: MainAxisSize.min,

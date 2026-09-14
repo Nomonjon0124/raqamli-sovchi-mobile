@@ -73,11 +73,11 @@ final class BlockedUserTile extends StatelessWidget {
                   name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Manrope',
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: AppColors.text,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xxs),
@@ -85,10 +85,10 @@ final class BlockedUserTile extends StatelessWidget {
                   subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Manrope',
                     fontSize: 13,
-                    color: AppColors.mutedText,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],
@@ -99,7 +99,7 @@ final class BlockedUserTile extends StatelessWidget {
             button: true,
             label: l10n.unblockButton,
             child: Material(
-              color: AppColors.mutedSurface,
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(18),
               child: InkWell(
                 borderRadius: BorderRadius.circular(18),
@@ -110,20 +110,20 @@ final class BlockedUserTile extends StatelessWidget {
                     vertical: 8,
                   ),
                   child: isUnblocking
-                      ? const SizedBox.square(
+                      ? SizedBox.square(
                           dimension: 16,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            color: AppColors.text,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         )
                       : Text(
                           l10n.unblockButton,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
-                            color: AppColors.text,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                 ),

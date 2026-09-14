@@ -31,15 +31,23 @@ final class AgreementRow extends StatelessWidget {
             height: 22,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: accepted ? AppColors.primary : Colors.white,
+              color: accepted
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.surface,
               border: Border.all(
-                color: accepted ? AppColors.primary : AppColors.border,
+                color: accepted
+                    ? AppColors.primary
+                    : Theme.of(context).colorScheme.outline,
                 width: 1.5,
               ),
               borderRadius: BorderRadius.circular(AppRadius.sm - 2),
             ),
             child: accepted
-                ? const Icon(Icons.check, size: 14, color: Colors.white)
+                ? Icon(
+                    Icons.check,
+                    size: 14,
+                    color: Theme.of(context).colorScheme.surface,
+                  )
                 : null,
           ),
           const SizedBox(width: AppSpacing.md),

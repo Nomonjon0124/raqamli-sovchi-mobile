@@ -98,6 +98,7 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('ru'),
     Locale('uz'),
+    Locale.fromSubtags(languageCode: 'uz', scriptCode: 'Cyrl'),
   ];
 
   /// No description provided for @faceCaptureTitle.
@@ -1414,6 +1415,18 @@ abstract class AppLocalizations {
   /// **'Qisqa kod oʻylab toping'**
   String get pinCreateTitle;
 
+  /// No description provided for @pinConfirmTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'PIN-kodni qayta kiriting'**
+  String get pinConfirmTitle;
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kiritilgan PIN-kodlar bir xil emas. Qaytadan urinib ko‘ring.'**
+  String get pinMismatch;
+
   /// No description provided for @pinUnlockTitle.
   ///
   /// In uz, this message translates to:
@@ -1425,6 +1438,12 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Hisobingiz faqat sizniki boʻlib qolishi uchun. Har safar kirishda shu kodni terasiz.'**
   String get pinHintCreate;
+
+  /// No description provided for @pinHintConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yaratgan PIN-kodingizni yana bir marta kiriting.'**
+  String get pinHintConfirm;
 
   /// No description provided for @pinHintUnlock.
   ///
@@ -1551,6 +1570,222 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Hozircha xizmatlar sahifasi.'**
   String get servicesPlaceholder;
+
+  /// No description provided for @servicesHeroTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tanishuv yo‘lida\nyolg‘iz emassiz'**
+  String get servicesHeroTitle;
+
+  /// No description provided for @servicesHeroSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Psixolog, oilaviy uchrashuv va profil tekshiruvi — hammasi bir joyda.'**
+  String get servicesHeroSubtitle;
+
+  /// No description provided for @servicesHeroSupportValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'24/7'**
+  String get servicesHeroSupportValue;
+
+  /// No description provided for @servicesHeroSupportLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'yordam'**
+  String get servicesHeroSupportLabel;
+
+  /// No description provided for @servicesHeroPsychologistsValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'12'**
+  String get servicesHeroPsychologistsValue;
+
+  /// No description provided for @servicesHeroPsychologistsLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'psixolog'**
+  String get servicesHeroPsychologistsLabel;
+
+  /// No description provided for @servicesHeroPrivacyValue.
+  ///
+  /// In uz, this message translates to:
+  /// **'Maxfiy'**
+  String get servicesHeroPrivacyValue;
+
+  /// No description provided for @servicesHeroPrivacyLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'suhbat'**
+  String get servicesHeroPrivacyLabel;
+
+  /// No description provided for @servicesPopularSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Eng ko‘p tanlanadi'**
+  String get servicesPopularSection;
+
+  /// No description provided for @servicePsychologistTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy psixolog'**
+  String get servicePsychologistTitle;
+
+  /// No description provided for @servicePsychologistSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nikohdan oldin suhbat'**
+  String get servicePsychologistSubtitle;
+
+  /// No description provided for @servicePsychologistRating.
+  ///
+  /// In uz, this message translates to:
+  /// **'4.9'**
+  String get servicePsychologistRating;
+
+  /// No description provided for @servicePsychologistDescription.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kelishmovchilik sabablarini oldindan ko‘rasiz. Suhbat to‘liq maxfiy — hech kim bilmaydi.'**
+  String get servicePsychologistDescription;
+
+  /// No description provided for @servicePsychologistDuration.
+  ///
+  /// In uz, this message translates to:
+  /// **'50 daqiqa'**
+  String get servicePsychologistDuration;
+
+  /// No description provided for @servicePsychologistFormat.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oflayn yoki uyda'**
+  String get servicePsychologistFormat;
+
+  /// No description provided for @servicePsychologistExperts.
+  ///
+  /// In uz, this message translates to:
+  /// **'12 mutaxassis'**
+  String get servicePsychologistExperts;
+
+  /// No description provided for @servicePsychologistPrice.
+  ///
+  /// In uz, this message translates to:
+  /// **'bitta sessiy'**
+  String get servicePsychologistPrice;
+
+  /// No description provided for @serviceViewAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘rish'**
+  String get serviceViewAction;
+
+  /// No description provided for @servicesOtherSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Boshqa xizmatlar'**
+  String get servicesOtherSection;
+
+  /// No description provided for @serviceMeetingTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilaviy uchrashuv'**
+  String get serviceMeetingTitle;
+
+  /// No description provided for @serviceMeetingSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Faqat vakillar taklif qiladi'**
+  String get serviceMeetingSubtitle;
+
+  /// No description provided for @serviceVerificationTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil tekshiruvi'**
+  String get serviceVerificationTitle;
+
+  /// No description provided for @serviceVerificationSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Selfi orqali tasdiqlash'**
+  String get serviceVerificationSubtitle;
+
+  /// No description provided for @servicePremiumTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sovchi Premium'**
+  String get servicePremiumTitle;
+
+  /// No description provided for @servicePremiumSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ko‘proq taklif va to‘liq moslik tahlili'**
+  String get servicePremiumSubtitle;
+
+  /// No description provided for @serviceBoostTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuqoriga ko‘tarish'**
+  String get serviceBoostTitle;
+
+  /// No description provided for @serviceBoostSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingiz 24 soat davomida ro‘yxat boshida ko‘rinadi.'**
+  String get serviceBoostSubtitle;
+
+  /// No description provided for @servicesHowSection.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qanday ishlaydi'**
+  String get servicesHowSection;
+
+  /// No description provided for @servicesHowStepOneTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xizmatni tanlaysiz'**
+  String get servicesHowStepOneTitle;
+
+  /// No description provided for @servicesHowStepOneSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Har biri haqida to‘liq ma’lumot bor'**
+  String get servicesHowStepOneSubtitle;
+
+  /// No description provided for @servicesHowStepTwoTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vaqt va shaklni belgilaysiz'**
+  String get servicesHowStepTwoTitle;
+
+  /// No description provided for @servicesHowStepTwoSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oflayn yoki uyingizda'**
+  String get servicesHowStepTwoSubtitle;
+
+  /// No description provided for @servicesHowStepThreeTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'To‘laysiz va uchrashasiz'**
+  String get servicesHowStepThreeTitle;
+
+  /// No description provided for @servicesHowStepThreeSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilsangiz pul qaytadi'**
+  String get servicesHowStepThreeSubtitle;
+
+  /// No description provided for @servicesOptionalNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hech bir xizmat majburiy emas — ularsiz ham ilovadan to‘liq foydalanasiz.'**
+  String get servicesOptionalNote;
+
+  /// No description provided for @servicesActionComingSoon.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bu xizmat keyingi bosqichda ulanadi'**
+  String get servicesActionComingSoon;
 
   /// No description provided for @savedPlaceholder.
   ///
@@ -2350,6 +2585,288 @@ abstract class AppLocalizations {
   /// **'Soʻrovlar'**
   String get messagesSegmentRequests;
 
+  /// No description provided for @chatRequestsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha kelgan soʻrovlar yoʻq'**
+  String get chatRequestsEmpty;
+
+  /// No description provided for @chatRequestCardTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov / {name}'**
+  String chatRequestCardTitle(String name);
+
+  /// No description provided for @chatRequestPendingHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qabul qilmaguningizcha nomzod sizga yoza olmaydi.'**
+  String get chatRequestPendingHint;
+
+  /// No description provided for @chatRequestProfileTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod profili'**
+  String get chatRequestProfileTitle;
+
+  /// No description provided for @chatRequestCompatibilityLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'MOSLIK BOʻLIMLAR KESIMIDA'**
+  String get chatRequestCompatibilityLabel;
+
+  /// No description provided for @chatRequestCompatibilityShortLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'moslik'**
+  String get chatRequestCompatibilityShortLabel;
+
+  /// No description provided for @chatRequestCompatibilityUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moslik foizi hali hisoblanmagan.'**
+  String get chatRequestCompatibilityUnavailable;
+
+  /// No description provided for @chatRequestAccept.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qabul qilish'**
+  String get chatRequestAccept;
+
+  /// No description provided for @chatRequestReject.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rad etish'**
+  String get chatRequestReject;
+
+  /// No description provided for @chatRequestViaRepresentative.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakil orqali'**
+  String get chatRequestViaRepresentative;
+
+  /// No description provided for @chatRequestPhotoVerified.
+  ///
+  /// In uz, this message translates to:
+  /// **'Rasm tekshiruvi oʻtgan'**
+  String get chatRequestPhotoVerified;
+
+  /// No description provided for @chatRequestSeriousIntent.
+  ///
+  /// In uz, this message translates to:
+  /// **'Niyati jiddiy'**
+  String get chatRequestSeriousIntent;
+
+  /// No description provided for @chatRequestRepresentativeLabel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Vakili: {name}'**
+  String chatRequestRepresentativeLabel(String name);
+
+  /// No description provided for @chatRequestRepresentativeNote.
+  ///
+  /// In uz, this message translates to:
+  /// **'Murojaat vakil orqali kelgan'**
+  String get chatRequestRepresentativeNote;
+
+  /// No description provided for @chatRequestProfileUnavailable.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil maʼlumotlari vaqtincha mavjud emas.'**
+  String get chatRequestProfileUnavailable;
+
+  /// No description provided for @chatRequestLocationProfession.
+  ///
+  /// In uz, this message translates to:
+  /// **'{location}, {profession}'**
+  String chatRequestLocationProfession(String location, String profession);
+
+  /// No description provided for @chatRequestCandidateFallback.
+  ///
+  /// In uz, this message translates to:
+  /// **'Nomzod'**
+  String get chatRequestCandidateFallback;
+
+  /// No description provided for @chatRequestSectionFaith.
+  ///
+  /// In uz, this message translates to:
+  /// **'Din va qadriyatlar'**
+  String get chatRequestSectionFaith;
+
+  /// No description provided for @chatRequestSectionFinance.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moliya va boshqaruv'**
+  String get chatRequestSectionFinance;
+
+  /// No description provided for @chatRequestSectionFamily.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qarindoshlar'**
+  String get chatRequestSectionFamily;
+
+  /// No description provided for @chatRequestSectionCharacter.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xarakter'**
+  String get chatRequestSectionCharacter;
+
+  /// No description provided for @chatRequestSectionPlans.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kelajak rejalari'**
+  String get chatRequestSectionPlans;
+
+  /// No description provided for @chatRequestAccepted.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov qabul qilindi'**
+  String get chatRequestAccepted;
+
+  /// No description provided for @chatRequestRejected.
+  ///
+  /// In uz, this message translates to:
+  /// **'Soʻrov rad etildi'**
+  String get chatRequestRejected;
+
+  /// No description provided for @chatRoomsEmpty.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozircha ochiq suhbatlar yoʻq'**
+  String get chatRoomsEmpty;
+
+  /// No description provided for @chatThreadOpen.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatni ochish'**
+  String get chatThreadOpen;
+
+  /// No description provided for @chatParticipantFallback.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatdosh'**
+  String get chatParticipantFallback;
+
+  /// No description provided for @chatSafetyNotice.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatni Sunʼiy intellekt kuzatib turadi — odobsiz soʻz va rasm oʻtmaydi.'**
+  String get chatSafetyNotice;
+
+  /// No description provided for @chatIcebreakerGoal.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hayotingizdagi eng katta maqsadingiz nima?'**
+  String get chatIcebreakerGoal;
+
+  /// No description provided for @chatIcebreakerFamily.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oilada qanday anʼanani davom ettirishni xohlaysiz?'**
+  String get chatIcebreakerFamily;
+
+  /// No description provided for @chatIcebreakerBook.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sizni qaysi kitob eng koʻp ilhomlantiradi?'**
+  String get chatIcebreakerBook;
+
+  /// No description provided for @chatIcebreakerChange.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻz hayotingizda oʻzgartirmoqchi boʻlgan bir narsani ayting.'**
+  String get chatIcebreakerChange;
+
+  /// No description provided for @chatWriteMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xabar yozing…'**
+  String get chatWriteMessage;
+
+  /// No description provided for @chatSendMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Xabarni yuborish'**
+  String get chatSendMessage;
+
+  /// No description provided for @chatReplyTo.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javob berish'**
+  String get chatReplyTo;
+
+  /// No description provided for @chatReplyCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Javobni bekor qilish'**
+  String get chatReplyCancel;
+
+  /// No description provided for @chatTyping.
+  ///
+  /// In uz, this message translates to:
+  /// **'yozyapti…'**
+  String get chatTyping;
+
+  /// No description provided for @chatOpenTimeRemaining.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chat 72 soat ochiq'**
+  String get chatOpenTimeRemaining;
+
+  /// No description provided for @chatMoreActions.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qoʻshimcha amallar'**
+  String get chatMoreActions;
+
+  /// No description provided for @chatMoreSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ilovani ulashish'**
+  String get chatMoreSheetTitle;
+
+  /// No description provided for @chatMoreSheetSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Doʻstlaringizni Sovchiʼga taklif qiling — taklif kodi bilan.'**
+  String get chatMoreSheetSubtitle;
+
+  /// No description provided for @chatReportAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Shikoyat qilish'**
+  String get chatReportAction;
+
+  /// No description provided for @chatDeleteAction.
+  ///
+  /// In uz, this message translates to:
+  /// **'Chatni oʻchirish'**
+  String get chatDeleteAction;
+
+  /// No description provided for @chatDeleteTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'{name} ni suhbatni oʻchirmoqchimisiz?'**
+  String chatDeleteTitle(String name);
+
+  /// No description provided for @chatDeleteSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Agar suhbatni oʻchirsangiz nomzod maʼlumotlari ham berkitiladi!'**
+  String get chatDeleteSubtitle;
+
+  /// No description provided for @chatDeleteCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get chatDeleteCancel;
+
+  /// No description provided for @chatDeleteConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻchirish'**
+  String get chatDeleteConfirm;
+
   /// No description provided for @mockMessageMohiraName.
   ///
   /// In uz, this message translates to:
@@ -2980,6 +3497,72 @@ abstract class AppLocalizations {
   /// **'Profil surati {index}'**
   String profilePhotoSemantics(int index);
 
+  /// No description provided for @profilePhotoSourceTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi surat'**
+  String get profilePhotoSourceTitle;
+
+  /// No description provided for @profilePhotoSourceSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yuklangandan soʻng surat yuz tekshiruvidan oʻtadi.'**
+  String get profilePhotoSourceSubtitle;
+
+  /// No description provided for @profilePhotoCamera.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kameradan olish'**
+  String get profilePhotoCamera;
+
+  /// No description provided for @profilePhotoGallery.
+  ///
+  /// In uz, this message translates to:
+  /// **'Galereyadan tanlash'**
+  String get profilePhotoGallery;
+
+  /// No description provided for @profilePhotoActionsTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Surat'**
+  String get profilePhotoActionsTitle;
+
+  /// No description provided for @profilePhotoSetMain.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy qilib belgilash'**
+  String get profilePhotoSetMain;
+
+  /// No description provided for @profilePhotoReplace.
+  ///
+  /// In uz, this message translates to:
+  /// **'Almashtirish'**
+  String get profilePhotoReplace;
+
+  /// No description provided for @profilePhotoDelete.
+  ///
+  /// In uz, this message translates to:
+  /// **'Oʻchirish'**
+  String get profilePhotoDelete;
+
+  /// No description provided for @profilePhotoCancel.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bekor qilish'**
+  String get profilePhotoCancel;
+
+  /// No description provided for @profilePhotoDeleteTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suratni oʻchirasizmi?'**
+  String get profilePhotoDeleteTitle;
+
+  /// No description provided for @profilePhotoDeleteSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Surat profilingizdan olib tashlanadi. Oʻrniga yangisini yuklashingiz mumkin.'**
+  String get profilePhotoDeleteSubtitle;
+
   /// No description provided for @profileAboutSection.
   ///
   /// In uz, this message translates to:
@@ -3057,6 +3640,72 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Hisob'**
   String get settingsAccountSection;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Til'**
+  String get settingsLanguage;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mavzu'**
+  String get settingsTheme;
+
+  /// No description provided for @settingsLanguageSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Til'**
+  String get settingsLanguageSheetTitle;
+
+  /// No description provided for @settingsThemeSheetTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Mavzu'**
+  String get settingsThemeSheetTitle;
+
+  /// No description provided for @settingsLanguageUzbekLatin.
+  ///
+  /// In uz, this message translates to:
+  /// **'O‘zbek'**
+  String get settingsLanguageUzbekLatin;
+
+  /// No description provided for @settingsLanguageUzbekCyrillic.
+  ///
+  /// In uz, this message translates to:
+  /// **'Ўзбек'**
+  String get settingsLanguageUzbekCyrillic;
+
+  /// No description provided for @settingsLanguageRussian.
+  ///
+  /// In uz, this message translates to:
+  /// **'Русский'**
+  String get settingsLanguageRussian;
+
+  /// No description provided for @settingsLanguageEnglish.
+  ///
+  /// In uz, this message translates to:
+  /// **'English'**
+  String get settingsLanguageEnglish;
+
+  /// No description provided for @settingsThemeSystem.
+  ///
+  /// In uz, this message translates to:
+  /// **'Avtomatik'**
+  String get settingsThemeSystem;
+
+  /// No description provided for @settingsThemeLight.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yorug‘'**
+  String get settingsThemeLight;
+
+  /// No description provided for @settingsThemeDark.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qorong‘i'**
+  String get settingsThemeDark;
 
   /// No description provided for @settingsEditProfile.
   ///
@@ -3243,6 +3892,30 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Suratni oʻzgartirish'**
   String get profileEditChangePhoto;
+
+  /// No description provided for @profilePhotoManagementTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Asosiy surat'**
+  String get profilePhotoManagementTitle;
+
+  /// No description provided for @profilePhotoManagementSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profilingizda va nomzodlar roʻyxatida birinchi shu surat ko‘rinadi. Selfi tekshiruvi ham shu surat bilan solishtiriladi.'**
+  String get profilePhotoManagementSubtitle;
+
+  /// No description provided for @profilePhotoConfirm.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tasdiqlash'**
+  String get profilePhotoConfirm;
+
+  /// No description provided for @profileFaceVerificationDone.
+  ///
+  /// In uz, this message translates to:
+  /// **'Davom etish'**
+  String get profileFaceVerificationDone;
 
   /// No description provided for @profileEditName.
   ///
@@ -3653,6 +4326,18 @@ class _AppLocalizationsDelegate
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+script codes are specified.
+  switch (locale.languageCode) {
+    case 'uz':
+      {
+        switch (locale.scriptCode) {
+          case 'Cyrl':
+            return AppLocalizationsUzCyrl();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':

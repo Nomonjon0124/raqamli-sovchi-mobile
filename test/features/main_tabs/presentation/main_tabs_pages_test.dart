@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:raqamli_sovchi/features/chat/presentation/pages/messages_page.dart';
 import 'package:raqamli_sovchi/features/discovery/presentation/pages/candidates_page.dart';
 import 'package:raqamli_sovchi/features/saved/presentation/pages/saved_page.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
@@ -30,14 +29,6 @@ void main() {
     expect(find.text('Mohira R., 23'), findsWidgets);
     expect(find.text('Maxfiy rasm'), findsWidgets);
     expect(find.text('moslik yopiq'), findsWidgets);
-  });
-
-  testWidgets('messages tab renders mock threads', (tester) async {
-    await tester.pumpWidget(const _LocalizedTestApp(child: MessagesPage()));
-
-    expect(find.text('Xabarlar'), findsOneWidget);
-    expect(find.text('Suhbatlar'), findsOneWidget);
-    expect(find.text('Vaqtingiz boʻlsa tanishsak.'), findsOneWidget);
   });
 
   testWidgets('saved tab renders saved grid and upsell', (tester) async {

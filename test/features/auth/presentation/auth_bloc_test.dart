@@ -666,6 +666,12 @@ final class _FakeAuthSessionManager implements AuthSessionManager {
   }
 
   @override
+  Future<String?> readCurrentUserId() async => _pendingSession?.userId;
+
+  @override
+  Future<void> saveCurrentUserId(String userId) async {}
+
+  @override
   Future<void> saveRefreshedTokens({
     required String accessToken,
     String? refreshToken,

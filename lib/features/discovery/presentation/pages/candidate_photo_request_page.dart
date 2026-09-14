@@ -107,7 +107,7 @@ final class _CandidatePhotoRequestView extends StatelessWidget {
         ).showSnackBar(SnackBar(content: Text(message)));
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
           child: Column(
             children: [
@@ -150,28 +150,32 @@ final class _CandidatePhotoRequestView extends StatelessWidget {
                         minLines: 4,
                         maxLines: 4,
                         cursorColor: AppColors.primary,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Manrope',
                           fontSize: 14,
                           height: 21 / 14,
-                          color: AppColors.text,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                         textInputAction: TextInputAction.newline,
                         decoration: InputDecoration(
                           hintText: l10n.photoRequestMessageHint,
-                          hintStyle: const TextStyle(
+                          hintStyle: TextStyle(
                             fontFamily: 'Manrope',
                             fontSize: 14,
                             height: 21 / 14,
-                            color: AppColors.placeholder,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Theme.of(
+                            context,
+                          ).colorScheme.surfaceContainer,
                           contentPadding: const EdgeInsets.all(12),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(AppRadius.lg),
-                            borderSide: const BorderSide(
-                              color: AppColors.border,
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.outline,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -243,19 +247,19 @@ final class _PrimaryActionButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.primary,
           disabledBackgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          disabledForegroundColor: Colors.white,
+          foregroundColor: Theme.of(context).colorScheme.surface,
+          disabledForegroundColor: Theme.of(context).colorScheme.surface,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.full),
           ),
         ),
         child: isLoading
-            ? const SizedBox.square(
+            ? SizedBox.square(
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
               )
             : Row(
@@ -278,8 +282,8 @@ final class _PrimaryActionButton extends StatelessWidget {
                   Assets.icons.icArrowRight.svg(
                     width: 20,
                     height: 20,
-                    colorFilter: const ColorFilter.mode(
-                      Colors.white,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.surface,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -307,7 +311,7 @@ final class _PersonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.lg),
       ),
       child: Padding(
@@ -352,9 +356,12 @@ final class _BlurredThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fallback = const ColoredBox(
-      color: AppColors.mutedSurface,
-      child: Icon(Icons.person_rounded, color: AppColors.mutedText),
+    final fallback = ColoredBox(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
+      child: Icon(
+        Icons.person_rounded,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+      ),
     );
     final image = imageUrl == null || imageUrl!.isEmpty
         ? fallback
@@ -381,7 +388,7 @@ final class _RulesCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.lg),
       ),
       child: Padding(
@@ -417,21 +424,21 @@ final class _RuleRow extends StatelessWidget {
         Expanded(
           child: Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Manrope',
               fontSize: 13,
               height: 21 / 13,
-              color: AppColors.mutedText,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
             fontSize: 13,
             height: 18 / 13,
-            color: AppColors.text,
+            color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeight.w600,
           ),
         ),

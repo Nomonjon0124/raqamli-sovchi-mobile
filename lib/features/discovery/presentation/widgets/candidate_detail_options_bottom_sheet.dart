@@ -32,8 +32,8 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
     return SafeArea(
       top: false,
       child: DecoratedBox(
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Padding(
@@ -47,7 +47,7 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
                   width: 38,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: AppColors.border,
+                    color: Theme.of(context).colorScheme.outline,
                     borderRadius: BorderRadius.circular(AppRadius.full),
                   ),
                 ),
@@ -62,22 +62,22 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
                       candidateName,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 15,
                         height: 20 / 15,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 3),
                     Text(
                       l10n.candidateDetailOptionsSubtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 11,
                         height: 17 / 11,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],
@@ -125,7 +125,7 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Material(
-                color: AppColors.mutedSurface,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppRadius.xl),
                 child: InkWell(
                   onTap: onCancel,
@@ -135,12 +135,12 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
                     child: Text(
                       l10n.deleteAccountCancel,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 14,
                         height: 19 / 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                   ),
@@ -164,7 +164,7 @@ final class _OptionsGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Padding(
@@ -175,7 +175,10 @@ final class _OptionsGroup extends StatelessWidget {
             for (var index = 0; index < rows.length; index++) ...[
               _OptionRow(data: rows[index], danger: danger),
               if (index != rows.length - 1)
-                const Divider(height: 1, color: AppColors.border),
+                Divider(
+                  height: 1,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
             ],
           ],
         ),
@@ -193,7 +196,7 @@ final class _OptionRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: data.onTap,
         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -205,7 +208,7 @@ final class _OptionRow extends StatelessWidget {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                  color: AppColors.mutedSurface,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 alignment: Alignment.center,
@@ -225,7 +228,9 @@ final class _OptionRow extends StatelessWidget {
                         fontSize: 14,
                         height: 19 / 14,
                         fontWeight: FontWeight.w500,
-                        color: danger ? AppColors.dangerText : AppColors.text,
+                        color: danger
+                            ? Theme.of(context).colorScheme.onErrorContainer
+                            : Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -233,11 +238,11 @@ final class _OptionRow extends StatelessWidget {
                       data.subtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 11,
                         height: 17 / 11,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ],

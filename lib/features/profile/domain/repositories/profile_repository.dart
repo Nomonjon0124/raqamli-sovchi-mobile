@@ -18,5 +18,10 @@ abstract interface class ProfileRepository {
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
+    bool isMain = true,
   });
+
+  Future<Either<Failure, ProfilePhoto>> setMainPhoto(String photoId);
+
+  Future<Either<Failure, void>> deletePhoto(String photoId);
 }

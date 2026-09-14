@@ -174,7 +174,7 @@ final class _QuestionnaireProgressHeader extends StatelessWidget {
               height: 3,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
-                color: AppColors.mutedSurface,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
               child: AnimatedContainer(

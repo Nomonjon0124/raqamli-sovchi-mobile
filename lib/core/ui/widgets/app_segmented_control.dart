@@ -17,9 +17,10 @@ final class AppSegmentedControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.mutedSurface,
+        color: colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
@@ -50,14 +51,15 @@ final class _SegmentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final content = DecoratedBox(
       decoration: BoxDecoration(
-        color: selected ? AppColors.surfaceLight : Colors.transparent,
+        color: selected ? colorScheme.surface : AppColors.transparent,
         borderRadius: BorderRadius.circular(AppRadius.full),
         boxShadow: selected
             ? const [
                 BoxShadow(
-                  color: Color(0x0D000000),
+                  color: AppColors.chipShadow,
                   offset: Offset(0, 5),
                   blurRadius: 8,
                 ),
@@ -76,7 +78,9 @@ final class _SegmentItem extends StatelessWidget {
             fontSize: 13,
             height: 18 / 13,
             fontWeight: FontWeight.w600,
-            color: selected ? AppColors.text : AppColors.mutedText,
+            color: selected
+                ? colorScheme.onSurface
+                : colorScheme.onSurfaceVariant,
           ),
         ),
       ),

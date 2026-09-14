@@ -27,9 +27,13 @@ final class EducationChip extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           decoration: BoxDecoration(
-            color: selected ? AppColors.subtleSurface : Colors.white,
+            color: selected
+                ? Theme.of(context).colorScheme.surfaceContainerLow
+                : Theme.of(context).colorScheme.surface,
             border: Border.all(
-              color: selected ? AppColors.primary : AppColors.border,
+              color: selected
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.outline,
               width: 1.5,
             ),
             borderRadius: BorderRadius.circular(AppRadius.full),
@@ -37,7 +41,9 @@ final class EducationChip extends StatelessWidget {
           child: Text(
             label,
             style: AppTypography.onboardingChip.copyWith(
-              color: selected ? AppColors.primary : AppColors.bodyText,
+              color: selected
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),

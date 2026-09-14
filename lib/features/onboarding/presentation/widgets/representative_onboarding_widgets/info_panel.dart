@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../app/theme/app_colors.dart';
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../../app/theme/app_radius.dart';
 import '../../../../../app/theme/app_typography.dart';
 
@@ -21,9 +22,18 @@ final class InfoPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (background, titleColor) = switch (tone) {
-      InfoTone.warning => (AppColors.warningSurface, AppColors.warningText),
-      InfoTone.success => (AppColors.successSurface, AppColors.successText),
-      InfoTone.neutral => (AppColors.subtleSurface, AppColors.text),
+      InfoTone.warning => (
+        context.statusColors.warningContainer,
+        context.statusColors.onWarningContainer,
+      ),
+      InfoTone.success => (
+        context.statusColors.successContainer,
+        context.statusColors.onSuccessContainer,
+      ),
+      InfoTone.neutral => (
+        Theme.of(context).colorScheme.surfaceContainerLow,
+        Theme.of(context).colorScheme.onSurface,
+      ),
     };
     return Container(
       width: double.infinity,

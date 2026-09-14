@@ -26,7 +26,7 @@ final class CandidateTypeCard extends StatelessWidget {
       selected: selected,
       label: title,
       child: Material(
-        color: Colors.transparent,
+        color: AppColors.transparent,
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(AppRadius.xl),
@@ -34,9 +34,13 @@ final class CandidateTypeCard extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
-              color: selected ? AppColors.mutedSurface : Colors.white,
+              color: selected
+                  ? Theme.of(context).colorScheme.surfaceContainerHighest
+                  : Theme.of(context).colorScheme.surface,
               border: Border.all(
-                color: selected ? AppColors.primary : AppColors.border,
+                color: selected
+                    ? AppColors.primary
+                    : Theme.of(context).colorScheme.outline,
                 width: 1.5,
               ),
               borderRadius: BorderRadius.circular(AppRadius.xl),
@@ -50,7 +54,7 @@ final class CandidateTypeCard extends StatelessWidget {
                     fontSize: 16,
                     height: 22 / 16,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.text,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xs),

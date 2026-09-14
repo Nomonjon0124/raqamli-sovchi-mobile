@@ -81,7 +81,7 @@ final class _LoginPageState extends State<LoginPage> {
                     Text(
                       l10n.phoneLabel,
                       style: AppTypography.caption.copyWith(
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: AppSpacing.sm),
@@ -98,7 +98,7 @@ final class _LoginPageState extends State<LoginPage> {
                         counterText: '',
                         hintText: '90 123 45 67',
                         hintStyle: AppTypography.body.copyWith(
-                          color: AppColors.placeholder,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w500,
                         ),
                         prefixIcon: Center(
@@ -111,7 +111,9 @@ final class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               '+998',
                               style: AppTypography.body.copyWith(
-                                color: AppColors.placeholder,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
@@ -123,18 +125,24 @@ final class _LoginPageState extends State<LoginPage> {
                         ),
                         errorText: isInvalid ? l10n.phoneError : null,
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainer,
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: AppSpacing.lg,
                           vertical: 14,
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
-                          borderSide: const BorderSide(color: AppColors.border),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
-                          borderSide: const BorderSide(color: AppColors.border),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
@@ -154,7 +162,11 @@ final class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: AppSpacing.xl),
                     Row(
                       children: [
-                        const Expanded(child: Divider(color: AppColors.border)),
+                        Expanded(
+                          child: Divider(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: AppSpacing.md,
@@ -167,7 +179,11 @@ final class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        const Expanded(child: Divider(color: AppColors.border)),
+                        Expanded(
+                          child: Divider(
+                            color: Theme.of(context).colorScheme.outline,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.lg),
@@ -230,7 +246,7 @@ final class _LoginPageState extends State<LoginPage> {
                       Text(
                         l10n.failureMessage(state.failure!.type.name),
                         style: AppTypography.caption.copyWith(
-                          color: Colors.red,
+                          color: AppColors.danger,
                         ),
                       ),
                     ],

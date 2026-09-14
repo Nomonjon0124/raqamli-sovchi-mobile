@@ -79,10 +79,6 @@ class $AssetsIconsGen {
   SvgGenImage get icBlockedFace =>
       const SvgGenImage('assets/icons/ic_blocked_face.svg');
 
-  /// File path: assets/icons/ic_report_dialogue.svg
-  SvgGenImage get icReportDialogue =>
-      const SvgGenImage('assets/icons/ic_report_dialogue.svg');
-
   /// File path: assets/icons/ic_candidate_grid.svg
   SvgGenImage get icCandidateGrid =>
       const SvgGenImage('assets/icons/ic_candidate_grid.svg');
@@ -94,6 +90,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_candidates_btv.svg
   SvgGenImage get icCandidatesBtv =>
       const SvgGenImage('assets/icons/ic_candidates_btv.svg');
+
+  /// File path: assets/icons/ic_chat_empty.svg
+  SvgGenImage get icChatEmpty =>
+      const SvgGenImage('assets/icons/ic_chat_empty.svg');
+
+  /// File path: assets/icons/ic_chat_send.svg
+  SvgGenImage get icChatSend =>
+      const SvgGenImage('assets/icons/ic_chat_send.svg');
 
   /// File path: assets/icons/ic_close.svg
   SvgGenImage get icClose => const SvgGenImage('assets/icons/ic_close.svg');
@@ -204,8 +208,16 @@ class $AssetsIconsGen {
   SvgGenImage get icProfileBtv =>
       const SvgGenImage('assets/icons/ic_profile_btv.svg');
 
+  /// File path: assets/icons/ic_psychology.svg
+  SvgGenImage get icPsychology =>
+      const SvgGenImage('assets/icons/ic_psychology.svg');
+
   /// File path: assets/icons/ic_radar.svg
   SvgGenImage get icRadar => const SvgGenImage('assets/icons/ic_radar.svg');
+
+  /// File path: assets/icons/ic_report_dialogue.svg
+  SvgGenImage get icReportDialogue =>
+      const SvgGenImage('assets/icons/ic_report_dialogue.svg');
 
   /// File path: assets/icons/ic_saved.svg
   SvgGenImage get icSaved => const SvgGenImage('assets/icons/ic_saved.svg');
@@ -239,6 +251,26 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_square_lock.svg
   SvgGenImage get icSquareLock =>
       const SvgGenImage('assets/icons/ic_square_lock.svg');
+
+  /// File path: assets/icons/ic_srv_chervon.svg
+  SvgGenImage get icSrvChervon =>
+      const SvgGenImage('assets/icons/ic_srv_chervon.svg');
+
+  /// File path: assets/icons/ic_srv_meeting.svg
+  SvgGenImage get icSrvMeeting =>
+      const SvgGenImage('assets/icons/ic_srv_meeting.svg');
+
+  /// File path: assets/icons/ic_srv_premium.svg
+  SvgGenImage get icSrvPremium =>
+      const SvgGenImage('assets/icons/ic_srv_premium.svg');
+
+  /// File path: assets/icons/ic_srv_premium2.svg
+  SvgGenImage get icSrvPremium2 =>
+      const SvgGenImage('assets/icons/ic_srv_premium2.svg');
+
+  /// File path: assets/icons/ic_srv_verify.svg
+  SvgGenImage get icSrvVerify =>
+      const SvgGenImage('assets/icons/ic_srv_verify.svg');
 
   /// File path: assets/icons/ic_task_list_pen.svg
   SvgGenImage get icTaskListPen =>
@@ -347,10 +379,11 @@ class $AssetsIconsGen {
     icArrowLeft01Round,
     icArrowRight,
     icBlockedFace,
-    icReportDialogue,
     icCandidateGrid,
     icCandidateMap,
     icCandidatesBtv,
+    icChatEmpty,
+    icChatSend,
     icClose,
     icCopy,
     icCurrentLocationDot,
@@ -381,7 +414,9 @@ class $AssetsIconsGen {
     icPlay,
     icPreservedBtv,
     icProfileBtv,
+    icPsychology,
     icRadar,
+    icReportDialogue,
     icSaved,
     icSecurity,
     icSendEmailFly,
@@ -391,6 +426,11 @@ class $AssetsIconsGen {
     icShare,
     icSmileWink,
     icSquareLock,
+    icSrvChervon,
+    icSrvMeeting,
+    icSrvPremium,
+    icSrvPremium2,
+    icSrvVerify,
     icTaskListPen,
     icTelegramIcon,
     icVerifiedDevice,

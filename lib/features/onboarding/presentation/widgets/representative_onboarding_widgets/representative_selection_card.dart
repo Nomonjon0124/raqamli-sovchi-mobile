@@ -28,9 +28,11 @@ final class RepresentativeSelectionCard extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.surface,
           border: Border.all(
-            color: selected ? AppColors.primary : AppColors.border,
+            color: selected
+                ? AppColors.primary
+                : Theme.of(context).colorScheme.outline,
             width: selected ? 1.5 : 1,
           ),
           borderRadius: BorderRadius.circular(AppRadius.md),
@@ -54,9 +56,11 @@ final class RepresentativeSelectionCard extends StatelessWidget {
               width: 18,
               height: 18,
               decoration: BoxDecoration(
-                color: selected ? AppColors.primary : Colors.transparent,
+                color: selected ? AppColors.primary : AppColors.transparent,
                 border: Border.all(
-                  color: selected ? AppColors.primary : AppColors.mutedText,
+                  color: selected
+                      ? AppColors.primary
+                      : Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
                 shape: BoxShape.circle,
               ),

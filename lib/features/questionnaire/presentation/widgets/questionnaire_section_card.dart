@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -19,6 +18,7 @@ final class QuestionnaireSectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(
@@ -26,15 +26,15 @@ final class QuestionnaireSectionCard extends StatelessWidget {
         vertical: AppSpacing.input,
       ),
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
-        border: Border.all(color: AppColors.border),
+        color: colorScheme.surface,
+        border: Border.all(color: colorScheme.outline),
         borderRadius: BorderRadius.circular(AppRadius.lg),
       ),
       child: Row(
         children: [
           Text(
             '$number',
-            style: AppTypography.caption.copyWith(color: AppColors.primary),
+            style: AppTypography.caption.copyWith(color: colorScheme.primary),
           ),
           const SizedBox(width: AppSpacing.input),
           Expanded(

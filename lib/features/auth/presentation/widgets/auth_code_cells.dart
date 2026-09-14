@@ -18,11 +18,11 @@ final class AuthCodeCells extends StatelessWidget {
             child: Container(
               height: 56,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
                 border: Border.all(
                   color: index < value.length
                       ? AppColors.primary
-                      : AppColors.border,
+                      : Theme.of(context).colorScheme.outline,
                   width: index < value.length ? 1.5 : 1,
                 ),
                 borderRadius: BorderRadius.circular(AppRadius.md),
@@ -34,7 +34,7 @@ final class AuthCodeCells extends StatelessWidget {
                     fontSize: 22,
                     height: 28 / 22,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.text,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),

@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
+import '../../../../app/theme/app_status_colors.dart';
 import '../../../../core/ui/widgets/app_candidate_card.dart';
 import '../../../../core/ui/widgets/app_candidate_grid.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
@@ -38,6 +38,8 @@ final class _SavedPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final statusColors = context.statusColors;
     return SafeArea(
       child: CustomScrollView(
         slivers: [
@@ -93,7 +95,7 @@ final class _SavedPageView extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: _body13.copyWith(
-                            color: const Color(0xFF525252),
+                            color: colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -104,7 +106,7 @@ final class _SavedPageView extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.end,
-                          style: _body13.copyWith(color: AppColors.primary),
+                          style: _body13.copyWith(color: colorScheme.primary),
                         ),
                       ),
                     ],
@@ -152,7 +154,7 @@ final class _SavedPageView extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFFBEB),
+                  color: statusColors.warningContainer,
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: Padding(
@@ -168,11 +170,18 @@ final class _SavedPageView extends StatelessWidget {
                           l10n.savedUpsellTitle(
                             _remainingSlots(state.candidates.length),
                           ),
-                          style: _upsellTitle,
+                          style: _upsellTitle.copyWith(
+                            color: statusColors.onWarningContainer,
+                          ),
                         ),
                       ),
                       const SizedBox(height: AppSpacing.xs),
-                      Text(l10n.savedUpsellMessage, style: _upsellBody),
+                      Text(
+                        l10n.savedUpsellMessage,
+                        style: _upsellBody.copyWith(
+                          color: statusColors.onWarningContainer,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -240,7 +249,6 @@ final class _SavedPageView extends StatelessWidget {
     fontSize: 14,
     height: 19 / 14,
     fontWeight: FontWeight.w600,
-    color: Color(0xFF92400E),
   );
 
   static const _upsellBody = TextStyle(
@@ -248,6 +256,5 @@ final class _SavedPageView extends StatelessWidget {
     fontSize: 12,
     height: 19 / 12,
     fontWeight: FontWeight.w400,
-    color: Color(0xFF92400E),
   );
 }

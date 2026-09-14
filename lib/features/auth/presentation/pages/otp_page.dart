@@ -91,14 +91,16 @@ final class _OtpPageState extends State<OtpPage> {
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   l10n.failureMessage(authState.failure!.type.name),
-                  style: AppTypography.caption.copyWith(color: Colors.red),
+                  style: AppTypography.caption.copyWith(
+                    color: AppColors.danger,
+                  ),
                 ),
               ],
               const SizedBox(height: AppSpacing.sm),
               Text(
                 l10n.temporaryOtpHint,
                 style: AppTypography.caption.copyWith(
-                  color: AppColors.placeholder,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                 ),

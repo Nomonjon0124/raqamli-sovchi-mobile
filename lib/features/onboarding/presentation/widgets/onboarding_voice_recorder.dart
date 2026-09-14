@@ -114,7 +114,7 @@ final class _OnboardingVoiceRecorderState extends State<OnboardingVoiceRecorder>
                   shape: const CircleBorder(),
                   padding: EdgeInsets.zero,
                   backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).colorScheme.surface,
                 ),
                 child: Icon(
                   widget.isRecording
@@ -186,7 +186,7 @@ final class _RecordedVoice extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.fromLTRB(12, 12, 14, 12),
           decoration: BoxDecoration(
-            color: AppColors.mutedSurface,
+            color: Theme.of(context).colorScheme.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
           child: Row(
@@ -202,7 +202,7 @@ final class _RecordedVoice extends StatelessWidget {
                       shape: const CircleBorder(),
                       padding: EdgeInsets.zero,
                       backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
+                      foregroundColor: Theme.of(context).colorScheme.surface,
                     ),
                     child: Icon(
                       isPlaying ? Icons.pause_rounded : Icons.play_arrow,
@@ -223,7 +223,7 @@ final class _RecordedVoice extends StatelessWidget {
               Text(
                 duration,
                 style: AppTypography.onboardingFieldLabel.copyWith(
-                  color: AppColors.bodyText,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ],
@@ -276,10 +276,16 @@ final class _ActionButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          foregroundColor: destructive ? Colors.white : AppColors.text,
-          backgroundColor: destructive ? AppColors.danger : Colors.white,
+          foregroundColor: destructive
+              ? Theme.of(context).colorScheme.surface
+              : Theme.of(context).colorScheme.onSurface,
+          backgroundColor: destructive
+              ? AppColors.danger
+              : Theme.of(context).colorScheme.surface,
           side: BorderSide(
-            color: destructive ? AppColors.danger : AppColors.border,
+            color: destructive
+                ? AppColors.danger
+                : Theme.of(context).colorScheme.outline,
           ),
           shape: const StadiumBorder(),
           textStyle: AppTypography.onboardingAction,
@@ -352,10 +358,10 @@ final class _AnimatedWaveform extends StatelessWidget {
                 _WaveBar(
                   height: _barHeight(index),
                   color: recorded && index >= progress
-                      ? const Color(0xFFA3A3A3)
+                      ? AppColors.strongBorder
                       : active || recorded
                       ? AppColors.primary
-                      : AppColors.border,
+                      : Theme.of(context).colorScheme.outline,
                 ),
             ],
           );

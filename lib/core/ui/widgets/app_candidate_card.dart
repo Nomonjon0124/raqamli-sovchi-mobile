@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_radius.dart';
 import '../../../gen/assets.gen.dart';
 import '../../extensions/gap_extension.dart';
@@ -38,6 +37,8 @@ final class AppCandidateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
@@ -56,7 +57,7 @@ final class AppCandidateCard extends StatelessWidget {
                       imageFilter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
                       child: Transform.scale(
                         scale: 1.18,
-                        child: _buildImage(candidate),
+                        child: _buildImage(context, candidate),
                       ),
                     ),
                     Center(child: _PrivatePhotoPill(label: privatePhotoLabel)),
@@ -70,11 +71,11 @@ final class AppCandidateCard extends StatelessWidget {
               candidate.nameAge,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 height: 19 / 14,
                 fontWeight: FontWeight.w600,
-                color: AppColors.text,
+                color: colorScheme.onSurface,
               ),
             ),
             2.g,
@@ -85,22 +86,22 @@ final class AppCandidateCard extends StatelessWidget {
                     '${candidate.city} ·',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 11,
                       height: 17 / 11,
                       fontWeight: FontWeight.w400,
-                      color: AppColors.mutedText,
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ),
                 4.g,
                 Text(
                   candidate.matchPercent,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 11,
                     height: 15 / 11,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.primary,
+                    color: colorScheme.primary,
                   ),
                 ),
               ],
@@ -111,11 +112,16 @@ final class AppCandidateCard extends StatelessWidget {
     );
   }
 
-  Widget _buildImage(AppCandidateCardData candidate) {
-    final fallbackWidget = const ColoredBox(
-      color: AppColors.mutedSurface,
+  Widget _buildImage(BuildContext context, AppCandidateCardData candidate) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final fallbackWidget = ColoredBox(
+      color: colorScheme.surfaceContainer,
       child: Center(
-        child: Icon(Icons.person_rounded, size: 64, color: AppColors.mutedText),
+        child: Icon(
+          Icons.person_rounded,
+          size: 64,
+          color: colorScheme.onSurfaceVariant,
+        ),
       ),
     );
 
@@ -142,7 +148,7 @@ final class _PrivatePhotoPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.text,
+        color: Theme.of(context).colorScheme.onSurface,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
@@ -153,8 +159,8 @@ final class _PrivatePhotoPill extends StatelessWidget {
             Assets.icons.icGlyph.svg(
               width: 12,
               height: 12,
-              colorFilter: const ColorFilter.mode(
-                AppColors.surfaceLight,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.surface,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,
@@ -162,12 +168,12 @@ final class _PrivatePhotoPill extends StatelessWidget {
             5.g,
             Text(
               label,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 10,
                 height: 14 / 10,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.8,
-                color: AppColors.surfaceLight,
+                color: Theme.of(context).colorScheme.surface,
               ),
             ),
           ],
@@ -182,9 +188,10 @@ final class _VerifiedBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AppColors.primary,
+      decoration: BoxDecoration(
+        color: colorScheme.primary,
         shape: BoxShape.circle,
       ),
       child: SizedBox(
@@ -194,8 +201,8 @@ final class _VerifiedBadge extends StatelessWidget {
           child: Assets.icons.icVerifyCheck.svg(
             width: 13,
             height: 13,
-            colorFilter: const ColorFilter.mode(
-              AppColors.surfaceLight,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).colorScheme.surface,
               BlendMode.srcIn,
             ),
             excludeFromSemantics: true,

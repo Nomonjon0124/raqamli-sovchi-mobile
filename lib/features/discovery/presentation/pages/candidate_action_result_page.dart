@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
@@ -25,7 +27,7 @@ final class CandidateActionResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: SafeArea(
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
@@ -36,7 +38,7 @@ final class CandidateActionResultPage extends StatelessWidget {
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
+            foregroundColor: Theme.of(context).colorScheme.surface,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -92,16 +94,16 @@ final class CandidateActionResultPage extends StatelessWidget {
                       Container(
                         width: 68,
                         height: 68,
-                        decoration: const BoxDecoration(
-                          color: AppColors.successSurface,
+                        decoration: BoxDecoration(
+                          color: context.statusColors.successContainer,
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
                         child: Assets.icons.icVerifyCheck.svg(
                           width: 32,
                           height: 32,
-                          colorFilter: const ColorFilter.mode(
-                            AppColors.successText,
+                          colorFilter: ColorFilter.mode(
+                            context.statusColors.onSuccessContainer,
                             BlendMode.srcIn,
                           ),
                         ),
@@ -111,13 +113,13 @@ final class CandidateActionResultPage extends StatelessWidget {
                       isProposal
                           ? l10n.candidateProposalSentTitle
                           : l10n.candidatePhotoPermissionSentTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 24,
                         height: 30 / 24,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -127,11 +129,11 @@ final class CandidateActionResultPage extends StatelessWidget {
                           : l10n.candidatePhotoPermissionSentDescription(
                               candidateName,
                             ),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 14,
                         height: 21 / 14,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                     if (isProposal) ...[
@@ -196,22 +198,22 @@ final class _ProposalQuota extends StatelessWidget {
               Expanded(
                 child: Text(
                   l10n.candidateProposalSentQuotaLabel,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Manrope',
                     fontSize: 13,
                     height: 21 / 13,
-                    color: AppColors.mutedText,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),
               Text(
                 l10n.candidateProposalSentQuotaValue,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 13,
                   height: 18 / 13,
                   fontWeight: FontWeight.w600,
-                  color: AppColors.text,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ],
@@ -219,12 +221,16 @@ final class _ProposalQuota extends StatelessWidget {
           const SizedBox(height: 9),
           ClipRRect(
             borderRadius: BorderRadius.circular(AppRadius.full),
-            child: const SizedBox(
+            child: SizedBox(
               height: 6,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  ColoredBox(color: AppColors.mutedSurface),
+                  ColoredBox(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
+                  ),
                   FractionallySizedBox(
                     alignment: Alignment.centerLeft,
                     widthFactor: 2 / 3,
@@ -248,18 +254,18 @@ final class _ProposalNote extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: const Color(0xFFFCFCFC),
+        color: context.statusColors.infoContainer,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
         child: Text(
           l10n.candidateProposalSentNote(2),
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
             fontSize: 12,
             height: 19 / 12,
-            color: AppColors.bodyText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ),
@@ -276,7 +282,7 @@ final class _ResultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Padding(padding: const EdgeInsets.all(16), child: child),
@@ -305,10 +311,10 @@ final class _TimelineRow extends StatelessWidget {
             height: 22,
             decoration: BoxDecoration(
               color: isComplete
-                  ? AppColors.successSurface
+                  ? context.statusColors.successContainer
                   : isActive
                   ? AppColors.primary
-                  : AppColors.border,
+                  : Theme.of(context).colorScheme.outline,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
@@ -316,8 +322,8 @@ final class _TimelineRow extends StatelessWidget {
                 ? Assets.icons.icVerifyCheck.svg(
                     width: 13,
                     height: 13,
-                    colorFilter: const ColorFilter.mode(
-                      AppColors.successText,
+                    colorFilter: ColorFilter.mode(
+                      context.statusColors.onSuccessContainer,
                       BlendMode.srcIn,
                     ),
                   )
@@ -337,8 +343,8 @@ final class _TimelineRow extends StatelessWidget {
                     ? FontWeight.w600
                     : FontWeight.w400,
                 color: isActive || isComplete
-                    ? AppColors.text
-                    : AppColors.placeholder,
+                    ? Theme.of(context).colorScheme.onSurface
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ),

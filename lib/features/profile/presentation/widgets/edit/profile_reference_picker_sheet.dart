@@ -60,7 +60,7 @@ final class ProfileReferencePickerSheet extends StatefulWidget {
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       builder: (_) => ProfileReferencePickerSheet(
         title: title,
         items: items,
@@ -155,8 +155,8 @@ final class _ProfileReferencePickerSheetState
               AppSpacing.xl,
               AppSpacing.xl,
             ),
-            decoration: const BoxDecoration(
-              color: AppColors.surfaceLight,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Column(
@@ -167,7 +167,7 @@ final class _ProfileReferencePickerSheetState
                     width: 36,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: AppColors.border,
+                      color: Theme.of(context).colorScheme.outline,
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                   ),
@@ -185,7 +185,7 @@ final class _ProfileReferencePickerSheetState
                     onChanged: (val) => setState(() => _searchQuery = val),
                     style: AppTypography.body.copyWith(
                       fontWeight: FontWeight.w500,
-                      color: AppColors.text,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                     decoration: InputDecoration(
                       hintText:
@@ -193,7 +193,9 @@ final class _ProfileReferencePickerSheetState
                           l10n.profileEditSearchPlaceholder,
                       hintStyle: AppTypography.onboardingSearch,
                       filled: true,
-                      fillColor: AppColors.mutedSurface,
+                      fillColor: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
                       contentPadding: const EdgeInsets.symmetric(
                         horizontal: AppSpacing.md,
                         vertical: AppSpacing.sm + 2,
@@ -202,10 +204,10 @@ final class _ProfileReferencePickerSheetState
                         borderRadius: BorderRadius.circular(AppRadius.lg),
                         borderSide: BorderSide.none,
                       ),
-                      prefixIcon: const Icon(
+                      prefixIcon: Icon(
                         Icons.search,
                         size: 20,
-                        color: AppColors.placeholder,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                   ),
@@ -217,8 +219,12 @@ final class _ProfileReferencePickerSheetState
                     keyboardDismissBehavior:
                         ScrollViewKeyboardDismissBehavior.onDrag,
                     itemCount: filtered.length + (widget.hasOther ? 1 : 0),
-                    separatorBuilder: (_, _) =>
-                        const Divider(height: 1, color: AppColors.mutedSurface),
+                    separatorBuilder: (_, _) => Divider(
+                      height: 1,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surfaceContainerHighest,
+                    ),
                     itemBuilder: (context, index) {
                       if (widget.hasOther && index == filtered.length) {
                         return _buildOtherOption(context, l10n);
@@ -250,8 +256,12 @@ final class _ProfileReferencePickerSheetState
                                         ? FontWeight.w600
                                         : FontWeight.w500,
                                     color: isSelected
-                                        ? AppColors.text
-                                        : AppColors.bodyText,
+                                        ? Theme.of(
+                                            context,
+                                          ).colorScheme.onSurface
+                                        : Theme.of(
+                                            context,
+                                          ).colorScheme.onSurfaceVariant,
                                   ),
                                 ),
                               ),
@@ -263,19 +273,23 @@ final class _ProfileReferencePickerSheetState
                                   border: Border.all(
                                     color: isSelected
                                         ? AppColors.primary
-                                        : AppColors.placeholder,
+                                        : Theme.of(
+                                            context,
+                                          ).colorScheme.onSurfaceVariant,
                                     width: 2,
                                   ),
                                   color: isSelected
                                       ? AppColors.primary
-                                      : Colors.transparent,
+                                      : AppColors.transparent,
                                 ),
                                 child: isSelected
-                                    ? const Center(
+                                    ? Center(
                                         child: Icon(
                                           Icons.check,
                                           size: 14,
-                                          color: Colors.white,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.surface,
                                         ),
                                       )
                                     : null,
@@ -293,7 +307,9 @@ final class _ProfileReferencePickerSheetState
                   style: FilledButton.styleFrom(
                     minimumSize: const Size.fromHeight(52),
                     backgroundColor: AppColors.primary,
-                    disabledBackgroundColor: AppColors.border,
+                    disabledBackgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.outline,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
@@ -336,8 +352,8 @@ final class _ProfileReferencePickerSheetState
                           ? FontWeight.w600
                           : FontWeight.w500,
                       color: _isOtherSelected
-                          ? AppColors.text
-                          : AppColors.bodyText,
+                          ? Theme.of(context).colorScheme.onSurface
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ),
@@ -349,19 +365,19 @@ final class _ProfileReferencePickerSheetState
                     border: Border.all(
                       color: _isOtherSelected
                           ? AppColors.primary
-                          : AppColors.placeholder,
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
                       width: 2,
                     ),
                     color: _isOtherSelected
                         ? AppColors.primary
-                        : Colors.transparent,
+                        : AppColors.transparent,
                   ),
                   child: _isOtherSelected
-                      ? const Center(
+                      ? Center(
                           child: Icon(
                             Icons.check,
                             size: 14,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                         )
                       : null,
@@ -380,7 +396,7 @@ final class _ProfileReferencePickerSheetState
               textCapitalization: TextCapitalization.sentences,
               style: AppTypography.body.copyWith(
                 fontWeight: FontWeight.w500,
-                color: AppColors.text,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
               decoration: InputDecoration(
                 hintText:
@@ -388,7 +404,9 @@ final class _ProfileReferencePickerSheetState
                     l10n.profileEditProfessionInputLabel,
                 hintStyle: AppTypography.onboardingSearch,
                 filled: true,
-                fillColor: AppColors.mutedSurface,
+                fillColor: Theme.of(
+                  context,
+                ).colorScheme.surfaceContainerHighest,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: AppSpacing.input,
                   vertical: AppSpacing.md,

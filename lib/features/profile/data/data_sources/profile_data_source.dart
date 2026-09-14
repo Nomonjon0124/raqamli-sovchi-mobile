@@ -16,7 +16,12 @@ abstract interface class ProfileDataSource {
   Future<ProfilePhotoModel> uploadPhoto({
     required String profileId,
     required String localFilePath,
+    bool isMain = true,
   });
+
+  Future<ProfilePhotoModel> setMainPhoto(String photoId);
+
+  Future<void> deletePhoto(String photoId);
 }
 
 final class RemoteProfileDataSource implements ProfileDataSource {
@@ -65,13 +70,14 @@ final class RemoteProfileDataSource implements ProfileDataSource {
   Future<ProfilePhotoModel> uploadPhoto({
     required String profileId,
     required String localFilePath,
+    bool isMain = true,
   }) async {
     final response = await _client.post<dynamic>(
       _photosPath,
       data: FormData.fromMap({
         'profile': profileId,
         'image': await MultipartFile.fromFile(localFilePath),
-        'is_main': true,
+        'is_main': isMain,
       }),
     );
     final raw = response.data;
@@ -79,6 +85,24 @@ final class RemoteProfileDataSource implements ProfileDataSource {
         ? _asStringMap(raw['data'] as Map)
         : _asStringMap(raw as Map);
     return ProfilePhotoModel.fromJson(payload);
+  }
+
+  @override
+  Future<ProfilePhotoModel> setMainPhoto(String photoId) async {
+    final response = await _client.patch<dynamic>(
+      '$_photosPath$photoId/',
+      data: const {'is_main': true},
+    );
+    final raw = response.data;
+    final payload = raw is Map && raw['data'] is Map
+        ? _asStringMap(raw['data'] as Map)
+        : _asStringMap(raw as Map);
+    return ProfilePhotoModel.fromJson(payload);
+  }
+
+  @override
+  Future<void> deletePhoto(String photoId) async {
+    await _client.delete<void>('$_photosPath$photoId/');
   }
 }
 

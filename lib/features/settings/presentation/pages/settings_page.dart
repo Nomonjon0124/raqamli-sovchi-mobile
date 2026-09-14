@@ -17,14 +17,15 @@ import '../cubit/settings_cubit.dart';
 import '../cubit/settings_state.dart';
 import '../widgets/settings_account_actions.dart';
 import '../widgets/settings_header.dart';
+import '../widgets/settings_preference_sheet.dart';
 import '../widgets/settings_section.dart';
 
 final class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-    create: (_) => serviceLocator<SettingsCubit>(),
+  Widget build(BuildContext context) => BlocProvider.value(
+    value: serviceLocator<SettingsCubit>(),
     child: const _SettingsView(),
   );
 }
@@ -37,7 +38,7 @@ final class _SettingsView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     return Scaffold(
-      backgroundColor: AppColors.surfaceLight,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: BlocListener<AuthBloc, AuthState>(
           listenWhen: (previous, current) =>
@@ -77,6 +78,28 @@ final class _SettingsView extends StatelessWidget {
                           icon: Assets.icons.settingsEdit,
                           title: l10n.settingsEditProfile,
                           onTap: () => _openEditProfile(context),
+                        ),
+                        SettingsRow(
+                          leading: Icon(
+                            Icons.translate,
+                            size: 19,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                          title: l10n.settingsLanguage,
+                          onTap: () => _showLanguageSheet(context),
+                        ),
+                        SettingsRow(
+                          leading: Icon(
+                            Icons.wb_sunny_outlined,
+                            size: 19,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                          title: l10n.settingsTheme,
+                          onTap: () => _showThemeSheet(context),
                         ),
                         // SettingsRow(
                         //   icon: Assets.icons.settingsImage,
@@ -217,4 +240,43 @@ final class _SettingsView extends StatelessWidget {
     message: AppLocalizations.of(context).settingsActionComingSoon,
     type: ToastType.info,
   );
+
+  Future<void> _showLanguageSheet(BuildContext context) async {
+    final cubit = context.read<SettingsCubit>();
+    final l10n = AppLocalizations.of(context);
+    final selected = await showModalBottomSheet<Locale>(
+      context: context,
+      backgroundColor: AppColors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => SettingsLanguageSheet(
+        title: l10n.settingsLanguageSheetTitle,
+        selectedLocale: cubit.state.locale,
+        uzbekLatinLabel: l10n.settingsLanguageUzbekLatin,
+        uzbekCyrillicLabel: l10n.settingsLanguageUzbekCyrillic,
+        russianLabel: l10n.settingsLanguageRussian,
+        englishLabel: l10n.settingsLanguageEnglish,
+        onSelected: (locale) => Navigator.of(sheetContext).pop(locale),
+      ),
+    );
+    if (selected != null && context.mounted) cubit.localeChanged(selected);
+  }
+
+  Future<void> _showThemeSheet(BuildContext context) async {
+    final cubit = context.read<SettingsCubit>();
+    final l10n = AppLocalizations.of(context);
+    final selected = await showModalBottomSheet<ThemeMode>(
+      context: context,
+      backgroundColor: AppColors.transparent,
+      isScrollControlled: true,
+      builder: (sheetContext) => SettingsThemeSheet(
+        title: l10n.settingsThemeSheetTitle,
+        selectedThemeMode: cubit.state.themeMode,
+        systemLabel: l10n.settingsThemeSystem,
+        lightLabel: l10n.settingsThemeLight,
+        darkLabel: l10n.settingsThemeDark,
+        onSelected: (mode) => Navigator.of(sheetContext).pop(mode),
+      ),
+    );
+    if (selected != null && context.mounted) cubit.themeModeChanged(selected);
+  }
 }

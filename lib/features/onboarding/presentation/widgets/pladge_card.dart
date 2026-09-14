@@ -16,8 +16,8 @@ final class PledgeCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.card),
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
-        border: Border.all(color: AppColors.border),
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Column(

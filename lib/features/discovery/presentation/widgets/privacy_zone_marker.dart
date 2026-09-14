@@ -36,7 +36,7 @@ final class PrivacyZoneMarker extends StatelessWidget {
           ),
           DecoratedBox(
             decoration: BoxDecoration(
-              color: AppColors.surfaceLight,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(AppRadius.full),
               boxShadow: const [
                 BoxShadow(
@@ -55,7 +55,7 @@ final class PrivacyZoneMarker extends StatelessWidget {
                     l10n.nearbyCandidateCount(cluster.count),
                     maxLines: 1,
                     style: AppTypography.caption.copyWith(
-                      color: AppColors.text,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: AppSpacing.hairline),
@@ -65,7 +65,7 @@ final class PrivacyZoneMarker extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: AppTypography.onboardingFieldLabel.copyWith(
                       letterSpacing: 0.2,
-                      color: AppColors.placeholder,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],

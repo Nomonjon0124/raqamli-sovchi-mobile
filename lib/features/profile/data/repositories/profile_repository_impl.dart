@@ -67,13 +67,43 @@ final class ProfileRepositoryImpl implements ProfileRepository {
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
+    bool isMain = true,
   }) async {
     try {
       final model = await _dataSource.uploadPhoto(
         profileId: profileId,
         localFilePath: filePath,
+        isMain: isMain,
       );
       return Right(model.toEntity());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> setMainPhoto(String photoId) async {
+    try {
+      final model = await _dataSource.setMainPhoto(photoId);
+      return Right(model.toEntity());
+    } on DioException catch (error) {
+      return Left(mapDioException(error));
+    } catch (error) {
+      return Left(
+        Failure.unknown(technicalReason: error.runtimeType.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deletePhoto(String photoId) async {
+    try {
+      await _dataSource.deletePhoto(photoId);
+      return const Right(null);
     } on DioException catch (error) {
       return Left(mapDioException(error));
     } catch (error) {

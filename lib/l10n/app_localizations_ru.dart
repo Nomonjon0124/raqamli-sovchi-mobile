@@ -743,11 +743,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pinCreateTitle => 'Создайте короткий код';
 
   @override
+  String get pinConfirmTitle => 'Повторите PIN-код';
+
+  @override
+  String get pinMismatch => 'PIN-коды не совпадают. Попробуйте ещё раз.';
+
+  @override
   String get pinUnlockTitle => 'Введите PIN-код';
 
   @override
   String get pinHintCreate =>
       'Чтобы аккаунт оставался только вашим. Этот код нужно будет вводить при каждом входе.';
+
+  @override
+  String get pinHintConfirm => 'Ещё раз введите созданный PIN-код.';
 
   @override
   String get pinHintUnlock =>
@@ -814,6 +823,120 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get servicesPlaceholder => 'Пока страница услуг.';
+
+  @override
+  String get servicesHeroTitle => 'На пути знакомства\nвы не одни';
+
+  @override
+  String get servicesHeroSubtitle =>
+      'Психолог, семейная встреча и проверка профиля — всё в одном месте.';
+
+  @override
+  String get servicesHeroSupportValue => '24/7';
+
+  @override
+  String get servicesHeroSupportLabel => 'помощь';
+
+  @override
+  String get servicesHeroPsychologistsValue => '12';
+
+  @override
+  String get servicesHeroPsychologistsLabel => 'психологов';
+
+  @override
+  String get servicesHeroPrivacyValue => 'Тайно';
+
+  @override
+  String get servicesHeroPrivacyLabel => 'общение';
+
+  @override
+  String get servicesPopularSection => 'Чаще всего выбирают';
+
+  @override
+  String get servicePsychologistTitle => 'Семейный психолог';
+
+  @override
+  String get servicePsychologistSubtitle => 'Беседа до брака';
+
+  @override
+  String get servicePsychologistRating => '4.9';
+
+  @override
+  String get servicePsychologistDescription =>
+      'Вы заранее увидите причины разногласий. Беседа полностью конфиденциальна — никто не узнает.';
+
+  @override
+  String get servicePsychologistDuration => '50 минут';
+
+  @override
+  String get servicePsychologistFormat => 'Офлайн или дома';
+
+  @override
+  String get servicePsychologistExperts => '12 специалистов';
+
+  @override
+  String get servicePsychologistPrice => 'одна сессия';
+
+  @override
+  String get serviceViewAction => 'Смотреть';
+
+  @override
+  String get servicesOtherSection => 'Другие услуги';
+
+  @override
+  String get serviceMeetingTitle => 'Семейная встреча';
+
+  @override
+  String get serviceMeetingSubtitle => 'Приглашают только представители';
+
+  @override
+  String get serviceVerificationTitle => 'Проверка профиля';
+
+  @override
+  String get serviceVerificationSubtitle => 'Подтверждение через селфи';
+
+  @override
+  String get servicePremiumTitle => 'Sovchi Premium';
+
+  @override
+  String get servicePremiumSubtitle =>
+      'Больше предложений и полный анализ совместимости';
+
+  @override
+  String get serviceBoostTitle => 'Поднять вверх';
+
+  @override
+  String get serviceBoostSubtitle =>
+      'Ваш профиль будет 24 часа виден в начале списка.';
+
+  @override
+  String get servicesHowSection => 'Как это работает';
+
+  @override
+  String get servicesHowStepOneTitle => 'Вы выбираете услугу';
+
+  @override
+  String get servicesHowStepOneSubtitle => 'О каждой есть подробная информация';
+
+  @override
+  String get servicesHowStepTwoTitle => 'Вы выбираете время и формат';
+
+  @override
+  String get servicesHowStepTwoSubtitle => 'Офлайн или у вас дома';
+
+  @override
+  String get servicesHowStepThreeTitle => 'Оплачиваете и встречаетесь';
+
+  @override
+  String get servicesHowStepThreeSubtitle => 'При отмене деньги возвращаются';
+
+  @override
+  String get servicesOptionalNote =>
+      'Ни одна услуга не обязательна — приложением можно полноценно пользоваться и без них.';
+
+  @override
+  String get servicesActionComingSoon =>
+      'Эта услуга будет подключена на следующем этапе';
 
   @override
   String get savedPlaceholder => 'Пока страница сохраненного.';
@@ -1261,6 +1384,164 @@ class AppLocalizationsRu extends AppLocalizations {
   String get messagesSegmentRequests => 'Запросы';
 
   @override
+  String get chatRequestsEmpty => 'Входящих запросов пока нет';
+
+  @override
+  String chatRequestCardTitle(String name) {
+    return 'Запрос / $name';
+  }
+
+  @override
+  String get chatRequestPendingHint =>
+      'Пока вы не примете запрос, кандидат не сможет вам написать.';
+
+  @override
+  String get chatRequestProfileTitle => 'Профиль кандидата';
+
+  @override
+  String get chatRequestCompatibilityLabel => 'СОВПАДЕНИЕ ПО РАЗДЕЛАМ';
+
+  @override
+  String get chatRequestCompatibilityShortLabel => 'совпадение';
+
+  @override
+  String get chatRequestCompatibilityUnavailable =>
+      'Процент совпадения ещё не рассчитан.';
+
+  @override
+  String get chatRequestAccept => 'Принять';
+
+  @override
+  String get chatRequestReject => 'Отклонить';
+
+  @override
+  String get chatRequestViaRepresentative => 'Через представителя';
+
+  @override
+  String get chatRequestPhotoVerified => 'Фото проверено';
+
+  @override
+  String get chatRequestSeriousIntent => 'Серьёзные намерения';
+
+  @override
+  String chatRequestRepresentativeLabel(String name) {
+    return 'Представитель: $name';
+  }
+
+  @override
+  String get chatRequestRepresentativeNote =>
+      'Запрос пришёл через представителя';
+
+  @override
+  String get chatRequestProfileUnavailable =>
+      'Данные профиля временно недоступны.';
+
+  @override
+  String chatRequestLocationProfession(String location, String profession) {
+    return '$location, $profession';
+  }
+
+  @override
+  String get chatRequestCandidateFallback => 'Кандидат';
+
+  @override
+  String get chatRequestSectionFaith => 'Религия и ценности';
+
+  @override
+  String get chatRequestSectionFinance => 'Финансы и управление';
+
+  @override
+  String get chatRequestSectionFamily => 'Родственники';
+
+  @override
+  String get chatRequestSectionCharacter => 'Характер';
+
+  @override
+  String get chatRequestSectionPlans => 'Планы на будущее';
+
+  @override
+  String get chatRequestAccepted => 'Запрос принят';
+
+  @override
+  String get chatRequestRejected => 'Запрос отклонён';
+
+  @override
+  String get chatRoomsEmpty => 'Открытых чатов пока нет';
+
+  @override
+  String get chatThreadOpen => 'Открыть чат';
+
+  @override
+  String get chatParticipantFallback => 'Собеседник';
+
+  @override
+  String get chatSafetyNotice =>
+      'Чат контролируется искусственным интеллектом — неприличные слова и изображения не пройдут.';
+
+  @override
+  String get chatIcebreakerGoal => 'Какая самая большая цель в вашей жизни?';
+
+  @override
+  String get chatIcebreakerFamily =>
+      'Какую семейную традицию вы хотели бы продолжить?';
+
+  @override
+  String get chatIcebreakerBook => 'Какая книга вдохновляет вас больше всего?';
+
+  @override
+  String get chatIcebreakerChange =>
+      'Расскажите об одной вещи, которую вы хотели бы изменить в своей жизни.';
+
+  @override
+  String get chatWriteMessage => 'Напишите сообщение…';
+
+  @override
+  String get chatSendMessage => 'Отправить сообщение';
+
+  @override
+  String get chatReplyTo => 'Ответить';
+
+  @override
+  String get chatReplyCancel => 'Отменить ответ';
+
+  @override
+  String get chatTyping => 'печатает…';
+
+  @override
+  String get chatOpenTimeRemaining => 'Чат открыт на 72 часа';
+
+  @override
+  String get chatMoreActions => 'Дополнительные действия';
+
+  @override
+  String get chatMoreSheetTitle => 'Поделиться приложением';
+
+  @override
+  String get chatMoreSheetSubtitle =>
+      'Пригласите друзей в Sovchi по коду приглашения.';
+
+  @override
+  String get chatReportAction => 'Пожаловаться';
+
+  @override
+  String get chatDeleteAction => 'Удалить чат';
+
+  @override
+  String chatDeleteTitle(String name) {
+    return 'Удалить разговор с $name?';
+  }
+
+  @override
+  String get chatDeleteSubtitle =>
+      'После удаления разговора данные кандидата также будут скрыты!';
+
+  @override
+  String get chatDeleteCancel => 'Отмена';
+
+  @override
+  String get chatDeleteConfirm => 'Удалить';
+
+  @override
   String get mockMessageMohiraName => 'Мохира Р.';
 
   @override
@@ -1628,6 +1909,41 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get profilePhotoSourceTitle => 'Новое фото';
+
+  @override
+  String get profilePhotoSourceSubtitle =>
+      'После загрузки фотография пройдёт проверку лица.';
+
+  @override
+  String get profilePhotoCamera => 'Сделать снимок камерой';
+
+  @override
+  String get profilePhotoGallery => 'Выбрать из галереи';
+
+  @override
+  String get profilePhotoActionsTitle => 'Фото';
+
+  @override
+  String get profilePhotoSetMain => 'Сделать главным';
+
+  @override
+  String get profilePhotoReplace => 'Заменить';
+
+  @override
+  String get profilePhotoDelete => 'Удалить';
+
+  @override
+  String get profilePhotoCancel => 'Отмена';
+
+  @override
+  String get profilePhotoDeleteTitle => 'Удалить это фото?';
+
+  @override
+  String get profilePhotoDeleteSubtitle =>
+      'Фото будет удалено из профиля. Вместо него можно загрузить новое.';
+
+  @override
   String get profileAboutSection => 'О СЕБЕ';
 
   @override
@@ -1668,6 +1984,39 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsAccountSection => 'Аккаунт';
+
+  @override
+  String get settingsLanguage => 'Язык';
+
+  @override
+  String get settingsTheme => 'Тема';
+
+  @override
+  String get settingsLanguageSheetTitle => 'Язык';
+
+  @override
+  String get settingsThemeSheetTitle => 'Тема';
+
+  @override
+  String get settingsLanguageUzbekLatin => 'O‘zbek';
+
+  @override
+  String get settingsLanguageUzbekCyrillic => 'Ўзбек';
+
+  @override
+  String get settingsLanguageRussian => 'Русский';
+
+  @override
+  String get settingsLanguageEnglish => 'English';
+
+  @override
+  String get settingsThemeSystem => 'Автоматически';
+
+  @override
+  String get settingsThemeLight => 'Светлая';
+
+  @override
+  String get settingsThemeDark => 'Тёмная';
 
   @override
   String get settingsEditProfile => 'Редактировать профиль';
@@ -1782,6 +2131,19 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get profileEditChangePhoto => 'Изменить фото';
+
+  @override
+  String get profilePhotoManagementTitle => 'Главное фото';
+
+  @override
+  String get profilePhotoManagementSubtitle =>
+      'Это фото будет первым в профиле и списке кандидатов. При проверке селфи оно используется для сравнения.';
+
+  @override
+  String get profilePhotoConfirm => 'Подтвердить';
+
+  @override
+  String get profileFaceVerificationDone => 'Продолжить';
 
   @override
   String get profileEditName => 'Имя';

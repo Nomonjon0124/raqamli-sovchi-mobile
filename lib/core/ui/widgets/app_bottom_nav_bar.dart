@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme/app_colors.dart';
 import '../../../gen/assets.gen.dart';
 
 final class AppBottomNavBarVisibilityController extends ChangeNotifier {
@@ -107,10 +106,11 @@ final class _AppBottomNavBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AppColors.surfaceLight,
-        border: Border(top: BorderSide(color: AppColors.mutedSurface)),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        border: Border(top: BorderSide(color: colorScheme.surfaceContainer)),
       ),
       child: SafeArea(
         top: false,
@@ -150,7 +150,8 @@ final class _AppBottomNavTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = selected ? AppColors.primary : AppColors.placeholder;
+    final colorScheme = Theme.of(context).colorScheme;
+    final color = selected ? colorScheme.primary : colorScheme.onSurfaceVariant;
 
     return Semantics(
       button: true,
@@ -170,18 +171,23 @@ final class _AppBottomNavTile extends StatelessWidget {
                 excludeFromSemantics: true,
               ),
               const SizedBox(height: 5),
-              Text(
-                item.label,
-                maxLines: 1,
-                overflow: TextOverflow.fade,
-                softWrap: false,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Manrope',
-                  fontSize: 10,
-                  height: 14 / 10,
-                  fontWeight: FontWeight.w600,
-                  color: color,
+              SizedBox(
+                width: double.infinity,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    item.label,
+                    maxLines: 1,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Manrope',
+                      fontSize: 10,
+                      height: 14 / 10,
+                      fontWeight: FontWeight.w600,
+                      color: color,
+                    ),
+                  ),
                 ),
               ),
             ],

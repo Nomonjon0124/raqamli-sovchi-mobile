@@ -45,7 +45,7 @@ final class _PhotoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasLocal = File(photo.localFilePath).existsSync();
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: photo.serverId == null
             ? null
@@ -54,7 +54,9 @@ final class _PhotoTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: photo.isMain ? AppColors.primary : AppColors.border,
+              color: photo.isMain
+                  ? AppColors.primary
+                  : Theme.of(context).colorScheme.outline,
               width: photo.isMain ? 2 : 1,
             ),
             borderRadius: BorderRadius.circular(AppRadius.md),
@@ -68,7 +70,7 @@ final class _PhotoTile extends StatelessWidget {
               else if (photo.imageUrl?.isNotEmpty == true)
                 Image.network(photo.imageUrl!, fit: BoxFit.cover),
               if (photo.isMain)
-                const Align(
+                Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                     padding: EdgeInsets.all(4),
@@ -81,7 +83,7 @@ final class _PhotoTile extends StatelessWidget {
                         padding: EdgeInsets.all(2),
                         child: Icon(
                           Icons.check_rounded,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.surface,
                           size: 12,
                         ),
                       ),

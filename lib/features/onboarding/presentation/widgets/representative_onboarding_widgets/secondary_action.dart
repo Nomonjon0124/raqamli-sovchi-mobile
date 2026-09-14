@@ -22,7 +22,7 @@ final class SecondaryAction extends StatelessWidget {
         style: FilledButton.styleFrom(
           minimumSize: const Size.fromHeight(52),
           backgroundColor: AppColors.representativeSecondaryAction,
-          foregroundColor: AppColors.text,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
           shape: const StadiumBorder(),
           textStyle: AppTypography.onboardingAction,
         ),

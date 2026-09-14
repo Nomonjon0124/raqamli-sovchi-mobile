@@ -130,6 +130,15 @@ final class EditProfilePhotoPickRequested extends EditProfileEvent {
   const EditProfilePhotoPickRequested();
 }
 
+final class EditProfilePhotosUpdated extends EditProfileEvent {
+  const EditProfilePhotosUpdated(this.profile);
+
+  final UserProfile profile;
+
+  @override
+  List<Object?> get props => [profile];
+}
+
 final class EditProfileSubmitted extends EditProfileEvent {
   const EditProfileSubmitted();
 }

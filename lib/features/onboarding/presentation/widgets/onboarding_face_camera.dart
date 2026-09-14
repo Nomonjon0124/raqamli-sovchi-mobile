@@ -280,7 +280,7 @@ final class _OnboardingFaceCameraState extends State<OnboardingFaceCamera>
             dimension: 230,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColors.mutedSurface,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 shape: BoxShape.circle,
                 border: Border.all(color: AppColors.primary, width: 3),
               ),

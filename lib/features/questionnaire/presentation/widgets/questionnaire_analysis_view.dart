@@ -19,11 +19,13 @@ final class QuestionnaireAnalysisView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox.square(
+                SizedBox.square(
                   dimension: 56,
                   child: CircularProgressIndicator(
                     color: AppColors.primary,
-                    backgroundColor: AppColors.mutedSurface,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.surfaceContainerHighest,
                     strokeWidth: 3,
                   ),
                 ),

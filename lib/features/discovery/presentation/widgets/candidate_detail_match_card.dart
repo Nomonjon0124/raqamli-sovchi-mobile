@@ -29,9 +29,9 @@ final class CandidateDetailMatchCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ final class CandidateDetailMatchCard extends StatelessWidget {
                     fontSize: 13,
                     height: 18 / 13,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.text,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
@@ -99,24 +99,24 @@ final class _AnimatedMatchBar extends StatelessWidget {
                 category.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 12,
                   height: 19 / 12,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.text,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ),
             12.g,
             Text(
               '${category.percent}%',
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 12,
                 height: 19 / 12,
                 fontWeight: FontWeight.w400,
-                color: AppColors.mutedText,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ],
@@ -132,7 +132,9 @@ final class _AnimatedMatchBar extends StatelessWidget {
               value: value,
               minHeight: 5,
               color: AppColors.primary,
-              backgroundColor: AppColors.mutedSurface,
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest,
             ),
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
+import '../../../../app/theme/app_status_colors.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -56,9 +56,10 @@ final class _NearbyRadiusSettingsSheetState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Material(
-      color: AppColors.surfaceLight,
+      color: colorScheme.surface,
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(AppRadius.sheet),
       ),
@@ -89,14 +90,14 @@ final class _NearbyRadiusSettingsSheetState
                     child: Text(
                       l10n.nearbySearchRadiusLabel,
                       style: AppTypography.nearbyLabel.copyWith(
-                        color: AppColors.bodyText,
+                        color: colorScheme.onSurface,
                       ),
                     ),
                   ),
                   Text(
                     l10n.nearbyRadiusRange,
                     style: AppTypography.onboardingBody.copyWith(
-                      color: AppColors.mutedText,
+                      color: colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -194,11 +195,12 @@ final class _SheetGrabber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       width: 38,
       height: 4,
       decoration: BoxDecoration(
-        color: AppColors.mutedSurface,
+        color: colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
     );
@@ -218,10 +220,11 @@ final class _RadiusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Opacity(
       opacity: onPressed == null ? 0.5 : 1,
       child: Material(
-        color: selected ? AppColors.primary : AppColors.mutedSurface,
+        color: selected ? colorScheme.primary : colorScheme.surfaceContainer,
         borderRadius: BorderRadius.circular(AppRadius.full),
         child: InkWell(
           onTap: selected ? null : onPressed,
@@ -234,7 +237,9 @@ final class _RadiusChip extends StatelessWidget {
             child: Text(
               label,
               style: AppTypography.nearbyLabel.copyWith(
-                color: selected ? AppColors.surfaceLight : AppColors.bodyText,
+                color: selected
+                    ? colorScheme.onPrimary
+                    : colorScheme.onSurfaceVariant,
               ),
             ),
           ),
@@ -259,13 +264,14 @@ final class _VisibilityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.input,
         vertical: AppSpacing.md,
       ),
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Row(
@@ -295,9 +301,8 @@ final class NearbySwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   @override
-  Widget build(BuildContext context) {
-    return _NearbySwitch(value: value, onChanged: onChanged);
-  }
+  Widget build(BuildContext context) =>
+      _NearbySwitch(value: value, onChanged: onChanged);
 }
 
 final class _NearbySwitch extends StatelessWidget {
@@ -308,6 +313,7 @@ final class _NearbySwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Semantics(
       toggled: value,
       child: GestureDetector(
@@ -320,16 +326,16 @@ final class _NearbySwitch extends StatelessWidget {
               ? Assets.icons.icNearbySwitchOn.svg()
               : DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AppColors.border,
+                    color: colorScheme.outline,
                     borderRadius: BorderRadius.circular(AppRadius.full),
                   ),
-                  child: const Align(
+                  child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: EdgeInsets.all(3),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: AppColors.surfaceLight,
+                          color: colorScheme.surface,
                           shape: BoxShape.circle,
                         ),
                         child: SizedBox.square(dimension: 18),
@@ -358,8 +364,12 @@ final class _AudienceOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final statusColors = context.statusColors;
     return Material(
-      color: selected ? AppColors.successSurface : AppColors.subtleSurface,
+      color: selected
+          ? statusColors.successContainer
+          : colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.md),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -385,7 +395,7 @@ final class _AudienceOption extends StatelessWidget {
                       Text(
                         subtitle!,
                         style: AppTypography.onboardingFieldLabel.copyWith(
-                          color: AppColors.successText,
+                          color: statusColors.onSuccessContainer,
                           letterSpacing: 0,
                         ),
                       ),
@@ -407,13 +417,14 @@ final class _PrivacyNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.input,
         vertical: AppSpacing.md,
       ),
       decoration: BoxDecoration(
-        color: AppColors.subtleSurface,
+        color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Row(
@@ -425,7 +436,7 @@ final class _PrivacyNote extends StatelessWidget {
             child: Text(
               message,
               style: AppTypography.onboardingSelectorLabel.copyWith(
-                color: AppColors.mapLabelText,
+                color: colorScheme.onSurfaceVariant,
               ),
             ),
           ),

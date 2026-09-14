@@ -77,7 +77,7 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
     final l10n = AppLocalizations.of(context);
 
     return Dialog(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       child: Padding(
@@ -90,8 +90,8 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
               child: Container(
                 width: 56,
                 height: 56,
-                decoration: const BoxDecoration(
-                  color: AppColors.dangerSurface,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.errorContainer,
                   shape: BoxShape.circle,
                 ),
                 alignment: Alignment.center,
@@ -109,31 +109,31 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
             Text(
               l10n.candidateBlockDialogTitle(widget.candidateName),
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 height: 26 / 20,
-                color: AppColors.text,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               l10n.candidateBlockDialogSubtitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 13,
                 fontWeight: FontWeight.w400,
                 height: 18 / 13,
-                color: AppColors.mutedText,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: AppSpacing.md),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color(0xFFF9FAFB),
+                color: Theme.of(context).colorScheme.surfaceContainerLow,
                 borderRadius: BorderRadius.circular(AppRadius.xl),
               ),
               child: Column(
@@ -141,31 +141,31 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
                 children: [
                   Text(
                     l10n.candidateBlockPointChatClosed,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 13,
                       height: 18 / 13,
-                      color: AppColors.bodyText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     l10n.candidateBlockPointRemovedSaved,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 13,
                       height: 18 / 13,
-                      color: AppColors.bodyText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     l10n.candidateBlockPointRepresentativeBlocked,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Manrope',
                       fontSize: 13,
                       height: 18 / 13,
-                      color: AppColors.bodyText,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -177,18 +177,18 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
               style: FilledButton.styleFrom(
                 minimumSize: const Size.fromHeight(52),
                 backgroundColor: AppColors.danger,
-                foregroundColor: Colors.white,
+                foregroundColor: Theme.of(context).colorScheme.surface,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
               ),
               child: _isLoading
-                  ? const SizedBox(
+                  ? SizedBox(
                       width: 20,
                       height: 20,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                     )
                   : Text(
@@ -207,8 +207,8 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
                   : () => Navigator.of(context).pop(false),
               style: OutlinedButton.styleFrom(
                 minimumSize: const Size.fromHeight(52),
-                foregroundColor: AppColors.text,
-                side: const BorderSide(color: Color(0xFFE5E7EB)),
+                foregroundColor: Theme.of(context).colorScheme.onSurface,
+                side: BorderSide(color: Theme.of(context).colorScheme.outline),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.full),
                 ),

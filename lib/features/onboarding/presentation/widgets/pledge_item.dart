@@ -26,7 +26,7 @@ final class PledgeItem extends StatelessWidget {
               fontSize: 13,
               height: 21 / 13,
               fontWeight: FontWeight.w400,
-              color: const Color(0xFF404040),
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
@@ -54,7 +56,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
         : statusLabel!.trim();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: SafeArea(
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
@@ -63,7 +65,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
-            foregroundColor: Colors.white,
+            foregroundColor: Theme.of(context).colorScheme.surface,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -85,8 +87,8 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
               Assets.icons.icArrowRight.svg(
                 width: 20,
                 height: 20,
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.surface,
                   BlendMode.srcIn,
                 ),
               ),
@@ -118,23 +120,23 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       l10n.candidateReportSubmittedTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 24,
                         height: 30 / 24,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5,
-                        color: AppColors.text,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       l10n.candidateReportSubmittedSubtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 14,
                         height: 20 / 14,
-                        color: AppColors.mutedText,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -145,7 +147,9 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                         vertical: 14,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF9FAFB),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow,
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Column(
@@ -163,7 +167,7 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                           _RowItem(
                             label: l10n.candidateReportStatusLabel,
                             value: statusText,
-                            valueColor: AppColors.warningText,
+                            valueColor: context.statusColors.onWarningContainer,
                           ),
                         ],
                       ),
@@ -173,7 +177,9 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF9FAFB),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow,
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Column(
@@ -202,16 +208,18 @@ final class CandidateReportSubmittedPage extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF9FAFB),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow,
                         borderRadius: BorderRadius.circular(AppRadius.xl),
                       ),
                       child: Text(
                         l10n.candidateReportNotice,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'Manrope',
                           fontSize: 12,
                           height: 18 / 12,
-                          color: Color(0xFF6B7280),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ),
@@ -240,10 +248,10 @@ final class _RowItem extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Manrope',
             fontSize: 13,
-            color: AppColors.mutedText,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(width: 12),
@@ -257,7 +265,7 @@ final class _RowItem extends StatelessWidget {
               fontFamily: 'Manrope',
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: valueColor ?? AppColors.text,
+              color: valueColor ?? Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -281,7 +289,9 @@ final class _StepItem extends StatelessWidget {
           width: 8,
           height: 8,
           decoration: BoxDecoration(
-            color: isActive ? const Color(0xFF00966D) : const Color(0xFFD1D5DB),
+            color: isActive
+                ? context.statusColors.onSuccessContainer
+                : Theme.of(context).colorScheme.outline,
             shape: BoxShape.circle,
           ),
         ),
@@ -294,7 +304,9 @@ final class _StepItem extends StatelessWidget {
               fontSize: 13,
               fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
               height: 18 / 13,
-              color: isActive ? AppColors.text : AppColors.mutedText,
+              color: isActive
+                  ? Theme.of(context).colorScheme.onSurface
+                  : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),

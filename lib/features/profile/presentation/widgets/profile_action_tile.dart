@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -12,7 +11,7 @@ final class ProfileActionTile extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.onTap,
-    this.iconColor = AppColors.text,
+    this.iconColor,
     super.key,
   });
 
@@ -20,49 +19,56 @@ final class ProfileActionTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
-  final Color iconColor;
+  final Color? iconColor;
 
   @override
-  Widget build(BuildContext context) => Material(
-    color: AppColors.subtleSurface,
-    borderRadius: BorderRadius.circular(AppRadius.lg),
-    child: InkWell(
-      onTap: onTap,
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final resolvedIconColor = iconColor ?? colorScheme.onSurface;
+    return Material(
+      color: colorScheme.surfaceContainerLow,
       borderRadius: BorderRadius.circular(AppRadius.lg),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.input),
-        child: Row(
-          children: [
-            icon.svg(
-              width: 24,
-              height: 24,
-              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
-              excludeFromSemantics: true,
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: AppTypography.profileCardTitle),
-                  const SizedBox(height: AppSpacing.xxs),
-                  Text(subtitle, style: AppTypography.profileCardBody),
-                ],
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.input),
+          child: Row(
+            children: [
+              icon.svg(
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  resolvedIconColor,
+                  BlendMode.srcIn,
+                ),
+                excludeFromSemantics: true,
               ),
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Assets.icons.profileChevron.svg(
-              width: 16,
-              height: 16,
-              colorFilter: const ColorFilter.mode(
-                AppColors.mutedText,
-                BlendMode.srcIn,
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title, style: AppTypography.profileCardTitle),
+                    const SizedBox(height: AppSpacing.xxs),
+                    Text(subtitle, style: AppTypography.profileCardBody),
+                  ],
+                ),
               ),
-              excludeFromSemantics: true,
-            ),
-          ],
+              const SizedBox(width: AppSpacing.sm),
+              Assets.icons.profileChevron.svg(
+                width: 16,
+                height: 16,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurfaceVariant,
+                  BlendMode.srcIn,
+                ),
+                excludeFromSemantics: true,
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

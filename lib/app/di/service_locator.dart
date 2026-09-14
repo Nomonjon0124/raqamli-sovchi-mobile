@@ -7,6 +7,7 @@ import '../../core/network/api_client.dart';
 import '../../core/notifications/notification_event_bus.dart';
 import '../../core/platform/external_url_launcher.dart';
 import '../../core/security/auth_session_manager.dart';
+import '../../core/security/background_lock_gate.dart';
 import '../../core/security/biometric_auth_service.dart';
 import '../../core/security/notification_device_store.dart';
 import '../../core/security/screenshot_guard.dart';
@@ -42,6 +43,14 @@ import '../../features/auth/domain/repositories/auth_repository.dart';
 import '../../features/auth/domain/repositories/google_oauth_provider.dart';
 import '../../features/auth/domain/repositories/pin_repository.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/chat/application/use_cases/chat_use_cases.dart';
+import '../../features/chat/data/data_sources/chat_data_source.dart';
+import '../../features/chat/data/repositories/chat_repository_impl.dart';
+import '../../features/chat/data/services/chat_web_socket_service.dart';
+import '../../features/chat/domain/repositories/chat_repository.dart';
+import '../../features/chat/presentation/bloc/chat_conversation_bloc.dart';
+import '../../features/chat/presentation/bloc/chat_list_bloc.dart';
+import '../../features/chat/presentation/bloc/chat_request_profile_bloc.dart';
 import '../../features/discovery/application/use_cases/check_location_access.dart';
 import '../../features/discovery/application/use_cases/cluster_nearby_candidates.dart';
 import '../../features/discovery/application/use_cases/get_candidate.dart';
@@ -60,10 +69,13 @@ import '../../features/discovery/domain/repositories/discovery_repository.dart';
 import '../../features/discovery/domain/repositories/location_repository.dart';
 import '../../features/discovery/presentation/bloc/candidate_detail_bloc.dart';
 import '../../features/discovery/presentation/bloc/discovery_bloc.dart';
+import '../../features/match/application/use_cases/accept_match_request.dart';
 import '../../features/match/application/use_cases/create_match_request.dart';
 import '../../features/match/application/use_cases/create_photo_request.dart';
+import '../../features/match/application/use_cases/get_match_request.dart';
 import '../../features/match/application/use_cases/get_match_request_for_candidate.dart';
 import '../../features/match/application/use_cases/get_match_requests.dart';
+import '../../features/match/application/use_cases/reject_match_request.dart';
 import '../../features/match/data/data_sources/match_request_data_source.dart';
 import '../../features/match/data/data_sources/photo_request_data_source.dart';
 import '../../features/match/data/repositories/match_request_repository_impl.dart';
@@ -91,9 +103,12 @@ import '../../features/onboarding/data/services/onboarding_media_service_impl.da
 import '../../features/onboarding/domain/repositories/onboarding_draft_repository.dart';
 import '../../features/onboarding/domain/repositories/onboarding_repository.dart';
 import '../../features/onboarding/presentation/bloc/profile_onboarding_bloc.dart';
+import '../../features/profile/application/services/profile_photo_picker.dart';
 import '../../features/profile/application/use_cases/block_user.dart';
+import '../../features/profile/application/use_cases/delete_profile_photo.dart';
 import '../../features/profile/application/use_cases/get_blocked_users.dart';
 import '../../features/profile/application/use_cases/get_my_profile.dart';
+import '../../features/profile/application/use_cases/set_main_profile_photo.dart';
 import '../../features/profile/application/use_cases/unblock_user.dart';
 import '../../features/profile/application/use_cases/update_profile.dart';
 import '../../features/profile/application/use_cases/upload_profile_photo.dart';
@@ -101,11 +116,14 @@ import '../../features/profile/data/data_sources/blocked_user_data_source.dart';
 import '../../features/profile/data/data_sources/profile_data_source.dart';
 import '../../features/profile/data/repositories/blocked_user_repository_impl.dart';
 import '../../features/profile/data/repositories/profile_repository_impl.dart';
+import '../../features/profile/data/services/profile_photo_picker_impl.dart';
 import '../../features/profile/domain/repositories/blocked_user_repository.dart';
 import '../../features/profile/domain/repositories/profile_repository.dart';
 import '../../features/profile/presentation/bloc/blocked_users/blocked_users_cubit.dart';
 import '../../features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import '../../features/profile/presentation/bloc/profile_bloc.dart';
+import '../../features/profile/presentation/bloc/profile_face_verification/profile_face_verification_bloc.dart';
+import '../../features/profile/presentation/bloc/profile_photo_management/profile_photo_management_bloc.dart';
 import '../../features/questionnaire/application/use_cases/load_questionnaire.dart';
 import '../../features/questionnaire/application/use_cases/submit_questionnaire.dart';
 import '../../features/questionnaire/data/data_sources/questionnaire_data_source.dart';
@@ -134,6 +152,7 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<AuthSessionManager>(
       () => DefaultAuthSessionManager(serviceLocator(), serviceLocator()),
     )
+    ..registerLazySingleton<BackgroundLockGate>(BackgroundLockGate.new)
     ..registerLazySingleton<ScreenshotGuard>(SecureScreenshotGuard.new)
     ..registerLazySingleton<ExternalUrlLauncher>(UrlLauncherService.new)
     ..registerLazySingleton<BiometricAuthService>(LocalBiometricAuthService.new)
@@ -159,6 +178,7 @@ Future<void> configureDependencies() async {
           : RemoteAuthDataSource(
               client: serviceLocator(),
               tokenStore: serviceLocator(),
+              sessionManager: serviceLocator(),
             ),
     )
     ..registerLazySingleton<TelegramAuthDataSource>(
@@ -225,6 +245,15 @@ Future<void> configureDependencies() async {
     ..registerLazySingleton<MatchRequestRepository>(
       () => MatchRequestRepositoryImpl(serviceLocator()),
     )
+    ..registerLazySingleton<ChatDataSource>(
+      () => RemoteChatDataSource(serviceLocator()),
+    )
+    ..registerLazySingleton<ChatWebSocketService>(
+      () => ChatWebSocketService(serviceLocator()),
+    )
+    ..registerLazySingleton<ChatRepository>(
+      () => ChatRepositoryImpl(serviceLocator(), serviceLocator()),
+    )
     ..registerLazySingleton<PhotoRequestDataSource>(
       () => RemotePhotoRequestDataSource(serviceLocator()),
     )
@@ -270,6 +299,15 @@ Future<void> configureDependencies() async {
     ..registerFactory<UploadProfilePhotoUseCase>(
       () => UploadProfilePhotoUseCase(serviceLocator()),
     )
+    ..registerFactory<SetMainProfilePhotoUseCase>(
+      () => SetMainProfilePhotoUseCase(serviceLocator()),
+    )
+    ..registerFactory<DeleteProfilePhotoUseCase>(
+      () => DeleteProfilePhotoUseCase(serviceLocator()),
+    )
+    ..registerFactory<ProfilePhotoPicker>(
+      () => DeviceProfilePhotoPicker(backgroundLockGate: serviceLocator()),
+    )
     ..registerFactory<GetCandidateUseCase>(
       () => GetCandidateUseCase(serviceLocator()),
     )
@@ -284,6 +322,45 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<GetMatchRequestsUseCase>(
       () => GetMatchRequestsUseCase(serviceLocator()),
+    )
+    ..registerFactory<GetMatchRequestUseCase>(
+      () => GetMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<AcceptMatchRequestUseCase>(
+      () => AcceptMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<RejectMatchRequestUseCase>(
+      () => RejectMatchRequestUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatRoomsUseCase>(
+      () => LoadChatRoomsUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatMessagesUseCase>(
+      () => LoadChatMessagesUseCase(serviceLocator()),
+    )
+    ..registerFactory<DeleteChatConversationUseCase>(
+      () => DeleteChatConversationUseCase(serviceLocator()),
+    )
+    ..registerFactory<SendChatMessageUseCase>(
+      () => SendChatMessageUseCase(serviceLocator()),
+    )
+    ..registerFactory<MarkChatRoomReadUseCase>(
+      () => MarkChatRoomReadUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatRoomPresenceUseCase>(
+      () => LoadChatRoomPresenceUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadChatRoomsPresenceUseCase>(
+      () => LoadChatRoomsPresenceUseCase(serviceLocator()),
+    )
+    ..registerFactory<ConnectChatRoomUseCase>(
+      () => ConnectChatRoomUseCase(serviceLocator()),
+    )
+    ..registerFactory<DisconnectChatRoomUseCase>(
+      () => DisconnectChatRoomUseCase(serviceLocator()),
+    )
+    ..registerFactory<SendChatTypingUseCase>(
+      () => SendChatTypingUseCase(serviceLocator()),
     )
     ..registerFactory<GetMatchRequestForCandidateUseCase>(
       () => GetMatchRequestForCandidateUseCase(serviceLocator()),
@@ -345,6 +422,29 @@ Future<void> configureDependencies() async {
         eventBus: serviceLocator(),
       ),
     )
+    ..registerFactory<ChatListBloc>(
+      () => ChatListBloc(
+        loadChatRooms: serviceLocator(),
+        loadRoomsPresence: serviceLocator(),
+        getMyProfile: serviceLocator(),
+        getMatchRequests: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ChatConversationBloc>(
+      () => ChatConversationBloc(
+        loadMessages: serviceLocator(),
+        sendMessage: serviceLocator(),
+        markRoomRead: serviceLocator(),
+        loadPresence: serviceLocator(),
+        connectChatRoom: serviceLocator(),
+        disconnectChatRoom: serviceLocator(),
+        sendTyping: serviceLocator(),
+        deleteConversation: serviceLocator(),
+        repository: serviceLocator(),
+        eventBus: serviceLocator(),
+      ),
+    )
     ..registerFactory<DiscoveryBloc>(
       () => DiscoveryBloc(
         getCandidates: serviceLocator(),
@@ -366,6 +466,14 @@ Future<void> configureDependencies() async {
         unsaveCandidate: serviceLocator(),
       ),
     )
+    ..registerFactory<ChatRequestProfileBloc>(
+      () => ChatRequestProfileBloc(
+        getRequest: serviceLocator(),
+        getCandidate: serviceLocator(),
+        acceptRequest: serviceLocator(),
+        rejectRequest: serviceLocator(),
+      ),
+    )
     ..registerFactory<SavedBloc>(
       () => SavedBloc(
         getSavedCandidates: serviceLocator(),
@@ -374,7 +482,13 @@ Future<void> configureDependencies() async {
       ),
     )
     ..registerFactory<ProfileBloc>(
-      () => ProfileBloc(getMyProfile: serviceLocator()),
+      () => ProfileBloc(
+        getMyProfile: serviceLocator(),
+        uploadPhoto: serviceLocator(),
+        setMainPhoto: serviceLocator(),
+        deletePhoto: serviceLocator(),
+        photoPicker: serviceLocator(),
+      ),
     )
     ..registerFactory<EditProfileBloc>(
       () => EditProfileBloc(
@@ -383,14 +497,31 @@ Future<void> configureDependencies() async {
         onboardingRepository: serviceLocator(),
       ),
     )
+    ..registerFactory<ProfilePhotoManagementBloc>(
+      () => ProfilePhotoManagementBloc(
+        getMyProfile: serviceLocator(),
+        uploadPhoto: serviceLocator(),
+        setMainPhoto: serviceLocator(),
+        deletePhoto: serviceLocator(),
+        photoPicker: serviceLocator(),
+      ),
+    )
+    ..registerFactory<ProfileFaceVerificationBloc>(
+      () => ProfileFaceVerificationBloc(
+        onboardingRepository: serviceLocator(),
+        mediaService: serviceLocator(),
+      ),
+    )
     ..registerFactory<BlockedUsersCubit>(
       () => BlockedUsersCubit(
         getBlockedUsers: serviceLocator(),
         unblockUser: serviceLocator(),
       ),
     )
-    ..registerFactory<SettingsCubit>(SettingsCubit.new)
-    ..registerFactory<OnboardingMediaService>(DeviceOnboardingMediaService.new)
+    ..registerLazySingleton<SettingsCubit>(SettingsCubit.new)
+    ..registerFactory<OnboardingMediaService>(
+      () => DeviceOnboardingMediaService(backgroundLockGate: serviceLocator()),
+    )
     ..registerLazySingleton<OnboardingLocationService>(
       DeviceOnboardingLocationService.new,
     )

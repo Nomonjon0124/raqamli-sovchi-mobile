@@ -23,9 +23,11 @@ final class PrimaryAction extends StatelessWidget {
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.primary,
-          disabledBackgroundColor: AppColors.border,
-          foregroundColor: Colors.white,
-          disabledForegroundColor: AppColors.mutedText,
+          disabledBackgroundColor: Theme.of(context).colorScheme.outline,
+          foregroundColor: Theme.of(context).colorScheme.surface,
+          disabledForegroundColor: Theme.of(
+            context,
+          ).colorScheme.onSurfaceVariant,
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg + AppSpacing.xs,
             vertical: AppSpacing.lg,
@@ -42,7 +44,7 @@ final class PrimaryAction extends StatelessWidget {
             final foregroundColor =
                 IconTheme.of(context).color ??
                 DefaultTextStyle.of(context).style.color ??
-                Colors.white;
+                Theme.of(context).colorScheme.surface;
 
             return Row(
               mainAxisSize: MainAxisSize.min,

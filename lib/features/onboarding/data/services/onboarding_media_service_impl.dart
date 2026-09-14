@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:record/record.dart';
 
+import '../../../../core/security/background_lock_gate.dart';
 import '../../application/services/onboarding_media_service.dart';
 import '../../domain/entities/profile_onboarding_draft.dart';
 
@@ -18,9 +19,11 @@ final class DeviceOnboardingMediaService implements OnboardingMediaService {
     AudioRecorder? audioRecorder,
     AudioPlayer? audioPlayer,
     FaceDetector? faceDetector,
+    BackgroundLockGate? backgroundLockGate,
   }) : _imagePicker = imagePicker ?? ImagePicker(),
        _audioRecorder = audioRecorder ?? AudioRecorder(),
        _audioPlayer = audioPlayer ?? AudioPlayer(),
+       _backgroundLockGate = backgroundLockGate,
        _faceDetector =
            faceDetector ??
            FaceDetector(
@@ -38,15 +41,18 @@ final class DeviceOnboardingMediaService implements OnboardingMediaService {
   final ImagePicker _imagePicker;
   final AudioRecorder _audioRecorder;
   final AudioPlayer _audioPlayer;
+  final BackgroundLockGate? _backgroundLockGate;
   final FaceDetector _faceDetector;
   DateTime? _voiceRecordingStartedAt;
 
   @override
   Future<String?> pickAndPrepareProfilePhoto() async {
-    final picked = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-      maxWidth: 4096,
-      maxHeight: 4096,
+    final picked = await _withExternalInteraction(
+      () => _imagePicker.pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 4096,
+        maxHeight: 4096,
+      ),
     );
     if (picked == null) return null;
     return _prepareImage(picked.path);
@@ -58,11 +64,13 @@ final class DeviceOnboardingMediaService implements OnboardingMediaService {
     if (!permission.isGranted) {
       throw const OnboardingMediaValidationException('camera_permission');
     }
-    final captured = await _imagePicker.pickImage(
-      source: ImageSource.camera,
-      preferredCameraDevice: CameraDevice.front,
-      maxWidth: 4096,
-      maxHeight: 4096,
+    final captured = await _withExternalInteraction(
+      () => _imagePicker.pickImage(
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.front,
+        maxWidth: 4096,
+        maxHeight: 4096,
+      ),
     );
     if (captured == null) return null;
     return _prepareImage(captured.path);
@@ -197,5 +205,14 @@ final class DeviceOnboardingMediaService implements OnboardingMediaService {
 
   Future<void> _deleteIfExists(File file) async {
     if (await file.exists()) await file.delete();
+  }
+
+  Future<T> _withExternalInteraction<T>(Future<T> Function() action) async {
+    _backgroundLockGate?.beginExternalInteraction();
+    try {
+      return await action();
+    } finally {
+      _backgroundLockGate?.endExternalInteraction();
+    }
   }
 }

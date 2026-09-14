@@ -11,6 +11,10 @@ abstract interface class MatchRequestRepository {
 
   Future<Either<Failure, MatchRequest>> getRequest(String id);
 
+  Future<Either<Failure, MatchRequest>> acceptRequest(String id);
+
+  Future<Either<Failure, MatchRequest>> rejectRequest(String id);
+
   Future<Either<Failure, MatchRequest>> createRequest({
     required String fromProfile,
     required String toProfile,

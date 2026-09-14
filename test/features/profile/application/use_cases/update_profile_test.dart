@@ -91,5 +91,14 @@ final class _FakeProfileRepository implements ProfileRepository {
   Future<Either<Failure, ProfilePhoto>> uploadPhoto({
     required String profileId,
     required String filePath,
+    bool isMain = true,
   }) async => const Left(Failure.server());
+
+  @override
+  Future<Either<Failure, ProfilePhoto>> setMainPhoto(String photoId) async =>
+      const Left(Failure.server());
+
+  @override
+  Future<Either<Failure, void>> deletePhoto(String photoId) async =>
+      const Left(Failure.server());
 }

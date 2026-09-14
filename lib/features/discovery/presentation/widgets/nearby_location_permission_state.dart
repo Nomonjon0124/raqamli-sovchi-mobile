@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
+
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
@@ -25,6 +27,8 @@ final class NearbyLocationPermissionState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(
@@ -37,8 +41,8 @@ final class NearbyLocationPermissionState extends StatelessWidget {
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
-              color: AppColors.subtleSurface,
-              border: Border.all(color: AppColors.mutedSurface),
+              color: colorScheme.surfaceContainerLow,
+              border: Border.all(color: colorScheme.surfaceContainer),
               borderRadius: BorderRadius.circular(AppRadius.xl),
             ),
             child: Padding(
@@ -69,13 +73,17 @@ final class NearbyLocationPermissionState extends StatelessWidget {
                   Text(
                     l10n.nearbyPermissionTitle,
                     textAlign: TextAlign.center,
-                    style: AppTypography.onboardingSheetTitle,
+                    style: AppTypography.onboardingSheetTitle.copyWith(
+                      color: colorScheme.onSurface,
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     l10n.nearbyPermissionDescription,
                     textAlign: TextAlign.center,
-                    style: AppTypography.onboardingBody,
+                    style: AppTypography.onboardingBody.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.md),
                   _PrivacyRules(l10n: l10n),
@@ -102,7 +110,7 @@ final class NearbyLocationPermissionState extends StatelessWidget {
             l10n.nearbyPermissionFootnote,
             textAlign: TextAlign.center,
             style: AppTypography.onboardingSelectorLabel.copyWith(
-              color: AppColors.placeholder,
+              color: colorScheme.onSurfaceVariant,
             ),
           ),
         ],
@@ -128,9 +136,10 @@ final class _PrivacyRules extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Padding(
@@ -140,19 +149,21 @@ final class _PrivacyRules extends StatelessWidget {
             _PrivacyRule(
               icon: Assets.icons.icSquareLock,
               label: l10n.nearbyPermissionRuleHidden,
-              backgroundColor: AppColors.successSurface,
+              backgroundColor: context.statusColors.successContainer,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
               icon: Assets.icons.icRadar,
               label: l10n.nearbyPermissionRuleZone,
-              backgroundColor: AppColors.successSurface,
+              backgroundColor: context.statusColors.successContainer,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
               icon: Assets.icons.icSetting,
               label: l10n.nearbyPermissionRuleSettings,
-              backgroundColor: AppColors.subtleSurface,
+              backgroundColor: Theme.of(
+                context,
+              ).colorScheme.surfaceContainerLow,
             ),
           ],
         ),
@@ -208,29 +219,32 @@ final class _PermissionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox(
       width: double.infinity,
       height: 50,
       child: FilledButton(
         onPressed: isLoading ? null : onPressed,
         style: FilledButton.styleFrom(
-          backgroundColor: primary ? AppColors.primary : AppColors.mutedSurface,
+          backgroundColor: primary
+              ? colorScheme.primary
+              : (colorScheme.surfaceContainer),
           foregroundColor: primary
-              ? AppColors.surfaceLight
-              : AppColors.bodyText,
+              ? colorScheme.onPrimary
+              : colorScheme.onSurfaceVariant,
           disabledBackgroundColor: primary
               ? AppColors.primary.withValues(alpha: 0.7)
-              : AppColors.mutedSurface,
+              : (colorScheme.surfaceContainer),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.md),
           ),
         ),
         child: isLoading
-            ? const SizedBox.square(
+            ? SizedBox.square(
                 dimension: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: AppColors.surfaceLight,
+                  color: Theme.of(context).colorScheme.surface,
                 ),
               )
             : Row(

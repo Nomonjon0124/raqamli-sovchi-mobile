@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/theme/app_colors.dart';
 import '../../../app/theme/app_radius.dart';
 import '../../../app/theme/app_spacing.dart';
+import '../../../app/theme/app_status_colors.dart';
 import '../../../gen/assets.gen.dart';
 
 enum ToastType { error, warning, info, success }
@@ -15,38 +17,38 @@ abstract final class AppToast {
   }) {
     if (message.trim().isEmpty) return;
 
-    debugPrint('[AppToast] Showing toast: type=$type, message=$message');
-
     final messenger = ScaffoldMessenger.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final statusColors = context.statusColors;
     messenger.hideCurrentSnackBar();
 
     final (bgColor, borderColor, textColor, iconColor, icon) = switch (type) {
       ToastType.error => (
-        const Color(0xFFFEF2F2),
-        const Color(0xFFFCA5A5),
-        const Color(0xFF991B1B),
-        const Color(0xFFDC2626),
+        colorScheme.errorContainer,
+        colorScheme.onErrorContainer.withValues(alpha: 0.55),
+        colorScheme.onErrorContainer,
+        colorScheme.error,
         Assets.icons.icGlyph,
       ),
       ToastType.warning => (
-        const Color(0xFFFFFBEB),
-        const Color(0xFFFDE68A),
-        const Color(0xFF92400E),
-        const Color(0xFFD97706),
+        statusColors.warningContainer,
+        statusColors.onWarningContainer.withValues(alpha: 0.55),
+        statusColors.onWarningContainer,
+        statusColors.onWarningContainer,
         Assets.icons.icGlyph,
       ),
       ToastType.info => (
-        const Color(0xFFEFF6FF),
-        const Color(0xFFBFDBFE),
-        const Color(0xFF1E40AF),
-        const Color(0xFF2563EB),
+        statusColors.infoContainer,
+        statusColors.onInfoContainer.withValues(alpha: 0.55),
+        statusColors.onInfoContainer,
+        colorScheme.primary,
         Assets.icons.icNotification,
       ),
       ToastType.success => (
-        const Color(0xFFECFDF5),
-        const Color(0xFFA7F3D0),
-        const Color(0xFF065F46),
-        const Color(0xFF059669),
+        statusColors.successContainer,
+        statusColors.onSuccessContainer.withValues(alpha: 0.55),
+        statusColors.onSuccessContainer,
+        statusColors.onSuccessContainer,
         Assets.icons.icVerifyCheck,
       ),
     };
@@ -55,7 +57,7 @@ abstract final class AppToast {
       SnackBar(
         elevation: 4,
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         padding: EdgeInsets.zero,
         margin: const EdgeInsets.fromLTRB(
           AppSpacing.lg,
@@ -69,9 +71,9 @@ abstract final class AppToast {
             color: bgColor,
             borderRadius: BorderRadius.circular(AppRadius.lg),
             border: Border.all(color: borderColor, width: 1.2),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Color(0x14000000),
+                color: colorScheme.shadow,
                 blurRadius: 12,
                 offset: Offset(0, 4),
               ),
