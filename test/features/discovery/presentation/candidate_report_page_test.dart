@@ -142,6 +142,50 @@ void main() {
     expect(find.byType(CandidateReportSubmittedPage), findsNothing);
     expect(find.text('Shikoyat sababi noto‘g‘ri'), findsOneWidget);
   });
+
+  testWidgets('submits explicit target user id without profile entity', (
+    tester,
+  ) async {
+    final repository = _FakeComplaintRepository();
+
+    await tester.pumpWidget(
+      _testApp(
+        CandidateReportPage(
+          candidateName: 'Aziza',
+          targetUserId: 'user-42',
+          createComplaintUseCase: CreateComplaintUseCase(repository),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Odobsiz so‘z'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Shikoyatni yuborish'));
+    await tester.pumpAndSettle();
+
+    expect(repository.toUserId, 'user-42');
+  });
+
+  testWidgets('does not submit when target user id is empty', (tester) async {
+    final repository = _FakeComplaintRepository();
+
+    await tester.pumpWidget(
+      _testApp(
+        CandidateReportPage(
+          candidateName: 'Aziza',
+          targetUserId: '',
+          createComplaintUseCase: CreateComplaintUseCase(repository),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Odobsiz so‘z'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Shikoyatni yuborish'));
+    await tester.pumpAndSettle();
+
+    expect(repository.toUserId, isNull);
+  });
 }
 
 Widget _testApp(Widget child) => MaterialApp(
