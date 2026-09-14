@@ -10,7 +10,7 @@
   "aboutMeTitle": "Ўзингиз ҳақингизда",
   "aboutMeSubtitle": "Ихтиёрий. Қисқача ёзинг — номзодлар шуни ўқийди.",
   "aboutMeHint": "Ўзингиз, касбингиз ва оилавий қадриятларингиз ҳақида 2–3 гап...",
-  "aboutMeCounter": "{count} / 300 belgi",
+  "aboutMeCounter": "{count} / 300 белги",
   "@aboutMeCounter": {
     "placeholders": {
       "count": {
@@ -56,7 +56,7 @@
   "orLabel": "ёки",
   "loginNote": "Рақамингизни ҳеч ким кўрмайди. Ҳар бир профил қўлда текширилади. Бу йерда фақат никоҳ ниятидагилар қолади.",
   "otpTitle": "Кодни киритинг",
-  "otpSentTo": "{phone} raqamiga 4 xonali kod yubordik",
+  "otpSentTo": "{phone} рақамига 4 хонали код юбордик",
   "@otpSentTo": {
     "description": "Message shown after sending OTP to a phone number.",
     "placeholders": {
@@ -82,7 +82,7 @@
   "pledgePointThree": "Суҳбатда одоб сақлайман. АИ модератор назоратига розиман.",
   "pledgeAgreement": "Розиман. Профилимда «Нияти жиддий» белгиси кўринсин.",
   "pledgeStart": "Анкетани бошлаш",
-  "onboardingProgress": "{total} bosqichdan {current}-bosqich",
+  "onboardingProgress": "{total} босқичдан {current}-босқич",
   "birthDateTitle": "Туғилган йилингиз",
   "birthDateHint": "18 ёшдан кичик фойдаланувчилар рўйхатдан ўта олмайди.",
   "birthDateSubtitle": "Ёшингиз номзодларга кўринади, аниқ сана емас.",
@@ -114,9 +114,9 @@
   "regionLabel": "Вилоят",
   "districtLabel": "Туман ёки шаҳар",
   "regionSheetTitle": "Вилоятни танланг",
-  "regionSheetCount": "{count} ta hudud",
+  "regionSheetCount": "{count} та ҳудуд",
   "districtSheetTitle": "Туман / шаҳарни танланг",
-  "districtSheetSubtitle": "{region} · {count} ta tuman",
+  "districtSheetSubtitle": "{region} · {count} та туман",
   "locationSearchPlaceholder": "Туман номи бўйича қидириш",
   "selectLabel": "Танлаш",
   "unselectedValue": "Танланмаган",
@@ -139,7 +139,7 @@
   "photoHint": "5 тагача сурат. Уларни фақат сиз рухсат берган одам кўради.",
   "photoPrivacyHint": "Камида 1 та сурат керак. Юз аниқ кўриниши шарт.",
   "photoSlotAddLabel": "сурат",
-  "photoSlotFilledLabel": "surat {order} ✓",
+  "photoSlotFilledLabel": "сурат {order} ✓",
   "@photoSlotFilledLabel": {
     "placeholders": {
       "order": {
@@ -221,7 +221,7 @@
   "representativeSendConsent": "Розилик сўровини юбориш",
   "representativeCandidateNoApp": "Номзод иловадан фойдаланмайди",
   "representativeConsentSentTitle": "Сўров юборилди",
-  "representativeConsentSentSubtitle": "{firstName} tasdiqlashi kutilmoqda. Tasdiqlangunga qadar anketa yashirin.",
+  "representativeConsentSentSubtitle": "{firstName} тасдиқлаши кутилмоқда. Тасдиқлангунга қадар анкета яширин.",
   "@representativeConsentSentSubtitle": {
     "placeholders": {
       "firstName": {
@@ -230,7 +230,7 @@
     }
   },
   "representativeSmsSentTitle": "Номзодга СМС кетди",
-  "representativeSmsSentBody": "{representativeName} sizning nomingizdan anketa to‘ldirdi. Rozimisiz?",
+  "representativeSmsSentBody": "{representativeName} сизнинг номингиздан анкета тўлдирди. Розимисиз?",
   "@representativeSmsSentBody": {
     "placeholders": {
       "representativeName": {
@@ -252,7 +252,7 @@
   "laterLabel": "Кейинроқ",
   "candidateConsentEyebrow": "НОМЗОД ТЕЛЕФОНИДА",
   "candidateConsentTitle": "Сизнинг номингиздан анкета тўлдирилди",
-  "candidateConsentBody": "{representativeName} ({relation}) siz uchun anketa to‘ldirdi. Roziligingizsiz u hech kimga ko‘rinmaydi.",
+  "candidateConsentBody": "{representativeName} ({relation}) сиз учун анкета тўлдирди. Розилигингизсиз у ҳеч кимга кўринмайди.",
   "@candidateConsentBody": {
     "placeholders": {
       "representativeName": {
@@ -357,7 +357,7 @@
   "candidateDetailBlock": "Профилни блоклаш",
   "candidateDetailBlockSubtitle": "У сизни бошқа кўрмайди",
   "candidateDetailCompatibilityTitle": "Умумий мослик",
-  "candidateDetailVoiceIntro": "Ovozli tanishtiruv · {duration}",
+  "candidateDetailVoiceIntro": "Овозли таништирув · {duration}",
   "candidateDetailVoiceDuration": "12 сек",
   "candidateDetailSendProposal": "Совчи таклифи юбориш",
   "candidateDetailSave": "Сақлаш",
@@ -368,7 +368,7 @@
   "candidateDetailCompatibilityUnavailableDescription": "Номзод 30 саволлик сўровномани ҳали тўлдирмаган — шу сабабли мослик фоизи кўрсатилмайди. Қуйидаги малумотлар номзод анкетасидан олинган.",
   "candidateDetailBasicInformation": "Асосий малумотлар",
   "candidateDetailBirthYear": "Туғилган йили",
-  "candidateDetailBirthYearWithAge": "{birthYear} · {age} yosh",
+  "candidateDetailBirthYearWithAge": "{birthYear} · {age} ёш",
   "@candidateDetailBirthYearWithAge": {
     "placeholders": {
       "birthYear": {
@@ -384,7 +384,7 @@
   "candidateDetailChildren": "Фарзандлари",
   "candidateDetailNoChildren": "Йўқ",
   "candidateDetailHasChildren": "Бор",
-  "candidateDetailChildrenCount": "{count} ta",
+  "candidateDetailChildrenCount": "{count} та",
   "@candidateDetailChildrenCount": {
     "placeholders": {
       "count": {
@@ -402,7 +402,7 @@
   "candidateDetailAbout": "Номзод ҳақида",
   "candidateRequestPending": "Жараёнда...",
   "candidateRequestRetry": "Қайта сўров юбориш",
-  "candidateRequestRetryAt": "Qayta so‘rov yuborish: {date}",
+  "candidateRequestRetryAt": "Қайта сўров юбориш: {date}",
   "candidateRequestChat": "Суҳбатлашиш",
   "candidateRequestForwarded": "Вакилга йўналтирилди",
   "photoRequestTitle": "Расм кўриш сўрови",
@@ -415,18 +415,18 @@
   "photoRequestPrivacyNote": "Расм очилса, у фақат сизга кўринади ва скриншот блокланади.",
   "photoRequestSubmit": "Сўров юбориш",
   "candidateProposalSentTitle": "Таклиф юборилди",
-  "candidateProposalSentDescription": "{name} va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.",
+  "candidateProposalSentDescription": "{name} ва унинг вакили сизнинг таклифингизни кўради. Жавоб келганда хабар берамиз.",
   "candidateProposalSentTimelineSent": "Таклиф юборилди",
-  "candidateProposalSentTimelineReview": "{name} ko‘rib chiqadi",
+  "candidateProposalSentTimelineReview": "{name} кўриб чиқади",
   "candidateProposalSentTimelineChat": "Жавоб келса — суҳбат очилади",
   "candidateProposalSentQuotaLabel": "Бу ҳафталик таклифлар",
   "candidateProposalSentQuotaValue": "2 / 3",
-  "candidateProposalSentNote": "Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana {remaining} ta taklif qoldi.",
+  "candidateProposalSentNote": "Жавоб келмаса ҳам хафа бўлманг — бу танлов масаласи. Яна {remaining} та таклиф қолди.",
   "candidateProposalSentReturn": "Номзодларга қайтиш",
   "candidatePhotoPermissionSentTitle": "Расм кўриш учун рухсат сўралди",
-  "candidatePhotoPermissionSentDescription": "{name} va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.",
+  "candidatePhotoPermissionSentDescription": "{name} ва унинг вакилига расмни кўриш учун сўров юборилди. Жавоб келганда хабар берамиз.",
   "candidatePhotoPermissionSentReturn": "Профилга қайтиш",
-  "candidateBlockDialogTitle": "{candidateName} ni bloklaysizmi?",
+  "candidateBlockDialogTitle": "{candidateName} ни блоклайсизми?",
   "@candidateBlockDialogTitle": {
     "placeholders": {
       "candidateName": {
@@ -441,7 +441,7 @@
   "candidateBlockAction": "Блоклаш",
   "candidateBlockCancel": "Бекор қилиш",
   "candidateBlockedTitle": "Профил блокланди",
-  "candidateBlockedSubtitle": "{candidateName} endi sizni ko‘rmaydi.",
+  "candidateBlockedSubtitle": "{candidateName} энди сизни кўрмайди.",
   "@candidateBlockedSubtitle": {
     "placeholders": {
       "candidateName": {
@@ -505,7 +505,7 @@
   "messagesSegmentChats": "Суҳбатлар",
   "messagesSegmentRequests": "Сўровлар",
   "chatRequestsEmpty": "Ҳозирча келган сўровлар йўқ",
-  "chatRequestCardTitle": "Soʻrov / {name}",
+  "chatRequestCardTitle": "Сўров / {name}",
   "chatRequestPendingHint": "Қабул қилмагунингизча номзод сизга ёза олмайди.",
   "chatRequestProfileTitle": "Номзод профили",
   "chatRequestCompatibilityLabel": "МОСЛИК БЎЛИМЛАР КЕСИМИДА",
@@ -516,7 +516,7 @@
   "chatRequestViaRepresentative": "Вакил орқали",
   "chatRequestPhotoVerified": "Расм текшируви ўтган",
   "chatRequestSeriousIntent": "Нияти жиддий",
-  "chatRequestRepresentativeLabel": "Vakili: {name}",
+  "chatRequestRepresentativeLabel": "Вакили: {name}",
   "chatRequestRepresentativeNote": "Мурожаат вакил орқали келган",
   "chatRequestProfileUnavailable": "Профил малумотлари вақтинча мавжуд емас.",
   "chatRequestLocationProfession": "{location}, {profession}",
@@ -571,7 +571,7 @@
   "chatMoreSheetSubtitle": "Дўстларингизни Совчига таклиф қилинг — таклиф коди билан.",
   "chatReportAction": "Шикоят қилиш",
   "chatDeleteAction": "Чатни ўчириш",
-  "chatDeleteTitle": "{name} ni suhbatni oʻchirmoqchimisiz?",
+  "chatDeleteTitle": "{name} билан суҳбатни ўчирмоқчимисиз?",
   "@chatDeleteTitle": {
     "placeholders": {
       "name": {
@@ -596,7 +596,7 @@
   "savedFilterAll": "Ҳаммаси",
   "savedFilterInvited": "Таклиф юборилган",
   "savedFilterWaiting": "Жавоб кутилмоқда",
-  "savedLimitLabel": "{savedCount} / {limit} saqlangan",
+  "savedLimitLabel": "{savedCount} / {limit} сақланган",
   "@savedLimitLabel": {
     "placeholders": {
       "savedCount": {
@@ -608,7 +608,7 @@
     }
   },
   "savedPremiumCta": "Премиум — чексиз",
-  "savedUpsellTitle": "Yana {remaining} ta joy qoldi",
+  "savedUpsellTitle": "Яна {remaining} та жой қолди",
   "@savedUpsellTitle": {
     "placeholders": {
       "remaining": {
@@ -618,7 +618,7 @@
   },
   "savedUpsellMessage": "Бепул режада 10 тагача профил сақланади. Премиум билан чеклов йўқ.",
   "questionnaireOptionalBadge": "Ихтиёрий қадам",
-  "questionnaireIntroTitle": "{count} ta savol — {minutes} daqiqa",
+  "questionnaireIntroTitle": "{count} та савол — {minutes} дақиқа",
   "@questionnaireIntroTitle": {
     "placeholders": {
       "count": {
@@ -630,7 +630,7 @@
     }
   },
   "questionnaireIntroDescription": "Жавобларингизни таҳлил қилиб, ҳар бир номзод билан мослик фоизингизни кўрсатамиз. Хоҳламасангиз, кейинроқ ҳам топширасиз.",
-  "questionnaireQuestionCount": "{count} savol",
+  "questionnaireQuestionCount": "{count} та савол",
   "@questionnaireQuestionCount": {
     "placeholders": {
       "count": {
@@ -662,7 +662,7 @@
   "questionnaireResultSubtitle": "Суний интеллект аниқлаган мослик енди очиқ.",
   "questionnaireHonestyPill": "Самимийлик: юқори",
   "questionnaireSeriousPill": "Нияти жиддий",
-  "questionnaireMatchedCandidates": "{count} ta mos nomzod",
+  "questionnaireMatchedCandidates": "{count} та мос номзод",
   "@questionnaireMatchedCandidates": {
     "placeholders": {
       "count": {
@@ -698,7 +698,7 @@
   "nearbyPermissionRuleZone": "Бошқалар сизни ~2 км ли зона ичида кўради",
   "nearbyPermissionRuleSettings": "Исталган вақтда Созламалардан ўчирасиз",
   "nearbyUnknownZone": "Яқин зона",
-  "nearbyCandidateCount": "{count} ta nomzod",
+  "nearbyCandidateCount": "{count} та номзод",
   "@nearbyCandidateCount": {
     "placeholders": {
       "count": {
@@ -706,7 +706,7 @@
       }
     }
   },
-  "nearbyZoneDistance": "{zone} · ~{distance} km",
+  "nearbyZoneDistance": "{zone} · ~{distance} км",
   "@nearbyZoneDistance": {
     "placeholders": {
       "zone": {
@@ -718,7 +718,7 @@
     }
   },
   "nearbyYou": "Сиз",
-  "nearbyAroundCount": "Atrofingizda {count} ta nomzod",
+  "nearbyAroundCount": "Атрофингизда {count} та номзод",
   "@nearbyAroundCount": {
     "placeholders": {
       "count": {
@@ -728,7 +728,7 @@
   },
   "nearbyShowAll": "Барчаси",
   "nearbyCloseMap": "Харитани ёпиш",
-  "nearbyWithinRadius": "{radius} km ichida",
+  "nearbyWithinRadius": "{radius} км ичида",
   "@nearbyWithinRadius": {
     "placeholders": {
       "radius": {
@@ -740,7 +740,7 @@
   "nearbySettingsTitle": "Радиус ва кўриниш",
   "nearbySearchRadiusLabel": "Радиус",
   "nearbyRadiusRange": "1–25 км",
-  "nearbyRadiusOption": "{radius} km",
+  "nearbyRadiusOption": "{radius} км",
   "@nearbyRadiusOption": {
     "placeholders": {
       "radius": {
@@ -760,7 +760,7 @@
   "nearbyAudienceRepresented": "Фақат вакили бор номзодлар",
   "nearbyPrivacyZoneNote": "Зона маркази кунига бир марта тасодифий силжийди — шунинг учун сизнинг уйингизни ҳисоблаб бўлмайди.",
   "nearbySettingsSave": "Сақлаш",
-  "nearbyEmptyTitle": "{radius} km ichida hozircha nomzod yo‘q",
+  "nearbyEmptyTitle": "{radius} км ичида ҳозирча номзод йўқ",
   "@nearbyEmptyTitle": {
     "placeholders": {
       "radius": {
@@ -769,7 +769,7 @@
     }
   },
   "nearbyEmptyDescription": "Радиусни кенгайтиринг ёки мезонларни бироз юмшатинг.",
-  "nearbyExpandRadius": "Radiusni {radius} km ga kengaytirish",
+  "nearbyExpandRadius": "Радиусни {radius} км га кенгайтириш",
   "@nearbyExpandRadius": {
     "placeholders": {
       "radius": {
@@ -782,7 +782,7 @@
   "nearbyNotifySubtitle": "Кунига бир марта, кўпи билан",
   "profileEdit": "Профилни таҳрирлаш",
   "profileSettings": "Профил созламалари",
-  "profileIdentifier": "Foydalanuvchi raqami: {code}",
+  "profileIdentifier": "Фойдаланувчи рақами: {code}",
   "@profileIdentifier": {
     "placeholders": {
       "code": {
@@ -797,7 +797,7 @@
   "profileMyPhotos": "СУРАТЛАРИМ",
   "profileMainPhoto": "АСОСИЙ",
   "profileAddPhoto": "Сурат қўшиш",
-  "profilePhotoSemantics": "Profil surati {index}",
+  "profilePhotoSemantics": "Профил сурати {index}",
   "@profilePhotoSemantics": {
     "placeholders": {
       "index": {
@@ -833,10 +833,10 @@
   "settingsTheme": "Мавзу",
   "settingsLanguageSheetTitle": "Тил",
   "settingsThemeSheetTitle": "Мавзу",
-  "settingsLanguageUzbekLatin": "O‘zbek",
+  "settingsLanguageUzbekLatin": "Ўзбек (лотин)",
   "settingsLanguageUzbekCyrillic": "Ўзбек",
   "settingsLanguageRussian": "Русский",
-  "settingsLanguageEnglish": "English",
+  "settingsLanguageEnglish": "Инглиз тили",
   "settingsThemeSystem": "Автоматик",
   "settingsThemeLight": "Ёруғ",
   "settingsThemeDark": "Қоронғи",
@@ -867,7 +867,7 @@
   "privacyPolicyLoadError": "Махфийлик сиёсатини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.",
   "termsOfServiceLoadingLabel": "Фойдаланиш шартлари юкланмоқда",
   "termsOfServiceLoadError": "Фойдаланиш шартларини юклаб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.",
-  "failureMessage": "{type, select, networkTimeout{Ulanish vaqti tugadi.} noInternet{Internet aloqasi yoʻq.} unauthorized{Sessiya tugagan.} cancelled{} forbidden{Kirish rad etildi.} notFound{Maʼlumot topilmadi.} validation{Kiritilgan maʼlumotni tekshiring.} configuration{Google orqali kirish ushbu build uchun sozlanmagan.} unsupported{Bu kirish usuli hali mavjud emas.} server{Serverda xatolik yuz berdi.} unknown{Nimadir xato ketdi.} other{Nimadir xato ketdi.}}",
+  "failureMessage": "{type, select, networkTimeout{Уланиш вақти тугади.} noInternet{Интернет алоқаси йўқ.} unauthorized{Сессия тугаган.} cancelled{} forbidden{Кириш рад этилди.} notFound{Маълумот топилмади.} validation{Киритилган маълумотни текширинг.} configuration{Google орқали кириш ушбу версия учун созланмаган.} unsupported{Бу кириш усули ҳали мавжуд эмас.} server{Серверда хатолик юз берди.} unknown{Нимадир хато кетди.} other{Нимадир хато кетди.}}",
   "@failureMessage": {
     "description": "User-facing error message selected by FailureType.name.",
     "placeholders": {
@@ -907,7 +907,7 @@
   "profileEditSearchPlaceholder": "Қидириш...",
   "profileEditRegionSearchHint": "Вилоят қидириш...",
   "profileEditDistrictSearchHint": "Туман қидириш...",
-  "profileEditDistrictRegionCaption": "{region} boʻyicha",
+  "profileEditDistrictRegionCaption": "{region} бўйича",
   "@profileEditDistrictRegionCaption": {
     "placeholders": {
       "region": {
@@ -916,7 +916,7 @@
     }
   },
   "profileEditNoOptions": "Малумот топилмади",
-  "profileEditCm": "{cm} sm",
+  "profileEditCm": "{cm} см",
   "@profileEditCm": {
     "placeholders": {
       "cm": {
@@ -924,7 +924,7 @@
       }
     }
   },
-  "profileEditKg": "{kg} kg",
+  "profileEditKg": "{kg} кг",
   "@profileEditKg": {
     "placeholders": {
       "kg": {
@@ -949,7 +949,7 @@
   "blockedUsersEmpty": "Блокланган профиллар йўқ",
   "blockedUsersEmptySubtitle": "Сиз блоклаган барча профиллар шу йерда кўринади.",
   "blockedUsersNote": "Шикоят қилинган профил модератор кўригидан кейин автоматик блокланади — бу рўйхатда «Шикоятдан кейин» деб белгиланади.",
-  "blockedAtDate": "Bloklangan {date}",
+  "blockedAtDate": "Блокланган {date}",
   "@blockedAtDate": {
     "placeholders": {
       "date": {
