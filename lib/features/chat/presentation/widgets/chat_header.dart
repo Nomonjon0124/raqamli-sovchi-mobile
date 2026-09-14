@@ -16,6 +16,7 @@ final class ChatHeader extends StatelessWidget {
     required this.onMore,
     this.avatarUrl,
     this.subtitleWidget,
+    this.onUserTap,
     super.key,
   });
 
@@ -28,6 +29,7 @@ final class ChatHeader extends StatelessWidget {
   final VoidCallback onMore;
   final String? avatarUrl;
   final Widget? subtitleWidget;
+  final VoidCallback? onUserTap;
 
   @override
   Widget build(BuildContext context) {
@@ -59,56 +61,66 @@ final class ChatHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(width: AppSpacing.xs),
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                _ChatAvatar(name: name, avatarUrl: avatarUrl),
-                if (isOnline)
-                  Positioned(
-                    right: -1,
-                    bottom: -1,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: colorScheme.surface,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(AppSpacing.xxs),
-                        child: SizedBox(
-                          width: AppSpacing.sm,
-                          height: AppSpacing.sm,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: colorScheme.primary,
-                              shape: BoxShape.circle,
+            Expanded(
+              child: InkWell(
+                onTap: onUserTap,
+                borderRadius: BorderRadius.circular(AppSpacing.xs),
+                child: Row(
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        _ChatAvatar(name: name, avatarUrl: avatarUrl),
+                        if (isOnline)
+                          Positioned(
+                            right: -1,
+                            bottom: -1,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: colorScheme.surface,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(AppSpacing.xxs),
+                                child: SizedBox(
+                                  width: AppSpacing.sm,
+                                  height: AppSpacing.sm,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: colorScheme.primary,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                      ],
+                    ),
+                    const SizedBox(width: AppSpacing.md),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTypography.chatHeaderName,
+                          ),
+                          const SizedBox(height: AppSpacing.xxs),
+                          subtitleWidget ??
+                              Text(
+                                subtitle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTypography.chatHeaderSubtitle,
+                              ),
+                        ],
                       ),
                     ),
-                  ),
-              ],
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTypography.chatHeaderName,
-                  ),
-                  const SizedBox(height: AppSpacing.xxs),
-                  subtitleWidget ??
-                      Text(
-                        subtitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTypography.chatHeaderSubtitle,
-                      ),
-                ],
+                  ],
+                ),
               ),
             ),
             IconButton(

@@ -18,6 +18,7 @@ final class ChatRoomModel extends Equatable {
     final participant = _asMap(
       json['participant'] ?? json['other_participant'] ?? json['partner_info'],
     );
+    final userInfo = _asMap(json['user_info']);
     final profile = _asMap(
       participant['profile'] ?? participant['profile_info'],
     );
@@ -26,14 +27,18 @@ final class ChatRoomModel extends Equatable {
       createdAt: _asDateTime(json['created_at']),
       updatedAt: _asDateTime(json['updated_at']),
       matchRequestId: _asString(json['match_request'] ?? matchRequest['id']),
-      participantUserId: _asString(
-        json['participant_user'] ??
-            json['other_user'] ??
-            json['partner_user'] ??
-            participant['user'] ??
-            participant['user_id'] ??
-            participant['id'],
-      ),
+      participantUserId: _firstNonEmpty([
+        _userId(json['participant_user']),
+        _userId(json['other_user']),
+        _userId(json['partner_user']),
+        _userId(json['partner_user_id']),
+        _userId(json['other_user_id']),
+        _userId(userInfo['id']),
+        _userId(userInfo['user']),
+        _userId(userInfo['user_info']),
+        _userId(participant['user']),
+        _userId(participant['user_id']),
+      ]),
       participantName: _firstNonEmpty([
         _asString(json['partner_info']),
         _displayName(participant),
@@ -90,6 +95,14 @@ Map<String, dynamic> _asMap(Object? value) => value is Map
 String? _asString(Object? value) {
   final result = value?.toString().trim();
   return result == null || result.isEmpty ? null : result;
+}
+
+String? _userId(Object? value) {
+  if (value is Map) {
+    final map = _asMap(value);
+    return _firstNonEmpty([_asString(map['id']), _asString(map['user_id'])]);
+  }
+  return _asString(value);
 }
 
 String? _displayName(Map<String, dynamic> value) => _firstNonEmpty([

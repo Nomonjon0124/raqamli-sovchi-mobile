@@ -36,11 +36,32 @@ void main() {
       'note': 'Assalomu alaykum',
     });
   });
+
+  test(
+    'match request list sends only backend-supported status values',
+    () async {
+      final client = _RecordingApiClient();
+      final dataSource = RemoteMatchRequestDataSource(client);
+
+      await dataSource.fetchRequests(
+        fromProfile: 'profile-1',
+        status: MatchRequestStatus.pending,
+      );
+
+      expect(client.getPath, '/api/v1/matches/match-requests/');
+      expect(client.getQuery, {
+        'from_profile': 'profile-1',
+        'status': 'pending',
+      });
+    },
+  );
 }
 
 final class _RecordingApiClient implements ApiClient {
   String? postPath;
   Object? postData;
+  String? getPath;
+  Map<String, dynamic>? getQuery;
 
   @override
   Future<Response<T>> post<T>(
@@ -84,7 +105,14 @@ final class _RecordingApiClient implements ApiClient {
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
-  }) => throw UnimplementedError();
+  }) async {
+    getPath = path;
+    getQuery = queryParameters;
+    return Response<T>(
+      requestOptions: RequestOptions(path: path),
+      data: <String, dynamic>{'results': <Object?>[]} as T,
+    );
+  }
 
   @override
   Future<Response<T>> patch<T>(

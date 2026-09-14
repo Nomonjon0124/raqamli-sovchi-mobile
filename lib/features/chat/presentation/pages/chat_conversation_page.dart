@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/di/service_locator.dart';
+import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 // import '../../../../core/security/screenshot_guard.dart';
 import '../../../../core/ui/widgets/app_error_view.dart';
+import '../../../../core/ui/widgets/app_toast.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../auth/presentation/bloc/auth_bloc.dart';
+import '../../../discovery/application/use_cases/get_candidate.dart';
+import '../../../discovery/domain/entities/candidate.dart';
 import '../../../discovery/presentation/pages/candidate_report_page.dart';
 import '../../domain/entities/chat_message.dart';
 import '../../domain/entities/chat_thread.dart';
@@ -139,7 +143,8 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
                 backLabel: l10n.settingsBack,
                 moreLabel: l10n.chatMoreActions,
                 onBack: () => context.pop(),
-                onMore: () => _showMoreActions(name),
+                onMore: () => _showMoreActions(name, state),
+                onUserTap: _openCandidateDetail,
               ),
               Expanded(
                 child: _threadBody(context, state, currentUserId, icebreakers),
@@ -263,7 +268,10 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
     return senderId.isNotEmpty && userId.isNotEmpty && senderId == userId;
   }
 
-  Future<void> _showMoreActions(String name) async {
+  Future<void> _showMoreActions(
+    String name,
+    ChatConversationState conversationState,
+  ) async {
     final action = await showModalBottomSheet<_ChatAction>(
       context: context,
       backgroundColor: AppColors.transparent,
@@ -277,13 +285,22 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
 
     switch (action) {
       case _ChatAction.report:
+        final target = await _resolveReportTarget(conversationState);
+        if (!mounted) return;
+        if (target == null) {
+          AppToast.show(
+            context,
+            message: AppLocalizations.of(context).genericError,
+          );
+          return;
+        }
         await Navigator.of(context).push<void>(
           MaterialPageRoute(
             builder: (_) => CandidateReportPage(
               candidateName: name,
-              targetUserId:
-                  widget.thread?.room.participantUserId ??
-                  widget.thread?.participantProfileId,
+              candidate: target.candidate,
+              candidateAvatarUrl: widget.thread?.participantAvatarUrl,
+              targetUserId: target.userId,
             ),
           ),
         );
@@ -301,6 +318,64 @@ final class _ChatConversationViewState extends State<_ChatConversationView> {
         return;
     }
   }
+
+  void _openCandidateDetail() {
+    final candidateId = widget.thread?.participantProfileId?.trim();
+    final fallbackId = widget.thread?.room.participantUserId?.trim();
+    final id = (candidateId != null && candidateId.isNotEmpty)
+        ? candidateId
+        : fallbackId;
+    if (id == null || id.isEmpty) return;
+    context.push(RouteNames.candidateDetailFor(id));
+  }
+
+  Future<_ReportTarget?> _resolveReportTarget(
+    ChatConversationState state,
+  ) async {
+    final currentUserId =
+        context.read<AuthBloc>().state.session?.userId.trim() ?? '';
+    String? validUserId(String? value) {
+      final normalized = value?.trim();
+      if (normalized == null || normalized.isEmpty) return null;
+      if (currentUserId.isNotEmpty && normalized == currentUserId) {
+        return null;
+      }
+      return normalized;
+    }
+
+    if (currentUserId.isNotEmpty) {
+      for (final message in state.messages.reversed) {
+        final userId = validUserId(message.senderId);
+        if (userId != null) return _ReportTarget(userId: userId);
+      }
+    }
+
+    final presenceUserId = validUserId(state.presence?.userId);
+    if (presenceUserId != null) {
+      return _ReportTarget(userId: presenceUserId);
+    }
+
+    final roomUserId = validUserId(widget.thread?.room.participantUserId);
+    if (roomUserId != null) return _ReportTarget(userId: roomUserId);
+
+    final profileId = widget.thread?.participantProfileId?.trim();
+    if (profileId == null || profileId.isEmpty) return null;
+
+    final result = await serviceLocator<GetCandidateUseCase>()(profileId);
+    return result.fold((_) => null, (candidate) {
+      final userId = validUserId(candidate.userId);
+      return userId == null
+          ? null
+          : _ReportTarget(userId: userId, candidate: candidate);
+    });
+  }
 }
 
 enum _ChatAction { report, delete }
+
+final class _ReportTarget {
+  const _ReportTarget({required this.userId, this.candidate});
+
+  final String userId;
+  final Candidate? candidate;
+}

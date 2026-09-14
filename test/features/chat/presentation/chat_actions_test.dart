@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:raqamli_sovchi/features/chat/presentation/widgets/chat_actions_bottom_sheet.dart';
 import 'package:raqamli_sovchi/features/chat/presentation/widgets/chat_delete_dialog.dart';
+import 'package:raqamli_sovchi/features/chat/presentation/widgets/chat_header.dart';
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
 
 void main() {
@@ -60,6 +61,34 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(result, isTrue);
+  });
+
+  testWidgets('ChatHeader triggers onUserTap when user area is tapped', (
+    tester,
+  ) async {
+    var userTapped = false;
+    await tester.pumpWidget(
+      _testApp(
+        Scaffold(
+          body: ChatHeader(
+            name: 'Mohira R.',
+            subtitle: 'Onlayn',
+            isOnline: true,
+            backLabel: 'Orqaga',
+            moreLabel: 'Koʻproq',
+            onBack: () {},
+            onMore: () {},
+            onUserTap: () => userTapped = true,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Mohira R.'), findsOneWidget);
+    await tester.tap(find.text('Mohira R.'));
+    await tester.pumpAndSettle();
+
+    expect(userTapped, isTrue);
   });
 }
 

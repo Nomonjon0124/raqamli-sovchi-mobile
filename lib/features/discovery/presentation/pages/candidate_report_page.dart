@@ -18,6 +18,7 @@ final class CandidateReportPage extends StatefulWidget {
   const CandidateReportPage({
     required this.candidateName,
     this.candidate,
+    this.candidateAvatarUrl,
     this.targetUserId,
     this.createComplaintUseCase,
     super.key,
@@ -25,6 +26,7 @@ final class CandidateReportPage extends StatefulWidget {
 
   final Candidate? candidate;
   final String candidateName;
+  final String? candidateAvatarUrl;
   final String? targetUserId;
   final CreateComplaintUseCase? createComplaintUseCase;
 
@@ -49,11 +51,8 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     final selectedReasonIndex = _selectedReasonIndex;
     if (selectedReasonIndex == null || _isSubmitting) return;
 
-    final toUserId = widget.targetUserId?.trim().isNotEmpty == true
-        ? widget.targetUserId!
-        : widget.candidate?.userId?.trim().isNotEmpty == true
-        ? widget.candidate!.userId!
-        : widget.candidate?.id ?? '';
+    final toUserId = _resolvedToUserId;
+    if (toUserId == null) return;
     final reason = _reasonOptions(
       AppLocalizations.of(context),
     )[selectedReasonIndex].reason;
@@ -92,6 +91,16 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     );
   }
 
+  String? get _resolvedToUserId {
+    final targetUserId = widget.targetUserId?.trim();
+    if (targetUserId != null && targetUserId.isNotEmpty) return targetUserId;
+    final candidateUserId = widget.candidate?.userId?.trim();
+    if (candidateUserId != null && candidateUserId.isNotEmpty) {
+      return candidateUserId;
+    }
+    return null;
+  }
+
   String? _mainImageUrl(Candidate? candidate) {
     if (candidate == null) return null;
     final photos = candidate.photosInfo;
@@ -108,7 +117,8 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
     final l10n = AppLocalizations.of(context);
     final reasons = _reasonOptions(l10n);
 
-    final photoUrl = _mainImageUrl(widget.candidate);
+    final photoUrl =
+        _mainImageUrl(widget.candidate) ?? widget.candidateAvatarUrl;
     final shouldBlur = widget.candidate?.blurPhotos ?? true;
 
     return Scaffold(
@@ -117,7 +127,10 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
         top: false,
         minimum: const EdgeInsets.fromLTRB(22, 12, 22, 12),
         child: FilledButton(
-          onPressed: _selectedReasonIndex != null && !_isSubmitting
+          onPressed:
+              _selectedReasonIndex != null &&
+                  _resolvedToUserId != null &&
+                  !_isSubmitting
               ? _handleSubmit
               : null,
           style: FilledButton.styleFrom(
@@ -446,14 +459,15 @@ final class _BlurredAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     const size = 48.0;
 
+    final colorScheme = Theme.of(context).colorScheme;
     final fallback = Container(
       width: size,
       height: size,
-      color: AppColors.profileAvatarSurface,
-      child: const Icon(
+      color: colorScheme.primaryContainer,
+      child: Icon(
         Icons.person,
         size: 26,
-        color: AppColors.profileAvatarText,
+        color: colorScheme.onPrimaryContainer,
       ),
     );
 
