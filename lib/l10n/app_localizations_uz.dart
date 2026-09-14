@@ -2390,7 +2390,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String aboutMeCounter(int count) {
-    return '$count / 300 belgi';
+    return '$count / 300 белги';
   }
 
   @override
@@ -2505,7 +2505,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String otpSentTo(String phone) {
-    return '$phone raqamiga 4 xonali kod yubordik';
+    return '$phone рақамига 4 хонали код юбордик';
   }
 
   @override
@@ -2562,7 +2562,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String onboardingProgress(Object current, Object total) {
-    return '$total bosqichdan $current-bosqich';
+    return '$total босқичдан $current-босқич';
   }
 
   @override
@@ -2663,7 +2663,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String regionSheetCount(Object count) {
-    return '$count ta hudud';
+    return '$count та ҳудуд';
   }
 
   @override
@@ -2671,7 +2671,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String districtSheetSubtitle(Object count, Object region) {
-    return '$region · $count ta tuman';
+    return '$region · $count та туман';
   }
 
   @override
@@ -2748,7 +2748,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String photoSlotFilledLabel(int order) {
-    return 'surat $order ✓';
+    return 'сурат $order ✓';
   }
 
   @override
@@ -2995,7 +2995,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String representativeConsentSentSubtitle(String firstName) {
-    return '$firstName tasdiqlashi kutilmoqda. Tasdiqlangunga qadar anketa yashirin.';
+    return '$firstName тасдиқлаши кутилмоқда. Тасдиқлангунга қадар анкета яширин.';
   }
 
   @override
@@ -3003,7 +3003,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String representativeSmsSentBody(String representativeName) {
-    return '$representativeName sizning nomingizdan anketa to‘ldirdi. Rozimisiz?';
+    return '$representativeName сизнинг номингиздан анкета тўлдирди. Розимисиз?';
   }
 
   @override
@@ -3056,7 +3056,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateConsentBody(String representativeName, String relation) {
-    return '$representativeName ($relation) siz uchun anketa to‘ldirdi. Roziligingizsiz u hech kimga ko‘rinmaydi.';
+    return '$representativeName ($relation) сиз учун анкета тўлдирди. Розилигингизсиз у ҳеч кимга кўринмайди.';
   }
 
   @override
@@ -3359,7 +3359,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateDetailVoiceIntro(String duration) {
-    return 'Ovozli tanishtiruv · $duration';
+    return 'Овозли таништирув · $duration';
   }
 
   @override
@@ -3396,7 +3396,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateDetailBirthYearWithAge(int birthYear, int age) {
-    return '$birthYear · $age yosh';
+    return '$birthYear · $age ёш';
   }
 
   @override
@@ -3416,7 +3416,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateDetailChildrenCount(int count) {
-    return '$count ta';
+    return '$count та';
   }
 
   @override
@@ -3452,7 +3452,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateRequestRetryAt(Object date) {
-    return 'Qayta so‘rov yuborish: $date';
+    return 'Қайта сўров юбориш: $date';
   }
 
   @override
@@ -3495,7 +3495,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateProposalSentDescription(Object name) {
-    return '$name va uning vakili sizning taklifingizni ko‘radi. Javob kelganda xabar beramiz.';
+    return '$name ва унинг вакили сизнинг таклифингизни кўради. Жавоб келганда хабар берамиз.';
   }
 
   @override
@@ -3503,7 +3503,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateProposalSentTimelineReview(Object name) {
-    return '$name ko‘rib chiqadi';
+    return '$name кўриб чиқади';
   }
 
   @override
@@ -3518,7 +3518,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateProposalSentNote(Object remaining) {
-    return 'Javob kelmasa ham xafa bo‘lmang — bu tanlov masalasi. Yana $remaining ta taklif qoldi.';
+    return 'Жавоб келмаса ҳам хафа бўлманг — бу танлов масаласи. Яна $remaining та таклиф қолди.';
   }
 
   @override
@@ -3530,7 +3530,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidatePhotoPermissionSentDescription(Object name) {
-    return '$name va uning vakiliga rasmni ko‘rish uchun so‘rov yuborildi. Javob kelganda xabar beramiz.';
+    return '$name ва унинг вакилига расмни кўриш учун сўров юборилди. Жавоб келганда хабар берамиз.';
   }
 
   @override
@@ -3538,7 +3538,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateBlockDialogTitle(String candidateName) {
-    return '$candidateName ni bloklaysizmi?';
+    return '$candidateName ни блоклайсизми?';
   }
 
   @override
@@ -3568,7 +3568,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String candidateBlockedSubtitle(String candidateName) {
-    return '$candidateName endi sizni ko‘rmaydi.';
+    return '$candidateName энди сизни кўрмайди.';
   }
 
   @override
@@ -3725,7 +3725,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String chatRequestCardTitle(String name) {
-    return 'Soʻrov / $name';
+    return 'Сўров / $name';
   }
 
   @override
@@ -3762,7 +3762,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String chatRequestRepresentativeLabel(String name) {
-    return 'Vakili: $name';
+    return 'Вакили: $name';
   }
 
   @override
@@ -3864,7 +3864,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String chatDeleteTitle(String name) {
-    return '$name ni suhbatni oʻchirmoqchimisiz?';
+    return '$name билан суҳбатни ўчирмоқчимисиз?';
   }
 
   @override
@@ -3921,7 +3921,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String savedLimitLabel(int savedCount, int limit) {
-    return '$savedCount / $limit saqlangan';
+    return '$savedCount / $limit сақланган';
   }
 
   @override
@@ -3929,7 +3929,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String savedUpsellTitle(int remaining) {
-    return 'Yana $remaining ta joy qoldi';
+    return 'Яна $remaining та жой қолди';
   }
 
   @override
@@ -3941,7 +3941,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String questionnaireIntroTitle(int count, int minutes) {
-    return '$count ta savol — $minutes daqiqa';
+    return '$count та савол — $minutes дақиқа';
   }
 
   @override
@@ -3950,7 +3950,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String questionnaireQuestionCount(int count) {
-    return '$count savol';
+    return '$count та савол';
   }
 
   @override
@@ -4002,7 +4002,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String questionnaireMatchedCandidates(int count) {
-    return '$count ta mos nomzod';
+    return '$count та мос номзод';
   }
 
   @override
@@ -4098,12 +4098,12 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyCandidateCount(int count) {
-    return '$count ta nomzod';
+    return '$count та номзод';
   }
 
   @override
   String nearbyZoneDistance(String zone, String distance) {
-    return '$zone · ~$distance km';
+    return '$zone · ~$distance км';
   }
 
   @override
@@ -4111,7 +4111,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyAroundCount(int count) {
-    return 'Atrofingizda $count ta nomzod';
+    return 'Атрофингизда $count та номзод';
   }
 
   @override
@@ -4122,7 +4122,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyWithinRadius(int radius) {
-    return '$radius km ichida';
+    return '$radius км ичида';
   }
 
   @override
@@ -4139,7 +4139,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyRadiusOption(int radius) {
-    return '$radius km';
+    return '$radius км';
   }
 
   @override
@@ -4184,7 +4184,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyEmptyTitle(int radius) {
-    return '$radius km ichida hozircha nomzod yo‘q';
+    return '$radius км ичида ҳозирча номзод йўқ';
   }
 
   @override
@@ -4193,7 +4193,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String nearbyExpandRadius(int radius) {
-    return 'Radiusni $radius km ga kengaytirish';
+    return 'Радиусни $radius км га кенгайтириш';
   }
 
   @override
@@ -4213,7 +4213,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String profileIdentifier(String code) {
-    return 'Foydalanuvchi raqami: $code';
+    return 'Фойдаланувчи рақами: $code';
   }
 
   @override
@@ -4239,7 +4239,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String profilePhotoSemantics(int index) {
-    return 'Profil surati $index';
+    return 'Профил сурати $index';
   }
 
   @override
@@ -4332,7 +4332,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
   String get settingsThemeSheetTitle => 'Мавзу';
 
   @override
-  String get settingsLanguageUzbekLatin => 'O‘zbek';
+  String get settingsLanguageUzbekLatin => 'Ўзбек (лотин)';
 
   @override
   String get settingsLanguageUzbekCyrillic => 'Ўзбек';
@@ -4341,7 +4341,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
   String get settingsLanguageRussian => 'Русский';
 
   @override
-  String get settingsLanguageEnglish => 'English';
+  String get settingsLanguageEnglish => 'Инглиз тили';
 
   @override
   String get settingsThemeSystem => 'Автоматик';
@@ -4439,18 +4439,18 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
   @override
   String failureMessage(String type) {
     String _temp0 = intl.Intl.selectLogic(type, {
-      'networkTimeout': 'Ulanish vaqti tugadi.',
-      'noInternet': 'Internet aloqasi yoʻq.',
-      'unauthorized': 'Sessiya tugagan.',
+      'networkTimeout': 'Уланиш вақти тугади.',
+      'noInternet': 'Интернет алоқаси йўқ.',
+      'unauthorized': 'Сессия тугаган.',
       'cancelled': '',
-      'forbidden': 'Kirish rad etildi.',
-      'notFound': 'Maʼlumot topilmadi.',
-      'validation': 'Kiritilgan maʼlumotni tekshiring.',
-      'configuration': 'Google orqali kirish ushbu build uchun sozlanmagan.',
-      'unsupported': 'Bu kirish usuli hali mavjud emas.',
-      'server': 'Serverda xatolik yuz berdi.',
-      'unknown': 'Nimadir xato ketdi.',
-      'other': 'Nimadir xato ketdi.',
+      'forbidden': 'Кириш рад этилди.',
+      'notFound': 'Маълумот топилмади.',
+      'validation': 'Киритилган маълумотни текширинг.',
+      'configuration': 'Google орқали кириш ушбу версия учун созланмаган.',
+      'unsupported': 'Бу кириш усули ҳали мавжуд эмас.',
+      'server': 'Серверда хатолик юз берди.',
+      'unknown': 'Нимадир хато кетди.',
+      'other': 'Нимадир хато кетди.',
     });
     return '$_temp0';
   }
@@ -4549,7 +4549,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String profileEditDistrictRegionCaption(String region) {
-    return '$region boʻyicha';
+    return '$region бўйича';
   }
 
   @override
@@ -4557,12 +4557,12 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String profileEditCm(int cm) {
-    return '$cm sm';
+    return '$cm см';
   }
 
   @override
   String profileEditKg(int kg) {
-    return '$kg kg';
+    return '$kg кг';
   }
 
   @override
@@ -4624,7 +4624,7 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String blockedAtDate(String date) {
-    return 'Bloklangan $date';
+    return 'Блокланган $date';
   }
 
   @override

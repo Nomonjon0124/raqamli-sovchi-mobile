@@ -8,6 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:raqamli_sovchi/app/di/service_locator.dart';
 import 'package:raqamli_sovchi/app/router/route_names.dart';
 import 'package:raqamli_sovchi/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:raqamli_sovchi/features/settings/presentation/cubit/settings_cubit.dart';
+import 'package:raqamli_sovchi/features/settings/presentation/cubit/settings_state.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/pages/settings_page.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/widgets/settings_account_actions.dart';
 import 'package:raqamli_sovchi/features/settings/presentation/widgets/settings_delete_dialog.dart';
@@ -195,6 +197,57 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
 
     expect(find.text('Terms route opened'), findsOneWidget);
+  });
+
+  testWidgets('switches Settings page to Uzbek Cyrillic', (tester) async {
+    await _loadManrope();
+    await configureDependencies();
+    final authBloc = serviceLocator<AuthBloc>();
+    final settingsCubit = serviceLocator<SettingsCubit>();
+
+    await tester.pumpWidget(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>.value(value: authBloc),
+          BlocProvider<SettingsCubit>.value(value: settingsCubit),
+        ],
+        child: BlocBuilder<SettingsCubit, SettingsState>(
+          builder: (context, state) => MaterialApp(
+            locale: state.locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: const SettingsPage(),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Til'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Ўзбек'), findsOneWidget);
+    expect(find.text('O‘zbek'), findsOneWidget);
+    expect(find.text('Русский'), findsOneWidget);
+    expect(find.text('English'), findsOneWidget);
+    expect(find.byIcon(Icons.check), findsOneWidget);
+
+    await tester.tap(find.text('Ўзбек'));
+    await tester.pumpAndSettle();
+
+    expect(
+      settingsCubit.state.locale,
+      const Locale.fromSubtags(languageCode: 'uz', scriptCode: 'Cyrl'),
+    );
+    expect(find.text('Созламалар'), findsOneWidget);
+    expect(find.text('Ҳисоб'), findsOneWidget);
+
+    await tester.tap(find.text('Тил'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Ўзбек (лотин)'), findsOneWidget);
+    expect(find.text('Инглиз тили'), findsOneWidget);
+    expect(find.byIcon(Icons.check), findsOneWidget);
   });
 
   testWidgets('keeps SettingsRow title on the left and value on the right', (

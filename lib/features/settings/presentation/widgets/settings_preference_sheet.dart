@@ -38,7 +38,10 @@ final class SettingsLanguageSheet extends StatelessWidget {
       ),
       _LanguageOption(
         label: uzbekCyrillicLabel,
-        locale: const Locale('uz', 'Cyrl'),
+        locale: const Locale.fromSubtags(
+          languageCode: 'uz',
+          scriptCode: 'Cyrl',
+        ),
         selectedLocale: selectedLocale,
         flag: '🇺🇿',
         onSelected: onSelected,
