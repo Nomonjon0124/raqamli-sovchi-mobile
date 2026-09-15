@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/extensions/gap_extension.dart';
@@ -25,7 +24,9 @@ final class CandidateDetailIncompleteProfileCard extends StatelessWidget {
     if (!isIncomplete(candidate)) return const SizedBox.shrink();
     final l10n = AppLocalizations.of(context);
     return CustomPaint(
-      foregroundPainter: const _DashedBorderPainter(),
+      foregroundPainter: _DashedBorderPainter(
+        color: Theme.of(context).colorScheme.outline,
+      ),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -56,12 +57,14 @@ final class CandidateDetailIncompleteProfileCard extends StatelessWidget {
 }
 
 final class _DashedBorderPainter extends CustomPainter {
-  const _DashedBorderPainter();
+  const _DashedBorderPainter({required this.color});
+
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.profileDashedBorder
+      ..color = color
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
     final path = Path()
@@ -81,7 +84,8 @@ final class _DashedBorderPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _DashedBorderPainter oldDelegate) =>
+      oldDelegate.color != color;
 }
 
 bool _isBlank(String? value) => value == null || value.trim().isEmpty;

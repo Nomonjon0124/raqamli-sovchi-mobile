@@ -177,7 +177,7 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
               style: FilledButton.styleFrom(
                 minimumSize: const Size.fromHeight(52),
                 backgroundColor: AppColors.danger,
-                foregroundColor: Theme.of(context).colorScheme.surface,
+                foregroundColor: Theme.of(context).colorScheme.onError,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
@@ -188,7 +188,7 @@ final class _CandidateBlockDialogState extends State<CandidateBlockDialog> {
                       height: 20,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        color: Theme.of(context).colorScheme.surface,
+                        color: Theme.of(context).colorScheme.onError,
                       ),
                     )
                   : Text(

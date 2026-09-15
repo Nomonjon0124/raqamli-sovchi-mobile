@@ -34,7 +34,7 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(14, 10, 14, 28),
@@ -46,7 +46,10 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
                 child: Container(
                   width: 38,
                   height: 4,
-                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.outline, borderRadius: BorderRadius.circular(AppRadius.full)),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.outline,
+                    borderRadius: BorderRadius.circular(AppRadius.full),
+                  ),
                 ),
               ),
               const SizedBox(height: 12),
@@ -70,7 +73,12 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       l10n.candidateDetailOptionsSubtitle,
-                      style: TextStyle(fontFamily: 'Manrope', fontSize: 11, height: 17 / 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                      style: TextStyle(
+                        fontFamily: 'Manrope',
+                        fontSize: 11,
+                        height: 17 / 11,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ),
@@ -155,7 +163,10 @@ final class _OptionsGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceContainerLow, borderRadius: BorderRadius.circular(AppRadius.xl)),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(AppRadius.xl),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Column(
@@ -163,7 +174,11 @@ final class _OptionsGroup extends StatelessWidget {
           children: [
             for (var index = 0; index < rows.length; index++) ...[
               _OptionRow(data: rows[index], danger: danger),
-              if (index != rows.length - 1) Divider(height: 1, color: Theme.of(context).colorScheme.outline),
+              if (index != rows.length - 1)
+                Divider(
+                  height: 1,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
             ],
           ],
         ),
@@ -192,13 +207,18 @@ final class _OptionRow extends StatelessWidget {
               Container(
                 width: 36,
                 height: 36,
-                decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceContainerHighest, borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 alignment: Alignment.center,
                 child: data.icon.svg(
                   width: 18,
                   height: 18,
                   colorFilter: ColorFilter.mode(
-                    danger ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.onSurface,
+                    danger
+                        ? Theme.of(context).colorScheme.error
+                        : Theme.of(context).colorScheme.onSurface,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -217,7 +237,9 @@ final class _OptionRow extends StatelessWidget {
                         fontSize: 14,
                         height: 19 / 14,
                         fontWeight: FontWeight.w500,
-                        color: danger ? Theme.of(context).colorScheme.onErrorContainer : Theme.of(context).colorScheme.onSurface,
+                        color: danger
+                            ? Theme.of(context).colorScheme.onErrorContainer
+                            : Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -225,7 +247,12 @@ final class _OptionRow extends StatelessWidget {
                       data.subtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontFamily: 'Manrope', fontSize: 11, height: 17 / 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                      style: TextStyle(
+                        fontFamily: 'Manrope',
+                        fontSize: 11,
+                        height: 17 / 11,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ],
                 ),
@@ -239,7 +266,12 @@ final class _OptionRow extends StatelessWidget {
 }
 
 final class _OptionRowData {
-  const _OptionRowData({required this.icon, required this.title, required this.subtitle, required this.onTap});
+  const _OptionRowData({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
 
   final SvgGenImage icon;
   final String title;
