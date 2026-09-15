@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:raqamli_sovchi/app/theme/app_status_colors.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
+import '../../../../app/theme/app_status_colors.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -38,7 +37,7 @@ final class CandidateActionResultPage extends StatelessWidget {
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
-            foregroundColor: Theme.of(context).colorScheme.surface,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -63,7 +62,14 @@ final class CandidateActionResultPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              Assets.icons.icArrowRight.svg(width: 20, height: 20),
+              Assets.icons.icArrowRight.svg(
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.onPrimary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ],
           ),
         ),
@@ -78,6 +84,10 @@ final class CandidateActionResultPage extends StatelessWidget {
                 icon: Assets.icons.icArrowLeft01Round.svg(
                   width: 20,
                   height: 20,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onSurface,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 tooltip: l10n.backLabel,
               ),
@@ -231,7 +241,7 @@ final class _ProposalQuota extends StatelessWidget {
                       context,
                     ).colorScheme.surfaceContainerHighest,
                   ),
-                  FractionallySizedBox(
+                  const FractionallySizedBox(
                     alignment: Alignment.centerLeft,
                     widthFactor: 2 / 3,
                     child: ColoredBox(color: AppColors.primary),

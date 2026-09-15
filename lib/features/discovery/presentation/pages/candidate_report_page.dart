@@ -137,10 +137,10 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
             minimumSize: const Size.fromHeight(52),
             backgroundColor: AppColors.primary,
             disabledBackgroundColor: AppColors.primary.withValues(alpha: 0.4),
-            foregroundColor: Theme.of(context).colorScheme.surface,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
             disabledForegroundColor: Theme.of(
               context,
-            ).colorScheme.surface.withValues(alpha: 0.8),
+            ).colorScheme.onPrimary.withValues(alpha: 0.8),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppRadius.full),
@@ -151,7 +151,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                   dimension: 20,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
-                    color: Theme.of(context).colorScheme.surface,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   ),
                 )
               : Row(
@@ -171,7 +171,7 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                       width: 20,
                       height: 20,
                       colorFilter: ColorFilter.mode(
-                        Theme.of(context).colorScheme.surface,
+                        Theme.of(context).colorScheme.onPrimary,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -189,6 +189,10 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                 icon: Assets.icons.icArrowLeft01Round.svg(
                   width: 20,
                   height: 20,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.onSurface,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 tooltip: l10n.backLabel,
               ),
@@ -380,6 +384,8 @@ final class _CandidateReportPageState extends State<CandidateReportPage> {
                               color: Theme.of(context).colorScheme.onSurface,
                             ),
                             decoration: InputDecoration(
+                              filled: false,
+                              fillColor: Colors.transparent,
                               hintText: l10n.candidateReportNoteHint,
                               hintStyle: TextStyle(
                                 fontFamily: 'Manrope',

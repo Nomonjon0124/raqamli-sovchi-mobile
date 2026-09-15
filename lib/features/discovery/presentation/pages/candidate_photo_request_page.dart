@@ -118,6 +118,10 @@ final class _CandidatePhotoRequestView extends StatelessWidget {
                   icon: Assets.icons.icArrowLeft01Round.svg(
                     width: 20,
                     height: 20,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.onSurface,
+                      BlendMode.srcIn,
+                    ),
                   ),
                   tooltip: l10n.backLabel,
                 ),
@@ -247,8 +251,8 @@ final class _PrimaryActionButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: AppColors.primary,
           disabledBackgroundColor: AppColors.primary,
-          foregroundColor: Theme.of(context).colorScheme.surface,
-          disabledForegroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          disabledForegroundColor: Theme.of(context).colorScheme.onPrimary,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.full),
@@ -259,7 +263,7 @@ final class _PrimaryActionButton extends StatelessWidget {
                 dimension: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorScheme.surface,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 ),
               )
             : Row(
@@ -283,7 +287,7 @@ final class _PrimaryActionButton extends StatelessWidget {
                     width: 20,
                     height: 20,
                     colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.surface,
+                      Theme.of(context).colorScheme.onPrimary,
                       BlendMode.srcIn,
                     ),
                   ),
