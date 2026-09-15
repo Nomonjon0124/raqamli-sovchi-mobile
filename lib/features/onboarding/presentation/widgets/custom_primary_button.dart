@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -23,9 +22,9 @@ final class CustomPrimaryButton extends StatelessWidget {
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           disabledBackgroundColor: Theme.of(context).colorScheme.outline,
-          foregroundColor: Theme.of(context).colorScheme.surface,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
           disabledForegroundColor: Theme.of(
             context,
           ).colorScheme.onSurfaceVariant,
@@ -43,7 +42,7 @@ final class CustomPrimaryButton extends StatelessWidget {
             final foregroundColor =
                 IconTheme.of(context).color ??
                 DefaultTextStyle.of(context).style.color ??
-                Theme.of(context).colorScheme.surface;
+                Theme.of(context).colorScheme.onPrimary;
 
             return Row(
               mainAxisSize: MainAxisSize.min,
