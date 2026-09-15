@@ -83,7 +83,9 @@ final class SettingsAccountActions extends StatelessWidget {
               child: Text(
                 deleteText,
                 textAlign: TextAlign.center,
-                style: AppTypography.settingsDeleteAction,
+                style: AppTypography.settingsDeleteAction.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ),
           ),
