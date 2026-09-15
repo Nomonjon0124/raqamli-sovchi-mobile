@@ -5,7 +5,7 @@ final class SettingsState extends Equatable {
   const SettingsState({
     this.notificationsEnabled = true,
     this.locale = const Locale('uz'),
-    this.themeMode = ThemeMode.light,
+    this.themeMode = ThemeMode.system,
   });
 
   final bool notificationsEnabled;

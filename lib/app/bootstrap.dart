@@ -3,10 +3,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 
 import '../core/media/android_photo_picker_config.dart';
-import '../core/security/screenshot_guard.dart';
 import '../features/auth/presentation/bloc/auth_bloc.dart';
 import '../features/auth/presentation/bloc/auth_event.dart';
 import '../features/notifications/data/services/notification_lifecycle_service.dart';
+import '../features/settings/presentation/cubit/settings_cubit.dart';
 import '../firebase_options.dart';
 import 'app.dart';
 import 'di/service_locator.dart';
@@ -22,6 +22,7 @@ Future<void> bootstrap() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await configureDependencies();
+  await serviceLocator<SettingsCubit>().load();
   await serviceLocator<NotificationLifecycleService>().initialize();
   // await serviceLocator<ScreenshotGuard>().enableProtection();
 

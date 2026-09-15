@@ -84,7 +84,7 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
     return Row(
       children: [
         AppRoundIconButton(
-          icon: Assets.icons.settingsBack,
+          icon: Assets.icons.icArrowLeft01Round,
           semanticLabel: l10n.settingsBack,
           onPressed: isLoading ? null : () => context.pop(),
         ),
