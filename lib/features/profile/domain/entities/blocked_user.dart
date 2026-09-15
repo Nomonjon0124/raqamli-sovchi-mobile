@@ -35,6 +35,7 @@ final class BlockedUserInfo extends Equatable {
     this.fullName = '',
     this.phoneNumber,
     this.email,
+    this.avatarUrl,
   });
 
   final String id;
@@ -42,6 +43,7 @@ final class BlockedUserInfo extends Equatable {
   final String fullName;
   final String? phoneNumber;
   final String? email;
+  final String? avatarUrl;
 
   String get initials {
     final parts = fullName
@@ -59,5 +61,12 @@ final class BlockedUserInfo extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, profileId, fullName, phoneNumber, email];
+  List<Object?> get props => [
+    id,
+    profileId,
+    fullName,
+    phoneNumber,
+    email,
+    avatarUrl,
+  ];
 }

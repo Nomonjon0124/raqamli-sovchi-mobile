@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:raqamli_sovchi/features/profile/domain/entities/blocked_user.dart';
@@ -5,6 +6,38 @@ import 'package:raqamli_sovchi/features/profile/presentation/widgets/blocked_use
 import 'package:raqamli_sovchi/l10n/app_localizations.dart';
 
 void main() {
+  testWidgets('BlockedUserTile uses avatar URL when available', (tester) async {
+    const avatarUrl = 'https://example.com/avatar.jpg';
+    const user = BlockedUser(
+      id: 'block-avatar',
+      blocker: 'user-me',
+      blocked: 'user-target',
+      blockedInfo: BlockedUserInfo(
+        id: 'user-target',
+        profileId: 'profile-target',
+        fullName: 'Nozima Odileva',
+        avatarUrl: avatarUrl,
+      ),
+    );
+
+    await tester.pumpWidget(
+      _TestApp(
+        child: BlockedUserTile(
+          blockedUser: user,
+          isUnblocking: false,
+          onUnblock: () {},
+        ),
+      ),
+    );
+
+    final avatar = tester.widget<CircleAvatar>(find.byType(CircleAvatar));
+    expect(avatar.foregroundImage, isA<CachedNetworkImageProvider>());
+    expect(
+      (avatar.foregroundImage! as CachedNetworkImageProvider).url,
+      avatarUrl,
+    );
+  });
+
   testWidgets('BlockedUserTile renders name, initials, and date', (
     tester,
   ) async {
