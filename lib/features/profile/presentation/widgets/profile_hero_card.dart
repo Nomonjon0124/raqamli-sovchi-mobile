@@ -37,81 +37,78 @@ final class ProfileHeroCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.lg),
-        child: ColoredBox(
-          color: colorScheme.surface,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 78),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: AppSpacing.input,
-              children: [
-                _ProfileAvatar(
-                  initials: profile.initials,
-                  completionPercent: profile.completionPercent,
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: AppSpacing.xs,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTypography.profileName,
-                            ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 78),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: AppSpacing.input,
+            children: [
+              _ProfileAvatar(
+                initials: profile.initials,
+                completionPercent: profile.completionPercent,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppSpacing.xs,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTypography.profileName,
                           ),
-                          if (profile.isVerified) ...[
-                            const SizedBox(width: AppSpacing.compact),
-                            const _VerifiedBadge(),
-                          ],
+                        ),
+                        if (profile.isVerified) ...[
+                          const SizedBox(width: AppSpacing.compact),
+                          const _VerifiedBadge(),
                         ],
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              identifierText,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTypography.profileCardBody,
-                            ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            identifierText,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTypography.profileCardBody,
                           ),
-                          const SizedBox(width: AppSpacing.xs),
-                          Semantics(
-                            button: true,
-                            label: copyLabel,
-                            child: InkResponse(
-                              onTap: onCopy,
-                              radius: 22,
-                              child: SizedBox.square(
-                                dimension: 44,
-                                child: Center(
-                                  child: Assets.icons.icCopy.svg(
-                                    width: 13,
-                                    height: 13,
-                                    colorFilter: ColorFilter.mode(
-                                      colorScheme.onSurfaceVariant,
-                                      BlendMode.srcIn,
-                                    ),
-                                    excludeFromSemantics: true,
+                        ),
+                        const SizedBox(width: AppSpacing.xs),
+                        Semantics(
+                          button: true,
+                          label: copyLabel,
+                          child: InkResponse(
+                            onTap: onCopy,
+                            radius: 22,
+                            child: SizedBox.square(
+                              dimension: 44,
+                              child: Center(
+                                child: Assets.icons.icCopy.svg(
+                                  width: 13,
+                                  height: 13,
+                                  colorFilter: ColorFilter.mode(
+                                    colorScheme.onSurfaceVariant,
+                                    BlendMode.srcIn,
                                   ),
+                                  excludeFromSemantics: true,
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
