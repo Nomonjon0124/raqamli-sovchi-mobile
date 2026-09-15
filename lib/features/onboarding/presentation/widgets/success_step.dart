@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raqamli_sovchi/core/extensions/gap_extension.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -72,7 +71,9 @@ final class SuccessStep extends StatelessWidget {
                     child: Text(
                       subtitle,
                       textAlign: TextAlign.start,
-                      style: AppTypography.onboardingBody.copyWith(),
+                      style: AppTypography.onboardingBody.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ),
                   20.g,
@@ -118,7 +119,10 @@ final class _AiTestOfferCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceContainerLow,
-        border: Border.all(color: AppColors.primary, width: 1.5),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: Column(
@@ -140,6 +144,7 @@ final class _AiTestOfferCard extends StatelessWidget {
             style: AppTypography.onboardingBody.copyWith(
               fontSize: 13,
               height: 25 / 15,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 15),
@@ -161,7 +166,7 @@ final class _AiBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: Padding(
@@ -173,7 +178,7 @@ final class _AiBadge extends StatelessWidget {
               width: 12,
               height: 12,
               colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.surface,
+                Theme.of(context).colorScheme.onPrimary,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,
@@ -182,7 +187,7 @@ final class _AiBadge extends StatelessWidget {
             Text(
               AppLocalizations.of(context).aiTestBadge,
               style: AppTypography.onboardingCardBody.copyWith(
-                color: Theme.of(context).colorScheme.surface,
+                color: Theme.of(context).colorScheme.onPrimary,
                 fontSize: 10,
                 height: 16 / 13,
                 fontWeight: FontWeight.w600,
@@ -214,8 +219,8 @@ final class _AiFeatureRow extends StatelessWidget {
             child: icon.svg(
               width: 16,
               height: 16,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
                 BlendMode.srcIn,
               ),
               excludeFromSemantics: true,

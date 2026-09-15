@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -46,7 +45,12 @@ final class ChildrenNotLivingCard extends StatelessWidget {
                   children: [
                     Text(title, style: AppTypography.onboardingCardTitle),
                     const SizedBox(height: AppSpacing.xs - 2),
-                    Text(detail, style: AppTypography.onboardingCardBody),
+                    Text(
+                      detail,
+                      style: AppTypography.onboardingCardBody.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -75,16 +79,18 @@ final class _OnboardingToggle extends StatelessWidget {
       alignment: value ? Alignment.centerRight : Alignment.centerLeft,
       decoration: BoxDecoration(
         color: value
-            ? AppColors.primary
+            ? Theme.of(context).colorScheme.primary
             : Theme.of(context).colorScheme.outline,
         borderRadius: BorderRadius.circular(AppRadius.full),
       ),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface,
+          color: value
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.surface,
           shape: BoxShape.circle,
         ),
-        child: SizedBox(width: 20, height: 20),
+        child: const SizedBox(width: 20, height: 20),
       ),
     );
   }

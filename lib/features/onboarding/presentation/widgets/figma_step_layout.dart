@@ -25,7 +25,12 @@ final class FigmaStepLayout extends StatelessWidget {
         Text(title, style: AppTypography.onboardingTitle),
         if (subtitle != null) ...[
           const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
-          Text(subtitle!, style: AppTypography.onboardingBody),
+          Text(
+            subtitle!,
+            style: AppTypography.onboardingBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         child,

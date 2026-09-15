@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/step_layout.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -121,11 +120,11 @@ final class _PledgeConfirmationCard extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: accepted
-                    ? AppColors.primary
+                    ? Theme.of(context).colorScheme.primary
                     : Theme.of(context).colorScheme.surface,
                 border: Border.all(
                   color: accepted
-                      ? AppColors.primary
+                      ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.outline,
                   width: 1.5,
                 ),
@@ -135,7 +134,7 @@ final class _PledgeConfirmationCard extends StatelessWidget {
                   ? Icon(
                       Icons.check,
                       size: 14,
-                      color: Theme.of(context).colorScheme.surface,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     )
                   : null,
             ),
@@ -158,6 +157,7 @@ final class _PrivacyPolicyLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final primaryColor = Theme.of(context).colorScheme.primary;
     return Center(
       child: Wrap(
         alignment: WrapAlignment.center,
@@ -168,9 +168,9 @@ final class _PrivacyPolicyLink extends StatelessWidget {
               padding: EdgeInsets.zero,
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              foregroundColor: AppColors.primary,
+              foregroundColor: primaryColor,
               textStyle: AppTypography.onboardingBody.copyWith(
-                color: AppColors.primary,
+                color: primaryColor,
                 decoration: TextDecoration.underline,
               ),
             ),
@@ -178,7 +178,9 @@ final class _PrivacyPolicyLink extends StatelessWidget {
           ),
           Text(
             l10n.privacyPolicyAgreementSuffix,
-            style: AppTypography.onboardingBody,
+            style: AppTypography.onboardingBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
       ),

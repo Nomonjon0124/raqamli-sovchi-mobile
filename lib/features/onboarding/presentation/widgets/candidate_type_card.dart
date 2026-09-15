@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -26,7 +25,7 @@ final class CandidateTypeCard extends StatelessWidget {
       selected: selected,
       label: title,
       child: Material(
-        color: AppColors.transparent,
+        color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(AppRadius.xl),
@@ -39,7 +38,7 @@ final class CandidateTypeCard extends StatelessWidget {
                   : Theme.of(context).colorScheme.surface,
               border: Border.all(
                 color: selected
-                    ? AppColors.primary
+                    ? Theme.of(context).colorScheme.primary
                     : Theme.of(context).colorScheme.outline,
                 width: 1.5,
               ),
@@ -64,6 +63,7 @@ final class CandidateTypeCard extends StatelessWidget {
                     fontSize: 12,
                     height: 19 / 12,
                     fontWeight: FontWeight.w400,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],

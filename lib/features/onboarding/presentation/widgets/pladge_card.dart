@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -35,8 +34,8 @@ final class PledgeCard extends StatelessWidget {
                       child: Container(
                         width: AppSpacing.sm,
                         height: AppSpacing.sm,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primary,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -47,7 +46,9 @@ final class PledgeCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     points[index],
-                    style: AppTypography.onboardingPledgeBody,
+                    style: AppTypography.onboardingPledgeBody.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               ],

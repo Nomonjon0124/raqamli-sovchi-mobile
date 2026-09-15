@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -201,7 +200,10 @@ final class _MeasurementRow extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surface,
-                  border: Border.all(color: AppColors.primary, width: 1.5),
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 1.5,
+                  ),
                   borderRadius: BorderRadius.circular(AppRadius.lg),
                 ),
                 child: Row(
@@ -224,7 +226,12 @@ final class _MeasurementRow extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: AppSpacing.xs),
-                    Text(unit, style: AppTypography.onboardingMeasurementUnit),
+                    Text(
+                      unit,
+                      style: AppTypography.onboardingMeasurementUnit.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                   ],
                 ),
               ),

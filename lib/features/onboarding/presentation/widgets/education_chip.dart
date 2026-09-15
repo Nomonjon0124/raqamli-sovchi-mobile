@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -32,7 +31,7 @@ final class EducationChip extends StatelessWidget {
                 : Theme.of(context).colorScheme.surface,
             border: Border.all(
               color: selected
-                  ? AppColors.primary
+                  ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.outline,
               width: 1.5,
             ),
@@ -42,7 +41,7 @@ final class EducationChip extends StatelessWidget {
             label,
             style: AppTypography.onboardingChip.copyWith(
               color: selected
-                  ? AppColors.primary
+                  ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),
