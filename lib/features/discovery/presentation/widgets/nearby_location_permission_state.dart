@@ -150,12 +150,14 @@ final class _PrivacyRules extends StatelessWidget {
               icon: Assets.icons.icSquareLock,
               label: l10n.nearbyPermissionRuleHidden,
               backgroundColor: context.statusColors.successContainer,
+              iconColor: context.statusColors.onSuccessContainer,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
               icon: Assets.icons.icRadar,
               label: l10n.nearbyPermissionRuleZone,
               backgroundColor: context.statusColors.successContainer,
+              iconColor: context.statusColors.onSuccessContainer,
             ),
             const SizedBox(height: AppSpacing.inline),
             _PrivacyRule(
@@ -164,6 +166,7 @@ final class _PrivacyRules extends StatelessWidget {
               backgroundColor: Theme.of(
                 context,
               ).colorScheme.surfaceContainerLow,
+              iconColor: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ],
         ),
@@ -177,11 +180,13 @@ final class _PrivacyRule extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.backgroundColor,
+    this.iconColor,
   });
 
   final SvgGenImage icon;
   final String label;
   final Color backgroundColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +200,11 @@ final class _PrivacyRule extends StatelessWidget {
             color: backgroundColor,
             shape: BoxShape.circle,
           ),
-          child: icon.svg(),
+          child: icon.svg(
+            colorFilter: iconColor != null
+                ? ColorFilter.mode(iconColor!, BlendMode.srcIn)
+                : null,
+          ),
         ),
         const SizedBox(width: AppSpacing.inline),
         Expanded(child: Text(label, style: AppTypography.onboardingPledgeBody)),
@@ -244,7 +253,9 @@ final class _PermissionButton extends StatelessWidget {
                 dimension: 18,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Theme.of(context).colorScheme.surface,
+                  color: primary
+                      ? colorScheme.onPrimary
+                      : colorScheme.onSurfaceVariant,
                 ),
               )
             : Row(
@@ -252,7 +263,14 @@ final class _PermissionButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (primary) ...[
-                    Assets.icons.icLocation.svg(width: 16, height: 16),
+                    Assets.icons.icLocation.svg(
+                      width: 16,
+                      height: 16,
+                      colorFilter: ColorFilter.mode(
+                        colorScheme.onPrimary,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                     const SizedBox(width: AppSpacing.sm),
                   ],
                   Flexible(

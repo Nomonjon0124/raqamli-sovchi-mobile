@@ -304,7 +304,16 @@ final class _MapIconButton extends StatelessWidget {
           child: SizedBox(
             width: 34,
             height: 34,
-            child: Center(child: icon.svg(width: 16, height: 16)),
+            child: Center(
+              child: icon.svg(
+                width: 16,
+                height: 16,
+                colorFilter: ColorFilter.mode(
+                  colorScheme.onSurface,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -485,6 +494,10 @@ final class _TargetIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final filter = ColorFilter.mode(
+      Theme.of(context).colorScheme.onSurface,
+      BlendMode.srcIn,
+    );
     return SizedBox.square(
       dimension: 18,
       child: Stack(
@@ -493,17 +506,29 @@ final class _TargetIcon extends StatelessWidget {
           Positioned(
             left: 0.5,
             top: 0.5,
-            child: Assets.icons.icMapTargetRing.svg(width: 17, height: 17),
+            child: Assets.icons.icMapTargetRing.svg(
+              width: 17,
+              height: 17,
+              colorFilter: filter,
+            ),
           ),
           Positioned(
             left: 4.25,
             top: 4.25,
-            child: Assets.icons.icMapTargetCenter.svg(width: 9.5, height: 9.5),
+            child: Assets.icons.icMapTargetCenter.svg(
+              width: 9.5,
+              height: 9.5,
+              colorFilter: filter,
+            ),
           ),
           Positioned(
             left: 8.5,
             top: 0.5,
-            child: Assets.icons.icMapTargetCorner.svg(width: 9.5, height: 9.5),
+            child: Assets.icons.icMapTargetCorner.svg(
+              width: 9.5,
+              height: 9.5,
+              colorFilter: filter,
+            ),
           ),
         ],
       ),

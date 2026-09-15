@@ -72,7 +72,7 @@ final class SurveyPromptCard extends StatelessWidget {
                 onPressed: onPressed,
                 style: FilledButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  foregroundColor: Theme.of(context).colorScheme.surface,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                     vertical: AppSpacing.lg,
