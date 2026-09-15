@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -113,8 +112,8 @@ final class _OnboardingVoiceRecorderState extends State<OnboardingVoiceRecorder>
                 style: FilledButton.styleFrom(
                   shape: const CircleBorder(),
                   padding: EdgeInsets.zero,
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Theme.of(context).colorScheme.surface,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 ),
                 child: Icon(
                   widget.isRecording
@@ -201,8 +200,8 @@ final class _RecordedVoice extends StatelessWidget {
                     style: FilledButton.styleFrom(
                       shape: const CircleBorder(),
                       padding: EdgeInsets.zero,
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Theme.of(context).colorScheme.surface,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: Icon(
                       isPlaying ? Icons.pause_rounded : Icons.play_arrow,
@@ -251,7 +250,12 @@ final class _RecordedVoice extends StatelessWidget {
         const SizedBox(height: AppSpacing.md),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text(hint, style: AppTypography.onboardingBody),
+          child: Text(
+            hint,
+            style: AppTypography.onboardingBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
         ),
       ],
     );
@@ -277,14 +281,14 @@ final class _ActionButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           foregroundColor: destructive
-              ? Theme.of(context).colorScheme.surface
+              ? Theme.of(context).colorScheme.onError
               : Theme.of(context).colorScheme.onSurface,
           backgroundColor: destructive
-              ? AppColors.danger
+              ? Theme.of(context).colorScheme.error
               : Theme.of(context).colorScheme.surface,
           side: BorderSide(
             color: destructive
-                ? AppColors.danger
+                ? Theme.of(context).colorScheme.error
                 : Theme.of(context).colorScheme.outline,
           ),
           shape: const StadiumBorder(),
@@ -358,9 +362,9 @@ final class _AnimatedWaveform extends StatelessWidget {
                 _WaveBar(
                   height: _barHeight(index),
                   color: recorded && index >= progress
-                      ? AppColors.strongBorder
+                      ? Theme.of(context).colorScheme.outline
                       : active || recorded
-                      ? AppColors.primary
+                      ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.outline,
                 ),
             ],
