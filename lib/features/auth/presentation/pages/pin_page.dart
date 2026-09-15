@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -166,7 +165,9 @@ final class _PinPageState extends State<PinPage> {
                       ? l10n.pinHintCreate
                       : l10n.pinHintUnlock,
                   textAlign: TextAlign.center,
-                  style: AppTypography.onboardingBody,
+                  style: AppTypography.onboardingBody.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xxl),
                 _PinIndicator(valueLength: _value.length),
@@ -176,7 +177,7 @@ final class _PinPageState extends State<PinPage> {
                     l10n.pinMismatch,
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
-                      color: Theme.of(context).colorScheme.onErrorContainer,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                   ),
                 ],
@@ -186,7 +187,7 @@ final class _PinPageState extends State<PinPage> {
                     l10n.failureMessage(authState.failure!.type.name),
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
-                      color: Theme.of(context).colorScheme.onErrorContainer,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                   ),
                 ],
@@ -232,7 +233,7 @@ final class _PinIndicator extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: index < valueLength
-                ? AppColors.primary
+                ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.outline,
           ),
         ),

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -67,6 +66,7 @@ final class _OtpPageState extends State<OtpPage> {
               Text(
                 l10n.otpSentTo(phone),
                 style: AppTypography.caption.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -74,6 +74,7 @@ final class _OtpPageState extends State<OtpPage> {
               Text(
                 l10n.otpResend,
                 style: AppTypography.caption.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -92,7 +93,7 @@ final class _OtpPageState extends State<OtpPage> {
                 Text(
                   l10n.failureMessage(authState.failure!.type.name),
                   style: AppTypography.caption.copyWith(
-                    color: AppColors.danger,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
               ],
