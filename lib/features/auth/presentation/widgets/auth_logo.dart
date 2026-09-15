@@ -12,10 +12,10 @@ final class AuthLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firstColor = onPrimary
-        ? Theme.of(context).colorScheme.surface
+        ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onSurfaceVariant;
     final secondColor = onPrimary
-        ? Theme.of(context).colorScheme.surface
+        ? Theme.of(context).colorScheme.onPrimary
         : Theme.of(context).colorScheme.onSurface;
     return Row(
       mainAxisSize: MainAxisSize.min,

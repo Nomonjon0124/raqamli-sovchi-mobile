@@ -12,7 +12,14 @@ final class AuthBackButton extends StatelessWidget {
     return IconButton(
       onPressed: onPressed,
       tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-      icon: Assets.icons.icArrowLeft01Round.svg(width: 20, height: 20),
+      icon: Assets.icons.icArrowLeft01Round.svg(
+        width: 20,
+        height: 20,
+        colorFilter: ColorFilter.mode(
+          Theme.of(context).colorScheme.onSurface,
+          BlendMode.srcIn,
+        ),
+      ),
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints.tightFor(width: 36, height: 36),
     );
