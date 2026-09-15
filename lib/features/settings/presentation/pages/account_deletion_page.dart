@@ -183,18 +183,18 @@ final class _AccountDeletionPageState extends State<AccountDeletionPage> {
                     dimension: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      color: Theme.of(context).colorScheme.surface,
+                      color: Theme.of(context).colorScheme.onError,
                     ),
                   )
                 : const Icon(Icons.delete_outline, size: 20),
             label: Text(l10n.accountDeletionConfirm),
             style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.onErrorContainer,
-              foregroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(context).colorScheme.onError,
               disabledBackgroundColor: Theme.of(
                 context,
-              ).colorScheme.onErrorContainer,
-              disabledForegroundColor: Theme.of(context).colorScheme.surface,
+              ).colorScheme.error.withValues(alpha: 0.5),
+              disabledForegroundColor: Theme.of(context).colorScheme.onError,
               textStyle: AppTypography.onboardingAction,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.full),
@@ -250,7 +250,7 @@ final class _WarningCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 1),
+          padding: const EdgeInsets.only(top: 1),
           child: Icon(
             Icons.error_outline,
             color: Theme.of(context).colorScheme.onErrorContainer,
@@ -298,7 +298,7 @@ final class _DeletedItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 1),
+          padding: const EdgeInsets.only(top: 1),
           child: Icon(
             Icons.delete_outline,
             color: Theme.of(context).colorScheme.onErrorContainer,
@@ -346,9 +346,13 @@ final class _ReasonTile extends StatelessWidget {
             height: 18,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: selected ? AppColors.primary : AppColors.transparent,
+              color: selected
+                  ? Theme.of(context).colorScheme.primary
+                  : AppColors.transparent,
               border: Border.all(
-                color: selected ? AppColors.primary : AppColors.strongBorder,
+                color: selected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.outline,
                 width: 1.5,
               ),
             ),
