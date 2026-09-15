@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -22,7 +21,7 @@ final class CustomGhostButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: Theme.of(context).colorScheme.primary,
           disabledForegroundColor: Theme.of(
             context,
           ).colorScheme.onSurfaceVariant,

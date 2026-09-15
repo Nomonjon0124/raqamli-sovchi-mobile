@@ -41,7 +41,12 @@ final class OnboardingLocationSelectorRow extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(label, style: AppTypography.onboardingSelectorLabel),
+                    Text(
+                      label,
+                      style: AppTypography.onboardingSelectorLabel.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                     if (value?.isNotEmpty == true) ...[
                       const SizedBox(height: AppSpacing.xs - 1),
                       Text(

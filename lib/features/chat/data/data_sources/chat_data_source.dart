@@ -6,6 +6,7 @@ import '../models/chat_room_model.dart';
 abstract interface class ChatDataSource {
   Future<List<ChatRoomModel>> fetchChatRooms();
   Future<List<ChatMessageModel>> fetchMessages(String chatRoomId);
+  Future<void> deleteChatRoom(String chatRoomId);
   Future<void> deleteMessage(String messageId);
   Future<ChatMessageModel> createMessage({
     required String chatRoomId,
@@ -44,6 +45,10 @@ final class RemoteChatDataSource implements ChatDataSource {
       _unwrapMap(response.data),
     ).map(ChatMessageModel.fromJson).toList();
   }
+
+  @override
+  Future<void> deleteChatRoom(String chatRoomId) =>
+      _client.delete<void>('$_roomsPath$chatRoomId/');
 
   @override
   Future<void> deleteMessage(String messageId) =>

@@ -46,7 +46,7 @@ final class NearbyCandidatesSheet extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                 color: colorScheme.shadow,
-                offset: Offset(0, -3),
+                offset: const Offset(0, -3),
                 blurRadius: 14,
               ),
             ],
@@ -74,11 +74,11 @@ final class NearbyCandidatesSheet extends StatelessWidget {
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: colorScheme.surfaceContainer,
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(AppRadius.full),
                         ),
                       ),
-                      child: SizedBox(width: 38, height: 4),
+                      child: const SizedBox(width: 38, height: 4),
                     ),
                   );
                 }

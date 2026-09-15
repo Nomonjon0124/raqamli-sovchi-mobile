@@ -49,7 +49,7 @@ final class SplashPage extends StatelessWidget {
                   Text(
                     l10n.splashSubtitle,
                     style: AppTypography.caption.copyWith(
-                      color: Theme.of(context).colorScheme.surface,
+                      color: Theme.of(context).colorScheme.onPrimary,
                       fontSize: 13,
                       height: 21 / 13,
                       fontWeight: FontWeight.w400,

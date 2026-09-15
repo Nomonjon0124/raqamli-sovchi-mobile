@@ -49,14 +49,14 @@ final class AuthPrimaryButton extends StatelessWidget {
                         dimension: 20,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Theme.of(context).colorScheme.surface,
+                          color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       )
                     : Text(
                         label,
                         style: AppTypography.body.copyWith(
                           color: isEnabled
-                              ? Theme.of(context).colorScheme.surface
+                              ? Theme.of(context).colorScheme.onPrimary
                               : Theme.of(context).colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.w600,
                         ),

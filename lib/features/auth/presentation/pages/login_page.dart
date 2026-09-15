@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -74,6 +73,7 @@ final class _LoginPageState extends State<LoginPage> {
                     Text(
                       l10n.loginSubtitle,
                       style: AppTypography.caption.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -146,8 +146,8 @@ final class _LoginPageState extends State<LoginPage> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppRadius.md),
-                          borderSide: const BorderSide(
-                            color: AppColors.primary,
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),
@@ -214,12 +214,22 @@ final class _LoginPageState extends State<LoginPage> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Assets.icons.icInfo.svg(width: 15, height: 15),
+                        Assets.icons.icInfo.svg(
+                          width: 15,
+                          height: 15,
+                          colorFilter: ColorFilter.mode(
+                            Theme.of(context).colorScheme.onSurfaceVariant,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                         const SizedBox(width: AppSpacing.sm),
                         Expanded(
                           child: Text(
                             l10n.loginNote,
                             style: AppTypography.caption.copyWith(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                               fontSize: 11,
                               height: 17 / 11,
                               fontWeight: FontWeight.w400,
@@ -246,7 +256,7 @@ final class _LoginPageState extends State<LoginPage> {
                       Text(
                         l10n.failureMessage(state.failure!.type.name),
                         style: AppTypography.caption.copyWith(
-                          color: AppColors.danger,
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
                     ],

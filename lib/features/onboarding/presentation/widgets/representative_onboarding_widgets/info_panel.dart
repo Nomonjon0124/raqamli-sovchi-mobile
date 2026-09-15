@@ -21,18 +21,21 @@ final class InfoPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (background, titleColor) = switch (tone) {
+    final (background, titleColor, bodyColor) = switch (tone) {
       InfoTone.warning => (
         context.statusColors.warningContainer,
+        context.statusColors.onWarningContainer,
         context.statusColors.onWarningContainer,
       ),
       InfoTone.success => (
         context.statusColors.successContainer,
         context.statusColors.onSuccessContainer,
+        context.statusColors.onSuccessContainer,
       ),
       InfoTone.neutral => (
         Theme.of(context).colorScheme.surfaceContainerLow,
         Theme.of(context).colorScheme.onSurface,
+        Theme.of(context).colorScheme.onSurfaceVariant,
       ),
     };
     return Container(
@@ -53,7 +56,12 @@ final class InfoPanel extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          Text(body, style: AppTypography.onboardingCardBody),
+          Text(
+            body,
+            style: AppTypography.onboardingCardBody.copyWith(
+              color: bodyColor,
+            ),
+          ),
         ],
       ),
     );

@@ -154,7 +154,7 @@ final class SettingsToggleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return ColoredBox(
-      color: colorScheme.surface,
+      color: AppColors.transparent,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.lg,

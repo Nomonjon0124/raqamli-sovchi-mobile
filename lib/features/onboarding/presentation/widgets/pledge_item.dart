@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -14,9 +13,13 @@ final class PledgeItem extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 3),
-          child: Icon(Icons.circle, size: 16, color: AppColors.primary),
+        Padding(
+          padding: const EdgeInsets.only(top: 3),
+          child: Icon(
+            Icons.circle,
+            size: 16,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
         const SizedBox(width: AppSpacing.sm + 2),
         Expanded(

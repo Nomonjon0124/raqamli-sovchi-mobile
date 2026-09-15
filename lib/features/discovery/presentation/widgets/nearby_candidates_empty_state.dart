@@ -92,7 +92,7 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                         width: 16,
                         height: 16,
                         colorFilter: ColorFilter.mode(
-                          Theme.of(context).colorScheme.surface,
+                          Theme.of(context).colorScheme.onPrimary,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -120,6 +120,10 @@ final class NearbyCandidatesEmptyState extends StatelessWidget {
                     icon: Assets.icons.icNearbyFilterLines.svg(
                       width: 18,
                       height: 16,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.onSurface,
+                        BlendMode.srcIn,
+                      ),
                     ),
                     label: Text(l10n.nearbyChangeCriteria),
                   ),

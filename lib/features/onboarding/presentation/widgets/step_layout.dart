@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -58,7 +57,12 @@ final class StepLayout extends StatelessWidget {
         Text(title, style: AppTypography.onboardingTitle),
         if (subtitle != null) ...[
           const SizedBox(height: AppSpacing.sm),
-          Text(subtitle!, style: AppTypography.onboardingBody),
+          Text(
+            subtitle!,
+            style: AppTypography.onboardingBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         child,
@@ -161,7 +165,9 @@ final class _OnboardingWizardHeader extends StatelessWidget {
                     FractionallySizedBox(
                       alignment: Alignment.centerLeft,
                       widthFactor: progress,
-                      child: const ColoredBox(color: AppColors.primary),
+                      child: ColoredBox(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
                   ],
                 ),
@@ -169,7 +175,12 @@ final class _OnboardingWizardHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: AppSpacing.md),
-          Text('$percent%', style: AppTypography.onboardingProgress),
+          Text(
+            '$percent%',
+            style: AppTypography.onboardingProgress.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
         ],
       ),
     );

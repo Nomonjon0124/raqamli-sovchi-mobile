@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -32,11 +31,11 @@ final class AgreementRow extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: accepted
-                  ? AppColors.primary
+                  ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.surface,
               border: Border.all(
                 color: accepted
-                    ? AppColors.primary
+                    ? Theme.of(context).colorScheme.primary
                     : Theme.of(context).colorScheme.outline,
                 width: 1.5,
               ),
@@ -46,7 +45,7 @@ final class AgreementRow extends StatelessWidget {
                 ? Icon(
                     Icons.check,
                     size: 14,
-                    color: Theme.of(context).colorScheme.surface,
+                    color: Theme.of(context).colorScheme.onPrimary,
                   )
                 : null,
           ),

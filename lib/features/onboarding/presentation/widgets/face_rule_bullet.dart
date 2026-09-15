@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
-
 final class FaceRuleBullet extends StatelessWidget {
   const FaceRuleBullet({super.key});
 
@@ -12,7 +10,7 @@ final class FaceRuleBullet extends StatelessWidget {
       height: 16,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: AppColors.primary),
+        border: Border.all(color: Theme.of(context).colorScheme.primary),
       ),
     );
   }

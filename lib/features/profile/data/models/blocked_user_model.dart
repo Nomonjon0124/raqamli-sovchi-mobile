@@ -71,6 +71,7 @@ final class BlockedUserInfoModel extends Equatable {
     this.fullName = '',
     this.phoneNumber,
     this.email,
+    this.avatarUrl,
   });
 
   factory BlockedUserInfoModel.fromJson(Map<String, dynamic> json) {
@@ -83,6 +84,7 @@ final class BlockedUserInfoModel extends Equatable {
       fullName: rawName,
       phoneNumber: json['phone_number'] as String?,
       email: json['email'] as String?,
+      avatarUrl: _nullableString(json['avatar']),
     );
   }
 
@@ -91,6 +93,7 @@ final class BlockedUserInfoModel extends Equatable {
   final String fullName;
   final String? phoneNumber;
   final String? email;
+  final String? avatarUrl;
 
   BlockedUserInfo toEntity() => BlockedUserInfo(
     id: id,
@@ -98,6 +101,7 @@ final class BlockedUserInfoModel extends Equatable {
     fullName: fullName,
     phoneNumber: phoneNumber,
     email: email,
+    avatarUrl: avatarUrl,
   );
 
   Map<String, dynamic> toJson() => {
@@ -106,13 +110,26 @@ final class BlockedUserInfoModel extends Equatable {
     if (fullName.isNotEmpty) 'full_name': fullName,
     if (phoneNumber != null) 'phone_number': phoneNumber,
     if (email != null) 'email': email,
+    if (avatarUrl != null) 'avatar': avatarUrl,
   };
 
   @override
-  List<Object?> get props => [id, profileId, fullName, phoneNumber, email];
+  List<Object?> get props => [
+    id,
+    profileId,
+    fullName,
+    phoneNumber,
+    email,
+    avatarUrl,
+  ];
 }
 
 String _asString(dynamic value) => value?.toString() ?? '';
+
+String? _nullableString(dynamic value) {
+  final result = value?.toString().trim();
+  return result == null || result.isEmpty ? null : result;
+}
 
 DateTime? _asDateTime(dynamic value) {
   if (value == null) return null;

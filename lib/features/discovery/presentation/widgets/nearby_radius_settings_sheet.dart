@@ -332,13 +332,13 @@ final class _NearbySwitch extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(3),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           color: colorScheme.surface,
                           shape: BoxShape.circle,
                         ),
-                        child: SizedBox.square(dimension: 18),
+                        child: const SizedBox.square(dimension: 18),
                       ),
                     ),
                   ),
@@ -430,7 +430,14 @@ final class _PrivacyNote extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Assets.icons.icNearbyPrivacyLock.svg(width: 13, height: 16),
+          Assets.icons.icNearbyPrivacyLock.svg(
+            width: 13,
+            height: 16,
+            colorFilter: ColorFilter.mode(
+              colorScheme.onSurfaceVariant,
+              BlendMode.srcIn,
+            ),
+          ),
           const SizedBox(width: AppSpacing.inline),
           Expanded(
             child: Text(

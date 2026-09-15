@@ -15,13 +15,16 @@ final class SecondaryAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       width: double.infinity,
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
           minimumSize: const Size.fromHeight(52),
-          backgroundColor: AppColors.representativeSecondaryAction,
+          backgroundColor: isDark
+              ? Theme.of(context).colorScheme.surfaceContainerHighest
+              : AppColors.representativeSecondaryAction,
           foregroundColor: Theme.of(context).colorScheme.onSurface,
           shape: const StadiumBorder(),
           textStyle: AppTypography.onboardingAction,

@@ -55,6 +55,8 @@ final class ProfileEditBioSection extends StatelessWidget {
             ),
             decoration: InputDecoration(
               isCollapsed: true,
+              filled:false,
+              fillColor:Colors.transparent,
               border: InputBorder.none,
               hintText: l10n.profileEditAboutPlaceholder,
               hintStyle: TextStyle(

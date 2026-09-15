@@ -49,6 +49,10 @@ final class AuthKeypad extends StatelessWidget {
                       icon: Assets.icons.icHugeiconsFingerprintScan.svg(
                         width: 24,
                         height: 24,
+                        colorFilter: ColorFilter.mode(
+                          colorScheme.onSurface,
+                          BlendMode.srcIn,
+                        ),
                       ),
                       onTap: onFingerprint ?? () {},
                     )

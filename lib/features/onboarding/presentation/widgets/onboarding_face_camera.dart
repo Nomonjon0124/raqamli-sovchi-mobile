@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -282,7 +281,10 @@ final class _OnboardingFaceCameraState extends State<OnboardingFaceCamera>
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.primary, width: 3),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 3,
+                ),
               ),
               child: ClipOval(
                 child: Stack(
@@ -316,7 +318,7 @@ final class _OnboardingFaceCameraState extends State<OnboardingFaceCamera>
           TextButton(
             onPressed: _initialize,
             style: TextButton.styleFrom(
-              foregroundColor: AppColors.primary,
+              foregroundColor: Theme.of(context).colorScheme.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
@@ -358,6 +360,7 @@ final class _ScanLine extends StatelessWidget {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, _) {
+        final primaryColor = Theme.of(context).colorScheme.primary;
         return Align(
           alignment: Alignment(0, controller.value * 2 - 1),
           child: Container(
@@ -365,9 +368,9 @@ final class _ScanLine extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  AppColors.primary.withValues(alpha: 0),
-                  AppColors.primary,
-                  AppColors.primary.withValues(alpha: 0),
+                  primaryColor.withValues(alpha: 0),
+                  primaryColor,
+                  primaryColor.withValues(alpha: 0),
                 ],
               ),
             ),

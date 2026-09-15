@@ -66,7 +66,7 @@ final class _VerifiedBadge extends StatelessWidget {
           width: 13,
           height: 13,
           colorFilter: ColorFilter.mode(
-            Theme.of(context).colorScheme.surface,
+            Theme.of(context).colorScheme.onPrimary,
             BlendMode.srcIn,
           ),
         ),

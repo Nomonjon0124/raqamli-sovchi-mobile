@@ -25,19 +25,19 @@ final class OnboardingLocationMap extends StatelessWidget {
               child: Assets.icons.icLocation.svg(
                 width: 36,
                 height: 36,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primary,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.primary,
                   BlendMode.srcIn,
                 ),
                 excludeFromSemantics: true,
               ),
             ),
             if (isLoading)
-              ColoredBox(
+              const ColoredBox(
                 color: AppColors.imageLoadingScrim,
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: Theme.of(context).colorScheme.surface,
+                    color: Colors.white,
                   ),
                 ),
               ),

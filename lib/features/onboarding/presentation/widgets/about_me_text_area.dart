@@ -40,6 +40,8 @@ final class AboutMeTextArea extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
           border: InputBorder.none,
+          filled: false,
+          fillColor: Colors.transparent,
           isDense: true,
           counterText: '',
           contentPadding: EdgeInsets.zero,

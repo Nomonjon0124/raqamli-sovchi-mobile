@@ -83,7 +83,7 @@ final class _CandidateDetailVoicePlayerState
       _controller.stop();
     } else {
       await _player.play();
-      _controller.repeat();
+      unawaited(_controller.repeat());
     }
   }
 
@@ -131,7 +131,7 @@ final class _CandidateDetailVoicePlayerState
                           ? Icons.pause_rounded
                           : Icons.play_arrow_rounded,
                       size: 20,
-                      color: Theme.of(context).colorScheme.surface,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ),

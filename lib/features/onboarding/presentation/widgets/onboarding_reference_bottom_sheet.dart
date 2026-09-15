@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -77,7 +76,7 @@ final class _OnboardingReferenceBottomSheetState
             ),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
-              borderRadius: BorderRadius.vertical(
+              borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(AppSpacing.xl),
               ),
             ),
@@ -102,7 +101,9 @@ final class _OnboardingReferenceBottomSheetState
                   const SizedBox(height: AppSpacing.xs),
                   Text(
                     widget.subtitle!,
-                    style: AppTypography.onboardingSheetCaption,
+                    style: AppTypography.onboardingSheetCaption.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
                 if (searchPlaceholder != null) ...[
@@ -112,7 +113,9 @@ final class _OnboardingReferenceBottomSheetState
                     style: AppTypography.onboardingSearch,
                     decoration: InputDecoration(
                       hintText: searchPlaceholder,
-                      hintStyle: AppTypography.onboardingSearch,
+                      hintStyle: AppTypography.onboardingSearch.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                       filled: true,
                       fillColor: Theme.of(
                         context,
@@ -160,11 +163,11 @@ final class _OnboardingReferenceBottomSheetState
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSpacing.lg,
                     ),
-                    backgroundColor: AppColors.primary,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     disabledBackgroundColor: Theme.of(
                       context,
                     ).colorScheme.outline,
-                    foregroundColor: Theme.of(context).colorScheme.surface,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     disabledForegroundColor: Theme.of(
                       context,
                     ).colorScheme.onSurfaceVariant,
@@ -201,7 +204,7 @@ final class OnboardingReferenceOptionTile extends StatelessWidget {
     return Material(
       color: selected
           ? Theme.of(context).colorScheme.surfaceContainerHighest
-          : AppColors.transparent,
+          : Colors.transparent,
       borderRadius: BorderRadius.circular(AppRadius.lg),
       child: InkWell(
         onTap: onPressed,
@@ -238,9 +241,13 @@ final class _ReferenceRadio extends StatelessWidget {
       width: 18,
       height: 18,
       decoration: BoxDecoration(
-        color: selected ? AppColors.primary : AppColors.transparent,
+        color: selected
+            ? Theme.of(context).colorScheme.primary
+            : Colors.transparent,
         border: Border.all(
-          color: selected ? AppColors.primary : AppColors.strongBorder,
+          color: selected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.outline,
           width: 1.5,
         ),
         shape: BoxShape.circle,

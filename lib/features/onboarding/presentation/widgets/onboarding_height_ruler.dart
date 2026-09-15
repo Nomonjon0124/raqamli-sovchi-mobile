@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -170,10 +169,10 @@ final class _OnboardingHeightRulerState extends State<OnboardingHeightRuler> {
                           },
                         ),
                       ),
-                      const IgnorePointer(
+                      IgnorePointer(
                         child: _HeightTick(
                           height: 34,
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ],
@@ -237,7 +236,10 @@ final class _HeightValueBox extends StatelessWidget {
       width: 120,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primary, width: 1.5),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.primary,
+          width: 1.5,
+        ),
         borderRadius: BorderRadius.circular(AppRadius.xl),
       ),
       child: FittedBox(
@@ -252,7 +254,7 @@ final class _HeightValueBox extends StatelessWidget {
             Text(
               unit,
               style: AppTypography.onboardingChip.copyWith(
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],

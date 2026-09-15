@@ -107,7 +107,12 @@ final class _LegalDocumentWebViewPageState
         foregroundColor: Theme.of(context).colorScheme.onSurface,
         elevation: 0,
         centerTitle: true,
-        title: Text(widget.title, style: AppTypography.settingsPageTitle),
+        title: Text(
+          widget.title,
+          style: AppTypography.settingsPageTitle.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
         leading: IconButton(
           tooltip: l10n.settingsBack,
           onPressed: () => Navigator.of(context).pop(),

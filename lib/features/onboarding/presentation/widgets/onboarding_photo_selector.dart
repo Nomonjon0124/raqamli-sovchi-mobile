@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../domain/entities/profile_onboarding_draft.dart';
 
@@ -45,7 +44,7 @@ final class _PhotoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasLocal = File(photo.localFilePath).existsSync();
     return Material(
-      color: AppColors.transparent,
+      color: Colors.transparent,
       child: InkWell(
         onTap: photo.serverId == null
             ? null
@@ -55,7 +54,7 @@ final class _PhotoTile extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               color: photo.isMain
-                  ? AppColors.primary
+                  ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.outline,
               width: photo.isMain ? 2 : 1,
             ),
@@ -73,17 +72,17 @@ final class _PhotoTile extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        color: Theme.of(context).colorScheme.primary,
                         shape: BoxShape.circle,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         child: Icon(
                           Icons.check_rounded,
-                          color: Theme.of(context).colorScheme.surface,
+                          color: Theme.of(context).colorScheme.onPrimary,
                           size: 12,
                         ),
                       ),

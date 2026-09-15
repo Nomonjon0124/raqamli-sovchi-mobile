@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_typography.dart';
 
@@ -21,7 +20,7 @@ final class AuthCodeCells extends StatelessWidget {
                 color: Theme.of(context).colorScheme.surface,
                 border: Border.all(
                   color: index < value.length
-                      ? AppColors.primary
+                      ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.outline,
                   width: index < value.length ? 1.5 : 1,
                 ),

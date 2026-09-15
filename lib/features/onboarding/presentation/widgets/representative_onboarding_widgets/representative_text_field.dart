@@ -43,7 +43,12 @@ final class RepresentativeTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: AppTypography.onboardingFieldLabel),
+          Text(
+            label,
+            style: AppTypography.onboardingFieldLabel.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
           const SizedBox(height: 3),
           TextField(
             controller: controller,
@@ -55,6 +60,8 @@ final class RepresentativeTextField extends StatelessWidget {
             style: AppTypography.onboardingFieldValue,
             decoration: InputDecoration(
               isDense: true,
+              filled: false,
+              fillColor: Colors.transparent,
               border: InputBorder.none,
               contentPadding: EdgeInsets.zero,
               prefixText: prefixText,

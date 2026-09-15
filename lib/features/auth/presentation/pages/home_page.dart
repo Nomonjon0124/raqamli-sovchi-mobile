@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/widgets/app_empty_state.dart';
@@ -54,8 +53,10 @@ class HomePage extends StatelessWidget {
                         : const Icon(Icons.delete_outline),
                     label: Text(l10n.deleteAccount),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: AppColors.danger,
-                      side: const BorderSide(color: AppColors.danger),
+                      foregroundColor: Theme.of(context).colorScheme.error,
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
                       textStyle: AppTypography.body.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -71,7 +72,7 @@ class HomePage extends StatelessWidget {
                     l10n.failureMessage(state.failure!.type.name),
                     textAlign: TextAlign.center,
                     style: AppTypography.caption.copyWith(
-                      color: AppColors.danger,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                   ),
                 ],

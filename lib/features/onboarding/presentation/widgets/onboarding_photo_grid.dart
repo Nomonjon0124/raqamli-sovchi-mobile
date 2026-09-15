@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_radius.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
@@ -178,7 +177,7 @@ final class _PhotoSlot extends StatelessWidget {
     final failed = currentPhoto.uploadStatus == PhotoUploadStatus.failed;
     final uploading = currentPhoto.uploadStatus == PhotoUploadStatus.uploading;
     return Material(
-      color: AppColors.transparent,
+      color: Colors.transparent,
       child: InkWell(
         onTap: currentPhoto.serverId == null || onMainSelected == null
             ? null
@@ -188,7 +187,10 @@ final class _PhotoSlot extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surfaceContainerLow,
             border: showMainBadge && currentPhoto.isMain
-                ? Border.all(color: AppColors.primary, width: 2)
+                ? Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 2,
+                  )
                 : null,
             borderRadius: BorderRadius.circular(AppRadius.lg),
           ),
@@ -210,7 +212,7 @@ final class _PhotoSlot extends StatelessWidget {
               if (failed)
                 Positioned.fill(
                   child: Material(
-                    color: AppColors.transparent,
+                    color: Colors.transparent,
                     child: InkWell(
                       onTap: () => onRetry(currentPhoto.localFilePath),
                     ),
@@ -231,7 +233,7 @@ final class _PhotoSlot extends StatelessWidget {
                         Icons.cancel_rounded,
                         color: uploading
                             ? Theme.of(context).colorScheme.onSurfaceVariant
-                            : AppColors.danger,
+                            : Theme.of(context).colorScheme.error,
                         size: 20,
                       ),
                     ),
@@ -245,7 +247,7 @@ final class _PhotoSlot extends StatelessWidget {
                   child: Align(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        color: Theme.of(context).colorScheme.primary,
                         borderRadius: BorderRadius.circular(AppRadius.full),
                       ),
                       child: Padding(
@@ -257,7 +259,7 @@ final class _PhotoSlot extends StatelessWidget {
                           mainBadgeLabel,
                           textAlign: TextAlign.center,
                           style: AppTypography.onboardingFieldLabel.copyWith(
-                            color: Theme.of(context).colorScheme.surface,
+                            color: Theme.of(context).colorScheme.onPrimary,
                             fontSize: 10,
                             height: 14 / 10,
                             letterSpacing: 0.8,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/app_colors.dart';
@@ -25,6 +26,7 @@ final class BlockedUserTile extends StatelessWidget {
         ? info!.fullName.trim()
         : l10n.appTitle; // fallback name
     final initials = info?.initials ?? '??';
+    final avatarUrl = info?.avatarUrl?.trim();
 
     final isComplaint =
         blockedUser.reason != null &&
@@ -53,6 +55,9 @@ final class BlockedUserTile extends StatelessWidget {
           CircleAvatar(
             radius: 22,
             backgroundColor: AppColors.profileAvatarSurface,
+            foregroundImage: avatarUrl == null || avatarUrl.isEmpty
+                ? null
+                : CachedNetworkImageProvider(avatarUrl),
             child: Text(
               initials,
               style: const TextStyle(

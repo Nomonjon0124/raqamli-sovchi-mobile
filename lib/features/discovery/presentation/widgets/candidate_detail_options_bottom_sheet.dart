@@ -34,7 +34,7 @@ final class CandidateDetailOptionsBottomSheet extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(14, 10, 14, 28),
@@ -212,7 +212,16 @@ final class _OptionRow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 alignment: Alignment.center,
-                child: data.icon.svg(width: 18, height: 18),
+                child: data.icon.svg(
+                  width: 18,
+                  height: 18,
+                  colorFilter: ColorFilter.mode(
+                    danger
+                        ? Theme.of(context).colorScheme.error
+                        : Theme.of(context).colorScheme.onSurface,
+                    BlendMode.srcIn,
+                  ),
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(

@@ -8,7 +8,6 @@ import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/represen
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/representative_text_field.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/responsibility_card.dart';
 
-import '../../../../app/theme/app_colors.dart';
 import '../../../../app/theme/app_spacing.dart';
 import '../../../../app/theme/app_typography.dart';
 import '../../../../core/ui/input_formatters/uz_phone_input_formatter.dart';
@@ -413,8 +412,8 @@ final class _RepresentativeOnboardingStepContentState
             child: Assets.icons.icTelegramIcon.svg(
               width: 44,
               height: 44,
-              colorFilter: const ColorFilter.mode(
-                AppColors.primary,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.primary,
                 BlendMode.srcIn,
               ),
             ),
@@ -427,7 +426,9 @@ final class _RepresentativeOnboardingStepContentState
           const SizedBox(height: AppSpacing.card),
           Text(
             l10n.representativeConsentRevocation,
-            style: AppTypography.onboardingCardBody,
+            style: AppTypography.onboardingCardBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
       ),
