@@ -64,11 +64,11 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                   foregroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
                       ? Theme.of(context).colorScheme.onSurfaceVariant
-                      : Theme.of(context).colorScheme.surface,
+                      : Theme.of(context).colorScheme.onPrimary,
                   disabledForegroundColor:
                       actionVariant == CandidateDetailActionVariant.retryLocked
                       ? Theme.of(context).colorScheme.onSurfaceVariant
-                      : Theme.of(context).colorScheme.surface,
+                      : Theme.of(context).colorScheme.onPrimary,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.full),
@@ -90,7 +90,9 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                           fontSize: 15,
                           height: 20 / 15,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.surface,
+                          color: actionVariant == CandidateDetailActionVariant.retryLocked
+                              ? Theme.of(context).colorScheme.onSurfaceVariant
+                              : Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ),
@@ -103,7 +105,7 @@ final class CandidateDetailBottomBar extends StatelessWidget {
                           actionVariant ==
                                   CandidateDetailActionVariant.retryLocked
                               ? Theme.of(context).colorScheme.onSurfaceVariant
-                              : Theme.of(context).colorScheme.surface,
+                              : Theme.of(context).colorScheme.onPrimary,
                           BlendMode.srcIn,
                         ),
                       ),
@@ -126,7 +128,7 @@ final class CandidateDetailBottomBar extends StatelessWidget {
               onTap: onMoreOptions,
               customBorder: const CircleBorder(),
               child: Center(
-                child: Assets.icons.icMoreHorizontal.svg(width: 20, height: 20),
+                child: Assets.icons.icMoreHorizontal.svg(width: 20, height: 20, colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.onSurface, BlendMode.srcIn)),
               ),
             ),
           ),
