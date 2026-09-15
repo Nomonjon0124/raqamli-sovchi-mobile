@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:raqamli_sovchi/features/onboarding/presentation/widgets/representative_onboarding_widgets/representative_header.dart';
 
-import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
 
@@ -38,7 +37,7 @@ final class RepresentativeLayout extends StatelessWidget {
           Text(
             eyebrow!,
             style: AppTypography.onboardingFieldLabel.copyWith(
-              color: AppColors.primary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           const SizedBox(height: AppSpacing.xl),
@@ -46,7 +45,12 @@ final class RepresentativeLayout extends StatelessWidget {
         Text(title, style: AppTypography.onboardingTitle),
         if (subtitle != null) ...[
           const SizedBox(height: AppSpacing.sm),
-          Text(subtitle!, style: AppTypography.onboardingBody),
+          Text(
+            subtitle!,
+            style: AppTypography.onboardingBody.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ),
         ],
         const SizedBox(height: AppSpacing.lg + AppSpacing.xs),
         child,

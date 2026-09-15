@@ -48,7 +48,9 @@ final class RepresentativeCandidateConsentView extends StatelessWidget {
             const SizedBox(height: AppSpacing.card),
             Text(
               l10n.candidateConsentRejectHint,
-              style: AppTypography.onboardingCardBody,
+              style: AppTypography.onboardingCardBody.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
             ),
           ],
         ),

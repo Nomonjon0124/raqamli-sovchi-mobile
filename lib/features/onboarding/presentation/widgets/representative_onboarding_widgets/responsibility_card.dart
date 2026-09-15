@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../app/theme/app_colors.dart';
 import '../../../../../app/theme/app_radius.dart';
 import '../../../../../app/theme/app_spacing.dart';
 import '../../../../../app/theme/app_typography.dart';
@@ -34,7 +33,8 @@ final class ResponsibilityCard extends StatelessWidget {
           children: [
             Checkbox(
               value: accepted,
-              activeColor: AppColors.primary,
+              activeColor: Theme.of(context).colorScheme.primary,
+              checkColor: Theme.of(context).colorScheme.onPrimary,
               onChanged: (value) => onChanged(value ?? false),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6.0),
