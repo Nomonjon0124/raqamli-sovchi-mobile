@@ -954,6 +954,34 @@ class AppLocalizationsUz extends AppLocalizations {
   String get notificationsMarkAllRead => 'Barchasini o‘qilgan deb belgilash';
 
   @override
+  String get notificationsToday => 'BUGUN';
+
+  @override
+  String get notificationsYesterday => 'KECHA';
+
+  @override
+  String get notificationsYesterdayTime => 'Kecha';
+
+  @override
+  String get notificationsEarlier => 'OLDINROQ';
+
+  @override
+  String get notificationsSettings => 'Bildirishnoma sozlamalari';
+
+  @override
+  String get notificationsJustNow => 'Hozirgina';
+
+  @override
+  String notificationsMinutesAgo(int count) {
+    return '$count daq';
+  }
+
+  @override
+  String notificationsHoursAgo(int count) {
+    return '$count soat';
+  }
+
+  @override
   String get candidatesFilterMatches => 'Moslar';
 
   @override
@@ -3338,6 +3366,34 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String get notificationsMarkAllRead => 'Барчасини ўқилган деб белгилаш';
+
+  @override
+  String get notificationsToday => 'БУГУН';
+
+  @override
+  String get notificationsYesterday => 'КЕЧА';
+
+  @override
+  String get notificationsYesterdayTime => 'Кеча';
+
+  @override
+  String get notificationsEarlier => 'ОЛДИНРОҚ';
+
+  @override
+  String get notificationsSettings => 'Билдиришнома созламалари';
+
+  @override
+  String get notificationsJustNow => 'Ҳозиргина';
+
+  @override
+  String notificationsMinutesAgo(int count) {
+    return '$count дақ';
+  }
+
+  @override
+  String notificationsHoursAgo(int count) {
+    return '$count соат';
+  }
 
   @override
   String get candidatesFilterMatches => 'Мослар';

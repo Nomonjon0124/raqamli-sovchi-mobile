@@ -317,6 +317,28 @@
   "notificationsActionLabel": "Bildirishnomalar",
   "notificationsEmpty": "Hozircha bildirishnomalar yo‘q",
   "notificationsMarkAllRead": "Barchasini o‘qilgan deb belgilash",
+  "notificationsToday": "BUGUN",
+  "notificationsYesterday": "KECHA",
+  "notificationsYesterdayTime": "Kecha",
+  "notificationsEarlier": "OLDINROQ",
+  "notificationsSettings": "Bildirishnoma sozlamalari",
+  "notificationsJustNow": "Hozirgina",
+  "notificationsMinutesAgo": "{count} daq",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} soat",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Moslar",
   "candidatesFilterRecommended": "Tavsiyalar",
   "candidatesFilterNearby": "Atrofdagilar",

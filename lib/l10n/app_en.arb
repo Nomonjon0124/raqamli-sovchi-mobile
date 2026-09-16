@@ -305,6 +305,28 @@
   "notificationsActionLabel": "Notifications",
   "notificationsEmpty": "There are no notifications yet",
   "notificationsMarkAllRead": "Mark all as read",
+  "notificationsToday": "TODAY",
+  "notificationsYesterday": "YESTERDAY",
+  "notificationsYesterdayTime": "Yesterday",
+  "notificationsEarlier": "EARLIER",
+  "notificationsSettings": "Notification settings",
+  "notificationsJustNow": "Just now",
+  "notificationsMinutesAgo": "{count} min ago",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} hr ago",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Matches",
   "candidatesFilterRecommended": "Recommendations",
   "candidatesFilterNearby": "Nearby",

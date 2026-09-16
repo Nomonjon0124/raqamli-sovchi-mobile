@@ -338,6 +338,28 @@
   "notificationsActionLabel": "Билдиришномалар",
   "notificationsEmpty": "Ҳозирча билдиришномалар йўқ",
   "notificationsMarkAllRead": "Барчасини ўқилган деб белгилаш",
+  "notificationsToday": "БУГУН",
+  "notificationsYesterday": "КЕЧА",
+  "notificationsYesterdayTime": "Кеча",
+  "notificationsEarlier": "ОЛДИНРОҚ",
+  "notificationsSettings": "Билдиришнома созламалари",
+  "notificationsJustNow": "Ҳозиргина",
+  "notificationsMinutesAgo": "{count} дақ",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} соат",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Мослар",
   "candidatesFilterRecommended": "Тавсиялар",
   "candidatesFilterNearby": "Атрофдагилар",

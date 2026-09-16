@@ -129,12 +129,18 @@ class $AssetsIconsGen {
   SvgGenImage get icGoogleIcon =>
       const SvgGenImage('assets/icons/ic_google_icon.svg');
 
+  /// File path: assets/icons/ic_heart.svg
+  SvgGenImage get icHeart => const SvgGenImage('assets/icons/ic_heart.svg');
+
   /// File path: assets/icons/ic_hugeicons_fingerprint_scan.svg
   SvgGenImage get icHugeiconsFingerprintScan =>
       const SvgGenImage('assets/icons/ic_hugeicons_fingerprint_scan.svg');
 
   /// File path: assets/icons/ic_info.svg
   SvgGenImage get icInfo => const SvgGenImage('assets/icons/ic_info.svg');
+
+  /// File path: assets/icons/ic_info2.svg
+  SvgGenImage get icInfo2 => const SvgGenImage('assets/icons/ic_info2.svg');
 
   /// File path: assets/icons/ic_location.svg
   SvgGenImage get icLocation =>
@@ -154,6 +160,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_map_target_ring.svg
   SvgGenImage get icMapTargetRing =>
       const SvgGenImage('assets/icons/ic_map_target_ring.svg');
+
+  /// File path: assets/icons/ic_meeting.svg
+  SvgGenImage get icMeeting => const SvgGenImage('assets/icons/ic_meeting.svg');
+
+  /// File path: assets/icons/ic_message.svg
+  SvgGenImage get icMessage => const SvgGenImage('assets/icons/ic_message.svg');
 
   /// File path: assets/icons/ic_messages_btv.svg
   SvgGenImage get icMessagesBtv =>
@@ -196,6 +208,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_persons.svg
   SvgGenImage get icPersons => const SvgGenImage('assets/icons/ic_persons.svg');
+
+  /// File path: assets/icons/ic_photo.svg
+  SvgGenImage get icPhoto => const SvgGenImage('assets/icons/ic_photo.svg');
 
   /// File path: assets/icons/ic_play.svg
   SvgGenImage get icPlay => const SvgGenImage('assets/icons/ic_play.svg');
@@ -272,6 +287,9 @@ class $AssetsIconsGen {
   SvgGenImage get icSrvVerify =>
       const SvgGenImage('assets/icons/ic_srv_verify.svg');
 
+  /// File path: assets/icons/ic_star.svg
+  SvgGenImage get icStar => const SvgGenImage('assets/icons/ic_star.svg');
+
   /// File path: assets/icons/ic_task_list_pen.svg
   SvgGenImage get icTaskListPen =>
       const SvgGenImage('assets/icons/ic_task_list_pen.svg');
@@ -279,6 +297,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_telegram_icon.svg
   SvgGenImage get icTelegramIcon =>
       const SvgGenImage('assets/icons/ic_telegram_icon.svg');
+
+  /// File path: assets/icons/ic_verifiead.svg
+  SvgGenImage get icVerifiead =>
+      const SvgGenImage('assets/icons/ic_verifiead.svg');
 
   /// File path: assets/icons/ic_verified_device.svg
   SvgGenImage get icVerifiedDevice =>
@@ -393,13 +415,17 @@ class $AssetsIconsGen {
     icFire,
     icGlyph,
     icGoogleIcon,
+    icHeart,
     icHugeiconsFingerprintScan,
     icInfo,
+    icInfo2,
     icLocation,
     icLogo,
     icMapTargetCenter,
     icMapTargetCorner,
     icMapTargetRing,
+    icMeeting,
+    icMessage,
     icMessagesBtv,
     icMoreHorizontal,
     icNearbyEmptyRadar,
@@ -411,6 +437,7 @@ class $AssetsIconsGen {
     icNotification,
     icPause,
     icPersons,
+    icPhoto,
     icPlay,
     icPreservedBtv,
     icProfileBtv,
@@ -431,8 +458,10 @@ class $AssetsIconsGen {
     icSrvPremium,
     icSrvPremium2,
     icSrvVerify,
+    icStar,
     icTaskListPen,
     icTelegramIcon,
+    icVerifiead,
     icVerifiedDevice,
     icVerifyCheck,
     profileAdd,

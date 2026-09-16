@@ -1817,6 +1817,54 @@ abstract class AppLocalizations {
   /// **'Barchasini o‘qilgan deb belgilash'**
   String get notificationsMarkAllRead;
 
+  /// No description provided for @notificationsToday.
+  ///
+  /// In uz, this message translates to:
+  /// **'BUGUN'**
+  String get notificationsToday;
+
+  /// No description provided for @notificationsYesterday.
+  ///
+  /// In uz, this message translates to:
+  /// **'KECHA'**
+  String get notificationsYesterday;
+
+  /// No description provided for @notificationsYesterdayTime.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kecha'**
+  String get notificationsYesterdayTime;
+
+  /// No description provided for @notificationsEarlier.
+  ///
+  /// In uz, this message translates to:
+  /// **'OLDINROQ'**
+  String get notificationsEarlier;
+
+  /// No description provided for @notificationsSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnoma sozlamalari'**
+  String get notificationsSettings;
+
+  /// No description provided for @notificationsJustNow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozirgina'**
+  String get notificationsJustNow;
+
+  /// No description provided for @notificationsMinutesAgo.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} daq'**
+  String notificationsMinutesAgo(int count);
+
+  /// No description provided for @notificationsHoursAgo.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} soat'**
+  String notificationsHoursAgo(int count);
+
   /// No description provided for @candidatesFilterMatches.
   ///
   /// In uz, this message translates to:

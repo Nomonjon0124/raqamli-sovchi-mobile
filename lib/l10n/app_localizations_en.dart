@@ -956,6 +956,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsMarkAllRead => 'Mark all as read';
 
   @override
+  String get notificationsToday => 'TODAY';
+
+  @override
+  String get notificationsYesterday => 'YESTERDAY';
+
+  @override
+  String get notificationsYesterdayTime => 'Yesterday';
+
+  @override
+  String get notificationsEarlier => 'EARLIER';
+
+  @override
+  String get notificationsSettings => 'Notification settings';
+
+  @override
+  String get notificationsJustNow => 'Just now';
+
+  @override
+  String notificationsMinutesAgo(int count) {
+    return '$count min ago';
+  }
+
+  @override
+  String notificationsHoursAgo(int count) {
+    return '$count hr ago';
+  }
+
+  @override
   String get candidatesFilterMatches => 'Matches';
 
   @override

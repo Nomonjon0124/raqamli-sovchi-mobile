@@ -305,6 +305,28 @@
   "notificationsActionLabel": "Уведомления",
   "notificationsEmpty": "Уведомлений пока нет",
   "notificationsMarkAllRead": "Отметить все как прочитанные",
+  "notificationsToday": "СЕГОДНЯ",
+  "notificationsYesterday": "ВЧЕРА",
+  "notificationsYesterdayTime": "Вчера",
+  "notificationsEarlier": "РАНЬШЕ",
+  "notificationsSettings": "Настройки уведомлений",
+  "notificationsJustNow": "Только что",
+  "notificationsMinutesAgo": "{count} мин назад",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} ч назад",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Подходящие",
   "candidatesFilterRecommended": "Рекомендации",
   "candidatesFilterNearby": "Рядом",
