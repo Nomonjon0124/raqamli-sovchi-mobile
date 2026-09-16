@@ -1,5 +1,6 @@
 import '../../../../core/network/api_client.dart';
 import '../models/app_notification_model.dart';
+import '../models/notification_preferences_model.dart';
 
 abstract interface class NotificationDataSource {
   Future<List<AppNotificationModel>> fetchNotifications({int page = 1});
@@ -9,6 +10,10 @@ abstract interface class NotificationDataSource {
   Future<void> registerDevice(Map<String, dynamic> data);
   Future<void> unregisterDevice(String deviceId);
   Future<String> createWebSocketTicket();
+  Future<NotificationPreferencesModel> fetchNotificationPreferences();
+  Future<NotificationPreferencesModel> updateNotificationPreferences(
+    Map<String, dynamic> data,
+  );
 }
 
 final class RemoteNotificationDataSource implements NotificationDataSource {
@@ -62,9 +67,27 @@ final class RemoteNotificationDataSource implements NotificationDataSource {
   Future<String> createWebSocketTicket() async {
     final response = await _client.post<dynamic>('${_basePath}tickets/');
     final ticket = _unwrap(response.data)['ticket']?.toString();
-    if (ticket == null || ticket.isEmpty)
+    if (ticket == null || ticket.isEmpty) {
       throw const FormatException('Missing notification ticket');
+    }
     return ticket;
+  }
+
+  @override
+  Future<NotificationPreferencesModel> fetchNotificationPreferences() async {
+    final response = await _client.get<dynamic>('${_basePath}preferences/');
+    return NotificationPreferencesModel.fromJson(_unwrap(response.data));
+  }
+
+  @override
+  Future<NotificationPreferencesModel> updateNotificationPreferences(
+    Map<String, dynamic> data,
+  ) async {
+    final response = await _client.patch<dynamic>(
+      '${_basePath}preferences/',
+      data: data,
+    );
+    return NotificationPreferencesModel.fromJson(_unwrap(response.data));
   }
 }
 

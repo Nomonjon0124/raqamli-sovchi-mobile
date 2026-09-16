@@ -8,6 +8,7 @@ final class AppNotification extends Equatable {
     required this.extraData,
     required this.isRead,
     required this.createdAt,
+    this.type = 'notification',
   });
 
   final String id;
@@ -16,6 +17,7 @@ final class AppNotification extends Equatable {
   final Map<String, dynamic> extraData;
   final bool isRead;
   final DateTime? createdAt;
+  final String type;
 
   AppNotification copyWith({bool? isRead}) => AppNotification(
     id: id,
@@ -24,8 +26,17 @@ final class AppNotification extends Equatable {
     extraData: extraData,
     isRead: isRead ?? this.isRead,
     createdAt: createdAt,
+    type: type,
   );
 
   @override
-  List<Object?> get props => [id, title, message, extraData, isRead, createdAt];
+  List<Object?> get props => [
+    id,
+    title,
+    message,
+    extraData,
+    isRead,
+    createdAt,
+    type,
+  ];
 }

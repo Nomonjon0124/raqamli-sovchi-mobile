@@ -4,6 +4,7 @@ import '../../../../core/errors/either.dart';
 import '../../../../core/errors/exception_mapper.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/app_notification.dart';
+import '../../domain/entities/notification_preferences.dart';
 import '../../domain/repositories/notification_repository.dart';
 import '../data_sources/notification_data_source.dart';
 
@@ -45,6 +46,22 @@ final class NotificationRepositoryImpl implements NotificationRepository {
   @override
   Future<Either<Failure, String>> createWebSocketTicket() =>
       _guard(_source.createWebSocketTicket);
+
+  @override
+  Future<Either<Failure, NotificationPreferences>>
+  getNotificationPreferences() => _guard(
+    () async => (await _source.fetchNotificationPreferences()).toEntity(),
+  );
+
+  @override
+  Future<Either<Failure, NotificationPreferences>> updateNotificationPreference(
+    NotificationPreferenceType type,
+    bool enabled,
+  ) => _guard(
+    () async => (await _source.updateNotificationPreferences({
+      type.backendKey: enabled,
+    })).toEntity(),
+  );
 
   Future<Either<Failure, T>> _guard<T>(Future<T> Function() action) async {
     try {

@@ -92,6 +92,7 @@ import '../../features/notifications/data/repositories/notification_repository_i
 import '../../features/notifications/data/services/notification_lifecycle_service.dart';
 import '../../features/notifications/domain/repositories/notification_repository.dart';
 import '../../features/notifications/presentation/bloc/notification_bloc.dart';
+import '../../features/notifications/presentation/cubit/notification_preferences_cubit.dart';
 import '../../features/onboarding/application/services/onboarding_location_service.dart';
 import '../../features/onboarding/application/services/onboarding_media_service.dart';
 import '../../features/onboarding/data/data_sources/onboarding_data_source.dart';
@@ -403,6 +404,18 @@ Future<void> configureDependencies() async {
     )
     ..registerFactory<CreateNotificationTicketUseCase>(
       () => CreateNotificationTicketUseCase(serviceLocator()),
+    )
+    ..registerFactory<LoadNotificationPreferencesUseCase>(
+      () => LoadNotificationPreferencesUseCase(serviceLocator()),
+    )
+    ..registerFactory<UpdateNotificationPreferenceUseCase>(
+      () => UpdateNotificationPreferenceUseCase(serviceLocator()),
+    )
+    ..registerFactory<NotificationPreferencesCubit>(
+      () => NotificationPreferencesCubit(
+        load: serviceLocator(),
+        update: serviceLocator(),
+      ),
     )
     ..registerLazySingleton<NotificationLifecycleService>(
       () => NotificationLifecycleService(
