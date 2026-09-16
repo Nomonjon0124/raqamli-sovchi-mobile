@@ -2055,6 +2055,49 @@ class AppLocalizationsUz extends AppLocalizations {
   String get settingsNotificationTypes => 'Bildirishnoma turlari';
 
   @override
+  String get settingsNotificationTypesTitle => 'Bildirishnomalar';
+
+  @override
+  String get settingsNotificationTypesSubtitle =>
+      'Qaysi hodisalar haqida xabar olishni tanlang.';
+
+  @override
+  String get settingsNotificationTypeNewMatch => 'Yangi moslik';
+
+  @override
+  String get settingsNotificationTypeNewMatchHint =>
+      'Sizga mos nomzod topilganda';
+
+  @override
+  String get settingsNotificationTypeNewMessage => 'Yangi xabar';
+
+  @override
+  String get settingsNotificationTypeNewMessageHint =>
+      'Suhbatda xabar kelganda';
+
+  @override
+  String get settingsNotificationTypeProfileViewed => 'Profil ko‘rildi';
+
+  @override
+  String get settingsNotificationTypeProfileViewedHint =>
+      'Kimdir profilingizni ko‘rganda';
+
+  @override
+  String get settingsNotificationTypePsychologistReminder =>
+      'Psixolog eslatmasi';
+
+  @override
+  String get settingsNotificationTypePsychologistReminderHint =>
+      'Band qilingan uchrashuvdan oldin';
+
+  @override
+  String get settingsNotificationTypeSystem => 'Tizim xabarlari';
+
+  @override
+  String get settingsNotificationTypeSystemHint =>
+      'Moderatsiya va hisob holati';
+
+  @override
   String get settingsDocumentsSection => 'Hujjatlar';
 
   @override
@@ -4394,6 +4437,48 @@ class AppLocalizationsUzCyrl extends AppLocalizationsUz {
 
   @override
   String get settingsNotificationTypes => 'Билдиришнома турлари';
+
+  @override
+  String get settingsNotificationTypesTitle => 'Билдиришномалар';
+
+  @override
+  String get settingsNotificationTypesSubtitle =>
+      'Қайси ҳодисалар ҳақида хабар олишни танланг.';
+
+  @override
+  String get settingsNotificationTypeNewMatch => 'Янги мослик';
+
+  @override
+  String get settingsNotificationTypeNewMatchHint =>
+      'Сизга мос номзод топилганда';
+
+  @override
+  String get settingsNotificationTypeNewMessage => 'Янги хабар';
+
+  @override
+  String get settingsNotificationTypeNewMessageHint =>
+      'Суҳбатда хабар келганда';
+
+  @override
+  String get settingsNotificationTypeProfileViewed => 'Профил кўрилди';
+
+  @override
+  String get settingsNotificationTypeProfileViewedHint =>
+      'Кимдир профилингизни кўрганда';
+
+  @override
+  String get settingsNotificationTypePsychologistReminder =>
+      'Психолог эслатмаси';
+
+  @override
+  String get settingsNotificationTypePsychologistReminderHint =>
+      'Банд қилинган учрашувдан олдин';
+
+  @override
+  String get settingsNotificationTypeSystem => 'Тизим хабарлари';
+
+  @override
+  String get settingsNotificationTypeSystemHint => 'Модерация ва ҳисоб ҳолати';
 
   @override
   String get settingsDocumentsSection => 'Ҳужжатлар';

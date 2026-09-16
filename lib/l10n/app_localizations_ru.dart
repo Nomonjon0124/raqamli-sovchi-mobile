@@ -2062,6 +2062,49 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsNotificationTypes => 'Типы уведомлений';
 
   @override
+  String get settingsNotificationTypesTitle => 'Уведомления';
+
+  @override
+  String get settingsNotificationTypesSubtitle =>
+      'Выберите, о каких событиях получать уведомления.';
+
+  @override
+  String get settingsNotificationTypeNewMatch => 'Новое совпадение';
+
+  @override
+  String get settingsNotificationTypeNewMatchHint =>
+      'Когда найден подходящий кандидат';
+
+  @override
+  String get settingsNotificationTypeNewMessage => 'Новое сообщение';
+
+  @override
+  String get settingsNotificationTypeNewMessageHint =>
+      'Когда приходит сообщение в чате';
+
+  @override
+  String get settingsNotificationTypeProfileViewed => 'Профиль просмотрен';
+
+  @override
+  String get settingsNotificationTypeProfileViewedHint =>
+      'Когда кто-то просматривает ваш профиль';
+
+  @override
+  String get settingsNotificationTypePsychologistReminder =>
+      'Напоминание психолога';
+
+  @override
+  String get settingsNotificationTypePsychologistReminderHint =>
+      'Перед забронированной встречей';
+
+  @override
+  String get settingsNotificationTypeSystem => 'Системные уведомления';
+
+  @override
+  String get settingsNotificationTypeSystemHint =>
+      'Модерация и состояние аккаунта';
+
+  @override
   String get settingsDocumentsSection => 'Документы';
 
   @override

@@ -3791,6 +3791,78 @@ abstract class AppLocalizations {
   /// **'Bildirishnoma turlari'**
   String get settingsNotificationTypes;
 
+  /// No description provided for @settingsNotificationTypesTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnomalar'**
+  String get settingsNotificationTypesTitle;
+
+  /// No description provided for @settingsNotificationTypesSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qaysi hodisalar haqida xabar olishni tanlang.'**
+  String get settingsNotificationTypesSubtitle;
+
+  /// No description provided for @settingsNotificationTypeNewMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi moslik'**
+  String get settingsNotificationTypeNewMatch;
+
+  /// No description provided for @settingsNotificationTypeNewMatchHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sizga mos nomzod topilganda'**
+  String get settingsNotificationTypeNewMatchHint;
+
+  /// No description provided for @settingsNotificationTypeNewMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi xabar'**
+  String get settingsNotificationTypeNewMessage;
+
+  /// No description provided for @settingsNotificationTypeNewMessageHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatda xabar kelganda'**
+  String get settingsNotificationTypeNewMessageHint;
+
+  /// No description provided for @settingsNotificationTypeProfileViewed.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil ko‘rildi'**
+  String get settingsNotificationTypeProfileViewed;
+
+  /// No description provided for @settingsNotificationTypeProfileViewedHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kimdir profilingizni ko‘rganda'**
+  String get settingsNotificationTypeProfileViewedHint;
+
+  /// No description provided for @settingsNotificationTypePsychologistReminder.
+  ///
+  /// In uz, this message translates to:
+  /// **'Psixolog eslatmasi'**
+  String get settingsNotificationTypePsychologistReminder;
+
+  /// No description provided for @settingsNotificationTypePsychologistReminderHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Band qilingan uchrashuvdan oldin'**
+  String get settingsNotificationTypePsychologistReminderHint;
+
+  /// No description provided for @settingsNotificationTypeSystem.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tizim xabarlari'**
+  String get settingsNotificationTypeSystem;
+
+  /// No description provided for @settingsNotificationTypeSystemHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moderatsiya va hisob holati'**
+  String get settingsNotificationTypeSystemHint;
+
   /// No description provided for @settingsDocumentsSection.
   ///
   /// In uz, this message translates to:

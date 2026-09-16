@@ -90,6 +90,10 @@ matches their purpose:
   (`app_uz.arb`) translations in sync whenever UI text is added or changed.
 - The default app locale is Uzbek (`uz`) until an explicit in-app language
   setting is implemented.
+- Har bir yangi UI ekran localization va theme mode bilan birga loyihalanadi:
+  barcha user-facing matnlar generated l10n’dan, ranglar esa aktiv theme’ning
+  `ColorScheme`/`AppStatusColors` tokenlaridan olinadi; light/dark va barcha
+  qo‘llab-quvvatlanadigan locale holatlari test qilinadi.
 - Every screen must handle loading, empty, error, offline, and permission-denied
   states where applicable.
 

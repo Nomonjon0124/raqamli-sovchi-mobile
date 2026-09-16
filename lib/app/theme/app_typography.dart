@@ -377,6 +377,11 @@ abstract final class AppTypography {
     fontWeight: FontWeight.w600,
     letterSpacing: -0.3,
   );
+  static const settingsPageSubtitle = TextStyle(
+    fontFamily: 'Manrope',
+    fontSize: 13,
+    height: 21 / 13,
+  );
   static const settingsSectionTitle = TextStyle(
     fontFamily: 'Manrope',
     fontSize: 16,
