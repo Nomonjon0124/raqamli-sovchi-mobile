@@ -338,6 +338,28 @@
   "notificationsActionLabel": "Билдиришномалар",
   "notificationsEmpty": "Ҳозирча билдиришномалар йўқ",
   "notificationsMarkAllRead": "Барчасини ўқилган деб белгилаш",
+  "notificationsToday": "БУГУН",
+  "notificationsYesterday": "КЕЧА",
+  "notificationsYesterdayTime": "Кеча",
+  "notificationsEarlier": "ОЛДИНРОҚ",
+  "notificationsSettings": "Билдиришнома созламалари",
+  "notificationsJustNow": "Ҳозиргина",
+  "notificationsMinutesAgo": "{count} дақ",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} соат",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Мослар",
   "candidatesFilterRecommended": "Тавсиялар",
   "candidatesFilterNearby": "Атрофдагилар",
@@ -854,6 +876,18 @@
   "settingsNotifications": "Билдиришномалар",
   "settingsNotificationsSubtitle": "Янги лайк, мослик ва хабарлар ҳақида хабар берилади",
   "settingsNotificationTypes": "Билдиришнома турлари",
+  "settingsNotificationTypesTitle": "Билдиришномалар",
+  "settingsNotificationTypesSubtitle": "Қайси ҳодисалар ҳақида хабар олишни танланг.",
+  "settingsNotificationTypeNewMatch": "Янги мослик",
+  "settingsNotificationTypeNewMatchHint": "Сизга мос номзод топилганда",
+  "settingsNotificationTypeNewMessage": "Янги хабар",
+  "settingsNotificationTypeNewMessageHint": "Суҳбатда хабар келганда",
+  "settingsNotificationTypeProfileViewed": "Профил кўрилди",
+  "settingsNotificationTypeProfileViewedHint": "Кимдир профилингизни кўрганда",
+  "settingsNotificationTypePsychologistReminder": "Психолог эслатмаси",
+  "settingsNotificationTypePsychologistReminderHint": "Банд қилинган учрашувдан олдин",
+  "settingsNotificationTypeSystem": "Тизим хабарлари",
+  "settingsNotificationTypeSystemHint": "Модерация ва ҳисоб ҳолати",
   "settingsDocumentsSection": "Ҳужжатлар",
   "settingsPrivacyPolicy": "Махфийлик сиёсати",
   "settingsTerms": "Фойдаланиш шартлари",

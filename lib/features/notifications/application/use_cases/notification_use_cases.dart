@@ -1,6 +1,7 @@
 import '../../../../core/errors/either.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/app_notification.dart';
+import '../../domain/entities/notification_preferences.dart';
 import '../../domain/repositories/notification_repository.dart';
 
 final class LoadNotificationsUseCase {
@@ -53,4 +54,22 @@ final class CreateNotificationTicketUseCase {
   const CreateNotificationTicketUseCase(this._repository);
   final NotificationRepository _repository;
   Future<Either<Failure, String>> call() => _repository.createWebSocketTicket();
+}
+
+final class LoadNotificationPreferencesUseCase {
+  const LoadNotificationPreferencesUseCase(this._repository);
+  final NotificationRepository _repository;
+
+  Future<Either<Failure, NotificationPreferences>> call() =>
+      _repository.getNotificationPreferences();
+}
+
+final class UpdateNotificationPreferenceUseCase {
+  const UpdateNotificationPreferenceUseCase(this._repository);
+  final NotificationRepository _repository;
+
+  Future<Either<Failure, NotificationPreferences>> call(
+    NotificationPreferenceType type,
+    bool enabled,
+  ) => _repository.updateNotificationPreference(type, enabled);
 }

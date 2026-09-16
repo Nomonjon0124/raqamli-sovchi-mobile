@@ -10,6 +10,7 @@ final class AppNotificationModel extends Equatable {
     required this.extraData,
     required this.isRead,
     required this.createdAt,
+    required this.type,
   });
 
   factory AppNotificationModel.fromJson(Map<String, dynamic> json) =>
@@ -17,6 +18,7 @@ final class AppNotificationModel extends Equatable {
         id: json['id']?.toString() ?? '',
         title: json['title']?.toString() ?? '',
         message: json['message']?.toString() ?? '',
+        type: json['type']?.toString() ?? 'notification',
         extraData: json['extra_data'] is Map
             ? (json['extra_data'] as Map).map(
                 (key, value) => MapEntry(key.toString(), value),
@@ -29,6 +31,7 @@ final class AppNotificationModel extends Equatable {
   final String id;
   final String title;
   final String message;
+  final String type;
   final Map<String, dynamic> extraData;
   final bool isRead;
   final DateTime? createdAt;
@@ -37,11 +40,20 @@ final class AppNotificationModel extends Equatable {
     id: id,
     title: title,
     message: message,
+    type: type,
     extraData: extraData,
     isRead: isRead,
     createdAt: createdAt,
   );
 
   @override
-  List<Object?> get props => [id, title, message, extraData, isRead, createdAt];
+  List<Object?> get props => [
+    id,
+    title,
+    message,
+    type,
+    extraData,
+    isRead,
+    createdAt,
+  ];
 }

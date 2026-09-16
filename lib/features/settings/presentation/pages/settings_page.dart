@@ -162,7 +162,8 @@ final class _SettingsView extends StatelessWidget {
                         SettingsRow(
                           icon: Assets.icons.settingsBell,
                           title: l10n.settingsNotificationTypes,
-                          onTap: () => _showComingSoon(context),
+                          onTap: () =>
+                              context.push(RouteNames.notificationTypes),
                         ),
                       ],
                     ),

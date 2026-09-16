@@ -305,6 +305,28 @@
   "notificationsActionLabel": "Notifications",
   "notificationsEmpty": "There are no notifications yet",
   "notificationsMarkAllRead": "Mark all as read",
+  "notificationsToday": "TODAY",
+  "notificationsYesterday": "YESTERDAY",
+  "notificationsYesterdayTime": "Yesterday",
+  "notificationsEarlier": "EARLIER",
+  "notificationsSettings": "Notification settings",
+  "notificationsJustNow": "Just now",
+  "notificationsMinutesAgo": "{count} min ago",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} hr ago",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Matches",
   "candidatesFilterRecommended": "Recommendations",
   "candidatesFilterNearby": "Nearby",
@@ -726,6 +748,18 @@
   "settingsNotifications": "Notifications",
   "settingsNotificationsSubtitle": "Get notified about new likes, matches and messages",
   "settingsNotificationTypes": "Notification types",
+  "settingsNotificationTypesTitle": "Notifications",
+  "settingsNotificationTypesSubtitle": "Choose which events to get notified about.",
+  "settingsNotificationTypeNewMatch": "New match",
+  "settingsNotificationTypeNewMatchHint": "When a suitable candidate is found",
+  "settingsNotificationTypeNewMessage": "New message",
+  "settingsNotificationTypeNewMessageHint": "When a message arrives in a chat",
+  "settingsNotificationTypeProfileViewed": "Profile viewed",
+  "settingsNotificationTypeProfileViewedHint": "When someone views your profile",
+  "settingsNotificationTypePsychologistReminder": "Psychologist reminder",
+  "settingsNotificationTypePsychologistReminderHint": "Before a booked appointment",
+  "settingsNotificationTypeSystem": "System messages",
+  "settingsNotificationTypeSystemHint": "Moderation and account status",
   "settingsDocumentsSection": "Documents",
   "settingsPrivacyPolicy": "Privacy policy",
   "settingsTerms": "Terms of use",

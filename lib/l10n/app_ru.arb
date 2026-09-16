@@ -305,6 +305,28 @@
   "notificationsActionLabel": "Уведомления",
   "notificationsEmpty": "Уведомлений пока нет",
   "notificationsMarkAllRead": "Отметить все как прочитанные",
+  "notificationsToday": "СЕГОДНЯ",
+  "notificationsYesterday": "ВЧЕРА",
+  "notificationsYesterdayTime": "Вчера",
+  "notificationsEarlier": "РАНЬШЕ",
+  "notificationsSettings": "Настройки уведомлений",
+  "notificationsJustNow": "Только что",
+  "notificationsMinutesAgo": "{count} мин назад",
+  "@notificationsMinutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsHoursAgo": "{count} ч назад",
+  "@notificationsHoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "candidatesFilterMatches": "Подходящие",
   "candidatesFilterRecommended": "Рекомендации",
   "candidatesFilterNearby": "Рядом",
@@ -726,6 +748,18 @@
   "settingsNotifications": "Уведомления",
   "settingsNotificationsSubtitle": "Сообщать о новых лайках, совпадениях и сообщениях",
   "settingsNotificationTypes": "Типы уведомлений",
+  "settingsNotificationTypesTitle": "Уведомления",
+  "settingsNotificationTypesSubtitle": "Выберите, о каких событиях получать уведомления.",
+  "settingsNotificationTypeNewMatch": "Новое совпадение",
+  "settingsNotificationTypeNewMatchHint": "Когда найден подходящий кандидат",
+  "settingsNotificationTypeNewMessage": "Новое сообщение",
+  "settingsNotificationTypeNewMessageHint": "Когда приходит сообщение в чате",
+  "settingsNotificationTypeProfileViewed": "Профиль просмотрен",
+  "settingsNotificationTypeProfileViewedHint": "Когда кто-то просматривает ваш профиль",
+  "settingsNotificationTypePsychologistReminder": "Напоминание психолога",
+  "settingsNotificationTypePsychologistReminderHint": "Перед забронированной встречей",
+  "settingsNotificationTypeSystem": "Системные уведомления",
+  "settingsNotificationTypeSystemHint": "Модерация и состояние аккаунта",
   "settingsDocumentsSection": "Документы",
   "settingsPrivacyPolicy": "Политика конфиденциальности",
   "settingsTerms": "Условия использования",

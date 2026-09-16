@@ -18,6 +18,7 @@ abstract final class RouteNames {
   static const profileFaceVerification = '/profile/face-verification';
   static const notifications = '/notifications';
   static const settings = '/settings';
+  static const notificationTypes = '/settings/notification-types';
   static const accountDeletion = '/settings/account-deletion';
   static const blockedUsers = '/blocked-users';
   static const privacyPolicy = '/privacy-policy';

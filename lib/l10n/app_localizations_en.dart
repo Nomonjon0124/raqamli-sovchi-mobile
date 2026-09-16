@@ -956,6 +956,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsMarkAllRead => 'Mark all as read';
 
   @override
+  String get notificationsToday => 'TODAY';
+
+  @override
+  String get notificationsYesterday => 'YESTERDAY';
+
+  @override
+  String get notificationsYesterdayTime => 'Yesterday';
+
+  @override
+  String get notificationsEarlier => 'EARLIER';
+
+  @override
+  String get notificationsSettings => 'Notification settings';
+
+  @override
+  String get notificationsJustNow => 'Just now';
+
+  @override
+  String notificationsMinutesAgo(int count) {
+    return '$count min ago';
+  }
+
+  @override
+  String notificationsHoursAgo(int count) {
+    return '$count hr ago';
+  }
+
+  @override
   String get candidatesFilterMatches => 'Matches';
 
   @override
@@ -2059,6 +2087,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsNotificationTypes => 'Notification types';
+
+  @override
+  String get settingsNotificationTypesTitle => 'Notifications';
+
+  @override
+  String get settingsNotificationTypesSubtitle =>
+      'Choose which events to get notified about.';
+
+  @override
+  String get settingsNotificationTypeNewMatch => 'New match';
+
+  @override
+  String get settingsNotificationTypeNewMatchHint =>
+      'When a suitable candidate is found';
+
+  @override
+  String get settingsNotificationTypeNewMessage => 'New message';
+
+  @override
+  String get settingsNotificationTypeNewMessageHint =>
+      'When a message arrives in a chat';
+
+  @override
+  String get settingsNotificationTypeProfileViewed => 'Profile viewed';
+
+  @override
+  String get settingsNotificationTypeProfileViewedHint =>
+      'When someone views your profile';
+
+  @override
+  String get settingsNotificationTypePsychologistReminder =>
+      'Psychologist reminder';
+
+  @override
+  String get settingsNotificationTypePsychologistReminderHint =>
+      'Before a booked appointment';
+
+  @override
+  String get settingsNotificationTypeSystem => 'System messages';
+
+  @override
+  String get settingsNotificationTypeSystemHint =>
+      'Moderation and account status';
 
   @override
   String get settingsDocumentsSection => 'Documents';

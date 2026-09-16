@@ -21,6 +21,7 @@ import 'package:raqamli_sovchi/features/discovery/presentation/bloc/discovery_bl
 import 'package:raqamli_sovchi/features/discovery/presentation/pages/candidates_page.dart';
 import 'package:raqamli_sovchi/features/notifications/application/use_cases/notification_use_cases.dart';
 import 'package:raqamli_sovchi/features/notifications/domain/entities/app_notification.dart';
+import 'package:raqamli_sovchi/features/notifications/domain/entities/notification_preferences.dart';
 import 'package:raqamli_sovchi/features/notifications/domain/repositories/notification_repository.dart';
 import 'package:raqamli_sovchi/features/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:raqamli_sovchi/features/profile/domain/entities/profile_update_params.dart';
@@ -262,4 +263,14 @@ final class _NotificationRepository implements NotificationRepository {
   @override
   Future<Either<Failure, String>> createWebSocketTicket() async =>
       const Right('');
+
+  @override
+  Future<Either<Failure, NotificationPreferences>>
+  getNotificationPreferences() async => const Right(NotificationPreferences());
+
+  @override
+  Future<Either<Failure, NotificationPreferences>> updateNotificationPreference(
+    NotificationPreferenceType type,
+    bool enabled,
+  ) async => const Right(NotificationPreferences());
 }

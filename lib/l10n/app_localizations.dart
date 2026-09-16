@@ -1817,6 +1817,54 @@ abstract class AppLocalizations {
   /// **'Barchasini o‘qilgan deb belgilash'**
   String get notificationsMarkAllRead;
 
+  /// No description provided for @notificationsToday.
+  ///
+  /// In uz, this message translates to:
+  /// **'BUGUN'**
+  String get notificationsToday;
+
+  /// No description provided for @notificationsYesterday.
+  ///
+  /// In uz, this message translates to:
+  /// **'KECHA'**
+  String get notificationsYesterday;
+
+  /// No description provided for @notificationsYesterdayTime.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kecha'**
+  String get notificationsYesterdayTime;
+
+  /// No description provided for @notificationsEarlier.
+  ///
+  /// In uz, this message translates to:
+  /// **'OLDINROQ'**
+  String get notificationsEarlier;
+
+  /// No description provided for @notificationsSettings.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnoma sozlamalari'**
+  String get notificationsSettings;
+
+  /// No description provided for @notificationsJustNow.
+  ///
+  /// In uz, this message translates to:
+  /// **'Hozirgina'**
+  String get notificationsJustNow;
+
+  /// No description provided for @notificationsMinutesAgo.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} daq'**
+  String notificationsMinutesAgo(int count);
+
+  /// No description provided for @notificationsHoursAgo.
+  ///
+  /// In uz, this message translates to:
+  /// **'{count} soat'**
+  String notificationsHoursAgo(int count);
+
   /// No description provided for @candidatesFilterMatches.
   ///
   /// In uz, this message translates to:
@@ -3790,6 +3838,78 @@ abstract class AppLocalizations {
   /// In uz, this message translates to:
   /// **'Bildirishnoma turlari'**
   String get settingsNotificationTypes;
+
+  /// No description provided for @settingsNotificationTypesTitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Bildirishnomalar'**
+  String get settingsNotificationTypesTitle;
+
+  /// No description provided for @settingsNotificationTypesSubtitle.
+  ///
+  /// In uz, this message translates to:
+  /// **'Qaysi hodisalar haqida xabar olishni tanlang.'**
+  String get settingsNotificationTypesSubtitle;
+
+  /// No description provided for @settingsNotificationTypeNewMatch.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi moslik'**
+  String get settingsNotificationTypeNewMatch;
+
+  /// No description provided for @settingsNotificationTypeNewMatchHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Sizga mos nomzod topilganda'**
+  String get settingsNotificationTypeNewMatchHint;
+
+  /// No description provided for @settingsNotificationTypeNewMessage.
+  ///
+  /// In uz, this message translates to:
+  /// **'Yangi xabar'**
+  String get settingsNotificationTypeNewMessage;
+
+  /// No description provided for @settingsNotificationTypeNewMessageHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Suhbatda xabar kelganda'**
+  String get settingsNotificationTypeNewMessageHint;
+
+  /// No description provided for @settingsNotificationTypeProfileViewed.
+  ///
+  /// In uz, this message translates to:
+  /// **'Profil ko‘rildi'**
+  String get settingsNotificationTypeProfileViewed;
+
+  /// No description provided for @settingsNotificationTypeProfileViewedHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Kimdir profilingizni ko‘rganda'**
+  String get settingsNotificationTypeProfileViewedHint;
+
+  /// No description provided for @settingsNotificationTypePsychologistReminder.
+  ///
+  /// In uz, this message translates to:
+  /// **'Psixolog eslatmasi'**
+  String get settingsNotificationTypePsychologistReminder;
+
+  /// No description provided for @settingsNotificationTypePsychologistReminderHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Band qilingan uchrashuvdan oldin'**
+  String get settingsNotificationTypePsychologistReminderHint;
+
+  /// No description provided for @settingsNotificationTypeSystem.
+  ///
+  /// In uz, this message translates to:
+  /// **'Tizim xabarlari'**
+  String get settingsNotificationTypeSystem;
+
+  /// No description provided for @settingsNotificationTypeSystemHint.
+  ///
+  /// In uz, this message translates to:
+  /// **'Moderatsiya va hisob holati'**
+  String get settingsNotificationTypeSystemHint;
 
   /// No description provided for @settingsDocumentsSection.
   ///

@@ -954,6 +954,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notificationsMarkAllRead => 'Отметить все как прочитанные';
 
   @override
+  String get notificationsToday => 'СЕГОДНЯ';
+
+  @override
+  String get notificationsYesterday => 'ВЧЕРА';
+
+  @override
+  String get notificationsYesterdayTime => 'Вчера';
+
+  @override
+  String get notificationsEarlier => 'РАНЬШЕ';
+
+  @override
+  String get notificationsSettings => 'Настройки уведомлений';
+
+  @override
+  String get notificationsJustNow => 'Только что';
+
+  @override
+  String notificationsMinutesAgo(int count) {
+    return '$count мин назад';
+  }
+
+  @override
+  String notificationsHoursAgo(int count) {
+    return '$count ч назад';
+  }
+
+  @override
   String get candidatesFilterMatches => 'Подходящие';
 
   @override
@@ -2060,6 +2088,49 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsNotificationTypes => 'Типы уведомлений';
+
+  @override
+  String get settingsNotificationTypesTitle => 'Уведомления';
+
+  @override
+  String get settingsNotificationTypesSubtitle =>
+      'Выберите, о каких событиях получать уведомления.';
+
+  @override
+  String get settingsNotificationTypeNewMatch => 'Новое совпадение';
+
+  @override
+  String get settingsNotificationTypeNewMatchHint =>
+      'Когда найден подходящий кандидат';
+
+  @override
+  String get settingsNotificationTypeNewMessage => 'Новое сообщение';
+
+  @override
+  String get settingsNotificationTypeNewMessageHint =>
+      'Когда приходит сообщение в чате';
+
+  @override
+  String get settingsNotificationTypeProfileViewed => 'Профиль просмотрен';
+
+  @override
+  String get settingsNotificationTypeProfileViewedHint =>
+      'Когда кто-то просматривает ваш профиль';
+
+  @override
+  String get settingsNotificationTypePsychologistReminder =>
+      'Напоминание психолога';
+
+  @override
+  String get settingsNotificationTypePsychologistReminderHint =>
+      'Перед забронированной встречей';
+
+  @override
+  String get settingsNotificationTypeSystem => 'Системные уведомления';
+
+  @override
+  String get settingsNotificationTypeSystemHint =>
+      'Модерация и состояние аккаунта';
 
   @override
   String get settingsDocumentsSection => 'Документы';
