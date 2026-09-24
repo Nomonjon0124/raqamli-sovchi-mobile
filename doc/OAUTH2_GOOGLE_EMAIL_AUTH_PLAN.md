@@ -1,18 +1,6 @@
 # Google Sign-In server auth code plan
 
-Status: implementation updated
-
-Date: 2026-08-05
-
-## Decision
-
-Use `google_sign_in`, not `oauth2_client`, for Google login in the mobile app.
-
-Reason: Google blocks custom-scheme OAuth authorization requests on Android in
-modern OAuth policy enforcement. The app should use the native Google Sign-In
-SDK flow and request a server auth code.
-
-## Target flow
+Status: implementation updated[GOOGLE_SIGN_IN_BUILD_COMMANDS.md](GOOGLE_SIGN_IN_BUILD_COMMANDS.md)## Target flow
 
 ```text
 LoginPage

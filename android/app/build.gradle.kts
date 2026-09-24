@@ -16,6 +16,15 @@ val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
+val releaseStoreFile = keystoreProperties.getProperty("storeFile")
+    ?.trim()
+    ?.takeIf { it.isNotEmpty() }
+    ?.let { rootProject.file(it) }
+val hasReleaseKeystore = keystorePropertiesFile.isFile &&
+    !keystoreProperties.getProperty("keyAlias").isNullOrBlank() &&
+    !keystoreProperties.getProperty("keyPassword").isNullOrBlank() &&
+    !keystoreProperties.getProperty("storePassword").isNullOrBlank() &&
+    releaseStoreFile?.isFile == true
 
 android {
     namespace = "app.raqamlisovchi.uz"
@@ -24,10 +33,10 @@ android {
 
     signingConfigs{
         create("release"){
-            if(keystorePropertiesFile.exists()){
+            if (hasReleaseKeystore) {
                 keyAlias = keystoreProperties.getProperty("keyAlias")?.trim()
                 keyPassword = keystoreProperties.getProperty("keyPassword")?.trim()
-                storeFile = keystoreProperties.getProperty("storeFile")?.trim()?.let { file(it) }
+                storeFile = releaseStoreFile
                 storePassword = keystoreProperties.getProperty("storePassword")?.trim()
             }
         }
@@ -57,9 +66,13 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("release")
+            // Use the private release keystore when it is configured locally.
+            // Otherwise keep local release APK builds usable with the debug key.
+            signingConfig = if (hasReleaseKeystore) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }
